@@ -1,0 +1,13 @@
+{
+  "name": "@biorate/errors",
+  "version": "0.0.0",
+  "description": "Errors factory",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts"
+  },
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT"
+}
