@@ -1,0 +1,32 @@
+{
+  "name": "biorate",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Biorate core monorepository",
+  "scripts": {
+    "test": "npx lerna run test",
+    "build": "npx lerna run build",
+    "bootstrap": "npx lerna bootstrap",
+    "version": "npx lerna version",
+    "doc": "npx typedoc packages/@biorate/*/index.ts"
+  },
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^15.0.2",
+    "chai": "^4.3.4",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "lerna": "^4.0.0",
+    "mocha": "^8.4.0",
+    "npx": "^10.2.2",
+    "nyc": "^15.1.0",
+    "prettier": "^2.3.0",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.20.36",
+    "typescript": "^4.2.4"
+  }
+}

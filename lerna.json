@@ -1,0 +1,13 @@
+{
+  "packages": [
+    "packages/@biorate/*"
+  ],
+  "command": {
+    "version": {
+      "exact": true,
+      "conventionalCommits": true,
+      "message": "chore(release): %s"
+    }
+  },
+  "version": "0.1.1"
+}
