@@ -1,6 +1,4 @@
 import { assert } from 'chai';
-import { IDefine } from '../interfaces';
-// import { define } from '../src';
 import { prop, accessors, conditions } from './__mocks__/define';
 
 describe('define', () => {
