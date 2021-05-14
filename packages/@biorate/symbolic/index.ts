@@ -1,11 +1,11 @@
-export function create(label) {
+export function create(label: string) {
   return new Proxy(
     {},
     new (class {
       #map = new Map<string, symbol>();
       #key = (name) => `${label}.${name}`;
 
-      get(ctx: { [key: string]: symbol }, name: string) {
+      public get(ctx: { [key: string]: symbol }, name: string) {
         let key = this.#key(name),
           item = this.#map.get(key);
         if (!item) {
@@ -15,7 +15,7 @@ export function create(label) {
         return item;
       }
 
-      has(ctx: { [key: string]: symbol }, name: string) {
+      public has(ctx: { [key: string]: symbol }, name: string) {
         return this.#map.has(this.#key(name));
       }
     })(),
