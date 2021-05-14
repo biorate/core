@@ -10,7 +10,7 @@
     "version": "npx lerna version",
     "doc": "npx typedoc packages/@biorate/*/index.ts",
     "publish:package": "npx lerna publish from-package",
-    "publish": "npm run build * npm run publish:package"
+    "publish": "npm run build & npm run publish:package"
   },
   "keywords": [],
   "author": "llevkin",
