@@ -13,6 +13,16 @@ export function prop(mods: IDefine.Mods, field = 'a', value = 1) {
   return Object.getOwnPropertyDescriptor(obj, 'a');
 }
 
+export function accessors(
+  mods: IDefine.Mods,
+  field = 'a',
+  value = { get() {}, set() {} },
+) {
+  const obj = {};
+  define.accessor(obj, field, value, mods);
+  return Object.getOwnPropertyDescriptor(obj, 'a');
+}
+
 export const conditions = new Map<IDefine.Mods, string[]>([
   ['c', [Properties.configurable]],
   ['w', [Properties.writable]],

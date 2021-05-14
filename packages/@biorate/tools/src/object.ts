@@ -12,11 +12,8 @@ export function walkProto(object: any, callback = (object: any) => {}) {
   }
 }
 
-export function kSort(object: {}) {
+export function kSort(object: Record<string, any>) {
   return Object.keys(object)
     .sort()
-    .reduce((memo, item) => {
-      memo[item] = object[item];
-      return memo;
-    }, {});
+    .reduce((memo, item) => ((memo[item] = object[item]), memo), {});
 }
