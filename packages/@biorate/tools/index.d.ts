@@ -1,4 +1,4 @@
-import { ITools } from './interfaces';
+import { IDefine } from './interfaces';
 
 declare module '@biorate/tools' {
   export namespace path {
@@ -24,22 +24,22 @@ declare module '@biorate/tools' {
       context: {},
       field?: string,
       value?: any,
-      mods?: ITools.IDefine.IMods,
+      mods?: IDefine.Mods,
     ): (
       field: string,
       value: any,
       mods?: string,
-    ) => (field: string, value: any, mods?: ITools.IDefine.IMods) => any;
+    ) => (field: string, value: any, mods?: IDefine.Mods) => any;
 
     export function accessor(
       context: {},
       field?: string,
-      accessor?: ITools.IDefine.IAccessor,
-      mods?: ITools.IDefine.IMods,
+      accessor?: IDefine.Accessor,
+      mods?: IDefine.Mods,
     ): (
       field: string,
-      accessor: ITools.IDefine.IAccessor,
+      accessor: IDefine.Accessor,
       mods?: string,
-    ) => (field: string, accessor: ITools.IDefine.IAccessor, mods?: ITools.IDefine.IMods) => any;
+    ) => (field: string, accessor: IDefine.Accessor, mods?: IDefine.Mods) => any;
   }
 }
