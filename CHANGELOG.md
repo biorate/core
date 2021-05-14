@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.1.1](https://github.com/biorate/core/compare/v0.1.0...v0.1.1) (2021-05-14)
 
-**Note:** Version bump only for package biorate
+* **errors,symbolic:** index.d.ts added ([e073dd4](https://github.com/biorate/core/commit/e073dd417eb35a6dba0bcfa45edf06e8d85aecaa))
 
 
 
