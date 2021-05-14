@@ -9,7 +9,8 @@
     "bootstrap": "npx lerna bootstrap",
     "version": "npx lerna version",
     "doc": "npx typedoc packages/@biorate/*/index.ts",
-    "publish": "npx lerna publish from-package"
+    "publish:package": "npx lerna publish from-package",
+    "publish": "npm run build * npm run publish:package"
   },
   "keywords": [],
   "author": "llevkin",
