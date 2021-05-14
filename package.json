@@ -8,7 +8,8 @@
     "build": "npx lerna run build",
     "bootstrap": "npx lerna bootstrap",
     "version": "npx lerna version",
-    "doc": "npx typedoc packages/@biorate/*/index.ts"
+    "doc": "npx typedoc packages/@biorate/*/index.ts",
+    "publish": "npx lerna publish from-package"
   },
   "keywords": [],
   "author": "llevkin",
