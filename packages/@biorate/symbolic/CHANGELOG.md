@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/biorate/core/compare/v0.1.2...v0.2.0) (2021-05-14)
+
+
+### Features
+
+* **core:** publish in npm scripts ([897344e](https://github.com/biorate/core/commit/897344ec41eca92a6b2832d36f87f7f9360ba742))
+
+
+
+
+
 ## [0.1.2](https://github.com/biorate/core/compare/v0.1.1...v0.1.2) (2021-05-14)
 
 
