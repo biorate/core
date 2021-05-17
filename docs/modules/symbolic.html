@@ -90,9 +90,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/d01f9b8/packages/@biorate/symbolic/index.ts#L1">packages/@biorate/symbolic/index.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/bb05e22/packages/@biorate/symbolic/index.ts#L23">packages/@biorate/symbolic/index.ts:23</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Symbols factory registry with namespaces</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">create</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/symbolic&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Namespace1</span><span style="color: #000000"> = </span><span style="color: #795E26">create</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Namespace1&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Namespace2</span><span style="color: #000000"> = </span><span style="color: #795E26">create</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Namespace2&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// auto-create symbol on property call</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">Namespace1</span><span style="color: #000000">.</span><span style="color: #001080">Test1</span><span style="color: #000000">); </span><span style="color: #008000">// Symbol(Namespace1.Test)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">Namespace1</span><span style="color: #000000">.</span><span style="color: #001080">Test1</span><span style="color: #000000"> === </span><span style="color: #001080">Namespace1</span><span style="color: #000000">.</span><span style="color: #001080">Test1</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">Namespace1</span><span style="color: #000000">.</span><span style="color: #001080">Test2</span><span style="color: #000000">); </span><span style="color: #008000">// Symbol(Namespace1.Test)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">Namespace1</span><span style="color: #000000">.</span><span style="color: #001080">Test1</span><span style="color: #000000"> === </span><span style="color: #001080">Namespace1</span><span style="color: #000000">.</span><span style="color: #001080">Test2</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+
+<span style="color: #008000">// namespace isolation</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">Namespace2</span><span style="color: #000000">.</span><span style="color: #001080">Test1</span><span style="color: #000000"> === </span><span style="color: #001080">Namespace1</span><span style="color: #000000">.</span><span style="color: #001080">Test1</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>

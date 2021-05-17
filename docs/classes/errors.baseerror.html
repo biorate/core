@@ -68,6 +68,37 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>description</dt>
+						<dd><p>This module provides a base class for creating error classes with error code (class name),
+							message template, meta data support out of the box.</p>
+						</dd>
+						<dt>example</dt>
+						<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">BaseError</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/errors&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">MyAwesomeError</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">BaseError</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #001080">args</span><span style="color: #000000">?: </span><span style="color: #267F99">any</span><span style="color: #000000">[], </span><span style="color: #001080">meta</span><span style="color: #000000">?: </span><span style="color: #267F99">any</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">super</span><span style="color: #000000">(</span><span style="color: #A31515">`Oops... Some error happen, at [%s], in [%s]`</span><span style="color: #000000">, </span><span style="color: #001080">args</span><span style="color: #000000">, </span><span style="color: #001080">meta</span><span style="color: #000000">);</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">e</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MyAwesomeError</span><span style="color: #000000">([</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(), </span><span style="color: #A31515">&#039;core&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">hello:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;world!&#039;</span><span style="color: #000000"> });</span>
+
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">meta</span><span style="color: #000000">); </span><span style="color: #008000">// { hello: &#039;world!&#039; }</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000">); </span><span style="color: #008000">// MyAwesomeError</span>
+
+<span style="color: #AF00DB">throw</span><span style="color: #000000"> </span><span style="color: #001080">e</span><span style="color: #000000">;</span>
+<span style="color: #000000">          ^</span>
+<span style="color: #000000">MyAwesomeError: </span><span style="color: #001080">Oops</span><span style="color: #000000">... </span><span style="color: #001080">Some</span><span style="color: #000000"> </span><span style="color: #001080">error</span><span style="color: #000000"> </span><span style="color: #001080">happen</span><span style="color: #000000">, </span><span style="color: #001080">at</span><span style="color: #000000"> [</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-13</span><span style="color: #0070C1">T09</span><span style="color: #000000">:</span><span style="color: #098658">19</span><span style="color: #000000">:22.511</span><span style="color: #0070C1">Z</span><span style="color: #000000">], </span><span style="color: #0000FF">in</span><span style="color: #000000"> [</span><span style="color: #001080">core</span><span style="color: #000000">]</span>
+<span style="color: #000000">    </span><span style="color: #001080">at</span><span style="color: #000000"> </span><span style="color: #267F99">Object</span><span style="color: #000000">.&lt;</span><span style="color: #001080">anonymous</span><span style="color: #000000">&gt; (..</span><span style="color: #001080">core</span><span style="color: #000000">/</span><span style="color: #001080">packages</span><span style="color: #000000">/@</span><span style="color: #001080">biorate</span><span style="color: #000000">/</span><span style="color: #001080">errors</span><span style="color: #000000">/</span><span style="color: #001080">index</span><span style="color: #000000">.</span><span style="color: #001080">ts</span><span style="color: #000000">:</span><span style="color: #098658">28</span><span style="color: #000000">:</span><span style="color: #098658">11</span><span style="color: #000000">)</span>
+<span style="color: #000000">    </span><span style="color: #001080">at</span><span style="color: #000000"> </span><span style="color: #001080">Module</span><span style="color: #000000">.</span><span style="color: #795E26">_compile</span><span style="color: #000000"> (</span><span style="color: #001080">internal</span><span style="color: #000000">/</span><span style="color: #001080">modules</span><span style="color: #000000">/</span><span style="color: #001080">cjs</span><span style="color: #000000">/</span><span style="color: #001080">loader</span><span style="color: #000000">.</span><span style="color: #001080">js</span><span style="color: #000000">:</span><span style="color: #098658">1138</span><span style="color: #000000">:</span><span style="color: #098658">30</span><span style="color: #000000">)</span>
+</code></pre>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -136,7 +167,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Error.constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/d01f9b8/packages/@biorate/errors/index.ts#L4">packages/@biorate/errors/index.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/bb05e22/packages/@biorate/errors/index.ts#L31">packages/@biorate/errors/index.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -164,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">#meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/biorate/core/blob/d01f9b8/packages/@biorate/errors/index.ts#L4">packages/@biorate/errors/index.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/biorate/core/blob/bb05e22/packages/@biorate/errors/index.ts#L31">packages/@biorate/errors/index.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -270,7 +301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/d01f9b8/packages/@biorate/errors/index.ts#L17">packages/@biorate/errors/index.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/bb05e22/packages/@biorate/errors/index.ts#L44">packages/@biorate/errors/index.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -287,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/d01f9b8/packages/@biorate/errors/index.ts#L13">packages/@biorate/errors/index.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/bb05e22/packages/@biorate/errors/index.ts#L40">packages/@biorate/errors/index.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
