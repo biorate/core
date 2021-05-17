@@ -12,7 +12,15 @@
   "license": "MIT",
   "dependencies": {
     "@biorate/errors": "^0.3.0",
+    "@biorate/symbolic": "^0.3.0",
     "@biorate/tools": "^0.3.0",
-    "@biorate/symbolic": "^0.3.0"
+    "lodash": "^4.17.21",
+    "luxon": "^1.27.0",
+    "mobx": "^5.15.7",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.169",
+    "@types/luxon": "^1.26.5"
   }
 }
