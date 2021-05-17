@@ -3,7 +3,6 @@ import { define } from '@biorate/tools';
 import { DateTime } from 'luxon';
 import { isObject } from 'lodash';
 import { Props, Types } from './symbols';
-import { bindings } from './bindings';
 
 export class Item<P = { parent?: any }> {
   public static Int = Types.Int;
@@ -18,8 +17,10 @@ export class Item<P = { parent?: any }> {
   public static Set = Types.Set;
   public static Luxon = Types.Luxon;
 
+  public static bindings = new Map<string | symbol | Function, symbol | Function>();
+
   public static bind(key: string | symbol | Function, val: symbol | Function) {
-    return bindings.set(key, val);
+    return this.bindings.set(key, val);
   }
 
   #defineClass = (
@@ -38,7 +39,7 @@ export class Item<P = { parent?: any }> {
   #getType = (data: Record<string, any>, field: string) => {
     let type = Reflect.getMetadata(Props.Class, Object.getPrototypeOf(this), field);
     if (!type) type = this[Props.types][field];
-    if (bindings.has(type)) type = bindings.get(type);
+    if (Item.bindings.has(type)) type = Item.bindings.get(type);
     return type;
   };
 
