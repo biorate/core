@@ -19,3 +19,6 @@ console.log(Namespace1.Test1 === Namespace1.Test2); // false
 /* namespace isolation */
 console.log(Namespace2.Test1 === Namespace1.Test1); // false
 ```
+
+### Learn
+* Docs: Checking out the [docs](https://biorate.github.io/core/modules/symbolic.html).

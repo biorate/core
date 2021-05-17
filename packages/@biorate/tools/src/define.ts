@@ -1,7 +1,7 @@
 import { IDefine } from '../interfaces';
 
-export function prop(context: any, field?: string, value?: any, mods: IDefine.Mods = '') {
-  function define(field: string, value: any, mods: IDefine.Mods = '') {
+export function prop(context: any, field?: string | symbol, value?: any, mods: IDefine.Mods = '') {
+  function define(field: string | symbol, value: any, mods: IDefine.Mods = '') {
     Object.defineProperty(context, field, {
       value: value,
       enumerable: mods && mods.includes('e'),
@@ -14,8 +14,8 @@ export function prop(context: any, field?: string, value?: any, mods: IDefine.Mo
   else return define;
 }
 
-export function accessor(context: any, field?: string, accessor?: IDefine.Accessor, mods?: string) {
-  function define(field: string, accessor: IDefine.Accessor, mods?: string) {
+export function accessor(context: any, field?: string | symbol, accessor?: IDefine.Accessor, mods?: string) {
+  function define(field: string | symbol, accessor: IDefine.Accessor, mods?: string) {
     const descriptor = {
       enumerable: mods && mods.includes('e'),
       configurable: mods && mods.includes('c'),

@@ -24,3 +24,6 @@ MyAwesomeError: Oops... Some error happen, at [2021-05-13T09:19:22.511Z], in [co
     at Object.<anonymous> (..core/packages/@biorate/errors/index.ts:28:11)
     at Module._compile (internal/modules/cjs/loader.js:1138:30)
 ```
+
+### Learn
+* Docs: Checking out the [docs](https://biorate.github.io/core/modules/errors.html).

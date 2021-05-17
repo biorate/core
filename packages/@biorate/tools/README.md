@@ -1,3 +1,4 @@
-# Helper Tools
+# Tools
 
-See [Documentation](https://biorate.github.io/core/modules/tools.html)
+### Learn
+* Docs: Checking out the [docs](https://biorate.github.io/core/modules/tools.html).
