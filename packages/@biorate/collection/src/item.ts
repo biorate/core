@@ -5,19 +5,19 @@ import { isObject } from 'lodash';
 import { Props, Types } from './symbols';
 
 export class Item<P = { parent?: any }> {
-  public static Int = Types.Int;
-  public static String = Types.String;
-  public static Float = Types.Float;
-  public static Bool = Types.Bool;
-  public static Date = Types.Date;
-  public static Object = Types.Object;
-  public static Array = Types.Array;
-  public static Json = Types.Json;
-  public static Map = Types.Map;
-  public static Set = Types.Set;
-  public static Luxon = Types.Luxon;
+  public static readonly Int = Types.Int;
+  public static readonly String = Types.String;
+  public static readonly Float = Types.Float;
+  public static readonly Bool = Types.Bool;
+  public static readonly Date = Types.Date;
+  public static readonly Object = Types.Object;
+  public static readonly Array = Types.Array;
+  public static readonly Json = Types.Json;
+  public static readonly Map = Types.Map;
+  public static readonly Set = Types.Set;
+  public static readonly Luxon = Types.Luxon;
 
-  public static bindings = new Map<string | symbol | Function, symbol | Function>();
+  public static readonly bindings = new Map<string | symbol | Function, symbol | Function>();
 
   public static bind(key: string | symbol | Function, val: symbol | Function) {
     return this.bindings.set(key, val);

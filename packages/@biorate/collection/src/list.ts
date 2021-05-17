@@ -4,6 +4,39 @@ import { Props } from './symbols';
 import { CollectionListItemAlreadyExistsError } from './errors';
 import { ICollection } from '../interfaces';
 
+/**
+ * @description
+ * This class provides manipulation of documents collections.
+ * Multi-index and object factory supported.
+ *
+ * ### Features:
+ * - multi-indexing
+ * - iterable
+ * - factory
+ *
+ * @example
+ * ```
+ * import * as collection from '@biorate/collection';
+ *
+ * class List extends collection.List<{ id: number }> {
+ *   protected get _keys() {
+ *     return [['id']];
+ *   }
+ *
+ *   protected get _Item() {
+ *     return null;
+ *   }
+ * }
+ *
+ * const list = new List();
+ *
+ * list.set({ id: 1, title: 'one' }, { id: 2, title: 'two' }, { id: 3, title: 'three' });
+ *
+ * console.log(list.get(1)); // { id: 1, title: 'one' }
+ * console.log(list.get(2)); // { id: 2, title: 'two' }
+ * console.log(list.get(3)); // { id: 3, title: 'three' }
+ * ```
+ */
 export abstract class List<I = any, P = { parent?: any }> extends EventEmitter {
   static get index() {
     return Props.Index;
