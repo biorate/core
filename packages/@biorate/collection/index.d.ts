@@ -58,7 +58,7 @@ declare module '@biorate/collection' {
       val: symbol | Function,
     ): Map<string | symbol | Function, symbol | Function>;
 
-    public constructor(parent?: P);
+    public constructor(data?: Record<string, any>, parent?: P);
 
     public initialize(data?: Record<string, any>): this;
 

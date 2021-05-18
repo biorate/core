@@ -17,7 +17,10 @@ export class Item<P = { parent?: any }> {
   public static readonly Set = Types.Set;
   public static readonly Luxon = Types.Luxon;
 
-  public static readonly bindings = new Map<string | symbol | Function, symbol | Function>();
+  public static readonly bindings = new Map<
+    string | symbol | Function,
+    symbol | Function
+  >();
 
   public static bind(key: string | symbol | Function, val: symbol | Function) {
     return this.bindings.set(key, val);
@@ -45,6 +48,7 @@ export class Item<P = { parent?: any }> {
 
   #setData = (data: Record<string, any>, field: string) => {
     const type = this.#getType(data, field);
+    const items = Array.isArray(data[field]) ? data[field] : [];
     switch (type) {
       case Item.Int:
         this[field] = parseInt(data[field], 10) || 0;
@@ -83,10 +87,10 @@ export class Item<P = { parent?: any }> {
         this[field] = data[field] ? String(data[field]) : '';
         break;
       case Item.Map:
-        this[field] = new Map(Array.isArray(data[field]) ? data[field] : []);
+        this[Props.defineMapOrSet](field, items, Map);
         break;
       case Item.Set:
-        this[field] = new Set(Array.isArray(data[field]) ? data[field] : []);
+        this[Props.defineMapOrSet](field, items, Set);
         break;
       default:
         if (type instanceof Function) {
@@ -104,11 +108,37 @@ export class Item<P = { parent?: any }> {
     this.#setData(data, field);
   };
 
-  public constructor(parent: P = null) {
-    define.prop(this)(Props.parent, parent, 'c')(Props.types, {}, 'w');
+  [Props.defineMapOrSet](
+    field: string,
+    items: any[],
+    Ctor: { new (...args: any[]): any },
+  ) {
+    if (
+      !this[field] ||
+      typeof this[field] !== 'object' ||
+      (!('add' in this[field]) && !('set' in this[field]))
+    )
+      this[field] = new Ctor(items);
+    else
+      items.forEach((item) =>
+        this[field].set ? this[field].set(...item) : this[field].add(item),
+      );
   }
 
-  public initialize(data?: Record<string, any>) {
+  public constructor(data: Record<string, any> = null, parent: P = null) {
+    define.prop(this)(Props.parent, parent, 'c')(Props.types, {}, 'w')(
+      Props.data,
+      data,
+      'w',
+    );
+  }
+
+  public initialize(data: Record<string, any> = this[Props.data]) {
+    return this.reinitialize(data);
+  }
+
+  public reinitialize(data: Record<string, any>) {
+    this[Props.data] = data;
     for (const field in this) {
       if (!this.hasOwnProperty(field)) continue;
       this.#validate(data, field);

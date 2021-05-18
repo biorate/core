@@ -51,19 +51,3 @@ export const data = {
 };
 
 Item.bind(Types.Binded, Binded);
-
-
-
-
-// import { Item as Base, embed } from '@biorate/collection';
-
-class Item1 extends collection.Item {
-  @embed(Item.Int) public int: number = null;
-  @embed(Item.Float) public float: number = null;
-  @embed(Item.String) public string: string = null;
-  @embed(Item.Bool) public bool: boolean = null;
-}
-
-const item = new Item1().initialize({ int: 1, float: 1.1, string: 'test', bool: false });
-
-console.log(item);

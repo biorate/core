@@ -99,7 +99,7 @@ export abstract class List<I = any, P = { parent?: any }> extends EventEmitter {
 
   protected abstract get _keys(): ICollection.Keys;
 
-  protected abstract get _Item(): { new (...args): I } | null;
+  protected abstract get _Item(): { new (...args: any[]): I } | null;
 
   public get parent(): P {
     return this[Props.parent];
@@ -118,7 +118,7 @@ export abstract class List<I = any, P = { parent?: any }> extends EventEmitter {
     for (let item of args) {
       this.#processed = item;
       if (this._Item) {
-        let instance = new this._Item(this) as { initialize?: (item: any) => {} };
+        let instance = new this._Item(item, this) as { initialize?: (item: any) => {} };
         instance.initialize?.(item);
         item = instance;
       }
