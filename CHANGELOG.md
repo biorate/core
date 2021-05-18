@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/biorate/core/compare/v0.5.0...v0.5.1) (2021-05-18)
+
+
+### Bug Fixes
+
+* **core:** publish script fix ([d4260aa](https://github.com/biorate/core/commit/d4260aad2a17ec9bff4848822d0658024d86ca19))
+
+
+
+
+
 # [0.5.0](https://github.com/biorate/core/compare/v0.4.0...v0.5.0) (2021-05-18)
 
 
