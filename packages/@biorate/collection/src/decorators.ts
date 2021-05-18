@@ -1,4 +1,5 @@
 import { Props } from './symbols';
+import { ICollection } from '../interfaces';
 import { observable as o, action as a, computed as c } from 'mobx';
 
 export function observable() {
@@ -13,25 +14,29 @@ export function computed() {
   return (target, field, descriptor) => c(target, field, descriptor);
 }
 
-export function embed(Class) {
+export function embed(type: any) {
   return (target, field: string) => {
-    Reflect.defineMetadata(Props.Class, Class, target, field);
+    Reflect.defineMetadata(Props.Class, type, target, field);
   };
 }
 
-export function inject(Class) {
+export function inject(Class: ICollection.Ctor) {
   return (target, field: string) => {
     target[field] = new Class();
   };
 }
 
 export function singletone() {
-  return (Class) =>
+  return (Class: ICollection.Ctor) =>
     new Proxy(
       Class,
       new (class {
         #instance = null;
-        construct(target: Function, argumentsList: ArrayLike<any>, newTarget?: Function) {
+        construct(
+          target: ICollection.Ctor,
+          argumentsList: ArrayLike<any>,
+          newTarget?: ICollection.Ctor,
+        ) {
           return (
             this.#instance ??
             (this.#instance = Reflect.construct(target, argumentsList, newTarget))

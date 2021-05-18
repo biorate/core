@@ -44,7 +44,7 @@ export abstract class List<I = any, P = { parent?: any }> extends EventEmitter {
 
   #map = new Map<string, I>();
   #set = new Set<I>();
-  #processed: any = null;
+  #processed: Record<string, any> = null;
 
   public constructor(items?: any[], parent: P = null) {
     super();
