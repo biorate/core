@@ -4,10 +4,6 @@ export class List extends collection.ObservableList<{ id: number }> {
   protected get _keys() {
     return [['id']];
   }
-
-  protected get _Item() {
-    return null;
-  }
 }
 
 export function create(callback: (...args: any[]) => void, items?: any[]) {

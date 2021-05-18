@@ -13,9 +13,9 @@ declare module '@biorate/collection' {
 
     protected set _set(value);
 
-    protected abstract get _keys(): ICollection.Keys;
+    protected abstract get _keys(): ICollection.List.Keys;
 
-    protected abstract get _Item(): { new (...args): I } | null;
+    protected get _Item(): { new (...args): I } | null;
 
     public get parent(): P;
 

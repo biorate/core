@@ -9,10 +9,6 @@ class List extends collection.List<{ id: number }> {
   protected get _keys() {
     return [['id']];
   }
-
-  protected get _Item() {
-    return null;
-  }
 }
 
 const list = new List();

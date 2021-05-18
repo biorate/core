@@ -1,5 +1,5 @@
 import { Props } from './symbols';
-import { ICollection } from '../interfaces';
+import { Ctor } from './types';
 import { observable as o, action as a, computed as c } from 'mobx';
 
 export function observable() {
@@ -20,22 +20,22 @@ export function embed(type: any) {
   };
 }
 
-export function inject(Class: ICollection.Ctor) {
+export function inject(Class: Ctor) {
   return (target, field: string) => {
     target[field] = new Class();
   };
 }
 
 export function singletone() {
-  return (Class: ICollection.Ctor) =>
+  return (Class: Ctor) =>
     new Proxy(
       Class,
       new (class {
         #instance = null;
         construct(
-          target: ICollection.Ctor,
+          target: Ctor,
           argumentsList: ArrayLike<any>,
-          newTarget?: ICollection.Ctor,
+          newTarget?: Ctor,
         ) {
           return (
             this.#instance ??
