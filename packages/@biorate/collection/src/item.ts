@@ -4,28 +4,71 @@ import { DateTime } from 'luxon';
 import { isObject } from 'lodash';
 import { Props, Types } from './symbols';
 
+/**
+ * @description Collection item with auto cast to type properties,
+ * implemented with IoC and DI
+ *
+ * ### Features:
+ * - cast to type properties
+ * - DI
+ * - IoC
+ *
+ * @example
+ * ```
+ * import * as collection from '@biorate/collection';
+ *
+ * class Item extends collection.Item {
+ *   @embed(Item.Int) public id: number = null;
+ *   @embed(Item.String) public title: string = null;
+ * }
+ *
+ * const item = new Item().initialize({ id: 1, title: 'one' });
+ *
+ * console.log(item); // Item { id: 1, title: 'one' }
+ * ```
+ */
 export class Item<P = { parent?: any }> {
+  /** @description cast to **int** type symbol */
   public static readonly Int = Types.Int;
+  /** @description cast to **string** type symbol */
   public static readonly String = Types.String;
+  /** @description cast to **float** type symbol */
   public static readonly Float = Types.Float;
+  /** @description cast to **boolean** type symbol */
   public static readonly Bool = Types.Bool;
+  /** @description cast to **Date** type symbol */
   public static readonly Date = Types.Date;
+  /** @description cast to **Object** type symbol */
   public static readonly Object = Types.Object;
+  /** @description cast to **Array** type symbol */
   public static readonly Array = Types.Array;
+  /** @description cast to **JSON** type symbol */
   public static readonly Json = Types.Json;
+  /** @description cast to **Map** type symbol */
   public static readonly Map = Types.Map;
+  /** @description cast to **Set** type symbol */
   public static readonly Set = Types.Set;
+  /** @description cast to **Luxon** type symbol */
   public static readonly Luxon = Types.Luxon;
 
-  public static readonly bindings = new Map<
-    string | symbol | Function,
-    symbol | Function
-  >();
+  /** @description Binding map, for IoC pattern realization */
+  public static readonly bindings = new Map<string | symbol | Function, Function>();
 
-  public static bind(key: string | symbol | Function, val: symbol | Function) {
+  /**
+   * @description Bind string, symbol, or Class to Class
+   * @param key - dependency identifier
+   * @param val - dependency Class
+   * */
+  public static bind(key: string | symbol | Function, val: Function) {
     return this.bindings.set(key, val);
   }
 
+  /**
+   * @description Instantiate and initialize class
+   * @param data - data object
+   * @param field - object field
+   * @param Class - Instance class
+   * */
   #defineClass = (
     data: Record<string, any>,
     field: string,
@@ -35,10 +78,20 @@ export class Item<P = { parent?: any }> {
     this[field].initialize?.(data[field]);
   };
 
+  /**
+   * @description Cache type
+   * @param data - data object
+   * @param field - object field
+   * */
   #setType = (data: Record<string, any>, field: string) => {
     if (!(field in this[Props.types])) this[Props.types][field] = this[field];
   };
 
+  /**
+   * @description Get type from cache
+   * @param data - data object
+   * @param field - object field
+   * */
   #getType = (data: Record<string, any>, field: string) => {
     let type = Reflect.getMetadata(Props.Class, Object.getPrototypeOf(this), field);
     if (!type) type = this[Props.types][field];
@@ -46,6 +99,11 @@ export class Item<P = { parent?: any }> {
     return type;
   };
 
+  /**
+   * @description Cast to type and set data value
+   * @param data - data object
+   * @param field - object field
+   * */
   #setData = (data: Record<string, any>, field: string) => {
     const type = this.#getType(data, field);
     const items = Array.isArray(data[field]) ? data[field] : [];
@@ -102,6 +160,11 @@ export class Item<P = { parent?: any }> {
     }
   };
 
+  /**
+   * @description Cache type and apply data value
+   * @param data - data object
+   * @param field - object field
+   * */
   #validate = (data: Record<string, any>, field: string) => {
     data = data || {};
     this.#setType(data, field);
@@ -125,6 +188,21 @@ export class Item<P = { parent?: any }> {
       );
   }
 
+  /**
+   * @param data - data object
+   * @param parent - parent item
+   * @example
+   * ```
+   * import * as collection from '@biorate/collection';
+   *
+   * class Item extends collection.Item {
+   *   @embed(Item.Int) public id: number = null;
+   *   @embed(Item.String) public title: string = null;
+   * }
+   *
+   * const item = new Item().initialize({ id: 1, title: 'one' });
+   * ```
+   */
   public constructor(data: Record<string, any> = null, parent: P = null) {
     define.prop(this)(Props.parent, parent, 'c')(Props.types, {}, 'w')(
       Props.data,
@@ -133,10 +211,18 @@ export class Item<P = { parent?: any }> {
     );
   }
 
+  /**
+   * @description Initialize object
+   * @param data - data object
+   */
   public initialize(data: Record<string, any> = this[Props.data]) {
     return this.reinitialize(data);
   }
 
+  /**
+   * @description Reinitialize object
+   * @param data - data object
+   */
   public reinitialize(data: Record<string, any>) {
     this[Props.data] = data;
     for (const field in this) {
@@ -146,6 +232,9 @@ export class Item<P = { parent?: any }> {
     return this;
   }
 
+  /**
+   * @description Alias to parent class
+   */
   public get parent(): P {
     return this[Props.parent];
   }

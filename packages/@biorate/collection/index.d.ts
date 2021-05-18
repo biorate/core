@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events';
 import { ICollection } from './interfaces';
+import { Ctor } from './src/types';
 
 declare module '@biorate/collection' {
   export abstract class List<I = any, P = { parent?: any }> extends EventEmitter {
@@ -51,12 +52,12 @@ declare module '@biorate/collection' {
     public static readonly Set: symbol;
     public static readonly Luxon: symbol;
 
-    public static readonly bindings: Map<string | symbol | Function, symbol | Function>;
+    public static readonly bindings: Map<string | symbol | Function, Function>;
 
     public static bind(
       key: string | symbol | Function,
-      val: symbol | Function,
-    ): Map<string | symbol | Function, symbol | Function>;
+      val: Function,
+    ): Map<string | symbol | Function, Function>;
 
     public constructor(data?: Record<string, any>, parent?: P);
 
@@ -73,7 +74,7 @@ declare module '@biorate/collection' {
 
   export function embed(type: any): void;
 
-  export function inject(Class: ICollection.Ctor): void;
+  export function inject(Class: Ctor): void;
 
   export function singletone(): void;
 }

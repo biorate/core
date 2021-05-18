@@ -17,20 +17,30 @@ import { Ctor } from './types';
  * @example
  * ```
  * import * as collection from '@biorate/collection';
+ * import { embed } from '@biorate/collection';
  *
  * class List extends collection.List<{ id: number }> {
  *   protected get _keys() {
  *     return [['id']];
  *   }
+ *
+ *   protected get _Item() {
+ *     return Item;
+ *   }
+ * }
+ *
+ * class Item extends collection.Item {
+ *   @embed(Item.Int) public id: number = null;
+ *   @embed(Item.String) public title: string = null;
  * }
  *
  * const list = new List();
  *
  * list.set({ id: 1, title: 'one' }, { id: 2, title: 'two' }, { id: 3, title: 'three' });
  *
- * console.log(list.find(1)); // { id: 1, title: 'one' }
- * console.log(list.find(2)); // { id: 2, title: 'two' }
- * console.log(list.find(3)); // { id: 3, title: 'three' }
+ * console.log(list.find(1)); // Item { id: 1, title: 'one' }
+ * console.log(list.find(2)); // Item { id: 2, title: 'two' }
+ * console.log(list.find(3)); // Item { id: 3, title: 'three' }
  * ```
  */
 export abstract class List<I = any, P = { parent?: any }> {
@@ -61,15 +71,33 @@ export abstract class List<I = any, P = { parent?: any }> {
   /**
    * @param items - initialization items
    * @param parent - parent item
+   * @example
+   * ```ts
+   * import * as collection from '@biorate/collection';
+   *
+   * class List extends collection.List<{ id: number }> {
+   *   protected get _keys() {
+   *     return [['id']];
+   *   }
+   * }
+   *
+   * const list = new List([{ id: 1 }, { id: 2 }, { id: 3 }]);
+   * ```
    */
   public constructor(items: any[] = [], parent: P = null) {
     define.prop(this)(Props.parent, parent, 'c');
     this.set(...items);
   }
 
+  /**
+   * @description Create index string key
+   */
   #key = (key: (string | symbol)[], val: any[]) =>
     key.map((k) => String(k)).join('.') + '|' + val.join('.');
 
+  /**
+   * @description Create indexes string array
+   */
   #indexer = (item: any, keys: any = this._keys, result = []): string[] => {
     if (Array.isArray(keys[0])) {
       for (const key of keys) this.#indexer(item, key, result);
@@ -222,26 +250,16 @@ export abstract class List<I = any, P = { parent?: any }> {
    * @example
    * ```ts
    * class Base extends collection.Item {
+   *   id: number = null;
+   *   type: string = null;
    * }
-   *
-   * class One extends Base {
-   *   id: number;
-   *   type: string;
-   * }
-   *
-   * class Two extends Base {
-   *   id: number;
-   *   type: string;
-   * }
-   *
-   * class Three extends Base {
-   *   id: number;
-   *   type: string;
-   * }
+   * class One extends Base {}
+   * class Two extends Base {}
+   * class Three extends Base {}
    *
    * const Types = { One, Two, Three }
    *
-   * class List extends collection.List<{ id: number, type: string }> {
+   * class List extends collection.List<Base> {
    *   protected get _keys() {
    *     return [['id']];
    *   }
@@ -252,16 +270,23 @@ export abstract class List<I = any, P = { parent?: any }> {
    * }
    *
    * const list = new List();
-   * list.set({ id: 1, type: 'One' }, { id: 1, type: 'Two' }, { id: 1, type: 'Three' });
-   * console.log(list.find(1));
-   * console.log(list.find(2));
-   * console.log(list.find(3));
+   * list.set({ id: 1, type: 'One' }, { id: 2, type: 'Two' }, { id: 3, type: 'Three' });
+   * console.log(list.find(1)); // One { id: 1, type: 'One' }
+   * console.log(list.find(2)); // Two { id: 2, type: 'Two' }
+   * console.log(list.find(3)); // Three { id: 3, type: 'Three' }
    * ```
    */
   public get processed() {
     return this.#processed;
   }
 
+  /**
+   * @description Add item into collection
+   * @example
+   * ```ts
+   * list.set({ id: 1 }, { id: 2 }, { id: 3 });
+   * ```
+   */
   public set(...args: any[]): I[] {
     const result = [];
     for (let item of args) {
@@ -283,23 +308,51 @@ export abstract class List<I = any, P = { parent?: any }> {
     return result;
   }
 
-  public find(...args: any[]): I | undefined {
-    for (const key of this.#indexer(args))
-      if (this.#map.has(key)) return this.#map.get(key);
-  }
-
+  /**
+   * @description Get all items by criteria
+   * @param criteria - query params
+   * @param one - return only first item?
+   *
+   * @example
+   * ```ts
+   * const list = new List([{ id: 1, a: 1 }, { id: 2, a: 1 }, { id: 3, a: 2 }]);
+   * list.getBy({ a: 1 }); // [{ id: 1, a: 1 }, { id: 2, a: 1 }]
+   * list.getBy({ id: 1, a: 1 }); // [{ id: 1, a: 1 }]
+   * ```
+   */
   public getBy(criteria: Record<string | symbol, any>, one = false): I[] {
     const result = [];
     if (Object.keys(criteria).length <= 0) return result;
     for1: for (const item of this) {
       for2: for (const field in criteria)
-        if (item[field] != criteria[field]) continue for1;
+        if (item[field] !== criteria[field]) continue for1;
       if (one) return [item];
       result.push(item);
     }
     return result;
   }
 
+  /**
+   * @description Find first item in collection by keys
+   * @param args - key values
+   * @example
+   * ```ts
+   * list.find(1); // { id: 1 }
+   * ```
+   */
+  public find(...args: any[]): I | undefined {
+    for (const key of this.#indexer(args))
+      if (this.#map.has(key)) return this.#map.get(key);
+  }
+
+  /**
+   * @description Find all items in collection by keys
+   * @param args - key values
+   * @example
+   * ```ts
+   * list.get(1); // [{ id: 1 }]
+   * ```
+   */
   public get(...args: any[]): I[] {
     const result = [];
     for (const key of this.#indexer(args)) {
@@ -309,11 +362,27 @@ export abstract class List<I = any, P = { parent?: any }> {
     return result;
   }
 
+  /**
+   * @description Check item exists in collection by keys
+   * @param args - key values
+   * @example
+   * ```ts
+   * list.has(1); // true
+   * ```
+   */
   public has(...args: any[]) {
     for (const key of this.#indexer(args)) if (this.#map.has(key)) return true;
     return false;
   }
 
+  /**
+   * @description Delete item from collection by keys
+   * @param args - key values
+   * @example
+   * ```ts
+   * list.delete(1); // true
+   * ```
+   */
   public delete(...args: any[]) {
     let isIndexed: boolean,
       items = this.get(...args);
@@ -327,6 +396,13 @@ export abstract class List<I = any, P = { parent?: any }> {
     return true;
   }
 
+  /**
+   * @description Clear collection
+   * @example
+   * ```ts
+   * list.clear();
+   * ```
+   */
   public clear() {
     this.#map.clear();
     this.#set.clear();
