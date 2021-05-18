@@ -5,7 +5,8 @@
   "main": "dist",
   "scripts": {
     "build": "npx tsc --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts"
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "llevkin",
