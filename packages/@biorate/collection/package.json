@@ -8,7 +8,7 @@
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["collection", "map", "index", "multi-index", "observable", "di", "ioc", "structure", "library"],
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
