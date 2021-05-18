@@ -46,7 +46,7 @@ export abstract class List<I = any, P = { parent?: any }> extends EventEmitter {
   #set = new Set<I>();
   #processed: Record<string, any> = null;
 
-  public constructor(items?: any[], parent: P = null) {
+  public constructor(items: any[] = [], parent: P = null) {
     super();
     define.prop(this)('_events', {}, 'cw')('_eventsCount', 0, 'cw')(
       '_maxListeners',
