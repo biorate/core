@@ -1,6 +1,6 @@
 {
   "name": "@biorate/collection",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Collection",
   "main": "dist",
   "scripts": {
@@ -8,13 +8,23 @@
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["collection", "map", "index", "multi-index", "observable", "di", "ioc", "structure", "library"],
+  "keywords": [
+    "collection",
+    "map",
+    "index",
+    "multi-index",
+    "observable",
+    "di",
+    "ioc",
+    "structure",
+    "library"
+  ],
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/errors": "0.5.2",
-    "@biorate/symbolic": "0.5.2",
-    "@biorate/tools": "0.5.2",
+    "@biorate/errors": "0.5.3",
+    "@biorate/symbolic": "0.5.3",
+    "@biorate/tools": "0.5.3",
     "lodash": "^4.17.21",
     "luxon": "^1.27.0",
     "mobx": "^5.15.7",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/biorate/core/compare/v0.5.2...v0.5.3) (2021-05-18)
+
+
+### Bug Fixes
+
+* **collection:** default array value in List constructor ([069c731](https://github.com/biorate/core/commit/069c73176eb0579e587e142ca5ba0097151aba06))
+
+
+
+
+
 ## [0.5.2](https://github.com/biorate/core/compare/v0.5.1...v0.5.2) (2021-05-18)
 
 
