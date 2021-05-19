@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/biorate/core/compare/v0.6.0...v0.7.0) (2021-05-19)
+
+
+### Features
+
+* **tools:** timer added, docs ([76961ca](https://github.com/biorate/core/commit/76961ca63ffa571dfb8cb3d3125b832e29f31376))
+
+
+
+
+
 # [0.6.0](https://github.com/biorate/core/compare/v0.5.3...v0.6.0) (2021-05-19)
 
 **Note:** Version bump only for package @biorate/tools
