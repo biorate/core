@@ -26,4 +26,12 @@ MyAwesomeError: Oops... Some error happen, at [2021-05-13T09:19:22.511Z], in [co
 ```
 
 ### Learn
-* Docs: Checking out the [docs](https://biorate.github.io/core/modules/errors.html).
+* Documentation can be found here - [docs](https://biorate.github.io/core/modules/errors.html).
+
+### Release History
+See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/errors/CHANGELOG.md)
+
+### License
+[MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/errors/LICENSE)
+
+Copyright (c) 2021-present [Leonid Levkin (llevkin)](llevkin@yandex.ru)

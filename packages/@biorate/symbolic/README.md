@@ -21,4 +21,12 @@ console.log(Namespace2.Test1 === Namespace1.Test1); // false
 ```
 
 ### Learn
-* Docs: Checking out the [docs](https://biorate.github.io/core/modules/symbolic.html).
+* Documentation can be found here - [docs](https://biorate.github.io/core/modules/symbolic.html).
+
+### Release History
+See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/symbolic/CHANGELOG.md)
+
+### License
+[MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/symbolic/LICENSE)
+
+Copyright (c) 2021-present [Leonid Levkin (llevkin)](llevkin@yandex.ru)

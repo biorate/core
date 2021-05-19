@@ -1,20 +1,17 @@
 import * as collection from '../../src';
 import { create } from '@biorate/symbolic';
 import { DateTime } from 'luxon';
-const { embed, inject, singletone } = collection;
+const { embed, singletone } = collection;
 
 export const Types = create('Types');
 
 @singletone()
-export class Injectable {}
-
 export class Binded {}
 
 export class Nested extends collection.Item {
   @embed(Nested.Map) public map: Map<any, any> = null;
   @embed(Nested.Set) public set: Set<any> = null;
   @embed(Types.Binded) public binded: Binded = null;
-  @inject(Injectable) public injectable: Injectable = null;
 }
 
 export class Item extends collection.Item {
@@ -28,7 +25,7 @@ export class Item extends collection.Item {
   @embed(Item.Object) public object: Record<string, any> = null;
   @embed(Item.Json) public json: Record<string, any> = null;
   @embed(Nested) public nested: Nested = null;
-  @inject(Injectable) public injectable: Injectable = null;
+  @embed(Types.Binded) public binded: Binded = null;
 }
 
 export const data = {

@@ -19,6 +19,6 @@ describe('Item embed props', () => {
     assert(item.nested.set.has(1));
     assert(item.nested.set.has(2));
     assert(item.nested.binded instanceof Binded);
-    assert(item.injectable === item.nested.injectable);
+    assert(item.binded === item.nested.binded);
   });
 });

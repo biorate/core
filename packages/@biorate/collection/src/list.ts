@@ -6,20 +6,33 @@ import { Ctor } from './types';
 
 /**
  * @description
- * This class provides manipulation of documents collections.
- * Multi-index and object factory supported.
+ * The [List](https://biorate.github.io/core/classes/collection.list.html) extensions is intended for
+ * solving problems associated with fast O(1) search for objects by given keys and fast iteration of a
+ * collection of objects, multi-index and objects-factory supported.
  *
  * ### Features:
- * - multi-indexing
- * - iterable
- * - factory
+ * - Multi-indexing
+ * - Native fast iterations (by [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set))
+ * - [Objects-factory](#processed)
+ * - Fast O(1) object search (by [keys](#_keys))
+ *
+ * ### Disadvantages:
+ * - Slow inserting new document (especially on large collections, inserting into
+ * [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) +
+ * [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set))
+ * - Slow delete (especially with sequence number index structures, because reindex all collection needed)
  *
  * @example
  * ```
  * import * as collection from '@biorate/collection';
- * import { embed } from '@biorate/collection';
+ * const { embed } = collection;
  *
- * class List extends collection.List<{ id: number }> {
+ * class Item extends collection.Item {
+ *   @embed(Item.Int) public id: number = null;
+ *   @embed(Item.String) public title: string = null;
+ * }
+ *
+ * class List extends collection.List<Item> {
  *   protected get _keys() {
  *     return [['id']];
  *   }
@@ -29,31 +42,43 @@ import { Ctor } from './types';
  *   }
  * }
  *
- * class Item extends collection.Item {
- *   @embed(Item.Int) public id: number = null;
- *   @embed(Item.String) public title: string = null;
- * }
+ * const list = new List([{ id: 1, title: 'one' }, { id: 2, title: 'two' }]);
  *
- * const list = new List();
- *
- * list.set({ id: 1, title: 'one' }, { id: 2, title: 'two' }, { id: 3, title: 'three' });
+ * list.set({ id: 3, title: 'three' }, { id: 4, title: 'four' });
  *
  * console.log(list.find(1)); // Item { id: 1, title: 'one' }
  * console.log(list.find(2)); // Item { id: 2, title: 'two' }
  * console.log(list.find(3)); // Item { id: 3, title: 'three' }
+ * console.log(list.find(4)); // Item { id: 4, title: 'four' }
  * ```
  */
 export abstract class List<I = any, P = { parent?: any }> {
   /**
-   * @description Alias for index-symbol, if used in **_keys**
+   * @description Alias for index-symbol, if used in [_keys](#_keys)
    * getter - enumerate and index items with sequence number.
+   * @example
+   * ```ts
+   * import { List as Base } from '@biorate/collection';
+   *
+   * class List extends Base<{ id: number }> {
+   *   protected get _keys() {
+   *     return [[Base.index]];
+   *   }
+   * }
+   *
+   * const list = new List([{ id: 3 }, { id: 2 }, { id: 1 }]);
+   *
+   * console.log(list.find(0)); // { id: 3, [Symbol(Props.Index)]: 0 }
+   * console.log(list.find(1)); // { id: 2, [Symbol(Props.Index)]: 1 }
+   * console.log(list.find(2)); // { id: 1, [Symbol(Props.Index)]: 2 }
+   * ```
    */
   static get index() {
     return Props.Index;
   }
 
   /**
-   * @description All keys combination storage
+   * @description Key combinations storage
    */
   #map = new Map<string, I>();
 
@@ -155,7 +180,7 @@ export abstract class List<I = any, P = { parent?: any }> {
   }
 
   /**
-   * @description Indexes map
+   * @description Indexes map. Designed to declare fields by which indexes will be built.
    * @example
    * ```ts
    * class List extends collection.List<{ a: number; b: number; c: number }> {
@@ -238,6 +263,11 @@ export abstract class List<I = any, P = { parent?: any }> {
 
   /**
    * @description Unique collection items count
+   * @example
+   * ```ts
+   * const list = new List([{ id: 1 }, { id: 2 }, { id: 3 }]);
+   * console.log(list.size); // 3
+   * ```
    */
   public get size() {
     return this.#set.size;
@@ -269,8 +299,12 @@ export abstract class List<I = any, P = { parent?: any }> {
    *   }
    * }
    *
-   * const list = new List();
-   * list.set({ id: 1, type: 'One' }, { id: 2, type: 'Two' }, { id: 3, type: 'Three' });
+   * const list = new List([
+   *   { id: 1, type: 'One' },
+   *   { id: 2, type: 'Two' },
+   *   { id: 3, type: 'Three' }
+   * ]);
+   *
    * console.log(list.find(1)); // One { id: 1, type: 'One' }
    * console.log(list.find(2)); // Two { id: 2, type: 'Two' }
    * console.log(list.find(3)); // Three { id: 3, type: 'Three' }
@@ -284,6 +318,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * @description Add item into collection
    * @example
    * ```ts
+   * const list = new List();
    * list.set({ id: 1 }, { id: 2 }, { id: 3 });
    * ```
    */
@@ -337,6 +372,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * @param args - key values
    * @example
    * ```ts
+   * const list = new List([{ id: 1 }, { id: 2 }, { id: 3 }]);
    * list.find(1); // { id: 1 }
    * ```
    */
@@ -350,6 +386,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * @param args - key values
    * @example
    * ```ts
+   * const list = new List([{ id: 1 }, { id: 2 }, { id: 3 }]);
    * list.get(1); // [{ id: 1 }]
    * ```
    */
@@ -367,7 +404,9 @@ export abstract class List<I = any, P = { parent?: any }> {
    * @param args - key values
    * @example
    * ```ts
+   * const list = new List([{ id: 1 }, { id: 2 }, { id: 3 }]);
    * list.has(1); // true
+   * list.has(4); // false
    * ```
    */
   public has(...args: any[]) {
@@ -380,7 +419,9 @@ export abstract class List<I = any, P = { parent?: any }> {
    * @param args - key values
    * @example
    * ```ts
+   * const list = new List([{ id: 1 }, { id: 2 }, { id: 3 }]);
    * list.delete(1); // true
+   * console.log(list); // [{ id: 2 }, { id: 3 }];
    * ```
    */
   public delete(...args: any[]) {
@@ -400,7 +441,10 @@ export abstract class List<I = any, P = { parent?: any }> {
    * @description Clear collection
    * @example
    * ```ts
+   * const list = new List([{ id: 1 }, { id: 2 }, { id: 3 }]);
+   * console.log(list.size); // 3
    * list.clear();
+   * console.log(list.size); // 0
    * ```
    */
   public clear() {

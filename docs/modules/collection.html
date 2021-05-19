@@ -96,7 +96,6 @@
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="collection.html#action" class="tsd-kind-icon">action</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="collection.html#computed" class="tsd-kind-icon">computed</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="collection.html#embed" class="tsd-kind-icon">embed</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="collection.html#inject" class="tsd-kind-icon">inject</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="collection.html#observable" class="tsd-kind-icon">observable</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="collection.html#singletone" class="tsd-kind-icon">singletone</a></li>
 							</ul>
@@ -116,9 +115,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/decorators.ts#L9">packages/@biorate/collection/src/decorators.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/decorators.ts#L15">packages/@biorate/collection/src/decorators.ts:15</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>override</dt>
+									<dd><p>See description <a href="https://mobx.js.org/actions.html">here</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, field<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, descriptor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
@@ -157,9 +163,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/decorators.ts#L13">packages/@biorate/collection/src/decorators.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/decorators.ts#L22">packages/@biorate/collection/src/decorators.ts:22</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>override</dt>
+									<dd><p>See description <a href="https://mobx.js.org/computeds.html">here</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, field<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, descriptor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
@@ -198,57 +211,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/decorators.ts#L17">packages/@biorate/collection/src/decorators.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/decorators.ts#L42">packages/@biorate/collection/src/decorators.ts:42</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Decorator that embed type of property in <a href="https://biorate.github.io/core/classes/collection.item.html">Item</a> class*</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">collection</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/collection&#039;</span><span style="color: #000000">;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">embed</span><span style="color: #000000"> } = </span><span style="color: #001080">collection</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Nested</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">collection</span><span style="color: #000000">.</span><span style="color: #267F99">Item</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">Int</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">int</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">Float</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">float</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">String</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">string</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">Bool</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">bool</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, field<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-signature">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, field<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>target: <span class="tsd-signature-type">any</span></h5>
-												</li>
-												<li>
-													<h5>field: <span class="tsd-signature-type">string</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="inject" class="tsd-anchor"></a>
-					<h3>inject</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">inject<span class="tsd-signature-symbol">(</span>Class<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Ctor</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, field<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/decorators.ts#L23">packages/@biorate/collection/src/decorators.ts:23</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>Class: <span class="tsd-signature-type">Ctor</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, field<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
@@ -286,9 +274,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/decorators.ts#L5">packages/@biorate/collection/src/decorators.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/decorators.ts#L8">packages/@biorate/collection/src/decorators.ts:8</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>override</dt>
+									<dd><p>See description <a href="https://mobx.js.org/observable-state.html">here</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, field<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
@@ -327,9 +322,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/decorators.ts#L29">packages/@biorate/collection/src/decorators.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/decorators.ts#L70">packages/@biorate/collection/src/decorators.ts:70</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Decorator that realize singletone pattern</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">singletone</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/collection&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">@</span><span style="color: #795E26">singletone</span><span style="color: #000000">()</span>
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Test</span><span style="color: #000000"> {}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">a</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Test</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">b</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Test</span><span style="color: #000000">();</span>
+
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">a</span><span style="color: #000000"> === </span><span style="color: #001080">b</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>Class<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Ctor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Ctor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
@@ -399,9 +413,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="collection.html#embed" class="tsd-kind-icon">embed</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="collection.html#inject" class="tsd-kind-icon">inject</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="collection.html#observable" class="tsd-kind-icon">observable</a>

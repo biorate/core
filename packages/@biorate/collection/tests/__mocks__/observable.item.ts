@@ -1,5 +1,5 @@
 import * as collection from '../../src';
-const { embed, inject, singletone, observable } = collection;
+const { embed, observable } = collection;
 
 export class Nested extends collection.ObservableItem {
   @observable() @embed(Nested.Map) public map: Map<any, any> = null;

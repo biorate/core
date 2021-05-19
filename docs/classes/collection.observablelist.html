@@ -72,8 +72,8 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>description</dt>
-						<dd><p>This class inherits from <strong>List</strong> and implements the
-							<strong>mobx</strong> observer interface nested over all object properties</p>
+						<dd><p>This class inherits from <a href="https://biorate.github.io/core/classes/collection.list.html">List</a> and implements the
+							<a href="https://mobx.js.org/">mobx</a> observer interface nested over all object properties</p>
 							<a href="#features" id="features" style="color: inherit; text-decoration: none;">
 								<h3>Features:</h3>
 							</a>
@@ -83,6 +83,12 @@
 						</dd>
 						<dt>example</dt>
 						<dd><pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">collection</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/collection&#039;</span><span style="color: #000000">;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">embed</span><span style="color: #000000">, </span><span style="color: #0070C1">observable</span><span style="color: #000000"> } = </span><span style="color: #001080">collection</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Item</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">collection</span><span style="color: #000000">.</span><span style="color: #267F99">ObservableItem</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">observable</span><span style="color: #000000">() @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">Int</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">id</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
+<span style="color: #000000">  @</span><span style="color: #795E26">observable</span><span style="color: #000000">() @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">String</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
 
 <span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">List</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">collection</span><span style="color: #000000">.</span><span style="color: #267F99">ObservableList</span><span style="color: #000000">&lt;</span><span style="color: #267F99">Item</span><span style="color: #000000">&gt; {</span>
 <span style="color: #000000">  </span><span style="color: #0000FF">protected</span><span style="color: #000000"> </span><span style="color: #0000FF">get</span><span style="color: #000000"> </span><span style="color: #795E26">_keys</span><span style="color: #000000">() {</span>
@@ -94,11 +100,6 @@
 <span style="color: #000000">  }</span>
 <span style="color: #000000">}</span>
 
-<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Item</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">collection</span><span style="color: #000000">.</span><span style="color: #267F99">ObservableItem</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  @</span><span style="color: #795E26">observable</span><span style="color: #000000">() @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">Int</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">id</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
-<span style="color: #000000">  @</span><span style="color: #795E26">observable</span><span style="color: #000000">() @</span><span style="color: #795E26">embed</span><span style="color: #000000">(</span><span style="color: #001080">Item</span><span style="color: #000000">.</span><span style="color: #001080">String</span><span style="color: #000000">) </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> = </span><span style="color: #0000FF">null</span><span style="color: #000000">;</span>
-<span style="color: #000000">}</span>
-
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">();</span>
 <span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">((</span><span style="color: #001080">data</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">);</span>
@@ -106,11 +107,11 @@
 <span style="color: #000000">    </span><span style="color: #008000">// {</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   type: &#039;add&#039;,</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   object: ObservableSet {...},</span>
-<span style="color: #000000">    </span><span style="color: #008000">//   newValue: Item1 { id: [Getter/Setter], text: [Getter/Setter] }</span>
+<span style="color: #000000">    </span><span style="color: #008000">//   newValue: Item { id: [Getter/Setter], text: [Getter/Setter] }</span>
 <span style="color: #000000">    </span><span style="color: #008000">// }</span>
 <span style="color: #000000">    </span><span style="color: #008000">// {</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   type: &#039;update&#039;,</span>
-<span style="color: #000000">    </span><span style="color: #008000">//   object: Item1 { id: [Getter/Setter], text: [Getter/Setter] },</span>
+<span style="color: #000000">    </span><span style="color: #008000">//   object: Item { id: [Getter/Setter], text: [Getter/Setter] },</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   oldValue: &#039;hello!&#039;,</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   name: &#039;text&#039;,</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   newValue: &#039;hello world!&#039;</span>
@@ -118,10 +119,10 @@
 <span style="color: #000000">    </span><span style="color: #008000">// {</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   type: &#039;delete&#039;,</span>
 <span style="color: #000000">    </span><span style="color: #008000">//   object: ObservableSet {...},</span>
-<span style="color: #000000">    </span><span style="color: #008000">//   oldValue: Item1 { id: [Getter/Setter], text: [Getter/Setter] }</span>
+<span style="color: #000000">    </span><span style="color: #008000">//   oldValue: Item { id: [Getter/Setter], text: [Getter/Setter] }</span>
 <span style="color: #000000">    </span><span style="color: #008000">// }</span>
 <span style="color: #000000">});</span>
-<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">set</span><span style="color: #000000">({ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #001080">text:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;hello!&#039;</span><span style="color: #000000"> }});</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">set</span><span style="color: #000000">({ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #001080">text:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;hello!&#039;</span><span style="color: #000000"> });</span>
 <span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">).</span><span style="color: #001080">text</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;hello world!&#039;</span><span style="color: #000000">;</span>
 <span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">delete</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">);</span>
 </code></pre>
@@ -218,9 +219,25 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="collection.list.html">List</a>.<a href="collection.list.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/observable.list.ts#L60">packages/@biorate/collection/src/observable.list.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/observable.list.ts#L64">packages/@biorate/collection/src/observable.list.ts:64</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">collection</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/collection&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">List</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">collection</span><span style="color: #000000">.</span><span style="color: #267F99">ObservableList</span><span style="color: #000000">&lt;{ </span><span style="color: #001080">id</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> }&gt; {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">protected</span><span style="color: #000000"> </span><span style="color: #0000FF">get</span><span style="color: #000000"> </span><span style="color: #795E26">_keys</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> [[</span><span style="color: #A31515">&#039;id&#039;</span><span style="color: #000000">]];</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -234,9 +251,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>items: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>initialization items</p>
+									</div>
 								</li>
 								<li>
 									<h5>parent: <span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> = null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>parent item</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="collection.observablelist.html" class="tsd-signature-type" data-tsd-kind="Class">ObservableList</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -252,9 +275,16 @@
 					<div class="tsd-signature tsd-kind-icon">#callbacks<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/observable.list.ts#L60">packages/@biorate/collection/src/observable.list.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/observable.list.ts#L64">packages/@biorate/collection/src/observable.list.ts:64</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>description</dt>
+							<dd><p>Callbacks storage</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private">
 					<a name="_map" class="tsd-anchor"></a>
@@ -263,13 +293,13 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#_map">#map</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L58">packages/@biorate/collection/src/list.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L83">packages/@biorate/collection/src/list.ts:83</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
-							<dd><p>All keys combination storage</p>
+							<dd><p>Key combinations storage</p>
 							</dd>
 						</dl>
 					</div>
@@ -281,7 +311,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#_processed">#processed</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L69">packages/@biorate/collection/src/list.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L94">packages/@biorate/collection/src/list.ts:94</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -300,7 +330,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#_set">#set</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L63">packages/@biorate/collection/src/list.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L88">packages/@biorate/collection/src/list.ts:88</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -324,7 +354,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L228">packages/@biorate/collection/src/list.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L253">packages/@biorate/collection/src/list.ts:253</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,13 +423,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L180">packages/@biorate/collection/src/list.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L205">packages/@biorate/collection/src/list.ts:205</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Indexes map</p>
+									<dd><p>Indexes map. Designed to declare fields by which indexes will be built.</p>
 									</dd>
 									<dt>example</dt>
 									<dd><pre><code class="language-ts"><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">List</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">collection</span><span style="color: #000000">.</span><span style="color: #267F99">List</span><span style="color: #000000">&lt;{ </span><span style="color: #001080">a</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">; </span><span style="color: #001080">b</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">; </span><span style="color: #001080">c</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> }&gt; {</span>
@@ -438,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L146">packages/@biorate/collection/src/list.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L171">packages/@biorate/collection/src/list.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -453,7 +483,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L153">packages/@biorate/collection/src/list.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L178">packages/@biorate/collection/src/list.ts:178</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -483,7 +513,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L235">packages/@biorate/collection/src/list.ts:235</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L260">packages/@biorate/collection/src/list.ts:260</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -507,7 +537,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L279">packages/@biorate/collection/src/list.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L313">packages/@biorate/collection/src/list.ts:313</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -538,8 +568,12 @@
 <span style="color: #000000">  }</span>
 <span style="color: #000000">}</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">();</span>
-<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">set</span><span style="color: #000000">({ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;One&#039;</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Two&#039;</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Three&#039;</span><span style="color: #000000"> });</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([</span>
+<span style="color: #000000">  { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;One&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">  { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Two&#039;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">  { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Three&#039;</span><span style="color: #000000"> }</span>
+<span style="color: #000000">]);</span>
+
 <span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">)); </span><span style="color: #008000">// One { id: 1, type: &#039;One&#039; }</span>
 <span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">2</span><span style="color: #000000">)); </span><span style="color: #008000">// Two { id: 2, type: &#039;Two&#039; }</span>
 <span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">3</span><span style="color: #000000">)); </span><span style="color: #008000">// Three { id: 3, type: &#039;Three&#039; }</span>
@@ -561,13 +595,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L242">packages/@biorate/collection/src/list.ts:242</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L272">packages/@biorate/collection/src/list.ts:272</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
 									<dd><p>Unique collection items count</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #001080">size</span><span style="color: #000000">); </span><span style="color: #008000">// 3</span>
+</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -585,14 +624,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L51">packages/@biorate/collection/src/list.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L76">packages/@biorate/collection/src/list.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Alias for index-symbol, if used in <strong>_keys</strong>
+									<dd><p>Alias for index-symbol, if used in <a href="#_keys">_keys</a>
 										getter - enumerate and index items with sequence number.</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">List</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">Base</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/collection&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">List</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Base</span><span style="color: #000000">&lt;{ </span><span style="color: #001080">id</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> }&gt; {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">protected</span><span style="color: #000000"> </span><span style="color: #0000FF">get</span><span style="color: #000000"> </span><span style="color: #795E26">_keys</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> [[</span><span style="color: #001080">Base</span><span style="color: #000000">.</span><span style="color: #001080">index</span><span style="color: #000000">]];</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }]);</span>
+
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">)); </span><span style="color: #008000">// { id: 3, [Symbol(Props.Index)]: 0 }</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">)); </span><span style="color: #008000">// { id: 2, [Symbol(Props.Index)]: 1 }</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">2</span><span style="color: #000000">)); </span><span style="color: #008000">// { id: 1, [Symbol(Props.Index)]: 2 }</span>
+</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -614,7 +669,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#_indexer">#indexer</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L101">packages/@biorate/collection/src/list.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L126">packages/@biorate/collection/src/list.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -651,7 +706,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#_key">#key</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L95">packages/@biorate/collection/src/list.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L120">packages/@biorate/collection/src/list.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -685,7 +740,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#_reindex">#reindex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L115">packages/@biorate/collection/src/list.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L140">packages/@biorate/collection/src/list.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -710,7 +765,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#_symbol_iterator_">[Symbol.iterator]</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L139">packages/@biorate/collection/src/list.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L164">packages/@biorate/collection/src/list.ts:164</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -741,7 +796,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L406">packages/@biorate/collection/src/list.ts:406</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L450">packages/@biorate/collection/src/list.ts:450</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -750,7 +805,10 @@
 									<dd><p>Clear collection</p>
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-ts"><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">clear</span><span style="color: #000000">();</span>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #001080">size</span><span style="color: #000000">); </span><span style="color: #008000">// 3</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">clear</span><span style="color: #000000">();</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #001080">size</span><span style="color: #000000">); </span><span style="color: #008000">// 0</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -770,7 +828,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L386">packages/@biorate/collection/src/list.ts:386</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L427">packages/@biorate/collection/src/list.ts:427</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -779,7 +837,9 @@
 									<dd><p>Delete item from collection by keys</p>
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-ts"><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">delete</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">delete</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">); </span><span style="color: #008000">// [{ id: 2 }, { id: 3 }];</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -808,7 +868,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L343">packages/@biorate/collection/src/list.ts:343</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L379">packages/@biorate/collection/src/list.ts:379</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -817,7 +877,8 @@
 									<dd><p>Find first item in collection by keys</p>
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-ts"><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// { id: 1 }</span>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">find</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// { id: 1 }</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -846,7 +907,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L356">packages/@biorate/collection/src/list.ts:356</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L393">packages/@biorate/collection/src/list.ts:393</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -855,7 +916,8 @@
 									<dd><p>Find all items in collection by keys</p>
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-ts"><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// [{ id: 1 }]</span>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// [{ id: 1 }]</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -884,7 +946,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#getby">getBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L323">packages/@biorate/collection/src/list.ts:323</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L358">packages/@biorate/collection/src/list.ts:358</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -930,7 +992,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#has">has</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L373">packages/@biorate/collection/src/list.ts:373</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L412">packages/@biorate/collection/src/list.ts:412</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -939,7 +1001,9 @@
 									<dd><p>Check item exists in collection by keys</p>
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-ts"><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">has</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">has</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">has</span><span style="color: #000000">(</span><span style="color: #098658">4</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -968,7 +1032,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="collection.list.html">List</a>.<a href="collection.list.html#set">set</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/list.ts#L290">packages/@biorate/collection/src/list.ts:290</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/list.ts#L325">packages/@biorate/collection/src/list.ts:325</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -977,7 +1041,8 @@
 									<dd><p>Add item into collection</p>
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-ts"><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">set</span><span style="color: #000000">({ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> });</span>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">();</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">set</span><span style="color: #000000">({ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> });</span>
 </code></pre>
 									</dd>
 								</dl>
@@ -1002,9 +1067,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/observable.list.ts#L68">packages/@biorate/collection/src/observable.list.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/observable.list.ts#L97">packages/@biorate/collection/src/observable.list.ts:97</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Subscribe to changes</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">list</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">List</span><span style="color: #000000">([{ </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> }, { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">3</span><span style="color: #000000"> }]);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">callback</span><span style="color: #000000"> = (</span><span style="color: #001080">data</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">);</span>
+<span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">(</span><span style="color: #001080">callback</span><span style="color: #000000">);</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1043,9 +1121,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/546a1e2/packages/@biorate/collection/src/observable.list.ts#L73">packages/@biorate/collection/src/observable.list.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/collection/src/observable.list.ts#L109">packages/@biorate/collection/src/observable.list.ts:109</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Unsubscribe from changes</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #795E26">unsubscribe</span><span style="color: #000000">(</span><span style="color: #001080">callback</span><span style="color: #000000">);</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1202,9 +1291,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/collection.html#embed" class="tsd-kind-icon">embed</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/collection.html#inject" class="tsd-kind-icon">inject</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/collection.html#observable" class="tsd-kind-icon">observable</a>
