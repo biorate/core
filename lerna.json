@@ -8,9 +8,6 @@
       "exact": true,
       "conventionalCommits": true,
       "message": "chore(release): %s"
-    },
-    "publish": {
-      "allowBranch": "master"
     }
   },
   "version": "0.7.0"
