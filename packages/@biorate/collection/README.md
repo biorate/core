@@ -51,4 +51,4 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ### License
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/collection/LICENSE)
 
-Copyright (c) 2021-present [Leonid Levkin (llevkin)](llevkin@yandex.ru)
+Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
