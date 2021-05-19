@@ -96,16 +96,37 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/tools/src/path.ts#L7">packages/@biorate/tools/src/path.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/18cd2c4/packages/@biorate/tools/src/path.ts#L33">packages/@biorate/tools/src/path.ts:33</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Get file basename, with .js ext by default</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">path</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/tools&#039;</span><span style="color: #000000">;</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">basename</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.js&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;.js&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// index</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">basename</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.js&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// index.js</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">basename</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.html&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;.html&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// index</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">basename</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.html&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// index.html</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>filepath: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Path</p>
+									</div>
 								</li>
 								<li>
 									<h5>ext: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x27;.js&#x27;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>extname of file</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -122,9 +143,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/tools/src/path.ts#L15">packages/@biorate/tools/src/path.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/18cd2c4/packages/@biorate/tools/src/path.ts#L62">packages/@biorate/tools/src/path.ts:62</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Create normalized path from strings</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">path</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/tools&#039;</span><span style="color: #000000">;</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;www&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;root/a/b/&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;/c/&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;/index.js&#039;</span><span style="color: #000000">));</span>
+<span style="color: #000000">  </span><span style="color: #008000">// www/root/a/b/c/index.js</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -145,16 +179,35 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/tools/src/path.ts#L3">packages/@biorate/tools/src/path.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/18cd2c4/packages/@biorate/tools/src/path.ts#L15">packages/@biorate/tools/src/path.ts:15</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Get full path to file or its directory name</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">path</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/tools&#039;</span><span style="color: #000000">;</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">dirname</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.html&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// root</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">dirname</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.html&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">)); </span><span style="color: #008000">// /www/root</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>filepath: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Path</p>
+									</div>
 								</li>
 								<li>
 									<h5>full: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Get full path or file directory name only?</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -171,13 +224,29 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/e49e8ef/packages/@biorate/tools/src/path.ts#L11">packages/@biorate/tools/src/path.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/18cd2c4/packages/@biorate/tools/src/path.ts#L48">packages/@biorate/tools/src/path.ts:48</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Get file extname</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">path</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/tools&#039;</span><span style="color: #000000">;</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">extname</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.js&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// .js</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000">.</span><span style="color: #795E26">extname</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/www/root/index.html&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// .html</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>filepath: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Path</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>

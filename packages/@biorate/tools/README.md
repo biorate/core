@@ -1,5 +1,10 @@
 # Tools
 
+Helper and tools
+* [define](https://biorate.github.io/core/modules/tools.define.html)
+* [object](https://biorate.github.io/core/modules/tools.object.html)
+* [path](https://biorate.github.io/core/modules/tools.path.html)
+
 ### Learn
 * Documentation can be found here - [docs](https://biorate.github.io/core/modules/tools.html).
 
