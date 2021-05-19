@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/biorate/core/compare/v0.5.3...v0.6.0) (2021-05-19)
+
+
+### Features
+
+* **collection:** ObservableList and ObservableItem added, tests, some docs ([241a3fb](https://github.com/biorate/core/commit/241a3fbd9f440f30a898493e49e48658c2ce3765))
+
+
+
+
+
 ## [0.5.3](https://github.com/biorate/core/compare/v0.5.2...v0.5.3) (2021-05-18)
 
 
