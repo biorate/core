@@ -21,16 +21,27 @@
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "chai": "^4.3.4",
+    "css-loader": "^5.2.6",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "file-loader": "^6.2.0",
     "lerna": "^4.0.0",
+    "less": "^4.1.1",
+    "less-loader": "^9.0.0",
+    "mini-css-extract-plugin": "^1.6.0",
     "mocha": "^8.4.0",
     "npx": "^10.2.2",
     "nyc": "^15.1.0",
     "prettier": "^2.3.0",
+    "pug-html-loader": "^1.1.5",
+    "ts-loader": "^9.2.2",
     "ts-node": "^9.1.1",
     "typedoc": "^0.20.36",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
   }
 }
