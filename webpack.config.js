@@ -1,4 +1,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const argv = require('minimist')(process.argv.slice(2));
+const production = argv.mode === 'production';
 
 module.exports = {
   output: {
@@ -92,6 +96,26 @@ module.exports = {
     ],
   },
   plugins: [new MiniCssExtractPlugin({ filename: 'style.css' })],
+  optimization: {
+    minimize: production,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          parse: {},
+          compress: {},
+          module: false,
+          ecma: 6,
+          mangle: false,
+          keep_classnames: true,
+          keep_fnames: false,
+        },
+      }),
+      new CssMinimizerPlugin({
+        parallel: true,
+      }),
+    ],
+  },
   devServer: {
     contentBase: 'dist',
     compress: true,
