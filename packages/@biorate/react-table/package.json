@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "build": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./index.ts -o ./dist",
-    "build:dev": "npx webpack serve --config=../../../webpack.config.js --mode=development --entry=./index.ts --entry=./index.pug --entry=./index.less -o ./dist",
+    "build:dev": "npx webpack serve --config=../../../webpack.config.js --mode=development --entry=./dev/index.tsx --entry=./dev/index.pug --entry=./dev/index.less -o ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
