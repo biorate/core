@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -10,6 +11,19 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss', '.less'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+      util: require.resolve('util-browserify'),
+      process: require.resolve('process/browser'),
+    },
+    alias: {
+      process: 'process',
+    },
+  },
+  node: {
+    global: true,
+    __filename: true,
+    __dirname: true,
   },
   module: {
     rules: [
@@ -95,7 +109,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin({ filename: 'style.css' })],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_DEBUG': JSON.stringify(process.env.NODE_DEBUG),
+    }),
+    new MiniCssExtractPlugin({ filename: 'style.css' }),
+  ],
   optimization: {
     minimize: production,
     minimizer: [
