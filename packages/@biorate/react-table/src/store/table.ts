@@ -7,22 +7,22 @@ export class Table extends Base<IReactTable.Store> {
   @observable() @embed(Table.Int) public scrollLeft = 0;
   @observable() @embed(Table.Int) public scrollTop = 0;
 
-  #defaultWidth = 100;
-  #defaultHeight = 42;
+  defaultWidth = 100;
+  defaultHeight = 52;
 
   #width = () =>
     this.parent.headers.reduce(
-      (memo, item) => ((memo += item.width ?? this.#defaultWidth), memo),
+      (memo, item) => ((memo += item.width ?? this.defaultWidth), memo),
       0,
     );
 
-  #height = () => this.parent.items.length * this.#defaultHeight;
+  #height = () => this.parent.items.length * this.defaultHeight;
 
   @computed() public get deltaLeft() {
     let sumWidth = 0;
     for (let i = 0; i < this.parent.headers.length; i++) {
       const header = this.parent.headers[i],
-        width = header.width ?? this.#defaultWidth;
+        width = header.width ?? this.defaultWidth;
       sumWidth += width;
       if (sumWidth >= this.scrollLeft) return sumWidth - this.scrollLeft - width;
     }
@@ -30,7 +30,7 @@ export class Table extends Base<IReactTable.Store> {
   }
 
   @computed() public get deltaTop() {
-    return Math.floor(this.scrollTop / this.#defaultHeight) * this.#defaultHeight - this.scrollTop;
+    return Math.floor(this.scrollTop / this.defaultHeight) * this.defaultHeight - this.scrollTop;
   }
 
   @computed() public get cols() {
@@ -38,7 +38,7 @@ export class Table extends Base<IReactTable.Store> {
       sumWidth = 0;
     for (let i = 0; i < this.parent.headers.length; i++) {
       const header = this.parent.headers[i],
-        width = header.width ?? this.#defaultWidth;
+        width = header.width ?? this.defaultWidth;
       sumWidth += width;
       if (sumWidth >= this.scrollLeft) result.push(header);
       if (sumWidth > this.scrollLeft + this.parent.bounds.offsetWidth) break;
@@ -47,9 +47,9 @@ export class Table extends Base<IReactTable.Store> {
   }
 
   @computed() public get rows() {
-    const from = Math.floor(this.scrollTop / this.#defaultHeight);
+    const from = Math.floor(this.scrollTop / this.defaultHeight);
     const to =
-      from + Math.ceil(this.parent.bounds.offsetHeight / this.#defaultHeight);
+      from + Math.ceil(this.parent.bounds.offsetHeight / this.defaultHeight);
     return this.parent.items.slice(from, to);
   }
 

@@ -47,6 +47,7 @@ export class Row extends Component {
         <div
           className={$.center}
           style={{
+            height: this.store.table.defaultHeight,
             transform: `translate3d(${this.store.table.scrollLeft}px, ${this.offsetY}px, 0px)`,
           }}
         >
