@@ -6,7 +6,7 @@ import { Body } from './body';
 export class Content extends Component {
   #onScroll = (e) => {
     const { scrollLeft, scrollTop } = e.target;
-    this.store.table.set({ scrollLeft, scrollTop });
+    this.store.scroll(scrollLeft, scrollTop);
   };
 
   public render() {

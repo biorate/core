@@ -8,17 +8,17 @@ import { Row } from './row';
 export class Body extends Component {
   public render() {
     return (
-      <div className={$.body} style={{ height: this.store.table.height }}>
-        <div style={{ height: 1, width: this.store.table.width }} />
-        {this.store.table.rows.map((item, index) => (
+      <div className={$.body} style={{ height: this.store.height }}>
+        <div style={{ height: 1, width: this.store.width }} />
+        {this.store.rows.map((item, index) => (
           <Row
             render={(header) => item[header.field]}
             key={index}
             store={this.store}
-            offsetX={this.store.table.scrollLeft}
-            offsetY={this.store.table.scrollTop}
-            deltaX={this.store.table.deltaLeft}
-            deltaY={this.store.table.deltaTop}
+            // deltaX={this.store.table.scrollLeft}
+            // offsetX={this.store.table.deltaLeft}
+            // offsetY={this.store.table.scrollTop}
+            // deltaX={this.store.table.deltaLeft}
           />
         ))}
       </div>

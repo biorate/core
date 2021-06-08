@@ -7,28 +7,27 @@ import { Footer } from './footer';
 import { IReactTable } from '../interfaces';
 
 export class Table extends React.Component {
-  props: { headers: IReactTable.Headers; items: IReactTable.Items };
+  props: { headers: IReactTable.Cols; items: IReactTable.Cols };
 
   #bounds = React.createRef<HTMLDivElement>();
   #store = new Store().initialize();
 
-  #onResize = () => {
-    const { offsetWidth, offsetHeight } = this.#bounds.current;
-    this.#store.bounds.set({ offsetWidth, offsetHeight });
+  #load = () => {
+    const { offsetWidth: width, offsetHeight: height } = this.#bounds.current;
+    this.#store.load(this.props.headers, this.props.items, { width, height });
   };
 
   public componentDidMount() {
-    this.#store.load(this.props.headers, this.props.items);
-    window.addEventListener('resize', this.#onResize);
-    this.#onResize();
+    window.addEventListener('resize', this.#load);
+    this.#load();
   }
 
   public componentDidUpdate() {
-    this.#store.load(this.props.headers, this.props.items);
+    this.#load();
   }
 
   public componentWillUnmount() {
-    window.removeEventListener('resize', this.#onResize);
+    window.removeEventListener('resize', this.#load);
   }
 
   public render() {

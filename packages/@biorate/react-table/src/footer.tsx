@@ -10,9 +10,12 @@ export class Footer extends Component {
     return (
       <div
         className={$.footer}
-        style={{ transform: `translate3d(${-this.store.table.scrollLeft}px, 0px, 0px)` }}
+        // style={{ transform: `translate3d(${-this.store.table.scrollLeft}px, 0px, 0px)` }}
       >
-        <Row store={this.store} deltaX={this.store.table.deltaLeft} />
+        <Row
+          store={this.store}
+          // offsetX={this.store.table.deltaLeft}
+        />
       </div>
     );
   }

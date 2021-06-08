@@ -1,17 +1,62 @@
 import { IReactTable } from '../../interfaces';
 import { Base, embed, observable, action } from './base';
 import { Bounds } from './bounds';
-import { Table } from './table';
+import { Cols } from './cols';
+// import { Rows } from './rows';
+// import { Table } from './table';
 
 export class Store extends Base implements IReactTable.Store {
-  @observable() @embed(Store.Array) public headers: IReactTable.Headers = [];
-  @observable() @embed(Store.Array) public items: IReactTable.Items = [];
+  // @embed(Headers) public headers: Headers = null;
   @embed(Bounds) public bounds: Bounds = null;
-  @embed(Table) public table: Table = null;
+  @embed(Cols) public cols: Cols = null;
+  @embed(Store.Array) public rows: IReactTable.Rows = [];
 
-  @action() public load(headers: IReactTable.Headers, items: IReactTable.Items) {
-    this.headers = headers;
-    this.items = items;
-    this.table.calculate();
+  @observable() @embed(Store.Int) public scrollLeft = 0;
+  @observable() @embed(Store.Int) public scrollTop = 0;
+  @observable() @embed(Store.Int) public width = 0;
+  @observable() @embed(Store.Int) public height = 0;
+  @observable() public colWidth = 100;
+  @observable() public rowHeight = 40;
+
+  // @observable() @embed(Table.Int) public width = 0;
+  // @observable() @embed(Table.Int) public height = 0;
+  // @observable() @embed(Table.Int) public leftWidth = 0;
+  // @observable() @embed(Table.Int) public rightWidth = 0;
+
+  // @observable() @embed(Store.Array) public headers: IReactTable.Headers = [];
+  // @observable() @embed(Store.Array) public items: IReactTable.Items = [];
+  // @observable() @embed(Store.Array) public items: IReactTable.Items = [];
+
+  @action() public load(
+    cols: IReactTable.Cols,
+    rows: IReactTable.Rows,
+    bounds: { width: number; height: number },
+  ) {
+    this.bounds.set(bounds);
+    this.cols.load(cols);
+    this.rows = rows;
+    this.calcSize();
+    // this.headers.load(headers);
+    // this.items.load(items);
+    // this.table.calculate();
   }
+
+  @action() public scroll(scrollLeft, scrollTop) {
+    this.set({ scrollLeft, scrollTop });
+    // this.headers.load(headers);
+    // this.items.load(items);
+    // this.table.calculate();
+  }
+
+  @action() protected calcSize() {
+    this.width = this.cols.center.reduce((memo, item) => (memo += item.width ?? this.colWidth, memo), 0);
+    this.height = this.rows.length * this.rowHeight;
+  }
+
+  // @action() protected calculateTableWidth() {
+  //   this.cols.reduce((memo, item) => {
+  //     memo += !item.fixed ? item.width ?? this.defaultWidth : 0;
+  //     return memo;
+  //   }, 0);
+  // }
 }

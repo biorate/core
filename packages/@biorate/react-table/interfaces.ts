@@ -1,16 +1,21 @@
 export namespace IReactTable {
-  export type Headers = { field: string; title?: string; width?: number }[];
+  export type Cols = {
+    field: string;
+    title?: string;
+    width?: number;
+    fixed?: string;
+  }[];
 
-  export type Items = Record<string, any>[];
+  export type Rows = Record<string, any>[];
 
   export interface Bounds {
-    offsetWidth: number;
-    offsetHeight: number;
+    width: number;
+    height: number;
   }
 
   export interface Store {
-    headers: Headers;
-    items: Items;
+    // headers: Headers;
+    // items: Items;
     bounds: Bounds;
   }
 }

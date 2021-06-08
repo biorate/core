@@ -6,7 +6,11 @@ import { Component } from './component';
 
 @observer
 export class Row extends Component {
-  props: {
+  #transform = (x = 0, y = 0, z = 0) => {
+    return { transform: `translate3d(${x}px, ${y}px, ${z}px)` };
+  };
+
+  public props: {
     store: Store;
     render?: (...args: any) => any;
     offsetX?: number;
@@ -14,14 +18,6 @@ export class Row extends Component {
     deltaX?: number;
     deltaY?: number;
   };
-
-  public get offsetX() {
-    return this.props.offsetX ?? 0;
-  }
-
-  public get offsetY() {
-    return this.props.offsetY ?? 0;
-  }
 
   public get deltaX() {
     return this.props.deltaX ?? 0;
@@ -31,36 +27,62 @@ export class Row extends Component {
     return this.props.deltaY ?? 0;
   }
 
+  public get offsetX() {
+    return this.props.offsetX ?? 0;
+  }
+
+  public get offsetY() {
+    return this.props.offsetY ?? 0;
+  }
+
   public render() {
     return (
       <div
         className={$.row}
         style={{
-          transform: `translate3d(${this.deltaX}px, ${this.deltaY}px, 0px)`,
-          width: this.store.bounds.offsetWidth,
+          ...this.#transform(this.deltaX, this.deltaY),
+          width: this.store.bounds.width,
         }}
       >
         <div
-          style={{ transform: `translate3d(${this.offsetX}px, 0px, 0px)`, zIndex: 2 }}
+          style={{
+            height: this.store.rowHeight,
+            // ...this.#transform(this.offsetX),
+          }}
           className={$.left}
-        ></div>
+        >
+          {this.store.cols.left.map((item, index) => (
+            <div className={$.col} style={{ width: item.width ?? 100 }} key={item.field}>
+              {item.field}
+            </div>
+          ))}
+        </div>
         <div
           className={$.center}
           style={{
-            height: this.store.table.defaultHeight,
-            transform: `translate3d(${this.store.table.scrollLeft}px, ${this.offsetY}px, 0px)`,
+            height: this.store.rowHeight,
+            ...this.#transform(this.offsetX),
           }}
         >
-          {this.store.table.cols.map((item, index) => (
+          {this.store.cols.center.map((item, index) => (
             <div className={$.col} style={{ width: item.width ?? 100 }} key={item.field}>
               {this.props.render?.(item) ?? item.field}
             </div>
           ))}
         </div>
         <div
-          style={{ transform: `translate3d(${this.offsetX}px, 0px, 0px)`, zIndex: 2 }}
+          style={{
+            height: this.store.rowHeight,
+            // ...this.#transform(this.offsetX),
+          }}
           className={$.right}
-        ></div>
+        >
+          {this.store.cols.right.map((item, index) => (
+            <div className={$.col} style={{ width: item.width ?? 100 }} key={item.field}>
+              {item.field}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
