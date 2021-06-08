@@ -2,6 +2,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { range, random } from 'lodash';
 import { Table } from '../src';
+let j = 0;
 
 render(
   <div className="container">
@@ -11,9 +12,9 @@ render(
         field: `field_${item}`,
         width: random(100, 500),
       }))}
-      items={range(0, 100).map((index) => {
+      items={range(0, 100).map(() => {
         const item = {};
-        for (const i of range(0, 100)) item[`field_${i}`] = index * i;
+        for (const i of range(0, 100)) item[`field_${i}`] = j++;
         return item;
       })}
     />

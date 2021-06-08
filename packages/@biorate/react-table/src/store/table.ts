@@ -8,8 +8,7 @@ export class Table extends Base<IReactTable.Store> {
   @observable() @embed(Table.Int) public scrollTop = 0;
 
   #defaultWidth = 100;
-  #defaultHeight = 40;
-  #deltaLeft = null;
+  #defaultHeight = 42;
 
   #width = () =>
     this.parent.headers.reduce(
@@ -25,42 +24,33 @@ export class Table extends Base<IReactTable.Store> {
       const header = this.parent.headers[i],
         width = header.width ?? this.#defaultWidth;
       sumWidth += width;
-      if (sumWidth >= this.scrollLeft) return width - (sumWidth - this.scrollLeft);
+      if (sumWidth >= this.scrollLeft) return sumWidth - this.scrollLeft - width;
     }
     return 0;
   }
 
   @computed() public get deltaTop() {
-    const from = Math.ceil(this.scrollTop / this.#defaultHeight) * this.#defaultHeight;
-    return from - this.scrollTop;
+    return Math.floor(this.scrollTop / this.#defaultHeight) * this.#defaultHeight - this.scrollTop;
   }
 
   @computed() public get cols() {
     let result = [],
       sumWidth = 0;
-    this.#deltaLeft = null;
     for (let i = 0; i < this.parent.headers.length; i++) {
       const header = this.parent.headers[i],
         width = header.width ?? this.#defaultWidth;
       sumWidth += width;
-      if (sumWidth >= this.scrollLeft) {
-        result.push(header);
-        if (this.#deltaLeft === null)
-          this.#deltaLeft = width - (sumWidth - this.scrollLeft);
-      }
-      if (sumWidth > this.scrollLeft + this.parent.bounds.offsetWidth) {
-        break;
-      }
+      if (sumWidth >= this.scrollLeft) result.push(header);
+      if (sumWidth > this.scrollLeft + this.parent.bounds.offsetWidth) break;
     }
     return result;
   }
 
   @computed() public get rows() {
     const from = Math.floor(this.scrollTop / this.#defaultHeight);
-    const to = Math.ceil(
-      (this.scrollTop + this.parent.bounds.offsetHeight) / this.#defaultHeight,
-    );
-    return this.parent.items.slice(from, to + 2);
+    const to =
+      from + Math.ceil(this.parent.bounds.offsetHeight / this.#defaultHeight);
+    return this.parent.items.slice(from, to);
   }
 
   @action() public calculate() {

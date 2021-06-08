@@ -8,7 +8,7 @@ import { Component } from './component';
 export class Row extends Component {
   props: {
     store: Store;
-    value?: any;
+    render?: (...args: any) => any;
     offsetX?: number;
     offsetY?: number;
     deltaX?: number;
@@ -36,12 +36,12 @@ export class Row extends Component {
       <div
         className={$.row}
         style={{
-          transform: `translate3d(${-this.deltaX}px, ${this.deltaY}px, 0px)`,
+          transform: `translate3d(${this.deltaX}px, ${this.deltaY}px, 0px)`,
           width: this.store.bounds.offsetWidth,
         }}
       >
         <div
-          style={{ transform: `translate3d(${this.offsetX}px, 0px, 0px)` }}
+          style={{ transform: `translate3d(${this.offsetX}px, 0px, 0px)`, zIndex: 2 }}
           className={$.left}
         ></div>
         <div
@@ -52,12 +52,12 @@ export class Row extends Component {
         >
           {this.store.table.cols.map((item, index) => (
             <div className={$.col} style={{ width: item.width ?? 100 }} key={item.field}>
-              {item.field} - {this.props.value?.[item.field]}
+              {this.props.render?.(item) ?? item.field}
             </div>
           ))}
         </div>
         <div
-          style={{ transform: `translate3d(${this.offsetX}px, 0px, 0px)` }}
+          style={{ transform: `translate3d(${this.offsetX}px, 0px, 0px)`, zIndex: 2 }}
           className={$.right}
         ></div>
       </div>

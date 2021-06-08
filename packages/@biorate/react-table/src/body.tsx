@@ -8,14 +8,11 @@ import { Row } from './row';
 export class Body extends Component {
   public render() {
     return (
-      <div
-        className={$.body}
-        style={{ height: this.store.table.height, marginTop: -40 /*TODO!!*/ }}
-      >
+      <div className={$.body} style={{ height: this.store.table.height }}>
         <div style={{ height: 1, width: this.store.table.width }} />
         {this.store.table.rows.map((item, index) => (
           <Row
-            value={item}
+            render={(header) => item[header.field]}
             key={index}
             store={this.store}
             offsetX={this.store.table.scrollLeft}
