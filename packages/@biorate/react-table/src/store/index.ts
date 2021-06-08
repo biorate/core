@@ -36,6 +36,7 @@ export class Store extends Base implements IReactTable.Store {
     this.cols.load(cols);
     this.rows = rows;
     this.calcSize();
+    console.log(2);
     // this.headers.load(headers);
     // this.items.load(items);
     // this.table.calculate();

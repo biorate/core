@@ -11,7 +11,8 @@ render(
         fixed: [0, 1].includes(item) ? 'left' : [3, 5].includes(item) ? 'right' : undefined,
         title: `Field ${item}`,
         field: `field_${item}`,
-        width: random(100, 200),
+        // width: random(100, 200),
+        width: 100, //sum: 1600 x 4000
       }))}
       items={range(0, 100).map(() => {
         const item = {};

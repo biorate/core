@@ -19,13 +19,13 @@ export class Row extends Component {
     deltaY?: number;
   };
 
-  public get deltaX() {
-    return this.props.deltaX ?? 0;
-  }
-
-  public get deltaY() {
-    return this.props.deltaY ?? 0;
-  }
+  // public get deltaX() {
+  //   return this.props.deltaX ?? 0;
+  // }
+  //
+  // public get deltaY() {
+  //   return this.props.deltaY ?? 0;
+  // }
 
   public get offsetX() {
     return this.props.offsetX ?? 0;
@@ -40,7 +40,7 @@ export class Row extends Component {
       <div
         className={$.row}
         style={{
-          ...this.#transform(this.deltaX, this.deltaY),
+          ...this.#transform(this.offsetX, this.offsetY),
           width: this.store.bounds.width,
         }}
       >
