@@ -14,6 +14,7 @@ export class Header extends Component {
       >
         <Row
           store={this.store}
+          centerOffsetX={this.store.gapLeft}
           // offsetX={this.store.table.deltaLeft}
         />
       </div>

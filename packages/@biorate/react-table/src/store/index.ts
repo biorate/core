@@ -1,5 +1,5 @@
 import { IReactTable } from '../../interfaces';
-import { Base, embed, observable, action } from './base';
+import { Base, embed, observable, action, computed } from './base';
 import { Bounds } from './bounds';
 import { Cols } from './cols';
 // import { Rows } from './rows';
@@ -28,7 +28,7 @@ export class Store extends Base implements IReactTable.Store {
   // @observable() @embed(Store.Array) public items: IReactTable.Items = [];
 
   @action() public load(
-    cols: IReactTable.Cols,
+    cols: IReactTable.Columns,
     rows: IReactTable.Rows,
     bounds: { width: number; height: number },
   ) {
@@ -36,7 +36,6 @@ export class Store extends Base implements IReactTable.Store {
     this.cols.load(cols);
     this.rows = rows;
     this.calcSize();
-    console.log(2);
     // this.headers.load(headers);
     // this.items.load(items);
     // this.table.calculate();
@@ -50,8 +49,22 @@ export class Store extends Base implements IReactTable.Store {
   }
 
   @action() protected calcSize() {
-    this.width = this.cols.center.reduce((memo, item) => (memo += item.width ?? this.colWidth, memo), 0);
+    this.width = this.cols._center.reduce(
+      (memo, item) => ((memo += item.width ?? this.colWidth), memo),
+      0,
+    );
     this.height = this.rows.length * this.rowHeight;
+  }
+
+  @computed() public get gapLeft() {
+    let sumWidth = 0;
+    for (let i = 0; i < this.cols._center.length; i++) {
+      const header = this.cols._center[i],
+        width = header.width ?? this.colWidth;
+      sumWidth += width;
+      if (sumWidth >= this.scrollLeft) return sumWidth - this.scrollLeft - width;
+    }
+    return sumWidth;
   }
 
   // @action() protected calculateTableWidth() {

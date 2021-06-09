@@ -7,7 +7,7 @@ import { Footer } from './footer';
 import { IReactTable } from '../interfaces';
 
 export class Table extends React.Component {
-  props: { headers: IReactTable.Cols; items: IReactTable.Cols };
+  props: { headers: IReactTable.Columns; items: IReactTable.Rows };
 
   #bounds = React.createRef<HTMLDivElement>();
   #store = new Store().initialize();

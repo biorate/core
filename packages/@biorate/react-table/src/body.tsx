@@ -15,7 +15,8 @@ export class Body extends Component {
             render={(header) => item[header.field]}
             key={index}
             store={this.store}
-            // offsetX={this.store.scrollLeft}
+            rootOffsetX={this.store.scrollLeft}
+            centerOffsetX={this.store.gapLeft}
             // deltaX={this.store.table.scrollLeft}
             // offsetY={this.store.table.scrollTop}
             // deltaX={this.store.table.deltaLeft}

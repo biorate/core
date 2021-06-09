@@ -14,7 +14,7 @@ render(
         // width: random(100, 200),
         width: 100, //sum: 1600 x 4000
       }))}
-      items={range(0, 100).map(() => {
+      items={range(0, 20).map(() => {
         const item = {};
         for (const i of range(0, 100)) item[`field_${i}`] = j++;
         return item;

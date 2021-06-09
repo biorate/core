@@ -1,5 +1,5 @@
 export namespace IReactTable {
-  export type Cols = {
+  export type Columns = {
     field: string;
     title?: string;
     width?: number;
@@ -13,9 +13,15 @@ export namespace IReactTable {
     height: number;
   }
 
+  export interface Cols {}
+
   export interface Store {
-    // headers: Headers;
-    // items: Items;
     bounds: Bounds;
+    rows: Rows;
+    cols: Cols;
+    colWidth: number;
+    rowHeight: number;
+    scrollLeft: number;
+    scrollTop: number;
   }
 }

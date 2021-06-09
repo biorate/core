@@ -13,35 +13,19 @@ export class Row extends Component {
   public props: {
     store: Store;
     render?: (...args: any) => any;
-    offsetX?: number;
-    offsetY?: number;
-    deltaX?: number;
-    deltaY?: number;
+    rootOffsetX?: number;
+    rootOffsetY?: number;
+    centerOffsetX?: number;
+    centerOffsetY?: number;
   };
-
-  // public get deltaX() {
-  //   return this.props.deltaX ?? 0;
-  // }
-  //
-  // public get deltaY() {
-  //   return this.props.deltaY ?? 0;
-  // }
-
-  public get offsetX() {
-    return this.props.offsetX ?? 0;
-  }
-
-  public get offsetY() {
-    return this.props.offsetY ?? 0;
-  }
 
   public render() {
     return (
       <div
         className={$.row}
         style={{
-          ...this.#transform(this.offsetX, this.offsetY),
-          width: this.store.bounds.width,
+          ...this.#transform(this.props.rootOffsetX, this.props.rootOffsetY),
+          // width: this.store.bounds.width,
         }}
       >
         <div
@@ -60,8 +44,9 @@ export class Row extends Component {
         <div
           className={$.center}
           style={{
+            ...this.#transform(this.props.centerOffsetX, this.props.centerOffsetY),
             height: this.store.rowHeight,
-            ...this.#transform(this.offsetX),
+            // ...this.#transform(this.offsetX),
           }}
         >
           {this.store.cols.center.map((item, index) => (

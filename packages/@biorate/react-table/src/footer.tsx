@@ -14,7 +14,8 @@ export class Footer extends Component {
       >
         <Row
           store={this.store}
-          // offsetX={this.store.table.deltaLeft}
+          centerOffsetX={this.store.gapLeft}
+          // offsetX={this.store.scrollLeft}
         />
       </div>
     );
