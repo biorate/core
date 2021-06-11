@@ -7,6 +7,9 @@ export class Cols extends Base<IReactTable.Store> {
   @observable() @embed(Cols.Array) public right = [];
 
   @action() public load(cols: IReactTable.Columns) {
+    this._center.length = 0;
+    this.left.length = 0;
+    this.right.length = 0;
     for (const col of cols)
       this[col.fixed in this ? col.fixed : '_center'].push(col);
   }

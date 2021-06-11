@@ -17,6 +17,7 @@ export class Row extends Component {
     rootOffsetY?: number;
     centerOffsetX?: number;
     centerOffsetY?: number;
+    rightRowGap?: number;
   };
 
   public render() {
@@ -25,13 +26,11 @@ export class Row extends Component {
         className={$.row}
         style={{
           ...this.#transform(this.props.rootOffsetX, this.props.rootOffsetY),
-          // width: this.store.bounds.width,
         }}
       >
         <div
           style={{
             height: this.store.rowHeight,
-            // ...this.#transform(this.offsetX),
           }}
           className={$.left}
         >
@@ -44,9 +43,9 @@ export class Row extends Component {
         <div
           className={$.center}
           style={{
+            marginLeft: this.store.marginLeft,
             ...this.#transform(this.props.centerOffsetX, this.props.centerOffsetY),
             height: this.store.rowHeight,
-            // ...this.#transform(this.offsetX),
           }}
         >
           {this.store.cols.center.map((item, index) => (
@@ -58,12 +57,21 @@ export class Row extends Component {
         <div
           style={{
             height: this.store.rowHeight,
-            // ...this.#transform(this.offsetX),
           }}
           className={$.right}
         >
           {this.store.cols.right.map((item, index) => (
-            <div className={$.col} style={{ width: item.width ?? 100 }} key={item.field}>
+            <div
+              className={$.col}
+              style={{
+                width:
+                  (item.width ?? 100) +
+                  (this.store.cols.right.length - 1 === index
+                    ? this.props.rightRowGap ?? 0
+                    : 0),
+              }}
+              key={item.field}
+            >
               {item.field}
             </div>
           ))}

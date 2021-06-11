@@ -15,6 +15,7 @@ export class Footer extends Component {
         <Row
           store={this.store}
           centerOffsetX={this.store.gapLeft}
+          rightRowGap={this.store.scrollBarWidth}
           // offsetX={this.store.scrollLeft}
         />
       </div>
