@@ -7,14 +7,19 @@ import { Footer } from './footer';
 import { IReactTable } from '../interfaces';
 
 export class Table extends React.Component {
-  props: { headers: IReactTable.Columns; items: IReactTable.Rows };
+  props: { headers: IReactTable.Columns; items: IReactTable.Rows; border?: number };
 
   #bounds = React.createRef<HTMLDivElement>();
   #store = new Store().initialize();
 
   #load = () => {
     const { offsetWidth: width, offsetHeight: height } = this.#bounds.current;
-    this.#store.load(this.props.headers, this.props.items, { width, height });
+    this.#store.load(
+      this.props.headers,
+      this.props.items,
+      { width, height },
+      this.props.border,
+    );
   };
 
   public componentDidMount() {

@@ -12,6 +12,7 @@ export class Row extends Component {
 
   public props: {
     store: Store;
+    last?: boolean;
     render?: (...args: any) => any;
     rootOffsetX?: number;
     rootOffsetY?: number;
@@ -20,11 +21,21 @@ export class Row extends Component {
     rightRowGap?: number;
   };
 
+  protected border(index: number) {
+    // return index === 0
+    //   ? `1px ${this.store.border}px ${this.props.last ? 1 : 0}px ${this.store.border}px`
+    //   : `1px ${this.store.border}px ${this.props.last ? 1 : 0}px 0`;
+    return index === 0
+      ? `0 ${this.store.border}px 0 ${this.store.border}px`
+      : `0 ${this.store.border}px 0 0`;
+  }
+
   public render() {
     return (
       <div
         className={$.row}
         style={{
+          borderWidth: `1px 0 ${this.props.last ? 1 : 0}px 0`,
           ...this.#transform(this.props.rootOffsetX, this.props.rootOffsetY),
         }}
       >
@@ -35,7 +46,14 @@ export class Row extends Component {
           className={$.left}
         >
           {this.store.cols.left.map((item, index) => (
-            <div className={$.col} style={{ width: item.width ?? 100 }} key={item.field}>
+            <div
+              className={$.col}
+              style={{
+                borderWidth: this.border(index),
+                width: item.width ?? 100,
+              }}
+              key={item.field}
+            >
               {item.field}
             </div>
           ))}
@@ -44,12 +62,19 @@ export class Row extends Component {
           className={$.center}
           style={{
             marginLeft: this.store.marginLeft,
-            ...this.#transform(this.props.centerOffsetX, this.props.centerOffsetY),
             height: this.store.rowHeight,
+            ...this.#transform(this.props.centerOffsetX, this.props.centerOffsetY),
           }}
         >
           {this.store.cols.center.map((item, index) => (
-            <div className={$.col} style={{ width: item.width ?? 100 }} key={item.field}>
+            <div
+              className={$.col}
+              style={{
+                borderWidth: this.border(index),
+                width: item.width ?? 100,
+              }}
+              key={item.field}
+            >
               {this.props.render?.(item) ?? item.field}
             </div>
           ))}
@@ -64,6 +89,7 @@ export class Row extends Component {
             <div
               className={$.col}
               style={{
+                borderWidth: this.border(index),
                 width:
                   (item.width ?? 100) +
                   (this.store.cols.right.length - 1 === index

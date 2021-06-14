@@ -1,10 +1,12 @@
 export namespace IReactTable {
-  export type Columns = {
+  export type Column = {
     field: string;
     title?: string;
     width?: number;
     fixed?: string;
-  }[];
+  };
+
+  export type Columns = Column[];
 
   export type Rows = Record<string, any>[];
 
@@ -23,5 +25,8 @@ export namespace IReactTable {
     rowHeight: number;
     scrollLeft: number;
     scrollTop: number;
+    border: number;
+
+    getColWidth(cols: Column): number
   }
 }

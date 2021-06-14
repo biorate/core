@@ -13,13 +13,11 @@ export class Body extends Component {
         {this.store.rows.map((item, index) => (
           <Row
             render={(header) => item[header.field]}
+            last={index === this.store.rows.length - 1}
             key={index}
             store={this.store}
             rootOffsetX={this.store.scrollLeft}
             centerOffsetX={this.store.gapLeft}
-            // deltaX={this.store.table.scrollLeft}
-            // offsetY={this.store.table.scrollTop}
-            // deltaX={this.store.table.deltaLeft}
           />
         ))}
       </div>

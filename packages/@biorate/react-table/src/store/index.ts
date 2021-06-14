@@ -12,19 +12,26 @@ export class Store extends Base implements IReactTable.Store {
   @observable() @embed(Store.Int) public scrollTop = 0;
   @observable() @embed(Store.Int) public width = 0;
   @observable() @embed(Store.Int) public height = 0;
+  @observable() @embed(Store.Int) public border = 0;
   @observable() public colWidth = 100;
   @observable() public rowHeight = 40;
 
   public scrollBarWidth = this.getScrollbarWidth();
 
+  public getColWidth(col: IReactTable.Column) {
+    return (col.width ?? this.colWidth) + this.border;
+  }
+
   @action() public load(
     cols: IReactTable.Columns,
     rows: IReactTable.Rows,
     bounds: { width: number; height: number },
+    border: number,
   ) {
     this.bounds.set(bounds);
     this.cols.load(cols);
     this.rows = rows;
+    this.border = border ?? 1;
     this.calcSize();
   }
 
@@ -34,7 +41,7 @@ export class Store extends Base implements IReactTable.Store {
 
   @action() public calcSize() {
     this.width = [...this.cols._center, ...this.cols.right, ...this.cols.left].reduce(
-      (memo, item) => ((memo += item.width ?? this.colWidth), memo),
+      (memo, item) => ((memo += this.getColWidth(item)), memo),
       0,
     );
     this.height = this.rows.length * this.rowHeight;
@@ -42,7 +49,7 @@ export class Store extends Base implements IReactTable.Store {
 
   @computed() public get marginLeft() {
     return this.cols.left.reduce(
-      (memo, item) => ((memo += item.width ?? this.colWidth), memo),
+      (memo, item) => ((memo += this.getColWidth(item)), memo),
       0,
     );
   }
@@ -51,7 +58,7 @@ export class Store extends Base implements IReactTable.Store {
     let sumWidth = 0;
     for (let i = 0; i < this.cols._center.length; i++) {
       const header = this.cols._center[i],
-        width = header.width ?? this.colWidth;
+        width = this.getColWidth(header);
       sumWidth += width;
       if (sumWidth >= this.scrollLeft) return sumWidth - this.scrollLeft - width;
     }
@@ -60,11 +67,11 @@ export class Store extends Base implements IReactTable.Store {
 
   protected getScrollbarWidth() {
     const outer = document.createElement('div');
+    const inner = document.createElement('div');
     outer.style.visibility = 'hidden';
     outer.style.overflow = 'scroll';
     outer.style['msOverflowStyle'] = 'scrollbar';
     document.body.appendChild(outer);
-    const inner = document.createElement('div');
     outer.appendChild(inner);
     const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
     outer.parentNode.removeChild(outer);
