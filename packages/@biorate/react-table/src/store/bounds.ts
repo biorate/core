@@ -1,4 +1,4 @@
-import { Base, embed, observable, action } from './base';
+import { Base, embed, observable } from './base';
 import { IReactTable } from '../../interfaces';
 
 export class Bounds extends Base implements IReactTable.Bounds {

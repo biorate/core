@@ -17,6 +17,7 @@ export class Body extends Component {
             key={index}
             store={this.store}
             rootOffsetX={this.store.scrollLeft}
+            rootOffsetY={this.store.scrollTop + this.store.gapTop}
             centerOffsetX={this.store.gapLeft}
           />
         ))}

@@ -7,16 +7,16 @@ let j = 0;
 render(
   <div className="container">
     <Table
-      headers={range(0, 100).map((item) => ({
+      headers={range(0, 1000).map((item) => ({
         fixed: [0, 1].includes(item) ? 'left' : [3, 5].includes(item) ? 'right' : undefined,
         title: `Field ${item}`,
         field: `field_${item}`,
         // width: random(100, 200),
         width: 100, //sum: 1600 x 4000
       }))}
-      items={range(0, 20).map(() => {
+      items={range(0, 10000).map(() => {
         const item = {};
-        for (const i of range(0, 100)) item[`field_${i}`] = j++;
+        for (const i of range(0, 1000)) item[`field_${i}`] = j++;
         return item;
       })}
     />

@@ -6,7 +6,7 @@ import { Cols } from './cols';
 export class Store extends Base implements IReactTable.Store {
   @embed(Bounds) public bounds: Bounds = null;
   @embed(Cols) public cols: Cols = null;
-  @embed(Store.Array) public rows: IReactTable.Rows = [];
+  @embed(Store.Array) public _rows: IReactTable.Rows = [];
 
   @observable() @embed(Store.Int) public scrollLeft = 0;
   @observable() @embed(Store.Int) public scrollTop = 0;
@@ -16,7 +16,7 @@ export class Store extends Base implements IReactTable.Store {
   @observable() public colWidth = 100;
   @observable() public rowHeight = 40;
 
-  public scrollBarWidth = this.getScrollbarWidth();
+  public scrollBarWidth = this.getScrollBarWidth();
 
   public getColWidth(col: IReactTable.Column) {
     return (col.width ?? this.colWidth) + this.border;
@@ -30,7 +30,7 @@ export class Store extends Base implements IReactTable.Store {
   ) {
     this.bounds.set(bounds);
     this.cols.load(cols);
-    this.rows = rows;
+    this._rows = rows;
     this.border = border ?? 1;
     this.calcSize();
   }
@@ -44,7 +44,7 @@ export class Store extends Base implements IReactTable.Store {
       (memo, item) => ((memo += this.getColWidth(item)), memo),
       0,
     );
-    this.height = this.rows.length * this.rowHeight;
+    this.height = this._rows.length * this.rowHeight;
   }
 
   @computed() public get marginLeft() {
@@ -52,6 +52,10 @@ export class Store extends Base implements IReactTable.Store {
       (memo, item) => ((memo += this.getColWidth(item)), memo),
       0,
     );
+  }
+
+  @computed() public get gapTop() {
+    return Math.floor(this.scrollTop / this.rowHeight) * this.rowHeight - this.scrollTop;
   }
 
   @computed() public get gapLeft() {
@@ -65,7 +69,13 @@ export class Store extends Base implements IReactTable.Store {
     return sumWidth;
   }
 
-  protected getScrollbarWidth() {
+  @computed() public get rows() {
+    const from = Math.floor(this.scrollTop / this.rowHeight);
+    const to = from + Math.ceil(this.bounds.height / this.rowHeight);
+    return this._rows.slice(from, to);
+  }
+
+  protected getScrollBarWidth() {
     const outer = document.createElement('div');
     const inner = document.createElement('div');
     outer.style.visibility = 'hidden';

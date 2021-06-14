@@ -22,9 +22,6 @@ export class Row extends Component {
   };
 
   protected border(index: number) {
-    // return index === 0
-    //   ? `1px ${this.store.border}px ${this.props.last ? 1 : 0}px ${this.store.border}px`
-    //   : `1px ${this.store.border}px ${this.props.last ? 1 : 0}px 0`;
     return index === 0
       ? `0 ${this.store.border}px 0 ${this.store.border}px`
       : `0 ${this.store.border}px 0 0`;
@@ -35,7 +32,7 @@ export class Row extends Component {
       <div
         className={$.row}
         style={{
-          borderWidth: `1px 0 ${this.props.last ? 1 : 0}px 0`,
+          borderWidth: `${this.store.border}px 0 ${this.props.last ? this.store.border : 0}px 0`,
           ...this.#transform(this.props.rootOffsetX, this.props.rootOffsetY),
         }}
       >
