@@ -1,7 +1,7 @@
 import $ from './row.module.less';
 import * as React from 'react';
-import { Store } from './store';
 import { observer } from 'mobx-react';
+import { Store } from './store';
 import { Component } from './component';
 
 @observer
@@ -32,13 +32,16 @@ export class Row extends Component {
       <div
         className={$.row}
         style={{
-          borderWidth: `${this.store.border}px 0 ${this.props.last ? this.store.border : 0}px 0`,
+          borderWidth: `${this.store.border}px 0 ${
+            this.props.last ? this.store.border : 0
+          }px 0`,
           ...this.#transform(this.props.rootOffsetX, this.props.rootOffsetY),
         }}
       >
         <div
           style={{
             height: this.store.rowHeight,
+            boxShadow: this.store.scrollLeft > 0 ? '6px 0 6px -4px rgb(0 0 0 / 15%)' : null,
           }}
           className={$.left}
         >
@@ -51,7 +54,7 @@ export class Row extends Component {
               }}
               key={item.field}
             >
-              {item.field}
+              {this.props.render?.(item) ?? item.field}
             </div>
           ))}
         </div>
@@ -79,6 +82,7 @@ export class Row extends Component {
         <div
           style={{
             height: this.store.rowHeight,
+            boxShadow: '-6px 0 6px -4px rgb(0 0 0 / 15%)',
           }}
           className={$.right}
         >
@@ -95,7 +99,7 @@ export class Row extends Component {
               }}
               key={item.field}
             >
-              {item.field}
+              {this.props.render?.(item) ?? item.field}
             </div>
           ))}
         </div>

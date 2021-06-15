@@ -8,16 +8,12 @@ import { Row } from './row';
 export class Footer extends Component {
   public render() {
     return (
-      <div
-        className={$.footer}
-        // style={{ transform: `translate3d(${-this.store.table.scrollLeft}px, 0px, 0px)` }}
-      >
+      <div className={$.footer}>
         <Row
           store={this.store}
           last={true}
           centerOffsetX={this.store.gapLeft}
           rightRowGap={this.store.scrollBarWidth}
-          // offsetX={this.store.scrollLeft}
         />
       </div>
     );

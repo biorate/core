@@ -8,16 +8,12 @@ import { Row } from './row';
 export class Header extends Component {
   public render() {
     return (
-      <div
-        className={$.header}
-        // style={{ transform: `translate3d(${-this.store.table.scrollLeft}px, 0px, 0px)` }}
-      >
+      <div className={$.header}>
         <Row
           store={this.store}
           last={true}
           centerOffsetX={this.store.gapLeft}
           rightRowGap={this.store.scrollBarWidth}
-          // offsetX={this.store.table.deltaLeft}
         />
       </div>
     );
