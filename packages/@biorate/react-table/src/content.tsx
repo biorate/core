@@ -1,4 +1,3 @@
-import $ from './content.module.less';
 import * as React from 'react';
 import { Component } from './component';
 import { Body } from './body';
@@ -11,7 +10,7 @@ export class Content extends Component {
 
   public render() {
     return (
-      <div className={$.content} onScroll={this.#onScroll}>
+      <div className="virtual-table__content" onScroll={this.#onScroll}>
         <Body store={this.store} />
       </div>
     );

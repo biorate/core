@@ -1,8 +1,8 @@
-import $ from './row.module.less';
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Store } from './store';
 import { Component } from './component';
+import { Col } from './col';
 
 @observer
 export class Row extends Component {
@@ -21,16 +21,10 @@ export class Row extends Component {
     rightRowGap?: number;
   };
 
-  protected border(index: number) {
-    return index === 0
-      ? `0 ${this.store.border}px 0 ${this.store.border}px`
-      : `0 ${this.store.border}px 0 0`;
-  }
-
   public render() {
     return (
       <div
-        className={$.row}
+        className="virtual-table__row"
         style={{
           borderWidth: `${this.store.border}px 0 ${
             this.props.last ? this.store.border : 0
@@ -41,25 +35,17 @@ export class Row extends Component {
         <div
           style={{
             height: this.store.rowHeight,
-            boxShadow: this.store.scrollLeft > 0 ? '6px 0 6px -4px rgb(0 0 0 / 15%)' : null,
+            boxShadow:
+              this.store.scrollLeft > 0 ? '6px 0 6px -4px rgb(0 0 0 / 15%)' : null,
           }}
-          className={$.left}
+          className="virtual-table__left"
         >
           {this.store.cols.left.map((item, index) => (
-            <div
-              className={$.col}
-              style={{
-                borderWidth: this.border(index),
-                width: item.width ?? 100,
-              }}
-              key={item.field}
-            >
-              {this.props.render?.(item) ?? item.field}
-            </div>
+            <Col key={index} store={this.store} column={item} index={index} />
           ))}
         </div>
         <div
-          className={$.center}
+          className="virtual-table__center"
           style={{
             marginLeft: this.store.marginLeft,
             height: this.store.rowHeight,
@@ -67,16 +53,7 @@ export class Row extends Component {
           }}
         >
           {this.store.cols.center.map((item, index) => (
-            <div
-              className={$.col}
-              style={{
-                borderWidth: this.border(index),
-                width: item.width ?? 100,
-              }}
-              key={item.field}
-            >
-              {this.props.render?.(item) ?? item.field}
-            </div>
+            <Col key={index} store={this.store} column={item} index={index} />
           ))}
         </div>
         <div
@@ -84,23 +61,22 @@ export class Row extends Component {
             height: this.store.rowHeight,
             boxShadow: '-6px 0 6px -4px rgb(0 0 0 / 15%)',
           }}
-          className={$.right}
+          className="virtual-table__right"
         >
           {this.store.cols.right.map((item, index) => (
-            <div
-              className={$.col}
-              style={{
-                borderWidth: this.border(index),
-                width:
-                  (item.width ?? 100) +
-                  (this.store.cols.right.length - 1 === index
-                    ? this.props.rightRowGap ?? 0
-                    : 0),
-              }}
-              key={item.field}
-            >
-              {this.props.render?.(item) ?? item.field}
-            </div>
+            <Col
+              key={index}
+              store={this.store}
+              column={item}
+              index={index}
+              width={
+                (item.width ?? this.store.colWidth) +
+                (this.store.cols.right.length - 1 === index
+                  ? this.props.rightRowGap ?? 0
+                  : 0)
+              }
+              render={this.props.render}
+            />
           ))}
         </div>
       </div>

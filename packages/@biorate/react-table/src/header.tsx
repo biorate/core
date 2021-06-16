@@ -1,4 +1,3 @@
-import $ from './header.module.less';
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Component } from './component';
@@ -8,7 +7,7 @@ import { Row } from './row';
 export class Header extends Component {
   public render() {
     return (
-      <div className={$.header}>
+      <div className="virtual-table__header">
         <Row
           store={this.store}
           last={true}

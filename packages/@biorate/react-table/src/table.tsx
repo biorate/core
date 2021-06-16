@@ -1,4 +1,4 @@
-import $ from './table.module.less';
+import './table.less';
 import * as React from 'react';
 import { Store } from './store';
 import { Header } from './header';
@@ -37,7 +37,7 @@ export class Table extends React.Component {
 
   public render() {
     return (
-      <div ref={this.#bounds} className={$.table}>
+      <div ref={this.#bounds} className="virtual-table">
         <Header store={this.#store} />
         <Content store={this.#store} />
         <Footer store={this.#store} />
