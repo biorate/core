@@ -35,13 +35,20 @@ export class Row extends Component {
         <div
           style={{
             height: this.store.rowHeight,
-            boxShadow:
-              this.store.scrollLeft > 0 ? '6px 0 6px -4px rgb(0 0 0 / 15%)' : null,
+            boxShadow: this.store.leftScrollReached
+              ? null
+              : '6px 0 6px -4px rgb(0 0 0 / 15%)',
           }}
           className="virtual-table__left"
         >
           {this.store.cols.left.map((item, index) => (
-            <Col key={index} store={this.store} column={item} index={index} />
+            <Col
+              key={index}
+              store={this.store}
+              column={item}
+              index={index}
+              render={this.props.render}
+            />
           ))}
         </div>
         <div
@@ -53,13 +60,21 @@ export class Row extends Component {
           }}
         >
           {this.store.cols.center.map((item, index) => (
-            <Col key={index} store={this.store} column={item} index={index} />
+            <Col
+              key={index}
+              store={this.store}
+              column={item}
+              index={index}
+              render={this.props.render}
+            />
           ))}
         </div>
         <div
           style={{
             height: this.store.rowHeight,
-            boxShadow: '-6px 0 6px -4px rgb(0 0 0 / 15%)',
+            boxShadow: this.store.rightScrollReached
+              ? null
+              : '-6px 0 6px -4px rgb(0 0 0 / 15%)',
           }}
           className="virtual-table__right"
         >

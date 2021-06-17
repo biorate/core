@@ -4,8 +4,8 @@ import { Body } from './body';
 
 export class Content extends Component {
   #onScroll = (e) => {
-    const { scrollLeft, scrollTop } = e.target;
-    this.store.scroll(scrollLeft, scrollTop);
+    const { scrollLeft, scrollTop, clientWidth } = e.target;
+    this.store.scroll(scrollLeft, scrollTop, clientWidth);
   };
 
   public render() {

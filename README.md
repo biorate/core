@@ -6,6 +6,7 @@
 * [symbolic](https://biorate.github.io/core/modules/symbolic.html)
 * [tools](https://biorate.github.io/core/modules/tools.html)
 * [collection](https://biorate.github.io/core/modules/collection.html)
+* [react-virtual-table](https://biorate.github.io/core/modules/react-virtual-table.html)
 
 ### Learn
 * [documentation](https://biorate.github.io/core/).

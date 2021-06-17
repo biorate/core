@@ -1,5 +1,5 @@
 {
-  "name": "@biorate/react-table",
+  "name": "@biorate/react-virtual-table",
   "version": "0.0.0",
   "description": "React virtual table",
   "main": "dist",

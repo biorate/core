@@ -8,6 +8,7 @@ export class Store extends Base implements IReactTable.Store {
   @embed(Cols) public cols: Cols = null;
   @embed(Store.Array) public _rows: IReactTable.Rows = [];
 
+  @observable() @embed(Store.Int) public clientWidth = 0;
   @observable() @embed(Store.Int) public scrollLeft = 0;
   @observable() @embed(Store.Int) public scrollTop = 0;
   @observable() @embed(Store.Int) public width = 0;
@@ -35,8 +36,8 @@ export class Store extends Base implements IReactTable.Store {
     this.calcSize();
   }
 
-  @action() public scroll(scrollLeft, scrollTop) {
-    this.set({ scrollLeft, scrollTop });
+  @action() public scroll(scrollLeft, scrollTop, clientWidth) {
+    this.set({ scrollLeft, scrollTop, clientWidth });
   }
 
   @action() public calcSize() {
@@ -45,6 +46,14 @@ export class Store extends Base implements IReactTable.Store {
       0,
     );
     this.height = this._rows.length * this.rowHeight;
+  }
+
+  @computed() public get leftScrollReached() {
+    return this.scrollLeft === 0;
+  }
+
+  @computed() public get rightScrollReached() {
+    return this.width - this.scrollLeft - this.clientWidth === 0;
   }
 
   @computed() public get marginLeft() {

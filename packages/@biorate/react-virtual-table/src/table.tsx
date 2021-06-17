@@ -1,4 +1,4 @@
-import './table.less';
+import './style.less';
 import * as React from 'react';
 import { Store } from './store';
 import { Header } from './header';
