@@ -7,7 +7,21 @@ import { Footer } from './footer';
 import { IReactTable } from '../interfaces';
 
 export class Table extends React.Component {
-  props: { headers: IReactTable.Columns; items: IReactTable.Rows; border?: number };
+  props: {
+    headers: IReactTable.Columns;
+    items: IReactTable.Rows;
+    border?: number;
+    render?: {
+      content?: (
+        row: IReactTable.Row,
+        col: IReactTable.Column,
+        index: number,
+        rows: IReactTable.Rows,
+      ) => any;
+      header?: (col: IReactTable.Column) => any;
+      footer?: (col: IReactTable.Column) => any;
+    };
+  };
 
   #bounds = React.createRef<HTMLDivElement>();
   #store = new Store().initialize();
@@ -38,9 +52,9 @@ export class Table extends React.Component {
   public render() {
     return (
       <div ref={this.#bounds} className="virtual-table">
-        <Header store={this.#store} />
-        <Content store={this.#store} />
-        <Footer store={this.#store} />
+        <Header store={this.#store} render={this.props.render?.header} />
+        <Content store={this.#store} render={this.props.render?.content} />
+        <Footer store={this.#store} render={this.props.render?.footer} />
       </div>
     );
   }

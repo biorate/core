@@ -8,7 +8,9 @@ export namespace IReactTable {
 
   export type Columns = Column[];
 
-  export type Rows = Record<string, any>[];
+  export type Row = Record<string, any>;
+
+  export type Rows = Row[];
 
   export interface Bounds {
     width: number;
