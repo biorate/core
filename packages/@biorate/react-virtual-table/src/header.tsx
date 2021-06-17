@@ -9,7 +9,7 @@ import { IReactTable } from '../interfaces';
 export class Header extends Component {
   public props: {
     store: Store;
-    render?: (col: IReactTable.Column) => any;
+    render?: (col: IReactTable.Column) => unknown;
   };
 
   public render() {

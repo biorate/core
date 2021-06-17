@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { Store } from './store';
 import { Component } from './component';
@@ -6,25 +7,32 @@ import { Col } from './col';
 
 @observer
 export class Row extends Component {
-  #transform = (x = 0, y = 0, z = 0) => {
-    return { transform: `translate3d(${x}px, ${y}px, ${z}px)` };
+  #transform = (x = 0, y = 0) => {
+    return { transform: `translate(${x}px, ${y}px)` };
   };
+
+  #over = (hover: boolean) => this.props.hover && this.setState({ hover });
 
   public props: {
     store: Store;
     last?: boolean;
-    render?: (...args: any) => any;
+    render?: (...args: unknown[]) => unknown;
     rootOffsetX?: number;
     rootOffsetY?: number;
     centerOffsetX?: number;
     centerOffsetY?: number;
     rightRowGap?: number;
+    hover?: boolean;
   };
+
+  public state = { hover: false };
 
   public render() {
     return (
       <div
         className="virtual-table__row"
+        onPointerOver={() => this.#over(true)}
+        onPointerOut={() => this.#over(false)}
         style={{
           borderWidth: `${this.store.border}px 0 ${
             this.props.last ? this.store.border : 0
@@ -39,7 +47,7 @@ export class Row extends Component {
               ? null
               : '6px 0 6px -4px rgb(0 0 0 / 15%)',
           }}
-          className="virtual-table__left"
+          className={classNames('virtual-table__left', { hover: this.state.hover })}
         >
           {this.store.cols.left.map((item, index) => (
             <Col
@@ -52,10 +60,10 @@ export class Row extends Component {
           ))}
         </div>
         <div
-          className="virtual-table__center"
+          className={classNames('virtual-table__center', { hover: this.state.hover })}
           style={{
-            marginLeft: this.store.marginLeft,
             height: this.store.rowHeight,
+            marginLeft: this.store.marginLeft,
             ...this.#transform(this.props.centerOffsetX, this.props.centerOffsetY),
           }}
         >
@@ -76,7 +84,7 @@ export class Row extends Component {
               ? null
               : '-6px 0 6px -4px rgb(0 0 0 / 15%)',
           }}
-          className="virtual-table__right"
+          className={classNames('virtual-table__right', { hover: this.state.hover })}
         >
           {this.store.cols.right.map((item, index) => (
             <Col

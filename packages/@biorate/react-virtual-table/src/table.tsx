@@ -17,10 +17,12 @@ export class Table extends React.Component {
         col: IReactTable.Column,
         index: number,
         rows: IReactTable.Rows,
-      ) => any;
-      header?: (col: IReactTable.Column) => any;
-      footer?: (col: IReactTable.Column) => any;
+      ) => unknown;
+      header?: (col: IReactTable.Column) => unknown;
+      footer?: (col: IReactTable.Column) => unknown;
     };
+    'no-header'?: boolean;
+    'no-footer'?: boolean;
   };
 
   #bounds = React.createRef<HTMLDivElement>();
@@ -52,9 +54,9 @@ export class Table extends React.Component {
   public render() {
     return (
       <div ref={this.#bounds} className="virtual-table">
-        <Header store={this.#store} render={this.props.render?.header} />
+        {this.props['no-header'] ?? <Header store={this.#store} render={this.props.render?.header} />}
         <Content store={this.#store} render={this.props.render?.content} />
-        <Footer store={this.#store} render={this.props.render?.footer} />
+        {this.props['no-footer'] ?? <Footer store={this.#store} render={this.props.render?.footer} />}
       </div>
     );
   }

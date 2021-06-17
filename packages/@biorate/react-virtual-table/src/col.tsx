@@ -11,7 +11,7 @@ export class Col extends Component {
     index: number;
     column: IReactTable.Column;
     width?: number;
-    render?: (...args: any) => any;
+    render?: (col: IReactTable.Column) => unknown;
   };
 
   protected get border() {

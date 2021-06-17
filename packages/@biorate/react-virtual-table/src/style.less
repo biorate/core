@@ -13,7 +13,8 @@
   flex-direction: column;
   overflow: hidden;
 
-  &__header, &__footer {
+  &__header,
+  &__footer {
     width: 100%;
     background: #fafafa;
     z-index: 1;
@@ -44,7 +45,11 @@
     left: 0;
     display: flex;
     background: #fff;
-    z-index: 2;
+    z-index: 1;
+
+    &.hover {
+      background: #e6f7ff;
+    }
   }
 
   &__right {
@@ -52,11 +57,19 @@
     right: 0;
     display: flex;
     background: #fff;
-    z-index: 2;
+    z-index: 1;
+
+    &.hover {
+      background: #e6f7ff;
+    }
   }
 
   &__center {
     display: flex;
+
+    &.hover {
+      background: #e6f7ff;
+    }
   }
 
   &__row {
@@ -71,5 +84,4 @@
     text-align: center;
     line-height: 40px;
   }
-
 }
