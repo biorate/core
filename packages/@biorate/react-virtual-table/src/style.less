@@ -1,4 +1,7 @@
 @classname: .virtual-table;
+@border-color: #e8e8e8;
+@hover-color: #e6f7ff;
+@pagination-hover-color: #1890ff;
 
 @{classname} {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB,
@@ -68,20 +71,42 @@
     display: flex;
 
     &.hover {
-      background: #e6f7ff;
+      background: @hover-color;
     }
   }
 
   &__row {
     display: flex;
     border-style: solid;
-    border-color: #e8e8e8;
+    border-color: @border-color;
   }
 
   &__col {
     border-style: solid;
-    border-color: #e8e8e8;
+    border-color: @border-color;
     text-align: center;
     line-height: 40px;
+  }
+
+  &__pagination {
+  }
+
+  &__pagination-ul {
+    margin: 5px 0;
+    padding: 0;
+    float: right;
+  }
+
+  &__pagination-li {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    &.border {
+      border: 1px solid @border-color;
+      &:hover {
+        border: 1px solid @pagination-hover-color;
+        color: @pagination-hover-color;
+      }
+    }
   }
 }

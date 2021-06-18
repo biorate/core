@@ -4,6 +4,7 @@ import { Store } from './store';
 import { Header } from './header';
 import { Content } from './content';
 import { Footer } from './footer';
+import { Pagination } from './pagination';
 import { IReactTable } from '../interfaces';
 
 export class Table extends React.Component {
@@ -57,6 +58,7 @@ export class Table extends React.Component {
         {this.props['no-header'] ?? <Header store={this.#store} render={this.props.render?.header} />}
         <Content store={this.#store} render={this.props.render?.content} />
         {this.props['no-footer'] ?? <Footer store={this.#store} render={this.props.render?.footer} />}
+        <Pagination store={this.#store} />
       </div>
     );
   }
