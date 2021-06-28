@@ -17,14 +17,20 @@ export class Content extends Component {
     ) => unknown;
   };
 
+  #scroll = React.createRef<HTMLDivElement>();
+
   #onScroll = (e) => {
     const { scrollLeft, scrollTop, clientWidth } = e.target;
     this.store.scroll(scrollLeft, scrollTop, clientWidth);
   };
 
+  public componentDidMount() {
+    this.store.setScroll(this.#scroll.current);
+  }
+
   public render() {
     return (
-      <div className="virtual-table__content" onScroll={this.#onScroll}>
+      <div className="virtual-table__content" ref={this.#scroll} onScroll={this.#onScroll}>
         <div className="virtual-table__body" style={{ height: this.store.height }}>
           <div style={{ height: 1, width: this.store.width }} />
           {this.store.rows.map((row, index) => (

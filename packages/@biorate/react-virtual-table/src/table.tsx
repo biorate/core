@@ -36,6 +36,8 @@ export class Table extends React.Component {
       this.props.items,
       { width, height },
       this.props.border,
+      !this.props['no-header'],
+      !this.props['no-footer'],
     );
   };
 
@@ -55,9 +57,13 @@ export class Table extends React.Component {
   public render() {
     return (
       <div ref={this.#bounds} className="virtual-table">
-        {this.props['no-header'] ?? <Header store={this.#store} render={this.props.render?.header} />}
+        {this.props['no-header'] ?? (
+          <Header store={this.#store} render={this.props.render?.header} />
+        )}
         <Content store={this.#store} render={this.props.render?.content} />
-        {this.props['no-footer'] ?? <Footer store={this.#store} render={this.props.render?.footer} />}
+        {this.props['no-footer'] ?? (
+          <Footer store={this.#store} render={this.props.render?.footer} />
+        )}
         <Pagination store={this.#store} />
       </div>
     );

@@ -2,11 +2,13 @@ import { IReactTable } from '../../interfaces';
 import { Base, embed, observable, action, computed } from './base';
 import { Bounds } from './bounds';
 import { Cols } from './cols';
+import { Pagination } from './pagination';
 
 export class Store extends Base implements IReactTable.Store {
   @embed(Bounds) public bounds: Bounds = null;
   @embed(Cols) public cols: Cols = null;
-  @embed(Store.Array) public _rows: IReactTable.Rows = [];
+  @embed(Store.Array) public rawRows: IReactTable.Rows = [];
+  @embed(Pagination) public pagination: Pagination = null;
 
   @observable() @embed(Store.Int) public clientWidth = 0;
   @observable() @embed(Store.Int) public scrollLeft = 0;
@@ -18,6 +20,10 @@ export class Store extends Base implements IReactTable.Store {
   @observable() public rowHeight = 40;
 
   public scrollBarWidth = this.getScrollBarWidth();
+  public header = true;
+  public footer = true;
+
+  #scroll: HTMLDivElement = null;
 
   public getColWidth(col: IReactTable.Column) {
     return (col.width ?? this.colWidth) + this.border;
@@ -28,10 +34,14 @@ export class Store extends Base implements IReactTable.Store {
     rows: IReactTable.Rows,
     bounds: { width: number; height: number },
     border: number,
+    header: boolean,
+    footer: boolean,
   ) {
     this.bounds.set(bounds);
+    this.header = header;
+    this.footer = footer;
     this.cols.load(cols);
-    this._rows = rows;
+    this.rawRows = rows;
     this.border = border ?? 1;
     this.calcSize();
   }
@@ -40,12 +50,18 @@ export class Store extends Base implements IReactTable.Store {
     this.set({ scrollLeft, scrollTop, clientWidth });
   }
 
+  @action() public paginate(page: number) {
+    if (page < 0 || page > this.pagination.total || page === this.pagination.page) return;
+    this.#scroll.scrollTop = page * this.pagination.rows * this.rowHeight;
+    this.set({ scrollTop: this.#scroll.scrollTop });
+  }
+
   @action() public calcSize() {
     this.width = [...this.cols._center, ...this.cols.right, ...this.cols.left].reduce(
       (memo, item) => ((memo += this.getColWidth(item)), memo),
       0,
     );
-    this.height = this._rows.length * this.rowHeight;
+    this.height = this.rawRows.length * this.rowHeight;
   }
 
   @computed() public get leftScrollReached() {
@@ -79,9 +95,11 @@ export class Store extends Base implements IReactTable.Store {
   }
 
   @computed() public get rows() {
-    const from = Math.floor(this.scrollTop / this.rowHeight);
-    const to = from + Math.ceil(this.bounds.height / this.rowHeight);
-    return this._rows.slice(from, to);
+    return this.rawRows.slice(this.pagination.from, this.pagination.to);
+  }
+
+  public setScroll(scroll) {
+    this.#scroll = scroll;
   }
 
   protected getScrollBarWidth() {
