@@ -22,6 +22,7 @@ export class Table extends React.Component {
       header?: (col: IReactTable.Column) => unknown;
       footer?: (col: IReactTable.Column) => unknown;
     };
+    pagination?: IReactTable.PaginationProps;
     'no-header'?: boolean;
     'no-footer'?: boolean;
   };
@@ -38,6 +39,7 @@ export class Table extends React.Component {
       this.props.border,
       !this.props['no-header'],
       !this.props['no-footer'],
+      this.props.pagination,
     );
   };
 
@@ -64,9 +66,7 @@ export class Table extends React.Component {
         {this.props['no-footer'] ?? (
           <Footer store={this.#store} render={this.props.render?.footer} />
         )}
-        {this.props['no-paginator'] ?? (
-          <Pagination store={this.#store} />
-        )}
+        {this.props['no-paginator'] ?? <Pagination store={this.#store} />}
       </div>
     );
   }

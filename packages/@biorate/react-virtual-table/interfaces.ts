@@ -12,6 +12,8 @@ export namespace IReactTable {
 
   export type Rows = Row[];
 
+  export type PaginationProps = {};
+
   export interface Bounds {
     width: number;
     height: number;

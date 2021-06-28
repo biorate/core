@@ -1,6 +1,7 @@
 @classname: .virtual-table;
 @border-color: #e8e8e8;
 @hover-color: #e6f7ff;
+@disabled-color: #ededed;
 @pagination-hover-color: #1890ff;
 
 @{classname} {
@@ -103,7 +104,10 @@
     user-select: none;
     display: inline-block;
     padding: 5px 10px;
+    margin: 0 2px;
     cursor: pointer;
+    text-align: center;
+    //min-width: 15px;
 
     &.border {
       border: 1px solid @border-color;
@@ -112,11 +116,21 @@
         border: 1px solid @pagination-hover-color;
         color: @pagination-hover-color;
       }
+    }
 
-      &.selected {
-        border: 1px solid @pagination-hover-color;
-        color: @pagination-hover-color;
-        cursor: default;
+    &.selected {
+      border: 1px solid @pagination-hover-color;
+      color: @pagination-hover-color;
+      cursor: default;
+    }
+
+    &.disabled {
+      background: @disabled-color;
+      cursor: not-allowed;
+
+      &:hover {
+        border: 1px solid @border-color;
+        color: gray;
       }
     }
   }

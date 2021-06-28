@@ -10,18 +10,24 @@ export class Pagination extends Component {
       <div className="virtual-table__pagination">
         <ul className="virtual-table__pagination-ul">
           <li
-            className="virtual-table__pagination-li border"
+            className={classNames('virtual-table__pagination-li', 'border', {
+              disabled: this.store.pagination.page === 0,
+            })}
             onClick={() => this.store.paginate(0)}
           >
             {'<<'}
           </li>
           <li
-            className="virtual-table__pagination-li border"
+            className={classNames('virtual-table__pagination-li', 'border', {
+              disabled: this.store.pagination.page === 0,
+            })}
             onClick={() => this.store.paginate(this.store.pagination.page - 1)}
           >
             {'<'}
           </li>
-          <li className="virtual-table__pagination-li">...</li>
+          {!this.store.pagination.leftSideReached && (
+            <li className="virtual-table__pagination-li">...</li>
+          )}
           {this.store.pagination.pages.map((item) => (
             <li
               key={item}
@@ -33,15 +39,21 @@ export class Pagination extends Component {
               {item}
             </li>
           ))}
-          <li className="virtual-table__pagination-li">...</li>
+          {!this.store.pagination.rightSideReached && (
+            <li className="virtual-table__pagination-li">...</li>
+          )}
           <li
-            className="virtual-table__pagination-li border"
+            className={classNames('virtual-table__pagination-li', 'border', {
+              disabled: this.store.pagination.page === this.store.pagination.total - 1,
+            })}
             onClick={() => this.store.paginate(this.store.pagination.page + 1)}
           >
             {'>'}
           </li>
           <li
-            className="virtual-table__pagination-li border"
+            className={classNames('virtual-table__pagination-li', 'border', {
+              disabled: this.store.pagination.page === this.store.pagination.total - 1,
+            })}
             onClick={() => this.store.paginate(this.store.pagination.total - 1)}
           >
             {'>>'}

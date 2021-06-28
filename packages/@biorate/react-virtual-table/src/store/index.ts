@@ -36,8 +36,10 @@ export class Store extends Base implements IReactTable.Store {
     border: number,
     header: boolean,
     footer: boolean,
+    pagination: IReactTable.PaginationProps,
   ) {
     this.bounds.set(bounds);
+    this.pagination.set(pagination);
     this.header = header;
     this.footer = footer;
     this.cols.load(cols);
