@@ -1,4 +1,4 @@
-import { Base, embed, observable, action, computed } from './base';
+import { Base, observable, computed } from './base';
 import { IReactTable } from '../../interfaces';
 
 export class Pagination

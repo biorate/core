@@ -25,6 +25,7 @@ render(
       }
       // no-footer
       // no-header
+      // no-paginator
       headers={range(0, 1000).map((item) => ({
         fixed: [0, 1].includes(item)
           ? 'left'

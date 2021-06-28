@@ -64,7 +64,9 @@ export class Table extends React.Component {
         {this.props['no-footer'] ?? (
           <Footer store={this.#store} render={this.props.render?.footer} />
         )}
-        <Pagination store={this.#store} />
+        {this.props['no-paginator'] ?? (
+          <Pagination store={this.#store} />
+        )}
       </div>
     );
   }
