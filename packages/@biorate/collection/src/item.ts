@@ -296,7 +296,7 @@ export abstract class Item<P = { parent?: any }> {
   public initialize(data: Record<string, any> = this[Props.data]) {
     this[Props.data] = data;
     for (const field in this) {
-      if (!this.hasOwnProperty(field)) continue;
+      if (!(field in this)) continue;
       this.#validate(data, field);
     }
     return this;
