@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Component } from './component';
 import { Store } from './store';
-import { IReactTable } from '../interfaces';
+import { IReactVirtualTable } from '../interfaces';
 import { Row } from './row';
 
 @observer
@@ -10,10 +10,10 @@ export class Content extends Component {
   public props: {
     store: Store;
     render?: (
-      row: IReactTable.Row,
-      col: IReactTable.Column,
+      row: IReactVirtualTable.Row,
+      col: IReactVirtualTable.Column,
       index: number,
-      rows: IReactTable.Rows,
+      rows: IReactVirtualTable.Rows,
     ) => unknown;
   };
 
@@ -30,12 +30,16 @@ export class Content extends Component {
 
   public render() {
     return (
-      <div className="virtual-table__content" ref={this.#scroll} onScroll={this.#onScroll}>
+      <div
+        className="virtual-table__content"
+        ref={this.#scroll}
+        onScroll={this.#onScroll}
+      >
         <div className="virtual-table__body" style={{ height: this.store.height }}>
           <div style={{ height: 1, width: this.store.width }} />
           {this.store.rows.map((row, index) => (
             <Row
-              render={(col: IReactTable.Column) =>
+              render={(col: IReactVirtualTable.Column) =>
                 this.props.render?.(row, col, index, this.store.rows) ?? row[col.field]
               }
               last={index === this.store.rows.length - 1}

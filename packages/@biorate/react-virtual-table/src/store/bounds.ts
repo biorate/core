@@ -1,7 +1,7 @@
 import { Base, embed, observable } from './base';
-import { IReactTable } from '../../interfaces';
+import { IReactVirtualTable } from '../../interfaces';
 
-export class Bounds extends Base implements IReactTable.Bounds {
+export class Bounds extends Base implements IReactVirtualTable.Bounds {
   @observable() @embed(Bounds.Int) public width = 0;
   @observable() @embed(Bounds.Int) public height = 0;
 }

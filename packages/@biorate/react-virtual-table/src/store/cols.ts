@@ -1,12 +1,12 @@
 import { Base, embed, observable, action, computed } from './base';
-import { IReactTable } from '../../interfaces';
+import { IReactVirtualTable } from '../../interfaces';
 
-export class Cols extends Base<IReactTable.Store> {
-  @observable() @embed(Cols.Array) public _center: IReactTable.Columns = [];
-  @observable() @embed(Cols.Array) public left: IReactTable.Columns = [];
-  @observable() @embed(Cols.Array) public right: IReactTable.Columns = [];
+export class Cols extends Base<IReactVirtualTable.Store> {
+  @observable() @embed(Cols.Array) public _center: IReactVirtualTable.Columns = [];
+  @observable() @embed(Cols.Array) public left: IReactVirtualTable.Columns = [];
+  @observable() @embed(Cols.Array) public right: IReactVirtualTable.Columns = [];
 
-  @action() public load(cols: IReactTable.Columns) {
+  @action() public load(cols: IReactVirtualTable.Columns) {
     this._center.length = 0;
     this.left.length = 0;
     this.right.length = 0;

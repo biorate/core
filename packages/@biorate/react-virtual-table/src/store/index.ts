@@ -1,13 +1,13 @@
-import { IReactTable } from '../../interfaces';
+import { IReactVirtualTable } from '../../interfaces';
 import { Base, embed, observable, action, computed } from './base';
 import { Bounds } from './bounds';
 import { Cols } from './cols';
 import { Pagination } from './pagination';
 
-export class Store extends Base implements IReactTable.Store {
+export class Store extends Base implements IReactVirtualTable.Store {
   @embed(Bounds) public bounds: Bounds = null;
   @embed(Cols) public cols: Cols = null;
-  @embed(Store.Array) public rawRows: IReactTable.Rows = [];
+  @embed(Store.Array) public rawRows: IReactVirtualTable.Rows = [];
   @embed(Pagination) public pagination: Pagination = null;
 
   @observable() @embed(Store.Int) public clientWidth = 0;
@@ -25,18 +25,18 @@ export class Store extends Base implements IReactTable.Store {
 
   #scroll: HTMLDivElement = null;
 
-  public getColWidth(col: IReactTable.Column) {
+  public getColWidth(col: IReactVirtualTable.Column) {
     return (col.width ?? this.colWidth) + this.border;
   }
 
   @action() public load(
-    cols: IReactTable.Columns,
-    rows: IReactTable.Rows,
+    cols: IReactVirtualTable.Columns,
+    rows: IReactVirtualTable.Rows,
     bounds: { width: number; height: number },
     border: number,
     header: boolean,
     footer: boolean,
-    pagination: IReactTable.PaginationProps,
+    pagination: IReactVirtualTable.PaginationProps,
   ) {
     this.bounds.set(bounds);
     this.pagination.set(pagination);

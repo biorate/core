@@ -3,13 +3,13 @@ import { observer } from 'mobx-react';
 import { Component } from './component';
 import { Row } from './row';
 import { Store } from './store';
-import { IReactTable } from '../interfaces';
+import { IReactVirtualTable } from '../interfaces';
 
 @observer
 export class Footer extends Component {
   public props: {
     store: Store;
-    render?: (col: IReactTable.Column) => unknown;
+    render?: (col: IReactVirtualTable.Column) => unknown;
   };
 
   public render() {

@@ -1,9 +1,9 @@
 import { Base, observable, computed } from './base';
-import { IReactTable } from '../../interfaces';
+import { IReactVirtualTable } from '../../interfaces';
 
 export class Pagination
-  extends Base<IReactTable.Store>
-  implements IReactTable.Pagination
+  extends Base<IReactVirtualTable.Store>
+  implements IReactVirtualTable.Pagination
 {
   @observable() public count = 5;
 
@@ -33,7 +33,7 @@ export class Pagination
         i++
       )
         result.push(i + 1);
-    return result;
+    return result.filter((i) => i > 0);
   }
 
   @computed() public get leftSideReached() {

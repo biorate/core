@@ -2,16 +2,16 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Store } from './store';
 import { Component } from './component';
-import { IReactTable } from '../interfaces';
+import { IReactVirtualTable } from '../interfaces';
 
 @observer
 export class Col extends Component {
   public props: {
     store: Store;
     index: number;
-    column: IReactTable.Column;
+    column: IReactVirtualTable.Column;
     width?: number;
-    render?: (col: IReactTable.Column) => unknown;
+    render?: (col: IReactVirtualTable.Column) => unknown;
   };
 
   protected get border() {

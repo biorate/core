@@ -6,6 +6,7 @@ import { Component } from './component';
 @observer
 export class Pagination extends Component {
   public render() {
+    if (this.store.pagination.total <= 0) return null;
     return (
       <div className="virtual-table__pagination">
         <ul className="virtual-table__pagination-ul">
