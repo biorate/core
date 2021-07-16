@@ -5,7 +5,7 @@ export class Pagination
   extends Base<IReactTable.Store>
   implements IReactTable.Pagination
 {
-  @observable() public count = 6;
+  @observable() public count = 5;
 
   @computed() public get rows() {
     return (
@@ -28,7 +28,7 @@ export class Pagination
       for (let i = 0; i < this.count; i++) result.push(i + 1);
     else
       for (
-        let i = this.page - halfCount;
+        let i = this.page - halfCount + 1;
         i < this.total && result.length < this.count;
         i++
       )
