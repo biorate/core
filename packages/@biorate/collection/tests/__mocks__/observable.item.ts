@@ -3,7 +3,7 @@ const { embed, observable } = collection;
 
 export class Nested extends collection.ObservableItem {
   @observable() @embed(Nested.Map) public map: Map<any, any> = null;
-  @observable() @embed(Nested.Set) public set: Set<any> = null;
+  @observable() @embed(Nested.Set) public itemSet: Set<any> = null;
 }
 
 export class Item extends collection.ObservableItem {
@@ -23,7 +23,7 @@ export const data = {
       [1, 'a'],
       [2, 'b'],
     ],
-    set: [1, 2, 3],
+    itemSet: [1, 2, 3],
   },
 };
 

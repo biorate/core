@@ -10,7 +10,7 @@ export class Binded {}
 
 export class Nested extends collection.Item {
   @embed(Nested.Map) public map: Map<any, any> = null;
-  @embed(Nested.Set) public set: Set<any> = null;
+  @embed(Nested.Set) public itemSet: Set<any> = null;
   @embed(Types.Binded) public binded: Binded = null;
 }
 
@@ -43,7 +43,7 @@ export const data = {
       [1, 'a'],
       [2, 'b'],
     ],
-    set: [1, 2, 3],
+    itemSet: [1, 2, 3],
   },
 };
 

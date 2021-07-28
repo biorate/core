@@ -24,7 +24,7 @@ describe('Observable item', () => {
       done();
     });
     const newValue = 4;
-    const name = 'set';
+    const name = 'itemSet';
     item.nested[name].add(newValue);
   });
 });

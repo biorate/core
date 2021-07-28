@@ -3,6 +3,7 @@ import { define } from '@biorate/tools';
 import { DateTime } from 'luxon';
 import { isObject } from 'lodash';
 import { Props, Types } from './symbols';
+import { action } from './decorators';
 
 /**
  * @description
@@ -293,9 +294,21 @@ export abstract class Item<P = { parent?: any }> {
    * console.log(item); // Item { id: 2, title: 'two' }
    * ```
    */
-  public initialize(data: Record<string, any> = this[Props.data]) {
+  @action() public initialize(data: Record<string, any> = this[Props.data]) {
     this[Props.data] = data;
     for (const field in this) {
+      if (!(field in this)) continue;
+      this.#validate(data, field);
+    }
+    return this;
+  }
+
+  /**
+   * @description Change values
+   * @param data - data object
+   */
+  @action() public set(data: Record<string, any>) {
+    for (const field in data) {
       if (!(field in this)) continue;
       this.#validate(data, field);
     }

@@ -5,7 +5,7 @@ export class Binded {
 
 export class Nested extends collection.Item {
   public map = Item.Map;
-  public set = Item.Set;
+  public itemSet = Item.Set;
   public binded = Binded;
 }
 
@@ -37,6 +37,6 @@ export const data = {
       [1, 'a'],
       [2, 'b'],
     ],
-    set: [1, 2, 3],
+    itemSet: [1, 2, 3],
   },
 };

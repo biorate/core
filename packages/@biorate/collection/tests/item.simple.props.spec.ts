@@ -29,9 +29,9 @@ describe('Item simple props', () => {
     /* @ts-ignore */
     assert(item.nested.map.get(2) === 'b');
     /* @ts-ignore */
-    assert(item.nested.set.has(1));
+    assert(item.nested.itemSet.has(1));
     /* @ts-ignore */
-    assert(item.nested.set.has(2));
+    assert(item.nested.itemSet.has(2));
     /* @ts-ignore */
     assert(item.nested.binded instanceof Binded);
   });
