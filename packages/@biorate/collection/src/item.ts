@@ -307,7 +307,7 @@ export abstract class Item<P = { parent?: any }> {
    * @description Change data values
    * @param data - data object
    *
-   *  * @example
+   * @example
    * ```
    * import * as collection from '@biorate/collection';
    *
