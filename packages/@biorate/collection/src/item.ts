@@ -29,7 +29,7 @@ import { action } from './decorators';
  *
  * class Nested extends collection.Item {
  *   @embed(Nested.Map) public map: Map<any, any> = null;
- *   @embed(Nested.Set) public set: Set<any> = null;
+ *   @embed(Nested.Set) public itemSet: Set<any> = null;
  *   @embed(BindedSymbol) public binded: Binded = null;
  * }
  *
@@ -62,7 +62,7 @@ import { action } from './decorators';
  *       [1, 'a'],
  *       [2, 'b'],
  *     ],
- *     set: [1, 2, 3],
+ *     itemSet: [1, 2, 3],
  *   },
  * };
  *
@@ -82,7 +82,7 @@ import { action } from './decorators';
  *   //   json: { test: 1 },
  *   //   nested: Nested {
  *   //     map: Map { 1 => 'a', 2 => 'b' },
- *   //     set: Set { 1, 2, 3 },
+ *   //     itemSet: Set { 1, 2, 3 },
  *   //     binded: Binded { hello: 'world!' }
  *   //   }
  *   // }
