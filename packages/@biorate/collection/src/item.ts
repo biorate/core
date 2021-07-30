@@ -304,8 +304,22 @@ export abstract class Item<P = { parent?: any }> {
   }
 
   /**
-   * @description Change values
+   * @description Change data values
    * @param data - data object
+   *
+   *  * @example
+   * ```
+   * import * as collection from '@biorate/collection';
+   *
+   * class Item extends collection.Item {
+   *   @embed(Nested.Int) public int: number = null;
+   *   @embed(Nested.String) public string: string = null;
+   * }
+   *
+   * const item = new Item().initialize({ int: 1, string: 'test' }});
+   * item.set({ int: 2, string: 'hello' }});
+   * console.log(item); // Item { int: 2, string: 'hello' }
+   * ```
    */
   @action() public set(data: Record<string, any>) {
     for (const field in data) {
