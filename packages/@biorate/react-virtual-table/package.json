@@ -1,0 +1,27 @@
+{
+  "name": "@biorate/react-virtual-table",
+  "version": "0.0.0",
+  "description": "React virtual table",
+  "main": "dist",
+  "scripts": {
+    "build": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./index.ts -o ./dist",
+    "demo": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./../../../docs/demo/@biorate/react-table",
+    "demo:dev": "npx webpack serve --config=../../../webpack.config.js --mode=development --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@biorate/collection": "0.7.0",
+    "@types/react": "^17.0.7",
+    "mobx": "^5.15.7",
+    "mobx-react": "^6.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/biorate/core/compare/v0.7.0...v0.7.1) (2021-07-02)
+
+
+### Bug Fixes
+
+* **collection:** item initialization field check fix ([03aa7bc](https://github.com/biorate/core/commit/03aa7bc2225003dafb1f84843de5a50483110c21))
+
+
+
+
+
 # [0.7.0](https://github.com/biorate/core/compare/v0.6.0...v0.7.0) (2021-05-19)
 
 **Note:** Version bump only for package @biorate/collection
