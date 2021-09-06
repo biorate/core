@@ -1,5 +1,9 @@
 # React virtual table
 
+### Table with full rows and columns virtualization
+
+### Demo [here](https://biorate.github.io/demo/@biorate/react-virtual-table/index.html)
+
 ### Learn
 * Documentation can be found here - [docs](https://biorate.github.io/core/modules/react-virtual-table.html).
 
