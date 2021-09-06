@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "build": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./index.ts -o ./dist",
-    "demo": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./../../../docs/demo/@biorate/react-table",
+    "demo": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./../../../docs/demo/@biorate/react-virtual-table",
     "demo:dev": "npx webpack serve --config=../../../webpack.config.js --mode=development --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
