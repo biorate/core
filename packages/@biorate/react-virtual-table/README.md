@@ -10,6 +10,9 @@
 ### Release History
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/react-virtual-table/CHANGELOG.md)
 
+### Known issues
+* asynchronous slip in firefox browser on fixed columns
+
 ### License
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/react-virtual-table/LICENSE)
 
