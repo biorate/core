@@ -10,7 +10,8 @@
     "version": "npx lerna version",
     "demo": "npx lerna run demo",
     "doc": "npx typedoc packages/@biorate/*/index.ts",
-    "publish": "npx lerna publish from-package"
+    "publish": "npx lerna publish from-package",
+    "cleanup:node_modules": "rm -rf $(find -type d -name 'node_modules')"
   },
   "keywords": [],
   "author": "llevkin",
