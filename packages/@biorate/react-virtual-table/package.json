@@ -10,7 +10,7 @@
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["react", "virtual", "table", "virtual-table"],
   "author": "llevkin",
   "license": "MIT",
   "peerDependencies": {
