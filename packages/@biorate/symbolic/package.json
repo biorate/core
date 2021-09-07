@@ -1,6 +1,6 @@
 {
   "name": "@biorate/symbolic",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Symbols factory",
   "main": "dist",
   "scripts": {

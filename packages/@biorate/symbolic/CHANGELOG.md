@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/biorate/core/compare/v0.7.2...v0.8.0) (2021-09-07)
+
+
+### Bug Fixes
+
+* **modules:** tsconfig.json exclude path fix, .npmrc package-lock=false ([de509f8](https://github.com/biorate/core/commit/de509f8fd3091b07b076d69c19d380a4e38078f6))
+
+
+
+
+
 # [0.7.0](https://github.com/biorate/core/compare/v0.6.0...v0.7.0) (2021-05-19)
 
 **Note:** Version bump only for package @biorate/symbolic

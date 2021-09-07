@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/biorate/core/compare/v0.7.2...v0.8.0) (2021-09-07)
+
+
+### Bug Fixes
+
+* **core:** cleanup added ([23bffd8](https://github.com/biorate/core/commit/23bffd8349a95b1f52b103db5b03f64c5fbb5942))
+* demo scripts ([e32235c](https://github.com/biorate/core/commit/e32235c56643ab6c7df4f751cc5044cecb4a73e0))
+* **modules:** tsconfig.json exclude path fix, .npmrc package-lock=false ([de509f8](https://github.com/biorate/core/commit/de509f8fd3091b07b076d69c19d380a4e38078f6))
+* pagination selected position ([25fec99](https://github.com/biorate/core/commit/25fec99686e6b8e7cdebcf24d7942979dce55de1))
+* react table doc and dev scripts ([254cd20](https://github.com/biorate/core/commit/254cd208fd95def85f7b406d55334a792b02967a))
+* react virtual table, mvp ([6b38e27](https://github.com/biorate/core/commit/6b38e2717db4ba72400a24639fa7b0a2df0e8793))
+* **react-table:** css style ([5999906](https://github.com/biorate/core/commit/59999062ada9cfac9fd1030c3da4ff5b5009c1a2))
+* **react-table:** css style ([f507e6e](https://github.com/biorate/core/commit/f507e6ef7a5f316f58e8da0e15280151d94812ec))
+* **react-table:** extra css reduce ([cdb7196](https://github.com/biorate/core/commit/cdb7196fdf83f6cbc6be0671d7267795a206f558))
+* **react-table:** less fix ([a59403c](https://github.com/biorate/core/commit/a59403c3fd734643ff85e6db3a1d0b81045bc531))
+* **react-table:** table border ([9cd6904](https://github.com/biorate/core/commit/9cd6904068e731b5b955172f585f492ad08373b6))
+* **react-table:** table stabilize ([963627f](https://github.com/biorate/core/commit/963627f15984175101ffe29336dd9791059d263e))
+* **react-table:** z-index in header and footer ([62eafe3](https://github.com/biorate/core/commit/62eafe39e23f7b07cc7e574fdbc10013f0139b6f))
+* **react-virtual-table:** demo script fiz ([2189a3e](https://github.com/biorate/core/commit/2189a3edfd016e008b45eeaab6718b5604e8f335))
+* **react-virtual-table:** documentation added ([069db96](https://github.com/biorate/core/commit/069db96d6c5693682d0cd1d34a6cd342909e619e))
+* **react-virtual-table:** no-paginator settings added ([08dda52](https://github.com/biorate/core/commit/08dda52d00277869129f109166ae752f28b41d63))
+* **react-virtual-table:** pagination styles fix, range logic ([49586cd](https://github.com/biorate/core/commit/49586cd54aa69dc3626ef30eb768846211643634))
+* **react-virtual-table:** paginator logic added ([154c9d5](https://github.com/biorate/core/commit/154c9d5a4f622990a2fcbdbf5f1bf23a3c131228))
+* **react-virtual-table:** paginator makeup added ([0cc4f4e](https://github.com/biorate/core/commit/0cc4f4e20c4fbbd7b595fccd74f5735fe766416b))
+* **react-virtual-table:** rename module, css fixes ([1ed4603](https://github.com/biorate/core/commit/1ed4603dd6bc6a5220c09246a7de3e2e7aec401f))
+* **react-virtual-table:** render methods added in table props ([fb20010](https://github.com/biorate/core/commit/fb2001084d40f743008e516dd2f37118530f386f))
+* **react-virtual-table:** row hover, refactoring ([8649198](https://github.com/biorate/core/commit/864919844484869b686a02ede2d55b038f224c43))
+* right fixed row width fix, left row offset fix ([1766bfb](https://github.com/biorate/core/commit/1766bfbc76f8c6b78c8f1339fff5148d80bf8a81))
+* typedoc deps inc to version 0.21.9 ([15254c9](https://github.com/biorate/core/commit/15254c94442a3ccd04a02b853950622db55f219e))
+
+
+### Features
+
+* **core:** webpack config added, react-table module added ([6605209](https://github.com/biorate/core/commit/66052098cddff830413835b04ef0cc0c1b434f29))
+* **core:** webpack minimize optimization ([3583606](https://github.com/biorate/core/commit/358360695e6df4b0d8383d4ef3ce726991a71b4d))
+* **react-virtual-table:** release ([e8610d3](https://github.com/biorate/core/commit/e8610d320fed93e96204ff401ebba951a33e8d70))
+
+
+
+
+
 ## [0.7.2](https://github.com/biorate/core/compare/v0.7.1...v0.7.2) (2021-07-28)
 
 
