@@ -5,7 +5,7 @@
 ### Demo [here](https://biorate.github.io/demo/@biorate/react-virtual-table/index.html)
 
 ### Learn
-* Documentation can be found here - [docs](https://biorate.github.io/core/modules/react-virtual-table.html).
+* Documentation can be found here - [docs](https://biorate.github.io/core/modules/react_virtual_table.html.html).
 
 ### Release History
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/react-virtual-table/CHANGELOG.md)
