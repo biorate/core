@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/biorate/core/compare/v0.8.1...v0.8.2) (2021-09-07)
+
+
+### Bug Fixes
+
+* **react-virtual-table:** doc update ([37f37e5](https://github.com/biorate/core/commit/37f37e5bf5687dedb37c117bc84dab81762d733c))
+
+
+
+
+
 ## [0.8.1](https://github.com/biorate/core/compare/v0.8.0...v0.8.1) (2021-09-07)
 
 
