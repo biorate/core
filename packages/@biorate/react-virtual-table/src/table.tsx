@@ -9,7 +9,7 @@ import { IReactVirtualTable } from '../interfaces';
 
 /**
  * @description
- * Table with full rows and columns virtualization
+ * Table with full rows and columns virtualization, inspired by https://aliseph.github.io/antd-virtual-table/
  *
  * Demo [here](https://biorate.github.io/core/demo/@biorate/react-virtual-table/index.html)
  *

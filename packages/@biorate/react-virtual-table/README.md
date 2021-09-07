@@ -1,6 +1,6 @@
 # React virtual table
 
-### Table with full rows and columns virtualization inspaired by https://aliseph.github.io/antd-virtual-table/
+### Table with full rows and columns virtualization, inspired by https://aliseph.github.io/antd-virtual-table/
 
 ### Demo [here](https://biorate.github.io/core/demo/@biorate/react-virtual-table/index.html)
 
