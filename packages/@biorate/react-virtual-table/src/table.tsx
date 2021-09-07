@@ -10,7 +10,8 @@ import { IReactVirtualTable } from '../interfaces';
 /**
  * @description
  * Table with full rows and columns virtualization
- * Demo [here](/core/demo/@biorate/react-virtual-table/index.html)
+ *
+ * Demo [here](https://biorate.github.io/core/demo/@biorate/react-virtual-table/index.html)
  *
  * ### Simple example:
  * @example
