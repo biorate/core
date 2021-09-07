@@ -1,6 +1,6 @@
 {
   "name": "@biorate/react-virtual-table",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "React virtual table",
   "main": "dist",
   "scripts": {
@@ -10,7 +10,12 @@
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["react", "virtual", "table", "virtual-table"],
+  "keywords": [
+    "react",
+    "virtual",
+    "table",
+    "virtual-table"
+  ],
   "author": "llevkin",
   "license": "MIT",
   "peerDependencies": {
