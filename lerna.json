@@ -4,6 +4,7 @@
   ],
   "command": {
     "version": {
+      "allowBranch": "master",
       "exact": true,
       "conventionalCommits": true,
       "message": "chore(release): %s"
