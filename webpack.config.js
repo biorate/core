@@ -8,6 +8,8 @@ const production = argv.mode === 'production';
 module.exports = {
   output: {
     filename: 'index.js',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss', '.less'],

@@ -19,6 +19,7 @@ import { IReactVirtualTable } from '../interfaces';
  * import * as React from 'react';
  * import { render } from 'react-dom';
  * import { Table } from '@biorate/react-virtual-table';
+ * import '@biorate/react-virtual-table/dist/style.css';
  *
  * render(
  *   <Table
@@ -80,6 +81,7 @@ import { IReactVirtualTable } from '../interfaces';
  * import { render } from 'react-dom';
  * import { range, random } from 'lodash';
  * import { Table } from '@biorate/react-virtual-table';
+ * import '@biorate/react-virtual-table/dist/style.css';
  * let j = 0;
  *
  * render(
