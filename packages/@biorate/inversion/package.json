@@ -19,5 +19,6 @@
     "inversify-inject-decorators": "^3.1.0",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13"
-  }
+  },
+  "gitHead": "d35ea7ac9c52dda88726c0ae7229b7d911c08cad"
 }
