@@ -1,0 +1,18 @@
+{
+  "name": "@biorate/config",
+  "version": "0.9.3",
+  "description": "Application configurator",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "traverse": "^0.6.6"
+  }
+}
