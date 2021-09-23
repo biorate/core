@@ -1,9 +1,10 @@
 import 'reflect-metadata';
-import * as exitHook from 'async-exit-hook';
 import { uniqBy } from 'lodash';
 import { injectable, addMetadata, container } from './inversify';
 import { Metadata } from './labels';
-import { isGetterOrSetter, walkPrototype } from '@biorate/tools';
+import { object as o, env } from '@biorate/tools';
+
+export * from './inversify';
 
 export function init() {
   return ({ constructor }, field: string, descriptor: PropertyDescriptor) =>
@@ -32,6 +33,7 @@ export function factory(Type, Child, Parent, Root) {
 
 export function Core<T extends new (...any) => any>(Class?: T) {
   Class = Class ? Class : (class {} as unknown as T);
+
   @injectable()
   class Core extends Class {
     #initialize = [];
@@ -40,12 +42,12 @@ export function Core<T extends new (...any) => any>(Class?: T) {
     #onExit = async () => {
       for (const item of this.#destructors) {
         await item.fn();
-        console.info(`[${item.object.constructor.name}] destructed!`);
+        $Core.log?.info?.(`[${item.object.constructor.name}] destructed!`);
       }
     };
 
     private static check(field: string, object, parent, root) {
-      if (isGetterOrSetter(object, field)) return false;
+      if (o.isAccessor(object, field)) return false;
       if (typeof object[field] !== 'object') return false;
       if (!object[field]) return false;
       if (!('constructor' in object[field])) return false;
@@ -83,7 +85,7 @@ export function Core<T extends new (...any) => any>(Class?: T) {
       if (!('constructor' in object)) return;
       if (Reflect.getMetadata(Metadata.Metadata, object)) return;
       Reflect.defineMetadata(Metadata.Metadata, true, object);
-      walkPrototype(object, (object) => {
+      o.walkProto(object, (object) => {
         const data = Reflect.getOwnMetadata(Metadata.Metadata, object.constructor);
         if (data) items.push(...[...data]);
       });
@@ -103,10 +105,10 @@ export function Core<T extends new (...any) => any>(Class?: T) {
 
     public async $run(root = this, parent = null): Promise<this> {
       this.invoke(this, parent, root ? root : this);
-      exitHook(this.#onExit);
+      if (env.isServer) require('async-exit-hook')(this.#onExit);
       for (const item of this.#initialize) {
         await item.fn();
-        console.info(`[${item.object.constructor.name}] initialized`);
+        $Core.log?.info?.(`[${item.object.constructor.name}] initialized`);
       }
       return this;
     }
@@ -119,3 +121,7 @@ export function Core<T extends new (...any) => any>(Class?: T) {
 
   return Core;
 }
+
+Core.log = console;
+
+const $Core = Core;

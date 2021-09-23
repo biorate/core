@@ -1,15 +1,23 @@
 {
-  "name": "@biorate/tools",
-  "version": "0.8.1",
-  "description": "Tools",
+  "name": "@biorate/inversion",
+  "version": "0.0.0",
+  "description": "IoC core module build on InversifyJS",
   "main": "dist",
   "scripts": {
-    "build": "npx tsc --outDir ./dist",
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "llevkin",
   "license": "MIT",
-  "gitHead": "0a4a05feb783dba75a73ee1ec27e52f9b2586157"
+  "dependencies": {
+    "@biorate/symbolic": "0.8.1",
+    "@biorate/tools": "0.8.1",
+    "async-exit-hook": "^2.0.1",
+    "inversify": "^5.1.1",
+    "inversify-inject-decorators": "^3.1.0",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13"
+  }
 }

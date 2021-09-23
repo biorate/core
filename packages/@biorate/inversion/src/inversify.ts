@@ -1,11 +1,7 @@
 import { injectable as Injectable, Container, tagged, named } from 'inversify';
 import getDecorators from 'inversify-inject-decorators';
+import { IMetadata } from '../interfaces';
 import { Metadata } from './labels';
-
-interface IMetadata {
-  key: symbol;
-  value: unknown;
-}
 
 export const container = new Container({ skipBaseClassChecks: true });
 const { lazyInject, lazyInjectNamed, lazyInjectTagged } = getDecorators(container);
