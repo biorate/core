@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/biorate/core/compare/v0.8.2...v0.8.3) (2021-09-23)
+
+
+### Bug Fixes
+
+* **errors:** { cause } property support added ([db0d886](https://github.com/biorate/core/commit/db0d8862267b06fc6295ab55f7d8b5cad682036e))
+* **react-virtual-table:** demo pug templace title fix ([7d00e26](https://github.com/biorate/core/commit/7d00e26b01a3b8a45e9198f52b91344eb91edf47))
+
+
+
+
+
 ## [0.8.2](https://github.com/biorate/core/compare/v0.8.1...v0.8.2) (2021-09-07)
 
 

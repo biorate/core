@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/biorate/core/compare/v0.8.2...v0.8.3) (2021-09-23)
+
+
+### Bug Fixes
+
+* **errors:** { cause } property support added ([db0d886](https://github.com/biorate/core/commit/db0d8862267b06fc6295ab55f7d8b5cad682036e))
+
+
+
+
+
 ## [0.8.1](https://github.com/biorate/core/compare/v0.8.0...v0.8.1) (2021-09-07)
 
 **Note:** Version bump only for package @biorate/errors
