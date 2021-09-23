@@ -1,6 +1,6 @@
 # React virtual table
 
-### Table with full rows and columns virtualization, inspired by https://aliseph.github.io/antd-virtual-table/
+### Table with full rows and columns virtualization.
 
 ### Demo [here](https://biorate.github.io/core/demo/@biorate/react-virtual-table/index.html)
 
@@ -12,6 +12,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 
 ### Known issues
 * asynchronous slip in firefox browser on fixed columns
+
+### Inspired by
+* https://aliseph.github.io/antd-virtual-table/
 
 ### License
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/react-virtual-table/LICENSE)
