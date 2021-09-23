@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/biorate/core/compare/v0.8.4...v0.9.0) (2021-09-23)
+
+
+### Bug Fixes
+
+* **collection:** build strategy ([40cdf7f](https://github.com/biorate/core/commit/40cdf7f7f62d28a989ce67d94a9125735a0c030d))
+* **symbolic:** build strategy ([df4e3b7](https://github.com/biorate/core/commit/df4e3b7469504fc951bd085bb74eaae5d335bc95))
+
+
+
+
+
 ## [0.8.1](https://github.com/biorate/core/compare/v0.8.0...v0.8.1) (2021-09-07)
 
 **Note:** Version bump only for package @biorate/symbolic
