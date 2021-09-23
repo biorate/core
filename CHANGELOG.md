@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/biorate/core/compare/v0.9.1...v0.9.2) (2021-09-23)
+
+
+### Bug Fixes
+
+* **inversion:** exports cleanup ([5124e15](https://github.com/biorate/core/commit/5124e157a223f1549d859c7963a6ce6191657530))
+
+
+
+
+
 ## [0.9.1](https://github.com/biorate/core/compare/v0.9.0...v0.9.1) (2021-09-23)
 
 **Note:** Version bump only for package biorate
