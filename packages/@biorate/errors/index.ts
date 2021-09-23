@@ -30,8 +30,9 @@ import { format } from 'util';
 export class BaseError extends Error {
   #meta: any = null;
 
-  public constructor(message: string, args?: any[], meta?: any) {
-    super(format(message, ...args));
+  public constructor(message: string, args?: unknown[], meta?: unknown, ...options: unknown[]) {
+    // @ts-ignore: { cause } property added in 16.9.0
+    super(format(message, ...args), ...options);
     this.#meta = meta;
     this.name = this.constructor.name;
     Error.captureStackTrace(this, this.constructor);

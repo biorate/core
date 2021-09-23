@@ -5,7 +5,7 @@ export const msg = 'hello world';
 export const meta = 'test';
 
 export class TestError extends BaseError {
-  constructor(args?: any[], meta?: any) {
+  public constructor(args?: unknown[], meta?: unknown) {
     super(`${message}%s`, args, meta);
   }
 }
