@@ -108,10 +108,9 @@ import { IReactVirtualTable } from '../interfaces';
  *   />,
  *   document.getElementById('root'),
  * );
- *
+ * ```
  * ### Inspired by
  * * https://aliseph.github.io/antd-virtual-table/
- * ```
  */
 export class Table extends React.Component {
   props: {
