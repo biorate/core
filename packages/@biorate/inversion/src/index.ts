@@ -4,7 +4,7 @@ import { injectable, addMetadata, container } from './inversify';
 import { Metadata } from './labels';
 import { object as o, env } from '@biorate/tools';
 
-export * from './inversify';
+export { injectable, inject, container } from './inversify';
 
 export function init() {
   return ({ constructor }, field: string, descriptor: PropertyDescriptor) =>
