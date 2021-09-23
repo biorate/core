@@ -96,7 +96,7 @@ export function Core<T extends new (...any) => any>(Class?: T) {
       }
     };
 
-    private static check(field: string, object, parent, root) {
+    private static $check(field: string, object, parent, root) {
       if (o.isAccessor(object, field)) return false;
       if (typeof object[field] !== 'object') return false;
       if (!object[field]) return false;
@@ -107,7 +107,7 @@ export function Core<T extends new (...any) => any>(Class?: T) {
       return Reflect.getMetadata(Metadata.Module, object[field].constructor);
     }
 
-    private applyMetadata(key, object, parent, root, data) {
+    private $applyMetadata(key, object, parent, root, data) {
       switch (key) {
         case Metadata.Init:
           this.#initialize.push({
@@ -130,7 +130,7 @@ export function Core<T extends new (...any) => any>(Class?: T) {
       }
     }
 
-    private call(object, parent, root) {
+    private $call(object, parent, root) {
       let items = [];
       if (!('constructor' in object)) return;
       if (Reflect.getMetadata(Metadata.Metadata, object)) return;
@@ -142,19 +142,19 @@ export function Core<T extends new (...any) => any>(Class?: T) {
       if (!items.length) return;
       items = uniqBy(items, 'field');
       for (const item of items)
-        this.applyMetadata(item.key, object, parent, root, item.value);
+        this.$applyMetadata(item.key, object, parent, root, item.value);
     }
 
-    private invoke(object: any = this, parent: any = null, root: Core = this) {
+    private $invoke(object: any = this, parent: any = null, root: Core = this) {
       for (const field in object) {
-        if (!Core.check(field, object, parent, root)) continue;
-        this.invoke(object[field], object, root);
+        if (!Core.$check(field, object, parent, root)) continue;
+        this.$invoke(object[field], object, root);
       }
-      this.call(object, parent, root);
+      this.$call(object, parent, root);
     }
 
     public async $run(root = this, parent = null): Promise<this> {
-      this.invoke(this, parent, root ? root : this);
+      this.$invoke(this, parent, root ? root : this);
       if (env.isServer) require('async-exit-hook')(this.#onExit);
       for (const item of this.#initialize) {
         await item.fn();
