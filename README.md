@@ -8,6 +8,7 @@
 * [collection](https://biorate.github.io/core/modules/collection.html)
 * [react-virtual-table](https://biorate.github.io/core/modules/react_virtual_table.html)
 * [inversion](https://biorate.github.io/core/modules/inversion.html)
+* [config](https://biorate.github.io/core/modules/config.html)
 
 ### Learn
 * [documentation](https://biorate.github.io/core/).
