@@ -3,6 +3,9 @@ import * as traverse from 'traverse';
 import { UndefinedConfigPathError } from './errors';
 
 export class Config {
+  /**
+   * @description Data storage
+   * */
   protected data = {};
 
   /**
