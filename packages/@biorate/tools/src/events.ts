@@ -1,9 +1,7 @@
-import { EventEmitter } from 'events';
-
 /**
  * @description
  * Wait event once asynchronous
- * @param object - EventEmitter object
+ * @param object - Event object
  * @param event - event name
  * @example
  * ```ts
@@ -18,5 +16,7 @@ import { EventEmitter } from 'events';
  *   })();
  * ```
  */
-export const once = (object: EventEmitter, event: string) =>
-  new Promise((resolve) => object.once(event, (...args: unknown[]) => resolve(args)));
+export const once = (
+  object: { once: (event: string, callback: (...args: unknown[]) => void) => void },
+  event: string,
+) => new Promise((resolve) => object.once(event, (...args: unknown[]) => resolve(args)));
