@@ -6,6 +6,8 @@ import { object as o, env } from '@biorate/tools';
 
 export { injectable, inject, container } from './inversify';
 
+export { Types } from './labels';
+
 export function init() {
   return ({ constructor }, field: string, descriptor: PropertyDescriptor) =>
     addMetadata(Metadata.Init, { fn: descriptor.value }, field, constructor);
@@ -81,7 +83,7 @@ export function factory(Type, Child, Parent, Root) {
  * });
  * ```
  */
-export function Core<T extends new (...any) => any>(Class?: T) {
+export function Core<T extends new (...any: any[]) => any>(Class?: T) {
   Class = Class ? Class : (class {} as unknown as T);
 
   @injectable()
