@@ -1,6 +1,7 @@
 import { merge, get, has, set, PropertyPath, PropertyName } from 'lodash';
 import * as traverse from 'traverse';
 import { UndefinedConfigPathError } from './errors';
+export * from './errors';
 
 export class Config {
   /**
@@ -65,7 +66,7 @@ export class Config {
    *
    * ```
    * */
-  public get(path: PropertyPath, def?: unknown) {
+  public get<T = unknown>(path: PropertyPath, def?: T): T {
     if (!this.has(path)) {
       if (def === undefined) throw new UndefinedConfigPathError(path);
       return def;
@@ -114,7 +115,7 @@ export class Config {
    * console.log(config.get('a')); // 1
    * ```
    * */
-  public set(path: PropertyPath, value: unknown): void {
+  public set(path: PropertyPath, value: unknown) {
     set(this.data, path, value);
   }
 
