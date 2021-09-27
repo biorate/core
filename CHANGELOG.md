@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/biorate/core/compare/v0.10.0...v0.10.1) (2021-09-27)
+
+
+### Bug Fixes
+
+* **tools:** events namespace added with once method ([03e7fb8](https://github.com/biorate/core/commit/03e7fb8b755f599550f83378b3488cf1e9ad094c))
+
+
+
+
+
 # [0.10.0](https://github.com/biorate/core/compare/v0.9.3...v0.10.0) (2021-09-24)
 
 
