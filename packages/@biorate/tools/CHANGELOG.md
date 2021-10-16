@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/biorate/core/compare/v0.10.4...v0.11.0) (2021-10-16)
+
+
+### Features
+
+* globalThis polyfill ([0f176a8](https://github.com/biorate/core/commit/0f176a8e4aeb9ae1d66c3016b99160dde3353f1f))
+
+
+
+
+
 ## [0.10.4](https://github.com/biorate/core/compare/v0.10.3...v0.10.4) (2021-09-27)
 
 

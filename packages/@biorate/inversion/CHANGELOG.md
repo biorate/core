@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/biorate/core/compare/v0.10.4...v0.11.0) (2021-10-16)
+
+
+### Bug Fixes
+
+* **inversion:** cache symbols in global object. Fix multi packages bug ([af7b0a0](https://github.com/biorate/core/commit/af7b0a0dd34512ca815ed0b28760908043f6514a))
+
+
+
+
+
 ## [0.10.4](https://github.com/biorate/core/compare/v0.10.3...v0.10.4) (2021-09-27)
 
 **Note:** Version bump only for package @biorate/inversion
