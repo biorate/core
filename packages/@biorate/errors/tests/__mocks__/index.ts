@@ -9,3 +9,9 @@ export class TestError extends BaseError {
     super(`${message}%s`, args, meta);
   }
 }
+
+export class TestNoArgsError extends BaseError {
+  public constructor() {
+    super(message);
+  }
+}
