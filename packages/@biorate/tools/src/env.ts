@@ -1,5 +1,10 @@
 'use strict';
-const globalThis = Function('return this')();
+
+/**
+ * @description
+ * globalThis polyfill
+ */
+export const globalThis = Function('return this')();
 
 /**
  * @description
