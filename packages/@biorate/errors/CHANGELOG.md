@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/biorate/core/compare/v0.11.0...v0.11.1) (2021-10-16)
+
+
+### Bug Fixes
+
+* **errors:** args is not iterable bug fix ([c56d8f8](https://github.com/biorate/core/commit/c56d8f814a4de90fa4b9737c8bac21f74764de12))
+
+
+
+
+
 # [0.11.0](https://github.com/biorate/core/compare/v0.10.4...v0.11.0) (2021-10-16)
 
 **Note:** Version bump only for package @biorate/errors
