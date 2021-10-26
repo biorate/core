@@ -38,7 +38,7 @@ export function computed() {
  *   @embed(Item.Bool) public bool: boolean = null;
  * }
  * ```
-*/
+ */
 export function embed(type: any) {
   return (target, field: string) => {
     Reflect.defineMetadata(Props.Class, type, target, field);
@@ -66,18 +66,14 @@ export function embed(type: any) {
  *
  * console.log(a === b); // true
  * ```
-*/
+ */
 export function singletone() {
-  return (Class: Ctor) =>
+  return (Class: any) =>
     new Proxy(
       Class,
       new (class {
         #instance = null;
-        construct(
-          target: Ctor,
-          argumentsList: ArrayLike<any>,
-          newTarget?: Ctor,
-        ) {
+        construct(target: Function, argumentsList: ArrayLike<any>, newTarget?: Function) {
           return (
             this.#instance ??
             (this.#instance = Reflect.construct(target, argumentsList, newTarget))
