@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/biorate/core/compare/v0.11.1...v0.11.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **collection:** singletone decorator type fix ([12fe3db](https://github.com/biorate/core/commit/12fe3db3ea76c8dff81a05c772957f727773124e))
+
+
+
+
+
 ## [0.11.1](https://github.com/biorate/core/compare/v0.11.0...v0.11.1) (2021-10-16)
 
 
