@@ -55,5 +55,9 @@
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13"
   }
 }

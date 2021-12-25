@@ -1,0 +1,18 @@
+{
+  "name": "@biorate/lifecycled",
+  "version": "0.11.1",
+  "description": "Decorators pack for bring lifecycle control in you application",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/tools": "0.11.0",
+    "async-exit-hook": "^2.0.1"
+  }
+}
