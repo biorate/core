@@ -10,7 +10,7 @@ import { format } from 'util';
  * import { BaseError } from '@biorate/errors';
  *
  * export class MyAwesomeError extends BaseError {
- *   constructor(args?: any[], meta?: any) {
+ *   constructor(args?: unknown[], meta?: unknown) {
  *     super(`Oops... Some error happen, at [%s], in [%s]`, args, meta);
  *   }
  * }
