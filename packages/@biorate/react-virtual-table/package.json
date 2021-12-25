@@ -9,6 +9,12 @@
     "demo:dev": "npx webpack serve --config=../../../webpack.config.js --mode=development --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./dist",
     "prepublishOnly": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/react-virtual-table"
+  },
+  "homepage": "https://biorate.github.io/core",
   "keywords": [
     "react",
     "virtual",

@@ -8,6 +8,12 @@
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/collection"
+  },
+  "homepage": "https://biorate.github.io/core",
   "keywords": [
     "collection",
     "map",
