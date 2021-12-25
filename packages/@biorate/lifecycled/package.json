@@ -14,5 +14,6 @@
   "dependencies": {
     "@biorate/tools": "0.12.0",
     "async-exit-hook": "^2.0.1"
-  }
+  },
+  "gitHead": "f7398e8c3ab2c828af49f87be9ae58dcfc7c0727"
 }
