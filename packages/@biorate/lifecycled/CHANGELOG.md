@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/biorate/core/compare/v0.12.4...v0.13.0) (2021-12-31)
+
+
+### Features
+
+* **lifecycled:** decorator to function interface change ([985b920](https://github.com/biorate/core/commit/985b9208ba4907846786b7ac816a05b1a3ce7b71))
+
+
+
+
+
 ## [0.12.3](https://github.com/biorate/core/compare/v0.12.2...v0.12.3) (2021-12-25)
 
 

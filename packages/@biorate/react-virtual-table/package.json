@@ -1,6 +1,6 @@
 {
   "name": "@biorate/react-virtual-table",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "description": "React virtual table",
   "main": "dist",
   "scripts": {

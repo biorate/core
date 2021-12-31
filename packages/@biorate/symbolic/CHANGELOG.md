@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/biorate/core/compare/v0.12.4...v0.13.0) (2021-12-31)
+
+**Note:** Version bump only for package @biorate/symbolic
+
+
+
+
+
 ## [0.12.2](https://github.com/biorate/core/compare/v0.12.1...v0.12.2) (2021-12-25)
 
 
