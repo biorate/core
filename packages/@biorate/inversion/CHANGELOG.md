@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/biorate/core/compare/v0.14.0...v0.14.1) (2021-12-31)
+
+
+### Bug Fixes
+
+* **inversion:** Global symbolic registry change ([a185b6f](https://github.com/biorate/core/commit/a185b6f1c746509d3ceea6fe28e36bb96531be5e))
+
+
+
+
+
 # [0.14.0](https://github.com/biorate/core/compare/v0.13.0...v0.14.0) (2021-12-31)
 
 **Note:** Version bump only for package @biorate/inversion
