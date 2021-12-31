@@ -70,11 +70,53 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="symbolic.html#Global" class="tsd-kind-icon">Global</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="symbolic.html#create" class="tsd-kind-icon">create</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="Global" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Global</h3>
+					<div class="tsd-signature tsd-kind-icon">Global<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/biorate/core/blob/f5c994d/packages/@biorate/symbolic/src/index.ts#L68">packages/@biorate/symbolic/src/index.ts:68</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>description</dt>
+							<dd><p>Global symbols factory registry with namespaces</p>
+							</dd>
+							<dt>example</dt>
+							<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Global</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@biorate/symbolic&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">Global</span><span style="color: #000000">.</span><span style="color: #001080">Test</span><span style="color: #000000">); </span><span style="color: #008000">// Symbol(Global.Test)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">Global</span><span style="color: #000000">.</span><span style="color: #001080">Test</span><span style="color: #000000"> === </span><span style="color: #001080">Global</span><span style="color: #000000">.</span><span style="color: #001080">Test</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+
+<span style="color: #008000">// namespace usage</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #795E26">Global</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Test&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Test</span><span style="color: #000000">); </span><span style="color: #008000">// Symbol(Test.Test)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #795E26">Global</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Test&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Test</span><span style="color: #000000"> === </span><span style="color: #795E26">Global</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Test&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Test</span><span style="color: #000000">); </span><span style="color: #008000">// true</span>
+
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #795E26">Global</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Test1&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Test</span><span style="color: #000000">); </span><span style="color: #008000">// Symbol(Test1.Test)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #795E26">Global</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Test2&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Test</span><span style="color: #000000">); </span><span style="color: #008000">// Symbol(Test2.Test)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #795E26">Global</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Test1&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Test</span><span style="color: #000000"> === </span><span style="color: #795E26">Global</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Test2&#039;</span><span style="color: #000000">).</span><span style="color: #001080">Test</span><span style="color: #000000">); </span><span style="color: #008000">// false</span>
+
+</code></pre>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -90,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/3440e12/packages/@biorate/symbolic/index.ts#L23">packages/@biorate/symbolic/index.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/f5c994d/packages/@biorate/symbolic/src/index.ts#L23">packages/@biorate/symbolic/src/index.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -168,6 +210,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="symbolic.html#Global" class="tsd-kind-icon">Global</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="symbolic.html#create" class="tsd-kind-icon">create</a>
 					</li>
