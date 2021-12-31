@@ -92,7 +92,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/b6c7701/packages/@biorate/lifecycled/src/index.ts#L153">packages/@biorate/lifecycled/src/index.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/3440e12/packages/@biorate/lifecycled/src/index.ts#L143">packages/@biorate/lifecycled/src/index.ts:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -137,7 +137,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/b6c7701/packages/@biorate/lifecycled/src/index.ts#L158">packages/@biorate/lifecycled/src/index.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/3440e12/packages/@biorate/lifecycled/src/index.ts#L148">packages/@biorate/lifecycled/src/index.ts:148</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -176,13 +176,13 @@
 					<a name="lifecycled-1" class="tsd-anchor"></a>
 					<h3>lifecycled</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">lifecycled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">lifecycled<span class="tsd-signature-symbol">(</span>instance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/biorate/core/blob/b6c7701/packages/@biorate/lifecycled/src/index.ts#L85">packages/@biorate/lifecycled/src/index.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/biorate/core/blob/3440e12/packages/@biorate/lifecycled/src/index.ts#L136">packages/@biorate/lifecycled/src/index.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,14 +223,13 @@
 <span style="color: #000000">  }</span>
 <span style="color: #000000">}</span>
 
-<span style="color: #000000">@</span><span style="color: #795E26">lifecycled</span><span style="color: #000000">()</span>
 <span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Root</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">uno</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Uno</span><span style="color: #000000">();</span>
 <span style="color: #000000">  </span><span style="color: #001080">dos</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Dos</span><span style="color: #000000">();</span>
 <span style="color: #000000">  </span><span style="color: #001080">tres</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Tres</span><span style="color: #000000">();</span>
 <span style="color: #000000">}</span>
 
-<span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Root</span><span style="color: #000000">();</span>
+<span style="color: #795E26">lifecycled</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Root</span><span style="color: #000000">());</span>
 
 <span style="color: #008000">// Uno init</span>
 <span style="color: #008000">// Dos init</span>
@@ -242,61 +241,15 @@
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li class="tsd-parameter-signature">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>constructor: <span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span></h5>
-													<ul class="tsd-parameters">
-														<li class="tsd-parameter-signature">
-															<ul class="tsd-signatures tsd-kind-constructor">
-																<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
-															</ul>
-															<ul class="tsd-descriptions">
-																<li class="tsd-description">
-																	<h4 class="tsd-parameters-title">Parameters</h4>
-																	<ul class="tsd-parameters">
-																		<li>
-																			<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-																		</li>
-																	</ul>
-																	<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
-																</li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></h4>
-											<ul class="tsd-parameters">
-												<li class="tsd-parameter-signature">
-													<ul class="tsd-signatures tsd-kind-constructor">
-														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">new </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-													</ul>
-													<ul class="tsd-descriptions">
-														<li class="tsd-description">
-															<h4 class="tsd-parameters-title">Parameters</h4>
-															<ul class="tsd-parameters">
-																<li>
-																	<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-																</li>
-															</ul>
-															<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
+								<li>
+									<h5>instance: <span class="tsd-signature-symbol">{}</span></h5>
+									<ul class="tsd-parameters">
 									</ul>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>

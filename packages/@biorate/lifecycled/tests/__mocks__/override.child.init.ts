@@ -1,7 +1,6 @@
 import { lifecycled, init, kill } from '../../src';
 
 export function initOverrideChild(done) {
-  @lifecycled()
   class Uno {
     @init() public initialize() {
       done(new Error('[initialize] called twice'));
@@ -14,5 +13,5 @@ export function initOverrideChild(done) {
     }
   }
 
-  return new Dos();
+  return lifecycled(new Dos());
 }

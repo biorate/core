@@ -1,7 +1,6 @@
 import { lifecycled, init, kill } from '../../src';
 
 export function initOverrideParent(done) {
-  @lifecycled()
   class Uno {
     @init() public initialize() {
       done();
@@ -14,5 +13,5 @@ export function initOverrideParent(done) {
     }
   }
 
-  return new Uno();
+  return lifecycled(new Uno());
 }
