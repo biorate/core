@@ -24,8 +24,20 @@ class Metadata {
 
 class Lifecycled {
   private static processed = Symbol.for('lifecycled.processed');
+  #initialize = [];
+  #destructors = [];
+  #onInitCb = () => {};
+  #onKillCb = () => {};
 
-  private static check(field: string, object: {}, parent = null) {
+  constructor(onInit = () => {}, onKill = () => {}) {
+    this.#onInitCb = onInit;
+    this.#onKillCb = onKill;
+    env.isServer
+      ? require('async-exit-hook')(this.#onKill)
+      : env.globalThis.on('beforeunload', this.#onKill);
+  }
+
+  private check(field: string, object: {}, parent = null) {
     if (o.isAccessor(object, field)) return false;
     if (typeof object[field] !== 'object') return false;
     if (!object[field]) return false;
@@ -35,42 +47,53 @@ class Lifecycled {
     return true;
   }
 
-  private static async invoke(object: {}, parent = null) {
+  private invoke(object: {}, parent = null) {
     for (const field in object)
-      if (this.check(field, object, parent)) await this.invoke(object[field], object);
-    await this.call(object, parent);
+      if (this.check(field, object, parent)) this.invoke(object[field], object);
+    this.call(object, parent);
   }
 
-  private static async call(object: {}, parent = null) {
+  private call(object: {}, parent = null) {
     let items = [];
-    if (Reflect.getMetadata(this.processed, object)) return;
-    Reflect.defineMetadata(this.processed, true, object);
+    if (Reflect.getMetadata(Lifecycled.processed, object)) return;
+    Reflect.defineMetadata(Lifecycled.processed, true, object);
     o.walkProto(object, (object) => {
       const data = Metadata.get(object.constructor);
       if (data) items.push(...[...data]);
     });
     if (!items.length) return;
     items = uniqBy(items, 'field');
-    await this.apply(object, items);
+    this.apply(object, items);
   }
 
-  private static async apply(object: {}, items: { key: number; field: string }[]) {
+  private apply(object: {}, items: { key: number; field: string }[]) {
     for (const item of items) {
       switch (item.key) {
         case Lifecircles.init:
-          await object[item.field]();
+          this.#initialize.push({ object, fn: object[item.field] });
           break;
         case Lifecircles.kill:
-          env.isServer
-            ? require('async-exit-hook')(object[item.field].bind(object))
-            : env.globalThis.on('beforeunload', object[item.field].bind(object));
+          this.#destructors.push({ object, fn: object[item.field] });
           break;
       }
     }
   }
 
-  public static process(instance: {}) {
-    return this.invoke(instance);
+  #init = async () => {
+    for (const { object, fn } of this.#initialize) await fn.call(object);
+    this.#onInitCb();
+  };
+
+  #onKill = async () => {
+    for (const { object, fn } of this.#destructors) await fn.call(object);
+    this.#onKillCb();
+  };
+
+  public static async process(root: {}, onInit = () => {}, onKill = () => {}) {
+    const instance = new Lifecycled(onInit, onKill);
+    instance.invoke(root);
+    await instance.#init();
+    return root;
   }
 }
 
@@ -133,8 +156,8 @@ function decorator(type: number) {
  * // Tres kill
  * ```
  */
-export function lifecycled(instance: {}) {
-  return Lifecycled.process(instance);
+export function lifecycled(root: {}, onInit = () => {}, onKill = () => {}) {
+  return Lifecycled.process(root, onInit, onKill);
 }
 
 /**
