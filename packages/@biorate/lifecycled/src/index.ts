@@ -26,10 +26,10 @@ class Lifecycled {
   private static processed = Symbol.for('lifecycled.processed');
   #initialize = [];
   #destructors = [];
-  #onInitCb = () => {};
-  #onKillCb = () => {};
+  #onInitCb = (object: {}) => {};
+  #onKillCb = (object: {}) => {};
 
-  constructor(onInit = () => {}, onKill = () => {}) {
+  constructor(onInit = (object: {}) => {}, onKill = (object: {}) => {}) {
     this.#onInitCb = onInit;
     this.#onKillCb = onKill;
     env.isServer
@@ -80,16 +80,24 @@ class Lifecycled {
   }
 
   #init = async () => {
-    for (const { object, fn } of this.#initialize) await fn.call(object);
-    this.#onInitCb();
+    for (const { object, fn } of this.#initialize) {
+      await fn.call(object);
+      this.#onInitCb(object);
+    }
   };
 
   #onKill = async () => {
-    for (const { object, fn } of this.#destructors) await fn.call(object);
-    this.#onKillCb();
+    for (const { object, fn } of this.#destructors) {
+      await fn.call(object);
+      this.#onKillCb(object);
+    }
   };
 
-  public static async process(root: {}, onInit = () => {}, onKill = () => {}) {
+  public static async process(
+    root: {},
+    onInit = (object: {}) => {},
+    onKill = (object: {}) => {},
+  ) {
     const instance = new Lifecycled(onInit, onKill);
     instance.invoke(root);
     await instance.#init();
@@ -156,7 +164,11 @@ function decorator(type: number) {
  * // Tres kill
  * ```
  */
-export function lifecycled(root: {}, onInit = () => {}, onKill = () => {}) {
+export function lifecycled(
+  root: {},
+  onInit = (object: {}) => {},
+  onKill = (object: {}) => {},
+) {
   return Lifecycled.process(root, onInit, onKill);
 }
 
