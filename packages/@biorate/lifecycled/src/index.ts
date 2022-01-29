@@ -5,6 +5,7 @@ import { object as o, env } from '@biorate/tools';
 enum Lifecircles {
   init,
   kill,
+  on,
 }
 
 class Metadata {
@@ -14,10 +15,15 @@ class Metadata {
     return Reflect.getOwnMetadata(this.metadata, constructor);
   }
 
-  public static add(constructor, key: number, field: string) {
+  public static add(
+    constructor,
+    key: number,
+    field: string,
+    data?: Record<string, unknown>,
+  ) {
     let items: Set<{ key: number; field: string }> = this.get(constructor);
     if (!items) items = new Set<{ key: number; field: string }>();
-    items.add({ key, field });
+    items.add({ key, field, ...data });
     Reflect.defineMetadata(this.metadata, items, constructor);
   }
 }
@@ -66,7 +72,10 @@ class Lifecycled {
     this.apply(object, items);
   }
 
-  private apply(object: {}, items: { key: number; field: string }[]) {
+  private apply(
+    object: { on?: (event: string, cb: () => {}) => {} },
+    items: { key: number; field: string; event?: string }[],
+  ) {
     for (const item of items) {
       switch (item.key) {
         case Lifecircles.init:
@@ -75,6 +84,9 @@ class Lifecycled {
         case Lifecircles.kill:
           this.#destructors.push({ object, fn: object[item.field] });
           break;
+        case Lifecircles.on:
+          object.on(item.event, object[item.field].bind(object));
+          return;
       }
     }
   }
@@ -106,9 +118,9 @@ class Lifecycled {
 }
 
 function decorator(type: number) {
-  return () =>
+  return (data?: Record<string, unknown>) =>
     ({ constructor }, field: string) =>
-      Metadata.add(constructor, type, field);
+      Metadata.add(constructor, type, field, data);
 }
 
 /**
@@ -181,3 +193,11 @@ export const init = decorator(Lifecircles.init);
  * @description kill decorator
  * */
 export const kill = decorator(Lifecircles.kill);
+
+/**
+ * @description on decorator - bind "on" event handler to object
+ * */
+export const on =
+  (event: string) =>
+  ({ constructor }, field: string) =>
+    Metadata.add(constructor, Lifecircles.on, field, { event });
