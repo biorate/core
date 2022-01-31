@@ -189,7 +189,7 @@ export function lifecycled(
   onInit = (object: {}) => {},
   onKill = (object: {}) => {},
 ) {
-  return Lifecycled.process(root, onInit, onKill).catch(console.log);
+  return Lifecycled.process(root, onInit, onKill);
 }
 
 /**
