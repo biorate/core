@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/biorate/core/compare/v0.14.1...v0.15.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **lifecicled:** init/kill flow fix, callbacks added ([e2a4549](https://github.com/biorate/core/commit/e2a454917711dd185d635e4c6c83c68c99d0ace5))
+* **lifecicled:** object arg in init/kill callbacks added ([0f961b5](https://github.com/biorate/core/commit/0f961b5c8ccc59210b6b8ecec4aafce67a857495))
+* **lifecycled:** "on" decorator added ([aa8aed5](https://github.com/biorate/core/commit/aa8aed584360163d4059a2f93aaee370bc607168))
+* **lifecycled:** catch removed ([ddc728d](https://github.com/biorate/core/commit/ddc728d59cba8f272c25dcb1988faf01788d8d5a))
+
+
+### Features
+
+* **lifecycled:** undeclared logic fix, "on" decorator added, tests refactoring ([6653805](https://github.com/biorate/core/commit/66538056ad2d7d30470a298f9f52613e08027b3a))
+
+
+
+
+
 # [0.14.0](https://github.com/biorate/core/compare/v0.13.0...v0.14.0) (2021-12-31)
 
 **Note:** Version bump only for package @biorate/lifecycled
