@@ -3,6 +3,7 @@
 Decorators pack for bring lifecycle control in you application
 
 #### Example:
+
 ```ts
 import { lifecycled, init, kill } from '../../src';
 
@@ -36,14 +37,13 @@ class Tres {
   }
 }
 
-@lifecycled()
 class Root {
   uno = new Uno();
   dos = new Dos();
   tres = new Tres();
 }
 
-new Root();
+lifecycled(new Root());
 
 // Uno init
 // Dos init
@@ -54,12 +54,15 @@ new Root();
 ```
 
 ### Learn
-* Documentation can be found here - [docs](https://biorate.github.io/core/modules/lifecycled.html).
+
+- Documentation can be found here - [docs](https://biorate.github.io/core/modules/lifecycled.html).
 
 ### Release History
+
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/lifecycled/CHANGELOG.md)
 
 ### License
+
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/lifecycled/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
