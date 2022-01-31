@@ -16,15 +16,13 @@ export const override = {
   simple: {
     child(done) {
       class One extends Core() {
-        @init()
-        public initialize() {
+        @init() public initialize() {
           done(new Error('[initialize] called twice'));
         }
       }
 
       class Two extends One {
-        @init()
-        public initialize() {
+        @init() public initialize() {
           done();
         }
       }
@@ -34,15 +32,13 @@ export const override = {
 
     parent(done) {
       class One extends Core() {
-        @init()
-        public initialize() {
+        @init() public initialize() {
           done();
         }
       }
 
       class Two extends One {
-        @init()
-        public initialize() {
+        @init() public initialize() {
           done(new Error('[initialize] called twice'));
         }
       }
@@ -54,8 +50,7 @@ export const override = {
   undeclared: {
     child(done) {
       class One extends Core() {
-        @init()
-        public initialize() {
+        @init() public initialize() {
           done();
         }
       }
@@ -77,8 +72,7 @@ export const override = {
       }
 
       class Two extends One {
-        @init()
-        public initialize() {
+        @init() public initialize() {
           done();
         }
       }

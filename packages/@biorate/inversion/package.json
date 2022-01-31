@@ -20,10 +20,10 @@
   "dependencies": {
     "@biorate/symbolic": "0.14.0",
     "@biorate/tools": "0.14.0",
+    "@biorate/lifecycled": "0.14.0",
     "async-exit-hook": "^2.0.1",
     "inversify": "^5.1.1",
     "inversify-inject-decorators": "^3.1.0",
-    "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13"
   },
   "gitHead": "f7398e8c3ab2c828af49f87be9ae58dcfc7c0727"

@@ -12,6 +12,7 @@
     "doc": "npx typedoc packages/@biorate/*/index.ts",
     "postdoc": "npm run demo",
     "publish": "npx lerna publish from-package",
+    "postinstall": "npm run bootstrap",
     "cleanup:node_modules": "rm -rf $(find -type d -name 'node_modules')"
   },
   "keywords": [],
@@ -49,7 +50,7 @@
     "ts-loader": "^9.2.2",
     "ts-node": "^9.1.1",
     "typedoc": "^0.21.9",
-    "typescript": "^4.2.4",
+    "typescript": "^4.5.5",
     "util-browserify": "browserify/node-util#v0.12.4",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
