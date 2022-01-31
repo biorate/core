@@ -1,4 +1,4 @@
-import { lifecycled, init, kill } from '../../src';
+import { lifecycled, init } from '../../src';
 
 export function initOverrideChild(done) {
   class Uno {

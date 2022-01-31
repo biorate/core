@@ -11,7 +11,9 @@ enum Lifecircles {
 class Metadata {
   protected static metadata = Symbol.for('lifecircle.metadata');
 
-  public static get(constructor): Set<{ key: number; field: string }> {
+  public static get(
+    constructor,
+  ): Set<{ key: number; field: string; descriptor: PropertyDescriptor }> {
     return Reflect.getOwnMetadata(this.metadata, constructor);
   }
 
@@ -19,11 +21,12 @@ class Metadata {
     constructor,
     key: number,
     field: string,
+    descriptor: PropertyDescriptor,
     data?: Record<string, unknown>,
   ) {
-    let items: Set<{ key: number; field: string }> = this.get(constructor);
-    if (!items) items = new Set<{ key: number; field: string }>();
-    items.add({ key, field, ...data });
+    let items = this.get(constructor);
+    if (!items) items = new Set();
+    items.add({ ...data, key, field, descriptor });
     Reflect.defineMetadata(this.metadata, items, constructor);
   }
 }
@@ -74,18 +77,23 @@ class Lifecycled {
 
   private apply(
     object: { on?: (event: string, cb: () => {}) => {} },
-    items: { key: number; field: string; event?: string }[],
+    items: {
+      key: number;
+      field: string;
+      descriptor: PropertyDescriptor;
+      event?: string;
+    }[],
   ) {
     for (const item of items) {
       switch (item.key) {
         case Lifecircles.init:
-          this.#initialize.push({ object, fn: object[item.field] });
+          this.#initialize.push({ object, fn: item.descriptor.value.bind(object) });
           break;
         case Lifecircles.kill:
-          this.#destructors.push({ object, fn: object[item.field] });
+          this.#destructors.push({ object, fn: item.descriptor.value.bind(object) });
           break;
         case Lifecircles.on:
-          object.on(item.event, object[item.field].bind(object));
+          object.on(item.event, item.descriptor.value.bind(object));
           return;
       }
     }
@@ -93,7 +101,7 @@ class Lifecycled {
 
   #init = async () => {
     for (const { object, fn } of this.#initialize) {
-      await fn.call(object);
+      await fn();
       this.#onInitCb(object);
     }
   };
@@ -119,8 +127,8 @@ class Lifecycled {
 
 function decorator(type: number) {
   return (data?: Record<string, unknown>) =>
-    ({ constructor }, field: string) =>
-      Metadata.add(constructor, type, field, data);
+    ({ constructor }, field: string, descriptor: PropertyDescriptor) =>
+      Metadata.add(constructor, type, field, descriptor, data);
 }
 
 /**
@@ -181,7 +189,7 @@ export function lifecycled(
   onInit = (object: {}) => {},
   onKill = (object: {}) => {},
 ) {
-  return Lifecycled.process(root, onInit, onKill);
+  return Lifecycled.process(root, onInit, onKill).catch(console.log);
 }
 
 /**
@@ -199,5 +207,5 @@ export const kill = decorator(Lifecircles.kill);
  * */
 export const on =
   (event: string) =>
-  ({ constructor }, field: string) =>
-    Metadata.add(constructor, Lifecircles.on, field, { event });
+  ({ constructor }, field: string, descriptor: PropertyDescriptor) =>
+    Metadata.add(constructor, Lifecircles.on, field, descriptor, { event });

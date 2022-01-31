@@ -2,8 +2,14 @@ import {
   initialize,
   initOverrideChild,
   initOverrideParent,
+  initUndeclaredChild,
+  initUndeclaredParent,
+  simpleEvents,
+  overrideChildEvents,
+  overrideParentEvents,
+  undeclaredChildEvents,
+  undeclaredParentEvents,
   destruct,
-  events,
 } from './__mocks__';
 
 describe('Lifecycled', () => {
@@ -11,18 +17,16 @@ describe('Lifecycled', () => {
     it('simple', initialize);
     it('override child', initOverrideChild);
     it('override parent', initOverrideParent);
+    it('undeclared child', initUndeclaredChild);
+    it('undeclared parent', initUndeclaredParent);
   });
 
   describe('@on(event: string)', function () {
-    it('simple', (done) => events.simple(done));
-
-    it('override (child)', (done) => events.override.child(done));
-
-    it('override (parent)', (done) => events.override.parent(done));
-
-    it('undeclared (child)', (done) => events.undeclared.child(done));
-
-    it('undeclared (parent)', (done) => events.undeclared.parent(done));
+    it('simple', simpleEvents);
+    it('override (child)', overrideChildEvents);
+    it('override (parent)', overrideParentEvents);
+    it('undeclared (child)', undeclaredChildEvents);
+    it('undeclared (parent)', undeclaredParentEvents);
   });
 
   describe('@kill()', function () {
