@@ -1,8 +1,7 @@
 import { BaseError } from '@biorate/errors';
-import { PropertyPath } from 'lodash';
 
-export class UndefinedConfigPathError extends BaseError {
-  public constructor(path: PropertyPath) {
-    super(`Undefined config path [%s]`, [path]);
+export class ConfigFileNotFoundPathError extends BaseError {
+  public constructor(name: string, reason: string) {
+    super("%s.json didn't find, [%s]", [name, reason]);
   }
 }
