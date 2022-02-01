@@ -60,7 +60,7 @@ container.bind<Root>(Root).toSelf().inSingletonScope();
 
 ### Learn
 
-- Documentation can be found here - [docs](https://biorate.github.io/core/modules/file-config.html).
+- Documentation can be found here - [docs](https://biorate.github.io/core/modules/file_config.html).
 
 ### Release History
 
