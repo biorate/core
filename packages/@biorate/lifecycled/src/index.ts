@@ -43,7 +43,7 @@ class Lifecycled {
     this.#onKillCb = onKill;
     env.isServer
       ? require('async-exit-hook')(this.#onKill)
-      : env.globalThis.on('beforeunload', this.#onKill);
+      : env.globalThis.addEventListener('beforeunload', this.#onKill);
   }
 
   private check(field: string, object: {}, parent = null) {
