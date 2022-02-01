@@ -1,11 +1,9 @@
 import { merge, get, has, set, PropertyPath, PropertyName } from 'lodash';
 import * as traverse from 'traverse';
 import { UndefinedConfigPathError } from './errors';
-import { IConfig } from './interfaces';
 export * from './errors';
-export * from './interfaces';
 
-export class Config implements IConfig {
+export class Config {
   /**
    * @description Data storage
    * */
@@ -144,7 +142,7 @@ export class Config implements IConfig {
    * console.log(config.get('a.b.d')); // 2
    * ```
    * */
-  public merge(data: unknown) {
+  public merge(data: unknown): void {
     merge(this.data, data);
   }
 }
