@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.3](https://github.com/biorate/core/compare/v0.16.2...v0.16.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* **lifecycled:** "beforeunload" event subscribe fix, on -> addEventListener ([bfd9f01](https://github.com/biorate/core/commit/bfd9f01982ae7de5a3fc31a5c2d7bb3952220d46))
+
+
+
+
+
 ## [0.16.1](https://github.com/biorate/core/compare/v0.16.0...v0.16.1) (2022-02-01)
 
 
