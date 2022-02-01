@@ -13,6 +13,9 @@
     "url": "git+https://github.com/biorate/core.git",
     "directory": "packages/@biorate/collection"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://biorate.github.io/core",
   "keywords": [
     "collection",

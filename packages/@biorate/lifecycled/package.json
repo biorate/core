@@ -13,6 +13,9 @@
     "url": "git+https://github.com/biorate/core.git",
     "directory": "packages/@biorate/lifecycled"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://biorate.github.io/core",
   "keywords": [],
   "author": "llevkin",
