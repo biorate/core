@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/file-config package.json 1`] = `
+Object {
+  "author": "llevkin",
+  "description": "Test package.json",
+  "keywords": Array [],
+  "license": "MIT",
+  "name": "file-config-test",
+  "version": "0.0.0",
+}
+`;

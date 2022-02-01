@@ -2,7 +2,7 @@
 
 Application configurator
 
-#### Example:
+### Examples:
 
 #### Get:
 
