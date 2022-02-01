@@ -1,6 +1,6 @@
 {
   "name": "@biorate/react-virtual-table",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "description": "React virtual table",
   "main": "dist",
   "scripts": {
@@ -36,9 +36,6 @@
     "mobx-react": "^6.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "gitHead": "f7398e8c3ab2c828af49f87be9ae58dcfc7c0727"
 }
