@@ -8,4 +8,5 @@ export const data = {
   },
 };
 
-export const config = new Config(data);
+export const config = new Config();
+config.merge(data);
