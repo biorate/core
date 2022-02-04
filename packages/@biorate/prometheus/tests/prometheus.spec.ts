@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import { container } from '@biorate/inversion';
-// import { Prometheus } from '../';
-import { Root } from './index.config';
+import { Root } from './__mocks__';
 
 describe('Prometheus', function () {
   let root: Root;

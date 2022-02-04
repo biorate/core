@@ -1,5 +1,5 @@
 import { injectable, init, inject, Types } from '@biorate/inversion';
-import { IConfig } from '@payment/config';
+import { IConfig } from '@biorate/config';
 import { IPrometheus } from './interfaces';
 import {
   collectDefaultMetrics,
@@ -26,6 +26,9 @@ export class Prometheus implements IPrometheus {
   protected static readonly summaries = new Map<string, Summary<string>>();
   @inject(Types.Config) protected readonly config: IConfig;
 
+  /**
+   * @description Find or create metrics factory
+   */
   protected static findOrCreate<T, S>(
     settings: S & { name: string },
     repository: Map<string, T>,
@@ -43,6 +46,29 @@ export class Prometheus implements IPrometheus {
       });
   }
 
+  /**
+   * @example
+   * ```ts
+   * import { counter, Counter } from '@biorate/prometheus';
+   *
+   * class Test {
+   *   @counter({
+   *     name: 'test_counter',
+   *     help: 'Test counter',
+   *     labelNames: ['label1', 'label2'],
+   *   })
+   *   protected counter: Counter;
+   *
+   *   public metric() {
+   *     this.counter.labels({ label1: 1, label2: 2 }).inc();
+   *   }
+   * }
+   *
+   * const test = new Test();
+   *
+   * test.metric();
+   * ```
+   */
   public static counter(settings: CounterConfiguration<string>) {
     return this.findOrCreate<Counter<string>, CounterConfiguration<string>>(
       settings,
@@ -51,6 +77,29 @@ export class Prometheus implements IPrometheus {
     );
   }
 
+  /**
+   * @example
+   * ```ts
+   * import { gauge, Gauge } from '@biorate/prometheus';
+   *
+   * class Test {
+   *   @gauge({
+   *     name: 'test_gauge',
+   *     help: 'Test gauge',
+   *     labelNames: ['label1', 'label2'],
+   *   })
+   *   protected gauge: Gauge;
+   *
+   *   public metric() {
+   *     this.gauge.labels({ label1: 1, label2: 2 }).set(10);
+   *   }
+   * }
+   *
+   * const test = new Test();
+   *
+   * test.metric();
+   * ```
+   */
   public static gauge(settings: GaugeConfiguration<string>) {
     return this.findOrCreate<Gauge<string>, GaugeConfiguration<string>>(
       settings,
@@ -59,6 +108,29 @@ export class Prometheus implements IPrometheus {
     );
   }
 
+  /**
+   * @example
+   * ```ts
+   * import { histogram, Histogram } from '@biorate/prometheus';
+   *
+   * class Test {
+   *   @histogram({
+   *     name: 'test_histogram',
+   *     help: 'Test histogram',
+   *     labelNames: ['label1', 'label2'],
+   *   })
+   *   protected histogram: Histogram;
+   *
+   *   public metric() {
+   *     this.histogram.labels({ label1: 1, label2: 2 }).observe(10);
+   *   }
+   * }
+   *
+   * const test = new Test();
+   *
+   * test.metric();
+   * ```
+   */
   public static histogram(settings: HistogramConfiguration<string>) {
     return this.findOrCreate<Histogram<string>, HistogramConfiguration<string>>(
       settings,
@@ -67,6 +139,29 @@ export class Prometheus implements IPrometheus {
     );
   }
 
+  /**
+   * @example
+   * ```ts
+   * import { summary, Summary } from '@biorate/prometheus';
+   *
+   * class Test {
+   *   @histogram({
+   *     name: 'test_summary',
+   *     help: 'Test summary',
+   *     labelNames: ['label1', 'label2'],
+   *   })
+   *   protected summary: Summary;
+   *
+   *   public metric() {
+   *     this.summary.labels({ label1: 1, label2: 2 }).observe(10);
+   *   }
+   * }
+   *
+   * const test = new Test();
+   *
+   * test.metric();
+   * ```
+   */
   public static summary(settings: SummaryConfiguration<string>) {
     return this.findOrCreate<Summary<string>, SummaryConfiguration<string>>(
       settings,
@@ -75,11 +170,14 @@ export class Prometheus implements IPrometheus {
     );
   }
 
+  /**
+   * @description Registry link getter
+   */
   public get registry() {
     return Prometheus.registry;
   }
 
-  @init() private async initialize() {
+  @init() protected async initialize() {
     if (this.config.get<boolean>('prometheus.collectDefaultMetrics', true))
       collectDefaultMetrics({
         ...this.config.get<DefaultMetricsCollectorConfiguration>(

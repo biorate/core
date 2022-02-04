@@ -1,19 +1,28 @@
 {
-  "name": "@payment/prometheus",
-  "version": "0.18.2",
-  "description": "Prometheus connector module",
-  "author": "llevkin",
-  "license": "MIT",
+  "name": "@biorate/prometheus",
+  "version": "0.0.0",
+  "description": "Prometheus DI module",
   "main": "dist",
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "build": "npx tsc --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "@biorate/inversion": "^0.14.1",
-    "@payment/config": "0.18.1",
-    "prom-client": "^14.0.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/prometheus"
   },
-  "gitHead": "86a19776ec228f2dec5a9877ba27a2ead80226df"
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/inversion": "^0.16.3",
+    "@biorate/config": "0.16.1",
+    "prom-client": "^14.0.1"
+  }
 }

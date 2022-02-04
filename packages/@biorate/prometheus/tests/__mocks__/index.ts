@@ -13,7 +13,7 @@ import {
   Gauge,
   Summary,
   Histogram,
-} from '../';
+} from '../../src';
 
 use(jestSnapshotPlugin());
 
