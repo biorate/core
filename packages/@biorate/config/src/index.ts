@@ -1,3 +1,4 @@
+import { injectable } from '@biorate/inversion';
 import { merge, get, has, set, PropertyPath, PropertyName } from 'lodash';
 import * as traverse from 'traverse';
 import { UndefinedConfigPathError } from './errors';
@@ -5,25 +6,12 @@ import { IConfig } from './interfaces';
 export * from './errors';
 export * from './interfaces';
 
+@injectable()
 export class Config implements IConfig {
   /**
    * @description Data storage
    * */
   protected data = {};
-
-  /**
-   * @example
-   * ```
-   * import { Config } from '@biorate/config';
-   *
-   * const config = new Config({ a: { b: { c: 1 } } });
-   *
-   * config.get('a'); // { b: { c: 1 } }
-   * ```
-   * */
-  public constructor(data?: Record<PropertyName, unknown>) {
-    if (data) this.merge(data);
-  }
 
   /**
    * @description Set template value

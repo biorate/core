@@ -1,0 +1,19 @@
+{
+  "name": "@payment/prometheus",
+  "version": "0.18.2",
+  "description": "Prometheus connector module",
+  "author": "llevkin",
+  "license": "MIT",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@biorate/inversion": "^0.14.1",
+    "@payment/config": "0.18.1",
+    "prom-client": "^14.0.1"
+  },
+  "gitHead": "86a19776ec228f2dec5a9877ba27a2ead80226df"
+}
