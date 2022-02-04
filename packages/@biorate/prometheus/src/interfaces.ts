@@ -1,16 +1,16 @@
 import {
   Registry,
-  Counter as PCounter,
-  Gauge as PGauge,
-  Histogram as PHistogram,
-  Summary as PSummary,
+  Counter as PrometheusCounter,
+  Gauge as PrometheusGauge,
+  Histogram as PrometheusHistogram,
+  Summary as PrometheusSummary,
 } from 'prom-client';
 
 export interface IPrometheus {
   readonly registry: Registry;
 }
 
-export type Counter = PCounter<string>;
-export type Gauge = PGauge<string>;
-export type Histogram = PHistogram<string>;
-export type Summary = PSummary<string>;
+export type Counter = PrometheusCounter<string>;
+export type Gauge = PrometheusGauge<string>;
+export type Histogram = PrometheusHistogram<string>;
+export type Summary = PrometheusSummary<string>;
