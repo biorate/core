@@ -11,6 +11,7 @@
 * [config](https://biorate.github.io/core/modules/config.html)
 * [file-config](https://biorate.github.io/core/modules/file_config.html)
 * [lifecycled](https://biorate.github.io/core/modules/lifecycled.html)
+* [prometheus](https://biorate.github.io/core/modules/prometheus.html)
 
 ### Learn
 * [documentation](https://biorate.github.io/core/).
