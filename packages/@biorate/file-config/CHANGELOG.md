@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/biorate/core/compare/v0.18.0...v0.18.1) (2022-02-05)
+
+
+### Bug Fixes
+
+* **file-config:** inversion version fix ([5df4b46](https://github.com/biorate/core/commit/5df4b4684caf3f6873a4ebe6b344baff978be920))
+
+
+
+
+
 # [0.18.0](https://github.com/biorate/core/compare/v0.17.1...v0.18.0) (2022-02-05)
 
 **Note:** Version bump only for package @biorate/file-config
