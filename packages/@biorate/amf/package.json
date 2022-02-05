@@ -1,6 +1,6 @@
 {
   "name": "@biorate/amf",
-  "version": "0.0.0",
+  "version": "0.18.0",
   "description": "Action Message Format (AMF) protocol realization for JS",
   "main": "dist",
   "scripts": {
@@ -17,8 +17,11 @@
     "access": "public"
   },
   "homepage": "https://biorate.github.io/core",
-  "keywords": ["AMF3", "AMF", "Action Message Format"],
+  "keywords": [
+    "AMF3",
+    "AMF",
+    "Action Message Format"
+  ],
   "author": "llevkin",
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }
