@@ -1,29 +1,49 @@
-import { assert } from 'chai';
-import { config, data } from './__mocks__';
-import { Config } from '../';
+import { check } from './__mocks__';
 
-describe('@biorate/config', () => {
-  it('get', () => assert.equal(config.get('two.one'), data.two.one));
-
-  it('get default', () => assert.equal(config.get('inexistent-property', 'default'), 'default'));
-
-  it('get inexistent', () => assert.throw(() => config.get('inexistent-property')));
-
-  it('has', () => assert(config.has('two.one')));
-
-  it('has no', () => assert(!config.has('two.three')));
-
-  it('set', () => {
-    const value = 1;
-    config.set('three.one', value);
-    assert(config.has('three.one'));
-    assert.equal(config.get('three.one'), value);
-  });
-
-  it('merge', () => {
-    const value = { a: { b: { c: true } } };
-    config.merge(value);
-    assert(config.has('a.b.c'));
-    assert.equal(config.get('a.b.c'), value.a.b.c);
+describe('@biorate/amf', function () {
+  describe('decode / encode', function () {
+    it('string', () => check('string'));
+    it('number', () => check(1));
+    it('boolean', () => (check(true), check(false)));
+    it('date', () => check(new Date()));
+    it('null', () => check(null));
+    it('undefined', () => check(undefined));
+    it('NaN', () => check(NaN));
+    it('object', () =>
+      check({
+        sub: {
+          string: 'string',
+          number: 1,
+          boolean: { true: true, false: false },
+          date: new Date(),
+          null: null,
+          undefined: undefined,
+          NaN: NaN,
+          array: [1, { a: 2 }, [1, 'string', false]],
+        },
+      }));
+    it('array', () =>
+      check([
+        'string',
+        1,
+        true,
+        false,
+        new Date(),
+        null,
+        undefined,
+        NaN,
+        {
+          sub: {
+            string: 'string',
+            number: 1,
+            boolean: { true: true, false: false },
+            null: null,
+            undefined: undefined,
+            NaN: NaN,
+            array: [1, { a: 2 }, [1, 'string', false]],
+          },
+        },
+        [1, 2, 3],
+      ]));
   });
 });

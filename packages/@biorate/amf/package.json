@@ -1,7 +1,7 @@
 {
-  "name": "@biorate/config",
-  "version": "0.17.1",
-  "description": "Application configurator",
+  "name": "@biorate/amf",
+  "version": "0.0.0",
+  "description": "Action Message Format (AMF) protocol realization for JS",
   "main": "dist",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
@@ -11,20 +11,14 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biorate/core.git",
-    "directory": "packages/@biorate/config"
+    "directory": "packages/@biorate/amf"
   },
   "publishConfig": {
     "access": "public"
   },
   "homepage": "https://biorate.github.io/core",
-  "keywords": [],
+  "keywords": ["AMF3", "AMF", "Action Message Format"],
   "author": "llevkin",
   "license": "MIT",
-  "dependencies": {
-    "@biorate/errors": "0.17.0",
-    "@biorate/inversion": "0.17.0",
-    "lodash": "^4.17.21",
-    "traverse": "^0.6.6"
-  },
-  "gitHead": "f7398e8c3ab2c828af49f87be9ae58dcfc7c0727"
+  "dependencies": {}
 }
