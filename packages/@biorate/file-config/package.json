@@ -23,7 +23,7 @@
   "dependencies": {
     "@biorate/config": "0.18.0",
     "@biorate/errors": "0.18.0",
-    "@biorate/inversion": "0.15.0"
+    "@biorate/inversion": "0.18.0"
   },
   "gitHead": "f7398e8c3ab2c828af49f87be9ae58dcfc7c0727"
 }
