@@ -3,8 +3,16 @@ import getDecorators from 'inversify-inject-decorators';
 import { IMetadata } from '../interfaces';
 import { Metadata } from './labels';
 
-export const container = new Container({ skipBaseClassChecks: true });
-const { lazyInject, lazyInjectNamed, lazyInjectTagged } = getDecorators(container);
+if (!global[Metadata.InversifyContainer]) {
+  const container = new Container({ skipBaseClassChecks: true });
+  global[Metadata.InversifyContainer] = {
+    container,
+    ...getDecorators(container),
+  };
+}
+export const container = global[Metadata.InversifyContainer].container;
+const { lazyInject, lazyInjectNamed, lazyInjectTagged } =
+  global[Metadata.InversifyContainer];
 
 export function inject(service) {
   return lazyInject(service);
