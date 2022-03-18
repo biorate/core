@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.2](https://github.com/biorate/core/compare/v0.18.1...v0.18.2) (2022-03-18)
+
+
+### Bug Fixes
+
+* **inversion:** container multi instantiation remove ([f75e51d](https://github.com/biorate/core/commit/f75e51dea5c617ab4a73c7aeadc1e6eb8dfe9578))
+
+
+
+
+
 # [0.18.0](https://github.com/biorate/core/compare/v0.17.1...v0.18.0) (2022-02-05)
 
 **Note:** Version bump only for package @biorate/inversion
