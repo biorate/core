@@ -1,0 +1,35 @@
+{
+  "name": "@biorate/axios",
+  "version": "0.0.0",
+  "description": "Axios OOP static interface",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/axios"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "Axios"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/symbolic": "0.18.0",
+    "axios": "^0.26.1",
+    "axios-retry": "^3.2.4",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@biorate/config": "0.18.2",
+    "@biorate/inversion": "0.18.2"
+  }
+}
