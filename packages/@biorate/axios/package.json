@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "Axios OOP static interface",
   "main": "dist",
   "scripts": {
@@ -23,13 +23,13 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/symbolic": "0.20.0",
+    "@biorate/symbolic": "0.21.0",
     "axios": "^0.26.1",
     "axios-retry": "^3.2.4",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@biorate/config": "0.20.0",
-    "@biorate/inversion": "0.20.0"
+    "@biorate/config": "0.21.0",
+    "@biorate/inversion": "0.21.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/connector",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "Connector interface",
   "main": "dist",
   "scripts": {
@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "0.20.0",
-    "@biorate/errors": "0.20.0",
-    "@biorate/inversion": "0.20.0"
+    "@biorate/config": "0.21.0",
+    "@biorate/errors": "0.21.0",
+    "@biorate/inversion": "0.21.0"
   }
 }
