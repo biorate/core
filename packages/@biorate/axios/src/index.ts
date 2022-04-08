@@ -1,5 +1,5 @@
 import { omit, pick } from 'lodash';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import retry, { IAxiosRetryConfig } from 'axios-retry';
 import { create } from '@biorate/symbolic';
 
@@ -37,20 +37,44 @@ const axiosRetryConfigKeys = [
  */
 export class Axios {
   /**
+   * @description Cache WeakMap
+   */
+  protected static cache = new WeakMap<
+    Function,
+    { instance: Axios; client: AxiosInstance }
+  >();
+  /**
    * @description Fetch request
    */
-  public static fetch<T = any, D = any>(
+  public static async fetch<T = any, D = any>(
     options?: AxiosRequestConfig,
-  ): AxiosResponse<T, D> {
-    if (!this[Symbols.Client]) {
-      this[Symbols.Client] = axios.create({
-        ...omit(new this(), axiosRetryConfigKeys),
+  ): Promise<AxiosResponse<T, D>> {
+    let data = this.cache.get(this);
+    if (!data) {
+      const instance = new this();
+      const client = axios.create({
+        ...omit(instance, axiosRetryConfigKeys),
       });
-      retry(
-        this[Symbols.Client],
-        pick(new this(), axiosRetryConfigKeys) as IAxiosRetryConfig,
-      );
+      retry(client, pick(instance, axiosRetryConfigKeys) as IAxiosRetryConfig);
+      data = { instance, client };
+      this.cache.set(this, data);
     }
-    return this[Symbols.Client]<T, D>(options);
+    try {
+      return await data.client(options);
+    } catch (e) {
+      await data.instance.catch(e);
+    } finally {
+      await data.instance.finally();
+    }
   }
+  /**
+   * @description Catch hook
+   */
+  protected async catch(e: Error) {
+    throw e;
+  }
+  /**
+   * @description Finally hook
+   */
+  protected async finally() {}
 }
