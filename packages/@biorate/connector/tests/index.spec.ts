@@ -1,29 +1,19 @@
-import { assert } from 'chai';
-import { config, data } from './__mocks__';
-import { Config } from '../';
+import { expect } from 'chai';
+import { container } from '@biorate/inversion';
+import { Root, Connection } from './__mocks__';
 
-describe('@biorate/config', () => {
-  it('get', () => assert.equal(config.get('two.one'), data.two.one));
+describe('@biorate/connector', function () {
+  let root: Root;
+  this.timeout(3e4);
 
-  it('get default', () => assert.equal(config.get('inexistent-property', 'default'), 'default'));
-
-  it('get inexistent', () => assert.throw(() => config.get('inexistent-property')));
-
-  it('has', () => assert(config.has('two.one')));
-
-  it('has no', () => assert(!config.has('two.three')));
-
-  it('set', () => {
-    const value = 1;
-    config.set('three.one', value);
-    assert(config.has('three.one'));
-    assert.equal(config.get('three.one'), value);
+  before(async () => {
+    root = container.get<Root>(Root);
+    await root.$run();
   });
 
-  it('merge', () => {
-    const value = { a: { b: { c: true } } };
-    config.merge(value);
-    assert(config.has('a.b.c'));
-    assert.equal(config.get('a.b.c'), value.a.b.c);
+  it('get connection', () => {
+    expect(root.connector.connection('test-connection'))
+      .to.be.an.instanceof(Connection)
+      .to.have.property('name', 'test-connection');
   });
 });

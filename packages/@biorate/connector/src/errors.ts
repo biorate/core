@@ -1,7 +1,7 @@
 import { BaseError } from '@biorate/errors';
 
-export class ConnectorMultiplyInstanceError extends BaseError {
-  public constructor(name: string) {
-    super(`Connector [%s] multiply instance created`, [name]);
+export class ConnectorConnectionNotExistsError extends BaseError {
+  public constructor(type: string, name: string) {
+    super(`Connection not exists: [%s]:[%s]`, [type, name]);
   }
 }
