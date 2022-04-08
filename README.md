@@ -14,6 +14,7 @@
 * [prometheus](https://biorate.github.io/core/modules/prometheus.html)
 * [amf](https://biorate.github.io/core/modules/amf.html)
 * [axios](https://biorate.github.io/core/modules/axios.html)
+* [connector](https://biorate.github.io/core/modules/connector.html)
 
 ### Learn
 * [documentation](https://biorate.github.io/core/).
