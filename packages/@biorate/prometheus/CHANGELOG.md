@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/biorate/core/compare/v0.19.1...v0.20.0) (2022-04-08)
+
+**Note:** Version bump only for package @biorate/prometheus
+
+
+
+
+
 # [0.19.0](https://github.com/biorate/core/compare/v0.18.2...v0.19.0) (2022-04-07)
 
 **Note:** Version bump only for package @biorate/prometheus
