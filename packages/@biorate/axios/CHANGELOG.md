@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/biorate/core/compare/v0.21.0...v0.22.0) (2022-04-08)
+
+
+### Features
+
+* **axios:** path params added ([5524f25](https://github.com/biorate/core/commit/5524f255887b9094fae8c52d5e15dee0824f0541))
+
+
+
+
+
 # [0.21.0](https://github.com/biorate/core/compare/v0.20.0...v0.21.0) (2022-04-08)
 
 
