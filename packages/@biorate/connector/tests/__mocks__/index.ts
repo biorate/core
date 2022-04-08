@@ -1,4 +1,4 @@
-import { Connector, IConnector } from '../..';
+import { Connector, IConnector, IConnectorConfig } from '../..';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 
@@ -10,7 +10,7 @@ export class Connection {
   }
 }
 
-export class TestConnector extends Connector<{ name: string }, Connection> {
+export class TestConnector extends Connector<IConnectorConfig, Connection> {
   protected namespace = 'TestConnector';
 
   protected async connect(config) {
@@ -19,7 +19,7 @@ export class TestConnector extends Connector<{ name: string }, Connection> {
 }
 
 export class Root extends Core() {
-  @inject(TestConnector) public connector: IConnector<{ name: string }, Connection>;
+  @inject(TestConnector) public connector: IConnector<IConnectorConfig, Connection>;
 }
 
 container.bind(Types.Config).to(Config).inSingletonScope();

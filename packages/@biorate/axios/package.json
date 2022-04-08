@@ -23,10 +23,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/symbolic": "0.21.0",
     "axios": "^0.26.1",
     "axios-retry": "^3.2.4",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "path-to-url": "^0.1.0"
   },
   "devDependencies": {
     "@biorate/config": "0.21.0",

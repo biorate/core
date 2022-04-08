@@ -1,6 +1,6 @@
 import { init, inject, injectable, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { IConnector } from './interfaces';
+import { IConnector, IConnectorConfig } from './interfaces';
 import { ConnectorConnectionNotExistsError } from './errors';
 export * from './errors';
 export * from './interfaces';
@@ -53,7 +53,7 @@ export * from './interfaces';
  * ```
  */
 @injectable()
-export abstract class Connector<C extends { name: string }, T = any>
+export abstract class Connector<C extends IConnectorConfig, T = any>
   implements IConnector<C, T>
 {
   /**

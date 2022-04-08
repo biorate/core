@@ -1,9 +1,7 @@
 import { omit, pick } from 'lodash';
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import retry, { IAxiosRetryConfig } from 'axios-retry';
-import { create } from '@biorate/symbolic';
-
-const Symbols = create('axios');
+import * as pathToUrl from 'path-to-url';
 
 const axiosRetryConfigKeys = [
   'retries',
@@ -11,6 +9,8 @@ const axiosRetryConfigKeys = [
   'shouldResetTimeout',
   'retryCondition',
 ];
+
+const axiosExcludeKeys = ['path', 'config'];
 
 /**
  * @description
@@ -36,35 +36,37 @@ const axiosRetryConfigKeys = [
  * ```
  */
 export class Axios {
-  /**
-   * @description Cache WeakMap
-   */
   protected static cache = new WeakMap<
-    Function,
+    Object,
     { instance: Axios; client: AxiosInstance }
   >();
   /**
    * @description Fetch request
    */
   public static async fetch<T = any, D = any>(
-    options?: AxiosRequestConfig,
+    options?: AxiosRequestConfig & { path?: Record<string, string | number> },
   ): Promise<AxiosResponse<T, D>> {
-    let data = this.cache.get(this);
+    let data = Axios.cache.get(this);
     if (!data) {
       const instance = new this();
-      const client = axios.create({
-        ...omit(instance, axiosRetryConfigKeys),
-      });
+      const client = axios.create();
       retry(client, pick(instance, axiosRetryConfigKeys) as IAxiosRetryConfig);
       data = { instance, client };
-      this.cache.set(this, data);
+      Axios.cache.set(this, data);
     }
+    const { instance, client } = data;
+    const settings = { ...instance, ...options };
+    if (settings.baseURL && settings.path)
+      settings.baseURL = pathToUrl(settings.baseURL, settings.path);
+    if (settings.url && settings.path)
+      settings.url = pathToUrl(settings.url, settings.path);
+    const params = { ...omit(settings, axiosRetryConfigKeys.concat(axiosExcludeKeys)) };
     try {
-      return await data.client(options);
+      return await client(params);
     } catch (e) {
-      await data.instance.catch(e);
+      await instance.catch(e);
     } finally {
-      await data.instance.finally();
+      await instance.finally();
     }
   }
   /**

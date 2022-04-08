@@ -14,11 +14,11 @@ describe('@biorate/axios', function () {
   });
 
   it('finally', (done) => {
-    class Catch extends Yandex {
+    class Finally extends Yandex {
       protected async finally() {
         done();
       }
     }
-    Catch.fetch({ baseURL: 'https://undefined' });
+    Finally.fetch({ baseURL: 'https://undefined' });
   });
 });
