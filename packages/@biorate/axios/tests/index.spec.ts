@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { Yandex } from './__mocks__';
 
 describe('@biorate/axios', function () {
-  it('fetch', async () => expect((await Yandex.fetch<string>()).status).to.be.equal(200));
+  it('fetch', async () => expect((await Yandex.fetch()).status).to.be.equal(200));
 
   it('catch', (done) => {
     class Catch extends Yandex {
@@ -10,7 +10,7 @@ describe('@biorate/axios', function () {
         done();
       }
     }
-    Catch.fetch({ baseURL: 'https://undefined' });
+    Catch.fetch({}, { baseURL: 'https://undefined' });
   });
 
   it('finally', (done) => {
@@ -19,6 +19,6 @@ describe('@biorate/axios', function () {
         done();
       }
     }
-    Finally.fetch({ baseURL: 'https://undefined' });
+    Finally.fetch({}, { baseURL: 'https://undefined' });
   });
 });

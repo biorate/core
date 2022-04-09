@@ -36,37 +36,56 @@ const axiosExcludeKeys = ['path', 'config'];
  * ```
  */
 export class Axios {
-  protected static cache = new WeakMap<
-    Object,
-    { instance: Axios; client: AxiosInstance }
-  >();
   /**
-   * @description Fetch request
+   * @description Axios instance cache
    */
-  public static async fetch<T = any, D = any>(
+  protected static cache = new WeakMap<Object, Axios>();
+  /**
+   * @description Fetch static method
+   */
+  public static fetch(...args) {
+    return this._fetch(...args);
+  }
+  /**
+   * @description Protected fetch static method
+   */
+  protected static _fetch<D = any>(
+    data?: Record<string, unknown>,
+    options?: AxiosRequestConfig,
+  ): Promise<AxiosResponse<D>> {
+    if (!this.cache.has(this)) this.cache.set(this, new this());
+    return this.cache.get(this).fetch<D>(data, options);
+  }
+  /**
+   * @description Axios client cache
+   */
+  #client: AxiosInstance;
+  /**
+   * @description Fetch method
+   */
+  protected async fetch<D>(
+    data?: Record<string, unknown>,
     options?: AxiosRequestConfig & { path?: Record<string, string | number> },
-  ): Promise<AxiosResponse<T, D>> {
-    let data = Axios.cache.get(this);
-    if (!data) {
-      const instance = new this();
-      const client = axios.create();
-      retry(client, pick(instance, axiosRetryConfigKeys) as IAxiosRetryConfig);
-      data = { instance, client };
-      Axios.cache.set(this, data);
+  ): Promise<AxiosResponse<D>> {
+    if (!this.#client) {
+      this.#client = axios.create();
+      retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
     }
-    const { instance, client } = data;
-    const settings = { ...instance, ...options };
+    const settings = { ...this, ...options };
     if (settings.baseURL && settings.path)
       settings.baseURL = pathToUrl(settings.baseURL, settings.path);
     if (settings.url && settings.path)
       settings.url = pathToUrl(settings.url, settings.path);
-    const params = { ...omit(settings, axiosRetryConfigKeys.concat(axiosExcludeKeys)) };
+    const params = {
+      ...omit(settings, axiosRetryConfigKeys.concat(axiosExcludeKeys)),
+      ...data,
+    };
     try {
-      return await client(params);
+      return await this.#client(params);
     } catch (e) {
-      await instance.catch(e);
+      await this.catch(e);
     } finally {
-      await instance.finally();
+      await this.finally();
     }
   }
   /**
