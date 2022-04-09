@@ -71,14 +71,13 @@ export class Axios {
       this.#client = axios.create();
       retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
     }
-    const settings = { ...this, ...options };
+    const settings = { ...this, ...options, ...data };
     if (settings.baseURL && settings.path)
       settings.baseURL = pathToUrl(settings.baseURL, settings.path);
     if (settings.url && settings.path)
       settings.url = pathToUrl(settings.url, settings.path);
     const params = {
       ...omit(settings, axiosRetryConfigKeys.concat(axiosExcludeKeys)),
-      ...data,
     };
     try {
       return await this.#client(params);
