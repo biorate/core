@@ -26,6 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "@biorate/axios": "0.21.0",
+    "@biorate/collection": "^0.22.0",
     "@biorate/config": "0.21.0",
     "@biorate/connector": "0.21.0",
     "@biorate/errors": "0.21.0",

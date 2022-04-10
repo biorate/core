@@ -1,8 +1,11 @@
 import { Axios } from '@biorate/axios';
-import {} from 'avsc';
+import { Type } from 'avsc';
+import { Schemas } from './cache';
 import { ISchemaRegistryConfig } from './interfaces';
 
 export const create = (config: ISchemaRegistryConfig) => {
+  const cache = new Schemas();
+
   class SchemaRegistryApi extends Axios {
     public baseURL = config.baseURL;
   }
@@ -81,7 +84,13 @@ export const create = (config: ISchemaRegistryConfig) => {
     public method = 'get';
 
     public static fetch(data: { subject: string; version: number | string }, ...args) {
-      return this._fetch<unknown>({ path: data }, ...args);
+      return this._fetch<{
+        subject: string;
+        id: number;
+        version: number;
+        schemaType: string;
+        schema: string;
+      }>({ path: data }, ...args);
     }
   }
 
@@ -148,8 +157,7 @@ export const create = (config: ISchemaRegistryConfig) => {
           path: { subject: data.subject },
           params: { normalize: !!data.normalize },
           data: {
-            schema:
-              typeof data.schema === 'string' ? data.schema : JSON.stringify(data.schema),
+            schema: toStringData(data.schema),
             schemaType: data.schemaType,
             reference: data.reference,
           },
@@ -157,6 +165,34 @@ export const create = (config: ISchemaRegistryConfig) => {
         ...args,
       );
     }
+  }
+
+  async function encode(
+    subject: string,
+    data: string | Record<string, any>,
+    version: string | number = 'latest',
+  ) {
+    const response = await GetSubjectsByVersion.fetch({ subject, version });
+    const header = Buffer.alloc(5);
+    const schema = Type.forSchema(JSON.parse(response.data.schema));
+    header.writeInt32BE(response.data.id, 1);
+    return Buffer.concat([header, schema.toBuffer(toStringData(data))]);
+  }
+
+  async function decode(buffer: Buffer) {
+    const id = buffer.readInt32BE(1);
+    let data = cache.find(id);
+    if (!data) {
+      const response = await GetSchemasById.fetch(id);
+      data.schema = Type.forSchema(JSON.parse(response.data.schema));
+      data.id = id;
+    }
+    const schema = Type.forSchema(data.schema);
+    return schema.fromBuffer(buffer.slice(5));
+  }
+
+  function toStringData(data: string | Record<string, any>) {
+    return typeof data === 'string' ? data : JSON.stringify(data);
   }
 
   return {
@@ -171,5 +207,7 @@ export const create = (config: ISchemaRegistryConfig) => {
     GetSchemaBySubjectsAndVersion,
     PostSubjects,
     PostSubjectsVersions,
+    encode,
+    decode,
   };
 };
