@@ -1,0 +1,33 @@
+{
+  "type": "record",
+  "name": "Test",
+  "namespace": "com.test.json.v1",
+  "fields": [
+  {
+    "name": "str",
+    "type": "string",
+    "doc": "Some string."
+  },
+  {
+    "name": "obj",
+    "doc": "Some Field",
+    "type": [{
+      "name": "MyClass",
+      "type": "record",
+      "doc": "Some object.",
+      "fields": [{
+        "name": "num",
+        "type": "int",
+        "doc": "Some Number."
+      }]
+    }]
+  },
+  {
+    "name": "arr",
+    "doc": "Some Array",
+    "type": {
+      "type": "array",
+      "items": "int"
+    }
+  }]
+}

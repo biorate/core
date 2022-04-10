@@ -1,9 +1,19 @@
 import { Axios } from '@biorate/axios';
+import {} from 'avsc';
 import { ISchemaRegistryConfig } from './interfaces';
 
 export const create = (config: ISchemaRegistryConfig) => {
   class SchemaRegistryApi extends Axios {
     public baseURL = config.baseURL;
+  }
+
+  class GetPing extends SchemaRegistryApi {
+    public url = '/';
+    public method = 'get';
+
+    public static fetch(...args) {
+      return this._fetch<{}>({}, ...args);
+    }
   }
 
   class GetSchemasById extends SchemaRegistryApi {
@@ -66,7 +76,6 @@ export const create = (config: ISchemaRegistryConfig) => {
     }
   }
 
-  //TODO:
   class GetSubjectsByVersion extends SchemaRegistryApi {
     public url = '/subjects/:subject/versions/:version';
     public method = 'get';
@@ -76,7 +85,6 @@ export const create = (config: ISchemaRegistryConfig) => {
     }
   }
 
-  //TODO:
   class GetSchemaBySubjectsAndVersion extends SchemaRegistryApi {
     public url = '/subjects/:subject/versions/:version/schema';
     public method = 'get';
@@ -86,18 +94,73 @@ export const create = (config: ISchemaRegistryConfig) => {
     }
   }
 
-  //TODO:
-  // class PostSubjects extends SchemaRegistryApi {
-  //   public url = '/subjects/:subject';
-  //   public method = 'post';
-  //
-  //   public static fetch(data: { subject: string; version: number | string }, ...args) {
-  //     return this._fetch<unknown>({ path: data }, ...args);
-  //   }
-  // }
+  class PostSubjectsVersions extends SchemaRegistryApi {
+    public url = '/subjects/:subject/versions';
+    public method = 'post';
+
+    public static fetch(
+      data: {
+        subject: string;
+        schema: string | Record<string, any>;
+        schemaType?: string;
+        reference?: string;
+        normalize?: boolean;
+      },
+      ...args
+    ) {
+      return this._fetch<{ id: number }>(
+        {
+          path: { subject: data.subject },
+          params: { normalize: !!data.normalize },
+          data: {
+            schema:
+              typeof data.schema === 'string' ? data.schema : JSON.stringify(data.schema),
+            schemaType: data.schemaType,
+            reference: data.reference,
+          },
+        },
+        ...args,
+      );
+    }
+  }
+
+  class PostSubjects extends SchemaRegistryApi {
+    public url = '/subjects/:subject';
+    public method = 'post';
+
+    public static fetch(
+      data: {
+        subject: string;
+        schema: string | Record<string, any>;
+        schemaType?: string;
+        reference?: string;
+        normalize?: boolean;
+      },
+      ...args
+    ) {
+      return this._fetch<{
+        subject: string;
+        id: number;
+        version: number;
+        schema: string;
+      }>(
+        {
+          path: { subject: data.subject },
+          params: { normalize: !!data.normalize },
+          data: {
+            schema:
+              typeof data.schema === 'string' ? data.schema : JSON.stringify(data.schema),
+            schemaType: data.schemaType,
+            reference: data.reference,
+          },
+        },
+        ...args,
+      );
+    }
+  }
 
   return {
-    SchemaRegistryApi,
+    GetPing,
     GetSchemasById,
     GetSchemasTypes,
     GetSchemasVersionsById,
@@ -106,5 +169,7 @@ export const create = (config: ISchemaRegistryConfig) => {
     DeleteSubjects,
     GetSubjectsByVersion,
     GetSchemaBySubjectsAndVersion,
+    PostSubjects,
+    PostSubjectsVersions,
   };
 };

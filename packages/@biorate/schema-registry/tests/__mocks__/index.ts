@@ -1,3 +1,5 @@
+import { use } from 'chai';
+import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { IConnector } from '@biorate/connector';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
@@ -6,6 +8,8 @@ import {
   ISchemaRegistryConnection,
   ISchemaRegistryConfig,
 } from '../../src';
+
+use(jestSnapshotPlugin());
 
 export class Root extends Core() {
   @inject(SchemaRegistryConnector) public connector: IConnector<
@@ -22,5 +26,5 @@ container
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  SchemaRegistry: [{ name: 'connection', baseURL: 'http://localhost:8081' }],
+  SchemaRegistry: [{ name: 'connection', baseURL: 'http://localhost:8085' }],
 });
