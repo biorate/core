@@ -169,14 +169,14 @@ export const create = (config: ISchemaRegistryConfig) => {
 
   async function encode(
     subject: string,
-    data: string | Record<string, any>,
+    data: Record<string, any>,
     version: string | number = 'latest',
   ) {
     const response = await GetSubjectsByVersion.fetch({ subject, version });
     const header = Buffer.alloc(5);
     const schema = Type.forSchema(JSON.parse(response.data.schema));
     header.writeInt32BE(response.data.id, 1);
-    return Buffer.concat([header, schema.toBuffer(toStringData(data))]);
+    return Buffer.concat([header, schema.toBuffer(data)]);
   }
 
   async function decode(buffer: Buffer) {
@@ -184,8 +184,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     let data = cache.find(id);
     if (!data) {
       const response = await GetSchemasById.fetch(id);
-      data.schema = Type.forSchema(JSON.parse(response.data.schema));
-      data.id = id;
+      data = { id, schema: Type.forSchema(JSON.parse(response.data.schema)) };
+      cache.set(data);
     }
     const schema = Type.forSchema(data.schema);
     return schema.fromBuffer(buffer.slice(5));

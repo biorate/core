@@ -79,6 +79,14 @@ describe('@biorate/schema-registry', function () {
     expect(data).to.has.property('schema').that.be.a('string');
   });
 
+  it('encode / decode', async () => {
+    const { encode, decode } = root.connector.connection('connection');
+    const data = { firstName: 'Vasya', lastName: 'Pupkin', age: 18 };
+    const buffer = await encode(subject, data);
+    const result = await decode(buffer);
+    expect(JSON.parse(JSON.stringify(result))).to.be.deep.equal(data);
+  });
+
   it('DeleteSubjects', async () => {
     const { DeleteSubjects } = root.connector.connection('connection');
     const { data } = await DeleteSubjects.fetch({
