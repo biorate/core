@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.2](https://github.com/biorate/core/compare/v0.23.1...v0.23.2) (2022-04-11)
+
+
+### Bug Fixes
+
+* schema-registry interface ([4ce3b25](https://github.com/biorate/core/commit/4ce3b25e4e291f0c15cc6a6b5144ca6a221213d4))
+
+
+
+
+
 ## [0.23.1](https://github.com/biorate/core/compare/v0.23.0...v0.23.1) (2022-04-11)
 
 
