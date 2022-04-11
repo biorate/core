@@ -18,22 +18,15 @@ export * from './interfaces';
  * import { inject, container, Types, Core } from '@biorate/inversion';
  * import { IConfig, Config } from '@biorate/config';
  * import { IConnector } from '@biorate/connector';
- * import {
- *   SchemaRegistryConnector,
- *   ISchemaRegistryConnection,
- *   ISchemaRegistryConfig,
- * } from '@biorate/schema-registry';
+ * import { SchemaRegistryConnector, ISchemaRegistryConnector } from '@biorate/schema-registry';
  *
  * export class Root extends Core() {
- *   @inject(SchemaRegistryConnector) public connector: IConnector<
- *     ISchemaRegistryConfig,
- *     ISchemaRegistryConnection
- *   >;
+ *   @inject(SchemaRegistryConnector) public connector: ISchemaRegistryConnector;
  * }
  *
  * container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
  * container
- *   .bind<SchemaRegistryConnector>(SchemaRegistryConnector)
+ *   .bind<ISchemaRegistryConnector>(SchemaRegistryConnector)
  *   .toSelf()
  *   .inSingletonScope();
  * container.bind<Root>(Root).toSelf().inSingletonScope();
