@@ -15,6 +15,7 @@
 * [amf](https://biorate.github.io/core/modules/amf.html)
 * [axios](https://biorate.github.io/core/modules/axios.html)
 * [connector](https://biorate.github.io/core/modules/connector.html)
+* [schema-registry](https://biorate.github.io/core/modules/schema_registry.html)
 
 ### Learn
 * [documentation](https://biorate.github.io/core/).
