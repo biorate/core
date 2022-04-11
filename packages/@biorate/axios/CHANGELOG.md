@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/biorate/core/compare/v0.22.0...v0.23.0) (2022-04-11)
+
+
+### Bug Fixes
+
+* **axios:** data params merge ([14e239d](https://github.com/biorate/core/commit/14e239d9b459256cfbf83b522080ad34fd5dcb8e))
+
+
+### Features
+
+* **axios:** contract fetch changed ([6c0f589](https://github.com/biorate/core/commit/6c0f589211a7c34b56f9f845762bdd64ed6ac650))
+
+
+
+
+
 # [0.22.0](https://github.com/biorate/core/compare/v0.21.0...v0.22.0) (2022-04-08)
 
 
