@@ -14,62 +14,62 @@ describe('@biorate/schema-registry', function () {
     await root.$run();
   });
 
-  it('GetPing', async () => {
-    const { GetPing } = root.connector.connection('connection');
-    const { data } = await GetPing.fetch();
+  it('getPing', async () => {
+    const { ping } = root.connector.connection('connection');
+    const { data } = await ping();
     expect(data).to.be.a('object');
   });
 
-  it('PostSubjectsVersions', async () => {
-    const { PostSubjectsVersions } = root.connector.connection('connection');
-    const { data } = await PostSubjectsVersions.fetch({ subject, schema });
+  it('postSubjectsVersions', async () => {
+    const { postSubjectsVersions } = root.connector.connection('connection');
+    const { data } = await postSubjectsVersions({ subject, schema });
     expect(data).to.has.property('id').that.be.a('number');
   });
 
-  it('PostSubjects', async () => {
-    const { PostSubjects } = root.connector.connection('connection');
-    const { data } = await PostSubjects.fetch({ subject, schema });
+  it('postSubjects', async () => {
+    const { postSubjects } = root.connector.connection('connection');
+    const { data } = await postSubjects({ subject, schema });
     expect(data).to.has.property('subject').that.be.a('string');
     expect(data).to.has.property('id').that.be.a('number');
     expect(data).to.has.property('version').that.be.a('number');
     expect(data).to.has.property('schema').that.be.a('string');
   });
 
-  it('GetSchemasById', async () => {
-    const { GetSchemasById } = root.connector.connection('connection');
-    const { data } = await GetSchemasById.fetch(1);
+  it('getSchemasById', async () => {
+    const { getSchemasById } = root.connector.connection('connection');
+    const { data } = await getSchemasById(1);
     expect(data).to.has.property('schema').that.be.a('string');
   });
 
-  it('GetSchemasTypes', async () => {
-    const { GetSchemasTypes } = root.connector.connection('connection');
-    const { data } = await GetSchemasTypes.fetch();
+  it('getSchemasTypes', async () => {
+    const { getSchemasTypes } = root.connector.connection('connection');
+    const { data } = await getSchemasTypes();
     expect(data).toMatchSnapshot();
   });
 
-  it('GetSchemasVersionsById', async () => {
-    const { GetSchemasVersionsById } = root.connector.connection('connection');
-    const { data } = await GetSchemasVersionsById.fetch(1);
+  it('getSchemasVersionsById', async () => {
+    const { getSchemasVersionsById } = root.connector.connection('connection');
+    const { data } = await getSchemasVersionsById(1);
     expect(data[0]).to.has.property('subject').that.be.a('string');
     expect(data[0]).to.has.property('version').that.be.a('number');
   });
 
-  it('GetSubjects', async () => {
-    const { GetSubjects } = root.connector.connection('connection');
-    const { data } = await GetSubjects.fetch();
+  it('getSubjects', async () => {
+    const { getSubjects } = root.connector.connection('connection');
+    const { data } = await getSubjects();
     expect(data).toMatchSnapshot();
   });
 
-  it('GetSubjectsVersions', async () => {
-    const { GetSubjectsVersions } = root.connector.connection('connection');
-    const { data } = await GetSubjectsVersions.fetch(subject);
+  it('getSubjectsVersions', async () => {
+    const { getSubjectsVersions } = root.connector.connection('connection');
+    const { data } = await getSubjectsVersions(subject);
     expect(data[0]).to.be.a('number');
     [version] = data;
   });
 
-  it('GetSubjectsByVersion', async () => {
-    const { GetSubjectsByVersion } = root.connector.connection('connection');
-    const { data } = await GetSubjectsByVersion.fetch({
+  it('getSubjectsByVersion', async () => {
+    const { getSubjectsByVersion } = root.connector.connection('connection');
+    const { data } = await getSubjectsByVersion({
       subject,
       version,
     });
@@ -87,9 +87,9 @@ describe('@biorate/schema-registry', function () {
     expect(JSON.parse(JSON.stringify(result))).to.be.deep.equal(data);
   });
 
-  it('DeleteSubjects', async () => {
-    const { DeleteSubjects } = root.connector.connection('connection');
-    const { data } = await DeleteSubjects.fetch({
+  it('deleteSubjects', async () => {
+    const { deleteSubjects } = root.connector.connection('connection');
+    const { data } = await deleteSubjects({
       subject,
       permanent: false,
     });

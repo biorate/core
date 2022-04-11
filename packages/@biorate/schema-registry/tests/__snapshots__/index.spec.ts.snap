@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@biorate/schema-registry GetSchemasTypes 1`] = `
+exports[`@biorate/schema-registry getSchemasTypes 1`] = `
 Array [
   "JSON",
   "PROTOBUF",
@@ -8,7 +8,7 @@ Array [
 ]
 `;
 
-exports[`@biorate/schema-registry GetSubjects 1`] = `
+exports[`@biorate/schema-registry getSubjects 1`] = `
 Array [
   "test",
 ]

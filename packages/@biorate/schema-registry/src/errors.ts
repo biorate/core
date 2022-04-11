@@ -1,7 +1,7 @@
 import { BaseError } from '@biorate/errors';
 
-// export class ConnectorConnectionNotExistsError extends BaseError {
-//   public constructor(type: string, name: string) {
-//     super(`Connection not exists: [%s]:[%s]`, [type, name]);
-//   }
-// }
+export class SchemaRegistryCantConnectError extends BaseError {
+  public constructor(e: Error) {
+    super(`Can't connect to schema registry: [%s]`, [e.message]);
+  }
+}

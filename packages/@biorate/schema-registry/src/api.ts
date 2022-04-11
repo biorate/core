@@ -1,16 +1,15 @@
 import { Axios } from '@biorate/axios';
 import { Type } from 'avsc';
-import { Schemas } from './cache';
 import { ISchemaRegistryConfig } from './interfaces';
 
 export const create = (config: ISchemaRegistryConfig) => {
-  const cache = new Schemas();
+  const cache = new Map<number, Type>();
 
   class SchemaRegistryApi extends Axios {
     public baseURL = config.baseURL;
   }
 
-  class GetPing extends SchemaRegistryApi {
+  class Ping extends SchemaRegistryApi {
     public url = '/';
     public method = 'get';
 
@@ -122,8 +121,7 @@ export const create = (config: ISchemaRegistryConfig) => {
           path: { subject: data.subject },
           params: { normalize: !!data.normalize },
           data: {
-            schema:
-              typeof data.schema === 'string' ? data.schema : JSON.stringify(data.schema),
+            schema: toStringData(data.schema),
             schemaType: data.schemaType,
             reference: data.reference,
           },
@@ -181,13 +179,13 @@ export const create = (config: ISchemaRegistryConfig) => {
 
   async function decode(buffer: Buffer) {
     const id = buffer.readInt32BE(1);
-    let data = cache.find(id);
+    let data: Type = cache.get(id);
     if (!data) {
       const response = await GetSchemasById.fetch(id);
-      data = { id, schema: Type.forSchema(JSON.parse(response.data.schema)) };
-      cache.set(data);
+      data = Type.forSchema(JSON.parse(response.data.schema));
+      cache.set(id, data);
     }
-    const schema = Type.forSchema(data.schema);
+    const schema = Type.forSchema(data);
     return schema.fromBuffer(buffer.slice(5));
   }
 
@@ -196,17 +194,33 @@ export const create = (config: ISchemaRegistryConfig) => {
   }
 
   return {
-    GetPing,
-    GetSchemasById,
-    GetSchemasTypes,
-    GetSchemasVersionsById,
-    GetSubjects,
-    GetSubjectsVersions,
-    DeleteSubjects,
-    GetSubjectsByVersion,
-    GetSchemaBySubjectsAndVersion,
-    PostSubjects,
-    PostSubjectsVersions,
+    ping: <typeof Ping.fetch>Ping.fetch.bind(Ping),
+    getSchemasById: <typeof GetSchemasById.fetch>(
+      GetSchemasById.fetch.bind(GetSchemasById)
+    ),
+    getSchemasTypes: <typeof GetSchemasTypes.fetch>(
+      GetSchemasTypes.fetch.bind(GetSchemasTypes)
+    ),
+    getSchemasVersionsById: <typeof GetSchemasVersionsById.fetch>(
+      GetSchemasVersionsById.fetch.bind(GetSchemasVersionsById)
+    ),
+    getSubjects: <typeof GetSubjects.fetch>GetSubjects.fetch.bind(GetSubjects),
+    getSubjectsVersions: <typeof GetSubjectsVersions.fetch>(
+      GetSubjectsVersions.fetch.bind(GetSubjectsVersions)
+    ),
+    deleteSubjects: <typeof DeleteSubjects.fetch>(
+      DeleteSubjects.fetch.bind(DeleteSubjects)
+    ),
+    getSubjectsByVersion: <typeof GetSubjectsByVersion.fetch>(
+      GetSubjectsByVersion.fetch.bind(GetSubjectsByVersion)
+    ),
+    getSchemaBySubjectsAndVersion: <typeof GetSchemaBySubjectsAndVersion.fetch>(
+      GetSchemaBySubjectsAndVersion.fetch.bind(GetSchemaBySubjectsAndVersion)
+    ),
+    postSubjects: <typeof PostSubjects.fetch>PostSubjects.fetch.bind(PostSubjects),
+    postSubjectsVersions: <typeof PostSubjectsVersions.fetch>(
+      PostSubjectsVersions.fetch.bind(PostSubjectsVersions)
+    ),
     encode,
     decode,
   };
