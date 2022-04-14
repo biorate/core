@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.3](https://github.com/biorate/core/compare/v0.23.2...v0.23.3) (2022-04-14)
+
+
+### Bug Fixes
+
+* **schema-registry:** validation added ([21876c6](https://github.com/biorate/core/commit/21876c6808e297bc83a8cc695c656f7b5932bba6))
+
+
+
+
+
 ## [0.23.2](https://github.com/biorate/core/compare/v0.23.1...v0.23.2) (2022-04-11)
 
 
