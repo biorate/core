@@ -1,6 +1,7 @@
 import { Axios } from '@biorate/axios';
 import { Type } from 'avsc';
 import { ISchemaRegistryConfig } from './interfaces';
+import {SchemaRegistryAvroSchemaParseError} from "./errors";
 
 export const create = (config: ISchemaRegistryConfig) => {
   const cache = new Map<number, Type>();
@@ -170,9 +171,16 @@ export const create = (config: ISchemaRegistryConfig) => {
     data: Record<string, any>,
     version: string | number = 'latest',
   ) {
+    const errors = [];
     const response = await GetSubjectsByVersion.fetch({ subject, version });
     const header = Buffer.alloc(5);
     const schema = Type.forSchema(JSON.parse(response.data.schema));
+    schema.isValid(data, {
+      errorHook: (path: string[], value: unknown) => {
+        errors.push(`${path.join('.')}: ${value} (${typeof value})`);
+      },
+    });
+    if (errors.length) throw new SchemaRegistryAvroSchemaParseError(errors);
     header.writeInt32BE(response.data.id, 1);
     return Buffer.concat([header, schema.toBuffer(data)]);
   }

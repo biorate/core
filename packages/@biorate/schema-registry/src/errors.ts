@@ -5,3 +5,11 @@ export class SchemaRegistryCantConnectError extends BaseError {
     super(`Can't connect to schema registry: [%s]`, [e.message]);
   }
 }
+
+export class SchemaRegistryAvroSchemaParseError extends BaseError {
+  public constructor(errors: string[]) {
+    super('%s', [errors.join('; ')], {
+      status: 400,
+    });
+  }
+}
