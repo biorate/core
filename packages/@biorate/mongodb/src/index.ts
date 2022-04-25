@@ -5,8 +5,6 @@ import { createConnection } from 'mongoose';
 import { getModelForClass } from '@typegoose/typegoose';
 import { MongoDBCantConnectError } from './errors';
 import { IMongoDBConfig, IMongoDBConnection, AnyParamConstructor } from './interfaces';
-import { ReturnModelType } from '@typegoose/typegoose/lib/types';
-import {TestModel} from "../tests/__mocks__/models";
 
 export * from '@typegoose/typegoose';
 export * as mongoose from 'mongoose';
@@ -26,8 +24,6 @@ export * from './interfaces';
  */
 @injectable()
 export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnection> {
-  public static connections: Map<string, IMongoDBConnection>;
-
   protected readonly namespace = 'MongoDB';
 
   protected async connect(config: IMongoDBConfig) {
@@ -42,10 +38,12 @@ export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnecti
   }
 
   @init() protected async initialize() {
-    MongoDBConnector.connections = this.connections;
+    connections = this.connections;
     await super.initialize();
   }
 }
+
+let connections: Map<string, IMongoDBConnection> = null;
 
 export const model = <T = AnyParamConstructor<unknown>>(
   Model: AnyParamConstructor<T>,
@@ -57,8 +55,8 @@ export const model = <T = AnyParamConstructor<unknown>>(
       get() {
         return getModelForClass(Model, {
           existingConnection: connection
-            ? MongoDBConnector.connections.get(connection)
-            : [...MongoDBConnector.connections][0][1],
+            ? connections.get(connection)
+            : [...connections][0][1],
           options,
         });
       },
