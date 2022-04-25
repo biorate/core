@@ -1,6 +1,6 @@
 # Mongodb
 
-Mongodb connector
+Mongodb ORM connector based on mongoose and typegoose
 
 ### Examples:
 

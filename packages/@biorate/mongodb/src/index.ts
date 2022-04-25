@@ -13,7 +13,7 @@ export * from './errors';
 export * from './interfaces';
 
 /**
- * @description Mongodb connector
+ * @description Mongodb ORM connector based on mongoose and typegoose
  *
  * ### Features:
  * - connector manager for mongodb

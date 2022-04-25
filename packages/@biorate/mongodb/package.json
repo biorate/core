@@ -1,7 +1,7 @@
 {
   "name": "@biorate/mongodb",
   "version": "0.25.0",
-  "description": "Mongodb connector",
+  "description": "Mongodb ORM connector based on mongoose and typegoose",
   "main": "dist",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
