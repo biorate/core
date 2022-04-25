@@ -53,7 +53,7 @@ export class Axios {
    * @description Protected fetch static method
    */
   protected static _fetch<D = any>(
-    options?: AxiosRequestConfig,
+    options?: IAxiosFetchOptions,
   ): Promise<AxiosResponse<D>> {
     if (!this.cache.has(this)) this.cache.set(this, new this());
     return this.cache.get(this).fetch<D>(options);

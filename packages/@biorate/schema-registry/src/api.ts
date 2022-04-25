@@ -1,7 +1,7 @@
 import { Axios } from '@biorate/axios';
 import { Type } from 'avsc';
 import { ISchemaRegistryConfig } from './interfaces';
-import {SchemaRegistryAvroSchemaParseError} from "./errors";
+import { SchemaRegistryAvroSchemaParseError } from './errors';
 
 export const create = (config: ISchemaRegistryConfig) => {
   const cache = new Map<number, Type>();
@@ -14,8 +14,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/';
     public method = 'get';
 
-    public static fetch(...args) {
-      return this._fetch<{}>({}, ...args);
+    public static fetch() {
+      return this._fetch<{}>({});
     }
   }
 
@@ -23,8 +23,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/schemas/ids/:id';
     public method = 'get';
 
-    public static fetch(id: number, ...args) {
-      return this._fetch<{ schema: string }>({ path: { id } }, ...args);
+    public static fetch(id: number) {
+      return this._fetch<{ schema: string }>({ path: { id } });
     }
   }
 
@@ -32,8 +32,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/schemas/types';
     public method = 'get';
 
-    public static fetch(...args) {
-      return this._fetch<string[]>({}, ...args);
+    public static fetch() {
+      return this._fetch<string[]>({});
     }
   }
 
@@ -41,11 +41,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/schemas/ids/:id/versions';
     public method = 'get';
 
-    public static fetch(id: number, ...args) {
-      return this._fetch<{ subject: string; version: number }[]>(
-        { path: { id } },
-        ...args,
-      );
+    public static fetch(id: number) {
+      return this._fetch<{ subject: string; version: number }[]>({ path: { id } });
     }
   }
 
@@ -53,8 +50,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/subjects';
     public method = 'get';
 
-    public static fetch(...args) {
-      return this._fetch<string[]>({}, ...args);
+    public static fetch() {
+      return this._fetch<string[]>({});
     }
   }
 
@@ -62,8 +59,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/subjects/:subject/versions';
     public method = 'get';
 
-    public static fetch(subject: string, ...args) {
-      return this._fetch<number[]>({ path: { subject } }, ...args);
+    public static fetch(subject: string) {
+      return this._fetch<number[]>({ path: { subject } });
     }
   }
 
@@ -71,11 +68,11 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/subjects/:subject';
     public method = 'delete';
 
-    public static fetch(data: { subject: string; permanent?: boolean }, ...args) {
-      return this._fetch<number[]>(
-        { path: { subject: data.subject }, params: { permanent: !!data.permanent } },
-        ...args,
-      );
+    public static fetch(data: { subject: string; permanent?: boolean }) {
+      return this._fetch<number[]>({
+        path: { subject: data.subject },
+        params: { permanent: !!data.permanent },
+      });
     }
   }
 
@@ -83,14 +80,14 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/subjects/:subject/versions/:version';
     public method = 'get';
 
-    public static fetch(data: { subject: string; version: number | string }, ...args) {
+    public static fetch(data: { subject: string; version: number | string }) {
       return this._fetch<{
         subject: string;
         id: number;
         version: number;
         schemaType: string;
         schema: string;
-      }>({ path: data }, ...args);
+      }>({ path: data });
     }
   }
 
@@ -98,8 +95,8 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/subjects/:subject/versions/:version/schema';
     public method = 'get';
 
-    public static fetch(data: { subject: string; version: number | string }, ...args) {
-      return this._fetch<unknown>({ path: data }, ...args);
+    public static fetch(data: { subject: string; version: number | string }) {
+      return this._fetch<unknown>({ path: data });
     }
   }
 
@@ -107,28 +104,22 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/subjects/:subject/versions';
     public method = 'post';
 
-    public static fetch(
-      data: {
-        subject: string;
-        schema: string | Record<string, any>;
-        schemaType?: string;
-        reference?: string;
-        normalize?: boolean;
-      },
-      ...args
-    ) {
-      return this._fetch<{ id: number }>(
-        {
-          path: { subject: data.subject },
-          params: { normalize: !!data.normalize },
-          data: {
-            schema: toStringData(data.schema),
-            schemaType: data.schemaType,
-            reference: data.reference,
-          },
+    public static fetch(data: {
+      subject: string;
+      schema: string | Record<string, any>;
+      schemaType?: string;
+      reference?: string;
+      normalize?: boolean;
+    }) {
+      return this._fetch<{ id: number }>({
+        path: { subject: data.subject },
+        params: { normalize: !!data.normalize },
+        data: {
+          schema: toStringData(data.schema),
+          schemaType: data.schemaType,
+          reference: data.reference,
         },
-        ...args,
-      );
+      });
     }
   }
 
@@ -136,33 +127,27 @@ export const create = (config: ISchemaRegistryConfig) => {
     public url = '/subjects/:subject';
     public method = 'post';
 
-    public static fetch(
-      data: {
-        subject: string;
-        schema: string | Record<string, any>;
-        schemaType?: string;
-        reference?: string;
-        normalize?: boolean;
-      },
-      ...args
-    ) {
+    public static fetch(data: {
+      subject: string;
+      schema: string | Record<string, any>;
+      schemaType?: string;
+      reference?: string;
+      normalize?: boolean;
+    }) {
       return this._fetch<{
         subject: string;
         id: number;
         version: number;
         schema: string;
-      }>(
-        {
-          path: { subject: data.subject },
-          params: { normalize: !!data.normalize },
-          data: {
-            schema: toStringData(data.schema),
-            schemaType: data.schemaType,
-            reference: data.reference,
-          },
+      }>({
+        path: { subject: data.subject },
+        params: { normalize: !!data.normalize },
+        data: {
+          schema: toStringData(data.schema),
+          schemaType: data.schemaType,
+          reference: data.reference,
         },
-        ...args,
-      );
+      });
     }
   }
 
