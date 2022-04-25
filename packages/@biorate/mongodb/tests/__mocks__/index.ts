@@ -2,7 +2,8 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { MongoDBConnector, IMongoDBConnector, model, ReturnModelType } from '../../src';
+import { MongoDBConnector, IMongoDBConnector, model } from '../../src';
+import { ReturnModelType } from '@typegoose/typegoose';
 import { TestModel } from './models';
 
 export * from './models';

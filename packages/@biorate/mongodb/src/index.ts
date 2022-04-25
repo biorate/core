@@ -4,11 +4,8 @@ import { Connector } from '@biorate/connector';
 import { createConnection } from 'mongoose';
 import { getModelForClass } from '@typegoose/typegoose';
 import { MongoDBCantConnectError } from './errors';
-import { IMongoDBConfig, IMongoDBConnection, AnyParamConstructor } from './interfaces';
+import { IMongoDBConfig, IMongoDBConnection } from './interfaces';
 
-export * from '@typegoose/typegoose';
-export * as mongoose from 'mongoose';
-export * as mongodb from 'mongodb';
 export * from './errors';
 export * from './interfaces';
 
@@ -134,8 +131,8 @@ let connections: Map<string, IMongoDBConnection> = null;
 /**
  * @description Model injection decorator
  */
-export const model = <T = AnyParamConstructor<unknown>>(
-  Model: AnyParamConstructor<T>,
+export const model = <T = unknown>(
+  Model: new (...args: any) => T,
   connection?: string,
   options: Record<string, unknown> = {},
 ) => {

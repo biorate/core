@@ -9,5 +9,3 @@ export interface IMongoDBConfig extends IConnectorConfig {
 }
 
 export type IMongoDBConnector = IConnector<IMongoDBConfig, IMongoDBConnection>;
-
-export declare type AnyParamConstructor<T> = new (...args: any) => T;

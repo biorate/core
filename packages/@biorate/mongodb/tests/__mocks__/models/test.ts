@@ -1,4 +1,4 @@
-import { Severity, modelOptions, Prop } from '../../../src';
+import { Severity, modelOptions, Prop } from '@typegoose/typegoose';
 
 @modelOptions({
   options: {
