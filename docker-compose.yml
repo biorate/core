@@ -37,3 +37,12 @@ services:
       SCHEMA_REGISTRY_LISTENERS: 'http://0.0.0.0:8085'
     ports:
       - 8085:8085
+  mongodb:
+    image: mongo:4.4
+    network_mode: 'host'
+    healthcheck:
+      test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo --quiet) -eq 1
+      interval: 10s
+    entrypoint: ['/usr/bin/mongod', '--bind_ip_all', '--replSet', 'rs0']
+    ports:
+      - 27017:27017

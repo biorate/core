@@ -1,13 +1,13 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
-import { create } from './api';
+import { ConnectOptions, Connection } from 'mongoose';
 
-export type ISchemaRegistryConnection = ReturnType<typeof create>;
+export type IMongoDBConnection = Connection;
 
-export interface ISchemaRegistryConfig extends IConnectorConfig {
-  baseURL: string;
+export interface IMongoDBConfig extends IConnectorConfig {
+  host: string;
+  options: ConnectOptions;
 }
 
-export type ISchemaRegistryConnector = IConnector<
-  ISchemaRegistryConfig,
-  ISchemaRegistryConnection
->;
+export type IMongoDBConnector = IConnector<IMongoDBConfig, IMongoDBConnection>;
+
+export declare type AnyParamConstructor<T> = new (...args: any) => T;
