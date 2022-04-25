@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/biorate/core/compare/v0.24.0...v0.25.0) (2022-04-25)
+
+
+### Features
+
+* **schema-registry:** api fix ([8631389](https://github.com/biorate/core/commit/8631389036e4c0d1f0a9ec0ccab5a0a2800c4dab))
+
+
+### BREAKING CHANGES
+
+* **schema-registry:** api fix according axios fatch interface change
+
+
+
+
+
 # [0.24.0](https://github.com/biorate/core/compare/v0.23.4...v0.24.0) (2022-04-25)
 
 **Note:** Version bump only for package @biorate/tools
