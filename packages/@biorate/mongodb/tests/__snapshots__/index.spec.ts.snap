@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/schema-registry getSchemasTypes 1`] = `
+Array [
+  "JSON",
+  "PROTOBUF",
+  "AVRO",
+]
+`;
+
+exports[`@biorate/schema-registry getSubjects 1`] = `
+Array [
+  "test",
+]
+`;

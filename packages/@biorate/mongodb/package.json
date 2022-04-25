@@ -20,8 +20,7 @@
   "keywords": [
     "schema registry",
     "confluent",
-    "kafka",
-    "connector"
+    "kafka"
   ],
   "author": "llevkin",
   "license": "MIT",
