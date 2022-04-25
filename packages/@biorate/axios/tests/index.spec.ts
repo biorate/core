@@ -10,7 +10,7 @@ describe('@biorate/axios', function () {
         done();
       }
     }
-    Catch.fetch({}, { baseURL: 'https://undefined' });
+    Catch.fetch({ baseURL: 'https://undefined' });
   });
 
   it('finally', (done) => {
@@ -19,6 +19,6 @@ describe('@biorate/axios', function () {
         done();
       }
     }
-    Finally.fetch({}, { baseURL: 'https://undefined' });
+    Finally.fetch({ baseURL: 'https://undefined' });
   });
 });
