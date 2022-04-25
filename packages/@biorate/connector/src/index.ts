@@ -94,6 +94,12 @@ export abstract class Connector<C extends IConnectorConfig, T = any>
     return this.connections.get(name);
   }
   /**
+   * @description Alias for connection method
+   */
+  public get(name?: string) {
+    return this.connection(name);
+  }
+  /**
    * @description Initialize method
    */
   @init() protected async initialize() {
