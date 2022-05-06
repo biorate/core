@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/biorate/core/compare/v0.28.0...v0.28.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* **migrations:** start default root script ([271fe83](https://github.com/biorate/core/commit/271fe83aa756336c3e13e8e519e1b5dbcf857f03))
+
+
+
+
+
 # [0.28.0](https://github.com/biorate/core/compare/v0.27.3...v0.28.0) (2022-05-06)
 
 
