@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.3](https://github.com/biorate/core/compare/v0.27.2...v0.27.3) (2022-05-06)
+
+
+### Bug Fixes
+
+* index.d.ts file added into mongodb, sequelize, schema-registry connectors ([8f142d3](https://github.com/biorate/core/commit/8f142d36e4face9d101e76f3954d565932a4c40f))
+
+
+
+
+
 ## [0.27.2](https://github.com/biorate/core/compare/v0.27.1...v0.27.2) (2022-05-06)
 
 
