@@ -1,6 +1,6 @@
 {
   "name": "@biorate/amf",
-  "version": "0.27.2",
+  "version": "0.28.0",
   "description": "Action Message Format (AMF) protocol realization for JS",
   "main": "dist",
   "scripts": {
