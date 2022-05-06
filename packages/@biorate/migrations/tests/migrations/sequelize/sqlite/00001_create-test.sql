@@ -1,0 +1,5 @@
+CREATE TABLE test
+(
+  id INT PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL
+);
