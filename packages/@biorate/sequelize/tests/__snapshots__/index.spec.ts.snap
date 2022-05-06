@@ -1,7 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@biorate/sequelize create 1`] = `
+Object {
+  "title": "test",
+  "value": 1,
+}
+`;
+
+exports[`@biorate/sequelize find 1`] = `
+Object {
+  "title": "test",
+  "value": 1,
+}
+`;
+
 exports[`@biorate/sequelize query 1`] = `
 Object {
   "result": 4,
 }
 `;
+
+exports[`@biorate/sequelize sync 1`] = `[Function]`;

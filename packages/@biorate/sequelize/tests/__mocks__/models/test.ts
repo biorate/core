@@ -5,10 +5,9 @@ import { Table, Column, Model, DataType } from '../../../src';
   timestamps: false,
 })
 export class TestModel extends Model {
-  @Column(DataType.CHAR)
+  @Column({ type: DataType.CHAR, primaryKey: true })
   title: string;
 
   @Column(DataType.INTEGER)
   value: number;
 }
-
