@@ -16,6 +16,9 @@ Merge this into your package.json file on server:
 }
 ```
 
+### TODO:
+- make documentation clear...
+
 ### Learn
 
 - Documentation can be found here - [docs](https://biorate.github.io/core/modules/migrations.html).
