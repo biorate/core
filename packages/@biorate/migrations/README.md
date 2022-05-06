@@ -2,9 +2,18 @@
 
 Migrations tools
 
-### Examples:
+### Supported:
+- Sequelize
 
-```ts
+### Examples:
+Merge this into your package.json file on server:
+
+```json
+{
+  "scripts": {
+    "migrations": "node -r @biorate/migrations"
+  }
+}
 ```
 
 ### Learn
