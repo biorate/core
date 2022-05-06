@@ -107,7 +107,7 @@ export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnecti
    * @description Create connection
    */
   protected async connect(config: IMongoDBConfig) {
-    let connection;
+    let connection: IMongoDBConnection;
     try {
       connection = createConnection(config.host, config.options);
       await events.once(connection, 'open');

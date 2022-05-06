@@ -1,21 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@biorate/mongodb connection access 1`] = `"test"`;
-
-exports[`@biorate/mongodb get from test collection 1`] = `
-Array [
-  Object {
-    "age": 36,
-    "firstName": "Vasya",
-    "lastName": "Pupkin",
-  },
-]
-`;
-
-exports[`@biorate/mongodb insert into test collection 1`] = `
+exports[`@biorate/sequelize query 1`] = `
 Object {
-  "age": 36,
-  "firstName": "Vasya",
-  "lastName": "Pupkin",
+  "result": 4,
 }
 `;
