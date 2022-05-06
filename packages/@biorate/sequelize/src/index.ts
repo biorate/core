@@ -42,7 +42,7 @@ export * from 'sequelize-typescript';
  *
  * // Assign models with sequelize connector
  * class SequelizeConnector extends BaseSequelizeConnector {
- *   protected models = { [connectionName]: [TestModel] };
+ *   protected readonly models = { [connectionName]: [TestModel] };
  * }
  *
  * // Create Root class
@@ -96,7 +96,7 @@ export class SequelizeConnector extends Connector<
   /**
    * @description Models list, key - connection name, value - array of models
    */
-  protected models: { [key: string]: IModels } = {};
+  protected readonly models: { [key: string]: IModels } = {};
   /**
    * @description Create connection
    */

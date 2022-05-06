@@ -32,7 +32,7 @@ export class TestModel extends Model {
 
 // Assign models with sequelize connector
 class SequelizeConnector extends BaseSequelizeConnector {
-  protected models = { [connectionName]: [TestModel] };
+  protected readonly models = { [connectionName]: [TestModel] };
 }
 
 // Create Root class

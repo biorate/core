@@ -17,7 +17,7 @@ use(jestSnapshotPlugin());
 export const name = 'connection';
 
 class SequelizeConnector extends BaseSequelizeConnector {
-  protected models = { [name]: [TestModel] };
+  protected readonly models = { [name]: [TestModel] };
 }
 
 export class Root extends Core() {
