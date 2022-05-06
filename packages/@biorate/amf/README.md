@@ -2,6 +2,19 @@
 
 Action Message Format (AMF3) protocol realization for JS
 
+### Links:
+
+- [wikipedia](https://en.wikipedia.org/wiki/Action_Message_Format)
+- [specification](https://www.adobe.com/content/dam/acom/en/devnet/pdf/amf-file-format-spec.pdf)
+
+### Limitations:
+
+- Function is not supported
+- XML is not supported
+- ByteArray is not supported
+- Dictionary is not supported
+- Vectors is not supported
+
 ### Examples:
 
 ```ts
