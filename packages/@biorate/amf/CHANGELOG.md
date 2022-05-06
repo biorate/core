@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.2](https://github.com/biorate/core/compare/v0.27.1...v0.27.2) (2022-05-06)
+
+
+### Bug Fixes
+
+* **amf:** README.md ([505c2d3](https://github.com/biorate/core/commit/505c2d3d98d188fc276c31457c6cf00fc7decfb4))
+
+
+
+
+
 ## [0.27.1](https://github.com/biorate/core/compare/v0.27.0...v0.27.1) (2022-05-06)
 
 
