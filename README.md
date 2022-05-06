@@ -18,6 +18,7 @@
 * [schema-registry](https://biorate.github.io/core/modules/schema_registry.html)
 * [mongodb](https://biorate.github.io/core/modules/mongodb.html)
 * [sequelize](https://biorate.github.io/core/modules/sequelize.html)
+* [migrations](https://biorate.github.io/core/modules/migrations.html)
 
 ### Learn
 * [documentation](https://biorate.github.io/core/).
