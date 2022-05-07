@@ -33,9 +33,8 @@ class Metadata {
 
 class Lifecycled {
   private static processed = Symbol.for('lifecycled.processed');
-  private static initialized = Symbol.for('lifecycled.initialized');
-  #initialize = new Map();
-  #destructors = new Map();
+  #initialize = [];
+  #destructors = [];
   #onInitCb = (object: {}) => {};
   #onKillCb = (object: {}) => {};
 
@@ -88,10 +87,10 @@ class Lifecycled {
     for (const item of items) {
       switch (item.key) {
         case Lifecircles.init:
-          this.#initialize.set(object, item.descriptor.value.bind(object));
+          this.#initialize.push({ object, fn: item.descriptor.value.bind(object) });
           break;
         case Lifecircles.kill:
-          this.#destructors.set(object, item.descriptor.value.bind(object));
+          this.#destructors.push({ object, fn: item.descriptor.value.bind(object) });
           break;
         case Lifecircles.on:
           object.on(item.event, item.descriptor.value.bind(object));
@@ -101,14 +100,14 @@ class Lifecycled {
   }
 
   #init = async () => {
-    for (const [object, fn] of this.#initialize) {
+    for (const { object, fn } of this.#initialize) {
       await fn();
       this.#onInitCb(object);
     }
   };
 
   #onKill = async () => {
-    for (const [object, fn] of this.#destructors) {
+    for (const { object, fn } of this.#destructors) {
       await fn.call(object);
       this.#onKillCb(object);
     }
