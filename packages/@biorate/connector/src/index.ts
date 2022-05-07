@@ -57,6 +57,14 @@ export abstract class Connector<C extends IConnectorConfig, T = any>
   implements IConnector<C, T>
 {
   /**
+   * @description Private connections storage
+   */
+  #connections = new Map<string, T>();
+  /**
+   * @description Private link to selected (used) connection
+   */
+  #current: T = null;
+  /**
    * @description Config dependency
    */
   @inject(Types.Config) protected config: IConfig;
@@ -67,11 +75,15 @@ export abstract class Connector<C extends IConnectorConfig, T = any>
   /**
    * @description Connections storage
    */
-  public readonly connections = new Map<string, T>();
+  public get connections() {
+    return this.#connections;
+  }
   /**
    * @description Link to selected (used) connection
    */
-  public current: T = null;
+  public get current() {
+    return this.#current;
+  }
   /**
    * @description Abstract method describing connection
    */
@@ -80,18 +92,18 @@ export abstract class Connector<C extends IConnectorConfig, T = any>
    * @description Method for change current connection
    */
   public use(name: string) {
-    if (!this.connections.has(name))
+    if (!this.#connections.has(name))
       throw new ConnectorConnectionNotExistsError(this.constructor.name, name);
-    this.current = this.connections.get(name);
+    this.#current = this.#connections.get(name);
   }
   /**
    * @description Method for get existed the connection
    */
   public connection(name?: string) {
-    if (!name) return this.current;
-    if (!this.connections.has(name))
+    if (!name) return this.#current;
+    if (!this.#connections.has(name))
       throw new ConnectorConnectionNotExistsError(this.constructor.name, name);
-    return this.connections.get(name);
+    return this.#connections.get(name);
   }
   /**
    * @description Alias for connection method
@@ -104,8 +116,8 @@ export abstract class Connector<C extends IConnectorConfig, T = any>
    */
   @init() protected async initialize() {
     for (const config of this.config.get<C[]>(this.namespace, [])) {
-      this.connections.set(config.name, await this.connect(config));
-      if (!this.current) this.current = this.connections.get(config.name);
+      this.#connections.set(config.name, await this.connect(config));
+      if (!this.#current) this.#current = this.#connections.get(config.name);
     }
   }
 }
