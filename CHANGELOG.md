@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.3](https://github.com/biorate/core/compare/v0.28.2...v0.28.3) (2022-05-07)
+
+
+### Bug Fixes
+
+* **connector:** connections and current props to private ([6ff6550](https://github.com/biorate/core/commit/6ff6550c7dfc936d671a26adc802c4602c78630f))
+* **lifecycled:** array to map for initialize and destructor ([cf8aa5a](https://github.com/biorate/core/commit/cf8aa5ad7e2a0eae3f021cd1272e706c2be70768))
+* **migrations:** tests and logic ([adaff11](https://github.com/biorate/core/commit/adaff116d1cbb74cf011df251db0d6c730850f56))
+
+
+
+
+
 ## [0.28.2](https://github.com/biorate/core/compare/v0.28.1...v0.28.2) (2022-05-06)
 
 **Note:** Version bump only for package biorate

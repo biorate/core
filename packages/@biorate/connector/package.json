@@ -1,6 +1,6 @@
 {
   "name": "@biorate/connector",
-  "version": "0.28.0",
+  "version": "0.28.3",
   "description": "Connector interface",
   "main": "dist",
   "scripts": {

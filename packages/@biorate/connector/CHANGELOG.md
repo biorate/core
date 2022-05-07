@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.3](https://github.com/biorate/core/compare/v0.28.2...v0.28.3) (2022-05-07)
+
+
+### Bug Fixes
+
+* **connector:** connections and current props to private ([6ff6550](https://github.com/biorate/core/commit/6ff6550c7dfc936d671a26adc802c4602c78630f))
+
+
+
+
+
 # [0.28.0](https://github.com/biorate/core/compare/v0.27.3...v0.28.0) (2022-05-06)
 
 **Note:** Version bump only for package @biorate/connector
