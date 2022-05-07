@@ -5,7 +5,7 @@ import { join } from 'path';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { Root as Base } from '../../src';
+import '../../src/default.config';
 
 use(jestSnapshotPlugin());
 
@@ -14,10 +14,6 @@ const storage = join(tmpdir(), 'sqlite-test.db');
 try {
   unlinkSync(storage);
 } catch {}
-
-export class Root extends Base {}
-
-container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
   Sequelize: [

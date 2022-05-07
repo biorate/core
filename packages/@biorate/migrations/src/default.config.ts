@@ -12,3 +12,4 @@ container
   .inSingletonScope();
 container.bind<Migrations.Sequelize>(Migrations.Sequelize).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
+container.get<Root>(Root).$run().catch(console.error);

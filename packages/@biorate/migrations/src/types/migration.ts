@@ -18,9 +18,7 @@ export abstract class Migration {
    * @description Scan migration directory
    */
   protected async scan(...args: string[]) {
-    return (await fs.readdir(this.path(...args))).map((item) =>
-      this.path(...args, item),
-    );
+    return (await fs.readdir(this.path(...args))).map((item) => this.path(...args, item));
   }
   /**
    * @description Create path to migrations directory
@@ -43,6 +41,7 @@ export abstract class Migration {
    * @description Initialize method
    */
   @init() protected async initialize() {
+    console.log(this.constructor.name);
     await this.process();
   }
   /**

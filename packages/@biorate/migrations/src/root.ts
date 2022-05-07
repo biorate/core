@@ -13,5 +13,3 @@ export class Root extends Core() {
 }
 
 Core.log = null;
-
-container.get<Root>(Root).$run().catch(console.error);
