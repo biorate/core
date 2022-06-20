@@ -1,6 +1,6 @@
 {
   "name": "@biorate/collection",
-  "version": "0.30.0",
+  "version": "0.30.1",
   "description": "Collection",
   "main": "dist",
   "scripts": {
