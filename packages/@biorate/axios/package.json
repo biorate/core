@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios",
-  "version": "0.29.1",
+  "version": "0.30.0",
   "description": "Axios OOP static interface",
   "main": "dist",
   "scripts": {
@@ -29,8 +29,8 @@
     "path-to-url": "^0.1.0"
   },
   "devDependencies": {
-    "@biorate/config": "0.29.1",
-    "@biorate/inversion": "0.29.1"
+    "@biorate/config": "0.30.0",
+    "@biorate/inversion": "0.30.0"
   },
   "gitHead": "78dfa793d20530cdc92586ea39962523fb53595a"
 }

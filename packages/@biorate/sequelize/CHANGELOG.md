@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/biorate/core/compare/v0.29.1...v0.30.0) (2022-06-20)
+
+
+### Bug Fixes
+
+* *.ts into npmignore ([6a6be03](https://github.com/biorate/core/commit/6a6be030a1e8923df4b03d518f08618e759d06fa))
+
+
+
+
+
 ## [0.29.1](https://github.com/biorate/core/compare/v0.29.0...v0.29.1) (2022-06-20)
 
 **Note:** Version bump only for package @biorate/sequelize
