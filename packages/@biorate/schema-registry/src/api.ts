@@ -156,7 +156,7 @@ export const create = (config: ISchemaRegistryConfig) => {
     data: Record<string, any>,
     version: string | number = 'latest',
   ) {
-    const errors = [];
+    const errors: string[] = [];
     const response = await GetSubjectsByVersion.fetch({ subject, version });
     const header = Buffer.alloc(5);
     const schema = Type.forSchema(JSON.parse(response.data.schema));
@@ -172,7 +172,7 @@ export const create = (config: ISchemaRegistryConfig) => {
 
   async function decode(buffer: Buffer) {
     const id = buffer.readInt32BE(1);
-    let data: Type = cache.get(id);
+    let data: Type | undefined = cache.get(id);
     if (!data) {
       const response = await GetSchemasById.fetch(id);
       data = Type.forSchema(JSON.parse(response.data.schema));

@@ -25,7 +25,7 @@ export function create(label: string) {
     {},
     new (class {
       #map = new Map<string, symbol>();
-      #key = (name) => `${label}.${name}`;
+      #key = (name: string) => `${label}.${name}`;
 
       public get(ctx: { [key: string]: symbol }, name: string) {
         let key = this.#key(name),
@@ -68,7 +68,7 @@ export function create(label: string) {
 export const Global = (() => {
   class Proxify {
     #prefix: string;
-    #key = (name) => `${this.#prefix}.${name}`;
+    #key = (name: string) => `${this.#prefix}.${name}`;
 
     constructor(prefix = 'Global') {
       this.#prefix = prefix;
@@ -78,6 +78,7 @@ export const Global = (() => {
       return Symbol.for(this.#key(name));
     }
 
+    // @ts-ignore
     public apply(target: Function & { [key: string]: symbol }, thisArg, argumentsList) {
       // @ts-ignore
       return new Proxy(function () {}, new Proxify(...argumentsList));

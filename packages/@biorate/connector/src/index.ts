@@ -53,7 +53,7 @@ export * from './interfaces';
  * ```
  */
 @injectable()
-export abstract class Connector<C extends IConnectorConfig, T = any>
+export abstract class Connector<C extends IConnectorConfig, T = unknown>
   implements IConnector<C, T>
 {
   /**

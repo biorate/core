@@ -3,7 +3,7 @@ import { Connector } from '@biorate/connector';
 import { Sequelize } from 'sequelize-typescript';
 import { QueryTypes, QueryOptions, QueryOptionsWithType } from 'sequelize';
 import { omit } from 'lodash';
-import { SequelizeCantConnectError } from './errors';
+import { SequelizeCantConnectError, UndefinedConnectionError } from './errors';
 import { ISequelizeConfig, ISequelizeConnection, IModels } from './interfaces';
 
 export * from './errors';
@@ -105,7 +105,7 @@ export class SequelizeConnector extends Connector<
     try {
       config.options.models = this.models[config.name] ?? [];
       connection = new Sequelize(config.options);
-      connection.authenticate();
+      await connection.authenticate();
     } catch (e) {
       throw new SequelizeCantConnectError(e);
     }
@@ -123,6 +123,7 @@ export class SequelizeConnector extends Connector<
     const name = options?.connection;
     omit(options, 'connection');
     const connection = this.connection(name);
+    if (!connection) throw new UndefinedConnectionError(name);
     const result = await connection.query(sql, options);
     return result[0] as T[];
   }

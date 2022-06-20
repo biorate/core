@@ -26,16 +26,16 @@ import { IDefine } from '../interfaces';
  */
 export function prop(
   context: any,
-  field?: string | symbol,
-  value?: any,
+  field: string | symbol,
+  value?: unknown,
   mods: IDefine.Mods = '',
 ) {
   function define(field: string | symbol, value: any, mods: IDefine.Mods = '') {
     Object.defineProperty(context, field, {
       value: value,
-      enumerable: mods && mods.includes('e'),
-      configurable: mods && mods.includes('c'),
-      writable: mods && mods.includes('w'),
+      enumerable: !!mods?.includes?.('e'),
+      configurable: !!mods?.includes?.('c'),
+      writable: !!mods?.includes?.('w'),
     });
     return define;
   }
@@ -85,14 +85,14 @@ export function prop(
  */
 export function accessor(
   context: any,
-  field?: string | symbol,
-  accessor?: IDefine.Accessor,
+  field: string | symbol,
+  accessor: IDefine.Accessor,
   mods?: string,
 ) {
   function define(field: string | symbol, accessor: IDefine.Accessor, mods?: string) {
-    const descriptor = {
-      enumerable: mods && mods.includes('e'),
-      configurable: mods && mods.includes('c'),
+    const descriptor: IDefine.Accessor = {
+      enumerable: !!mods?.includes?.('e'),
+      configurable: !!mods?.includes?.('c'),
       get: undefined,
       set: undefined,
     };
