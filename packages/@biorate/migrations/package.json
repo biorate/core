@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "0.29.0",
+  "version": "0.29.1",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {
@@ -23,11 +23,11 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "0.29.0",
+    "@biorate/config": "0.29.1",
     "@biorate/errors": "0.29.0",
-    "@biorate/file-config": "0.29.0",
-    "@biorate/inversion": "0.29.0",
-    "@biorate/sequelize": "0.29.0",
-    "@biorate/tools": "0.29.0"
+    "@biorate/file-config": "0.29.1",
+    "@biorate/inversion": "0.29.1",
+    "@biorate/sequelize": "0.29.1",
+    "@biorate/tools": "0.29.1"
   }
 }

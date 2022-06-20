@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.1](https://github.com/biorate/core/compare/v0.29.0...v0.29.1) (2022-06-20)
+
+
+### Bug Fixes
+
+* *.ts into npmignore ([d4a4cc1](https://github.com/biorate/core/commit/d4a4cc146c5ad0f5dcff1c4570130c412a66f017))
+
+
+
+
+
 # [0.29.0](https://github.com/biorate/core/compare/v0.28.3...v0.29.0) (2022-06-20)
 
 
