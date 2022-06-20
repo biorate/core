@@ -26,7 +26,7 @@ import { IDefine } from '../interfaces';
  */
 export function prop(
   context: any,
-  field: string | symbol,
+  field?: string | symbol,
   value?: unknown,
   mods: IDefine.Mods = '',
 ) {
@@ -85,8 +85,8 @@ export function prop(
  */
 export function accessor(
   context: any,
-  field: string | symbol,
-  accessor: IDefine.Accessor,
+  field?: string | symbol,
+  accessor?: IDefine.Accessor,
   mods?: string,
 ) {
   function define(field: string | symbol, accessor: IDefine.Accessor, mods?: string) {
