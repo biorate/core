@@ -20,26 +20,26 @@ declare module '@biorate/tools' {
   }
 
   export namespace define {
-    export function prop(
-      context: {},
-      field?: string,
-      value?: any,
+    export function prop<T>(
+      context: T,
+      field?: PropertyKey,
+      value?: unknown,
       mods?: IDefine.Mods,
     ): (
-      field: string,
-      value: any,
-      mods?: string,
-    ) => (field: string, value: any, mods?: IDefine.Mods) => any;
+      field: PropertyKey,
+      value: unknown,
+      mods?: IDefine.Mods,
+    ) => (field: PropertyKey, value: unknown, mods?: IDefine.Mods) => any;
 
-    export function accessor(
-      context: {},
-      field?: string,
+    export function accessor<T>(
+      context: T,
+      field?: PropertyKey,
       accessor?: IDefine.Accessor,
       mods?: IDefine.Mods,
     ): (
-      field: string,
+      field: PropertyKey,
       accessor: IDefine.Accessor,
-      mods?: string,
-    ) => (field: string, accessor: IDefine.Accessor, mods?: IDefine.Mods) => any;
+      mods?: IDefine.Mods,
+    ) => (field: PropertyKey, accessor: IDefine.Accessor, mods?: IDefine.Mods) => any;
   }
 }

@@ -24,14 +24,14 @@ import { IDefine } from '../interfaces';
  * console.log(Object.getOwnPropertyDescriptor(obj, 'test3')); // { value: 3, writable: false, enumerable: false, configurable: false }
  * ```
  */
-export function prop(
-  context: any,
-  field?: string | symbol,
+export function prop<T = unknown>(
+  context: T,
+  field?: PropertyKey,
   value?: unknown,
   mods: IDefine.Mods = '',
 ) {
-  function define(field: string | symbol, value: any, mods: IDefine.Mods = '') {
-    Object.defineProperty(context, field, {
+  function define(field: PropertyKey, value: unknown, mods: IDefine.Mods = '') {
+    Object.defineProperty<T>(context, field, {
       value: value,
       enumerable: !!mods?.includes?.('e'),
       configurable: !!mods?.includes?.('c'),
@@ -39,7 +39,7 @@ export function prop(
     });
     return define;
   }
-  if (arguments.length > 1) return define(field, value, mods);
+  if (field) return define(field, value, mods);
   else return define;
 }
 
@@ -83,13 +83,17 @@ export function prop(
  *   // }
  * ```
  */
-export function accessor(
-  context: any,
-  field?: string | symbol,
+export function accessor<T = unknown>(
+  context: T,
+  field?: PropertyKey,
   accessor?: IDefine.Accessor,
-  mods?: string,
+  mods: IDefine.Mods = '',
 ) {
-  function define(field: string | symbol, accessor: IDefine.Accessor, mods?: string) {
+  function define(
+    field: PropertyKey,
+    accessor: IDefine.Accessor,
+    mods: IDefine.Mods = '',
+  ) {
     const descriptor: IDefine.Accessor = {
       enumerable: !!mods?.includes?.('e'),
       configurable: !!mods?.includes?.('c'),
@@ -101,6 +105,6 @@ export function accessor(
     Object.defineProperty(context, field, descriptor);
     return define;
   }
-  if (arguments.length > 1) return define(field, accessor, mods);
+  if (field && accessor) return define(field, accessor, mods);
   else return define;
 }

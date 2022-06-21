@@ -13,7 +13,7 @@ export const accessorGet = {
 export const accessorSet = {
   _a: 0,
 
-  set a(val) {
+  set a(val: number) {
     this._a = val;
   },
 };
