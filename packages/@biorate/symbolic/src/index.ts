@@ -79,7 +79,11 @@ export const Global = (() => {
     }
 
     // @ts-ignore
-    public apply(target: Function & { [key: string]: symbol }, thisArg, argumentsList) {
+    public apply(
+      target: Function & { [key: string]: symbol },
+      thisArg: any,
+      argumentsList: any[],
+    ) {
       // @ts-ignore
       return new Proxy(function () {}, new Proxify(...argumentsList));
     }
