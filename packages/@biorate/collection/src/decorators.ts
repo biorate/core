@@ -56,9 +56,9 @@ export function embed(type: any) {
  * Decorator that realize singletone pattern
  * @example
  * ```ts
- * import { singletone } from '@biorate/collection';
+ * import { singleton } from '@biorate/collection';
  *
- * @singletone()
+ * @singleton()
  * class Test {}
  *
  * const a = new Test();
@@ -67,7 +67,7 @@ export function embed(type: any) {
  * console.log(a === b); // true
  * ```
  */
-export function singletone() {
+export function singleton() {
   return (Class: any) =>
     new Proxy(
       Class,
@@ -82,3 +82,10 @@ export function singletone() {
       })(),
     );
 }
+
+/**
+ * @deprecated
+ * @description
+ * Backward capability
+ */
+export const singletone = singleton;

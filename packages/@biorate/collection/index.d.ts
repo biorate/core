@@ -90,5 +90,5 @@ declare module '@biorate/collection' {
     descriptor?: PropertyDescriptor,
   ) => void;
 
-  export function singletone(): (Class: Ctor) => void;
+  export function singleton(): (Class: Ctor) => void;
 }
