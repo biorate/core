@@ -70,23 +70,25 @@ declare module '@biorate/collection' {
     target: Object,
     key: string | symbol,
     descriptor?: PropertyDescriptor,
-  ) => unknown;
+  ) => void;
 
   export function action(): (
     target: Object,
     key: string | symbol,
     descriptor?: PropertyDescriptor,
-  ) => unknown;
+  ) => void;
 
   export function computed(): (
     target: Object,
     key: string | symbol,
     descriptor?: PropertyDescriptor,
-  ) => unknown;
+  ) => void;
 
-  export function embed(type: any): void;
+  export function embed(type: any): (
+    target: Object,
+    key: string | symbol,
+    descriptor?: PropertyDescriptor,
+  ) => void;
 
-  export function inject(Class: Ctor): void;
-
-  export function singletone(): void;
+  export function singletone(): (Class: Ctor) => void;
 }
