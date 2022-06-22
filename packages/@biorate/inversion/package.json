@@ -1,6 +1,6 @@
 {
   "name": "@biorate/inversion",
-  "version": "0.30.0",
+  "version": "0.30.2",
   "description": "IoC core module build on InversifyJS",
   "main": "dist",
   "scripts": {
@@ -21,9 +21,9 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/lifecycled": "0.30.0",
-    "@biorate/symbolic": "0.30.0",
-    "@biorate/tools": "0.30.0",
+    "@biorate/lifecycled": "0.30.2",
+    "@biorate/symbolic": "0.30.2",
+    "@biorate/tools": "0.30.2",
     "async-exit-hook": "^2.0.1",
     "inversify": "^5.1.1",
     "inversify-inject-decorators": "^3.1.0",

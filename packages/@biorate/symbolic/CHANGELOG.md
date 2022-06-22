@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.2](https://github.com/biorate/core/compare/v0.30.1...v0.30.2) (2022-06-22)
+
+
+### Bug Fixes
+
+* **symbolic:** strict ([0118907](https://github.com/biorate/core/commit/0118907e051b44a24249825a23cd37c4b56074cd))
+
+
+
+
+
 # [0.30.0](https://github.com/biorate/core/compare/v0.29.1...v0.30.0) (2022-06-20)
 
 
