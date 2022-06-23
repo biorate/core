@@ -9,9 +9,9 @@ export { Types } from './labels';
 
 export { init, kill, on } from '@biorate/lifecycled';
 
-export function factory(Type, Child, Parent, Root) {
+export function factory(Type: Object, Child: Object, Parent: Object, Root: Object) {
   addMetadata(Metadata.Factory, {}, null, Child);
-  container.bind(Type).toFactory((context: any) => (...args) => {
+  container.bind(Type).toFactory((context: any) => (...args: unknown[]) => {
     const item = context.container.get(Child);
     Reflect.defineMetadata(Metadata.Args, args, item);
     item.$promise = item.$run(container.get(Root), container.get(Parent));

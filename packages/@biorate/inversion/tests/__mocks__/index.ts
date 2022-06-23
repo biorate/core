@@ -1,9 +1,11 @@
 import { EventEmitter } from 'events';
+import { Done } from 'mocha';
 import { Core, init, injectable, inject, container, on, kill } from '../../src';
 
+// @ts-ignore
 Core.log = null;
 
-export function initialize(done) {
+export function initialize(done: Done) {
   class One extends Core() {
     @init() public initialize() {
       done();
@@ -14,7 +16,7 @@ export function initialize(done) {
 
 export const override = {
   simple: {
-    child(done) {
+    child(done: Done) {
       class One extends Core() {
         @init() public initialize() {
           done(new Error('[initialize] called twice'));
@@ -30,7 +32,7 @@ export const override = {
       return new Two();
     },
 
-    parent(done) {
+    parent(done: Done) {
       class One extends Core() {
         @init() public initialize() {
           done();
@@ -48,7 +50,7 @@ export const override = {
   },
 
   undeclared: {
-    child(done) {
+    child(done: Done) {
       class One extends Core() {
         @init() public initialize() {
           done();
@@ -64,7 +66,7 @@ export const override = {
       return new Two();
     },
 
-    parent(done) {
+    parent(done: Done) {
       class One extends Core() {
         public initialize() {
           throw new Error('[initialize] called undeclared');
@@ -81,7 +83,7 @@ export const override = {
     },
   },
 
-  triple(done) {
+  triple(done: Done) {
     class One extends Core() {
       @init() public initialize() {
         done(new Error('[initialize] called twice'));
@@ -151,7 +153,7 @@ export const inherits = {
 };
 
 export async function composition() {
-  const result = [];
+  const result: string[] = [];
   @injectable()
   class One {
     @init() public initialize() {
@@ -171,9 +173,9 @@ export async function composition() {
     }
   }
   class Root extends Core() {
-    @inject(One) public one;
-    @inject(Two) public two;
-    @inject(Three) public three;
+    @inject(One) public one: One;
+    @inject(Two) public two: Two;
+    @inject(Three) public three: Three;
   }
   container.bind(One).toSelf();
   container.bind(Two).toSelf();
@@ -208,7 +210,7 @@ export async function multiinit(): Promise<[string[], string[]]> {
 }
 
 export const events = {
-  simple(done) {
+  simple(done: Done) {
     const event = 'test';
     class One extends Core(EventEmitter) {
       @on(event) public test() {
@@ -220,7 +222,7 @@ export const events = {
   },
 
   override: {
-    child(done) {
+    child(done: Done) {
       const event = 'test';
       class One extends Core(EventEmitter) {
         @on(event) test() {
@@ -236,7 +238,7 @@ export const events = {
       obj.$run().then(() => obj.emit(event));
     },
 
-    parent(done) {
+    parent(done: Done) {
       const event = 'test';
       class One extends Core(EventEmitter) {
         @on(event) test() {
@@ -254,7 +256,7 @@ export const events = {
   },
 
   undeclared: {
-    child(done) {
+    child(done: Done) {
       const event = 'test';
       class One extends Core(EventEmitter) {
         @on(event) test() {
@@ -270,7 +272,7 @@ export const events = {
       obj.$run().then(() => obj.emit(event));
     },
 
-    parent(done) {
+    parent(done: Done) {
       const event = 'test';
       class One extends Core(EventEmitter) {
         @on(event) test() {

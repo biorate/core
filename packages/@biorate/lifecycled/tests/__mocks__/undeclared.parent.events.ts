@@ -1,7 +1,8 @@
 import { EventEmitter } from 'events';
+import { Done } from 'mocha';
 import { lifecycled, on } from '../../src';
 
-export function undeclaredParentEvents(done) {
+export function undeclaredParentEvents(done: Done) {
   const event = 'test';
   class One extends EventEmitter {
     @on(event) test() {

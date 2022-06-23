@@ -1,6 +1,7 @@
+import { Done } from 'mocha';
 import { lifecycled, init, kill } from '../../src';
 
-export function initOverrideParent(done) {
+export function initOverrideParent(done: Done) {
   class Uno {
     @init() public initialize() {
       done();

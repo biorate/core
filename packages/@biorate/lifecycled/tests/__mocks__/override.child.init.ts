@@ -1,6 +1,7 @@
+import { Done } from 'mocha';
 import { lifecycled, init } from '../../src';
 
-export function initOverrideChild(done) {
+export function initOverrideChild(done: Done) {
   class Uno {
     @init() public initialize() {
       done(new Error('[initialize] called twice'));

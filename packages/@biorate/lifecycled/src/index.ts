@@ -12,13 +12,13 @@ class Metadata {
   protected static metadata = Symbol.for('lifecircle.metadata');
 
   public static get(
-    constructor,
+    constructor: Object,
   ): Set<{ key: number; field: string; descriptor: PropertyDescriptor }> {
     return Reflect.getOwnMetadata(this.metadata, constructor);
   }
 
   public static add(
-    constructor,
+    constructor: Object,
     key: number,
     field: string,
     descriptor: PropertyDescriptor,
@@ -33,8 +33,8 @@ class Metadata {
 
 class Lifecycled {
   private static processed = Symbol.for('lifecycled.processed');
-  #initialize = [];
-  #destructors = [];
+  #initialize: { object: any; fn: () => void }[] = [];
+  #destructors: { object: any; fn: () => void }[] = [];
   #onInitCb = (object: {}) => {};
   #onKillCb = (object: {}) => {};
 
@@ -46,7 +46,7 @@ class Lifecycled {
       : env.globalThis.addEventListener('beforeunload', this.#onKill);
   }
 
-  private check(field: string, object: {}, parent = null) {
+  private check(field: string, object: any, parent = null) {
     if (o.isAccessor(object, field)) return false;
     if (typeof object[field] !== 'object') return false;
     if (!object[field]) return false;
@@ -56,14 +56,14 @@ class Lifecycled {
     return true;
   }
 
-  private invoke(object: {}, parent = null) {
+  private invoke(object: any, parent = null) {
     for (const field in object)
       if (this.check(field, object, parent)) this.invoke(object[field], object);
     this.call(object, parent);
   }
 
-  private call(object: {}, parent = null) {
-    let items = [];
+  private call(object: any, parent = null) {
+    let items: { key: number; field: string; descriptor: PropertyDescriptor }[] = [];
     if (Reflect.getMetadata(Lifecycled.processed, object)) return;
     Reflect.defineMetadata(Lifecycled.processed, true, object);
     o.walkProto(object, (object) => {
@@ -76,7 +76,7 @@ class Lifecycled {
   }
 
   private apply(
-    object: { on?: (event: string, cb: () => {}) => {} },
+    object: any,
     items: {
       key: number;
       field: string;
@@ -127,7 +127,11 @@ class Lifecycled {
 
 function decorator(type: number) {
   return (data?: Record<string, unknown>) =>
-    ({ constructor }, field: string, descriptor: PropertyDescriptor) =>
+    (
+      { constructor }: { constructor: Object },
+      field: string,
+      descriptor: PropertyDescriptor,
+    ) =>
       Metadata.add(constructor, type, field, descriptor, data);
 }
 
@@ -207,5 +211,9 @@ export const kill = decorator(Lifecircles.kill);
  * */
 export const on =
   (event: string) =>
-  ({ constructor }, field: string, descriptor: PropertyDescriptor) =>
+  (
+    { constructor }: { constructor: Object },
+    field: string,
+    descriptor: PropertyDescriptor,
+  ) =>
     Metadata.add(constructor, Lifecircles.on, field, descriptor, { event });

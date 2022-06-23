@@ -1,7 +1,8 @@
 import { EventEmitter } from 'events';
+import { Done } from 'mocha';
 import { lifecycled, on } from '../../src';
 
-export function overrideChildEvents(done) {
+export function overrideChildEvents(done: Done) {
   const event = 'test';
   class One extends EventEmitter {
     @on(event) test() {

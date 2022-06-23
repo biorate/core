@@ -1,6 +1,7 @@
+import { Done } from 'mocha';
 import { lifecycled, init } from '../../src';
 
-export function initUndeclaredChild(done) {
+export function initUndeclaredChild(done: Done) {
   class One {
     @init() public initialize() {
       done();
