@@ -64,6 +64,7 @@ export class Config implements IConfig {
     const result = get(this.data, path);
     switch (typeof result) {
       case 'string':
+        // @ts-ignore
         return this.template(result);
       case 'object':
         return result ? this.templatize(result) : result;
