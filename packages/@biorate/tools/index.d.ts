@@ -1,6 +1,13 @@
 import { IDefine } from './interfaces';
+import { globalThis, isServer } from './src/env';
 
 declare module '@biorate/tools' {
+  export namespace env {
+    export const globalThis: any;
+
+    export const isServer: boolean;
+  }
+
   export namespace path {
     export function dirname(filepath: string, full?: boolean): string;
 
