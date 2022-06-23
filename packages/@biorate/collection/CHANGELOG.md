@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.6](https://github.com/biorate/core/compare/v0.30.5...v0.30.6) (2022-06-23)
+
+**Note:** Version bump only for package @biorate/collection
+
+
+
+
+
 ## [0.30.3](https://github.com/biorate/core/compare/v0.30.2...v0.30.3) (2022-06-22)
 
 
