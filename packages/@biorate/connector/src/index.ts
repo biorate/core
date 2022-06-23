@@ -63,7 +63,7 @@ export abstract class Connector<C extends IConnectorConfig, T = unknown>
   /**
    * @description Private link to selected (used) connection
    */
-  #current: T = null;
+  #current: T | undefined = undefined;
   /**
    * @description Config dependency
    */

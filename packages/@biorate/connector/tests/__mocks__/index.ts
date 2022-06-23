@@ -13,7 +13,7 @@ export class Connection {
 export class TestConnector extends Connector<IConnectorConfig, Connection> {
   protected namespace = 'TestConnector';
 
-  protected async connect(config) {
+  protected async connect(config: IConnectorConfig) {
     return new Connection(config.name);
   }
 }
