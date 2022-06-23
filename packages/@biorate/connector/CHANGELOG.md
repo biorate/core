@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.8](https://github.com/biorate/core/compare/v0.30.7...v0.30.8) (2022-06-23)
+
+
+### Bug Fixes
+
+* **connector:** strict types ([a6691da](https://github.com/biorate/core/commit/a6691da2eac771c72680804d5386585ec3461c4d))
+
+
+
+
+
 ## [0.30.7](https://github.com/biorate/core/compare/v0.30.6...v0.30.7) (2022-06-23)
 
 **Note:** Version bump only for package @biorate/connector
