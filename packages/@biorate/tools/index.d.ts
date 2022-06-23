@@ -17,6 +17,8 @@ declare module '@biorate/tools' {
     export function walkProto(object: any, callback?: (object: any) => void): void;
 
     export function kSort(object: {}): {};
+
+    export function isAccessor(object: any, field: string): boolean;
   }
 
   export namespace define {
