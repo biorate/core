@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.4](https://github.com/biorate/core/compare/v0.30.3...v0.30.4) (2022-06-23)
+
+
+### Bug Fixes
+
+* **inversion, lifecicled:** strict ([9a6ecc6](https://github.com/biorate/core/commit/9a6ecc6069118adbe1913ff308f19f76b1109c7b))
+
+
+
+
+
 ## [0.30.2](https://github.com/biorate/core/compare/v0.30.1...v0.30.2) (2022-06-22)
 
 **Note:** Version bump only for package @biorate/inversion
