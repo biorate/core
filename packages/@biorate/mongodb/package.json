@@ -32,5 +32,6 @@
     "@typegoose/typegoose": "^9.8.1",
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.1"
-  }
+  },
+  "gitHead": "cab85ab89357254f08ec4bde4a1c3e47984d27f6"
 }

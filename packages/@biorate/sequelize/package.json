@@ -33,5 +33,6 @@
   },
   "devDependencies": {
     "sqlite3": "^5.0.7"
-  }
+  },
+  "gitHead": "cab85ab89357254f08ec4bde4a1c3e47984d27f6"
 }
