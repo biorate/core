@@ -1,6 +1,7 @@
 import { omit, pick } from 'lodash';
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import retry, { IAxiosRetryConfig } from 'axios-retry';
+// @ts-ignore
 import * as pathToUrl from 'path-to-url';
 import { IAxiosFetchOptions } from './interfaces';
 
@@ -46,8 +47,8 @@ export class Axios {
   /**
    * @description Fetch static method
    */
-  public static fetch(...args: unknown[]) {
-    return this._fetch(...args);
+  public static fetch(options?: any) {
+    return this._fetch(options);
   }
   /**
    * @description Protected fetch static method
@@ -56,12 +57,13 @@ export class Axios {
     options?: IAxiosFetchOptions,
   ): Promise<AxiosResponse<D>> {
     if (!this.cache.has(this)) this.cache.set(this, new this());
+    // @ts-ignore
     return this.cache.get(this).fetch<D>(options);
   }
   /**
    * @description Axios client cache
    */
-  #client: AxiosInstance;
+  #client: AxiosInstance | undefined;
   /**
    * @description Fetch method
    */
@@ -81,8 +83,9 @@ export class Axios {
     try {
       await this.before(params);
       return await this.#client(params);
-    } catch (e) {
-      await this.catch(e);
+    } catch (e: unknown) {
+      await this.catch(<Error>e);
+      throw e;
     } finally {
       await this.finally();
     }
@@ -95,9 +98,7 @@ export class Axios {
   /**
    * @description Catch hook
    */
-  protected async catch(e: Error) {
-    throw e;
-  }
+  protected async catch(e: Error) {}
   /**
    * @description Finally hook
    */

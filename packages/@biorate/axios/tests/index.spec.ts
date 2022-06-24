@@ -6,7 +6,7 @@ describe('@biorate/axios', function () {
 
   it('catch', (done) => {
     class Catch extends Yandex {
-      protected async catch(e) {
+      protected async catch(e: Error) {
         done();
       }
     }
