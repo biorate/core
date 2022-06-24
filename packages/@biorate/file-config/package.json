@@ -1,6 +1,6 @@
 {
   "name": "@biorate/file-config",
-  "version": "0.30.11",
+  "version": "0.30.14",
   "description": "Module for configuring the application using files",
   "main": "dist",
   "scripts": {
