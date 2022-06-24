@@ -72,12 +72,12 @@ export class SchemaRegistryConnector extends Connector<
   ISchemaRegistryConnection
 > {
   protected readonly namespace = 'SchemaRegistry';
-  protected async connect(config) {
+  protected async connect(config: ISchemaRegistryConfig) {
     const connection = create(config);
     try {
       await connection.ping();
-    } catch (e) {
-      throw new SchemaRegistryCantConnectError(e);
+    } catch (e: unknown) {
+      throw new SchemaRegistryCantConnectError(<Error>e);
     }
     return connection;
   }

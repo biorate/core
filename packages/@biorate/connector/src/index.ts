@@ -1,7 +1,10 @@
 import { init, inject, injectable, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { IConnector, IConnectorConfig } from './interfaces';
-import { ConnectorConnectionNotExistsError } from './errors';
+import {
+  ConnectorConnectionNotExistsError,
+  ConnectorEmptyConnectionsError,
+} from './errors';
 export * from './errors';
 export * from './interfaces';
 
@@ -99,11 +102,14 @@ export abstract class Connector<C extends IConnectorConfig, T = unknown>
   /**
    * @description Method for get existed the connection
    */
-  public connection(name?: string) {
-    if (!name) return this.#current;
+  public connection(name?: string): T {
+    if (!this.#connections.size)
+      throw new ConnectorEmptyConnectionsError(this.constructor.name);
+    if (!name)
+      return <T>this.#current;
     if (!this.#connections.has(name))
       throw new ConnectorConnectionNotExistsError(this.constructor.name, name);
-    return this.#connections.get(name);
+    return <T>this.#connections.get(name);
   }
   /**
    * @description Alias for connection method
