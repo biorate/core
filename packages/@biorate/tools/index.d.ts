@@ -2,6 +2,25 @@ import { IDefine } from './interfaces';
 import { globalThis, isServer } from './src/env';
 
 declare module '@biorate/tools' {
+  export namespace buffer {
+    export const MAX_UINT29: number;
+
+    export const MIN_UINT29: number;
+
+    export function writeUInt29(buffer: Buffer, value: number, offset?: number): number;
+
+    export function readUInt29(buffer: Buffer, offset?: number): number;
+
+    export function uInt29BytesLength(value: number): number;
+  }
+
+  export namespace events {
+    export function once(
+      object: { once: (event: string, callback: (...args: unknown[]) => void) => void },
+      event: string,
+    ): Promise<unknown>;
+  }
+
   export namespace env {
     export const globalThis: any;
 
@@ -50,5 +69,13 @@ declare module '@biorate/tools' {
       accessor: IDefine.Accessor,
       mods?: IDefine.Mods,
     ) => (field: PropertyKey, accessor: IDefine.Accessor, mods?: IDefine.Mods) => any;
+  }
+
+  export namespace timer {
+    export function wait(timeout?: number): Promise<void>;
+
+    export function tick(): Promise<void>;
+
+    export function immediate(): Promise<void>;
   }
 }
