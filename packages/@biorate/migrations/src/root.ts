@@ -12,4 +12,5 @@ export class Root extends Core() {
   }
 }
 
+// @ts-ignore
 Core.log = null;

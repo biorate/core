@@ -16,6 +16,10 @@ export class Sequelize extends Migration {
       const paths = await this.scan(config.name);
       if (!paths.length) continue;
       const connection = this.sequelize.connection(config.name);
+      if (!connection) {
+        console.info(`Sequelize connection [%s] not exists, skip...`, config.name);
+        continue;
+      }
       const model = connection.define(
         this.config.get<string>('migrations.tableName', 'migrations'),
         {
