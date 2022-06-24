@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.17](https://github.com/biorate/core/compare/v0.30.16...v0.30.17) (2022-06-24)
+
+
+### Bug Fixes
+
+* **connector, schema-registry:** strict ([5714899](https://github.com/biorate/core/commit/5714899a82ed95b9d252369971ab99982d70b9c3))
+
+
+
+
+
 ## [0.30.16](https://github.com/biorate/core/compare/v0.30.15...v0.30.16) (2022-06-24)
 
 **Note:** Version bump only for package @biorate/schema-registry

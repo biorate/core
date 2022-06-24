@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "0.30.14",
+  "version": "0.30.17",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {
@@ -27,7 +27,7 @@
     "@biorate/errors": "0.30.2",
     "@biorate/file-config": "0.30.14",
     "@biorate/inversion": "0.30.7",
-    "@biorate/sequelize": "0.30.14",
+    "@biorate/sequelize": "0.30.17",
     "@biorate/tools": "0.30.7"
   },
   "gitHead": "ac9adc5072a48f2ebd61a48fdaf09a1ec6f3ab99"
