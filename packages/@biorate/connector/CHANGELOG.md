@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.18](https://github.com/biorate/core/compare/v0.30.17...v0.30.18) (2022-06-24)
+
+
+### Bug Fixes
+
+* **promentheus:** strict ([ed4695f](https://github.com/biorate/core/commit/ed4695ff837894d9333c98d7b04a30fb433952e5))
+
+
+
+
+
 ## [0.30.17](https://github.com/biorate/core/compare/v0.30.16...v0.30.17) (2022-06-24)
 
 

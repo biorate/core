@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.18](https://github.com/biorate/core/compare/v0.30.17...v0.30.18) (2022-06-24)
+
+**Note:** Version bump only for package @biorate/react-virtual-table
+
+
+
+
+
 ## [0.30.7](https://github.com/biorate/core/compare/v0.30.6...v0.30.7) (2022-06-23)
 
 **Note:** Version bump only for package @biorate/react-virtual-table
