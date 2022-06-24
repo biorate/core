@@ -3,7 +3,7 @@ import { events } from '@biorate/tools';
 import { Connector } from '@biorate/connector';
 import { createConnection } from 'mongoose';
 import { getModelForClass } from '@typegoose/typegoose';
-import { MongoDBCantConnectError } from './errors';
+import { MongoDBCantConnectError, MongoDBConnectionNotExistsError } from './errors';
 import { IMongoDBConfig, IMongoDBConnection } from './interfaces';
 
 export * from './errors';
@@ -111,8 +111,8 @@ export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnecti
     try {
       connection = createConnection(config.host, config.options);
       await events.once(connection, 'open');
-    } catch (e) {
-      throw new MongoDBCantConnectError(e);
+    } catch (e: unknown) {
+      throw new MongoDBCantConnectError(<Error>e);
     }
     return connection;
   }
@@ -127,7 +127,7 @@ export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnecti
 /**
  * @description Private connections link
  */
-let connections: Map<string, IMongoDBConnection> = null;
+let connections: Map<string, IMongoDBConnection> | null = null;
 /**
  * @description Model injection decorator
  */
@@ -136,13 +136,17 @@ export const model = <T = unknown>(
   connection?: string,
   options: Record<string, unknown> = {},
 ) => {
-  return (proto?: any, key?: string) => {
+  return (proto: any, key: string) => {
     Object.defineProperty(proto, key, {
       get() {
+        const existingConnection = connection
+          ? connections?.get(connection)
+          : connections
+          ? [...connections][0][1]
+          : null;
+        if (!existingConnection) throw new MongoDBConnectionNotExistsError(connection);
         return getModelForClass(Model, {
-          existingConnection: connection
-            ? connections.get(connection)
-            : [...connections][0][1],
+          existingConnection,
           options,
         });
       },

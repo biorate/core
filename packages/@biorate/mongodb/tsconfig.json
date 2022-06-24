@@ -1,6 +1,9 @@
 {
   "extends": "../../../tsconfig.json",
-  "compilerOptions": {},
+  "compilerOptions": {
+    "strict": true,
+    "strictPropertyInitialization": false
+  },
   "include": ["index.ts", "src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]
 }

@@ -5,3 +5,9 @@ export class MongoDBCantConnectError extends BaseError {
     super(`Can't connect to MongoDB: [%s]`, [e.message]);
   }
 }
+
+export class MongoDBConnectionNotExistsError extends BaseError {
+  public constructor(name?: string) {
+    super(`MongoDB connection not exists: [%s]`, [name]);
+  }
+}

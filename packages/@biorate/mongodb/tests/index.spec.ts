@@ -9,15 +9,15 @@ describe('@biorate/mongodb', function () {
   before(async () => {
     root = container.get<Root>(Root);
     await root.$run();
-    await root.connector.connection().dropDatabase();
+    await root.connector.connection()?.dropDatabase();
   });
 
   after(async () => {
-    await root.connector.connection().dropDatabase();
+    await root.connector.connection()?.dropDatabase();
   });
 
   it('connection access', () =>
-    expect(root.connector.connection('connection').name).toMatchSnapshot());
+    expect(root.connector.connection('connection')?.name).toMatchSnapshot());
 
   it('insert into test collection', async () => {
     const data = await new root.test({
