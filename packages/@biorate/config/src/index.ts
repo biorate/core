@@ -61,11 +61,10 @@ export class Config implements IConfig {
       if (def === undefined) throw new UndefinedConfigPathError(path);
       return def;
     }
-    const result = get(this.data, path);
+    const result: any = get(this.data, path);
     switch (typeof result) {
       case 'string':
-        // @ts-ignore
-        return this.template(result);
+        return <T>(<unknown>this.template(result));
       case 'object':
         return result ? this.templatize(result) : result;
       default:
