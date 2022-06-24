@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.13](https://github.com/biorate/core/compare/v0.30.12...v0.30.13) (2022-06-24)
+
+
+### Bug Fixes
+
+* **migrations:** strict ([e0c7e55](https://github.com/biorate/core/commit/e0c7e55080753badbd6536d06e6a401b51f37862))
+
+
+
+
+
 ## [0.30.11](https://github.com/biorate/core/compare/v0.30.10...v0.30.11) (2022-06-24)
 
 **Note:** Version bump only for package @biorate/migrations
