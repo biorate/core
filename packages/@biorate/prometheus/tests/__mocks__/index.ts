@@ -17,6 +17,7 @@ import {
 
 use(jestSnapshotPlugin());
 
+// @ts-ignore
 Core.log = null;
 
 export class Root extends Core() {
