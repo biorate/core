@@ -8,7 +8,7 @@ let tempPos = 0;
 let encodeCounter = 0;
 
 // Storage for string reference encoding
-let encodeCache = {};
+let encodeCache: Record<string, number> = {};
 
 // Storage for string reference decoding
 let decodeCache: string[] = [];
@@ -169,7 +169,7 @@ function writeArray(value: unknown[]) {
  * @description Write object to internal buffer
  * @param {Object} value - Object to write
  */
-function writeObject(value: {}) {
+function writeObject(value: Record<string, unknown>) {
   writeByte(10);
   writeInt(11, false);
   writeString('', false);
@@ -177,8 +177,8 @@ function writeObject(value: {}) {
   let keys = Object.keys(value);
 
   for (let i = 0, l = keys.length; i < l; ++i) {
-    var name = keys[i];
-    var item = value[name];
+    let name = keys[i];
+    let item = value[name];
 
     // For consistency, we should remove this check
     // But objects frequently have methods
@@ -331,7 +331,7 @@ function readObject(buffer: Buffer) {
   readInt(buffer);
   readString(buffer);
 
-  let result = {};
+  let result: Record<string, unknown> = {};
 
   while ((name = readString(buffer))) result[name] = readValue(buffer);
 
