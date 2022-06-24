@@ -106,8 +106,8 @@ export class SequelizeConnector extends Connector<
       config.options.models = this.models[config.name] ?? [];
       connection = new Sequelize(config.options);
       await connection.authenticate();
-    } catch (e) {
-      throw new SequelizeCantConnectError(e);
+    } catch (e: unknown) {
+      throw new SequelizeCantConnectError(<Error>e);
     }
     return connection;
   }

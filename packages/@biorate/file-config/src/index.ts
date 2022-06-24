@@ -91,12 +91,12 @@ export class FileConfig extends Config {
     return this;
   }
 
-  protected load(file: string, namespace: string = null) {
+  protected load(file: string, namespace?: string) {
     try {
       const data = JSON.parse(readFileSync(`${FileConfig._root}/${file}.json`, 'utf-8'));
       this.merge(namespace ? { [namespace]: data } : data);
-    } catch (e) {
-      console.warn(new ConfigFileNotFoundPathError(file, e.message).message);
+    } catch (e: unknown) {
+      console.warn(new ConfigFileNotFoundPathError(file, (<Error>e).message).message);
     }
   }
 
