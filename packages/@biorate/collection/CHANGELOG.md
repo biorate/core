@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/biorate/core/compare/v1.1.0...v1.2.0) (2022-07-10)
+
+
+### Features
+
+* **collection:** private members cleanup ([28ba5fa](https://github.com/biorate/core/commit/28ba5fa6b3c0e2235d36c3b4cbd01b16190e9a8f))
+
+
+
+
+
 # [1.1.0](https://github.com/biorate/core/compare/v1.0.0...v1.1.0) (2022-07-10)
 
 
