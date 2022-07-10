@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/biorate/core/compare/v1.0.0...v1.1.0) (2022-07-10)
+
+
+### Features
+
+* **collection:** observable restore, interface fix, private members removed ([a4fa9fc](https://github.com/biorate/core/commit/a4fa9fc644edb384afbfbdeb57bdd9724ecc6e20))
+
+
+
+
+
 # [1.0.0](https://github.com/biorate/core/compare/v0.30.19...v1.0.0) (2022-07-10)
 
 
