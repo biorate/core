@@ -1,11 +1,11 @@
 import * as collection from '../../src';
 import { create } from '@biorate/symbolic';
 import { DateTime } from 'luxon';
-const { embed, singletone } = collection;
+const { embed, singleton } = collection;
 
 export const Types = create('Types');
 
-@singletone()
+@singleton()
 export class Binded {}
 
 export class Nested extends collection.Item {

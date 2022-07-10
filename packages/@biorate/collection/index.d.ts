@@ -68,24 +68,6 @@ declare module '@biorate/collection' {
     public get parent(): P;
   }
 
-  export function observable(): (
-    target: Object,
-    key: string | symbol,
-    descriptor?: PropertyDescriptor,
-  ) => void;
-
-  export function action(): (
-    target: Object,
-    key: string | symbol,
-    descriptor?: PropertyDescriptor,
-  ) => void;
-
-  export function computed(): (
-    target: Object,
-    key: string | symbol,
-    descriptor?: PropertyDescriptor,
-  ) => void;
-
   export function embed(
     type: any,
   ): (target: Object, key: string | symbol, descriptor?: PropertyDescriptor) => void;
