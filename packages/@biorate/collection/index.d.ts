@@ -63,6 +63,8 @@ declare module '@biorate/collection' {
 
     public initialize(data?: Record<string, any>): this;
 
+    public set(data: Record<string, any>): this;
+
     public get parent(): P;
   }
 
@@ -84,11 +86,9 @@ declare module '@biorate/collection' {
     descriptor?: PropertyDescriptor,
   ) => void;
 
-  export function embed(type: any): (
-    target: Object,
-    key: string | symbol,
-    descriptor?: PropertyDescriptor,
-  ) => void;
+  export function embed(
+    type: any,
+  ): (target: Object, key: string | symbol, descriptor?: PropertyDescriptor) => void;
 
   export function singleton(): (Class: Ctor) => void;
 }
