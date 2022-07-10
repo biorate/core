@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/biorate/core/compare/v0.30.19...v1.0.0) (2022-07-10)
+
+**Note:** Version bump only for package @biorate/amf
+
+
+
+
+
 ## [0.30.15](https://github.com/biorate/core/compare/v0.30.14...v0.30.15) (2022-06-24)
 
 

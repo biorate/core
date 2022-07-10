@@ -1,6 +1,6 @@
 {
   "name": "@biorate/collection",
-  "version": "0.30.19",
+  "version": "1.0.0",
   "description": "Collection",
   "main": "dist",
   "scripts": {
@@ -30,9 +30,9 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/errors": "0.30.2",
-    "@biorate/symbolic": "0.30.19",
-    "@biorate/tools": "0.30.19",
+    "@biorate/errors": "1.0.0",
+    "@biorate/symbolic": "1.0.0",
+    "@biorate/tools": "1.0.0",
     "lodash": "^4.17.21",
     "luxon": "^1.27.0",
     "reflect-metadata": "^0.1.13"

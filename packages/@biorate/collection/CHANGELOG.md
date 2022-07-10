@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/biorate/core/compare/v0.30.19...v1.0.0) (2022-07-10)
+
+
+### Bug Fixes
+
+* **collection:** observable / mobx removed ([86e8c7c](https://github.com/biorate/core/commit/86e8c7c34f9fb86567330beb4bac73be143144b0))
+
+
+### BREAKING CHANGES
+
+* **collection:** collection - observable (mobx) functionality removed
+
+
+
+
+
 ## [0.30.19](https://github.com/biorate/core/compare/v0.30.18...v0.30.19) (2022-07-10)
 
 
