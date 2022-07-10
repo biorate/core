@@ -1,8 +1,11 @@
 import { define } from '@biorate/tools';
 import { Props } from './symbols';
 import { CollectionListItemAlreadyExistsError } from './errors';
-import { ICollection } from '../interfaces';
-import { Ctor } from './types';
+import { Ctor, ICollection } from '../interfaces';
+
+const _map = Symbol('#map');
+const _set = Symbol('#set');
+const _processed = Symbol('#processed');
 
 /**
  * @description
@@ -80,18 +83,18 @@ export abstract class List<I = any, P = { parent?: any }> {
   /**
    * @description Key combinations storage
    */
-  #map = new Map<string, I>();
+  [_map] = new Map<string, I>();
 
   /**
    * @description Unique items storage
    */
-  #set = new Set<I>();
+  [_set] = new Set<I>();
 
   /**
    * @description Current processing item alias,
    * useful for dynamic class substitution in **_Item** getter
    */
-  #processed: Record<string, any> = null;
+  [_processed]: Record<string, any> = null;
 
   /**
    * @param items - initialization items
@@ -162,21 +165,21 @@ export abstract class List<I = any, P = { parent?: any }> {
    * ```
    */
   *[Symbol.iterator](): Generator<I> {
-    for (const item of this.#set) yield item;
+    for (const item of this[_set]) yield item;
   }
 
   /**
    * @description Getter alias for unique items storage (for internal usage)
    */
   protected get _set() {
-    return this.#set;
+    return this[_set];
   }
 
   /**
    * @description Setter alias for unique items storage (for internal usage)
    */
   protected set _set(value) {
-    this.#set = value;
+    this[_set] = value;
   }
 
   /**
@@ -270,7 +273,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * ```
    */
   public get size() {
-    return this.#set.size;
+    return this[_set].size;
   }
 
   /**
@@ -310,8 +313,8 @@ export abstract class List<I = any, P = { parent?: any }> {
    * console.log(list.find(3)); // Three { id: 3, type: 'Three' }
    * ```
    */
-  public get processed() {
-    return this.#processed;
+  public get _processed() {
+    return this[_processed];
   }
 
   /**
@@ -325,19 +328,19 @@ export abstract class List<I = any, P = { parent?: any }> {
   public set(...args: any[]): I[] {
     const result = [];
     for (let item of args) {
-      this.#processed = item;
+      this[_processed] = item;
       if (this._Item) {
         let instance = new this._Item(item, this) as { initialize?: (item: any) => {} };
         instance.initialize?.(item);
         item = instance;
       }
-      this.#processed = null;
+      this[_processed] = null;
       for (const key of this.#indexer(item)) {
-        if (this.#map.has(key))
+        if (this[_map].has(key))
           throw new CollectionListItemAlreadyExistsError(this.constructor.name, key);
-        this.#map.set(key, item);
+        this[_map].set(key, item);
       }
-      this.#set.add(item);
+      this[_set].add(item);
       result.push(item);
     }
     return result;
@@ -378,7 +381,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    */
   public find(...args: any[]): I | undefined {
     for (const key of this.#indexer(args))
-      if (this.#map.has(key)) return this.#map.get(key);
+      if (this[_map].has(key)) return this[_map].get(key);
   }
 
   /**
@@ -393,7 +396,7 @@ export abstract class List<I = any, P = { parent?: any }> {
   public get(...args: any[]): I[] {
     const result = [];
     for (const key of this.#indexer(args)) {
-      const item = this.#map.get(key);
+      const item = this[_map].get(key);
       if (item && !~result.indexOf(item)) result.push(item);
     }
     return result;
@@ -410,7 +413,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * ```
    */
   public has(...args: any[]) {
-    for (const key of this.#indexer(args)) if (this.#map.has(key)) return true;
+    for (const key of this.#indexer(args)) if (this[_map].has(key)) return true;
     return false;
   }
 
@@ -430,8 +433,8 @@ export abstract class List<I = any, P = { parent?: any }> {
     if (!items.length) return false;
     for (const item of items) {
       isIndexed = Props.Index in item;
-      this.#set.delete(item);
-      for (const key of this.#indexer(item)) this.#map.delete(key);
+      this[_set].delete(item);
+      for (const key of this.#indexer(item)) this[_map].delete(key);
     }
     if (isIndexed) this.#reindex();
     return true;
@@ -448,7 +451,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * ```
    */
   public clear() {
-    this.#map.clear();
-    this.#set.clear();
+    this[_map].clear();
+    this[_set].clear();
   }
 }

@@ -3,6 +3,12 @@ import { define } from '@biorate/tools';
 import { DateTime } from 'luxon';
 import { isObject } from 'lodash';
 import { Props, Types } from './symbols';
+import { action } from './decorators';
+
+const _defineClass = Symbol('#defineClass');
+const _setType = Symbol('#setType');
+const _getType = Symbol('#getType');
+const _setData = Symbol('#setData');
 
 /**
  * @description
@@ -131,7 +137,7 @@ export abstract class Item<P = { parent?: any }> {
    * @param field - object field
    * @param Class - Instance class
    * */
-  #defineClass = (
+  [_defineClass] = (
     data: Record<string, any>,
     field: string,
     Class: new (...args: any[]) => any,
@@ -145,7 +151,7 @@ export abstract class Item<P = { parent?: any }> {
    * @param data - data object
    * @param field - object field
    * */
-  #setType = (data: Record<string, any>, field: string) => {
+  [_setType] = (data: Record<string, any>, field: string) => {
     if (!(field in this[Props.types])) this[Props.types][field] = this[field];
   };
 
@@ -154,7 +160,7 @@ export abstract class Item<P = { parent?: any }> {
    * @param data - data object
    * @param field - object field
    * */
-  #getType = (data: Record<string, any>, field: string) => {
+  [_getType] = (data: Record<string, any>, field: string) => {
     let type = Reflect.getMetadata(Props.Class, Object.getPrototypeOf(this), field);
     if (!type) type = this[Props.types][field];
     if (Item.bindings.has(type)) type = Item.bindings.get(type);
@@ -166,8 +172,8 @@ export abstract class Item<P = { parent?: any }> {
    * @param data - data object
    * @param field - object field
    * */
-  #setData = (data: Record<string, any>, field: string) => {
-    const type = this.#getType(data, field);
+  [_setData] = (data: Record<string, any>, field: string) => {
+    const type = this[_getType](data, field);
     const items = Array.isArray(data[field]) ? data[field] : [];
     switch (type) {
       case Item.Int:
@@ -214,7 +220,7 @@ export abstract class Item<P = { parent?: any }> {
         break;
       default:
         if (type instanceof Function) {
-          this.#defineClass(data, field, type);
+          this[_defineClass](data, field, type);
         } else {
           if (field in data) this[field] = data[field];
         }
@@ -229,8 +235,8 @@ export abstract class Item<P = { parent?: any }> {
    * */
   #validate = (data: Record<string, any>, field: string) => {
     data = data || {};
-    this.#setType(data, field);
-    this.#setData(data, field);
+    this[_setType](data, field);
+    this[_setData](data, field);
   };
 
   [Props.defineMapOrSet](
@@ -293,7 +299,7 @@ export abstract class Item<P = { parent?: any }> {
    * console.log(item); // Item { id: 2, title: 'two' }
    * ```
    */
-  public initialize(data: Record<string, any> = this[Props.data]) {
+  @action() public initialize(data: Record<string, any> = this[Props.data]) {
     this[Props.data] = data;
     for (const field in this) {
       if (!(field in this)) continue;
@@ -320,7 +326,7 @@ export abstract class Item<P = { parent?: any }> {
    * console.log(item); // Item { int: 2, string: 'hello' }
    * ```
    */
-  public set(data: Record<string, any>) {
+  @action() public set(data: Record<string, any>) {
     for (const field in data) {
       if (!(field in this)) continue;
       this.#validate(data, field);

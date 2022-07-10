@@ -1,4 +1,27 @@
 import { Props } from './symbols';
+import { Ctor } from '../interfaces';
+import { observable as o, action as a, computed as c } from 'mobx';
+
+/**
+ * @override See description [here](https://mobx.js.org/observable-state.html)
+ */
+export function observable() {
+  return (target, field, ...args) => o(target, field, ...args);
+}
+
+/**
+ * @override See description [here](https://mobx.js.org/actions.html)
+ */
+export function action() {
+  return (target, field, descriptor) => a(target, field, descriptor);
+}
+
+/**
+ * @override See description [here](https://mobx.js.org/computeds.html)
+ */
+export function computed() {
+  return (target, field, descriptor) => c(target, field, descriptor);
+}
 
 /**
  * @description
@@ -59,3 +82,10 @@ export function singleton() {
       })(),
     );
 }
+
+/**
+ * @deprecated
+ * @description
+ * Backward capability
+ */
+export const singletone = singleton;

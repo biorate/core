@@ -22,6 +22,7 @@
     "map",
     "index",
     "multi-index",
+    "observable",
     "di",
     "ioc",
     "structure",
@@ -35,6 +36,7 @@
     "@biorate/tools": "1.0.0",
     "lodash": "^4.17.21",
     "luxon": "^1.27.0",
+    "mobx": "^5.15.7",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
