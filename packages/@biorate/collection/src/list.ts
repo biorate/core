@@ -5,7 +5,10 @@ import { Ctor, ICollection } from '../interfaces';
 
 const _map = Symbol('#map');
 const _set = Symbol('#set');
+const _key = Symbol('#key');
 const _processed = Symbol('#processed');
+const _indexer = Symbol('#indexer');
+const _reindex = Symbol('#reindex');
 
 /**
  * @description
@@ -120,19 +123,19 @@ export abstract class List<I = any, P = { parent?: any }> {
   /**
    * @description Create index string key
    */
-  #key = (key: (string | symbol)[], val: any[]) =>
+  [_key] = (key: (string | symbol)[], val: any[]) =>
     key.map((k) => String(k)).join('.') + '|' + val.join('.');
 
   /**
    * @description Create indexes string array
    */
-  #indexer = (item: any, keys: any = this._keys, result = []): string[] => {
+  [_indexer] = (item: any, keys: any = this._keys, result = []): string[] => {
     if (Array.isArray(keys[0])) {
-      for (const key of keys) this.#indexer(item, key, result);
+      for (const key of keys) this[_indexer](item, key, result);
     } else {
       for (const k of keys)
         if (k === Props.Index && !(Props.Index in item)) item[Props.Index] = this.size;
-      result.push(this.#key(keys, Array.isArray(item) ? item : keys.map((k) => item[k])));
+      result.push(this[_key](keys, Array.isArray(item) ? item : keys.map((k) => item[k])));
     }
     return result;
   };
@@ -140,7 +143,7 @@ export abstract class List<I = any, P = { parent?: any }> {
   /**
    * @description Reindex sequence number in all items
    */
-  #reindex = () => {
+  [_reindex] = () => {
     let i = 0;
     const items = [];
     for (const item of this) {
@@ -335,7 +338,7 @@ export abstract class List<I = any, P = { parent?: any }> {
         item = instance;
       }
       this[_processed] = null;
-      for (const key of this.#indexer(item)) {
+      for (const key of this[_indexer](item)) {
         if (this[_map].has(key))
           throw new CollectionListItemAlreadyExistsError(this.constructor.name, key);
         this[_map].set(key, item);
@@ -380,7 +383,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * ```
    */
   public find(...args: any[]): I | undefined {
-    for (const key of this.#indexer(args))
+    for (const key of this[_indexer](args))
       if (this[_map].has(key)) return this[_map].get(key);
   }
 
@@ -395,7 +398,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    */
   public get(...args: any[]): I[] {
     const result = [];
-    for (const key of this.#indexer(args)) {
+    for (const key of this[_indexer](args)) {
       const item = this[_map].get(key);
       if (item && !~result.indexOf(item)) result.push(item);
     }
@@ -413,7 +416,7 @@ export abstract class List<I = any, P = { parent?: any }> {
    * ```
    */
   public has(...args: any[]) {
-    for (const key of this.#indexer(args)) if (this[_map].has(key)) return true;
+    for (const key of this[_indexer](args)) if (this[_map].has(key)) return true;
     return false;
   }
 
@@ -434,9 +437,9 @@ export abstract class List<I = any, P = { parent?: any }> {
     for (const item of items) {
       isIndexed = Props.Index in item;
       this[_set].delete(item);
-      for (const key of this.#indexer(item)) this[_map].delete(key);
+      for (const key of this[_indexer](item)) this[_map].delete(key);
     }
-    if (isIndexed) this.#reindex();
+    if (isIndexed) this[_reindex]();
     return true;
   }
 

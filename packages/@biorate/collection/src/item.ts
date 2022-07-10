@@ -9,6 +9,7 @@ const _defineClass = Symbol('#defineClass');
 const _setType = Symbol('#setType');
 const _getType = Symbol('#getType');
 const _setData = Symbol('#setData');
+const _validate = Symbol('#validate');
 
 /**
  * @description
@@ -233,7 +234,7 @@ export abstract class Item<P = { parent?: any }> {
    * @param data - data object
    * @param field - object field
    * */
-  #validate = (data: Record<string, any>, field: string) => {
+  [_validate] = (data: Record<string, any>, field: string) => {
     data = data || {};
     this[_setType](data, field);
     this[_setData](data, field);
@@ -303,7 +304,7 @@ export abstract class Item<P = { parent?: any }> {
     this[Props.data] = data;
     for (const field in this) {
       if (!(field in this)) continue;
-      this.#validate(data, field);
+      this[_validate](data, field);
     }
     return this;
   }
@@ -329,7 +330,7 @@ export abstract class Item<P = { parent?: any }> {
   @action() public set(data: Record<string, any>) {
     for (const field in data) {
       if (!(field in this)) continue;
-      this.#validate(data, field);
+      this[_validate](data, field);
     }
     return this;
   }
