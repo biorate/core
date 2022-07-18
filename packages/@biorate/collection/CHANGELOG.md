@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/biorate/core/compare/v1.2.0...v1.2.1) (2022-07-18)
+
+
+### Bug Fixes
+
+* **collection:** initialize in list added ([bf145c9](https://github.com/biorate/core/commit/bf145c93b6ab120cc88e754e1fe653f4f27988f8))
+
+
+
+
+
 # [1.2.0](https://github.com/biorate/core/compare/v1.1.0...v1.2.0) (2022-07-10)
 
 
