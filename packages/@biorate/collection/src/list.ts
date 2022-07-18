@@ -135,7 +135,9 @@ export abstract class List<I = any, P = { parent?: any }> {
     } else {
       for (const k of keys)
         if (k === Props.Index && !(Props.Index in item)) item[Props.Index] = this.size;
-      result.push(this[_key](keys, Array.isArray(item) ? item : keys.map((k) => item[k])));
+      result.push(
+        this[_key](keys, Array.isArray(item) ? item : keys.map((k) => item[k])),
+      );
     }
     return result;
   };
@@ -456,5 +458,21 @@ export abstract class List<I = any, P = { parent?: any }> {
   public clear() {
     this[_map].clear();
     this[_set].clear();
+  }
+
+  /**
+   * @description Initialize list
+   * @example
+   * ```ts
+   * const list = new List();
+   * list.initialize([{ a: 1 }, { a: 2 }])
+   * console.log([...list]); // [{ a: 1 }, { a: 2 }]
+   * list.initialize([{ a: 3 }, { a: 4 }])
+   * console.log([...list]); // [{ a: 3 }, { a: 4 }]
+   * ```
+   */
+  public initialize(items: any[] = []) {
+    this.clear();
+    this.set(...items);
   }
 }
