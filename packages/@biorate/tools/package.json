@@ -1,6 +1,6 @@
 {
   "name": "@biorate/tools",
-  "version": "1.0.0",
+  "version": "1.2.2",
   "description": "Tools",
   "main": "dist",
   "scripts": {
@@ -21,7 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/errors": "1.0.0"
+    "@biorate/errors": "1.2.2"
   },
   "gitHead": "78dfa793d20530cdc92586ea39962523fb53595a"
 }
