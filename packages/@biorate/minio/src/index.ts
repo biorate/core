@@ -1,8 +1,8 @@
-import { init, injectable } from '@biorate/inversion';
+import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { Client } from 'minio';
 import { MinioCantConnectError } from './errors';
-import { MinioConnection, MinioConfig } from './interfaces';
+import { IMinioConfig, IMinioConnection } from './interfaces';
 
 export * from './errors';
 export * from './interfaces';
@@ -61,7 +61,7 @@ export * from './interfaces';
  * ```
  */
 @injectable()
-export class MinioConnector extends Connector<MinioConfig, MinioConnection> {
+export class MinioConnector extends Connector<IMinioConfig, IMinioConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
@@ -69,7 +69,7 @@ export class MinioConnector extends Connector<MinioConfig, MinioConnection> {
   /**
    * @description Create connection
    */
-  protected async connect(config: MinioConfig) {
+  protected async connect(config: IMinioConfig) {
     let connection: Client;
     try {
       connection = new Client(config.options);

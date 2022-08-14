@@ -2,7 +2,7 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { MinioConnector, MinioConfig } from '../../src';
+import { MinioConnector } from '../../src';
 
 use(jestSnapshotPlugin());
 
