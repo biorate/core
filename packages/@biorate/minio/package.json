@@ -1,0 +1,37 @@
+{
+  "name": "@biorate/minio",
+  "version": "0.0.0",
+  "description": "Minio connector",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/minio"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "minio",
+    "connector"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/config": "1.2.2",
+    "@biorate/connector": "1.2.2",
+    "@biorate/errors": "1.2.2",
+    "@biorate/inversion": "1.2.2",
+    "@biorate/tools": "1.2.2",
+    "minio": "^7.0.30"
+  },
+  "devDependencies": {
+    "@types/minio": "^7.0.13"
+  }
+}
