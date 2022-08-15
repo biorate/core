@@ -33,7 +33,7 @@ container.get<IConfig>(Types.Config).merge({
 });
 
 (async () => {
-  root = container.get<Root>(Root);
+  const root = container.get<Root>(Root);
   await root.$run();
   await root.connector!.current!.makeBucket('test', 'test');
   await root.connector!.current!.putObject(
