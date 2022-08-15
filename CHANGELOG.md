@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/biorate/core/compare/v1.3.1...v1.3.2) (2022-08-15)
+
+
+### Bug Fixes
+
+* **doc:** minio ([843946b](https://github.com/biorate/core/commit/843946b964f4d99e0df9daf38fb53e9c01566f7d))
+* **doc:** minio ([92b1deb](https://github.com/biorate/core/commit/92b1debd0856999ca71978e529430110b1276c5d))
+* **minio:** doc ([13837b8](https://github.com/biorate/core/commit/13837b86c8ffae0e3f6e53f79b0e763bc88b444b))
+
+
+
+
+
 ## [1.3.1](https://github.com/biorate/core/compare/v1.3.0...v1.3.1) (2022-08-14)
 
 
