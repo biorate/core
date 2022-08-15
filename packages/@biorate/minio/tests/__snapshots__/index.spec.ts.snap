@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@biorate/minio getObject 1`] = `"12"`;
+exports[`@biorate/minio getObject 1`] = `"Hello world!"`;

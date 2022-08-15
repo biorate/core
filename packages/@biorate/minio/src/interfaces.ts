@@ -8,4 +8,4 @@ export interface IMinioConfig extends IConnectorConfig {
   options: ClientOptions;
 }
 
-export type IMongoDBConnector = IConnector<IMinioConfig, IMinioConnection>;
+export type IMinioDBConnector = IConnector<IMinioConfig, IMinioConnection>;

@@ -26,6 +26,29 @@ container.get<IConfig>(Types.Config).merge({
       },
     },
   ],
+  Minio: [
+    {
+      name: 'minio',
+      options: {
+        endPoint: 'localhost',
+        port: 9000,
+        accessKey: 'admin',
+        secretKey: 'minioadmin',
+        useSSL: false,
+      },
+    },
+  ],
+  MongoDB: [
+    {
+      name: 'mongodb',
+      host: 'mongodb://localhost:27017/',
+      options: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        dbName: 'test',
+      },
+    },
+  ],
   migrations: {
     directory: '/tests/migrations',
   },

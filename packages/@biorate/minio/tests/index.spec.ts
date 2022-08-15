@@ -24,7 +24,7 @@ describe('@biorate/minio', function () {
     root.connector!.current!.getObject('test', 'test.file', (e, stream) => {
       let data = '';
       stream
-        .on('data', (chunk) => (data += chunk.length))
+        .on('data', (chunk) => (data += chunk.toString('utf8')))
         .on('end', () => (expect(data).toMatchSnapshot(), done()));
     });
   });
