@@ -1,4 +1,4 @@
-import { omit, pick } from 'lodash';
+import { omit, pick, merge } from 'lodash';
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import retry, { IAxiosRetryConfig } from 'axios-retry';
 // @ts-ignore
@@ -72,7 +72,7 @@ export class Axios {
       this.#client = axios.create();
       retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
     }
-    const settings = { ...this, ...options };
+    const settings = merge({ ...this }, options);
     if (settings.baseURL && settings.path)
       settings.baseURL = pathToUrl(settings.baseURL, settings.path);
     if (settings.url && settings.path)
