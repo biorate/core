@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/biorate/core/compare/v1.4.0...v1.4.1) (2022-08-19)
+
+
+### Bug Fixes
+
+* **axios:** merge properties ([3607f03](https://github.com/biorate/core/commit/3607f03db7acebbe343d701fe3cdd0a5b3d4f68d))
+
+
+
+
+
 # [1.4.0](https://github.com/biorate/core/compare/v1.3.2...v1.4.0) (2022-08-15)
 
 **Note:** Version bump only for package @biorate/axios
