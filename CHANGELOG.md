@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/biorate/core/compare/v1.4.1...v1.4.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* **migrations:** scan dir catch ([0959a2d](https://github.com/biorate/core/commit/0959a2d9c46294e7a23d94cc4b6cd60aa00b0a53))
+
+
+
+
+
 ## [1.4.1](https://github.com/biorate/core/compare/v1.4.0...v1.4.1) (2022-08-19)
 
 
