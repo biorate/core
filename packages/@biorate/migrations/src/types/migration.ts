@@ -26,7 +26,13 @@ export abstract class Migration {
    * @description Scan migration directory
    */
   protected async scan(...args: string[]) {
-    return (await fs.readdir(this.path(...args))).map((item) => this.path(...args, item));
+    try {
+      return (await fs.readdir(this.path(...args))).map((item) =>
+        this.path(...args, item),
+      );
+    } catch {
+      return [] as string[];
+    }
   }
   /**
    * @description Create path to migrations directory
