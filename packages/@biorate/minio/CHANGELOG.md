@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/biorate/core/compare/v1.4.2...v1.4.3) (2022-08-22)
+
+
+### Bug Fixes
+
+* **minio:** interface rename ([d38ad52](https://github.com/biorate/core/commit/d38ad52a1b7c8e07d4a2abefddfb26f76561ccea))
+
+
+
+
+
 # [1.4.0](https://github.com/biorate/core/compare/v1.3.2...v1.4.0) (2022-08-15)
 
 
