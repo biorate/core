@@ -33,5 +33,6 @@
   },
   "devDependencies": {
     "@types/minio": "^7.0.13"
-  }
+  },
+  "gitHead": "52699e2c04ae31ada6cefcbfaef1d11c6ef65a42"
 }

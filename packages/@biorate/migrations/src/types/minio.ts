@@ -1,11 +1,11 @@
 import { Migration } from './migration';
-import { IMinioDBConnector, IMinioConfig, IMinioConnection } from '@biorate/minio';
+import { IMinioConnector, IMinioConfig, IMinioConnection } from '@biorate/minio';
 import { inject, Types } from '@biorate/inversion';
 /**
  * @description Minio migration class
  */
 export class Minio extends Migration {
-  @inject(Types.Minio) protected connector: IMinioDBConnector;
+  @inject(Types.Minio) protected connector: IMinioConnector;
   /**
    * @description Minio process method realization
    */
