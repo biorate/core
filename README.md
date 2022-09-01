@@ -20,6 +20,7 @@
 * [sequelize](https://biorate.github.io/core/modules/sequelize.html)
 * [migrations](https://biorate.github.io/core/modules/migrations.html)
 * [minio](https://biorate.github.io/core/modules/minio.html)
+* [vault](https://biorate.github.io/core/modules/vault.html)
 
 ### Learn
 * [documentation](https://biorate.github.io/core/).

@@ -1,5 +1,5 @@
 import { omit, pick, merge } from 'lodash';
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
+import axios, { AxiosResponse, AxiosInstance } from 'axios';
 import retry, { IAxiosRetryConfig } from 'axios-retry';
 // @ts-ignore
 import * as pathToUrl from 'path-to-url';
@@ -43,7 +43,7 @@ export class Axios {
   /**
    * @description Axios instance cache
    */
-  protected static cache = new WeakMap<Object, Axios>();
+  protected static cache = new WeakMap<typeof Axios, Axios>();
   /**
    * @description Fetch static method
    */
@@ -53,12 +53,12 @@ export class Axios {
   /**
    * @description Protected fetch static method
    */
-  protected static _fetch<D = any>(
+  protected static _fetch<T = any, D = any>(
     options?: IAxiosFetchOptions,
-  ): Promise<AxiosResponse<D>> {
+  ): Promise<AxiosResponse<T, D>> {
     if (!this.cache.has(this)) this.cache.set(this, new this());
     // @ts-ignore
-    return this.cache.get(this).fetch<D>(options);
+    return this.cache.get(this).fetch<T, D>(options);
   }
   /**
    * @description Axios client cache
@@ -67,7 +67,9 @@ export class Axios {
   /**
    * @description Fetch method
    */
-  protected async fetch<D>(options?: IAxiosFetchOptions): Promise<AxiosResponse<D>> {
+  protected async fetch<T, D>(
+    options?: IAxiosFetchOptions,
+  ): Promise<AxiosResponse<T, D>> {
     if (!this.#client) {
       this.#client = axios.create();
       retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
@@ -82,7 +84,9 @@ export class Axios {
     };
     try {
       await this.before(params);
-      return await this.#client(params);
+      const result = await this.#client(params);
+      await this.after<T>(result);
+      return result;
     } catch (e: unknown) {
       await this.catch(<Error>e);
       throw e;
@@ -94,7 +98,10 @@ export class Axios {
    * @description Before hook
    */
   protected async before(params: IAxiosFetchOptions) {}
-
+  /**
+   * @description After hook
+   */
+  protected async after<T = any, D = any>(result: AxiosResponse<T, D>) {}
   /**
    * @description Catch hook
    */
