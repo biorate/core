@@ -23,6 +23,8 @@
 - [vault](https://biorate.github.io/core/modules/vault.html)
 - [config-loader](https://biorate.github.io/core/modules/config_loader.html)
 - [config-loader-fs](https://biorate.github.io/core/modules/config_loader_fs.html)
+- [config-loader-env](https://biorate.github.io/core/modules/config_loader_env.html)
+- [config-loader-vault](https://biorate.github.io/core/modules/config_loader_vault.html)
 
 ### Learn
 

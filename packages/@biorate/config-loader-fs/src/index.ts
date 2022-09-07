@@ -4,7 +4,6 @@ import { promises as fs } from 'fs';
 import { ConfigLoaderFsNotFoundPathError } from './errors';
 
 export * from './errors';
-export * from './interfaces';
 
 /**
  * @description File-based config loader for [@biorate/config-loader](https://biorate.github.io/core/modules/config_loader.html)

@@ -1,0 +1,30 @@
+{
+  "name": "@biorate/config-loader-vault",
+  "version": "0.0.0",
+  "description": "Config loader for vault config",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/config-loader-vault"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/config": "1.4.0",
+    "@biorate/config-loader": "0.0.0",
+    "@biorate/inversion": "1.4.0",
+    "@biorate/errors": "1.2.2",
+    "@biorate/vault": "1.5.1"
+  }
+}
