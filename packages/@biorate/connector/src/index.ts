@@ -92,7 +92,15 @@ export abstract class Connector<C extends IConnectorConfig, T = unknown>
    */
   protected abstract connect(config: C): Promise<T>;
   /**
-   * @description Method for change current connection
+   * @description Method for creating new connection
+   */
+  public async create(config: C) {
+    if (!this.#connections.has(config.name))
+      this.#connections.set(config.name, await this.connect(config));
+    return <T>this.#connections.get(config.name);
+  }
+  /**
+   * @description Method for changing current connection
    */
   public use(name: string) {
     if (!this.#connections.has(name))
