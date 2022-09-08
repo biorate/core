@@ -82,16 +82,17 @@ export class Axios {
     const params = {
       ...omit(settings, axiosRetryConfigKeys.concat(axiosExcludeKeys)),
     };
+    await this.before(params);
+    const startTime = process.hrtime();
     try {
-      await this.before(params);
       const result = await this.#client(params);
-      await this.after<T>(result);
+      await this.after<T>(result, startTime);
       return result;
     } catch (e: unknown) {
-      await this.catch(<Error>e);
+      await this.catch(<Error>e, startTime);
       throw e;
     } finally {
-      await this.finally();
+      await this.finally(startTime);
     }
   }
   /**
@@ -101,13 +102,16 @@ export class Axios {
   /**
    * @description After hook
    */
-  protected async after<T = any, D = any>(result: AxiosResponse<T, D>) {}
+  protected async after<T = any, D = any>(
+    result: AxiosResponse<T, D>,
+    startTime: [number, number],
+  ) {}
   /**
    * @description Catch hook
    */
-  protected async catch(e: Error) {}
+  protected async catch(e: Error, startTime: [number, number]) {}
   /**
    * @description Finally hook
    */
-  protected async finally() {}
+  protected async finally(startTime: [number, number]) {}
 }

@@ -3,7 +3,6 @@ import { dirname } from 'path';
 import { Types, inject, init, injectable } from '@biorate/inversion';
 import { IVaultConnector } from '@biorate/vault';
 import { path } from '@biorate/tools';
-import { IConfig } from '@biorate/config';
 import { ConfigLoader } from '@biorate/config-loader';
 import { IConfigLoaderVaultOption, ConfigLoaderVaultActions } from './interfaces';
 import { ConfigLoaderVaultUnknownCacheError } from './errors';

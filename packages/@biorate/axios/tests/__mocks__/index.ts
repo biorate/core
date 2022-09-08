@@ -6,6 +6,7 @@ export class Yandex extends Axios {
   @inject(Types.Config) public config: IConfig;
   // @ts-ignore
   public baseURL = this.config.get<string>('baseURL');
+  public timeout = 1500;
 }
 
 container.bind(Types.Config).to(Config).inSingletonScope();
