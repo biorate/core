@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/biorate/core/compare/v1.7.1...v1.7.2) (2022-09-08)
+
+
+### Bug Fixes
+
+* **axios:** before / after hooks, startTime ([b7ce8ed](https://github.com/biorate/core/commit/b7ce8eddb7e5c52a919599e9ca148959b246bdc9))
+
+
+
+
+
 ## [1.7.1](https://github.com/biorate/core/compare/v1.7.0...v1.7.1) (2022-09-08)
 
 
