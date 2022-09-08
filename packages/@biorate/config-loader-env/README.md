@@ -1,6 +1,6 @@
 # ENV config loader
 
-ENV-based config loader for [@biorate/config-loader](https://biorate.github.io/core/modules/config_loader.html)
+ENV-based config loader
 
 ### Features
 
@@ -9,12 +9,25 @@ ENV-based config loader for [@biorate/config-loader](https://biorate.github.io/c
 ### Examples
 
 ```
-import { BaseConfigLoader, ILoaderConstructor } from '@biorate/config-loader';
+import { inject, container, Types, Core } from '@biorate/inversion';
+import { IConfig, Config } from '@biorate/config';
+import { IConfigLoader } from '@biorate/config-loader';
 import { ConfigLoaderEnv } from '@biorate/config-loader-env';
 
-export class ConfigLoader extends BaseConfigLoader {
-  protected readonly loaders: ILoaderConstructor[] = [ConfigLoaderEnv];
+class Root extends Core() {
+  @inject(Types.Config) public config: IConfig;
+  @inject(Types.ConfigLoaderEnv) public configLoaderEnv: ConfigLoaderEnv;
 }
+
+container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+container.bind<ConfigLoader>(Types.ConfigLoaderEnv).to(ConfigLoaderEnv).inSingletonScope();
+container.bind<Root>(Root).toSelf().inSingletonScope();
+
+(async () => {
+  const root = container.get<Root>(Root);
+  await root.$run();
+  root.config.get('test'); // Hello world!
+})();
 ```
 
 ### See

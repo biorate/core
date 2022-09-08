@@ -1,6 +1,6 @@
 # File config loader
 
-File-based config loader for [@biorate/config-loader](https://biorate.github.io/core/modules/config_loader.html)
+File-based config loader
 
 ### Features
 
@@ -10,13 +10,34 @@ File-based config loader for [@biorate/config-loader](https://biorate.github.io/
 
 ### Examples
 
+##### ./config.json
 ```
-import { BaseConfigLoader, ILoaderConstructor } from '@biorate/config-loader';
-import { ConfigLoaderFs } from '@biorate/config-loader-file';
-
-export class ConfigLoader extends BaseConfigLoader {
-  protected readonly loaders: ILoaderConstructor[] = [ConfigLoaderFs];
+{
+  "hello": "world"
 }
+```
+
+##### ./index.ts
+```
+import { inject, container, Types, Core } from '@biorate/inversion';
+import { IConfig, Config } from '@biorate/config';
+import { ConfigLoader } from '@biorate/config-loader';
+import { ConfigLoaderFs } from '@biorate/config-loader-fs';
+
+class Root extends Core() {
+  @inject(Types.Config) public config: IConfig;
+  @inject(Types.ConfigLoaderFs) public configLoaderFs: ConfigLoader;
+}
+
+container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+container.bind<ConfigLoader>(Types.ConfigLoaderFs).to(ConfigLoaderFs).inSingletonScope();
+container.bind<Root>(Root).toSelf().inSingletonScope();
+
+(async () => {
+  const root = container.get<Root>(Root);
+  await root.$run();
+  root.config.get('hello'); // world
+})();
 ```
 
 ### See

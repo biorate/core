@@ -2,18 +2,22 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { IConfigLoader } from '../../src';
-import { ConfigLoader } from './config-loader';
+// import { IConfigLoader } from '../../src';
+// import { ConfigLoader } from './config-loader';
+import { ConfigLoaderEnv } from '../../src';
 
 use(jestSnapshotPlugin());
 
 export class Root extends Core() {
   @inject(Types.Config) public config: IConfig;
-  @inject(Types.ConfigLoader) public configLoader: IConfigLoader;
+  @inject(Types.ConfigLoader) public configLoaderEnv: ConfigLoaderEnv;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<IConfigLoader>(Types.ConfigLoader).to(ConfigLoader).inSingletonScope();
+container
+  .bind<ConfigLoaderEnv>(Types.ConfigLoader)
+  .to(ConfigLoaderEnv)
+  .inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({});

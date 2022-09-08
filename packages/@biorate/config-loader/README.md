@@ -8,45 +8,33 @@ Config loader abstraction
 
 ### Examples:
 
-##### ./config-loader-test
-
+##### ./config-loader-test.ts
 ```
-import { ILoader } from '@biorate/config-loader';
-import { IConfig } from '@biorate/config';
+import { init } from '@biorate/inversion';
+import { ConfigLoader } from '../../src';
+import { key, value } from './';
 
-export class ConfigLoaderTest implements ILoader {
-  public async process(config: IConfig) {
-    config.set('test', 'Hello world!');
+export class ConfigLoaderTest extends ConfigLoader {
+  @init() protected initialize() {
+    this.config.set(key, value);
   }
 }
 ```
 
-##### ./config-loader.ts
-
-```
-import { BaseConfigLoader, ILoaderConstructor } from '@biorate/config-loader';
-import { ConfigLoaderTest } from './config-loader-test';
-
-export class ConfigLoader extends BaseConfigLoader {
-  protected readonly loaders: ILoaderConstructor[] = [ConfigLoaderTest];
-}
-```
-
 ##### ./index.ts
-
 ```
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { IConfigLoader } from '@biorate/config-loader';
-import { ConfigLoader } from './config-loader';
+import { ConfigLoader } from '@biorate/config-loader';
+import { ConfigLoaderTest } from './config-loader-test';
 
 class Root extends Core() {
   @inject(Types.Config) public config: IConfig;
-  @inject(Types.ConfigLoader) public configLoader: IConfigLoader;
+  @inject(Types.ConfigLoaderTest) public configLoaderTest: ConfigLoader;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<IConfigLoader>(Types.ConfigLoader).to(ConfigLoader).inSingletonScope();
+container.bind<ConfigLoader>(Types.ConfigLoaderTest).to(ConfigLoaderTest).inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({});

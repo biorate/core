@@ -19,4 +19,4 @@ export interface IVaultConfig extends IConnectorConfig {
   auth: IAuthType;
 }
 
-export type IMinioConnector = IConnector<IVaultConfig, IVaultConnection>;
+export type IVaultConnector = IConnector<IVaultConfig, IVaultConnection>;

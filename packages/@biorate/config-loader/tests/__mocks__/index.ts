@@ -2,8 +2,8 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { IConfigLoader } from '../../src';
-import { ConfigLoader } from './config-loader';
+import { ConfigLoader } from '../../src';
+import { ConfigLoaderTest } from './config-loader';
 
 use(jestSnapshotPlugin());
 
@@ -12,11 +12,14 @@ export const value = 'Hello world!';
 
 export class Root extends Core() {
   @inject(Types.Config) public config: IConfig;
-  @inject(Types.ConfigLoader) public configLoader: IConfigLoader;
+  @inject(Types.ConfigLoaderTest) public configLoaderTest: ConfigLoader;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<IConfigLoader>(Types.ConfigLoader).to(ConfigLoader).inSingletonScope();
+container
+  .bind<ConfigLoader>(Types.ConfigLoaderTest)
+  .to(ConfigLoaderTest)
+  .inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({});

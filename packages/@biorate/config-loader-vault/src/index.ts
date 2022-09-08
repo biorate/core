@@ -1,40 +1,56 @@
-import { Types, inject } from '@biorate/inversion';
+import { Types, inject, init, injectable } from '@biorate/inversion';
 import { IVaultConnection } from '@biorate/vault';
 import { IConfig } from '@biorate/config';
-import { ILoader } from '@biorate/config-loader';
+import { ConfigLoader } from '@biorate/config-loader';
 
 export * from './errors';
 
 /**
- * @description Vault config loader for [@biorate/config-loader](https://biorate.github.io/core/modules/config_loader.html)
+ * @description Vault config loader
  *
  * ### Features
- * - Env config loader middleware
+ * - Vault config loader
  *
- * @example middleware
+ * @example ./index.ts
  * ```
- * import { BaseConfigLoader, ILoaderConstructor } from '@biorate/config-loader';
- * import { ConfigLoaderVault} from '@biorate/config-loader-vault';
+ * import { inject, container, Types, Core } from '@biorate/inversion';
+ * import { IConfig, Config } from '@biorate/config';
+ * import { IVault, Config } from '@biorate/config';
+ * import { ConfigLoader } from '@biorate/config-loader';
+ * import { ConfigLoaderVault } from '@biorate/config-loader-vault';
  *
- * export class ConfigLoader extends BaseConfigLoader {
- *   protected readonly loaders: ILoaderConstructor[] = [ConfigLoaderVault];
+ * class Root extends Core() {
+ *   @inject(Types.Config) public config: IConfig;
+ *   @inject(Types.ConfigLoaderVault) public configLoaderVault: ConfigLoader;
  * }
+ *
+ * container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+ * container.bind<ConfigLoader>(Types.ConfigLoaderVault).to(ConfigLoaderVault).inSingletonScope();
+ * container.bind<Root>(Root).toSelf().inSingletonScope();
+ *
+ * (async () => {
+ *   const root = container.get<Root>(Root);
+ *   await root.$run();
+ *   root.config.get('test'); // Hello world!
+ * })();
  * ```
  *
  * ### See
  *
  * [@biorate/config-loader docs](https://biorate.github.io/core/modules/config_loader.html) for details
  */
-
-export class ConfigLoaderVault implements ILoader {
+@injectable()
+export class ConfigLoaderVault extends ConfigLoader {
   /**
-   * @description vault connector
+   * @description Config dependency
+   */
+  @inject(Types.Config) protected readonly config: IConfig;
+  /**
+   * @description Vault connector dependency
    */
   @inject(Types.Vault) public vault: IVaultConnection;
   /**
-   * @description Process
+   * @description Initialize
    */
-  public async process(config: IConfig) {
-    //TODO:
-  }
+  @init() protected async initialize() {}
 }

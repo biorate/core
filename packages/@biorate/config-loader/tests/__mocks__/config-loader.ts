@@ -1,6 +1,9 @@
-import { BaseConfigLoader, ILoaderConstructor } from '../../src';
-import { ConfigLoaderTest } from './config-loader-test';
+import { init } from '@biorate/inversion';
+import { ConfigLoader } from '../../src';
+import { key, value } from './';
 
-export class ConfigLoader extends BaseConfigLoader {
-  protected readonly loaders: ILoaderConstructor[] = [ConfigLoaderTest];
+export class ConfigLoaderTest extends ConfigLoader {
+  @init() protected initialize() {
+    this.config.set(key, value);
+  }
 }
