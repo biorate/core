@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader-fs",
-  "version": "0.0.0",
+  "version": "1.6.0",
   "description": "Config loader for filesystem's config",
   "main": "dist",
   "scripts": {
@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.4.0",
-    "@biorate/config-loader": "0.0.0",
+    "@biorate/config": "1.6.0",
+    "@biorate/config-loader": "1.6.0",
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.4.0"
   }

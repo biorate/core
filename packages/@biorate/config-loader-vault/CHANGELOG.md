@@ -13,26 +13,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* **config-loader-vault:** module added, draft ([d2fd028](https://github.com/biorate/core/commit/d2fd028eed6237593f5dadd1b9d92c156915309b))
+* **config-loader-vault:** module release ([2f977f7](https://github.com/biorate/core/commit/2f977f7c5d4028dc9ded2c2c8923fc2936d32e72))
 * config-loader, config-loader-fs, config-loader-env, config-loader-vault interface change. vault interface fix, connector interface fix ([1cd2766](https://github.com/biorate/core/commit/1cd276617deb988246532d0f491d51f5a449e1fd))
-
-
-
-
-
-## [1.5.1](https://github.com/biorate/core/compare/v1.5.0...v1.5.1) (2022-09-01)
-
-
-### Bug Fixes
-
-* **vault:** type deps added ([d880acf](https://github.com/biorate/core/commit/d880acf6cdbb5f6924b1650db9a5fe9f0d54a5cd))
-
-
-
-
-
-# [1.5.0](https://github.com/biorate/core/compare/v1.4.4...v1.5.0) (2022-09-01)
-
-
-### Features
-
-* **vault:** module added ([72309b8](https://github.com/biorate/core/commit/72309b817018dfe2016660f669e6d50790fe0a5e))

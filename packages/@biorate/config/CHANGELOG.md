@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/biorate/core/compare/v1.5.1...v1.6.0) (2022-09-08)
+
+
+### Features
+
+* **config-loader:** concept added ([0e58d55](https://github.com/biorate/core/commit/0e58d5509323aa0a0a7689642708788e2188db7b))
+
+
+
+
+
 # [1.4.0](https://github.com/biorate/core/compare/v1.3.2...v1.4.0) (2022-08-15)
 
 **Note:** Version bump only for package @biorate/config

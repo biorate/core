@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/biorate/core/compare/v1.5.1...v1.6.0) (2022-09-08)
+
+
+### Features
+
+* **config-loader-vault:** module release ([2f977f7](https://github.com/biorate/core/commit/2f977f7c5d4028dc9ded2c2c8923fc2936d32e72))
+* config-loader, config-loader-fs, config-loader-env, config-loader-vault interface change. vault interface fix, connector interface fix ([1cd2766](https://github.com/biorate/core/commit/1cd276617deb988246532d0f491d51f5a449e1fd))
+
+
+
+
+
 # [1.4.0](https://github.com/biorate/core/compare/v1.3.2...v1.4.0) (2022-08-15)
 
 **Note:** Version bump only for package @biorate/connector
