@@ -4,29 +4,92 @@ Vault config loader
 
 ### Features
 
-- Vault config loader
+- Merge json data into config 
+- Download files from vault
 
 ### Examples
 
+##### ./vault.ts
 ```
+import { init } from '@biorate/inversion';
+import { VaultConnector as VaultConnectorBase } from '@biorate/vault';
+
+export class VaultConnector extends VaultConnectorBase {
+  @init() protected async initialize() {
+    await super.initialize();
+    await this.current!.write('secret/data/config.json', {
+      data: { hello: 'world! (merge)' },
+    });
+    await this.current!.write('secret/data/files.json', {
+      data: { 'hello.txt': 'world! (download)' },
+    });
+  }
+}
+```
+
+##### ./index.ts
+```
+import { promises as fs } from 'fs';
+import { path } from '@biorate/tools';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
+import { IVaultConnector } from '@biorate/vault';
+import { VaultConnector } from './vault';
 import { ConfigLoader } from '@biorate/config-loader';
-import { ConfigLoaderEnv } from '@biorate/config-loader-env';
+import { ConfigLoaderVault } from '@biorate/config-loader-vault';
 
 class Root extends Core() {
   @inject(Types.Config) public config: IConfig;
-  @inject(Types.ConfigLoaderEnv) public configLoaderEnv: ConfigLoader;
+  @inject(Types.Vault) public vault: IVaultConnector;
+  @inject(Types.ConfigLoaderVault) public configLoaderVault: ConfigLoader;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<ConfigLoader>(Types.ConfigLoaderEnv).to(ConfigLoaderEnv).inSingletonScope();
+container
+  .bind<IVaultConnector>(Types.Vault)
+  .to(VaultConnector)
+  .inSingletonScope();
+container.bind<ConfigLoader>(Types.ConfigLoaderVault).to(ConfigLoaderVault).inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
+
+container.get<IConfig>(Types.Config).merge({
+  Vault: [
+    {
+      name: 'connection',
+      options: {
+        apiVersion: 'v1',
+        endpoint: 'http://localhost:8200',
+        token: 'admin',
+      },
+    },
+  ],
+  ConfigLoaderVault: [
+    {
+      action: 'merge',
+      path: 'secret/data/config.json',
+      connection: 'connection',
+      cache: true,
+    },
+    {
+      action: 'download',
+      path: 'secret/data/files.json',
+      connection: 'connection',
+      cache: true,
+    },
+  ],
+});
 
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-  root.config.get('test'); // Hello world!
+
+  console.log(root.config.get('hello')); // world! (merge)
+
+  const file = await fs.readFile(
+    path.create(process.cwd(), 'keys', 'hello.txt'),
+    'utf-8',
+  )
+  console.log(file); // world! (download)
 })();
 ```
 

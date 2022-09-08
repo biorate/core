@@ -25,6 +25,7 @@
     "@biorate/config-loader": "0.0.0",
     "@biorate/inversion": "1.4.0",
     "@biorate/errors": "1.2.2",
-    "@biorate/vault": "1.5.1"
+    "@biorate/vault": "1.5.1",
+    "@biorate/tools": "1.4.0"
   }
 }

@@ -2,20 +2,62 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { IConfigLoader } from '../../src';
-import { ConfigLoader } from './config-loader';
+import { IVaultConnector } from '@biorate/vault';
+import { ConfigLoader } from '@biorate/config-loader';
+import { VaultConnector } from './vault';
+import { ConfigLoaderVault } from '../../src';
 
 use(jestSnapshotPlugin());
 
+export const paths = {
+  config: 'secret/data/config.json',
+  files: 'secret/data/files.json',
+};
+
+export const data = {
+  config: { hello: 'world!' },
+  files: { 'hello.txt': 'world!' },
+};
+
 export class Root extends Core() {
   @inject(Types.Config) public config: IConfig;
-  @inject(Types.ConfigLoader) public configLoader: IConfigLoader;
+  @inject(Types.Vault) public vault: IVaultConnector;
+  @inject(Types.ConfigLoaderVault) public configLoaderVault: ConfigLoaderVault;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<IConfigLoader>(Types.ConfigLoader).to(ConfigLoader).inSingletonScope();
+container.bind<IVaultConnector>(Types.Vault).to(VaultConnector).inSingletonScope();
+container
+  .bind<ConfigLoader>(Types.ConfigLoaderVault)
+  .to(ConfigLoaderVault)
+  .inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
-container.get<IConfig>(Types.Config).merge({});
+container.get<IConfig>(Types.Config).merge({
+  Vault: [
+    {
+      name: 'connection',
+      options: {
+        apiVersion: 'v1',
+        endpoint: 'http://localhost:8200',
+        token: 'admin',
+      },
+    },
+  ],
+  ConfigLoaderVault: [
+    {
+      action: 'merge',
+      path: paths.config,
+      connection: 'connection',
+      cache: true,
+    },
+    {
+      action: 'download',
+      path: paths.files,
+      connection: 'connection',
+      cache: true,
+    },
+  ],
+});
 
-export const root = container.get<Root>(Root);
+export const root: Root = container.get<Root>(Root);

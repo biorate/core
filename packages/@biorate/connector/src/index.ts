@@ -105,8 +105,7 @@ export abstract class Connector<C extends IConnectorConfig, T = unknown>
   public connection(name?: string): T {
     if (!this.#connections.size)
       throw new ConnectorEmptyConnectionsError(this.constructor.name);
-    if (!name)
-      return <T>this.#current;
+    if (!name) return <T>this.#current;
     if (!this.#connections.has(name))
       throw new ConnectorConnectionNotExistsError(this.constructor.name, name);
     return <T>this.#connections.get(name);
