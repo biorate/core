@@ -17,11 +17,14 @@ export class Config implements IConfig {
    * @description Set template value
    * */
   protected template(value: string) {
-    let res, result;
-    const regExp = /\${([^}{]+)+?}/g;
-    result = value;
+    let res,
+      result = value,
+      regExp = /\${([^}{]+)+?}/g;
     while ((res = regExp.exec(value)))
       if (this.has(res[1])) result = result.replace(res[0], this.get(res[1]));
+    regExp = /^#{([^}{]+)+?}$/g;
+    const match = regExp.exec(value)?.[1];
+    if (match) result = this.get(match);
     return result;
   }
 

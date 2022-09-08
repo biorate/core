@@ -1,13 +1,13 @@
 import { assert } from 'chai';
 import { config, data } from './__mocks__';
-import { Config } from '../';
 
 describe('@biorate/config', () => {
   it('get', () => assert.equal(config.get('two.one'), data.two.one));
 
-  it('get default', () => assert.equal(config.get('inexistent-property', 'default'), 'default'));
+  it('get default', () =>
+    assert.equal(config.get('non-existent-property', 'default'), 'default'));
 
-  it('get inexistent', () => assert.throw(() => config.get('inexistent-property')));
+  it('get non - existent', () => assert.throw(() => config.get('non-existent-property')));
 
   it('has', () => assert(config.has('two.one')));
 
@@ -25,5 +25,14 @@ describe('@biorate/config', () => {
     config.merge(value);
     assert(config.has('a.b.c'));
     assert.equal(config.get('a.b.c'), value.a.b.c);
+  });
+
+  it('template (string)', () => {
+    assert.equal(config.get('template.one'), config.get('two.one'));
+    assert.equal(config.get('template.two'), 'hello_' + config.get('one'));
+  });
+
+  it('template (link)', () => {
+    assert.equal(config.get('template.object'), config.get('two'));
   });
 });
