@@ -55,7 +55,7 @@ export class ConfigLoaderFs extends ConfigLoader {
    */
   private static rootPath = process.cwd();
   /**
-   * @description Change application root. Application root is equal ***process.cwd()*** by default
+   * @description Change application root method. Application root is equal ***process.cwd()*** by default
    * @example
    * ```ts
    * FileConfig.root('/www/my-app/');

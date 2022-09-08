@@ -108,13 +108,9 @@ export * from './errors';
 @injectable()
 export class ConfigLoaderVault extends ConfigLoader {
   /**
-   * @description Config dependency
-   */
-  @inject(Types.Config) protected readonly config: IConfig;
-  /**
    * @description Vault connector dependency
    */
-  @inject(Types.Vault) public vault: IVaultConnector;
+  @inject(Types.Vault) protected readonly vault: IVaultConnector;
   /**
    * @description Initialize
    */

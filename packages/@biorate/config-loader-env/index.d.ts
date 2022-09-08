@@ -1,11 +1,10 @@
-import { ILoader } from '@biorate/config-loader';
-import { IConfig } from '@biorate/config';
+import { ConfigLoader } from '@biorate/config-loader';
 
 declare module '@biorate/config-loader-env' {
-  export class ConfigLoaderEnv implements ILoader {
+  export class ConfigLoaderEnv extends ConfigLoader {
     /**
-     * @description Process
+     * @description Initialize
      */
-    public process(config: IConfig): Promise<void>;
+    protected initialize(): Promise<void>;
   }
 }

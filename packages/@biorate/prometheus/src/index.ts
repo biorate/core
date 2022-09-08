@@ -25,7 +25,6 @@ export class Prometheus implements IPrometheus {
   protected static readonly histograms = new Map<string, Histogram<string>>();
   protected static readonly summaries = new Map<string, Summary<string>>();
   @inject(Types.Config) protected readonly config: IConfig;
-
   /**
    * @description Find or create metrics factory
    */
@@ -45,7 +44,6 @@ export class Prometheus implements IPrometheus {
         configurable: true,
       });
   }
-
   /**
    * @alias counter
    */
@@ -56,7 +54,6 @@ export class Prometheus implements IPrometheus {
       Counter,
     );
   }
-
   /**
    * @alias gauge
    */
@@ -67,7 +64,6 @@ export class Prometheus implements IPrometheus {
       Gauge,
     );
   }
-
   /**
    * @alias histogram
    */
@@ -78,7 +74,6 @@ export class Prometheus implements IPrometheus {
       Histogram,
     );
   }
-
   /**
    * @alias summary
    */
@@ -89,14 +84,15 @@ export class Prometheus implements IPrometheus {
       Summary,
     );
   }
-
   /**
    * @description Registry link getter
    */
   public get registry() {
     return Prometheus.registry;
   }
-
+  /**
+   * @description Initialize
+   */
   @init() protected async initialize() {
     if (this.config.get<boolean>('prometheus.collectDefaultMetrics', true))
       collectDefaultMetrics({
