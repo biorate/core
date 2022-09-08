@@ -1,6 +1,6 @@
 {
   "name": "@biorate/schema-registry",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Schema registry connector",
   "main": "dist",
   "scripts": {
@@ -26,9 +26,9 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/axios": "1.6.0",
-    "@biorate/config": "1.6.0",
-    "@biorate/connector": "1.6.0",
+    "@biorate/axios": "1.7.0",
+    "@biorate/config": "1.7.0",
+    "@biorate/connector": "1.7.0",
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.4.0",
     "avsc": "^5.7.4"
