@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mongodb",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Mongodb ORM connector based on mongoose and typegoose",
   "main": "dist",
   "scripts": {
@@ -25,7 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "@biorate/config": "1.7.0",
-    "@biorate/connector": "1.7.0",
+    "@biorate/connector": "1.7.1",
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.4.0",
     "@biorate/tools": "1.4.0",

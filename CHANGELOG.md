@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/biorate/core/compare/v1.7.0...v1.7.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* **connector:** create method added ([7cffbdd](https://github.com/biorate/core/commit/7cffbddc2c1fa402acc7d3517721dd563ad39d61))
+
+
+
+
+
 # [1.7.0](https://github.com/biorate/core/compare/v1.6.0...v1.7.0) (2022-09-08)
 
 
