@@ -1,7 +1,5 @@
 # compiled output
 dist
-keys
-cache
 node_modules
 
 # Logs
