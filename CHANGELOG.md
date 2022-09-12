@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/biorate/core/compare/v1.9.1...v1.10.0) (2022-09-12)
+
+
+### Features
+
+* **shema-registry:** @biorate/axios -> @biorate/axios-prometheus deps fix ([1d42608](https://github.com/biorate/core/commit/1d42608d711c96052211332d4752522373807d14))
+
+
+
+
+
 ## [1.9.1](https://github.com/biorate/core/compare/v1.9.0...v1.9.1) (2022-09-12)
 
 
