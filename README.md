@@ -25,6 +25,7 @@
 - [config-loader-fs](https://biorate.github.io/core/modules/config_loader_fs.html)
 - [config-loader-env](https://biorate.github.io/core/modules/config_loader_env.html)
 - [config-loader-vault](https://biorate.github.io/core/modules/config_loader_vault.html)
+- [batcher](https://biorate.github.io/core/modules/batcher.html)
 
 ### Learn
 
