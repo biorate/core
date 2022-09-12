@@ -1,4 +1,4 @@
-import { Axios } from '@biorate/axios';
+import { AxiosPrometheus } from '@biorate/axios-prometheus';
 import { Type } from 'avsc';
 import { ISchemaRegistryConfig } from './interfaces';
 import { SchemaRegistryAvroSchemaParseError } from './errors';
@@ -6,7 +6,7 @@ import { SchemaRegistryAvroSchemaParseError } from './errors';
 export const create = (config: ISchemaRegistryConfig) => {
   const cache = new Map<number, Type>();
 
-  class SchemaRegistryApi extends Axios {
+  abstract class SchemaRegistryApi extends AxiosPrometheus {
     public baseURL = config.baseURL;
   }
 
