@@ -1,0 +1,31 @@
+import { IConnectorConfig, IConnector } from '@biorate/connector';
+import {
+  GlobalConfig,
+  ConsumerTopicConfig,
+  KafkaConsumer,
+  TopicPartitionOffset,
+  MetadataOptions,
+  TopicPartitionTime,
+  TopicPartition,
+} from 'node-rdkafka';
+
+export type IRDKafkaConsumerConfig = IConnectorConfig & {
+  type: 'Consumer';
+  global: GlobalConfig;
+  topic: ConsumerTopicConfig;
+};
+
+export interface IRDKafkaConsumerConnection extends KafkaConsumer {
+  connectPromise(metadataOptions?: MetadataOptions): Promise<this>;
+  committedPromise(timeout: number, toppars?: TopicPartition[]): Promise<this>;
+  seekPromise(toppar: TopicPartitionOffset, timeout: number | null): Promise<this>;
+  offsetsForTimesPromise(
+    topicPartitions: TopicPartitionTime[],
+    timeout?: number,
+  ): Promise<void>;
+}
+
+export type IRDKafkaConsumerConnector = IConnector<
+  IRDKafkaConsumerConfig,
+  IRDKafkaConsumerConnection
+>;
