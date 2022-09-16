@@ -1,23 +1,18 @@
+import { Producer, ProducerStream } from 'node-rdkafka';
 import {
-  Producer,
-  ProducerGlobalConfig,
-  ProducerTopicConfig,
-  WriteStreamOptions,
-  ProducerStream,
-} from 'node-rdkafka';
-import { IRDKafkaProducerStreamConnection } from '../interfaces';
+  IRDKafkaProducerStreamConnection,
+  IRDKafkaProducerStreamConfig,
+} from '../interfaces';
 /**
  * @description RDKafka producer stream connection
  */
 export class RDKafkaProducerStreamConnection implements IRDKafkaProducerStreamConnection {
   public stream: ProducerStream;
+  protected config: IRDKafkaProducerStreamConfig;
 
-  public constructor(
-    globalConfig: ProducerGlobalConfig,
-    topicConfig: ProducerTopicConfig,
-    streamConfig: WriteStreamOptions,
-  ) {
-    this.stream = Producer.createWriteStream(globalConfig, topicConfig, streamConfig);
+  public constructor(config: IRDKafkaProducerStreamConfig) {
+    this.config = config;
+    this.stream = Producer.createWriteStream(config.global, config.topic, config.stream);
   }
 
   public write(buffer: Buffer) {

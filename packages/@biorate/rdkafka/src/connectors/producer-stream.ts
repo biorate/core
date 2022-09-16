@@ -31,11 +31,7 @@ export class RDKafkaProducerStreamConnector extends Connector<
   protected async connect(config: IRDKafkaProducerStreamConfig) {
     let connection: IRDKafkaProducerStreamConnection;
     try {
-      connection = new RDKafkaProducerStreamConnection(
-        config.global,
-        config.topic,
-        config.stream,
-      );
+      connection = new RDKafkaProducerStreamConnection(config);
     } catch (e: unknown) {
       throw new RDKafkaProducerStreamCantConnectError(<Error>e);
     }
