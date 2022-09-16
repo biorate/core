@@ -4,6 +4,7 @@ import {
   ConsumerGlobalConfig,
   ConsumerTopicConfig,
   ReadStreamOptions,
+  Message,
 } from 'node-rdkafka';
 
 export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
@@ -16,7 +17,11 @@ export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
   batch?: boolean;
 };
 
-export interface IRDKafkaConsumerStreamConnection extends EventEmitter {}
+export interface IRDKafkaConsumerStreamConnection extends EventEmitter {
+  subscribe(handler: (message: Message | Message[]) => Promise<void> | void): void;
+
+  unsubscribe(): void;
+}
 
 export type IRDKafkaConsumerStreamConnector = IConnector<
   IRDKafkaConsumerStreamConfig,

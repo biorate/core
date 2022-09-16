@@ -1,6 +1,6 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
 import {
-  GlobalConfig,
+  ConsumerGlobalConfig,
   ConsumerTopicConfig,
   KafkaConsumer,
   TopicPartitionOffset,
@@ -11,7 +11,7 @@ import {
 
 export type IRDKafkaConsumerConfig = IConnectorConfig & {
   type: 'Consumer';
-  global: GlobalConfig;
+  global: ConsumerGlobalConfig;
   topic: ConsumerTopicConfig;
 };
 

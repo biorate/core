@@ -33,7 +33,7 @@ export class RDKafkaHighLevelProducerConnector extends Connector<
     try {
       connection = new RDKafkaHighLevelProducerConnection(config.global, config.topic);
       connection.setPollInterval(config.pollInterval ?? 100);
-      await connection.connect();
+      await connection.connectPromise();
     } catch (e: unknown) {
       throw new RDKafkaHighLevelProducerCantConnectError(<Error>e);
     }

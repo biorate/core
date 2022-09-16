@@ -29,7 +29,7 @@ export class RDKafkaConsumerConnector extends Connector<
     let connection: IRDKafkaConsumerConnection;
     try {
       connection = new RDKafkaConsumerConnection(config.global, config.topic);
-      await connection.connect();
+      await connection.connectPromise();
     } catch (e: unknown) {
       throw new RDKafkaConsumerCantConnectError(<Error>e);
     }

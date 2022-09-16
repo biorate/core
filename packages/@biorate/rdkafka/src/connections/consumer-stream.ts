@@ -41,7 +41,7 @@ export class RDKafkaConsumerStreamConnection
     this.#handle();
   }
 
-  public subscribe(handler: () => Promise<void> | void) {
+  public subscribe(handler: (message: Message | Message[]) => Promise<void>) {
     this.handler = handler;
     this.stream.on('data', (message: Message) => {
       if (this.pool.length >= this.buffer) this.stream.pause();

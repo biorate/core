@@ -1,16 +1,16 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
 import {
   Producer,
-  GlobalConfig,
   ProducerTopicConfig,
   TopicPartitionOffset,
   KafkaConsumer,
   MetadataOptions,
+  ProducerGlobalConfig,
 } from 'node-rdkafka';
 
 export type IRDKafkaProducerConfig = IConnectorConfig & {
   type: 'Producer';
-  global: GlobalConfig;
+  global: ProducerGlobalConfig;
   topic?: ProducerTopicConfig;
   pollInterval?: number;
 };
