@@ -1,6 +1,6 @@
 {
   "name": "@biorate/batcher",
-  "version": "1.8.0",
+  "version": "1.11.0",
   "description": "Tasks batcher",
   "main": "dist",
   "scripts": {
@@ -23,8 +23,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.7.0",
-    "@biorate/inversion": "1.4.0",
-    "@biorate/tools": "1.4.0"
+    "@biorate/config": "1.11.0",
+    "@biorate/inversion": "1.11.0",
+    "@biorate/tools": "1.11.0"
   }
 }

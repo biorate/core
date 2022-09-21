@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/biorate/core/compare/v1.10.0...v1.11.0) (2022-09-21)
+
+
+### Features
+
+* **rdkafka:** module added, draft ([70254a0](https://github.com/biorate/core/commit/70254a0763dc1bed488639ad3a89e0b132304570))
+
+
+
+
+
 # [1.4.0](https://github.com/biorate/core/compare/v1.3.2...v1.4.0) (2022-08-15)
 
 
