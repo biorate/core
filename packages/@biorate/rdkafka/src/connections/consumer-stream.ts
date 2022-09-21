@@ -32,16 +32,14 @@ export class RDKafkaConsumerStreamConnection
   public constructor(config: IRDKafkaConsumerStreamConfig) {
     super();
     this.config = config;
-    this.stream = KafkaConsumer.createReadStream(
-      config.global,
-      config.topic,
-      config.stream,
-    );
-    this.stream.pause();
-    this.#handle();
   }
 
   public subscribe(handler: (message: Message | Message[]) => Promise<void>) {
+    this.stream = KafkaConsumer.createReadStream(
+      this.config.global,
+      this.config.topic,
+      this.config.stream,
+    );
     this.handler = handler;
     this.stream.on('data', (message: Message) => {
       if (this.pool.length >= this.buffer) this.stream.pause();
@@ -51,15 +49,16 @@ export class RDKafkaConsumerStreamConnection
       if (this.pool.length < this.buffer) this.stream.resume();
     });
     this.started = true;
-    this.stream.resume();
+    this.#handle();
   }
 
   public unsubscribe() {
     this.started = false;
     this.stream.pause();
     this.stream.removeAllListeners('data');
-    clearInterval(this.timer);
+    this.stream.close();
     this.handler = null;
+    clearInterval(this.timer);
   }
 
   #handle = async () => {
