@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.3](https://github.com/biorate/core/compare/v1.11.2...v1.11.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **axiox:** deps update ([900bc49](https://github.com/biorate/core/commit/900bc49792d1cb7338475ed4c68cc368cdefa613))
+
+
+
+
+
 ## [1.11.2](https://github.com/biorate/core/compare/v1.11.1...v1.11.2) (2022-09-21)
 
 
