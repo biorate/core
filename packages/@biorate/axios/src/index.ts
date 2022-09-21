@@ -5,6 +5,7 @@ import retry, { IAxiosRetryConfig } from 'axios-retry';
 import * as pathToUrl from 'path-to-url';
 import { IAxiosFetchOptions } from './interfaces';
 
+export * from 'axios';
 export * from './interfaces';
 
 const axiosRetryConfigKeys = [

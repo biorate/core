@@ -26,8 +26,7 @@
     "@biorate/axios": "1.11.3",
     "@biorate/config": "1.11.2",
     "@biorate/inversion": "1.11.2",
-    "@biorate/prometheus": "1.11.2",
-    "axios": "^0.26.1"
+    "@biorate/prometheus": "1.11.2"
   },
-  "gitHead": "366894dafd47b9613acde338a5615ee547f729a8"
+  "gitHead": "0b0405e8d5817df507783b092f42447a10ea2ceb"
 }

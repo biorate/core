@@ -1,7 +1,6 @@
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { AxiosError, AxiosResponse } from 'axios';
-import { Axios } from '@biorate/axios';
+import { Axios, AxiosError, AxiosResponse } from '@biorate/axios';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
 
 /**
