@@ -20,7 +20,7 @@ export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
 export interface IRDKafkaConsumerStreamConnection extends EventEmitter {
   subscribe(handler: (message: Message | Message[]) => Promise<void> | void): void;
 
-  unsubscribe(): void;
+  unsubscribe(): Promise<void>;
 }
 
 export type IRDKafkaConsumerStreamConnector = IConnector<

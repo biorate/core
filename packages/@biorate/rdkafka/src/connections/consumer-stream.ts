@@ -6,6 +6,7 @@ import {
   IRDKafkaConsumerStreamConfig,
   IRDKafkaProducerStreamConnection,
 } from '../interfaces';
+import { promisify } from 'util';
 /**
  * @description RDKafka consumer stream connection
  */
@@ -52,13 +53,13 @@ export class RDKafkaConsumerStreamConnection
     this.#handle();
   }
 
-  public unsubscribe() {
-    this.started = false;
+  public async unsubscribe() {
     this.stream.pause();
     this.stream.removeAllListeners('data');
-    this.stream.close();
+    this.started = false;
     this.handler = null;
     clearInterval(this.timer);
+    await promisify(this.stream.close.bind(this.stream));
   }
 
   #handle = async () => {

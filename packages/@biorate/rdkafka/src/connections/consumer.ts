@@ -5,6 +5,7 @@ import {
   MetadataOptions,
   TopicPartitionTime,
   TopicPartition,
+  Message,
 } from 'node-rdkafka';
 import { IRDKafkaConsumerConnection } from '../interfaces';
 /**
@@ -14,6 +15,12 @@ export class RDKafkaConsumerConnection
   extends KafkaConsumer
   implements IRDKafkaConsumerConnection
 {
+  public consumePromise(number: number) {
+    return new Promise<Message[]>((resolve, reject) =>
+      super.consume(number, (e, messages) => (e ? reject(e) : resolve(messages))),
+    );
+  }
+
   public connectPromise(metadataOptions?: MetadataOptions) {
     return new Promise<this>((resolve, reject) =>
       super.connect(metadataOptions, (e: LibrdKafkaError) =>

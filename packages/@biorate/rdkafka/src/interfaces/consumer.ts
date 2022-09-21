@@ -7,6 +7,7 @@ import {
   MetadataOptions,
   TopicPartitionTime,
   TopicPartition,
+  Message,
 } from 'node-rdkafka';
 
 export type IRDKafkaConsumerConfig = IConnectorConfig & {
@@ -16,6 +17,7 @@ export type IRDKafkaConsumerConfig = IConnectorConfig & {
 };
 
 export interface IRDKafkaConsumerConnection extends KafkaConsumer {
+  consumePromise(number: number): Promise<Message[]>;
   connectPromise(metadataOptions?: MetadataOptions): Promise<this>;
   committedPromise(timeout: number, toppars?: TopicPartition[]): Promise<this>;
   seekPromise(toppar: TopicPartitionOffset, timeout: number | null): Promise<this>;
