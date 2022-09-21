@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.4](https://github.com/biorate/core/compare/v1.11.3...v1.11.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* **axiox-prometheus:** deps update ([d9f3095](https://github.com/biorate/core/commit/d9f3095bf2b436b7555d8b037746dac11c0e4d93))
+
+
+
+
+
 ## [1.11.3](https://github.com/biorate/core/compare/v1.11.2...v1.11.3) (2022-09-21)
 
 **Note:** Version bump only for package @biorate/axios-prometheus
