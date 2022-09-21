@@ -30,7 +30,7 @@
     "@biorate/inversion": "1.11.1",
     "node-vault": "^0.9.22"
   },
-  "gitHead": "e5a478be1e5235b54a564aebec949b2c16fc9a09",
+  "gitHead": "366894dafd47b9613acde338a5615ee547f729a8",
   "devDependencies": {
     "@types/request": "^2.48.8"
   }
