@@ -28,5 +28,6 @@
     "@biorate/inversion": "1.11.0",
     "@biorate/prometheus": "1.11.0",
     "axios": "^0.26.1"
-  }
+  },
+  "gitHead": "e5a478be1e5235b54a564aebec949b2c16fc9a09"
 }

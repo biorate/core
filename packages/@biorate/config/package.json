@@ -26,7 +26,7 @@
     "lodash": "^4.17.21",
     "traverse": "^0.6.6"
   },
-  "gitHead": "cab85ab89357254f08ec4bde4a1c3e47984d27f6",
+  "gitHead": "e5a478be1e5235b54a564aebec949b2c16fc9a09",
   "devDependencies": {
     "@types/traverse": "^0.6.32"
   }
