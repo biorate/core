@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.2](https://github.com/biorate/core/compare/v1.11.1...v1.11.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **axios, kafka:** logic fixes ([5b83869](https://github.com/biorate/core/commit/5b8386953ce1d63783f380ca8fc36fb324a963b1))
+
+
+
+
+
 ## [1.11.1](https://github.com/biorate/core/compare/v1.11.0...v1.11.1) (2022-09-21)
 
 
