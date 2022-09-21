@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.5](https://github.com/biorate/core/compare/v1.11.4...v1.11.5) (2022-09-21)
+
+
+### Bug Fixes
+
+* **kafka:** fixes ([6853987](https://github.com/biorate/core/commit/6853987094941b53339d0331178b1b3fab75c672))
+
+
+
+
+
 ## [1.11.2](https://github.com/biorate/core/compare/v1.11.1...v1.11.2) (2022-09-21)
 
 
