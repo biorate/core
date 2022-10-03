@@ -84,7 +84,7 @@ export class Axios {
       ...omit(settings, axiosRetryConfigKeys.concat(axiosExcludeKeys)),
     };
     await this.before(params);
-    const startTime = process.hrtime();
+    const startTime = this.getStartTime();
     try {
       const result = await this.#client(params);
       await this.after<T>(result, startTime);
@@ -95,6 +95,12 @@ export class Axios {
     } finally {
       await this.finally(startTime);
     }
+  }
+  /**
+   * @description Get start time method
+   */
+  protected getStartTime(): [number, number] {
+    return [Date.now(), 0];
   }
   /**
    * @description Before hook

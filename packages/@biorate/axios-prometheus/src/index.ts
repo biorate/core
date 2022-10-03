@@ -57,7 +57,15 @@ export abstract class AxiosPrometheus extends Axios {
   public abstract baseURL: string;
   public abstract url: string;
   public abstract method: string;
-
+  /**
+   * @description Get start time method
+   */
+  protected getStartTime(): [number, number] {
+    return process.hrtime();
+  }
+  /**
+   * @description Log method
+   */
   protected log(statusCode: number, startTime: [number, number]) {
     const diff = process.hrtime(startTime);
     const time = diff[0] * 1e3 + diff[1] * 1e-6;
