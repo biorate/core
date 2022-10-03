@@ -40,15 +40,15 @@ export abstract class AxiosPrometheus extends Axios {
   }
 
   @counter({
-    name: 'api_request_counter',
-    help: 'api request counter',
+    name: 'http_client_requests_seconds_count',
+    help: 'Http client requests count',
     labelNames: ['method', 'baseUrl', 'statusCode'],
   })
   protected counter: Counter;
 
   @histogram({
-    name: 'api_response_time',
-    help: 'api response time',
+    name: 'http_client_requests_seconds_bucket',
+    help: 'Http client requests seconds bucket',
     labelNames: ['method', 'baseUrl', 'statusCode'],
     buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
   })
