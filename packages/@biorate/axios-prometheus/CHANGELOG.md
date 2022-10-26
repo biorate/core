@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.8](https://github.com/biorate/core/compare/v1.11.7...v1.11.8) (2022-10-26)
+
+
+### Bug Fixes
+
+* **axios-prometheus:** prometheus metrics labels rename ([067e08f](https://github.com/biorate/core/commit/067e08f7f68ff8e2e658726175780f2f53d8447a))
+
+
+
+
+
 ## [1.11.7](https://github.com/biorate/core/compare/v1.11.6...v1.11.7) (2022-10-26)
 
 
