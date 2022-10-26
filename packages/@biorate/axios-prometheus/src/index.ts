@@ -42,14 +42,14 @@ export abstract class AxiosPrometheus extends Axios {
   @counter({
     name: 'http_client_requests_seconds_count',
     help: 'Http client requests count',
-    labelNames: ['method', 'baseUrl', 'statusCode'],
+    labelNames: ['method', 'url', 'status'],
   })
   protected counter: Counter;
 
   @histogram({
     name: 'http_client_requests_seconds_bucket',
     help: 'Http client requests seconds bucket',
-    labelNames: ['method', 'baseUrl', 'statusCode'],
+    labelNames: ['method', 'url', 'status'],
     buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
   })
   protected histogram: Histogram;
@@ -72,15 +72,15 @@ export abstract class AxiosPrometheus extends Axios {
     this.counter
       .labels({
         method: this.method,
-        baseUrl: this.baseURL + this.url,
-        statusCode,
+        url: this.baseURL + this.url,
+        status: statusCode,
       })
       .inc();
     this.histogram
       .labels({
         method: this.method,
-        baseUrl: this.baseURL + this.url,
-        statusCode,
+        url: this.baseURL + this.url,
+        status: statusCode,
       })
       .observe(time);
   }
