@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/biorate/core/compare/v1.15.0...v1.16.0) (2022-11-03)
+
+
+### Features
+
+* **batcher:** wait -> immediate ([43111f2](https://github.com/biorate/core/commit/43111f2d92895ae6b819319a0240dd921d86deeb))
+
+
+
+
+
 # [1.15.0](https://github.com/biorate/core/compare/v1.14.0...v1.15.0) (2022-11-03)
 
 
