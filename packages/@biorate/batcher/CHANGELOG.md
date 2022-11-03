@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/biorate/core/compare/v1.14.0...v1.15.0) (2022-11-03)
+
+
+### Features
+
+* **batcher:** types change ([adad869](https://github.com/biorate/core/commit/adad8692e54a4f055afd30059ffe4857320a94a8))
+
+
+
+
+
 # [1.14.0](https://github.com/biorate/core/compare/v1.13.0...v1.14.0) (2022-11-03)
 
 
