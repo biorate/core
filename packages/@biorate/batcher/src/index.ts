@@ -56,8 +56,6 @@ export * from './interfaces';
  */
 @injectable()
 export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
-  @inject(Types.Config) protected config: IConfig;
-
   protected stamp = Date.now();
   protected tasks: [O, ITask<M>][] = [];
   protected callback: (tasks: [O, ITask<M>][]) => void;
