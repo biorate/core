@@ -1,10 +1,8 @@
-import { Batcher } from './index';
-
 export type IMetadata = Record<string | symbol, unknown>;
 
 export type ITask<M = IMetadata> = {
-  resolve: (value: any) => void;
-  reject: (reason?: any) => void;
+  resolve: (value?: unknown) => void;
+  reject: (reason?: unknown) => void;
   metadata?: M;
 };
 
