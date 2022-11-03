@@ -65,6 +65,10 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
     this.loop().catch(this.panic);
   }
 
+  public get length() {
+    return this.tasks.length;
+  }
+
   public register(callback: (tasks: [O, ITask<M>][]) => void) {
     this.callback = callback;
   }
@@ -93,7 +97,7 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
 
   protected async loop() {
     while (true) {
-      await timer.immediate();
+      await timer.wait();
       await this.process();
     }
   }
