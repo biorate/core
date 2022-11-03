@@ -93,7 +93,7 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
 
   protected async loop() {
     while (true) {
-      await timer.wait();
+      await timer.immediate();
       await this.process();
     }
   }
