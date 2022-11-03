@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/mssql select rows from table 1`] = `
+Object {
+  "output": Object {},
+  "recordset": Array [
+    Object {
+      "count": 1,
+      "text": "test1",
+    },
+    Object {
+      "count": 2,
+      "text": "test2",
+    },
+    Object {
+      "count": 3,
+      "text": "test3",
+    },
+  ],
+  "recordsets": Array [
+    Array [
+      Object {
+        "count": 1,
+        "text": "test1",
+      },
+      Object {
+        "count": 2,
+        "text": "test2",
+      },
+      Object {
+        "count": 3,
+        "text": "test3",
+      },
+    ],
+  ],
+  "rowsAffected": Array [
+    3,
+  ],
+}
+`;

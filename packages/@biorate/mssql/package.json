@@ -1,0 +1,37 @@
+{
+  "name": "@biorate/mssql",
+  "version": "0.0.0",
+  "description": "Mssql raw connector",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/mssql"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "mssql",
+    "connector"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/config": "1.11.2",
+    "@biorate/connector": "1.11.2",
+    "@biorate/errors": "1.2.2",
+    "@biorate/inversion": "1.11.2",
+    "@biorate/tools": "1.11.2",
+    "mssql": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/mssql": "^8.1.1"
+  }
+}

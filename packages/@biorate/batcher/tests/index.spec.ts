@@ -1,24 +1,19 @@
 import { expect } from 'chai';
-import { root } from './__mocks__';
+import { IBatcher, Batcher } from '../src';
+import './__mocks__';
 
 describe('@biorate/batcher', function () {
-  this.timeout(30000);
+  const batcher: IBatcher = new Batcher<{ data: string }, { test: string }>();
 
-  before(async () => {
-    await root.$run();
-  });
-
-  after(() => {
-    process.exit(0);
-  });
+  after(() => process.exit(0));
 
   it('register / add', (done) => {
-    root.batcher.register((tasks) => {
+    batcher.register((tasks) => {
       expect(tasks).toMatchSnapshot();
       done();
     });
-    root.batcher.add({ data: 'one' }, { test: 'one' });
-    root.batcher.add({ data: 'two' }, { test: 'two' });
-    root.batcher.add({ data: 'three' }, { test: 'three' });
+    batcher.add({ data: 'one' }, { test: 'one' });
+    batcher.add({ data: 'two' }, { test: 'two' });
+    batcher.add({ data: 'three' }, { test: 'three' });
   });
 });

@@ -18,30 +18,40 @@ export * from './interfaces';
  * import { IConfig, Config } from '@biorate/config';
  * import { IBatcher, Batcher } from '@biorate/batcher';
  *
- * export class Root extends Core() {
- *   @inject(Types.Config) public config: IConfig;
- *   @inject(Types.Batcher) public batcher: IBatcher<{ data: string }, { test: string }>;
- * }
+ * const batcher: IBatcher = new Batcher<{ data: string }, { test: string }>();
  *
- * container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
- * container
- *   .bind<IBatcher<{ data: string }, { test: string }>>(Types.Batcher)
- *   .to(Batcher<{ data: string }, { test: string }>)
- *   .inSingletonScope();
- * container.bind<Root>(Root).toSelf().inSingletonScope();
- *
- * (async () => {
- *   const root = <Root>container.get<Root>(Root);
- *   root.batcher.register(async (tasks) => {
- *     for (const task of tasks)
- *       task[1].resolve();
- *   });
- *   root.batcher.add({ data: 'one' }, { test: 'one' }).then(() => console.log('resolve 1')); // resolve 3
- *   root.batcher.add({ data: 'two' }, { test: 'two' }).then(() => console.log('resolve 2')); // resolve 3
- *   root.batcher
- *     .add({ data: 'three' }, { test: 'three' })
- *     .then(() => console.log('resolve 3')); // resolve 3
- * })();
+ * batcher.register((tasks) => {
+ *   console.log(tasks);
+ *   // [
+ *   //   [
+ *   //     { data: 'one' },
+ *   //     {
+ *   //       resolve: [Function (anonymous)],
+ *   //       reject: [Function (anonymous)],
+ *   //       metadata: { test: 'one' }
+ *   //     }
+ *   //   ],
+ *   //   [
+ *   //     { data: 'two' },
+ *   //     {
+ *   //       resolve: [Function (anonymous)],
+ *   //       reject: [Function (anonymous)],
+ *   //       metadata: { test: 'two' }
+ *   //     }
+ *   //   ],
+ *   //   [
+ *   //     { data: 'three' },
+ *   //     {
+ *   //       resolve: [Function (anonymous)],
+ *   //       reject: [Function (anonymous)],
+ *   //       metadata: { test: 'three' }
+ *   //     }
+ *   //   ]
+ *   // ]
+ * });
+ * batcher.add({ data: 'one' }, { test: 'one' });
+ * batcher.add({ data: 'two' }, { test: 'two' });
+ * batcher.add({ data: 'three' }, { test: 'three' });
  * ```
  */
 @injectable()
@@ -53,12 +63,29 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
   protected callback: (tasks: [O, ITask<M>][]) => void;
   protected unique = new Set<symbol | string>();
 
-  protected get count() {
-    return this.config.get('Batcher.count', 100);
+  public constructor(protected count = 100, protected timeout = 100) {
+    this.loop().catch(this.panic);
   }
 
-  protected get timeout() {
-    return this.config.get('Batcher.timeout', 100);
+  public register(callback: (tasks: [O, ITask<M>][]) => void) {
+    this.callback = callback;
+  }
+
+  public rollback(tasks: [O, ITask<M>][]) {
+    this.tasks.unshift(...tasks);
+  }
+
+  public add(object: O, metadata?: M) {
+    return new Promise<unknown>((resolve, reject) =>
+      this.tasks.push([
+        object,
+        {
+          resolve,
+          reject,
+          metadata,
+        },
+      ]),
+    );
   }
 
   protected panic(e: Error) {
@@ -96,30 +123,5 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
       this.tasks.length = 0;
       await this.callback(this.deduplicate(tasks));
     }
-  }
-
-  public constructor() {
-    this.loop().catch(this.panic);
-  }
-
-  public register(callback: (tasks: [O, ITask<M>][]) => void) {
-    this.callback = callback;
-  }
-
-  public rollback(tasks: [O, ITask<M>][]) {
-    this.tasks.unshift(...tasks);
-  }
-
-  public add(object: O, metadata?: M) {
-    return new Promise<unknown>((resolve, reject) =>
-      this.tasks.push([
-        object,
-        {
-          resolve,
-          reject,
-          metadata,
-        },
-      ]),
-    );
   }
 }

@@ -13,29 +13,40 @@ import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { IBatcher, Batcher } from '@biorate/batcher';
 
-export class Root extends Core() {
-  @inject(Types.Config) public config: IConfig;
-  @inject(Types.Batcher) public batcher: IBatcher<{ data: string }, { test: string }>;
-}
+const batcher: IBatcher = new Batcher<{ data: string }, { test: string }>();
 
-container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container
-  .bind<IBatcher<{ data: string }, { test: string }>>(Types.Batcher)
-  .to(Batcher<{ data: string }, { test: string }>)
-  .inSingletonScope();
-container.bind<Root>(Root).toSelf().inSingletonScope();
-
-(async () => {
-  const root = <Root>container.get<Root>(Root);
-  root.batcher.register(async (tasks) => {
-    for (const task of tasks) task[1].resolve();
-  });
-  root.batcher.add({ data: 'one' }, { test: 'one' }).then(() => console.log('resolve 1')); // resolve 3
-  root.batcher.add({ data: 'two' }, { test: 'two' }).then(() => console.log('resolve 2')); // resolve 3
-  root.batcher
-    .add({ data: 'three' }, { test: 'three' })
-    .then(() => console.log('resolve 3')); // resolve 3
-})();
+batcher.register((tasks) => {
+  console.log(tasks);
+  // [
+  //   [
+  //     { data: 'one' },
+  //     {
+  //       resolve: [Function (anonymous)],
+  //       reject: [Function (anonymous)],
+  //       metadata: { test: 'one' }
+  //     }
+  //   ],
+  //   [
+  //     { data: 'two' },
+  //     {
+  //       resolve: [Function (anonymous)],
+  //       reject: [Function (anonymous)],
+  //       metadata: { test: 'two' }
+  //     }
+  //   ],
+  //   [
+  //     { data: 'three' },
+  //     {
+  //       resolve: [Function (anonymous)],
+  //       reject: [Function (anonymous)],
+  //       metadata: { test: 'three' }
+  //     }
+  //   ]
+  // ]
+});
+batcher.add({ data: 'one' }, { test: 'one' });
+batcher.add({ data: 'two' }, { test: 'two' });
+batcher.add({ data: 'three' }, { test: 'three' });
 ```
 
 ### Learn
