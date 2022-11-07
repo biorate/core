@@ -22,6 +22,7 @@
 - [migrations](https://biorate.github.io/core/modules/migrations.html)
 - [minio](https://biorate.github.io/core/modules/minio.html)
 - [mssql](https://biorate.github.io/core/modules/mssql.html)
+- [redis](https://biorate.github.io/core/modules/redis.html)
 - [vault](https://biorate.github.io/core/modules/vault.html)
 - [config-loader](https://biorate.github.io/core/modules/config_loader.html)
 - [config-loader-fs](https://biorate.github.io/core/modules/config_loader_fs.html)
