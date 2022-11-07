@@ -1,6 +1,6 @@
 {
   "name": "@biorate/redis",
-  "version": "0.0.0",
+  "version": "1.18.0",
   "description": "Redis connector",
   "main": "dist",
   "scripts": {
