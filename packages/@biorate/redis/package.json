@@ -30,5 +30,6 @@
     "@biorate/inversion": "1.11.2",
     "@biorate/tools": "1.11.2",
     "redis": "^4.4.0"
-  }
+  },
+  "gitHead": "c661f08026ab7c0ced92b8961e6e461eac673b96"
 }
