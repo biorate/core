@@ -1,6 +1,6 @@
 {
   "name": "@biorate/pg",
-  "version": "0.0.0",
+  "version": "1.19.1",
   "description": "PostgreSQL raw connector",
   "main": "dist",
   "scripts": {
