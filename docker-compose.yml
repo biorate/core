@@ -79,6 +79,14 @@ services:
     environment:
       SA_PASSWORD: 'admin_007'
       ACCEPT_EULA: 'Y'
+  postgres:
+    image: postgres
+    network_mode: host
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_USER: 'postgres'
   redis:
     image: redis
     ports:

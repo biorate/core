@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { root } from './__mocks__';
 
-describe('@biorate/mssql', function () {
-  this.timeout(3e4);
+describe('@biorate/pg', function () {
+  this.timeout(2e3);
 
   before(async () => {
     await root.$run();
@@ -28,6 +28,21 @@ describe('@biorate/mssql', function () {
 
   it('select rows from table', async () =>
     expect(
-      await root.connector!.current?.query(`SELECT * FROM test;`),
+      (await root.connector!.current?.query(`SELECT * FROM test;`))!.rows,
     ).toMatchSnapshot());
+
+  it('cursor', (done) => {
+    const cursor = root.connector!.cursor('connection', `SELECT * FROM test;`);
+    cursor.read(3, (err, rows) => {
+      expect(err).toMatchSnapshot();
+      expect(rows).toMatchSnapshot();
+      cursor.close(() => done());
+    });
+  });
+
+  it('stream', (done) => {
+    const stream = root.connector!.stream('connection', `SELECT * FROM test;`);
+    stream.on('data', (row) => expect(row).toMatchSnapshot());
+    stream.on('end', () => done());
+  });
 });
