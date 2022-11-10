@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/biorate/core/compare/v1.20.1...v1.21.0) (2022-11-10)
+
+
+### Features
+
+* **schema-registry:** headers added in config ([92fa587](https://github.com/biorate/core/commit/92fa587f3ade6e1e3e976ca4bda362a02e6b643b))
+
+
+
+
+
 ## [1.20.1](https://github.com/biorate/core/compare/v1.20.0...v1.20.1) (2022-11-10)
 
 **Note:** Version bump only for package @biorate/schema-registry
