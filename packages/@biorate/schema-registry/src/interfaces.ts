@@ -5,6 +5,7 @@ export type ISchemaRegistryConnection = ReturnType<typeof create>;
 
 export interface ISchemaRegistryConfig extends IConnectorConfig {
   baseURL: string;
+  headers: Record<string, string>;
 }
 
 export type ISchemaRegistryConnector = IConnector<

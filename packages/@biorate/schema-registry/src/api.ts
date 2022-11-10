@@ -8,6 +8,7 @@ export const create = (config: ISchemaRegistryConfig) => {
 
   abstract class SchemaRegistryApi extends AxiosPrometheus {
     public baseURL = config.baseURL;
+    public headers = config.headers;
   }
 
   class Ping extends SchemaRegistryApi {
