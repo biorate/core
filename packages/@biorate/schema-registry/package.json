@@ -1,6 +1,6 @@
 {
   "name": "@biorate/schema-registry",
-  "version": "1.11.8",
+  "version": "1.20.1",
   "description": "Schema registry connector",
   "main": "dist",
   "scripts": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "@biorate/axios-prometheus": "1.11.8",
     "@biorate/config": "1.11.2",
-    "@biorate/connector": "1.11.2",
+    "@biorate/connector": "1.20.1",
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.11.2",
     "avsc": "^5.7.4"
