@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/biorate/core/compare/v1.19.1...v1.20.0) (2022-11-10)
+
+
+### Features
+
+* **rdkafka:** HighLevelProducer::producePromise bug fix ([dd8d8f2](https://github.com/biorate/core/commit/dd8d8f238ac82bb487f79c63549c62a834b63b43))
+
+
+
+
+
 ## [1.19.1](https://github.com/biorate/core/compare/v1.19.0...v1.19.1) (2022-11-09)
 
 
