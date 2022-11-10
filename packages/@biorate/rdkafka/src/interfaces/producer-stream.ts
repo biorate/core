@@ -6,7 +6,6 @@ import {
 } from 'node-rdkafka';
 
 export type IRDKafkaProducerStreamConfig = IConnectorConfig & {
-  type: 'ProducerStream';
   global: ProducerGlobalConfig;
   topic: ProducerTopicConfig;
   stream: WriteStreamOptions;

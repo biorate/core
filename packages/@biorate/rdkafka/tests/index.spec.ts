@@ -1,8 +1,7 @@
-// import { expect } from 'chai';
+import { expect } from 'chai';
 import { timer } from '@biorate/tools';
-import { Message, LibrdKafkaError } from 'node-rdkafka';
+import { Message } from 'node-rdkafka';
 import { root } from './__mocks__';
-import { assert } from 'chai';
 
 describe('@biorate/rdkafka', function () {
   const topic = 'test';
@@ -59,14 +58,14 @@ describe('@biorate/rdkafka', function () {
     });
   });
 
-  // it('high level producer', async () => {
-  //   const res = await root.highLevelProducer!.current!.producePromise(
-  //     topic,
-  //     null,
-  //     Buffer.from('hello world!'),
-  //     null,
-  //     Date.now(),
-  //   );
-  //   console.log(res);
-  // });
+  it('high level producer', async () => {
+    const res = await root.highLevelProducer!.current!.producePromise(
+      topic,
+      null,
+      Buffer.from('hello world!'),
+      null,
+      Date.now(),
+    );
+    expect(res).to.be.a('number');
+  });
 });

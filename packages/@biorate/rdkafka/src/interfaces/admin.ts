@@ -2,7 +2,6 @@ import { IConnectorConfig, IConnector } from '@biorate/connector';
 import { GlobalConfig, IAdminClient, NewTopic } from 'node-rdkafka';
 
 export type IRDKafkaAdminConfig = IConnectorConfig & {
-  type: 'AdminClient';
   global: GlobalConfig;
 };
 

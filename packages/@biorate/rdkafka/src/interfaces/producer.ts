@@ -9,7 +9,6 @@ import {
 } from 'node-rdkafka';
 
 export type IRDKafkaProducerConfig = IConnectorConfig & {
-  type: 'Producer';
   global: ProducerGlobalConfig;
   topic?: ProducerTopicConfig;
   pollInterval?: number;

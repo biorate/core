@@ -8,7 +8,6 @@ import {
 } from 'node-rdkafka';
 
 export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
-  type: 'ConsumerStream';
   global: ConsumerGlobalConfig;
   topic: ConsumerTopicConfig;
   stream: ReadStreamOptions;

@@ -24,11 +24,12 @@ export class RDKafkaHighLevelProducerConnection
     headers?: MessageHeader[],
   ) {
     return new Promise<NumberNullUndefined>((resolve, reject) => {
-      const callback = (e: LibrdKafkaError, offset: NumberNullUndefined) =>
+      const callback = (e: LibrdKafkaError, offset: NumberNullUndefined) => {
         e ? reject(e) : resolve(offset);
+      };
       headers
-        ? super.produce(topic, partition, message, key, timestamp, headers, callback)
-        : super.produce(topic, partition, message, key, timestamp, callback);
+        ? this.produce(topic, partition, message, key, timestamp, headers, callback)
+        : this.produce(topic, partition, message, key, timestamp, callback);
     });
   }
 

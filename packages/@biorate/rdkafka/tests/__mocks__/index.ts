@@ -57,14 +57,12 @@ container.get<IConfig>(Types.Config).merge({
   RDKafkaAdmin: [
     {
       name: 'admin',
-      type: 'Admin',
       global: '#{RDKafkaGlobal}',
     },
   ],
   RDKafkaProducer: [
     {
       name: 'producer',
-      type: 'Producer',
       global: '#{RDKafkaGlobal}',
       pollInterval: 0,
     },
@@ -72,7 +70,6 @@ container.get<IConfig>(Types.Config).merge({
   RDKafkaHighLevelProducer: [
     {
       name: 'highLevelProducer',
-      type: 'HighLevelProducer',
       global: '#{RDKafkaGlobal}',
       pollInterval: 0,
     },
@@ -80,7 +77,6 @@ container.get<IConfig>(Types.Config).merge({
   RDKafkaConsumer: [
     {
       name: 'consumer',
-      type: 'Consumer',
       global: '#{RDKafkaGlobal}',
       topic: '#{RDKafkaTopic}',
     },
@@ -88,7 +84,6 @@ container.get<IConfig>(Types.Config).merge({
   RDKafkaConsumerStream: [
     {
       name: 'consumer',
-      type: 'Consumer',
       global: '#{RDKafkaGlobal}',
       topic: '#{RDKafkaTopic}',
       stream: { topics: ['test'] },

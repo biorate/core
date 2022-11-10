@@ -11,7 +11,6 @@ import {
 } from 'node-rdkafka';
 
 export type IRDKafkaConsumerConfig = IConnectorConfig & {
-  type: 'Consumer';
   global: ConsumerGlobalConfig;
   topic: ConsumerTopicConfig;
 };
