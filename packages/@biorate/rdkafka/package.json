@@ -18,7 +18,8 @@
   },
   "homepage": "https://biorate.github.io/core",
   "keywords": [
-    "minio",
+    "kafka",
+    "rdkafka",
     "connector"
   ],
   "author": "llevkin",
