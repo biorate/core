@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/biorate/core/compare/v1.21.0...v1.21.1) (2022-11-15)
+
+
+### Bug Fixes
+
+* **rdkafka:** package.json keywords ([08c52d3](https://github.com/biorate/core/commit/08c52d3ebf9eef609b685f4007da1da5609b8444))
+* **rdkafka:** packaje.json keywords ([5e05ad5](https://github.com/biorate/core/commit/5e05ad5ea06b8005cc5e996f2fef76d672a37172))
+
+
+
+
+
 # [1.21.0](https://github.com/biorate/core/compare/v1.20.1...v1.21.0) (2022-11-10)
 
 
