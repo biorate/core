@@ -24,14 +24,18 @@
   "license": "MIT",
   "dependencies": {
     "@biorate/config": "1.11.2",
+    "@biorate/config-loader": "1.11.2",
+    "@biorate/config-loader-env": "1.11.2",
+    "@biorate/config-loader-fs": "1.11.2",
+    "@biorate/config-loader-vault": "1.21.2",
     "@biorate/connector": "1.20.1",
     "@biorate/errors": "1.2.2",
-    "@biorate/file-config": "1.11.2",
     "@biorate/inversion": "1.11.2",
     "@biorate/minio": "1.20.1",
     "@biorate/mongodb": "1.20.1",
     "@biorate/sequelize": "1.20.1",
-    "@biorate/tools": "1.11.2"
+    "@biorate/tools": "1.11.2",
+    "@biorate/vault": "1.11.2"
   },
   "gitHead": "366894dafd47b9613acde338a5615ee547f729a8"
 }

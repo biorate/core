@@ -21,6 +21,7 @@ describe('@biorate/rdkafka', function () {
 
   after(async () => {
     await cleanup();
+    process.exit();
   });
 
   it('AdminClient #createTopic', async () => {

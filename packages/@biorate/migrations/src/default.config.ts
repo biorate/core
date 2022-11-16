@@ -1,13 +1,27 @@
 import { container, Types } from '@biorate/inversion';
-import { IConfig } from '@biorate/config';
-import { FileConfig } from '@biorate/file-config';
+import { IConfig, Config } from '@biorate/config';
+import { ConfigLoader } from '@biorate/config-loader';
+import { ConfigLoaderEnv } from '@biorate/config-loader-env';
+import { ConfigLoaderFs } from '@biorate/config-loader-fs';
+import { ConfigLoaderVault } from '@biorate/config-loader-vault';
+import { VaultConnector, IVaultConnector } from '@biorate/vault';
 import { ISequelizeConnection, SequelizeConnector } from '@biorate/sequelize';
 import { IMinioConnection, MinioConnector } from '@biorate/minio';
 import { IMongoDBConnection, MongoDBConnector } from '@biorate/mongodb';
 import { Root } from './';
 import * as Migrations from './types';
 
-container.bind<IConfig>(Types.Config).to(FileConfig).inSingletonScope();
+container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+container
+  .bind<ConfigLoader>(Types.ConfigLoaderEnv)
+  .to(ConfigLoaderEnv)
+  .inSingletonScope();
+container.bind<ConfigLoader>(Types.ConfigLoaderFs).to(ConfigLoaderFs).inSingletonScope();
+container
+  .bind<ConfigLoader>(Types.ConfigLoaderVault)
+  .to(ConfigLoaderVault)
+  .inSingletonScope();
+container.bind<IVaultConnector>(Types.Vault).to(VaultConnector).inSingletonScope();
 container
   .bind<ISequelizeConnection>(Types.Sequelize)
   .to(SequelizeConnector)

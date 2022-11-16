@@ -14,7 +14,7 @@ describe('@biorate/config-loader-vault', function () {
   it('files', async () => {
     expect(
       await fs.readFile(
-        path.create(process.cwd(), 'keys', Object.keys(data.files)[0]),
+        path.create(process.cwd(), 'downloads', Object.keys(data.files)[0]),
         'utf-8',
       ),
     )

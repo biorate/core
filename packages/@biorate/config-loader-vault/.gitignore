@@ -2,7 +2,7 @@
 dist
 node_modules
 cache
-keys
+downloads
 
 # Logs
 logs
