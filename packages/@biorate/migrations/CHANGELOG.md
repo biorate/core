@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/biorate/core/compare/v1.21.2...v1.22.0) (2022-11-16)
+
+
+### Features
+
+* **migrations:** file-loader replaced by config-loaders ([db919de](https://github.com/biorate/core/commit/db919de255ca96cf270726828a1e30d77fa63bad))
+
+
+
+
+
 ## [1.20.1](https://github.com/biorate/core/compare/v1.20.0...v1.20.1) (2022-11-10)
 
 **Note:** Version bump only for package @biorate/migrations
