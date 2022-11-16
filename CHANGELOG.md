@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.2](https://github.com/biorate/core/compare/v1.21.1...v1.21.2) (2022-11-16)
+
+
+### Bug Fixes
+
+* **config-loader-vault:** add download dir in config ([0e3a565](https://github.com/biorate/core/commit/0e3a5654f974aa8a9e32c288b4e565c72600c61f))
+
+
+
+
+
 ## [1.21.1](https://github.com/biorate/core/compare/v1.21.0...v1.21.1) (2022-11-15)
 
 
