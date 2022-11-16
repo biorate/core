@@ -35,7 +35,7 @@
     "@biorate/mongodb": "1.20.1",
     "@biorate/sequelize": "1.20.1",
     "@biorate/tools": "1.11.2",
-    "@biorate/vault": "1.11.2"
+    "@biorate/vault": "1.20.1"
   },
-  "gitHead": "366894dafd47b9613acde338a5615ee547f729a8"
+  "gitHead": "6725e40e3ed7080c2aaf5aaa201c34f9c922b142"
 }
