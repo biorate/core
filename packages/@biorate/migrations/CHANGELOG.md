@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.1](https://github.com/biorate/core/compare/v1.22.0...v1.22.1) (2022-11-16)
+
+
+### Bug Fixes
+
+* **migrations:** vault deps fix ([408247d](https://github.com/biorate/core/commit/408247dc81134136b0ed5fb79b933882085f9bde))
+
+
+
+
+
 # [1.22.0](https://github.com/biorate/core/compare/v1.21.2...v1.22.0) (2022-11-16)
 
 
