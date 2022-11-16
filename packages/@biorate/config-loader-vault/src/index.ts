@@ -118,7 +118,7 @@ export class ConfigLoaderVault extends ConfigLoader {
       this.constructor.name,
       [],
     )) {
-      await this[option.action](await this.read(option));
+      await this[option.action](await this.read(option), option);
     }
   }
   /**
@@ -158,18 +158,25 @@ export class ConfigLoaderVault extends ConfigLoader {
   /**
    * @description Merge config method
    */
-  protected async [ConfigLoaderVaultActions.Merge](data: Record<string, unknown>) {
+  protected async [ConfigLoaderVaultActions.Merge](
+    data: Record<string, unknown>,
+    option: IConfigLoaderVaultOption,
+  ) {
     this.config.merge(data);
   }
   /**
    * @description Download files method
    */
-  protected async [ConfigLoaderVaultActions.Download](data: Record<string, string>) {
+  protected async [ConfigLoaderVaultActions.Download](
+    data: Record<string, string>,
+    option: IConfigLoaderVaultOption,
+  ) {
+    const directory = option?.directory ?? 'downloads';
     for (const file in data) {
-      await fs.mkdir(path.create(process.cwd(), 'keys'), {
+      await fs.mkdir(path.create(process.cwd(), directory), {
         recursive: true,
       });
-      await fs.writeFile(path.create(process.cwd(), 'keys', file), data[file]);
+      await fs.writeFile(path.create(process.cwd(), directory, file), data[file]);
     }
   }
 }

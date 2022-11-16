@@ -4,8 +4,9 @@ export enum ConfigLoaderVaultActions {
 }
 
 export type IConfigLoaderVaultOption = {
-  action: ConfigLoaderVaultActions.Download | ConfigLoaderVaultActions.Merge;
+  action: ConfigLoaderVaultActions.Merge;
   path: string;
   connection: string;
   cache?: boolean;
+  directory?: string;
 };
