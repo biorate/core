@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.2](https://github.com/biorate/core/compare/v1.22.1...v1.22.2) (2022-11-28)
+
+
+### Bug Fixes
+
+* **rdkafka:** lib version up ([f62ccc2](https://github.com/biorate/core/commit/f62ccc28b62b2183709c580b13a1b4c2f4b53bc7))
+
+
+
+
+
 ## [1.22.1](https://github.com/biorate/core/compare/v1.22.0...v1.22.1) (2022-11-16)
 
 
