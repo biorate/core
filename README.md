@@ -30,6 +30,8 @@
 - [config-loader-env](https://biorate.github.io/core/modules/config_loader_env.html)
 - [config-loader-vault](https://biorate.github.io/core/modules/config_loader_vault.html)
 - [batcher](https://biorate.github.io/core/modules/batcher.html)
+- [rdkafka](https://biorate.github.io/core/modules/rdkafka.html)
+- [kafkajs](https://biorate.github.io/core/modules/kafkajs.html)
 
 ### Learn
 

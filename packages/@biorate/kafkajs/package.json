@@ -1,0 +1,35 @@
+{
+  "name": "@biorate/kafkajs",
+  "version": "0.0.0",
+  "description": "KafkaJS connector",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/kafkajs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "kafka",
+    "kafkajs",
+    "connector"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/config": "1.11.2",
+    "@biorate/connector": "1.20.1",
+    "@biorate/errors": "1.2.2",
+    "@biorate/inversion": "1.11.2",
+    "@biorate/tools": "1.11.2",
+    "kafkajs": "^2.2.3"
+  }
+}
