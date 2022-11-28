@@ -30,7 +30,7 @@
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.11.2",
     "@biorate/tools": "1.11.2",
-    "node-rdkafka": "^2.13.0"
+    "node-rdkafka": "^2.14.0"
   },
   "gitHead": "6725e40e3ed7080c2aaf5aaa201c34f9c922b142"
 }
