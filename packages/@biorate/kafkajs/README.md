@@ -7,28 +7,42 @@ KafkaJS connector
 ```ts
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { KafkaJSConnector, KafkaJSConfig } from '@biorate/kafkajs';
+import { KafkaJSProducerConnector } from '@biorate/kafkajs';
 
 class Root extends Core() {
-  @inject(KafkaJSConnector) public connector: KafkaJSConnector;
+  @inject(KafkaJSProducerConnector) public producer: KafkaJSProducerConnector;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<KafkaJSConnector>(KafkaJSConnector).toSelf().inSingletonScope();
+container.bind<KafkaJSProducerConnector>(KafkaJSProducerConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  KafkaJS: [
+  KafkaJSGlobal: {
+    brokers: ['localhost:9092'],
+    clientId: 'test-app',
+    logLevel: 1,
+  },
+  KafkaJSProducer: [
     {
-      name: 'connection',
-      options: {},
+      name: 'producer',
+      global: '#{KafkaJSGlobal}',
     },
   ],
 });
 
 (async () => {
+  const topic = 'test-kafkajs';
   const root = container.get<Root>(Root);
   await root.$run();
+  await root.producer!.current!.send({
+    topic,
+    messages: [
+      { key: 'key 1', value: 'hello world 1' },
+      { key: 'key 2', value: 'hello world 2' },
+      { key: 'key 3', value: 'hello world 3' },
+    ],
+  });
 })();
 ```
 
