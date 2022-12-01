@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.5](https://github.com/biorate/core/compare/v1.22.4...v1.22.5) (2022-12-01)
+
+
+### Bug Fixes
+
+* **rdkafka:** downgrade kafka version ([a6e7a73](https://github.com/biorate/core/commit/a6e7a73e5bb0924d7f6940ca92f31f37a4a7aea5))
+
+
+
+
+
 ## [1.22.3](https://github.com/biorate/core/compare/v1.22.2...v1.22.3) (2022-11-28)
 
 
