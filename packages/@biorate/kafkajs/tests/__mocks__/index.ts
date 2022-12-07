@@ -52,6 +52,7 @@ container.get<IConfig>(Types.Config).merge({
     {
       name: 'consumer',
       global: '#{KafkaJSGlobal}',
+      subscribe: { topics: [topic], fromBeginning: true },
       options: {
         groupId: 'kafkajs',
       },

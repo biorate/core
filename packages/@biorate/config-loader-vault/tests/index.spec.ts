@@ -20,6 +20,7 @@ describe('@biorate/config-loader-vault', function () {
     )
       .to.be.a('string')
       .equal(data.files['hello.txt']);
+    expect(root.config.get('hello.txt')).to.be.a('string').equal(data.files['hello.txt']);
   });
 
   it('cache', async () => {

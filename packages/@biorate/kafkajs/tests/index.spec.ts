@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { range } from 'lodash';
 import { root, topic } from './__mocks__';
 
 describe('@biorate/kafkajs', function () {
@@ -38,27 +39,25 @@ describe('@biorate/kafkajs', function () {
   it('Producer #send', async () => {
     await root.producer!.current!.send({
       topic,
-      messages: [
-        { key: 'key 1', value: 'hello world 1' },
-        { key: 'key 2', value: 'hello world 2' },
-        { key: 'key 3', value: 'hello world 3' },
-      ],
+      messages: range(0, 20000).map((i) => ({
+        key: `key ${i}`,
+        value: `hello world ${i}`,
+      })),
     });
   });
 
-  it('Consumer #run', (done) => {
-    root.consumer!.current!.subscribe({ topics: [topic], fromBeginning: true });
-    root.consumer!.current!.run({
-      eachBatchAutoResolve: false,
-      autoCommit: false,
-      eachBatch: async ({ batch, resolveOffset, heartbeat }) => {
-        for (let message of batch.messages) {
-          resolveOffset(message.offset);
-          await heartbeat();
-        }
-        root.consumer!.current!.disconnect();
-        done();
-      },
+  it.skip('Consumer #run', (done) => {
+    root.consumer!.subscribe('consumer', async (messages) => {
+      await root.consumer!.unsubscribe('consumer');
+      done();
+    });
+  });
+
+  it('t', (done) => {
+    let count = 0;
+    root.consumer!.subscribe('consumer', async (messages) => {
+      count += messages.length;
+      console.log(count);
     });
   });
 

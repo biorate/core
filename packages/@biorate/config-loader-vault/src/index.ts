@@ -178,5 +178,6 @@ export class ConfigLoaderVault extends ConfigLoader {
       });
       await fs.writeFile(path.create(process.cwd(), directory, file), data[file]);
     }
+    this.config.merge(data);
   }
 }
