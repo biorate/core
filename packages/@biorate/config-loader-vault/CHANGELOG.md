@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.7](https://github.com/biorate/core/compare/v1.22.6...v1.22.7) (2022-12-07)
+
+
+### Bug Fixes
+
+* files merge in config in config-loader-merge, kafkajs consumer subscribe chunk method ([80d9fcd](https://github.com/biorate/core/commit/80d9fcd4d4655085aa6f3b79eb8cd92d0f22b661))
+
+
+
+
+
 ## [1.22.1](https://github.com/biorate/core/compare/v1.22.0...v1.22.1) (2022-11-16)
 
 

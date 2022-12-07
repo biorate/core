@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios-prometheus",
-  "version": "1.22.6",
+  "version": "1.22.7",
   "description": "Axios-prometheus HTTP interface",
   "main": "dist",
   "scripts": {
@@ -26,7 +26,7 @@
     "@biorate/axios": "1.11.7",
     "@biorate/config": "1.11.2",
     "@biorate/inversion": "1.11.2",
-    "@biorate/prometheus": "1.11.2"
+    "@biorate/prometheus": "1.22.7"
   },
   "gitHead": "0b0405e8d5817df507783b092f42447a10ea2ceb"
 }
