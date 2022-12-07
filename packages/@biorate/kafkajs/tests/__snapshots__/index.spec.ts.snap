@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/kafkajs Admin #createPartitions 1`] = `
+Object {
+  "topics": Array [
+    Object {
+      "name": "kafkajs",
+      "partitions": Array [
+        Object {
+          "isr": Array [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": Array [],
+          "partitionErrorCode": 0,
+          "partitionId": 0,
+          "replicas": Array [
+            1,
+          ],
+        },
+        Object {
+          "isr": Array [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": Array [],
+          "partitionErrorCode": 0,
+          "partitionId": 2,
+          "replicas": Array [
+            1,
+          ],
+        },
+        Object {
+          "isr": Array [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": Array [],
+          "partitionErrorCode": 0,
+          "partitionId": 1,
+          "replicas": Array [
+            1,
+          ],
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`@biorate/kafkajs Admin #createTopics 1`] = `
+Object {
+  "topics": Array [
+    Object {
+      "name": "kafkajs",
+      "partitions": Array [
+        Object {
+          "isr": Array [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": Array [],
+          "partitionErrorCode": 0,
+          "partitionId": 0,
+          "replicas": Array [
+            1,
+          ],
+        },
+      ],
+    },
+  ],
+}
+`;

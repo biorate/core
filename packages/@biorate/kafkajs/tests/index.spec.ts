@@ -9,10 +9,6 @@ describe('@biorate/kafkajs', function () {
     await root.$run();
   });
 
-  after(async () => {
-    process.exit();
-  });
-
   it('Admin #createTopics', async () => {
     await root.admin!.current!.createTopics({
       topics: [{ topic, numPartitions: 1 }],
@@ -37,7 +33,7 @@ describe('@biorate/kafkajs', function () {
   });
 
   it('Producer #send', async () => {
-    await root.producer!.current!.send({
+    await root.producer!.send('producer', {
       topic,
       messages: range(0, 20000).map((i) => ({
         key: `key ${i}`,
@@ -46,18 +42,27 @@ describe('@biorate/kafkajs', function () {
     });
   });
 
-  it.skip('Consumer #run', (done) => {
-    root.consumer!.subscribe('consumer', async (messages) => {
-      await root.consumer!.unsubscribe('consumer');
-      done();
-    });
-  });
+  // it('Producer #transaction', async () => {
+  //   const connection = root.producer!.get('producer');
+  //   const transaction = await connection.transaction();
+  //   console.log(1);
+  //   await transaction.send({
+  //     topic,
+  //     messages: range(0, 10).map((i) => ({
+  //       key: `key ${i}`,
+  //       value: `hello world ${i}`,
+  //     })),
+  //   });
+  //   console.log(2);
+  //   await transaction.commit();
+  //   console.log(3);
+  // });
 
-  it('t', (done) => {
+  it('Consumer #run', (done) => {
     let count = 0;
     root.consumer!.subscribe('consumer', async (messages) => {
       count += messages.length;
-      console.log(count);
+      if (count === 20000) done();
     });
   });
 

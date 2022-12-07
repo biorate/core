@@ -46,6 +46,11 @@ container.get<IConfig>(Types.Config).merge({
     {
       name: 'producer',
       global: '#{KafkaJSGlobal}',
+      options: {
+        transactionalId: 'my-transactional-producer',
+        maxInFlightRequests: 1,
+        idempotent: true,
+      },
     },
   ],
   KafkaJSConsumer: [

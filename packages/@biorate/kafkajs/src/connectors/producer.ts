@@ -1,8 +1,10 @@
 import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
-import { Kafka, Partitioners } from 'kafkajs';
+import { Kafka, Partitioners, ProducerRecord } from 'kafkajs';
+import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
 import { KafkaJSProducerCantConnectError } from '../errors';
 import { IKafkaJSProducerConfig, IKafkaJSProducerConnection } from '../interfaces';
+import { LogCreator } from '../logger';
 /**
  * @description KafkaJS producer connector
  *
@@ -58,6 +60,25 @@ export class KafkaJSProducerConnector extends Connector<
   IKafkaJSProducerConnection
 > {
   /**
+   * @description Counter
+   */
+  @counter({
+    name: 'kafkajs_producer_seconds_count',
+    help: 'Kafkajs producer seconds count',
+    labelNames: ['topic', 'status'],
+  })
+  protected counter: Counter;
+  /**
+   * @description Histogram
+   */
+  @histogram({
+    name: 'kafkajs_producer_seconds',
+    help: 'kafkajs producer seconds bucket',
+    labelNames: ['topic', 'status'],
+    buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
+  })
+  protected histogram: Histogram;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'KafkaJSProducer';
@@ -67,7 +88,10 @@ export class KafkaJSProducerConnector extends Connector<
   protected async connect(config: IKafkaJSProducerConfig) {
     let connection: IKafkaJSProducerConnection;
     try {
-      connection = new Kafka(config.global).producer({
+      connection = new Kafka({
+        logCreator: LogCreator,
+        ...config.global,
+      }).producer({
         createPartitioner: Partitioners[config.partitioner ?? 'DefaultPartitioner'],
         ...config.options,
       });
@@ -76,5 +100,57 @@ export class KafkaJSProducerConnector extends Connector<
       throw new KafkaJSProducerCantConnectError(<Error>e);
     }
     return connection;
+  }
+  /**
+   * @description Send
+   */
+  public async send(name: string, record: ProducerRecord) {
+    const connection = this.get(name);
+    const start = Date.now();
+    try {
+      const result = await connection.send(record);
+      this.histogram
+        .labels({ topic: record.topic, status: 200 })
+        .observe(Date.now() - start);
+      this.counter
+        .labels({ topic: record.topic, status: 200 })
+        .inc(record.messages.length);
+      return result;
+    } catch (e) {
+      this.histogram
+        .labels({ topic: record.topic, status: 400 })
+        .observe(Date.now() - start);
+      this.counter
+        .labels({ topic: record.topic, status: 400 })
+        .inc(record.messages.length);
+      throw e;
+    }
+  }
+  /**
+   * @description Transaction
+   */
+  public async transaction(name: string, record: ProducerRecord) {
+    const connection = this.get(name);
+    const start = Date.now();
+    const transaction = await connection.transaction();
+    try {
+      await transaction.send(record);
+      await transaction.commit();
+      this.histogram
+        .labels({ topic: record.topic, status: 200 })
+        .observe(Date.now() - start);
+      this.counter
+        .labels({ topic: record.topic, status: 200 })
+        .inc(record.messages.length);
+    } catch (e) {
+      await transaction.abort();
+      this.histogram
+        .labels({ topic: record.topic, status: 400 })
+        .observe(Date.now() - start);
+      this.counter
+        .labels({ topic: record.topic, status: 400 })
+        .inc(record.messages.length);
+      throw e;
+    }
   }
 }
