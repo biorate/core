@@ -38,11 +38,12 @@ export class Prometheus implements IPrometheus {
       metric = new Class({ ...settings, registers: [this.registry] });
       repository.set(settings.name, metric);
     }
-    return (proto: any, key: string): void =>
+    return (proto: any, key: string) => {
       Object.defineProperty(proto, key, {
         get: () => metric,
         configurable: true,
       });
+    };
   }
   /**
    * @alias counter
