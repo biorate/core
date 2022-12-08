@@ -29,6 +29,7 @@
     "@biorate/connector": "1.20.1",
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.11.2",
+    "@biorate/prometheus": "1.22.7",
     "@biorate/tools": "1.11.2",
     "node-rdkafka": "2.13.0"
   },

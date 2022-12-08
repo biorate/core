@@ -25,8 +25,8 @@ export class KafkaJSConsumerConnector extends Connector<
    * @description Counter
    */
   @counter({
-    name: 'kafkajs_consumer_seconds_count',
-    help: 'Kafkajs consumer seconds count',
+    name: 'kafka_consumer_seconds_count',
+    help: 'Kafka consumer seconds count',
     labelNames: ['topic', 'status'],
   })
   protected counter: Counter;
@@ -34,8 +34,8 @@ export class KafkaJSConsumerConnector extends Connector<
    * @description Histogram
    */
   @histogram({
-    name: 'kafkajs_consumer_seconds',
-    help: 'kafkajs consumer seconds bucket',
+    name: 'kafka_consumer_seconds',
+    help: 'Kafka consumer seconds bucket',
     labelNames: ['topic', 'status'],
     buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
   })

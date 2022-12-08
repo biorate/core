@@ -5,3 +5,9 @@ export class RDKafkaConsumerStreamCantConnectError extends BaseError {
     super(`Can't connect to ConsumerStream: [%s]`, [e.message]);
   }
 }
+
+export class RDKafkaConsumerStreamAlreadySubscribedError extends BaseError {
+  public constructor() {
+    super(`Consumer stream already subscribed`);
+  }
+}

@@ -63,8 +63,8 @@ export class KafkaJSProducerConnector extends Connector<
    * @description Counter
    */
   @counter({
-    name: 'kafkajs_producer_seconds_count',
-    help: 'Kafkajs producer seconds count',
+    name: 'kafka_producer_seconds_count',
+    help: 'Kafka producer seconds count',
     labelNames: ['topic', 'status'],
   })
   protected counter: Counter;
@@ -72,8 +72,8 @@ export class KafkaJSProducerConnector extends Connector<
    * @description Histogram
    */
   @histogram({
-    name: 'kafkajs_producer_seconds',
-    help: 'kafkajs producer seconds bucket',
+    name: 'kafka_producer_seconds',
+    help: 'Kafka producer seconds bucket',
     labelNames: ['topic', 'status'],
     buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
   })
