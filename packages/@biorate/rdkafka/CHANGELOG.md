@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.9](https://github.com/biorate/core/compare/v1.22.8...v1.22.9) (2022-12-26)
+
+
+### Bug Fixes
+
+* **rdkafka:** metrics status in consumer-stream ([1948912](https://github.com/biorate/core/commit/1948912129b0405bd8282d2320b4c545e85434c0))
+
+
+
+
+
 ## [1.22.8](https://github.com/biorate/core/compare/v1.22.7...v1.22.8) (2022-12-08)
 
 
