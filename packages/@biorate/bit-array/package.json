@@ -1,0 +1,25 @@
+{
+  "name": "@biorate/bit-array",
+  "version": "0.0.0",
+  "description": "Bit array class",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/bit-array"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "Axios"
+  ],
+  "author": "llevkin",
+  "license": "MIT"
+}
