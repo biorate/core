@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "1.22.7",
+  "version": "1.23.0",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {

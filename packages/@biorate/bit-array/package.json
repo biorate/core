@@ -1,6 +1,6 @@
 {
   "name": "@biorate/bit-array",
-  "version": "0.0.0",
+  "version": "1.23.0",
   "description": "Bit array class",
   "main": "dist",
   "scripts": {
