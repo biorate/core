@@ -32,6 +32,7 @@
 - [batcher](https://biorate.github.io/core/modules/batcher.html)
 - [rdkafka](https://biorate.github.io/core/modules/rdkafka.html)
 - [kafkajs](https://biorate.github.io/core/modules/kafkajs.html)
+- [bit-array](https://biorate.github.io/core/modules/bit_array.html)
 
 ### Learn
 
