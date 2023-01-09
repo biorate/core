@@ -1,6 +1,7 @@
-import { Migration } from './migration';
 import { IMongoDBConfig, IMongoDBConnection, IMongoDBConnector } from '@biorate/mongodb';
+import { IConfig } from '@biorate/config';
 import { inject, Types } from '@biorate/inversion';
+import { Migration } from './migration';
 /**
  * @description Mongodb migration class
  */
@@ -24,8 +25,9 @@ export class Mongodb extends Migration {
               require(file) as (
                 connection: IMongoDBConnection,
                 config: IMongoDBConfig,
+                globalConfig: IConfig,
               ) => Promise<void>
-            )(connection, config);
+            )(connection, config, this.config);
             this.log(config.name, name);
           } catch (e) {}
         }),

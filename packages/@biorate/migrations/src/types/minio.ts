@@ -1,6 +1,7 @@
-import { Migration } from './migration';
 import { IMinioConnector, IMinioConfig, IMinioConnection } from '@biorate/minio';
+import { IConfig } from '@biorate/config';
 import { inject, Types } from '@biorate/inversion';
+import { Migration } from './migration';
 /**
  * @description Minio migration class
  */
@@ -26,8 +27,9 @@ export class Minio extends Migration {
               require(file) as (
                 connection: IMinioConnection,
                 config: IMinioConfig,
+                globalConfig: IConfig,
               ) => Promise<void>
-            )(connection, config);
+            )(connection, config, this.config);
             await connection.putObject(tableName, name, Buffer.from('1'));
             this.log(config.name, name);
           }
