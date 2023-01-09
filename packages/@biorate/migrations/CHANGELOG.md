@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.2](https://github.com/biorate/core/compare/v1.23.1...v1.23.2) (2023-01-09)
+
+
+### Bug Fixes
+
+* **migrations:** globalConfig passthrough ([cdeb3bc](https://github.com/biorate/core/commit/cdeb3bcac7322e969b7816997a23c8eda652ba3c))
+
+
+
+
+
 # [1.23.0](https://github.com/biorate/core/compare/v1.22.9...v1.23.0) (2023-01-09)
 
 
