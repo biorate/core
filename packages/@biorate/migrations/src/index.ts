@@ -1,5 +1,3 @@
-import {container} from "@biorate/inversion";
-
 export * from './root';
 export * from './types/migration';
 export * from './types';

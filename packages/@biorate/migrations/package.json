@@ -31,6 +31,7 @@
     "@biorate/connector": "1.20.1",
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.11.2",
+    "@biorate/kafkajs": "1.22.8",
     "@biorate/minio": "1.20.1",
     "@biorate/mongodb": "1.20.1",
     "@biorate/sequelize": "1.20.1",

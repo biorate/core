@@ -8,6 +8,7 @@ import { VaultConnector, IVaultConnector } from '@biorate/vault';
 import { ISequelizeConnection, SequelizeConnector } from '@biorate/sequelize';
 import { IMinioConnection, MinioConnector } from '@biorate/minio';
 import { IMongoDBConnection, MongoDBConnector } from '@biorate/mongodb';
+import { IKafkaJSAdminConnector, KafkaJSAdminConnector } from '@biorate/kafkajs';
 import { Root } from './';
 import * as Migrations from './types';
 
@@ -28,8 +29,10 @@ container
   .inSingletonScope();
 container.bind<IMinioConnection>(Types.Minio).to(MinioConnector).inSingletonScope();
 container.bind<IMongoDBConnection>(Types.Mongodb).to(MongoDBConnector).inSingletonScope();
+container.bind<IKafkaJSAdminConnector>(Types.Kafka).to(KafkaJSAdminConnector).inSingletonScope();
 container.bind<Migrations.Sequelize>(Migrations.Sequelize).toSelf().inSingletonScope();
 container.bind<Migrations.Minio>(Migrations.Minio).toSelf().inSingletonScope();
 container.bind<Migrations.Mongodb>(Migrations.Mongodb).toSelf().inSingletonScope();
+container.bind<Migrations.Kafka>(Migrations.Kafka).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 container.get<Root>(Root).$run().catch(console.error);

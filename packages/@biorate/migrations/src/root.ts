@@ -14,6 +14,7 @@ export class Root extends Core() {
   @inject(Migrations.Sequelize) public sequelize: Migrations.Sequelize;
   @inject(Migrations.Minio) protected minio: Migrations.Minio;
   @inject(Migrations.Mongodb) protected mongodb: Migrations.Mongodb;
+  @inject(Migrations.Kafka) public kafkaJSAdmin: Migrations.Kafka;
 
   @init() protected async initialize() {
     process.exit();

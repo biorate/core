@@ -49,6 +49,16 @@ container.get<IConfig>(Types.Config).merge({
       },
     },
   ],
+  KafkaJSAdmin: [
+    {
+      name: 'admin',
+      global: {
+        brokers: ['localhost:9092'],
+        clientId: 'test-app',
+        logLevel: 1,
+      },
+    },
+  ],
   migrations: {
     directory: '/tests/migrations',
   },
