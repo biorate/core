@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/biorate/core/compare/v1.23.2...v1.24.0) (2023-02-01)
+
+**Note:** Version bump only for package @biorate/minio
+
+
+
+
+
 ## [1.20.1](https://github.com/biorate/core/compare/v1.20.0...v1.20.1) (2022-11-10)
 
 **Note:** Version bump only for package @biorate/minio

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/biorate/core/compare/v1.23.2...v1.24.0) (2023-02-01)
+
+**Note:** Version bump only for package @biorate/axios
+
+
+
+
+
 ## [1.11.7](https://github.com/biorate/core/compare/v1.11.6...v1.11.7) (2022-10-26)
 
 
