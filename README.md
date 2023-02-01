@@ -33,6 +33,7 @@
 - [rdkafka](https://biorate.github.io/core/modules/rdkafka.html)
 - [kafkajs](https://biorate.github.io/core/modules/kafkajs.html)
 - [bit-array](https://biorate.github.io/core/modules/bit_array.html)
+- [nestjs-tools](https://biorate.github.io/core/modules/nestjs_tools.html)
 
 ### Learn
 
