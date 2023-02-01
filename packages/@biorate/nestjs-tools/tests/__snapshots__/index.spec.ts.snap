@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`nestjs-tools AllExceptionsFilter 1`] = `[Function]`;
+
+exports[`nestjs-tools AuthBasic 1`] = `[Function]`;
+
+exports[`nestjs-tools AuthGuardProvider 1`] = `[Function]`;
+
+exports[`nestjs-tools ProxyPrometheusMiddleware 1`] = `[Function]`;
+
+exports[`nestjs-tools RequestCountMiddleware 1`] = `[Function]`;
+
+exports[`nestjs-tools ResponseTimeMiddleware 1`] = `[Function]`;
+
+exports[`nestjs-tools Roles 1`] = `[Function]`;
+
+exports[`nestjs-tools RolesGuardProvider 1`] = `[Function]`;
+
+exports[`nestjs-tools RoutesInterceptor 1`] = `[Function]`;
+
+exports[`nestjs-tools UserRoles 1`] = `
+Object {
+  "1": "Basic",
+  "2": "Admin",
+  "Admin": 2,
+  "Basic": 1,
+}
+`;

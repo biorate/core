@@ -1,0 +1,43 @@
+{
+  "name": "@biorate/nestjs-tools",
+  "version": "0.0.0",
+  "description": "NestJS tools",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/nestjs-tools"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/config": "1.11.2",
+    "@biorate/errors": "1.2.2",
+    "@biorate/inversion": "1.11.2",
+    "@biorate/prometheus": "1.22.7",
+    "@biorate/tools": "1.11.2",
+    "@nestjs/common": "^9.2.1",
+    "@nestjs/core": "^9.2.1",
+    "@nestjs/swagger": "^6.1.4",
+    "class-validator": "^0.13.2",
+    "express": "^4.18.2",
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^2.0.6",
+    "lodash": "^4.17.21",
+    "on-headers": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.16",
+    "@types/on-headers": "^1.0.0"
+  }
+}
