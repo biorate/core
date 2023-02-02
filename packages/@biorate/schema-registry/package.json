@@ -1,6 +1,6 @@
 {
   "name": "@biorate/schema-registry",
-  "version": "1.24.8",
+  "version": "1.24.9",
   "description": "Schema registry connector",
   "main": "dist",
   "scripts": {
@@ -26,7 +26,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/axios-prometheus": "1.24.8",
+    "@biorate/axios-prometheus": "1.24.9",
     "@biorate/config": "1.24.0",
     "@biorate/connector": "1.24.0",
     "@biorate/errors": "1.2.2",
