@@ -1,9 +1,10 @@
+// @ts-ignore
+import * as onHeaders from 'on-headers';
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { histogram, Histogram } from '@biorate/prometheus';
 import { Request, Response, NextFunction } from 'express';
-import onHeaders from 'on-headers';
 import { RoutesInterceptor } from '../interceptors';
 import { time } from '@biorate/tools';
 

@@ -37,7 +37,6 @@
     "on-headers": "^1.0.2"
   },
   "devDependencies": {
-    "@types/express": "^4.17.16",
-    "@types/on-headers": "^1.0.0"
+    "@types/express": "^4.17.16"
   }
 }
