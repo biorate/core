@@ -10,7 +10,9 @@ import {
 import { Request, Response, NextFunction } from 'express';
 import { Observable } from 'rxjs';
 import { Options, RequestHandler } from 'http-proxy-middleware/dist/types';
-import { UserRoles } from './src/enums';
+import { UserRoles } from './interfaces';
+
+export * from './interfaces';
 
 declare module '@biorate/nestjs-tools' {
   export function AuthBasic(): (
@@ -27,8 +29,6 @@ declare module '@biorate/nestjs-tools' {
     (<TFunction extends Function>(target: TFunction) => void | TFunction) & {
       KEY: symbol;
     };
-
-  export * from './src/enums';
 
   export class AllExceptionsFilter implements ExceptionFilter {
     public catch(exception: unknown, host: ArgumentsHost): void;
