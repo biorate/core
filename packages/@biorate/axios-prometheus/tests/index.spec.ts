@@ -10,4 +10,9 @@ describe('@biorate/axios-prometheus', function () {
     expect(Google.logResult).to.be.an('object').property('statusCode').to.be.equal(200);
     expect(Google.logResult).to.be.an('object').property('startTime').to.be.an('array');
   });
+
+  it('mocks', async () => {
+    Google.useMock();
+    await Google.fetch();
+  });
 });

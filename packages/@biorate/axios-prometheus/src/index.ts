@@ -1,7 +1,11 @@
+import { readFileSync, writeFileSync, statSync, mkdirSync } from 'fs';
+import { path } from '@biorate/tools';
+import { dirname } from 'path';
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { Axios, AxiosError, AxiosResponse } from '@biorate/axios';
+import { Axios, AxiosError, AxiosResponse, IAxiosFetchOptions } from '@biorate/axios';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
+import { get, set } from 'lodash';
 
 /**
  * @description
@@ -35,6 +39,87 @@ import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
  * ```
  */
 export abstract class AxiosPrometheus extends Axios {
+  protected static mockFileName(name: string) {
+    return `Axios.${name}.snap`;
+  }
+
+  protected static checkMockDir(directory: string) {
+    try {
+      const dir = path.create(process.cwd(), directory);
+      const stats = statSync(dir);
+      if (!stats.isDirectory()) return null;
+      return dir;
+    } catch {
+      return null;
+    }
+  }
+
+  protected static mockFilePath(filename?: string) {
+    let directory = (<IConfig>container.get<IConfig>(Types.Config)).get<string | null>(
+      'axios.mock.directory',
+      null,
+    );
+    if (!directory) {
+      let lines = new Error()?.stack?.split?.('\n');
+      let line = lines?.[6] ?? lines?.[5];
+      directory = dirname(line?.match(/^[^\/]+([^\:]+)\:/)?.[1] ?? '');
+    }
+    if (!directory) directory = this.checkMockDir('test');
+    if (!directory) directory = this.checkMockDir('tests');
+    if (!directory) directory = process.cwd();
+    return path.create(directory, '__snapshots__', filename ?? '');
+  }
+
+  protected static getMockData(instance: Axios, filename: string) {
+    return JSON.parse(readFileSync(this.mockFilePath(filename), 'utf8'));
+  }
+
+  protected static getMock<T = any, D = any>(
+    instance: Axios,
+    options?: IAxiosFetchOptions,
+  ): undefined | AxiosResponse<T, D> {
+    const filename = this.mockFileName(instance.constructor.name);
+    try {
+      return get(
+        this.getMockData(instance, filename),
+        `${instance.constructor.name}.${JSON.stringify(options)}`,
+      );
+    } catch (e) {
+      console.warn(
+        `Axios mock snap file [${filename}] doesn't exists, or corrupted., because of [${
+          (<Error>e)?.message
+        }]`,
+      );
+    }
+  }
+
+  protected static setMock<T = any, D = any>(
+    instance: Axios,
+    result: AxiosResponse<T, D>,
+    options?: IAxiosFetchOptions,
+  ) {
+    let data: Record<string, unknown>;
+    const filename = this.mockFileName(instance.constructor.name);
+    try {
+      data = this.getMockData(instance, filename);
+    } catch {
+      data = {};
+    }
+    set(data, `${instance.constructor.name}.${JSON.stringify(options)}`, result.data);
+    try {
+      mkdirSync(this.mockFilePath(), { recursive: true });
+    } catch {}
+    try {
+      writeFileSync(this.mockFilePath(filename), JSON.stringify(data), 'utf8');
+    } catch (e) {
+      console.warn(
+        `Can't write Axios mock snap file [${filename}], because of [${
+          (<Error>e)?.message
+        }]`,
+      );
+    }
+  }
+
   protected get config() {
     return container.get<IConfig>(Types.Config);
   }
