@@ -1,3 +1,3 @@
-export * from './request-count';
-export * from './response-time';
-export * from './proxy';
+export * from './proxy-middleware';
+export * from './request-count-middleware';
+export * from './response-time-middleware';

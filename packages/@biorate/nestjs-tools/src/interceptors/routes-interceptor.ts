@@ -1,6 +1,7 @@
 import { join, normalize } from 'path/posix';
 import { Reflector } from '@nestjs/core';
 import { PATH_METADATA } from '@nestjs/common/constants';
+import { Request } from 'express';
 import {
   Injectable,
   ExecutionContext,
@@ -10,7 +11,7 @@ import {
 
 @Injectable()
 export class RoutesInterceptor implements NestInterceptor {
-  public static readonly map = new WeakMap();
+  public static readonly map = new WeakMap<Request, { path: string }>();
 
   private readonly reflector = new Reflector();
 
