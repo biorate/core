@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.4](https://github.com/biorate/core/compare/v1.24.3...v1.24.4) (2023-02-02)
+
+
+### Bug Fixes
+
+* **nestjs-tools:** types ([af23cf3](https://github.com/biorate/core/commit/af23cf346d712aeccac1568aecd0945b2e670d22))
+
+
+
+
+
 ## [1.24.3](https://github.com/biorate/core/compare/v1.24.2...v1.24.3) (2023-02-02)
 
 
