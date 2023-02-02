@@ -46,20 +46,54 @@ export class Axios {
    */
   protected static cache = new WeakMap<typeof Axios, Axios>();
   /**
+   * @description Axios instance cache
+   */
+  protected static mocks = new WeakMap<typeof Axios, { value: boolean }>();
+  /**
    * @description Fetch static method
    */
   public static fetch(options?: any) {
     return this._fetch(options);
   }
   /**
+   * @description Use mock static method
+   */
+  public static useMock() {
+    this.mocks.set(this, { value: true });
+  }
+  /**
+   * @description Get mock static method
+   */
+  protected static getMock<T = any, D = any>(
+    instance: Axios,
+    options?: IAxiosFetchOptions,
+  ): undefined | AxiosResponse<T, D> {
+    return undefined;
+  }
+  /**
+   * @description Set mock static method
+   */
+  protected static setMock<T = any, D = any>(
+    instance: Axios,
+    result: AxiosResponse<T, D>,
+    options?: IAxiosFetchOptions,
+  ) {}
+  /**
    * @description Protected fetch static method
    */
-  protected static _fetch<T = any, D = any>(
+  protected static async _fetch<T = any, D = any>(
     options?: IAxiosFetchOptions,
   ): Promise<AxiosResponse<T, D>> {
     if (!this.cache.has(this)) this.cache.set(this, new this());
-    // @ts-ignore
-    return this.cache.get(this).fetch<T, D>(options);
+    const instance = this.cache.get(this)!;
+    const useMock = this.mocks.get(this)?.value;
+    if (useMock) {
+      const mock = this.getMock<T, D>(instance, options);
+      if (mock) return mock;
+    }
+    const result = await instance.fetch<T, D>(options);
+    if (useMock) this.setMock<T, D>(instance, result, options);
+    return result;
   }
   /**
    * @description Axios client cache
