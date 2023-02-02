@@ -14,9 +14,9 @@ import { UserRoles } from './src/enums';
 
 declare module '@biorate/nestjs-tools' {
   export function AuthBasic(): (
-    target: Record<string | symbol, unknown>,
-    propertyKey?: string | symbol,
-    descriptor?: TypedPropertyDescriptor<unknown>,
+    target: any,
+    propertyKey?: any,
+    descriptor?: TypedPropertyDescriptor<any>,
   ) => void;
 
   export function Roles(...roles: UserRoles[]): (<T>(

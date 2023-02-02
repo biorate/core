@@ -3,12 +3,7 @@ import { ApiBasicAuth } from '@nestjs/swagger';
 import { AuthGuardProvider } from '../providers';
 
 export const AuthBasic =
-  () =>
-  (
-    target: Record<string | symbol, unknown>,
-    propertyKey?: string | symbol,
-    descriptor?: TypedPropertyDescriptor<unknown>,
-  ) => {
+  () => (target: any, propertyKey?: any, descriptor?: TypedPropertyDescriptor<any>) => {
     ApiBasicAuth()(target, propertyKey!, descriptor!);
     UseGuards(AuthGuardProvider)(target, propertyKey!, descriptor!);
   };
