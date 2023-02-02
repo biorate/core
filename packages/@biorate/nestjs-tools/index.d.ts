@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { Options, RequestHandler } from 'http-proxy-middleware/dist/types';
 import { UserRoles } from './src/enums';
 
-declare module '@biorate/nestjs-utils' {
+declare module '@biorate/nestjs-tools' {
   export function AuthBasic(): (
     target: Record<string | symbol, unknown>,
     propertyKey?: string | symbol,
