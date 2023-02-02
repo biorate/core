@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.6](https://github.com/biorate/core/compare/v1.24.5...v1.24.6) (2023-02-02)
+
+
+### Bug Fixes
+
+* **nestjs-tools:** app.auth.basic config default value fix ([e1c5498](https://github.com/biorate/core/commit/e1c54984f8b88759a03d384ea1ac6edae9ec0c01))
+
+
+
+
+
 ## [1.24.5](https://github.com/biorate/core/compare/v1.24.4...v1.24.5) (2023-02-02)
 
 
