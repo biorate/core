@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.5](https://github.com/biorate/core/compare/v1.24.4...v1.24.5) (2023-02-02)
+
+
+### Bug Fixes
+
+* **nestjs-tools:** onHeaders import fix ([be1e15e](https://github.com/biorate/core/commit/be1e15e7eedb1b858ed793c7cab3e2b408ff9cca))
+
+
+
+
+
 ## [1.24.4](https://github.com/biorate/core/compare/v1.24.3...v1.24.4) (2023-02-02)
 
 
