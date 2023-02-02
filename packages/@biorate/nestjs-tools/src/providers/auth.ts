@@ -13,9 +13,9 @@ export class AuthGuardProvider implements CanActivate {
 
   public canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-    const config = this.config.get<{ [key: string]: string } | void>(
+    const config = this.config.get<{ [key: string]: string } | null>(
       'app.auth.basic',
-      undefined,
+      null,
     );
     if (!config) return true;
     let username: string, password: string;
