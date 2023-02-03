@@ -13,6 +13,10 @@ describe('@biorate/axios-prometheus', function () {
 
   it('mocks', async () => {
     Google.useMock();
-    await Google.fetch();
+    const { data: d1, status: s1, statusText: st1 } = await Google.fetch();
+    const { data: d2, status: s2, statusText: st2 } = await Google.fetch();
+    expect(d1).to.be.deep.equal(d2);
+    expect(s1).to.be.deep.equal(s2);
+    expect(st1).to.be.deep.equal(st2);
   });
 });

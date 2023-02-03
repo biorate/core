@@ -5,7 +5,7 @@ import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { Axios, AxiosError, AxiosResponse, IAxiosFetchOptions } from '@biorate/axios';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
-import { get, set } from 'lodash';
+import { get, set, pick } from 'lodash';
 
 /**
  * @description
@@ -39,6 +39,8 @@ import { get, set } from 'lodash';
  * ```
  */
 export abstract class AxiosPrometheus extends Axios {
+  protected static mockFields = ['data', 'status', 'statusText'];
+
   protected static mockFileName(name: string) {
     return `Axios.${name}.snap`;
   }
@@ -59,11 +61,11 @@ export abstract class AxiosPrometheus extends Axios {
       'axios.mock.directory',
       null,
     );
-    if (!directory) {
-      let lines = new Error()?.stack?.split?.('\n');
-      let line = lines?.[6] ?? lines?.[5];
-      directory = dirname(line?.match(/^[^\/]+([^\:]+)\:/)?.[1] ?? '');
-    }
+    // if (!directory) {
+    //   let lines = new Error()?.stack?.split?.('\n');
+    //   let line = lines?.[6] ?? lines?.[5];
+    //   directory = dirname(line?.match(/^[^\/]+([^\:]+)\:/)?.[1] ?? '');
+    // }
     if (!directory) directory = this.checkMockDir('test');
     if (!directory) directory = this.checkMockDir('tests');
     if (!directory) directory = process.cwd();
@@ -105,12 +107,20 @@ export abstract class AxiosPrometheus extends Axios {
     } catch {
       data = {};
     }
-    set(data, `${instance.constructor.name}.${JSON.stringify(options)}`, result.data);
+    set(
+      data,
+      `${instance.constructor.name}.${JSON.stringify(options)}`,
+      pick(result, ...this.mockFields),
+    );
     try {
       mkdirSync(this.mockFilePath(), { recursive: true });
     } catch {}
     try {
-      writeFileSync(this.mockFilePath(filename), JSON.stringify(data), 'utf8');
+      writeFileSync(
+        this.mockFilePath(filename),
+        JSON.stringify(data, null, '  '),
+        'utf8',
+      );
     } catch (e) {
       console.warn(
         `Can't write Axios mock snap file [${filename}], because of [${
