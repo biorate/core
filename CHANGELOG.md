@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.10](https://github.com/biorate/core/compare/v1.24.9...v1.24.10) (2023-02-03)
+
+
+### Bug Fixes
+
+* **axios-prometheus:** mocks result fix ([0654a4d](https://github.com/biorate/core/commit/0654a4d795bcbc589d2ed166b72e36e834218ac1))
+
+
+
+
+
 ## [1.24.9](https://github.com/biorate/core/compare/v1.24.8...v1.24.9) (2023-02-02)
 
 
