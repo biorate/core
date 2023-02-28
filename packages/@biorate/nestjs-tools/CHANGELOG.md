@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/biorate/core/compare/v1.24.10...v1.25.0) (2023-02-28)
+
+
+### Bug Fixes
+
+* Upgrade class-validator to version 0.14.0, https://github.com/biorate/core/security/dependabot/1 ([2ace346](https://github.com/biorate/core/commit/2ace346f9350c96def4e330651193d6d6e42fc1b))
+
+
+
+
+
 ## [1.24.7](https://github.com/biorate/core/compare/v1.24.6...v1.24.7) (2023-02-02)
 
 
