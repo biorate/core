@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.1](https://github.com/biorate/core/compare/v1.25.0...v1.25.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* **rdkafka:** group added in consumer metrics ([1bcc927](https://github.com/biorate/core/commit/1bcc9270eacad1a7079e1749eeb63d6d35170056))
+
+
+
+
+
 # [1.25.0](https://github.com/biorate/core/compare/v1.24.10...v1.25.0) (2023-02-28)
 
 
