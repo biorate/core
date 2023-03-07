@@ -8,6 +8,8 @@ import { IMongoDBConfig, IMongoDBConnection } from './interfaces';
 
 export * from './errors';
 export * from './interfaces';
+export * from '@typegoose/typegoose';
+export * from 'mongodb';
 
 /**
  * @description Mongodb ORM connector based on mongoose and typegoose
