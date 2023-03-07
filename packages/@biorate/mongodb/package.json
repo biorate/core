@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mongodb",
-  "version": "1.24.0",
+  "version": "1.25.2",
   "description": "Mongodb ORM connector based on mongoose and typegoose",
   "main": "dist",
   "scripts": {
