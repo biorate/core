@@ -69,7 +69,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     );
   }
 
-  private log(exception: unknown) {
+  protected log(exception: unknown) {
     console.error(exception);
   }
 }
