@@ -32,6 +32,8 @@ declare module '@biorate/nestjs-tools' {
 
   export class AllExceptionsFilter implements ExceptionFilter {
     public catch(exception: unknown, host: ArgumentsHost): void;
+
+    protected log(exception: unknown): void;
   }
 
   export class RoutesInterceptor implements NestInterceptor {
