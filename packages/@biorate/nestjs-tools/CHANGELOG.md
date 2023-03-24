@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.5](https://github.com/biorate/core/compare/v1.25.4...v1.25.5) (2023-03-24)
+
+
+### Bug Fixes
+
+* **nestjs-tools:** AllExceptionsFilter log access modificator change to protected ([df1c357](https://github.com/biorate/core/commit/df1c357e3ef207250f30073a95875d5a1c05cd4f))
+
+
+
+
+
 ## [1.25.4](https://github.com/biorate/core/compare/v1.25.3...v1.25.4) (2023-03-24)
 
 
