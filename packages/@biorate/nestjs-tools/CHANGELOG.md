@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.3](https://github.com/biorate/core/compare/v1.25.2...v1.25.3) (2023-03-24)
+
+
+### Bug Fixes
+
+* **nestjs-tools:** websocket AllExceptionsFilter handler added ([d106170](https://github.com/biorate/core/commit/d10617057c2955d8d4dabf2dec02323538df4915))
+
+
+
+
+
 # [1.25.0](https://github.com/biorate/core/compare/v1.24.10...v1.25.0) (2023-02-28)
 
 
