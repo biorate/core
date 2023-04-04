@@ -52,7 +52,15 @@ describe('@biorate/rdkafka', function () {
   });
 
   it('produce / consume stream', (done) => {
-    root.producer!.current!.produce(topic, null, Buffer.from('hello world!'));
+    root.producer!.current!.produce(
+      topic,
+      null,
+      Buffer.from('hello world!'),
+      Buffer.from('key'),
+      Date.now(),
+      undefined,
+      [{ test: '1' }],
+    );
     root.consumerStream!.current!.subscribe(async (message: Message | Message[]) => {
       await root.consumerStream!.current!.unsubscribe();
       done();
