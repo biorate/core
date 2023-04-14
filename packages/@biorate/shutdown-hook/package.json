@@ -1,0 +1,26 @@
+{
+  "name": "@biorate/shutdown-hook",
+  "version": "0.0.0",
+  "description": "Shutdown hook implementation for Node.JS",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/shutdown-hook"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/tools": "1.24.0"
+  }
+}
