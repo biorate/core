@@ -32,7 +32,7 @@ describe('Lifecycled', () => {
   describe('@kill()', function () {
     it('simple', (done) => {
       destruct(done);
-      process.exit();
+      process.kill(process.pid, 'SIGINT');
     });
   });
 });

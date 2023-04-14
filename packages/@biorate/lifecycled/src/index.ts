@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { uniqBy } from 'lodash';
 import { object as o, env } from '@biorate/tools';
+import { ShutdownHook } from '@biorate/shutdown-hook';
 
 enum Lifecircles {
   init,
@@ -41,9 +42,7 @@ class Lifecycled {
   constructor(onInit = (object: {}) => {}, onKill = (object: {}) => {}) {
     this.#onInitCb = onInit;
     this.#onKillCb = onKill;
-    env.isServer
-      ? require('async-exit-hook')(this.#onKill)
-      : env.globalThis.addEventListener('beforeunload', this.#onKill);
+    ShutdownHook.subscribe(this.#onKill);
   }
 
   private check(field: string, object: any, parent = null) {
