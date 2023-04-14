@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/biorate/core/compare/v1.25.5...v1.26.0) (2023-04-14)
+
+
+### Features
+
+* **shutdown-hook:** add new module ([7a67b35](https://github.com/biorate/core/commit/7a67b359f71ad153c32627c61c8ede4ce58b2d55))
+
+
+
+
+
 # [1.24.0](https://github.com/biorate/core/compare/v1.23.2...v1.24.0) (2023-02-01)
 
 **Note:** Version bump only for package @biorate/lifecycled

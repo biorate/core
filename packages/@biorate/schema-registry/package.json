@@ -1,6 +1,6 @@
 {
   "name": "@biorate/schema-registry",
-  "version": "1.24.10",
+  "version": "1.26.0",
   "description": "Schema registry connector",
   "main": "dist",
   "scripts": {
@@ -26,11 +26,11 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/axios-prometheus": "1.24.10",
-    "@biorate/config": "1.24.0",
-    "@biorate/connector": "1.24.0",
+    "@biorate/axios-prometheus": "1.26.0",
+    "@biorate/config": "1.26.0",
+    "@biorate/connector": "1.26.0",
     "@biorate/errors": "1.2.2",
-    "@biorate/inversion": "1.24.0",
+    "@biorate/inversion": "1.26.0",
     "avsc": "^5.7.4"
   },
   "gitHead": "0b0405e8d5817df507783b092f42447a10ea2ceb"

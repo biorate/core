@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/biorate/core/compare/v1.25.5...v1.26.0) (2023-04-14)
+
+
+### Bug Fixes
+
+* **rdkafka:** tests ([85badf9](https://github.com/biorate/core/commit/85badf9310f98f7c7e6738ef489adaf26567271a))
+
+
+### Features
+
+* **shutdown-hook:** add new module ([7a67b35](https://github.com/biorate/core/commit/7a67b359f71ad153c32627c61c8ede4ce58b2d55))
+* **shutdown-hook:** add new module ([541653c](https://github.com/biorate/core/commit/541653cba1df6f65d6dd763aeef8053055bfedc2))
+
+
+
+
+
 ## [1.25.5](https://github.com/biorate/core/compare/v1.25.4...v1.25.5) (2023-03-24)
 
 
