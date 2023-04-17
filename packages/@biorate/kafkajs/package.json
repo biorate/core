@@ -1,6 +1,6 @@
 {
   "name": "@biorate/kafkajs",
-  "version": "1.26.0",
+  "version": "1.27.0",
   "description": "KafkaJS connector",
   "main": "dist",
   "scripts": {
@@ -25,11 +25,11 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.26.0",
-    "@biorate/connector": "1.26.0",
+    "@biorate/config": "1.27.0",
+    "@biorate/connector": "1.27.0",
     "@biorate/errors": "1.2.2",
-    "@biorate/inversion": "1.26.0",
-    "@biorate/prometheus": "1.26.0",
+    "@biorate/inversion": "1.27.0",
+    "@biorate/prometheus": "1.27.0",
     "@biorate/tools": "1.24.0",
     "kafkajs": "^2.2.3"
   }
