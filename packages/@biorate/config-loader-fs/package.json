@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader-fs",
-  "version": "1.27.0",
+  "version": "1.27.1",
   "description": "Config loader for filesystem's config",
   "main": "dist",
   "scripts": {
@@ -21,10 +21,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.27.0",
-    "@biorate/config-loader": "1.27.0",
+    "@biorate/config": "1.27.1",
+    "@biorate/config-loader": "1.27.1",
     "@biorate/errors": "1.2.2",
-    "@biorate/inversion": "1.27.0"
+    "@biorate/inversion": "1.27.1"
   },
   "gitHead": "366894dafd47b9613acde338a5615ee547f729a8"
 }
