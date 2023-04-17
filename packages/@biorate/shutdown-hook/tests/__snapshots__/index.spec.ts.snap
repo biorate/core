@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shutdown-hook process.EXIT 1`] = `
+"EXIT
+"
+`;
+
+exports[`shutdown-hook process.SHUTDOWN 1`] = `
+"SHUTDOWN
+"
+`;
+
+exports[`shutdown-hook process.SIGINT 1`] = `
+"SIGINT
+"
+`;
+
+exports[`shutdown-hook process.SIGTERM 1`] = `
+"SIGTERM
+"
+`;

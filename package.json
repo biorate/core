@@ -22,7 +22,7 @@
     "@types/chai": "^4.2.18",
     "@types/lodash": "^4.14.173",
     "@types/mocha": "^8.2.2",
-    "@types/node": "^16.9.6",
+    "@types/node": "^16.18.23",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "chai": "^4.3.4",

@@ -1,13 +1,27 @@
-describe('shutdown-hook', () => {
-  it('process.exit', () => {
-    /* TODO: fork __mocks__ and check the results */
-  });
+import { use, expect } from 'chai';
+import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
+import { fork } from 'child_process';
+import { path } from '@biorate/tools';
 
-  it('process.SIGINT', () => {
-    /* TODO: fork __mocks__ and check the results */
-  });
+use(jestSnapshotPlugin());
 
-  it('process.SIGTERM', () => {
-    /* TODO: fork __mocks__ and check the results */
-  });
+describe('shutdown-hook', function () {
+  this.timeout(10000);
+
+  for (const file of [
+    'process.EXIT',
+    'process.SHUTDOWN',
+    'process.SIGINT',
+    'process.SIGTERM',
+  ])
+    it(file, (done) => {
+      const child = fork(path.create(__dirname, '__mocks__', `${file}.ts`), [], {
+        execArgv: ['-r', 'ts-node/register'],
+        stdio: 'overlapped',
+      });
+      child.stdout?.on?.('data', (data) => {
+        expect(data.toString()).toMatchSnapshot();
+        done();
+      });
+    });
 });

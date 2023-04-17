@@ -1,5 +1,6 @@
 export enum Reasons {
   EXIT = 'EXIT',
+  SHUTDOWN = 'SHUTDOWN',
   SIGINT = 'SIGINT',
   SIGTERM = 'SIGTERM',
 }

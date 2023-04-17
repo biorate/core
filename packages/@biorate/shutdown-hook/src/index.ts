@@ -32,6 +32,7 @@ export class ShutdownHook {
   #code = 0;
 
   private constructor() {
+    env.globalThis?.process?.on('exit', this.#exit);
     env.globalThis?.process?.on('uncaughtException', () => (this.#code = 1));
     env.globalThis?.process?.on('unhandledRejection', () => (this.#code = 2));
     env.globalThis?.process?.on('beforeExit', this.#beforeExit);
@@ -43,14 +44,21 @@ export class ShutdownHook {
   }
 
   #beforeExit = () => {
-    if (!this.#isShutdown) setImmediate(() => this.#onShutdown(Reasons.EXIT));
+    if (!this.#isShutdown) setImmediate(() => this.#onShutdown(Reasons.SHUTDOWN));
+  };
+
+  #exit = () => {
+    if (!this.#inProcess) this.#onShutdown(Reasons.EXIT);
   };
 
   #onShutdown = async (reason: Reasons) => {
     if (this.#inProcess) return;
     this.#inProcess = true;
+    if (reason === Reasons.EXIT)
+      console.warn(
+        'WARNING! process.exit() method called! All shutdown hooks will be called synchronously!',
+      );
     await Promise.all([...ShutdownHook.#hooks].map((fn) => fn(reason)));
-    this.#inProcess = false;
     this.#isShutdown = true;
     process.exit(this.#code);
   };
