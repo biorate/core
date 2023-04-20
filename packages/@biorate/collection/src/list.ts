@@ -437,7 +437,7 @@ export abstract class List<I = any, P = { parent?: any }> {
       items = this.get(...args);
     if (!items.length) return false;
     for (const item of items) {
-      isIndexed = Props.Index in item;
+      if (typeof item === 'object') isIndexed = Props.Index in item;
       this[_set].delete(item);
       for (const key of this[_indexer](item)) this[_map].delete(key);
     }

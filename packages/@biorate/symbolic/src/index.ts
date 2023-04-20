@@ -20,7 +20,7 @@
  * console.log(Namespace2.Test1 === Namespace1.Test1); // false
  * ```
  */
-export function create(label: string) {
+export function create(label: string): Record<string, symbol> {
   return new Proxy(
     {},
     new (class {
