@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.4](https://github.com/biorate/core/compare/v1.27.3...v1.27.4) (2023-04-20)
+
+### Bug Fixes
+
+- **axios:** temp ts-ignore ([4d10679](https://github.com/biorate/core/commit/4d1067976df825188fc1cd9804cb9807cc9abfa5))
+
 ## [1.27.3](https://github.com/biorate/core/compare/v1.27.2...v1.27.3) (2023-04-20)
 
 ### Bug Fixes
