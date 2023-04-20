@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader-env",
-  "version": "1.27.1",
+  "version": "1.27.2",
   "description": "Config loader for ENV's config",
   "main": "dist",
   "scripts": {
@@ -21,10 +21,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.27.1",
-    "@biorate/config-loader": "1.27.1",
+    "@biorate/config": "1.27.2",
+    "@biorate/config-loader": "1.27.2",
     "@biorate/errors": "1.2.2",
-    "@biorate/inversion": "1.27.1"
+    "@biorate/inversion": "1.27.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

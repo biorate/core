@@ -1,7 +1,5 @@
 {
-  "packages": [
-    "packages/@biorate/*"
-  ],
+  "packages": ["packages/@biorate/*"],
   "command": {
     "version": {
       "allowBranch": "master",
@@ -11,5 +9,5 @@
     }
   },
   "useNx": true,
-  "version": "1.27.1"
+  "version": "1.27.2"
 }

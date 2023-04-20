@@ -1,6 +1,6 @@
 {
   "name": "@biorate/redis",
-  "version": "1.27.1",
+  "version": "1.27.2",
   "description": "Redis connector",
   "main": "dist",
   "scripts": {
@@ -24,10 +24,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.27.1",
-    "@biorate/connector": "1.27.1",
+    "@biorate/config": "1.27.2",
+    "@biorate/connector": "1.27.2",
     "@biorate/errors": "1.2.2",
-    "@biorate/inversion": "1.27.1",
+    "@biorate/inversion": "1.27.2",
     "@biorate/tools": "1.24.0",
     "redis": "^4.4.0"
   },
