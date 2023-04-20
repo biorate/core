@@ -106,8 +106,8 @@ export class Axios {
     options?: IAxiosFetchOptions,
   ): Promise<AxiosResponse<T, D>> {
     if (!this.#client) {
-      // @ts-ignore: TODO: Stranger Things
       this.#client = axios.create();
+      // @ts-ignore: TODO: Stranger Things
       retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
     }
     const settings = merge({ ...this }, options);
