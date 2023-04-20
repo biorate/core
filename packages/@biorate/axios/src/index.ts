@@ -98,7 +98,7 @@ export class Axios {
   /**
    * @description Axios client cache
    */
-  #client: AxiosInstance | undefined;
+  #client: AxiosInstance;
   /**
    * @description Fetch method
    */

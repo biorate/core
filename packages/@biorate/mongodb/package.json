@@ -29,9 +29,9 @@
     "@biorate/errors": "1.2.2",
     "@biorate/inversion": "1.27.1",
     "@biorate/tools": "1.24.0",
-    "@typegoose/typegoose": "^9.8.1",
+    "@typegoose/typegoose": "^11.0.2",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.3.1"
+    "mongoose": "^7.0.4"
   },
   "gitHead": "366894dafd47b9613acde338a5615ee547f729a8"
 }

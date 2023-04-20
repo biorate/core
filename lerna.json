@@ -10,5 +10,6 @@
       "message": "chore(release): %s"
     }
   },
+  "useNx": true,
   "version": "1.27.1"
 }
