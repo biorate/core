@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.5](https://github.com/biorate/core/compare/v1.27.4...v1.27.5) (2023-05-03)
+
+### Bug Fixes
+
+- **nestjs-tools:** log-base-url flag added, disabled by default ([d90c68a](https://github.com/biorate/core/commit/d90c68aa4037c39119cee4d02a51a712f9ff903a))
+
 ## [1.27.2](https://github.com/biorate/core/compare/v1.27.1...v1.27.2) (2023-04-20)
 
 **Note:** Version bump only for package @biorate/nestjs-tools
