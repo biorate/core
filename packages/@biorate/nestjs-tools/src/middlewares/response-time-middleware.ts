@@ -51,12 +51,12 @@ export class ResponseTimeMiddleware implements NestMiddleware {
           method: req.method,
           url:
             route?.path ??
-            this.config.get<boolean>(
+            (this.config.get<boolean>(
               'app.middleware.ResponseTimeMiddleware.log-base-url',
               false,
             )
               ? '/'
-              : req.baseUrl || req.originalUrl,
+              : req.baseUrl || req.originalUrl),
           status: res.statusCode,
         })
         .observe(time);
