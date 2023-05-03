@@ -27,12 +27,18 @@ export class ResponseTimeMiddleware implements NestMiddleware {
   private histogram: Histogram;
 
   public constructor() {
-    this.suffix = this.config.get<boolean>('app.middleware.ResponseTime.suffix', true);
+    this.suffix = this.config.get<boolean>(
+      'app.middleware.ResponseTimeMiddleware.suffix',
+      true,
+    );
     this.header = this.config.get<string>(
-      'app.middleware.ResponseTime.header',
+      'app.middleware.ResponseTimeMiddleware.header',
       'x-response-time',
     );
-    this.digits = this.config.get<number>('app.middleware.ResponseTime.digits', 3);
+    this.digits = this.config.get<number>(
+      'app.middleware.ResponseTimeMiddleware.digits',
+      3,
+    );
   }
 
   public use(req: Request, res: Response, next: NextFunction) {
@@ -43,7 +49,14 @@ export class ResponseTimeMiddleware implements NestMiddleware {
       this.histogram
         .labels({
           method: req.method,
-          url: route?.path ?? (req.baseUrl || req.originalUrl),
+          url:
+            route?.path ??
+            this.config.get<boolean>(
+              'app.middleware.ResponseTimeMiddleware.log-base-url',
+              false,
+            )
+              ? '/'
+              : req.baseUrl || req.originalUrl,
           status: res.statusCode,
         })
         .observe(time);
