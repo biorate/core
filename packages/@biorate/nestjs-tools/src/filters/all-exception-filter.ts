@@ -14,7 +14,7 @@ import { UnsupportedProtocolError } from '../errors';
 export class AllExceptionsFilter implements ExceptionFilter {
   public catch(exception: unknown, host: ArgumentsHost) {
     const type = host.getType();
-    const method: `_${typeof type}` = `_${type}`;
+    const method = <`_${typeof type}`>`_${type}`;
     if (!this[method]) throw new UnsupportedProtocolError(host.getType());
     this[method](exception, host);
   }

@@ -50,6 +50,14 @@ export * from './interfaces';
 @injectable()
 export class RedisConnector extends Connector<IRedisConfig, IRedisConnection> {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IRedisConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IRedisConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'Redis';

@@ -4,7 +4,7 @@
   "description": "Shutdown hook implementation for Node.JS",
   "main": "dist",
   "scripts": {
-    "build": "npx tsc --outDir ./dist",
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },

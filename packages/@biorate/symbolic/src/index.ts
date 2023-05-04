@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /**
  * @description
  * Symbols factory registry with namespaces
@@ -89,5 +90,6 @@ export const Global = (() => {
     }
   }
   // @ts-ignore
-  return new Proxy(function () {}, new Proxify());
+  return new Proxy(function (namespace: string): { [key: string]: symbol } {},
+  new Proxify());
 })();

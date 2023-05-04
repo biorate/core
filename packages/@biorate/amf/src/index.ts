@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 // Internal buffer for encoding
 let tempBuffer = Buffer.allocUnsafe(1024);
 

@@ -1,5 +1,4 @@
 import { Props } from './symbols';
-import { Ctor } from '../interfaces';
 import { observable as o, action as a, computed as c } from 'mobx';
 
 /**
@@ -45,12 +44,6 @@ export function embed(type: any) {
   };
 }
 
-// export function inject(Class: Ctor) {
-//   return (target, field: string) => {
-//     target[field] = new Class();
-//   };
-// }
-
 /**
  * @description
  * Decorator that realize singletone pattern
@@ -73,6 +66,7 @@ export function singleton() {
       Class,
       new (class {
         #instance = null;
+        // eslint-disable-next-line @typescript-eslint/ban-types
         construct(target: Function, argumentsList: ArrayLike<any>, newTarget?: Function) {
           return (
             this.#instance ??

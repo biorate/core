@@ -1,3 +1,4 @@
+import { AxiosInstance } from 'axios';
 import { AxiosPrometheus } from '@biorate/axios-prometheus';
 import { Type } from 'avsc';
 import { ISchemaRegistryConfig } from './interfaces';
@@ -6,9 +7,12 @@ import { SchemaRegistryAvroSchemaParseError } from './errors';
 export const create = (config: ISchemaRegistryConfig) => {
   const cache = new Map<number, Type>();
 
-  abstract class SchemaRegistryApi extends AxiosPrometheus {
+  class SchemaRegistryApi extends AxiosPrometheus {
     public baseURL = config.baseURL;
     public headers = config.headers;
+    public url: string;
+    public method: string;
+    private '#client': AxiosInstance;
   }
 
   class Ping extends SchemaRegistryApi {
@@ -16,7 +20,7 @@ export const create = (config: ISchemaRegistryConfig) => {
     public method = 'get';
 
     public static fetch() {
-      return this._fetch<{}>({});
+      return this._fetch<Record<string, unknown>>({});
     }
   }
 

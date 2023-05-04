@@ -1,5 +1,4 @@
-import { EventEmitter } from 'events';
-
+import { IEventLike } from '../interfaces';
 /**
  * @description
  * Wait event once asynchronous
@@ -18,5 +17,5 @@ import { EventEmitter } from 'events';
  *   })();
  * ```
  */
-export const once = (object: EventEmitter, event: string) =>
+export const once = (object: IEventLike, event: string) =>
   new Promise((resolve) => object.once(event, (...args: unknown[]) => resolve(args)));

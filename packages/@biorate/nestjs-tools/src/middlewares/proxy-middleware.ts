@@ -33,7 +33,7 @@ export class ProxyPrometheusMiddleware {
     return new this(options).handler;
   }
 
-  private constructor(options?: Options) {
+  private constructor(options: Options = {}) {
     const { onProxyReq, onProxyRes } = pick(options, 'onProxyReq', 'onProxyRes');
     this.handler = createProxyMiddleware({
       ...omit(options, 'onProxyReq', 'onProxyRes'),

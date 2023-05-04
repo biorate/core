@@ -77,6 +77,14 @@ export * from './interfaces';
 @injectable()
 export class PgConnector extends Connector<IPgConfig, IPgConnection> {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IPgConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IPgConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'Pg';

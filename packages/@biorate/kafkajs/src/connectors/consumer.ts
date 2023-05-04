@@ -22,6 +22,14 @@ export class KafkaJSConsumerConnector extends Connector<
   IKafkaJSConsumerConnection
 > {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IKafkaJSConsumerConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IKafkaJSConsumerConnection | undefined;
+  /**
    * @description Counter
    */
   @counter({

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import 'reflect-metadata';
 import { define } from '@biorate/tools';
 import { DateTime } from 'luxon';
@@ -178,19 +179,19 @@ export abstract class Item<P = { parent?: any }> {
     const items = Array.isArray(data[field]) ? data[field] : [];
     switch (type) {
       case Item.Int:
-        this[field] = parseInt(data[field], 10) || 0;
+        (<number>this[field]) = parseInt(data[field], 10) || 0;
         break;
       case Item.Float:
-        this[field] = parseFloat(data[field]) || 0;
+        (<number>this[field]) = parseFloat(data[field]) || 0;
         break;
       case Item.Bool:
-        this[field] = Boolean(data[field]);
+        (<boolean>this[field]) = Boolean(data[field]);
         break;
       case Item.Date:
-        this[field] = new Date(data[field]);
+        (<Date>this[field]) = new Date(data[field]);
         break;
       case Item.Luxon:
-        this[field] =
+        (<DateTime>this[field]) =
           data[field] instanceof Date
             ? DateTime.fromJSDate(data[field])
             : typeof data[field] === 'string'
@@ -198,20 +199,20 @@ export abstract class Item<P = { parent?: any }> {
             : DateTime.fromMillis(data[field]);
         break;
       case Item.Object:
-        this[field] = isObject(data[field]) ? data[field] : {};
+        (<Object>this[field]) = isObject(data[field]) ? data[field] : {};
         break;
       case Item.Array:
-        this[field] = Array.isArray(data[field]) ? data[field] : [];
+        (<unknown[]>this[field]) = Array.isArray(data[field]) ? data[field] : [];
         break;
       case Item.Json:
         try {
-          this[field] = JSON.parse(data[field]);
+          (<Object>this[field]) = JSON.parse(data[field]);
         } catch (e) {
-          this[field] = null;
+          (<Object>this[field]) = null;
         }
         break;
       case Item.String:
-        this[field] = data[field] ? String(data[field]) : '';
+        (<string>this[field]) = data[field] ? String(data[field]) : '';
         break;
       case Item.Map:
         this[Props.defineMapOrSet](field, items, Map);
@@ -301,7 +302,7 @@ export abstract class Item<P = { parent?: any }> {
    * ```
    */
   @action() public initialize(data: Record<string, any> = this[Props.data]) {
-    this[Props.data] = data;
+    (<Record<string, any>>this[Props.data]) = data;
     for (const field in this) {
       if (!(field in this)) continue;
       this[_validate](data, field);

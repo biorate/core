@@ -73,6 +73,14 @@ export * from './interfaces';
 @injectable()
 export class MssqlConnector extends Connector<IMssqlConfig, IMssqlConnection> {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IMssqlConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IMssqlConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'Mssql';

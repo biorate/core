@@ -24,5 +24,8 @@
   ],
   "author": "llevkin",
   "license": "MIT",
-  "gitHead": "78dfa793d20530cdc92586ea39962523fb53595a"
+  "gitHead": "78dfa793d20530cdc92586ea39962523fb53595a",
+  "dependencies": {
+    "buffer": "^6.0.3"
+  }
 }

@@ -8,6 +8,7 @@ import {
   Message,
 } from 'node-rdkafka';
 import { IRDKafkaConsumerConnection } from '../interfaces';
+// noinspection JSAnnotator
 /**
  * @description RDKafka consumer connection
  */

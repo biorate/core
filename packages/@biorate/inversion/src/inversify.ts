@@ -1,22 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
 import { injectable as Injectable, Container, tagged, named } from 'inversify';
 import getDecorators from 'inversify-inject-decorators';
 import { IMetadata, IService } from '../interfaces';
 import { Metadata } from './labels';
-
 // @ts-ignore
-if (!global[Metadata.InversifyContainer]) {
+if (!globalThis[Metadata.InversifyContainer]) {
   const container = new Container({ skipBaseClassChecks: true });
   // @ts-ignore
-  global[Metadata.InversifyContainer] = {
+  globalThis[Metadata.InversifyContainer] = {
     container,
     ...getDecorators(container),
   };
 }
 // @ts-ignore
-export const container = global[Metadata.InversifyContainer].container;
+export const container = globalThis[Metadata.InversifyContainer].container;
 const { lazyInject, lazyInjectNamed, lazyInjectTagged } =
   // @ts-ignore
-  global[Metadata.InversifyContainer];
+  globalThis[Metadata.InversifyContainer];
 
 export function inject(service: IService) {
   return lazyInject(service);

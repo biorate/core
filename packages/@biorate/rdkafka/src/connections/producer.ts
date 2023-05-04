@@ -6,6 +6,7 @@ import {
   MetadataOptions,
 } from 'node-rdkafka';
 import { IRDKafkaProducerConnection } from '../interfaces';
+// noinspection JSAnnotator
 /**
  * @description RDKafka producer connection
  */

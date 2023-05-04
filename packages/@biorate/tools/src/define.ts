@@ -97,8 +97,6 @@ export function accessor<T = unknown>(
     const descriptor: IDefine.Accessor = {
       enumerable: !!mods?.includes?.('e'),
       configurable: !!mods?.includes?.('c'),
-      get: undefined,
-      set: undefined,
     };
     if (accessor.get) descriptor.get = accessor.get;
     if (accessor.set) descriptor.set = accessor.set;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import 'reflect-metadata';
 import { uniqBy } from 'lodash';
 import { object as o, env } from '@biorate/tools';
@@ -188,8 +189,11 @@ function decorator(type: number) {
  * ```
  */
 export function lifecycled(
+  // eslint-disable-next-line @typescript-eslint/ban-types
   root: {},
+  // eslint-disable-next-line @typescript-eslint/ban-types
   onInit = (object: {}) => {},
+  // eslint-disable-next-line @typescript-eslint/ban-types
   onKill = (object: {}) => {},
 ) {
   return Lifecycled.process(root, onInit, onKill);
@@ -211,6 +215,7 @@ export const kill = decorator(Lifecircles.kill);
 export const on =
   (event: string) =>
   (
+    // eslint-disable-next-line @typescript-eslint/ban-types
     { constructor }: { constructor: Object },
     field: string,
     descriptor: PropertyDescriptor,

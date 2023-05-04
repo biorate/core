@@ -83,6 +83,7 @@ export abstract class ObservableList<I = any, P = { parent?: any }> extends List
    */
   public constructor(items: any[] = [], parent: P = null) {
     super(items, parent);
+    // @ts-ignore
     this._set = observable(this._set, { deep: false });
     observe(this._set, (...args) => this[Props.OnObserve](...args));
   }

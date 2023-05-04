@@ -9,6 +9,7 @@ export { Types } from './labels';
 
 export { init, kill, on } from '@biorate/lifecycled';
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function factory(Type: Object, Child: Object, Parent: Object, Root: Object) {
   addMetadata(Metadata.Factory, {}, null, Child);
   container.bind(Type).toFactory((context: any) => (...args: unknown[]) => {

@@ -20,6 +20,14 @@ export class KafkaJSAdminConnector extends Connector<
   IKafkaJSAdminConnection
 > {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IKafkaJSAdminConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IKafkaJSAdminConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'KafkaJSAdmin';

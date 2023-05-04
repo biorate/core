@@ -4,7 +4,7 @@ import { Connector } from '@biorate/connector';
 import { createConnection } from 'mongoose';
 import { getModelForClass } from '@typegoose/typegoose';
 import { MongoDBCantConnectError, MongoDBConnectionNotExistsError } from './errors';
-import { IMongoDBConfig, IMongoDBConnection } from './interfaces';
+import { IMongoDBConfig, IMongoDBConnection, ICustomOptions } from './interfaces';
 
 export * from './errors';
 export * from './interfaces';
@@ -102,6 +102,14 @@ export * from 'mongodb';
 @injectable()
 export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnection> {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IMongoDBConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IMongoDBConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'MongoDB';
@@ -122,7 +130,7 @@ export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnecti
    * @description Initialize method
    */
   @init() protected async initialize() {
-    connections = this.connections;
+    connections = <Map<string, IMongoDBConnection>>this.connections;
     await super.initialize();
   }
 }
@@ -136,21 +144,18 @@ let connections: Map<string, IMongoDBConnection> | null = null;
 export const model = <T = unknown>(
   Model: new (...args: any) => T,
   connection?: string,
-  options: Record<string, unknown> = {},
+  options: ICustomOptions = {},
 ) => {
   return (proto: any, key: string) => {
     Object.defineProperty(proto, key, {
       get() {
-        const existingConnection = connection
+        const existingConnection: IMongoDBConnection | undefined = connection
           ? connections?.get(connection)
           : connections
           ? [...connections][0][1]
-          : null;
+          : undefined;
         if (!existingConnection) throw new MongoDBConnectionNotExistsError(connection);
-        return getModelForClass(Model, {
-          existingConnection,
-          options,
-        });
+        return getModelForClass(Model, { existingConnection, options });
       },
       configurable: false,
     });

@@ -14,6 +14,7 @@ export type IRDKafkaProducerConfig = IConnectorConfig & {
   pollInterval?: number;
 };
 
+// noinspection JSAnnotator
 export interface IRDKafkaProducerConnection extends Producer {
   connectPromise(metadataOptions?: MetadataOptions): Promise<this>;
   initTransactionsPromise(timeout?: number): Promise<void>;

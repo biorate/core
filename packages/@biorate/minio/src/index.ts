@@ -63,6 +63,14 @@ export * from './interfaces';
 @injectable()
 export class MinioConnector extends Connector<IMinioConfig, IMinioConnection> {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IMinioConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IMinioConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'Minio';

@@ -19,6 +19,14 @@ export class RDKafkaAdminConnector extends Connector<
   IRDKafkaAdminConnection
 > {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IRDKafkaAdminConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IRDKafkaAdminConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'RDKafkaAdmin';

@@ -6,7 +6,7 @@ import { root } from './__mocks__';
 describe('@biorate/rdkafka', function () {
   const topic = 'test';
   const timeout = 5000;
-  this.timeout(Infinity);
+  this.timeout(30000);
 
   async function cleanup() {
     try {
@@ -21,7 +21,6 @@ describe('@biorate/rdkafka', function () {
 
   after(async () => {
     await cleanup();
-    process.exit();
   });
 
   it('AdminClient #createTopic', async () => {

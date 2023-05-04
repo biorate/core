@@ -112,8 +112,8 @@ import { IReactVirtualTable } from '../interfaces';
  * ### Inspired by
  * * https://aliseph.github.io/antd-virtual-table/
  */
-export class Table extends React.Component {
-  props: {
+export class Table extends React.Component<
+  {
     /**
      * @description Declaring headers
      */
@@ -176,10 +176,11 @@ export class Table extends React.Component {
      * @description Don't render paginator, **false** by default
      */
     'no-paginator'?: boolean;
-  };
-
+  },
+  unknown
+> {
   #bounds = React.createRef<HTMLDivElement>();
-  #store = new Store().initialize();
+  #store = new Store().initialize() as Store;
 
   #load = () => {
     const { offsetWidth: width, offsetHeight: height } = this.#bounds.current;

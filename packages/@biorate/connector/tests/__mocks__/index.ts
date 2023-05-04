@@ -11,6 +11,8 @@ export class Connection {
 }
 
 export class TestConnector extends Connector<IConnectorConfig, Connection> {
+  private '#connections': Map<string, Connection>;
+  private '#current': Connection | undefined;
   protected namespace = 'TestConnector';
 
   protected async connect(config: IConnectorConfig) {

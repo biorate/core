@@ -56,6 +56,14 @@ export * from './interfaces';
 @injectable()
 export class VaultConnector extends Connector<IVaultConfig, IVaultConnection> {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IVaultConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IVaultConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'Vault';

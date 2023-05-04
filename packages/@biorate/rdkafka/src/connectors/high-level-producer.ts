@@ -22,6 +22,14 @@ export class RDKafkaHighLevelProducerConnector extends Connector<
   IRDKafkaHighLevelProducerConnection
 > {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IRDKafkaHighLevelProducerConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IRDKafkaHighLevelProducerConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'RDKafkaHighLevelProducer';

@@ -71,7 +71,21 @@ export class SchemaRegistryConnector extends Connector<
   ISchemaRegistryConfig,
   ISchemaRegistryConnection
 > {
+  /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, ISchemaRegistryConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': ISchemaRegistryConnection | undefined;
+  /**
+   * @description Namespace path for fetching configuration
+   */
   protected readonly namespace = 'SchemaRegistry';
+  /**
+   * @description Create connection
+   */
   protected async connect(config: ISchemaRegistryConfig) {
     const connection = create(config);
     try {

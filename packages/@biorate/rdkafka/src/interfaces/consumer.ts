@@ -15,6 +15,7 @@ export type IRDKafkaConsumerConfig = IConnectorConfig & {
   topic: ConsumerTopicConfig;
 };
 
+// noinspection JSAnnotator
 export interface IRDKafkaConsumerConnection extends KafkaConsumer {
   consumePromise(number: number): Promise<Message[]>;
   connectPromise(metadataOptions?: MetadataOptions): Promise<this>;

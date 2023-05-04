@@ -29,7 +29,10 @@ container
   .inSingletonScope();
 container.bind<IMinioConnection>(Types.Minio).to(MinioConnector).inSingletonScope();
 container.bind<IMongoDBConnection>(Types.Mongodb).to(MongoDBConnector).inSingletonScope();
-container.bind<IKafkaJSAdminConnector>(Types.Kafka).to(KafkaJSAdminConnector).inSingletonScope();
+container
+  .bind<IKafkaJSAdminConnector>(Types.Kafka)
+  .to(KafkaJSAdminConnector)
+  .inSingletonScope();
 container.bind<Migrations.Sequelize>(Migrations.Sequelize).toSelf().inSingletonScope();
 container.bind<Migrations.Minio>(Migrations.Minio).toSelf().inSingletonScope();
 container.bind<Migrations.Mongodb>(Migrations.Mongodb).toSelf().inSingletonScope();

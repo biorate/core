@@ -90,6 +90,14 @@ export class SequelizeConnector extends Connector<
   ISequelizeConnection
 > {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, ISequelizeConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': ISequelizeConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'Sequelize';
@@ -116,9 +124,9 @@ export class SequelizeConnector extends Connector<
    */
   public async query<T = unknown>(
     sql: string | { query: string; values: unknown[] },
-    options?: (QueryOptions | QueryOptionsWithType<QueryTypes.RAW>) & {
+    options: (QueryOptions | QueryOptionsWithType<QueryTypes.RAW>) & {
       connection?: string;
-    },
+    } = {},
   ): Promise<T[]> {
     const name = options?.connection;
     omit(options, 'connection');

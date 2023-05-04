@@ -1,6 +1,7 @@
+// noinspection TypeScriptUnresolvedVariable
+
 import { readFileSync, writeFileSync, statSync, mkdirSync } from 'fs';
 import { path } from '@biorate/tools';
-import { dirname } from 'path';
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { Axios, AxiosError, AxiosResponse, IAxiosFetchOptions } from '@biorate/axios';
@@ -61,11 +62,6 @@ export abstract class AxiosPrometheus extends Axios {
       'axios.mock.directory',
       null,
     );
-    // if (!directory) {
-    //   let lines = new Error()?.stack?.split?.('\n');
-    //   let line = lines?.[6] ?? lines?.[5];
-    //   directory = dirname(line?.match(/^[^\/]+([^\:]+)\:/)?.[1] ?? '');
-    // }
     if (!directory) directory = this.checkMockDir('test');
     if (!directory) directory = this.checkMockDir('tests');
     if (!directory) directory = process.cwd();

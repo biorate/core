@@ -22,6 +22,14 @@ export class RDKafkaProducerStreamConnector extends Connector<
   IRDKafkaProducerStreamConnection
 > {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IRDKafkaProducerStreamConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IRDKafkaProducerStreamConnection | undefined;
+  /**
    * @description Namespace path for fetching configuration
    */
   protected readonly namespace = 'RDKafkaProducerStream';

@@ -10,6 +10,7 @@ import {
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
 import { timeDiff } from '../helpers';
 import { IRDKafkaHighLevelProducerConnection } from '../interfaces';
+// noinspection JSAnnotator
 /**
  * @description RDKafka high level producer connection
  */

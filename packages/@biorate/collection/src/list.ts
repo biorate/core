@@ -149,7 +149,7 @@ export abstract class List<I = any, P = { parent?: any }> {
     let i = 0;
     const items = [];
     for (const item of this) {
-      item[Props.Index] = i++;
+      (<number>item[Props.Index]) = i++;
       items.push(item);
     }
     this.clear();

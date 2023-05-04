@@ -16,6 +16,7 @@ export type IRDKafkaHighLevelProducerConfig = IConnectorConfig & {
   pollInterval?: number;
 };
 
+// noinspection JSAnnotator
 export interface IRDKafkaHighLevelProducerConnection extends HighLevelProducer {
   producePromise(
     topic: string,

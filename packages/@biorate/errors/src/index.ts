@@ -36,11 +36,12 @@ export class BaseError extends Error {
     meta?: unknown,
     ...options: unknown[]
   ) {
-    // @ts-ignore: { cause } property added in 16.9.0
+    // @ts-ignore
     super(format(message, ...(args || [])), ...options);
     this.#meta = meta;
     this.name = this.constructor.name;
-    Error.captureStackTrace(this, this.constructor);
+    // @ts-ignore
+    Error?.captureStackTrace?.(this, this.constructor);
   }
 
   public get meta() {

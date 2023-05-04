@@ -60,6 +60,14 @@ export class KafkaJSProducerConnector extends Connector<
   IKafkaJSProducerConnection
 > {
   /**
+   * @description Private connections storage
+   */
+  private '#connections': Map<string, IKafkaJSProducerConnection>;
+  /**
+   * @description Private link to selected (used) connection
+   */
+  private '#current': IKafkaJSProducerConnection | undefined;
+  /**
    * @description Counter
    */
   @counter({
