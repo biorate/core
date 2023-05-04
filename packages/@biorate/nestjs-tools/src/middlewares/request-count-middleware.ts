@@ -30,8 +30,8 @@ export class RequestCountMiddleware implements NestMiddleware {
               'app.middleware.RequestCountMiddleware.log-base-url',
               false,
             )
-              ? '/'
-              : req.baseUrl || req.originalUrl),
+              ? req.baseUrl || req.originalUrl
+              : '/'),
           status: res.statusCode,
         })
         .inc();

@@ -55,8 +55,8 @@ export class ResponseTimeMiddleware implements NestMiddleware {
               'app.middleware.ResponseTimeMiddleware.log-base-url',
               false,
             )
-              ? '/'
-              : req.baseUrl || req.originalUrl),
+              ? req.baseUrl || req.originalUrl
+              : '/'),
           status: res.statusCode,
         })
         .observe(time);
