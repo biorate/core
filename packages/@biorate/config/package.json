@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config",
-  "version": "1.27.2",
+  "version": "1.28.0",
   "description": "Application configurator",
   "main": "dist",
   "scripts": {
@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/errors": "1.2.2",
-    "@biorate/inversion": "1.27.2",
+    "@biorate/errors": "1.28.0",
+    "@biorate/inversion": "1.28.0",
     "lodash": "^4.17.21",
     "traverse": "^0.6.6"
   },

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/biorate/core/compare/v1.27.7...v1.28.0) (2023-05-04)
+
+**Note:** Version bump only for package @biorate/batcher
+
 ## [1.27.2](https://github.com/biorate/core/compare/v1.27.1...v1.27.2) (2023-04-20)
 
 **Note:** Version bump only for package @biorate/batcher

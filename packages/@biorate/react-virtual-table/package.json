@@ -1,6 +1,6 @@
 {
   "name": "@biorate/react-virtual-table",
-  "version": "1.27.2",
+  "version": "1.28.0",
   "description": "React virtual table",
   "main": "dist",
   "scripts": {
@@ -30,7 +30,7 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "@biorate/collection": "1.27.2",
+    "@biorate/collection": "1.28.0",
     "@types/react": "^16.8.0",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",

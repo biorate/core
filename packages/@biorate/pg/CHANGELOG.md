@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/biorate/core/compare/v1.27.7...v1.28.0) (2023-05-04)
+
+### Features
+
+- typescript5 migration ([3051757](https://github.com/biorate/core/commit/3051757e45d6895394b655a22066773f0cc30a9a))
+
 ## [1.27.2](https://github.com/biorate/core/compare/v1.27.1...v1.27.2) (2023-04-20)
 
 **Note:** Version bump only for package @biorate/pg

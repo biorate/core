@@ -1,6 +1,6 @@
 {
   "name": "@biorate/prometheus",
-  "version": "1.27.2",
+  "version": "1.28.0",
   "description": "Prometheus DI module",
   "main": "dist",
   "scripts": {
@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.27.2",
-    "@biorate/inversion": "1.27.2",
+    "@biorate/config": "1.28.0",
+    "@biorate/inversion": "1.28.0",
     "prom-client": "^14.0.1"
   },
   "gitHead": "366894dafd47b9613acde338a5615ee547f729a8"
