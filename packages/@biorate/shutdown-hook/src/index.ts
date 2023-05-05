@@ -68,8 +68,8 @@ export class ShutdownHook {
    */
   private constructor() {
     env.globalThis?.process?.on('exit', this.#exit);
-    env.globalThis?.process?.on('uncaughtException', () => (this.#code = 1));
-    env.globalThis?.process?.on('unhandledRejection', () => (this.#code = 2));
+    env.globalThis?.process?.on('uncaughtException', (e: Error) => this.#log(e, 1));
+    env.globalThis?.process?.on('unhandledRejection', (e: Error) => this.#log(e, 2));
     env.globalThis?.process?.on('beforeExit', this.#beforeExit);
     env.globalThis?.process?.on('SIGINT', () => this.#onShutdown(Reasons.SIGINT));
     env.globalThis?.process?.on('SIGTERM', () => this.#onShutdown(Reasons.SIGTERM));
@@ -77,6 +77,13 @@ export class ShutdownHook {
       this.#onShutdown(Reasons.EXIT),
     );
   }
+  /**
+   * @description Log uncaughtException or unhandledRejection
+   */
+  #log = (e: Error, code: number) => {
+    this.#code = code;
+    console.error(e);
+  };
   /**
    * @description Before exit handler
    */
