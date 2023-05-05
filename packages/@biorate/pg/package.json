@@ -38,5 +38,6 @@
   "devDependencies": {
     "@types/pg": "^8.6.5",
     "@types/pg-cursor": "^2.7.0"
-  }
+  },
+  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }
