@@ -106,7 +106,12 @@ export class ShutdownHook {
       console.warn(
         'WARNING! process.exit() method called! All shutdown hooks will be called synchronously!',
       );
-    await Promise.all([...ShutdownHook.#hooks].map((fn) => fn(reason)));
+    const result = await Promise.allSettled(
+      [...ShutdownHook.#hooks].map((fn) => fn(reason)),
+    );
+    result.forEach(
+      (result) => result.status === 'rejected' && console.error(result.reason),
+    );
     this.#isShutdown = true;
     process.exit(this.#code);
   };
