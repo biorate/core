@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.2](https://github.com/biorate/core/compare/v1.28.1...v1.28.2) (2023-05-05)
+
+### Bug Fixes
+
+- **shutdown-hook:** allSettled startegy ([b4d2816](https://github.com/biorate/core/commit/b4d28162e3848e27a59417f41f2567f2402223de))
+
 ## [1.28.1](https://github.com/biorate/core/compare/v1.28.0...v1.28.1) (2023-05-05)
 
 ### Bug Fixes
