@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/biorate/core/compare/v1.28.2...v1.29.0) (2023-05-05)
+
+### Bug Fixes
+
+- **shutdown-hook:** allSettled startegy ([acc63c9](https://github.com/biorate/core/commit/acc63c9758ea8af95ded947184379b741837d1de))
+
 ## [1.28.2](https://github.com/biorate/core/compare/v1.28.1...v1.28.2) (2023-05-05)
 
 **Note:** Version bump only for package @biorate/connector
