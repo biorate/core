@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.1](https://github.com/biorate/core/compare/v1.28.0...v1.28.1) (2023-05-05)
+
+### Bug Fixes
+
+- **shutdown-hook:** log uncaughtException or unhandledRejection ([74bc207](https://github.com/biorate/core/commit/74bc207e7523f02462788acaa482a41a914b329c))
+
 # [1.28.0](https://github.com/biorate/core/compare/v1.27.7...v1.28.0) (2023-05-04)
 
 ### Features
