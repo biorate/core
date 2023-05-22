@@ -1,5 +1,4 @@
 import { ConfigLoader } from '@biorate/config-loader';
-import { IConfig } from '@biorate/config';
 import { IVaultConnector } from '@biorate/vault';
 import { ConfigLoaderVaultActions, IConfigLoaderVaultOption } from './src/interfaces';
 
