@@ -1,3 +1,13 @@
 {
-  "base": true
+  "root": true,
+  "ConfigLoaderFs": [
+    {
+      "file": "__nested__/config.nested.json"
+    },
+    {
+      "file": "config.tmp.json",
+      "directory": "/tmp",
+      "namespace": "temp"
+    }
+  ]
 }

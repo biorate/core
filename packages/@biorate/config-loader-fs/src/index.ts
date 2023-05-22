@@ -1,8 +1,9 @@
-import { init, inject, injectable, Types } from '@biorate/inversion';
-import { IConfig } from '@biorate/config';
-import { promises as fs } from 'fs';
-import { ConfigLoaderFsNotFoundPathError } from './errors';
+import { init, injectable } from '@biorate/inversion';
 import { ConfigLoader } from '@biorate/config-loader';
+import { path } from '@biorate/tools';
+import { promises as fs } from 'fs';
+import { IConfigLoaderFsOption } from './interfaces';
+import { ConfigLoaderFsNotFoundPathError } from './errors';
 
 export * from './errors';
 
@@ -53,7 +54,7 @@ export class ConfigLoaderFs extends ConfigLoader {
   /**
    * @description Root path
    */
-  private static rootPath = process.cwd();
+  private static directory = process.cwd();
   /**
    * @description Change application root method. Application root is equal ***process.cwd()*** by default
    * @example
@@ -68,17 +69,19 @@ export class ConfigLoaderFs extends ConfigLoader {
    * ```
    */
   public static root(path: string) {
-    ConfigLoaderFs.rootPath = path;
+    ConfigLoaderFs.directory = path;
     return this;
   }
   /**
    * @description Load file
    */
-  protected async load(file: string, namespace?: string) {
+  protected async load(
+    file: string,
+    directory = ConfigLoaderFs.directory,
+    namespace?: string,
+  ) {
     try {
-      const data = JSON.parse(
-        await fs.readFile(`${ConfigLoaderFs.rootPath}/${file}.json`, 'utf-8'),
-      );
+      const data = JSON.parse(await fs.readFile(path.create(directory, file), 'utf-8'));
       this.config.merge(namespace ? { [namespace]: data } : data);
     } catch (e: unknown) {
       console.warn(new ConfigLoaderFsNotFoundPathError(file, (<Error>e).message).message);
@@ -88,8 +91,14 @@ export class ConfigLoaderFs extends ConfigLoader {
    * @description Initialize
    */
   @init() protected async initialize() {
-    await this.load('package', 'package');
-    await this.load('config');
-    await this.load(`config.${process.env.NODE_ENV ?? 'debug'}`);
+    await this.load('package.json', undefined, 'package');
+    await this.load('config.json');
+    await this.load(`config.${process.env.NODE_ENV ?? 'debug'}.json`);
+    for (const option of this.config.get<IConfigLoaderFsOption[]>(
+      this.constructor.name,
+      [],
+    )) {
+      await this.load(option.file, option.directory, option.namespace);
+    }
   }
 }
