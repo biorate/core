@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/biorate/core/compare/v1.29.0...v1.30.0) (2023-05-22)
+
+### Bug Fixes
+
+- **config-loader-vault:** cleanup ([5604f84](https://github.com/biorate/core/commit/5604f84de4bc02f37834d259bb259b5675ac6a24))
+- labels in prometheus ([bbc3d09](https://github.com/biorate/core/commit/bbc3d09a69392807f7a4599db4e9737dff02f516))
+
+### Features
+
+- **batcher:** panic will throw an error now by default ([c39c0e5](https://github.com/biorate/core/commit/c39c0e504b285d600db5a60cffac857ef7f5768e))
+- **config-loader-fs:** custom files loading ([336ed42](https://github.com/biorate/core/commit/336ed42fb48f3a9005e0edcda7f892cbca7085f5))
+
 # [1.29.0](https://github.com/biorate/core/compare/v1.28.2...v1.29.0) (2023-05-05)
 
 ### Bug Fixes
