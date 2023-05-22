@@ -1,6 +1,5 @@
-import { injectable, inject, Types } from '@biorate/inversion';
+import { injectable } from '@biorate/inversion';
 import { timer } from '@biorate/tools';
-import { IConfig } from '@biorate/config';
 import { ITask, IMetadata, IBatcher } from './interfaces';
 
 export * from './interfaces';
@@ -91,8 +90,7 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
   }
 
   protected panic(e: Error) {
-    console.error(e);
-    process.exit(1);
+    throw e;
   }
 
   protected async loop() {
