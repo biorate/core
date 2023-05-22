@@ -31,7 +31,7 @@
     "@biorate/inversion": "1.29.0",
     "@biorate/prometheus": "1.29.0",
     "@biorate/tools": "1.28.0",
-    "node-rdkafka": "2.13.0"
+    "node-rdkafka": "^2.16.0"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }
