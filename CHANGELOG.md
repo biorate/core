@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/biorate/core/compare/v1.30.0...v1.30.1) (2023-05-23)
+
+### Bug Fixes
+
+- **config-loader-env:** loader info added ([23fc0d3](https://github.com/biorate/core/commit/23fc0d3509e511b0ba4bde9c00a7270a6d3d1293))
+- **config-loader-fs:** loader info added ([8e7fbe7](https://github.com/biorate/core/commit/8e7fbe77a284277f349b049b83e8fefbd371c9b9))
+- **config-loader-vault:** loader info added ([1d9948a](https://github.com/biorate/core/commit/1d9948aff5d5aaf8d01f98714a6800479856c07e))
+
 # [1.30.0](https://github.com/biorate/core/compare/v1.29.0...v1.30.0) (2023-05-22)
 
 ### Bug Fixes
