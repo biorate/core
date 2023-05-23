@@ -41,5 +41,6 @@ export class ConfigLoaderEnv extends ConfigLoader {
    */
   @init() protected initialize() {
     this.config.merge(process.env);
+    console.info(`ConfigLoaderEnv: environment - merged`);
   }
 }
