@@ -1,8 +1,16 @@
 import { expect } from 'chai';
-import { root } from './__mocks__';
+import { writeFileSync, unlinkSync } from 'fs';
+import { root, tmpFile } from './__mocks__';
 
 describe('@biorate/config-loader-fs', function () {
-  before(async () => await root.$run());
+  before(async () => {
+    writeFileSync(tmpFile, JSON.stringify({ temp: true }));
+    await root.$run();
+  });
+
+  after(() => {
+    unlinkSync(tmpFile);
+  });
 
   it('config.json', () => expect(root.config.get('root')).to.be.a('boolean').equal(true));
 

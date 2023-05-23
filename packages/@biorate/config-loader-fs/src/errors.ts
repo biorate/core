@@ -1,7 +1,7 @@
 import { BaseError } from '@biorate/errors';
 
-export class ConfigLoaderFsNotFoundPathError extends BaseError {
+export class ConfigLoaderFsFileNotLoadedError extends BaseError {
   public constructor(name: string, reason: string) {
-    super("%s.json didn't find, [%s]", [name, reason]);
+    super("ConfigLoaderFs: file [%s] - didn't merged, reason: [%s]", [name, reason]);
   }
 }

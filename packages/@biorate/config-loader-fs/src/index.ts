@@ -3,7 +3,7 @@ import { ConfigLoader } from '@biorate/config-loader';
 import { path } from '@biorate/tools';
 import { promises as fs } from 'fs';
 import { IConfigLoaderFsOption } from './interfaces';
-import { ConfigLoaderFsNotFoundPathError } from './errors';
+import { ConfigLoaderFsFileNotLoadedError } from './errors';
 
 export * from './errors';
 
@@ -83,8 +83,11 @@ export class ConfigLoaderFs extends ConfigLoader {
     try {
       const data = JSON.parse(await fs.readFile(path.create(directory, file), 'utf-8'));
       this.config.merge(namespace ? { [namespace]: data } : data);
+      console.info(`ConfigLoaderFs: file [${file}] - merged`);
     } catch (e: unknown) {
-      console.warn(new ConfigLoaderFsNotFoundPathError(file, (<Error>e).message).message);
+      console.warn(
+        new ConfigLoaderFsFileNotLoadedError(file, (<Error>e).message).message,
+      );
     }
   }
   /**

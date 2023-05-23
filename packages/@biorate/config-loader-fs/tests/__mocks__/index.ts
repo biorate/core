@@ -1,8 +1,7 @@
 import { use } from 'chai';
 import { tmpdir } from 'os';
-import { writeFileSync } from 'fs';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
-import { inject, init, container, Types, Core } from '@biorate/inversion';
+import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { ConfigLoader } from '@biorate/config-loader';
 import { path } from '@biorate/tools';
@@ -18,10 +17,6 @@ export const tmpFile = path.create(tmpDir, 'config.tmp.json');
 export class Root extends Core() {
   @inject(Types.Config) public config: IConfig;
   @inject(Types.ConfigLoaderFs) public configLoaderFs: ConfigLoader;
-
-  @init() protected initialize() {
-    writeFileSync(tmpFile, JSON.stringify({ temp: true }));
-  }
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
