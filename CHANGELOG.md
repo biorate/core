@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.2](https://github.com/biorate/core/compare/v1.30.1...v1.30.2) (2023-05-23)
+
+### Bug Fixes
+
+- **config-loader-fs:** text in ConfigLoaderFsFileNotLoadedError ([923d9c0](https://github.com/biorate/core/commit/923d9c005a2b4af6017416535867b953bf1f05b0))
+
 ## [1.30.1](https://github.com/biorate/core/compare/v1.30.0...v1.30.1) (2023-05-23)
 
 ### Bug Fixes
