@@ -163,6 +163,7 @@ export class ConfigLoaderVault extends ConfigLoader {
     option: IConfigLoaderVaultOption,
   ) {
     this.config.merge(data);
+    console.info(`ConfigLoaderVault: file [${option.path}] - ${option.action}d`);
   }
   /**
    * @description Download files method
@@ -179,5 +180,6 @@ export class ConfigLoaderVault extends ConfigLoader {
       await fs.writeFile(path.create(process.cwd(), directory, file), data[file]);
     }
     this.config.merge(data);
+    console.info(`ConfigLoaderVault: file [${option.path}] - ${option.action}ed`);
   }
 }
