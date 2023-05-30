@@ -27,13 +27,13 @@ export class RDKafkaConsumerStreamConnection
   @counter({
     name: 'kafka_consumer_seconds_count',
     help: 'Kafka consumer seconds count',
-    labelNames: ['topic', 'status', 'group'],
+    labelNames: ['topic', 'status' /*, 'group'*/],
   })
   protected counter: Counter;
   @histogram({
     name: 'kafka_consumer_seconds',
     help: 'kafka consumer seconds bucket',
-    labelNames: ['topic', 'status', 'group'],
+    labelNames: ['topic', 'status' /*, 'group'*/],
     buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
   })
   protected histogram: Histogram;
@@ -122,7 +122,11 @@ export class RDKafkaConsumerStreamConnection
 
   #setMetrics = (counter: Map<string, number>, status: number, time: number) => {
     for (const [topic, count] of counter) {
-      const labels = { topic, status, group: this.config.global['group.id'] || 'unknown' };
+      const labels = {
+        topic,
+        status,
+        // group: this.config.global['group.id'] || 'unknown',
+      };
       this.counter.labels(labels).inc(count);
       this.histogram.labels(labels).observe(time);
     }
