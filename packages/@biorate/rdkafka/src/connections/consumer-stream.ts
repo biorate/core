@@ -122,7 +122,7 @@ export class RDKafkaConsumerStreamConnection
 
   #setMetrics = (counter: Map<string, number>, status: number, time: number) => {
     for (const [topic, count] of counter) {
-      const labels = { topic, status, group: this.config.global['group.id'] ?? '' };
+      const labels = { topic, status, group: this.config.global['group.id'] || 'unknown' };
       this.counter.labels(labels).inc(count);
       this.histogram.labels(labels).observe(time);
     }
