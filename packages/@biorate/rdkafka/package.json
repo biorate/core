@@ -1,6 +1,6 @@
 {
   "name": "@biorate/rdkafka",
-  "version": "1.30.3",
+  "version": "1.30.4",
   "description": "Rdkafka connector",
   "main": "dist",
   "scripts": {

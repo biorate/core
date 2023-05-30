@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.4](https://github.com/biorate/core/compare/v1.30.3...v1.30.4) (2023-05-30)
+
+### Bug Fixes
+
+- **rdkafka:** group fix ([4b38513](https://github.com/biorate/core/commit/4b385135973add68d70c97a079e09fed8a8034a6))
+
 ## [1.30.3](https://github.com/biorate/core/compare/v1.30.2...v1.30.3) (2023-05-30)
 
 ### Bug Fixes
