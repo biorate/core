@@ -1,9 +1,8 @@
 import { SetMetadata } from '@nestjs/common';
-import { UserRoles } from '../enums';
 
 export const ROLES_KEY = Symbol('RolesKey');
 
-export const Roles = (...roles: UserRoles[]) =>
+export const Roles = (...roles: number[]) =>
   SetMetadata(
     ROLES_KEY,
     roles.reduce((memo, item) => {

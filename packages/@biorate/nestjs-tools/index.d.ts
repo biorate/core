@@ -10,7 +10,6 @@ import {
 import { Request, Response, NextFunction } from 'express';
 import { Observable } from 'rxjs';
 import { Options, RequestHandler } from 'http-proxy-middleware/dist/types';
-import { UserRoles } from './interfaces';
 
 export * from './interfaces';
 
@@ -21,7 +20,7 @@ declare module '@biorate/nestjs-tools' {
     descriptor?: TypedPropertyDescriptor<any>,
   ) => void;
 
-  export function Roles(...roles: UserRoles[]): (<T>(
+  export function Roles(...roles: number[]): (<T>(
     target: Object,
     propertyKey: string | symbol,
     descriptor: TypedPropertyDescriptor<T>,
