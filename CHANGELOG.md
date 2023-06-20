@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.6](https://github.com/biorate/core/compare/v1.30.5...v1.30.6) (2023-06-20)
+
+### Bug Fixes
+
+- **nestjs-tools:** Roles arguments type fix ([69d7c10](https://github.com/biorate/core/commit/69d7c100197c6692e259b3273c47cf5438319e98))
+
 ## [1.30.5](https://github.com/biorate/core/compare/v1.30.4...v1.30.5) (2023-05-30)
 
 ### Bug Fixes
