@@ -22,6 +22,7 @@ export class RoutesInterceptor implements NestInterceptor {
           '/',
           this.reflector.get<string>(PATH_METADATA, context.getClass()),
           this.reflector.get<string>(PATH_METADATA, context.getHandler()),
+          '/',
         ),
       ),
     });
