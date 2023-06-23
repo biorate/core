@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.7](https://github.com/biorate/core/compare/v1.30.6...v1.30.7) (2023-06-23)
+
+### Bug Fixes
+
+- **nestjs-tools:** RoutesInterceptor path ([89bc929](https://github.com/biorate/core/commit/89bc929bf35efbc9681567f9b8d5677718ccba37))
+
 ## [1.30.6](https://github.com/biorate/core/compare/v1.30.5...v1.30.6) (2023-06-20)
 
 ### Bug Fixes
