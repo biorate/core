@@ -141,7 +141,7 @@ export abstract class AxiosPrometheus extends Axios {
     name: 'http_client_requests_seconds',
     help: 'Http client requests seconds bucket',
     labelNames: ['method', 'url', 'status'],
-    buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
+    buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 4000, 5000, 10000],
   })
   protected histogram: Histogram;
 

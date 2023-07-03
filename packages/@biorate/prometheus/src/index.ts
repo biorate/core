@@ -29,12 +29,13 @@ export class Prometheus implements IPrometheus {
    * @description Find or create metrics factory
    */
   protected static findOrCreate<T, S>(
-    settings: S & { name: string },
+    settings: S & { name: string, override?: boolean },
     repository: Map<string, T>,
     Class: new (options: S) => T,
   ) {
     let metric = repository.get(settings.name);
-    if (!metric) {
+    let { override, ...options } = settings;
+    if (!metric || override) {
       metric = new Class({ ...settings, registers: [this.registry] });
       repository.set(settings.name, metric);
     }
