@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.8](https://github.com/biorate/core/compare/v1.30.7...v1.30.8) (2023-07-03)
+
+### Bug Fixes
+
+- **axios-prometheus:** override ([005fd07](https://github.com/biorate/core/commit/005fd074b7d43c8c8ad479c9942ee6edada08d0e))
+
 ## [1.30.7](https://github.com/biorate/core/compare/v1.30.6...v1.30.7) (2023-06-23)
 
 ### Bug Fixes

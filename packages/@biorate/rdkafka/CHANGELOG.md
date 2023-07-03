@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.8](https://github.com/biorate/core/compare/v1.30.7...v1.30.8) (2023-07-03)
+
+**Note:** Version bump only for package @biorate/rdkafka
+
 ## [1.30.5](https://github.com/biorate/core/compare/v1.30.4...v1.30.5) (2023-05-30)
 
 ### Bug Fixes
