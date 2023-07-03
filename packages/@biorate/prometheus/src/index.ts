@@ -1,6 +1,6 @@
 import { injectable, init, inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { IPrometheus } from './interfaces';
+import { IPrometheus, IdefaultSettings } from './interfaces';
 import {
   collectDefaultMetrics,
   Registry,
@@ -29,7 +29,7 @@ export class Prometheus implements IPrometheus {
    * @description Find or create metrics factory
    */
   protected static findOrCreate<T, S>(
-    settings: S & { name: string, override?: boolean },
+    settings: S & IdefaultSettings,
     repository: Map<string, T>,
     Class: new (options: S) => T,
   ) {
@@ -49,7 +49,7 @@ export class Prometheus implements IPrometheus {
   /**
    * @alias counter
    */
-  public static counter(settings: CounterConfiguration<string>) {
+  public static counter(settings: CounterConfiguration<string> & IdefaultSettings) {
     return this.findOrCreate<Counter<string>, CounterConfiguration<string>>(
       settings,
       this.counters,
@@ -59,7 +59,7 @@ export class Prometheus implements IPrometheus {
   /**
    * @alias gauge
    */
-  public static gauge(settings: GaugeConfiguration<string>) {
+  public static gauge(settings: GaugeConfiguration<string> & IdefaultSettings) {
     return this.findOrCreate<Gauge<string>, GaugeConfiguration<string>>(
       settings,
       this.gauges,
@@ -69,7 +69,7 @@ export class Prometheus implements IPrometheus {
   /**
    * @alias histogram
    */
-  public static histogram(settings: HistogramConfiguration<string>) {
+  public static histogram(settings: HistogramConfiguration<string> & IdefaultSettings) {
     return this.findOrCreate<Histogram<string>, HistogramConfiguration<string>>(
       settings,
       this.histograms,
@@ -79,7 +79,7 @@ export class Prometheus implements IPrometheus {
   /**
    * @alias summary
    */
-  public static summary(settings: SummaryConfiguration<string>) {
+  public static summary(settings: SummaryConfiguration<string> & IdefaultSettings) {
     return this.findOrCreate<Summary<string>, SummaryConfiguration<string>>(
       settings,
       this.summaries,
@@ -130,7 +130,7 @@ export class Prometheus implements IPrometheus {
  * test.metric();
  * ```
  */
-export const counter = (settings: CounterConfiguration<string>) =>
+export const counter = (settings: CounterConfiguration<string> & IdefaultSettings) =>
   Prometheus.counter(settings);
 /**
  * @example
@@ -155,7 +155,8 @@ export const counter = (settings: CounterConfiguration<string>) =>
  * test.metric();
  * ```
  */
-export const gauge = (settings: GaugeConfiguration<string>) => Prometheus.gauge(settings);
+export const gauge = (settings: GaugeConfiguration<string> & IdefaultSettings) =>
+  Prometheus.gauge(settings);
 /**
  * @example
  * ```ts
@@ -179,7 +180,7 @@ export const gauge = (settings: GaugeConfiguration<string>) => Prometheus.gauge(
  * test.metric();
  * ```
  */
-export const histogram = (settings: HistogramConfiguration<string>) =>
+export const histogram = (settings: HistogramConfiguration<string> & IdefaultSettings) =>
   Prometheus.histogram(settings);
 /**
  * @example
@@ -204,5 +205,5 @@ export const histogram = (settings: HistogramConfiguration<string>) =>
  * test.metric();
  * ```
  */
-export const summary = (settings: SummaryConfiguration<string>) =>
+export const summary = (settings: SummaryConfiguration<string> & IdefaultSettings) =>
   Prometheus.summary(settings);
