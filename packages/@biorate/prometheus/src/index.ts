@@ -34,9 +34,8 @@ export class Prometheus implements IPrometheus {
     Class: new (options: S) => T,
   ) {
     let metric = repository.get(settings.name);
-    let { override, ...options } = settings;
-    if (!metric || override) {
-      metric = new Class({ ...options, registers: [this.registry] });
+    if (!metric || settings.override) {
+      metric = new Class({ ...settings, registers: [this.registry] });
       repository.set(settings.name, metric);
     }
     return (proto: any, key: string) => {

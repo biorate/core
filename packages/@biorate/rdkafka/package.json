@@ -33,5 +33,5 @@
     "@biorate/tools": "1.28.0",
     "node-rdkafka": "^2.16.0"
   },
-  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
+  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
 }
