@@ -1,6 +1,6 @@
 {
   "name": "@biorate/kafkajs",
-  "version": "1.30.9",
+  "version": "1.30.10",
   "description": "KafkaJS connector",
   "main": "dist",
   "scripts": {
@@ -29,7 +29,7 @@
     "@biorate/connector": "1.29.0",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.29.0",
-    "@biorate/prometheus": "1.30.9",
+    "@biorate/prometheus": "1.30.10",
     "@biorate/tools": "1.28.0",
     "kafkajs": "^2.2.3"
   },
