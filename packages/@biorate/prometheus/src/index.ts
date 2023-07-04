@@ -35,6 +35,7 @@ export class Prometheus implements IPrometheus {
   ) {
     let metric = repository.get(settings.name);
     if (!metric || settings.override) {
+      this.registry.removeSingleMetric(settings.name);
       metric = new Class({ ...settings, registers: [this.registry] });
       repository.set(settings.name, metric);
     }
