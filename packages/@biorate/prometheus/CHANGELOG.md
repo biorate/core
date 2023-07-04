@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.11](https://github.com/biorate/core/compare/v1.30.10...v1.30.11) (2023-07-04)
+
+### Bug Fixes
+
+- **prometheus:** cleanup metrics ([7e5cf8d](https://github.com/biorate/core/commit/7e5cf8d2ae8bb98fdba01f515febbcfab4409910))
+
 ## [1.30.10](https://github.com/biorate/core/compare/v1.30.9...v1.30.10) (2023-07-04)
 
 ### Bug Fixes
