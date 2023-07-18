@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.12](https://github.com/biorate/core/compare/v1.30.11...v1.30.12) (2023-07-18)
+
+**Note:** Version bump only for package @biorate/connector
+
 # [1.29.0](https://github.com/biorate/core/compare/v1.28.2...v1.29.0) (2023-05-05)
 
 ### Bug Fixes

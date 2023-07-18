@@ -1,6 +1,6 @@
 {
   "name": "@biorate/lifecycled",
-  "version": "1.29.0",
+  "version": "1.30.12",
   "description": "Decorators pack for bring lifecycle control in you application",
   "main": "dist",
   "scripts": {
@@ -21,7 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/shutdown-hook": "1.29.0",
+    "@biorate/shutdown-hook": "1.30.12",
     "@biorate/tools": "1.28.0",
     "async-exit-hook": "^2.0.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/vault",
-  "version": "1.29.0",
+  "version": "1.30.12",
   "description": "Vault connector",
   "main": "dist",
   "scripts": {
@@ -24,10 +24,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.29.0",
-    "@biorate/connector": "1.29.0",
+    "@biorate/config": "1.30.12",
+    "@biorate/connector": "1.30.12",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.29.0",
+    "@biorate/inversion": "1.30.12",
     "node-vault": "^0.9.22"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
