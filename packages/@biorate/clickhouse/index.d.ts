@@ -17,6 +17,6 @@ declare module '@biorate/clickhouse' {
     /**
      * @description Make a current query
      */
-    public query(query: string): Promise<Object[]>;
+    public query<T = unknown>(query: string): Promise<T[]>;
   }
 }
