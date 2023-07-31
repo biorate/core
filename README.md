@@ -35,6 +35,7 @@
 - [bit-array](https://biorate.github.io/core/modules/bit_array.html)
 - [nestjs-tools](https://biorate.github.io/core/modules/nestjs_tools.html)
 - [shutdown-hook](https://biorate.github.io/core/modules/shutdown_hook.html)
+- [clickhouse](https://biorate.github.io/core/modules/clickhouse.html)
 
 ### Learn
 
