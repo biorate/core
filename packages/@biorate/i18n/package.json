@@ -21,6 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
+    "@biorate/config": "1.30.12",
     "@biorate/inversion": "1.30.12",
     "i18next": "^23.4.2"
   }

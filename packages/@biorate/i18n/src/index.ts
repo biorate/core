@@ -1,4 +1,5 @@
-import { injectable, init } from '@biorate/inversion';
+import { injectable, inject, init, Types } from '@biorate/inversion';
+import { IConfig } from '@biorate/config';
 import {
   init as i18nInit,
   t as translate,
@@ -11,6 +12,10 @@ import {
 
 export * from 'i18next';
 
+/**
+ * @description
+ * Translate function override, because of a typescript strange behavior
+ */
 export function t(key: any | any[], options?: TOptionsBase) {
   return translate(key, options);
 }
@@ -20,7 +25,8 @@ export function t(key: any | any[], options?: TOptionsBase) {
  *
  * @example
  * ```ts
- * import { inject, container, Core } from '@biorate/inversion';
+ * import { inject, container, Core, Types } from '@biorate/inversion';
+ * import { Config, IConfig } from '@biorate/config';
  * import { I18n as I18nCommon, t } from '@biorate/i18n';
  *
  * class I18n extends I18nCommon {
@@ -44,9 +50,11 @@ export function t(key: any | any[], options?: TOptionsBase) {
  * }
  *
  * export class Root extends Core() {
+ *   @inject(Types.Config) public config: IConfig;
  *   @inject(I18n) public i18n: I18n;
  * }
  *
+ * container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
  * container.bind<I18n>(I18n).toSelf().inSingletonScope();
  * container.bind<Root>(Root).toSelf().inSingletonScope();
  *
@@ -60,10 +68,16 @@ export function t(key: any | any[], options?: TOptionsBase) {
  */
 @injectable()
 export abstract class I18n {
+  @inject(Types.Config) public config: IConfig;
+
   protected abstract options: Record<string, unknown>;
 
   protected get middlewares(): (NewableModule<Module> | Newable<Module> | Module)[] {
     return [];
+  }
+
+  public get languages() {
+    return this?.options?.supportedLngs ?? [];
   }
 
   @init() protected async initialize() {
