@@ -68,7 +68,7 @@ export function t(key: any | any[], options?: TOptionsBase) {
  */
 @injectable()
 export abstract class I18n {
-  @inject(Types.Config) public config: IConfig;
+  @inject(Types.Config) protected config: IConfig;
 
   protected abstract options: Record<string, unknown>;
 
@@ -76,12 +76,12 @@ export abstract class I18n {
     return [];
   }
 
-  public get languages() {
-    return this?.options?.supportedLngs ?? [];
-  }
-
   @init() protected async initialize() {
     for (const middleware of this.middlewares) use(middleware);
     await i18nInit(this.options);
+  }
+
+  public get languages() {
+    return this?.options?.supportedLngs ?? [];
   }
 }
