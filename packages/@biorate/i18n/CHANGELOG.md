@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/biorate/core/compare/v1.34.0...v1.35.0) (2023-08-08)
+
+### Features
+
+- **i18n:** config added, languages getter added ([59e16e6](https://github.com/biorate/core/commit/59e16e645f23d89006c085a3c128ce20f44e0127))
+
 # [1.34.0](https://github.com/biorate/core/compare/v1.33.0...v1.34.0) (2023-08-08)
 
 ### Features
