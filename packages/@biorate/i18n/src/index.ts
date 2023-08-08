@@ -1,5 +1,13 @@
 import { injectable, init } from '@biorate/inversion';
-import { init as i18nInit, t as translate, use, Module, TOptionsBase } from 'i18next';
+import {
+  init as i18nInit,
+  t as translate,
+  use,
+  TOptionsBase,
+  Module,
+  Newable,
+  NewableModule,
+} from 'i18next';
 
 export * from 'i18next';
 
@@ -54,7 +62,7 @@ export function t(key: any | any[], options?: TOptionsBase) {
 export abstract class I18n {
   protected abstract options: Record<string, unknown>;
 
-  protected get middlewares(): Module[] {
+  protected get middlewares(): (NewableModule<Module> | Newable<Module> | Module)[] {
     return [];
   }
 
