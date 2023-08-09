@@ -6,13 +6,13 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 export class ProbeController {
   @Get('readiness')
   @ApiOperation({ summary: 'Readiness probe' })
-  protected async readiness() {
+  protected readiness() {
     return 1;
   }
 
   @Get('healthz')
   @ApiOperation({ summary: 'Healthz probe' })
-  protected async healthz() {
+  protected healthz() {
     return 1;
   }
 }
