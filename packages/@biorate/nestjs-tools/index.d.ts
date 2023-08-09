@@ -81,10 +81,10 @@ declare module '@biorate/nestjs-tools' {
   }
 
   export class LocalesController {
-    protected static async getFile(
+    protected static getFile(
       namespace: string,
       lang: string,
-    ): Record<string, unknown>;
+    ): Promise<Record<string, unknown>>;
 
     protected static getFileSync(
       namespace: string,
