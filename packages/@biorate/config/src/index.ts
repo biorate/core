@@ -2,9 +2,9 @@ import { injectable } from '@biorate/inversion';
 import { merge, get, has, set, PropertyPath } from 'lodash';
 import * as traverse from 'traverse';
 import { UndefinedConfigPathError } from './errors';
-import { IConfig } from './interfaces';
+import { IConfig } from '../interfaces';
+export * from '../interfaces';
 export * from './errors';
-export * from './interfaces';
 
 @injectable()
 export class Config implements IConfig {

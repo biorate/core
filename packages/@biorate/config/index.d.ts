@@ -3,6 +3,8 @@ import { BaseError } from '@biorate/errors';
 import * as traverse from 'traverse';
 
 declare module '@biorate/config' {
+  export * from './interfaces';
+
   export class Config {
     protected data: Record<string | symbol, unknown>;
 
