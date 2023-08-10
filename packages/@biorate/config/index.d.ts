@@ -1,9 +1,9 @@
 import { PropertyPath } from 'lodash';
 import { BaseError } from '@biorate/errors';
-import * as traverse from 'traverse';
+import { IConfig } from './interfaces';
 
 declare module '@biorate/config' {
-  export * from './interfaces';
+  export type IConfig = IConfig;
 
   export class Config {
     protected data: Record<string | symbol, unknown>;
