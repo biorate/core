@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios-prometheus",
-  "version": "1.30.12",
+  "version": "1.38.1",
   "description": "Axios-prometheus HTTP interface",
   "main": "dist",
   "scripts": {
@@ -23,10 +23,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/axios": "1.30.12",
-    "@biorate/config": "1.30.12",
+    "@biorate/axios": "1.38.1",
+    "@biorate/config": "1.38.1",
     "@biorate/inversion": "1.30.12",
-    "@biorate/prometheus": "1.30.12",
+    "@biorate/prometheus": "1.38.1",
     "@biorate/tools": "1.28.0"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"

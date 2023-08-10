@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "1.30.12",
+  "version": "1.38.1",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {
@@ -23,20 +23,20 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.30.12",
-    "@biorate/config-loader": "1.30.12",
-    "@biorate/config-loader-env": "1.30.12",
-    "@biorate/config-loader-fs": "1.30.12",
-    "@biorate/config-loader-vault": "1.30.12",
-    "@biorate/connector": "1.30.12",
+    "@biorate/config": "1.38.1",
+    "@biorate/config-loader": "1.38.1",
+    "@biorate/config-loader-env": "1.38.1",
+    "@biorate/config-loader-fs": "1.38.1",
+    "@biorate/config-loader-vault": "1.38.1",
+    "@biorate/connector": "1.38.1",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.30.12",
-    "@biorate/kafkajs": "1.30.12",
-    "@biorate/minio": "1.30.12",
-    "@biorate/mongodb": "1.30.12",
-    "@biorate/sequelize": "1.30.12",
+    "@biorate/kafkajs": "1.38.1",
+    "@biorate/minio": "1.38.1",
+    "@biorate/mongodb": "1.38.1",
+    "@biorate/sequelize": "1.38.1",
     "@biorate/tools": "1.28.0",
-    "@biorate/vault": "1.30.12"
+    "@biorate/vault": "1.38.1"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
 }

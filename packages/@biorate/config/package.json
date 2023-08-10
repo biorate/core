@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config",
-  "version": "1.30.12",
+  "version": "1.38.1",
   "description": "Application configurator",
   "main": "dist",
   "scripts": {
