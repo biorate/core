@@ -1,6 +1,6 @@
 {
   "name": "@biorate/minio",
-  "version": "1.38.1",
+  "version": "1.38.2",
   "description": "Minio connector",
   "main": "dist",
   "scripts": {
@@ -24,8 +24,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.38.1",
-    "@biorate/connector": "1.38.1",
+    "@biorate/config": "1.38.2",
+    "@biorate/connector": "1.38.2",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.30.12",
     "@biorate/tools": "1.28.0",
