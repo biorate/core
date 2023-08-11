@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.38.4](https://github.com/biorate/core/compare/v1.38.3...v1.38.4) (2023-08-11)
+
+### Bug Fixes
+
+- **config:** types fix ([0c0f606](https://github.com/biorate/core/commit/0c0f60680c8068ee22616c547493ee698fe7a05c))
+
 ## [1.38.3](https://github.com/biorate/core/compare/v1.38.2...v1.38.3) (2023-08-10)
 
 ### Bug Fixes
