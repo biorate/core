@@ -20,24 +20,24 @@ export class Clickhouse extends Migration {
       async (config, connection, paths) => {
         const tableName = this.config.get<string>('migrations.tableName', 'migrations');
         const createQuery = `
-          CREATE TABLE IF NOT EXISTS ${tableName} (
+          CREATE TABLE IF NOT EXISTS {tableName:Identifier} (
             name String
           )
           ENGINE = MergeTree()
           PRIMARY KEY (name);
         `;
-        await connection.query(createQuery).toPromise();
+        await connection.query(createQuery, { params: { tableName } }).toPromise();
         await this.forEachPath(paths, async (file, name) => {
           const item = await connection
-            .query(`SELECT * FROM ${tableName} WHERE name = {name:String};`, {
-              params: { name },
+            .query(`SELECT * FROM {tableName:Identifier} WHERE name = {name:String};`, {
+              params: { name, tableName },
             })
             .toPromise();
           if (item.length) return;
           await connection.query(await fs.readFile(file, 'utf8')).toPromise();
           await connection
-            .query(`INSERT INTO ${tableName} (name) VALUES ({name:String})`, {
-              params: { name },
+            .query(`INSERT INTO {tableName:Identifier} (name) VALUES ({name:String})`, {
+              params: { name, tableName },
             })
             .toPromise();
           this.log(config.name, name);
