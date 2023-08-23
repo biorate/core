@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/biorate/core/compare/v1.38.4...v1.39.0) (2023-08-23)
+
+### Features
+
+- **migrations:** clickhouse added ([1c1793a](https://github.com/biorate/core/commit/1c1793a5d43748eef6d227477bfee6b7f8a1e87a))
+
 ## [1.38.4](https://github.com/biorate/core/compare/v1.38.3...v1.38.4) (2023-08-11)
 
 ### Bug Fixes
