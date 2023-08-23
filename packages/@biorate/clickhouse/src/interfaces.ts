@@ -30,4 +30,4 @@ export interface IClickhouseConfig extends IConnectorConfig {
   };
 }
 
-export type IMinioConnector = IConnector<IClickhouseConfig, IClickhouseConnection>;
+export type IClickhouseConnector = IConnector<IClickhouseConfig, IClickhouseConnection>;

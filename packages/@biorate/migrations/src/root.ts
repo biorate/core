@@ -15,6 +15,7 @@ export class Root extends Core() {
   @inject(Migrations.Minio) protected minio: Migrations.Minio;
   @inject(Migrations.Mongodb) protected mongodb: Migrations.Mongodb;
   @inject(Migrations.Kafka) public kafkaJSAdmin: Migrations.Kafka;
+  @inject(Migrations.Clickhouse) public clickhouse: Migrations.Clickhouse;
 
   @init() protected async initialize() {
     process.exit();

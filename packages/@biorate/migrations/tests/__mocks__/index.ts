@@ -59,6 +59,12 @@ container.get<IConfig>(Types.Config).merge({
       },
     },
   ],
+  Clickhouse: [
+    {
+      name: 'test',
+      options: {},
+    },
+  ],
   migrations: {
     directory: '/tests/migrations',
   },

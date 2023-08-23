@@ -28,6 +28,7 @@
     "@biorate/config-loader-env": "1.38.4",
     "@biorate/config-loader-fs": "1.38.4",
     "@biorate/config-loader-vault": "1.38.4",
+    "@biorate/clickhouse": "1.38.4",
     "@biorate/connector": "1.38.4",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.30.12",
