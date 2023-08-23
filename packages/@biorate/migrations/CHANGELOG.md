@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.1](https://github.com/biorate/core/compare/v1.39.0...v1.39.1) (2023-08-23)
+
+### Bug Fixes
+
+- **migrations:** tableName in params ([9b40f3b](https://github.com/biorate/core/commit/9b40f3b41150042d6e7cbf35a3d06440bc4a8503))
+
 # [1.39.0](https://github.com/biorate/core/compare/v1.38.4...v1.39.0) (2023-08-23)
 
 ### Features
