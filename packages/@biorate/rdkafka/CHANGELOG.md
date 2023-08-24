@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/biorate/core/compare/v1.41.0...v1.42.0) (2023-08-24)
+
+### Features
+
+- **rdkafka:** delay correction remove in consumer-stream ([8c03197](https://github.com/biorate/core/commit/8c03197d501705c43e31ddc0a851e5fdb2a7d82e))
+
 # [1.41.0](https://github.com/biorate/core/compare/v1.40.0...v1.41.0) (2023-08-24)
 
 ### Features
