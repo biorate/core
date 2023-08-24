@@ -86,13 +86,12 @@ export class RDKafkaConsumerStreamConnection
   #handle = async () => {
     let messages: Message[] = [];
     let time: () => number;
-    let diff = 0;
     const latest = new Map<number, Message>();
     const counter = new Map<string, number>();
     const tasks = [];
     while (true) {
       try {
-        await timer.wait(Math.max(this.delay - diff, 0));
+        await timer.wait(this.delay);
         if (!this.started) continue;
         if (!this.pool.length) continue;
         time = timeDiff();
@@ -114,8 +113,7 @@ export class RDKafkaConsumerStreamConnection
           this.stream.consumer.commitMessage(message);
           this.emit(EventsConsumerStream.LatestMessage, message);
         }
-        diff = time();
-        this.#setMetrics(counter, 200, diff);
+        this.#setMetrics(counter, 200, time());
       } catch (e) {
         counter.clear();
         for (const message of messages)
