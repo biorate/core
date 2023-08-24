@@ -46,6 +46,10 @@ export class RDKafkaConsumerStreamConnection
     return this.config.concurrency ?? 10;
   }
 
+  protected get delay() {
+    return this.config.delay ?? 0;
+  }
+
   public constructor(config: IRDKafkaConsumerStreamConfig) {
     super();
     this.config = config;
@@ -87,7 +91,7 @@ export class RDKafkaConsumerStreamConnection
     const tasks = [];
     while (true) {
       try {
-        await timer.wait();
+        await timer.wait(this.delay);
         if (!this.started) continue;
         if (!this.pool.length) continue;
         time = timeDiff();

@@ -14,6 +14,7 @@ export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
   buffer?: number;
   concurrency?: number;
   batch?: boolean;
+  delay?: number;
 };
 
 export interface IRDKafkaConsumerStreamConnection extends EventEmitter {
