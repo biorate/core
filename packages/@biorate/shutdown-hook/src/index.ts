@@ -113,6 +113,6 @@ export class ShutdownHook {
       (result) => result.status === 'rejected' && console.error(result.reason),
     );
     this.#isShutdown = true;
-    process?.exit?.(this.#code);
+    env.globalThis?.process?.exit?.(this.#code);
   };
 }
