@@ -1,6 +1,6 @@
 {
   "name": "@biorate/shutdown-hook",
-  "version": "1.30.12",
+  "version": "1.42.1",
   "description": "Shutdown hook implementation for Node.JS",
   "main": "dist",
   "scripts": {

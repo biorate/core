@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.1](https://github.com/biorate/core/compare/v1.42.0...v1.42.1) (2023-09-04)
+
+### Bug Fixes
+
+- **shutdown-hook:** process.exit on client onShutdown fixed ([df0caf6](https://github.com/biorate/core/commit/df0caf613a72abe67e56c854b58a90196a4e30e4))
+
 # [1.42.0](https://github.com/biorate/core/compare/v1.41.0...v1.42.0) (2023-08-24)
 
 ### Features
