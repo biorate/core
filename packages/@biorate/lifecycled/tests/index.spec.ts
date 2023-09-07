@@ -9,6 +9,7 @@ import {
   overrideParentEvents,
   undeclaredChildEvents,
   undeclaredParentEvents,
+  initRegexpBug,
   destruct,
 } from './__mocks__';
 
@@ -27,6 +28,10 @@ describe('Lifecycled', () => {
     it('override (parent)', overrideParentEvents);
     it('undeclared (child)', undeclaredChildEvents);
     it('undeclared (parent)', undeclaredParentEvents);
+  });
+
+  describe('bug-fix', function () {
+    it('RegExp bug fix', initRegexpBug);
   });
 
   describe('@kill()', function () {

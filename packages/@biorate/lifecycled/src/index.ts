@@ -51,8 +51,10 @@ class Lifecycled {
     if (typeof object[field] !== 'object') return false;
     if (!object[field]) return false;
     if (!('constructor' in object[field])) return false;
+    if (object[field] instanceof RegExp) return false;
     if (object[field] === object) return false;
     if (object[field] === parent) return false;
+    if (Reflect.getMetadata(Lifecycled.processed, object[field])) return false;
     return true;
   }
 
@@ -64,7 +66,6 @@ class Lifecycled {
 
   private call(object: any, parent = null) {
     let items: { key: number; field: string; descriptor: PropertyDescriptor }[] = [];
-    if (Reflect.getMetadata(Lifecycled.processed, object)) return;
     Reflect.defineMetadata(Lifecycled.processed, true, object);
     o.walkProto(object, (object) => {
       const data = Metadata.get(object.constructor);
