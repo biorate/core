@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.2](https://github.com/biorate/core/compare/v1.42.1...v1.42.2) (2023-09-07)
+
+### Bug Fixes
+
+- **lifecycled:** regexp bug, invoke call optimization ([81d39b6](https://github.com/biorate/core/commit/81d39b6df2a6aa32633cef678f05e2e0435e7bf0))
+
 ## [1.42.1](https://github.com/biorate/core/compare/v1.42.0...v1.42.1) (2023-09-04)
 
 ### Bug Fixes

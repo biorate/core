@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.2](https://github.com/biorate/core/compare/v1.42.1...v1.42.2) (2023-09-07)
+
+**Note:** Version bump only for package @biorate/config-loader
+
 ## [1.42.1](https://github.com/biorate/core/compare/v1.42.0...v1.42.1) (2023-09-04)
 
 **Note:** Version bump only for package @biorate/config-loader

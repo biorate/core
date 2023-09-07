@@ -1,6 +1,6 @@
 {
   "name": "@biorate/file-config",
-  "version": "1.42.1",
+  "version": "1.42.2",
   "description": "Module for configuring the application using files",
   "main": "dist",
   "scripts": {
@@ -21,9 +21,9 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.42.1",
+    "@biorate/config": "1.42.2",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.42.1"
+    "@biorate/inversion": "1.42.2"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }
