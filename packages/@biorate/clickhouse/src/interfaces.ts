@@ -41,4 +41,11 @@ export type IInsertParams = {
   rows?: Record<string, unknown>[];
 };
 
-export type IClickhouseConnector = IConnector<IClickhouseConfig, IClickhouseConnection>;
+export type IClickhouseConnector = IConnector<
+  IClickhouseConfig,
+  IClickhouseConnection
+> & {
+  query<T = unknown>(query: string, params?: IQueryParams): Promise<T[]>;
+
+  insert(query: string, params?: IInsertParams): Promise<Record<string, unknown>[]>;
+};

@@ -23,6 +23,9 @@ declare module '@biorate/clickhouse' {
     /**
      * @description Make a insert
      */
-    public insert(query: string, params?: IInsertParams): Promise<Object[]>;
+    public insert(
+      query: string,
+      params?: IInsertParams,
+    ): Promise<Record<string, unknown>[]>;
   }
 }
