@@ -29,6 +29,7 @@
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.42.2",
     "@biorate/tools": "1.28.0",
-    "clickhouse": "^2.6.0"
+    "clickhouse": "^2.6.0",
+    "lodash": "^4.17.21"
   }
 }

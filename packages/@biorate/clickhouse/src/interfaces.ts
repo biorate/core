@@ -30,4 +30,15 @@ export interface IClickhouseConfig extends IConnectorConfig {
   };
 }
 
+export type IQueryParams = {
+  external?: { name: string; data: Record<string, unknown>[] };
+  params?: Record<string, unknown>;
+  connection?: string;
+};
+
+export type IInsertParams = {
+  connection?: string;
+  rows?: Record<string, unknown>[];
+};
+
 export type IClickhouseConnector = IConnector<IClickhouseConfig, IClickhouseConnection>;

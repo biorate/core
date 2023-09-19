@@ -1,8 +1,14 @@
+import { omit } from 'lodash';
 import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { ClickHouse } from 'clickhouse';
 import { ClickhouseCantConnectError } from './errors';
-import { IClickhouseConfig, IClickhouseConnection } from './interfaces';
+import {
+  IClickhouseConfig,
+  IClickhouseConnection,
+  IQueryParams,
+  IInsertParams,
+} from './interfaces';
 
 export * from './errors';
 export * from './interfaces';
@@ -77,9 +83,17 @@ export class ClickhouseConnector extends Connector<
     return connection;
   }
   /**
-   * @description Make a current query
+   * @description Make a query
    */
-  public query<T = unknown>(query: string) {
-    return this.current!.query(query).toPromise() as unknown as Promise<T[]>;
+  public query<T = unknown>(query: string, params: IQueryParams = {}) {
+    return this.get(params.connection)
+      .query(query, omit(params, 'connection'))
+      .toPromise() as unknown as Promise<T[]>;
+  }
+  /**
+   * @description Make a insert
+   */
+  public insert(query: string, params: IInsertParams = {}) {
+    return this.get(params.connection).insert(query, params.rows).toPromise();
   }
 }
