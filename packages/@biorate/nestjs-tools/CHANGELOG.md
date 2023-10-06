@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.6](https://github.com/biorate/core/compare/v1.42.5...v1.42.6) (2023-10-06)
+
+### Bug Fixes
+
+- **nestjs-tools:** AllExceptionsFilter console.error memory leak removed ([70a1e29](https://github.com/biorate/core/commit/70a1e29d027342db8feafad719f1ff4d1bc1806c))
+
 ## [1.42.2](https://github.com/biorate/core/compare/v1.42.1...v1.42.2) (2023-09-07)
 
 **Note:** Version bump only for package @biorate/nestjs-tools
