@@ -12,14 +12,14 @@ import { UnsupportedProtocolError } from '../errors';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  public catch(exception: unknown, host: ArgumentsHost) {
+  public catch(exception: Error, host: ArgumentsHost) {
     const type = host.getType();
     const method = <`_${typeof type}`>`_${type}`;
     if (!this[method]) throw new UnsupportedProtocolError(host.getType());
     this[method](exception, host);
   }
 
-  private _http(exception: unknown, host: ArgumentsHost) {
+  private _http(exception: Error, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
@@ -36,7 +36,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     });
   }
 
-  private _ws(exception: unknown, host: ArgumentsHost) {
+  private _ws(exception: Error, host: ArgumentsHost) {
     const ctx = host.switchToWs();
     const socket = ctx.getClient<WebSocket>();
     const status =
@@ -51,25 +51,25 @@ export class AllExceptionsFilter implements ExceptionFilter {
     );
   }
 
-  private _rpc(exception: unknown, host: ArgumentsHost) {
+  private _rpc(exception: Error, host: ArgumentsHost) {
     throw new UnsupportedProtocolError('rpc');
   }
 
-  private code(exception: unknown) {
-    return (<BaseError>exception).code ?? (<Error>exception).constructor.name;
+  private code(exception: Error) {
+    return (<BaseError>exception).code ?? exception.constructor.name;
   }
 
-  private hint(exception: unknown) {
+  private hint(exception: Error) {
     return (
       (
-        (<BadRequestException>exception)?.getResponse?.() as unknown as {
+        (<BadRequestException>exception)?.getResponse?.() as {
           message?: [string];
         }
       )?.message ?? (<BaseError>exception).message
     );
   }
 
-  protected log(exception: unknown) {
-    console.error(exception);
+  protected log(exception: Error) {
+    console.error(exception.stack);
   }
 }
