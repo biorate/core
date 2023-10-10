@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.0](https://github.com/biorate/core/compare/v1.42.6...v1.43.0) (2023-10-10)
+
+### Features
+
+- **vault:** node-vault deps up ([7aaf826](https://github.com/biorate/core/commit/7aaf826857ac2baf6886b04f9abc16296369c1ec))
+
 ## [1.42.6](https://github.com/biorate/core/compare/v1.42.5...v1.42.6) (2023-10-06)
 
 ### Bug Fixes
