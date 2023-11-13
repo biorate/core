@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/biorate/core/compare/v1.43.0...v1.44.0) (2023-11-13)
+
+### Features
+
+- **axios:** onRetry callback param added ([5b2f2d4](https://github.com/biorate/core/commit/5b2f2d4c79eca93a142cfa3fa6c79d9708289251))
+
 # [1.43.0](https://github.com/biorate/core/compare/v1.42.6...v1.43.0) (2023-10-10)
 
 ### Features
