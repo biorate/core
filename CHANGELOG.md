@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.44.1](https://github.com/biorate/core/compare/v1.44.0...v1.44.1) (2023-11-20)
+
+### Bug Fixes
+
+- **axios:** [@ts-ignore](https://github.com/ts-ignore), types conflict ([32d2e92](https://github.com/biorate/core/commit/32d2e92a4b798d3680d110aa106f145f92442018))
+
 # [1.44.0](https://github.com/biorate/core/compare/v1.43.0...v1.44.0) (2023-11-13)
 
 ### Features
