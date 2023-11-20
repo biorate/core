@@ -108,6 +108,7 @@ export class Axios {
   ): Promise<AxiosResponse<T, D>> {
     if (!this.#client) {
       this.#client = axios.create();
+      // @ts-ignore: TODO: Stranger Things
       retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
     }
     const settings = merge({ ...this }, options);
