@@ -1,0 +1,31 @@
+{
+  "name": "@biorate/mocha",
+  "version": "0.0.0",
+  "description": "Mocha OOP tests based on @testdeck/core",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/mocha"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "mocha",
+    "oop",
+    "@testdeck/core"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@testdeck/core": "^0.3.3",
+    "mocha": "^10.2.0"
+  }
+}
