@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mocha",
-  "version": "0.0.0",
+  "version": "1.45.0",
   "description": "Mocha OOP tests based on @testdeck/core",
   "main": "dist",
   "scripts": {
