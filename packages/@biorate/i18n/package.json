@@ -23,6 +23,6 @@
   "dependencies": {
     "@biorate/config": "1.42.2",
     "@biorate/inversion": "1.42.2",
-    "i18next": "^23.4.2"
+    "i18next": "23.4.2"
   }
 }

@@ -1,14 +1,26 @@
 # Mocha
 
 Mocha OOP tests based on @testdeck/core
+This is a fork of https://www.npmjs.com/package/@testdeck/mocha package,
+documentation should be identical
 
 # Reason
 
-Some type fixes
+Some types fixes
 
 ### Examples:
 
 ```ts
+import { suite, test } from "@testdeck/jasmine";
+
+@suite
+class Hello {
+
+  @test
+  world() {
+    expect(false).toBe(true);
+  }
+}
 ```
 
 ### Learn

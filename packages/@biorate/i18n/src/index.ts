@@ -17,6 +17,7 @@ export * from 'i18next';
  * Translate function override, because of a typescript strange behavior
  */
 export function t(key: any | any[], options?: TOptionsBase) {
+  // @ts-ignore: TODO: types mismatch
   return translate(key, options);
 }
 /**

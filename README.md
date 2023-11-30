@@ -37,6 +37,7 @@
 - [shutdown-hook](https://biorate.github.io/core/modules/shutdown_hook.html)
 - [clickhouse](https://biorate.github.io/core/modules/clickhouse.html)
 - [i18n](https://biorate.github.io/core/modules/i18n.html)
+- [mocha](https://biorate.github.io/core/modules/mocha.html)
 
 ### Learn
 
