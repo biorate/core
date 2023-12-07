@@ -46,7 +46,6 @@ function applyTimings(fn: any, settings: any): any {
 
 const mochaRunner: core.TestRunner = {
   suite(name: string, callback: () => void, settings?: core.SuiteSettings): void {
-    console.log(settings);
     const suite = settings?.parallel ? p : describe;
     switch (settings && settings.execution) {
       case 'only':
