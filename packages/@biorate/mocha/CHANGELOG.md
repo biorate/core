@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.46.0](https://github.com/biorate/core/compare/v1.45.1...v1.46.0) (2023-12-07)
+
+### Features
+
+- **mocha:** parallel tests ([b956faf](https://github.com/biorate/core/commit/b956faf0ba512a589adfdc697b7190a3ffd23542))
+
 ## [1.45.1](https://github.com/biorate/core/compare/v1.45.0...v1.45.1) (2023-11-30)
 
 ### Bug Fixes
