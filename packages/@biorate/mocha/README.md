@@ -1,23 +1,32 @@
 # Mocha
 
 Mocha OOP tests based on @testdeck/core
-This is a fork of https://www.npmjs.com/package/@testdeck/mocha package,
-documentation should be identical
+This is a mocha OOP wrap based on https://www.npmjs.com/package/@testdeck/mocha package,
+documentation should be almost the same
 
 # Reason
 
-Some types fixes
+- Some types fixes
+
+# Feature
+
+- Parallel tests execution in case of one class
 
 ### Examples:
 
 ```ts
-import { suite, test } from "@testdeck/jasmine";
+import { suite, parallel, test } from '@biorate/mocha';
 
 @suite
-class Hello {
+@parallel(true)
+class Test {
+  @test
+  first() {
+    expect(false).toBe(true);
+  }
 
   @test
-  world() {
+  second() {
     expect(false).toBe(true);
   }
 }

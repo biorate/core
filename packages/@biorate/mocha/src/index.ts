@@ -128,6 +128,37 @@ interface MochaClassTestUI {
   readonly context: unique symbol;
 }
 
+/**
+ * @description
+ * Mocha OOP tests based on @testdeck/core
+ * This is a mocha OOP wrap based on https://www.npmjs.com/package/@testdeck/mocha package,
+ * documentation should be almost the same
+ *
+ * ### Reason:
+ * - Some types fixes
+ *
+ * ### Features:
+ * - Parallel tests execution in case of one class
+ *
+ * @example
+ * ```
+ * import { suite, parallel, test } from '@biorate/mocha';
+ *
+ * @suite
+ * @parallel(true)
+ * class Test {
+ *   @test
+ *   first() {
+ *     expect(false).toBe(true);
+ *   }
+ *
+ *   @test
+ *   second() {
+ *     expect(false).toBe(true);
+ *   }
+ * }
+ * ```
+ */
 export const {
   context,
   suite,
