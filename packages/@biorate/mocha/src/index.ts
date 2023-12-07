@@ -1,4 +1,6 @@
-import * as core from '@testdeck/core';
+import * as core from './core';
+// @ts-ignore
+import * as p from 'mocha.parallel';
 
 function applyTimings(fn: any, settings: any): any {
   if (settings) {
@@ -44,18 +46,20 @@ function applyTimings(fn: any, settings: any): any {
 
 const mochaRunner: core.TestRunner = {
   suite(name: string, callback: () => void, settings?: core.SuiteSettings): void {
+    console.log(settings);
+    const suite = settings?.parallel ? p : describe;
     switch (settings && settings.execution) {
       case 'only':
-        describe.only(name, applyTimings(callback, settings));
+        suite.only(name, applyTimings(callback, settings));
         break;
       case 'skip':
-        describe.skip(name, applyTimings(callback, settings));
+        suite.skip(name, applyTimings(callback, settings));
         break;
       case 'pending':
-        describe.skip(name, applyTimings(callback, settings));
+        suite.skip(name, applyTimings(callback, settings));
         break;
       default:
-        describe(name, applyTimings(callback, settings));
+        suite(name, applyTimings(callback, settings));
     }
   },
 
@@ -131,6 +135,7 @@ export const {
   test,
   slow,
   timeout,
+  parallel,
   retries,
   pending,
   only,

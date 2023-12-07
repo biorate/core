@@ -19,13 +19,13 @@
   "homepage": "https://biorate.github.io/core",
   "keywords": [
     "mocha",
-    "oop",
+    "OOP",
+    "parallel",
     "@testdeck/core"
   ],
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@testdeck/core": "^0.3.3",
     "mocha": "^10.2.0"
   }
 }
