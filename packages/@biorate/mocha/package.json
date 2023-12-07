@@ -26,6 +26,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "mocha.parallel": "^0.15.6"
   }
 }
