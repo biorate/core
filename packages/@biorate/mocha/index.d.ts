@@ -4,7 +4,7 @@ import {
   ParameterisedTestDecorator,
   SuiteDecorator,
   TestDecorator,
-} from '@testdeck/core';
+} from './src/core';
 
 declare module '@biorate/mocha' {
   export const context: unique symbol;
