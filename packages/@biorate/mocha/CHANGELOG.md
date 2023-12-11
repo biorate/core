@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.49.0](https://github.com/biorate/core/compare/v1.48.0...v1.49.0) (2023-12-11)
+
+**Note:** Version bump only for package @biorate/mocha
+
 # [1.48.0](https://github.com/biorate/core/compare/v1.47.0...v1.48.0) (2023-12-07)
 
 ### Features
