@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.50.0](https://github.com/biorate/core/compare/v1.49.0...v1.50.0) (2023-12-11)
+
+### Features
+
+- **playwright:** types ([ca2dec9](https://github.com/biorate/core/commit/ca2dec929e59e8dfd1befb1c78bf7e846fa95447))
+
 # [1.49.0](https://github.com/biorate/core/compare/v1.48.0...v1.49.0) (2023-12-11)
 
 ### Features
