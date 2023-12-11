@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.51.0](https://github.com/biorate/core/compare/v1.50.0...v1.51.0) (2023-12-11)
+
+### Features
+
+- **playwright:** types ([3c6e4bb](https://github.com/biorate/core/commit/3c6e4bb7efe379c047a1b21c7bd821a3bc5258f0))
+
 # [1.49.0](https://github.com/biorate/core/compare/v1.48.0...v1.49.0) (2023-12-11)
 
 **Note:** Version bump only for package @biorate/mocha
