@@ -16,12 +16,20 @@ export class RoutesInterceptor implements NestInterceptor {
   private readonly reflector = new Reflector();
 
   public intercept(context: ExecutionContext, next: CallHandler) {
+    const namespaces = this.reflector.get<string | string[]>(
+      PATH_METADATA,
+      context.getClass(),
+    );
+    const routes = this.reflector.get<string | string[]>(
+      PATH_METADATA,
+      context.getHandler(),
+    );
     RoutesInterceptor.map.set(context.switchToHttp().getRequest(), {
       path: normalize(
         join(
           '/',
-          this.reflector.get<string>(PATH_METADATA, context.getClass()),
-          this.reflector.get<string>(PATH_METADATA, context.getHandler()),
+          Array.isArray(namespaces) ? namespaces[0] : namespaces,
+          Array.isArray(routes) ? routes[0] : routes,
           '/',
         ),
       ),
