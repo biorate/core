@@ -86,11 +86,11 @@ export class PlayWright {
       for (const name of names) {
         if (methods.has(name)) return;
         methods.add(name);
-        this.before(name, instance);
-        this.after(name, instance);
         const descriptor = Object.getOwnPropertyDescriptor(object, name);
         const meta = Reflect.getMetadata(PlayWright.Test, descriptor?.value);
         if (!meta) continue;
+        this.before(name, instance);
+        this.after(name, instance);
         const allureMethods = Reflect.getMetadata(
           PlayWright.AllureOptions,
           descriptor?.value,
