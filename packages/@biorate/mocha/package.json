@@ -25,7 +25,14 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "chai": "^4.3.4",
+    "mocha-chai-jest-snapshot": "^1.1.4"
+  },
   "dependencies": {
+    "@biorate/errors": "1.28.0",
+    "@biorate/tools": "1.28.0",
+    "class-validator": "^0.14.0",
     "mocha": "^10.2.0",
     "mocha.parallel": "^0.15.6"
   }

@@ -16,22 +16,14 @@
 <li><a href="../modules/kafkajs.html">kafkajs</a></li>
 <li><a href="kafkajs.KafkaJSAdminCantConnectError.html">KafkaJSAdminCantConnectError</a></li></ul>
 <h1>Class KafkaJSAdminCantConnectError</h1></div>
-<section class="tsd-panel tsd-comment">
-<div class="tsd-comment tsd-typography">
-<h4>Description</h4><p>This module provides a base class for creating error classes with error code (class name),
-message template, meta data support out of the box.</p>
-
-<h4>Example</h4><pre><code class="language-ts"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">BaseError</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@biorate/errors&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-4">class</span><span class="hl-1"> </span><span class="hl-9">MyAwesomeError</span><span class="hl-1"> </span><span class="hl-4">extends</span><span class="hl-1"> </span><span class="hl-9">BaseError</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">constructor</span><span class="hl-1">(</span><span class="hl-2">args</span><span class="hl-1">?: </span><span class="hl-9">unknown</span><span class="hl-1">[], </span><span class="hl-2">meta</span><span class="hl-1">?: </span><span class="hl-9">unknown</span><span class="hl-1">) {</span><br/><span class="hl-1">    </span><span class="hl-4">super</span><span class="hl-1">(</span><span class="hl-3">`Oops... Some error happen, at [%s], in [%s]`</span><span class="hl-1">, </span><span class="hl-2">args</span><span class="hl-1">, </span><span class="hl-2">meta</span><span class="hl-1">);</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">e</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">MyAwesomeError</span><span class="hl-1">([</span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Date</span><span class="hl-1">(), </span><span class="hl-3">&#39;core&#39;</span><span class="hl-1">], { </span><span class="hl-2">hello:</span><span class="hl-1"> </span><span class="hl-3">&#39;world!&#39;</span><span class="hl-1"> });</span><br/><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-2">e</span><span class="hl-1">.</span><span class="hl-2">meta</span><span class="hl-1">); </span><span class="hl-8">// { hello: &#39;world!&#39; }</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-2">e</span><span class="hl-1">.</span><span class="hl-2">code</span><span class="hl-1">); </span><span class="hl-8">// MyAwesomeError</span><br/><br/><span class="hl-0">throw</span><span class="hl-1"> </span><span class="hl-2">e</span><span class="hl-1">;</span><br/><span class="hl-1">          ^</span><br/><span class="hl-10">MyAwesomeError</span><span class="hl-1">: </span><span class="hl-2">Oops</span><span class="hl-1">... </span><span class="hl-2">Some</span><span class="hl-1"> </span><span class="hl-2">error</span><span class="hl-1"> </span><span class="hl-2">happen</span><span class="hl-1">, </span><span class="hl-2">at</span><span class="hl-1"> [</span><span class="hl-7">2021</span><span class="hl-1">-</span><span class="hl-7">05</span><span class="hl-1">-13</span><span class="hl-5">T09</span><span class="hl-1">:</span><span class="hl-7">19</span><span class="hl-1">:22.511</span><span class="hl-5">Z</span><span class="hl-1">], </span><span class="hl-4">in</span><span class="hl-1"> [</span><span class="hl-2">core</span><span class="hl-1">]</span><br/><span class="hl-1">    </span><span class="hl-2">at</span><span class="hl-1"> </span><span class="hl-2">Object</span><span class="hl-1">.&lt;</span><span class="hl-2">anonymous</span><span class="hl-1">&gt; (..</span><span class="hl-2">core</span><span class="hl-1">/</span><span class="hl-2">packages</span><span class="hl-1">/@</span><span class="hl-2">biorate</span><span class="hl-1">/</span><span class="hl-2">errors</span><span class="hl-1">/</span><span class="hl-2">index</span><span class="hl-1">.</span><span class="hl-2">ts</span><span class="hl-1">:</span><span class="hl-7">28</span><span class="hl-1">:</span><span class="hl-7">11</span><span class="hl-1">)</span><br/><span class="hl-1">    </span><span class="hl-2">at</span><span class="hl-1"> </span><span class="hl-2">Module</span><span class="hl-1">.</span><span class="hl-6">_compile</span><span class="hl-1"> (</span><span class="hl-2">internal</span><span class="hl-1">/</span><span class="hl-2">modules</span><span class="hl-1">/</span><span class="hl-2">cjs</span><span class="hl-1">/</span><span class="hl-2">loader</span><span class="hl-1">.</span><span class="hl-2">js</span><span class="hl-1">:</span><span class="hl-7">1138</span><span class="hl-1">:</span><span class="hl-7">30</span><span class="hl-1">)</span>
-</code><button>Copy</button></pre>
-</div></section>
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
-<li><a href="errors.BaseError.html" class="tsd-signature-type tsd-kind-class">BaseError</a>
+<li><span class="tsd-signature-type ">BaseError</span>
 <ul class="tsd-hierarchy">
 <li><span class="target">KafkaJSAdminCantConnectError</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/4a376da7/packages/@biorate/kafkajs/src/errors/admin.ts#L3">packages/@biorate/kafkajs/src/errors/admin.ts:3</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/biorate/core/blob/250e7d82/packages/@biorate/kafkajs/src/errors/admin.ts#L3">packages/@biorate/kafkajs/src/errors/admin.ts:3</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -43,8 +35,7 @@ message template, meta data support out of the box.</p>
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Properties</h3>
-<div class="tsd-index-list"><a href="kafkajs.KafkaJSAdminCantConnectError.html#_meta" class="tsd-index-link tsd-is-private tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-1024"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)"></path></g></svg><span>#meta</span></a>
-<a href="kafkajs.KafkaJSAdminCantConnectError.html#cause" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>cause?</span></a>
+<div class="tsd-index-list"><a href="kafkajs.KafkaJSAdminCantConnectError.html#cause" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-1024"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)"></path></g></svg><span>cause?</span></a>
 <a href="kafkajs.KafkaJSAdminCantConnectError.html#message" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>message</span></a>
 <a href="kafkajs.KafkaJSAdminCantConnectError.html#name" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name</span></a>
 <a href="kafkajs.KafkaJSAdminCantConnectError.html#stack" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stack?</span></a>
@@ -53,8 +44,8 @@ message template, meta data support out of the box.</p>
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Accessors</h3>
-<div class="tsd-index-list"><a href="kafkajs.KafkaJSAdminCantConnectError.html#code" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-262144"><rect fill="var(--color-icon-background)" stroke="#FF4D4D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M8.85 16L11.13 7.24H12.582L14.85 16H13.758L13.182 13.672H10.53L9.954 16H8.85ZM10.746 12.76H12.954L12.282 10.06C12.154 9.548 12.054 9.12 11.982 8.776C11.91 8.432 11.866 8.208 11.85 8.104C11.834 8.208 11.79 8.432 11.718 8.776C11.646 9.12 11.546 9.544 11.418 10.048L10.746 12.76Z" fill="var(--color-text)"></path></g></svg><span>code</span></a>
-<a href="kafkajs.KafkaJSAdminCantConnectError.html#meta" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-262144"></use></svg><span>meta</span></a>
+<div class="tsd-index-list"><a href="kafkajs.KafkaJSAdminCantConnectError.html#code" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-262144"><rect fill="var(--color-icon-background)" stroke="#FF4D4D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M8.85 16L11.13 7.24H12.582L14.85 16H13.758L13.182 13.672H10.53L9.954 16H8.85ZM10.746 12.76H12.954L12.282 10.06C12.154 9.548 12.054 9.12 11.982 8.776C11.91 8.432 11.866 8.208 11.85 8.104C11.834 8.208 11.79 8.432 11.718 8.776C11.646 9.12 11.546 9.544 11.418 10.048L10.746 12.76Z" fill="var(--color-text)"></path></g></svg><span>code</span></a>
+<a href="kafkajs.KafkaJSAdminCantConnectError.html#meta" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-262144"></use></svg><span>meta</span></a>
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
@@ -73,39 +64,33 @@ message template, meta data support out of the box.</p>
 <li>
 <h5><span class="tsd-kind-parameter">e</span>: <span class="tsd-signature-type ">Error</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="kafkajs.KafkaJSAdminCantConnectError.html" class="tsd-signature-type tsd-kind-class">KafkaJSAdminCantConnectError</a></h4><aside class="tsd-sources">
-<p>Overrides <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#constructor">constructor</a></p>
+<p>Overrides BaseError.constructor</p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/4a376da7/packages/@biorate/kafkajs/src/errors/admin.ts#L4">packages/@biorate/kafkajs/src/errors/admin.ts:4</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/250e7d82/packages/@biorate/kafkajs/src/errors/admin.ts#L4">packages/@biorate/kafkajs/src/errors/admin.ts:4</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
-<section class="tsd-panel tsd-member tsd-is-private tsd-is-inherited"><a id="_meta" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>#meta</span><a href="#_meta" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">#meta</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = null</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#_meta">#meta</a></p>
-<ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/4a376da7/packages/@biorate/errors/src/index.ts#L31">packages/@biorate/errors/src/index.ts:31</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="cause" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>cause</span><a href="#cause" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">cause</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#cause">cause</a></p>
+<p>Inherited from BaseError.cause</p>
 <ul>
 <li>Defined in node_modules/typescript/lib/lib.es2022.error.d.ts:24</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="message" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>message</span><a href="#message" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">message</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#message">message</a></p>
+<p>Inherited from BaseError.message</p>
 <ul>
 <li>Defined in node_modules/typescript/lib/lib.es5.d.ts:1055</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#name">name</a></p>
+<p>Inherited from BaseError.name</p>
 <ul>
 <li>Defined in node_modules/typescript/lib/lib.es5.d.ts:1054</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="stack" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>stack</span><a href="#stack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">stack</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#stack">stack</a></p>
+<p>Inherited from BaseError.stack</p>
 <ul>
 <li>Defined in node_modules/typescript/lib/lib.es5.d.ts:1056</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="prepareStackTrace" class="tsd-anchor"></a>
@@ -131,35 +116,35 @@ message template, meta data support out of the box.</p>
 <div class="tsd-comment tsd-typography">
 <h4>See</h4><p><a href="https://v8.dev/docs/stack-trace-api#customizing-stack-traces">https://v8.dev/docs/stack-trace-api#customizing-stack-traces</a></p>
 </div></li></ul></li></ul></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#prepareStackTrace">prepareStackTrace</a></p>
+<p>Inherited from BaseError.prepareStackTrace</p>
 <ul>
 <li>Defined in node_modules/@types/node/globals.d.ts:11</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="stackTraceLimit" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>stack<wbr/>Trace<wbr/>Limit</span><a href="#stackTraceLimit" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">stack<wbr/>Trace<wbr/>Limit</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#stackTraceLimit">stackTraceLimit</a></p>
+<p>Inherited from BaseError.stackTraceLimit</p>
 <ul>
 <li>Defined in node_modules/@types/node/globals.d.ts:13</li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
-<section class="tsd-panel tsd-member tsd-is-inherited"><a id="code" class="tsd-anchor"></a>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="code" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>code</span><a href="#code" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<ul class="tsd-signatures tsd-is-inherited">
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
 <li class="tsd-signature" id="code.code-1"><span class="tsd-signature-symbol">get</span> code<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Inherited from BaseError.code</p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/4a376da7/packages/@biorate/errors/src/index.ts#L51">packages/@biorate/errors/src/index.ts:51</a></li></ul></aside></li></ul></section>
-<section class="tsd-panel tsd-member tsd-is-inherited"><a id="meta" class="tsd-anchor"></a>
+<li>Defined in packages/@biorate/mocha/node_modules/@biorate/errors/index.d.ts:5</li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="meta" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>meta</span><a href="#meta" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<ul class="tsd-signatures tsd-is-inherited">
+<ul class="tsd-signatures tsd-is-inherited tsd-is-external">
 <li class="tsd-signature" id="meta.meta-1"><span class="tsd-signature-symbol">get</span> meta<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4><aside class="tsd-sources">
 <p>Inherited from BaseError.meta</p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/4a376da7/packages/@biorate/errors/src/index.ts#L47">packages/@biorate/errors/src/index.ts:47</a></li></ul></aside></li></ul></section></section>
+<li>Defined in packages/@biorate/mocha/node_modules/@biorate/errors/index.d.ts:4</li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="captureStackTrace" class="tsd-anchor"></a>
@@ -178,7 +163,7 @@ message template, meta data support out of the box.</p>
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">constructorOpt</span>: <span class="tsd-signature-type ">Function</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="errors.BaseError.html">BaseError</a>.<a href="errors.BaseError.html#captureStackTrace">captureStackTrace</a></p>
+<p>Inherited from BaseError.captureStackTrace</p>
 <ul>
 <li>Defined in node_modules/@types/node/globals.d.ts:4</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
@@ -201,15 +186,14 @@ message template, meta data support out of the box.</p>
 <div class="tsd-accordion-details">
 <ul>
 <li><a href="#constructor" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-512"></use></svg><span>constructor</span></a></li>
-<li><a href="#_meta" class="tsd-is-private tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>#meta</span></a></li>
 <li><a href="#cause" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>cause</span></a></li>
 <li><a href="#message" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>message</span></a></li>
 <li><a href="#name" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name</span></a></li>
 <li><a href="#stack" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stack</span></a></li>
 <li><a href="#prepareStackTrace" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>prepare<wbr/>Stack<wbr/>Trace</span></a></li>
 <li><a href="#stackTraceLimit" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stack<wbr/>Trace<wbr/>Limit</span></a></li>
-<li><a href="#code" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-262144"></use></svg><span>code</span></a></li>
-<li><a href="#meta" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-262144"></use></svg><span>meta</span></a></li>
+<li><a href="#code" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-262144"></use></svg><span>code</span></a></li>
+<li><a href="#meta" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-262144"></use></svg><span>meta</span></a></li>
 <li><a href="#captureStackTrace" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>capture<wbr/>Stack<wbr/>Trace</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../index.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>biorate</span></a>
@@ -258,6 +242,7 @@ message template, meta data support out of the box.</p>
 <li><a href="../modules/mssql.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>mssql</span></a></li>
 <li><a href="../modules/nestjs_tools.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>nestjs-<wbr/>tools</span></a></li>
 <li><a href="../modules/pg.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>pg</span></a></li>
+<li><a href="../modules/playwright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>playwright</span></a></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
 <li><a href="../modules/rdkafka.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>rdkafka</span></a></li>
 <li><a href="../modules/react_virtual_table.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>react-<wbr/>virtual-<wbr/>table</span></a></li>
