@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.52.0](https://github.com/biorate/core/compare/v1.51.1...v1.52.0) (2024-01-10)
+
+### Features
+
+- **mocha:** Spec abstract class added ([60d7596](https://github.com/biorate/core/commit/60d7596ff7873c3f0590d9afe4ed1d9b4ff333e6))
+
 ## [1.51.1](https://github.com/biorate/core/compare/v1.51.0...v1.51.1) (2023-12-26)
 
 ### Bug Fixes
