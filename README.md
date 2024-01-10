@@ -38,6 +38,7 @@
 - [clickhouse](https://biorate.github.io/core/modules/clickhouse.html)
 - [i18n](https://biorate.github.io/core/modules/i18n.html)
 - [mocha](https://biorate.github.io/core/modules/mocha.html)
+- [mocha-spec](https://biorate.github.io/core/modules/mocha_spec.html)
 - [playwright](https://biorate.github.io/core/modules/playwright.html)
 
 ### Learn
