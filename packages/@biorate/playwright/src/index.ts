@@ -106,7 +106,7 @@ export class PlayWright {
           for (const method in allureMethods) {
             if (method in allure) {
               // @ts-ignore
-              await allure[method](allureMethods[method]);
+              await allure[method](...allureMethods[method]);
             }
           }
           await instance[name]({ page }, testInfo);
