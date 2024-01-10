@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.53.3](https://github.com/biorate/core/compare/v1.53.2...v1.53.3) (2024-01-10)
+
+### Bug Fixes
+
+- **playwright:** before / after hooks fix ([1519e86](https://github.com/biorate/core/commit/1519e86b91ee66e5a82d3090e1adb00907f1ff49))
+
 ## [1.53.2](https://github.com/biorate/core/compare/v1.53.1...v1.53.2) (2024-01-10)
 
 ### Bug Fixes
