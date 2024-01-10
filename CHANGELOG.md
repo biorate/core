@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.53.2](https://github.com/biorate/core/compare/v1.53.1...v1.53.2) (2024-01-10)
+
+### Bug Fixes
+
+- **playwright:** allure exports ([57ad4b8](https://github.com/biorate/core/commit/57ad4b897b5e105a178367cf57471110d586734f))
+
 ## [1.53.1](https://github.com/biorate/core/compare/v1.53.0...v1.53.1) (2024-01-10)
 
 ### Bug Fixes
