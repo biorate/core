@@ -4,6 +4,7 @@ import { object as o } from '@biorate/tools';
 import { test as t } from '@playwright/test';
 import { allure } from 'allure-playwright';
 
+export * from 'allure-playwright';
 export * from 'playwright';
 export * from '@playwright/test';
 
