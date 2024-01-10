@@ -1,50 +1,83 @@
 import { suite, test } from '@biorate/mocha';
-import { Spec, unitTests, TestSchema } from './__mocks__';
+import { isBoolean } from 'class-validator';
+import { Spec, TestSchema } from './__mocks__';
 
-@suite('@biorate/mocha-spec')
-class MochaSpec extends Spec {
-  @test('unit-positive')
-  protected async unitPositive() {
-    await this.unit({
-      context: unitTests,
-      method: 'test',
-      args: [3],
-      expects: {
-        context: true,
-        args: true,
-        return: true,
-      },
-    });
-  }
-
-  @test('unit-negative')
-  protected async unitNegative() {
-    await this.unit({
-      context: unitTests,
-      method: 'throw',
-      args: [],
-      expects: {
-        context: true,
-        args: true,
-        return: true,
-      },
-      catch: (e: Error) => e.message.includes('Test error'),
-    });
-  }
-
-  @test('validation-positive')
-  protected async validationPositive() {
+@suite('@biorate/mocha-spec - validation')
+class MochaValidationSpec extends Spec {
+  @test('object-positive')
+  protected async objectPositive() {
     await this.validate({
       schema: TestSchema,
       data: { number: 1, string: 'test', boolean: false },
     });
   }
 
-  @test('validation-negative')
-  protected async validationNegative() {
+  @test('object-negative')
+  protected async objectNegative() {
     await this.validate({
       schema: TestSchema,
       data: { number: '1', string: 'test', boolean: false },
+      catch: (e: Error) => true,
+    });
+  }
+
+  @test('array-object-positive')
+  protected async arrayObjectPositive() {
+    await this.validate({
+      schema: TestSchema,
+      data: [
+        { number: 1, string: 'foo', boolean: false },
+        { number: 2, string: 'bar', boolean: true },
+      ],
+      array: true,
+    });
+  }
+
+  @test('array-object-negative')
+  protected async arrayObjectNegative() {
+    await this.validate({
+      schema: TestSchema,
+      data: [
+        { number: 1, string: 'foo', boolean: false },
+        { number: 2, string: 'bar', boolean: 'true' },
+      ],
+      array: true,
+      catch: (e: Error) => true,
+    });
+  }
+
+  @test('primitive-positive')
+  protected async primitivePositive() {
+    await this.validate({
+      schema: isBoolean,
+      data: true,
+    });
+  }
+
+  @test('primitive-negative')
+  protected async primitiveNegative() {
+    await this.validate({
+      schema: isBoolean,
+      data: 'true',
+      catch: (e: Error) => true,
+    });
+  }
+
+  @test('array-primitive-positive')
+  protected async arrayPrimitivePositive() {
+    await this.validate({
+      schema: isBoolean,
+      data: [true, false, true, false],
+      array: true,
+    });
+  }
+
+  @test('array-primitive-negative')
+  protected async arrayPrimitiveNegative() {
+    await this.validate({
+      schema: isBoolean,
+      data: [true, false, 'true', false],
+      array: true,
       catch: (e: Error) => true,
     });
   }

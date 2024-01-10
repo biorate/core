@@ -1,7 +1,7 @@
 {
-  "name": "@biorate/mocha",
-  "version": "1.52.0",
-  "description": "Mocha OOP tests based on @testdeck/core",
+  "name": "@biorate/mocha-spec",
+  "version": "0.0.0",
+  "description": "Mocha Spec abstract helper class",
   "main": "dist",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biorate/core.git",
-    "directory": "packages/@biorate/mocha"
+    "directory": "packages/@biorate/mocha-spec"
   },
   "publishConfig": {
     "access": "public"
@@ -19,9 +19,9 @@
   "homepage": "https://biorate.github.io/core",
   "keywords": [
     "mocha",
-    "OOP",
-    "parallel",
-    "@testdeck/core"
+    "spec",
+    "abstract",
+    "helpers"
   ],
   "author": "llevkin",
   "license": "MIT",
@@ -29,11 +29,14 @@
     "chai": "^4.3.4",
     "mocha-chai-jest-snapshot": "^1.1.4"
   },
+  "devDependencies": {
+    "@biorate/mocha": "1.52.0",
+    "@types/supertest": "^2.0.11"
+  },
   "dependencies": {
     "@biorate/errors": "1.28.0",
     "@biorate/tools": "1.28.0",
     "class-validator": "^0.14.0",
-    "mocha": "^10.2.0",
-    "mocha.parallel": "^0.15.6"
+    "supertest": "^6.1.6"
   }
 }

@@ -20,4 +20,5 @@ export type IValidatorOptions = {
   field?: string;
   array?: boolean;
   validatorOptions?: ValidatorOptions;
+  catch?: (e: Error) => boolean;
 };

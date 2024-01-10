@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/mocha-spec - unit all-expects-negative 1`] = `Array []`;
+
+exports[`@biorate/mocha-spec - unit all-expects-negative 2`] = `
+UnitTests {
+  "dec": 1,
+  "inc": 4,
+}
+`;
+
+exports[`@biorate/mocha-spec - unit all-expects-positive 1`] = `
+Array [
+  3,
+]
+`;
+
+exports[`@biorate/mocha-spec - unit all-expects-positive 2`] = `
+UnitTests {
+  "dec": 1,
+  "inc": 1,
+}
+`;
+
+exports[`@biorate/mocha-spec - unit all-expects-positive 3`] = `
+UnitTests {
+  "dec": 1,
+  "inc": 4,
+}
+`;
+
+exports[`@biorate/mocha-spec - unit all-expects-positive 4`] = `
+Array [
+  3,
+]
+`;
+
+exports[`@biorate/mocha-spec - unit all-expects-positive 5`] = `4`;
+
+exports[`@biorate/mocha-spec - unit custom-expects-positive 1`] = `
+Array [
+  3,
+  2,
+]
+`;
+
+exports[`@biorate/mocha-spec - unit custom-expects-positive 2`] = `1`;
+
+exports[`@biorate/mocha-spec - unit custom-expects-positive 3`] = `1`;
+
+exports[`@biorate/mocha-spec - unit custom-expects-positive 4`] = `3`;
+
+exports[`@biorate/mocha-spec - unit custom-expects-positive 5`] = `2`;
+
+exports[`@biorate/mocha-spec - unit custom-expects-positive 6`] = `3`;

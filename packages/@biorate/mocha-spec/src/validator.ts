@@ -1,7 +1,7 @@
 import { get, merge } from 'lodash';
 import { validate } from 'class-validator';
-import { ValidationError } from '../errors';
-import { IValidatorOptions } from '../interfaces';
+import { ValidationError } from './errors';
+import { IValidatorOptions } from './interfaces';
 
 export class Validator {
   public validate(options: IValidatorOptions) {
@@ -28,7 +28,8 @@ export class Validator {
       const errors: string[] = [];
       for (const result of results)
         errors.push(...Object.values(result.constraints ?? {}));
-      throw new ValidationError('schema', options.schema, errors);
+      const err = new ValidationError('schema', options.schema, errors);
+      if (!options?.catch?.(err)) throw err;
     }
   }
 
@@ -38,7 +39,8 @@ export class Validator {
     else results.push(...options.data.map((item: any) => [options.schema(item), item]));
     for (const [result, value] of results) {
       if (result) continue;
-      throw new ValidationError('function', options.schema, [value]);
+      const err = new ValidationError('function', options.schema, [value]);
+      if (!options?.catch?.(err)) throw err;
     }
   }
 }

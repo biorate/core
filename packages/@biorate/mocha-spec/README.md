@@ -1,47 +1,31 @@
-# Mocha
+# Mocha spec
 
-Mocha OOP tests based on @testdeck/core
-This is a mocha OOP wrap based on https://www.npmjs.com/package/@testdeck/mocha package,
-documentation should be almost the same
+Mocha Spec abstract helper class
 
 # Reason
 
-- Some types fixes
+- For tests lightweight
 
 # Feature
 
-- Parallel tests execution in case of one class
+- Unit tests automatization
+- Data validation with class-validator
 
 ### Examples:
 
 ```ts
-import { suite, parallel, test } from '@biorate/mocha';
-
-@suite
-@parallel(true)
-class Test {
-  @test
-  first() {
-    expect(false).toBe(true);
-  }
-
-  @test
-  second() {
-    expect(false).toBe(true);
-  }
-}
 ```
 
 ### Learn
 
-- Documentation can be found here - [docs](https://biorate.github.io/core/modules/mocha.html).
+- Documentation can be found here - [docs](https://biorate.github.io/core/modules/mocha_spec.html).
 
 ### Release History
 
-See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/mocha/CHANGELOG.md)
+See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/mocha-spec/CHANGELOG.md)
 
 ### License
 
-[MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/mocha/LICENSE)
+[MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/mocha-spec/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)

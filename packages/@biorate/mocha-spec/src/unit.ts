@@ -3,8 +3,8 @@ import * as fs from 'fs';
 import { path } from '@biorate/tools';
 import { expect } from 'chai';
 import { get, invoke } from 'lodash';
-import { IUnitOptions } from '../interfaces';
-import { MochaChaiJestSnapshotError } from '../errors';
+import { IUnitOptions } from './interfaces';
+import { MochaChaiJestSnapshotError } from './errors';
 
 export class Unit {
   private static defaultExt = 'json';
@@ -24,9 +24,9 @@ export class Unit {
       for (const path of Array.isArray(expects) ? expects : [expects])
         values.push(get(object, path));
     else if (typeof expects === 'boolean' && expects) values.push(object);
-    if (!expect?.(object)?.toMatchSnapshot) throw new MochaChaiJestSnapshotError();
+    if (!expect?.({})?.toMatchSnapshot) throw new MochaChaiJestSnapshotError();
     for (const value of values) {
-      expect(object).toMatchSnapshot(
+      expect(value).toMatchSnapshot(
         `[${type}] doesn't equal in [${options.method}] method`,
       );
     }
