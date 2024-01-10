@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/run-context Context.run 1`] = `
+Object {
+  "initial": "value",
+  "step0-Scenario1": true,
+  "step1-Scenario1": true,
+  "step1-Scenario2": true,
+  "step2-Scenario1": true,
+  "step2-Scenario2": true,
+}
+`;

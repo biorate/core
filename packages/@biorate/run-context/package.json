@@ -1,0 +1,30 @@
+{
+  "name": "@biorate/run-context",
+  "version": "0.0.0",
+  "description": "Contexted scenarios execution by Middleware-based template",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/run-context"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "peerDependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
+  "dependencies": {
+    "@biorate/symbolic": "1.28.0",
+    "@biorate/tools": "1.28.0"
+  }
+}
