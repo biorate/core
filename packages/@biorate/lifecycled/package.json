@@ -20,6 +20,9 @@
   "keywords": [],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
   "dependencies": {
     "@biorate/shutdown-hook": "1.42.1",
     "@biorate/tools": "1.28.0",
