@@ -59,7 +59,6 @@ export class Context {
           const meta = Reflect.getMetadata(this.metaKey, descriptor.value);
           if (!meta) continue;
           const step = scenario[name].bind(scenario);
-          console.log(this.metaKey, { name: meta.name }, step);
           Reflect.defineMetadata(this.metaKey, { name: meta.name }, step);
           steps.push(step);
         }
