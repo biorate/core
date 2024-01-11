@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.1](https://github.com/biorate/core/compare/v1.56.0...v1.56.1) (2024-01-11)
+
+### Bug Fixes
+
+- trash removed ([838da05](https://github.com/biorate/core/commit/838da05d83045bb5370064ad6c63a44be76c87f4))
+
 # [1.56.0](https://github.com/biorate/core/compare/v1.55.0...v1.56.0) (2024-01-11)
 
 ### Features
