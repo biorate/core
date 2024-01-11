@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.56.0](https://github.com/biorate/core/compare/v1.55.0...v1.56.0) (2024-01-11)
+
+### Features
+
+- playwright allure step added ([9ab3deb](https://github.com/biorate/core/commit/9ab3deb8c7c98491cb5baaa3a516cb2ec8690bed))
+
 # [1.55.0](https://github.com/biorate/core/compare/v1.54.3...v1.55.0) (2024-01-11)
 
 ### Features
