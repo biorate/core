@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.54.0](https://github.com/biorate/core/compare/v1.53.3...v1.54.0) (2024-01-11)
+
+**Note:** Version bump only for package @biorate/clickhouse
+
 ## [1.42.5](https://github.com/biorate/core/compare/v1.42.4...v1.42.5) (2023-09-19)
 
 ### Bug Fixes

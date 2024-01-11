@@ -1,6 +1,6 @@
 {
   "name": "@biorate/run-context",
-  "version": "0.0.0",
+  "version": "1.54.0",
   "description": "Contexted scenarios execution by Middleware-based template",
   "main": "dist",
   "scripts": {

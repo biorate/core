@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.54.0](https://github.com/biorate/core/compare/v1.53.3...v1.54.0) (2024-01-11)
+
+**Note:** Version bump only for package @biorate/vault
+
 # [1.43.0](https://github.com/biorate/core/compare/v1.42.6...v1.43.0) (2023-10-10)
 
 ### Features
