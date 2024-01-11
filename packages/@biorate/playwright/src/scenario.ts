@@ -8,14 +8,5 @@ export abstract class Scenario extends ScenarioCommon {
   }
 }
 
-export const step =
-  (name?: string) =>
-  (
-    target: any,
-    propertyDescriptor: ClassMethodDecoratorContext<any, any> & {
-      name: 'step1';
-      private: false;
-      static: false;
-    },
-  ) =>
-    Reflect.defineMetadata(ScenarioSymbol, { name }, target);
+export const step = (name?: string) => (target: any, context: any) =>
+  Reflect.defineMetadata(ScenarioSymbol, { name }, target);
