@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.54.3](https://github.com/biorate/core/compare/v1.54.2...v1.54.3) (2024-01-11)
+
+### Bug Fixes
+
+- **playwright:** decorator signature ([be7a9af](https://github.com/biorate/core/commit/be7a9afec0b433aeff734053dfe4253d2b88510f))
+
 ## [1.54.2](https://github.com/biorate/core/compare/v1.54.1...v1.54.2) (2024-01-11)
 
 ### Bug Fixes
