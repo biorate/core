@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mocha-spec",
-  "version": "1.53.0",
+  "version": "1.57.0",
   "description": "Mocha Spec abstract helper class",
   "main": "dist",
   "scripts": {
@@ -30,7 +30,7 @@
     "mocha-chai-jest-snapshot": "^1.1.4"
   },
   "devDependencies": {
-    "@biorate/mocha": "1.53.0",
+    "@biorate/mocha": "1.57.0",
     "@types/supertest": "^2.0.11"
   },
   "dependencies": {

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.57.0](https://github.com/biorate/core/compare/v1.56.3...v1.57.0) (2024-01-11)
+
+**Note:** Version bump only for package @biorate/mocha-spec
+
 # [1.53.0](https://github.com/biorate/core/compare/v1.52.0...v1.53.0) (2024-01-10)
 
 ### Features
