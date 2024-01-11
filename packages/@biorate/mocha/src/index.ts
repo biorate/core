@@ -1,6 +1,6 @@
-import * as core from './core';
 // @ts-ignore
 import * as p from 'mocha.parallel';
+import * as core from './core';
 
 function applyTimings(fn: any, settings: any): any {
   if (settings) {
@@ -172,3 +172,27 @@ export const {
   skip,
   params,
 } = mochaDecorators;
+
+export * from 'allure-js-commons';
+export * from 'allure-mocha/runtime';
+export {
+  step as allureStep,
+  attachment,
+  testCaseId,
+  issue,
+  feature,
+  story,
+  severity,
+  tag,
+  owner,
+  epic,
+  description,
+  decorate,
+  assignPmsUrl,
+  assignTmsUrl,
+  data,
+} from 'allure-decorators';
+
+export { Done } from 'mocha';
+
+export * from '@biorate/run-context';

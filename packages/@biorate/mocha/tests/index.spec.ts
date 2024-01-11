@@ -1,5 +1,5 @@
-import { suite, test, timeout, parallel } from '../src';
-import { Done } from 'mocha';
+import { suite, test, timeout, parallel, Done, Context } from '../src';
+import { Scenario1, Scenario2 } from './scenarios';
 
 @suite('serial')
 @parallel(false)
@@ -60,5 +60,15 @@ class Parallel {
   protected test3(done: Done) {
     console.log('test3');
     setTimeout(done, 100);
+  }
+}
+
+@suite('serial')
+@parallel(false)
+@timeout(5000)
+class Scenario {
+  @test('scenario1')
+  protected async scenario1() {
+    await Context.run([Scenario1, Scenario2]);
   }
 }

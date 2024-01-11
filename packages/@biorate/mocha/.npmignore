@@ -1,1 +1,4 @@
 /tests
+/allure-results
+/coverage
+/.nyc_output
