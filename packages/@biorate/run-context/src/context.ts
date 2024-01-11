@@ -54,7 +54,8 @@ export class Context {
           if (methods.has(name)) continue;
           methods.add(name);
           const descriptor = Object.getOwnPropertyDescriptor(object, name);
-          const meta = Reflect.getMetadata(ScenarioSymbol, descriptor?.value);
+          if (!descriptor?.value) continue;
+          const meta = Reflect.getMetadata(this.metaKey, descriptor.value);
           if (!meta) continue;
           steps.push(scenario[name].bind(scenario));
         }
@@ -64,13 +65,15 @@ export class Context {
     return instance;
   }
 
+  protected static metaKey = ScenarioSymbol;
+
   protected static async runStep(step: () => void | Promise<void>) {
     await step();
   }
 
   #ctx: Record<string, any> = {};
 
-  private constructor(ctx: Record<string, any>) {
+  protected constructor(ctx: Record<string, any>) {
     for (const key in ctx) this.set(key, ctx[key]);
   }
 

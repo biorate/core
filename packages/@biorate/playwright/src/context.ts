@@ -5,21 +5,23 @@ export class Context {
   public static async run(scenarios: any[], ctx: Record<string, any> = {}) {
     const instance = new this(ctx);
     for (const Scenario of scenarios) {
-      const scenario = new Scenario();
+      const scenario = new Scenario(instance);
       const methods = new Set();
-      const steps: ((ctx: Context) => void | Promise<void>)[] = [];
-      o.walkProto(scenario, (object: any) => {
+      const steps: (() => void | Promise<void>)[] = [];
+      const objects: any[] = [];
+      o.walkProto(scenario, (object: any) => objects.unshift(object));
+      for (const object of objects) {
         const names = Object.getOwnPropertyNames(object);
         for (const name of names) {
-          if (methods.has(name)) return;
+          if (methods.has(name)) continue;
           methods.add(name);
           const descriptor = Object.getOwnPropertyDescriptor(object, name);
           const meta = Reflect.getMetadata(ScenarioSymbol, descriptor?.value);
           if (!meta) continue;
-          steps.push(scenario[name].bind(instance));
+          steps.push(scenario[name].bind(scenario));
         }
-      });
-      for (const step of steps) await step(instance);
+      }
+      for (const step of steps) await step();
     }
   }
 
@@ -37,7 +39,3 @@ export class Context {
     return <T>this.#ctx.get(key);
   }
 }
-
-export const step =
-  (name?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
-    Reflect.defineMetadata(ScenarioSymbol, { name }, target);
