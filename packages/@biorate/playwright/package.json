@@ -20,11 +20,15 @@
   "keywords": [],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
   "dependencies": {
+    "@biorate/run-context": "0.0.0",
     "@biorate/symbolic": "1.28.0",
     "@biorate/tools": "1.28.0",
     "@playwright/test": "^1.40.1",
-    "allure-playwright": "^2.9.2",
+    "allure-playwright": "^2.10.0",
     "playwright": "^1.40.1"
   },
   "devDependencies": {

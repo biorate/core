@@ -1,5 +1,4 @@
-import { Page, Scenario, step } from '../../src';
-export { expect } from '@playwright/test';
+import { expect, Scenario, step } from '../../src';
 
 export class Scenario2 extends Scenario {
   @step()

@@ -1,8 +1,10 @@
-import { expect, Page, Scenario, step } from '../../src';
+import { expect, Scenario, step } from '../../src';
 
 export class SubScenario1 extends Scenario {
   @step()
   protected async step0() {
+    await this.page.goto('https://ya.ru/');
+    await expect(this.page).toHaveTitle(/Яндекс/);
   }
 }
 
