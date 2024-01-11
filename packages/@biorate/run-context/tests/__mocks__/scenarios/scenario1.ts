@@ -8,7 +8,7 @@ export class SubScenario1 extends Scenario {
 }
 
 export class Scenario1 extends SubScenario1 {
-  @step()
+  @step('Test step')
   protected async step1() {
     this.ctx.set(this.step1.name + '-' + this.constructor.name, true);
   }
