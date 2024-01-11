@@ -1,5 +1,6 @@
 import { object as o } from '@biorate/tools';
 import { Scenario as ScenarioSymbol } from './symbols';
+import { RunContextKeyAlreadyExistsError } from './errors';
 /**
  * @description Create context and run scenarios
  *
@@ -78,10 +79,15 @@ export class Context {
   }
 
   public set(key: string, value: any) {
+    if ('key' in this.#ctx) throw new RunContextKeyAlreadyExistsError();
     this.#ctx[key] = value;
   }
 
   public get<T = unknown>(key?: string) {
     return key ? <T>this.#ctx[key] : this.#ctx;
+  }
+
+  public del(key: string) {
+    return delete this.#ctx[key];
   }
 }
