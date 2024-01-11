@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.2](https://github.com/biorate/core/compare/v1.56.1...v1.56.2) (2024-01-11)
+
+### Bug Fixes
+
+- **run-context:** steps name ([324088a](https://github.com/biorate/core/commit/324088add585dddd39038046f5a6d095623b8e26))
+
 # [1.55.0](https://github.com/biorate/core/compare/v1.54.3...v1.55.0) (2024-01-11)
 
 ### Features
