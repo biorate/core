@@ -9,7 +9,7 @@ export class SubScenario1 extends Scenario {
 }
 
 export class Scenario1 extends SubScenario1 {
-  @step()
+  @step('Scenario1, test step 1')
   protected async step1() {
     await this.page.goto('https://playwright.dev/');
   }
