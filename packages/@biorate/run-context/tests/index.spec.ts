@@ -5,6 +5,6 @@ import { Context } from '../src';
 describe('@biorate/run-context', function () {
   it('Context.run', async () => {
     const ctx = await Context.run([Scenario1, Scenario2], { initial: 'value' });
-    expect(ctx.get()).toMatchSnapshot();
+    expect(ctx.all()).toMatchSnapshot();
   });
 });

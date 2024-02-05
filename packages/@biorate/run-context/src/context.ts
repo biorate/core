@@ -85,8 +85,12 @@ export class Context {
     this.#ctx[key] = value;
   }
 
-  public get<T = unknown>(key?: string) {
-    return key ? <T>this.#ctx[key] : this.#ctx;
+  public get<T = unknown>(key: string) {
+    return <T>this.#ctx[key];
+  }
+
+  public all() {
+    return this.#ctx;
   }
 
   public del(key: string) {
