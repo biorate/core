@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mocha",
-  "version": "1.57.0",
+  "version": "1.58.0",
   "description": "Mocha OOP tests based on @testdeck/core",
   "main": "dist",
   "scripts": {
@@ -26,7 +26,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/run-context": "1.56.3",
+    "@biorate/run-context": "1.58.0",
     "allure-decorators": "^2.10.0",
     "allure-js-commons": "^2.10.0",
     "allure-mocha": "^2.10.0",
