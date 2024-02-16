@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.58.1](https://github.com/biorate/core/compare/v1.58.0...v1.58.1) (2024-02-16)
+
+### Bug Fixes
+
+- **mongodb:** deps ([d4345fd](https://github.com/biorate/core/commit/d4345fdd96c4e4f2094f1bd6879ef8c1940f46f1))
+
 # [1.58.0](https://github.com/biorate/core/compare/v1.57.0...v1.58.0) (2024-02-05)
 
 ### Features
