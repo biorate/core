@@ -1,6 +1,7 @@
 import { omit, pick, merge } from 'lodash';
 import axios, { AxiosResponse, AxiosInstance } from 'axios';
-import retry, { IAxiosRetryConfig } from 'axios-retry';
+import retry from 'axios-retry';
+import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
 // @ts-ignore
 import * as pathToUrl from 'path-to-url';
 import { IAxiosFetchOptions } from './interfaces';
@@ -16,7 +17,7 @@ const axiosRetryConfigKeys = [
   'onRetry',
 ];
 
-const axiosExcludeKeys = ['path', 'config'];
+const axiosExcludeKeys = ['path', 'config', 'retry'];
 
 /**
  * @description
@@ -106,12 +107,13 @@ export class Axios {
   protected async fetch<T, D>(
     options?: IAxiosFetchOptions,
   ): Promise<AxiosResponse<T, D>> {
+    const settings = merge({ ...this }, options);
     if (!this.#client) {
       this.#client = axios.create();
-      // @ts-ignore: TODO: Stranger Things
-      retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
+      if (settings.retry)
+        // @ts-ignore: TODO: Stranger Things
+        retry(this.#client, <IAxiosRetryConfig>pick(this, axiosRetryConfigKeys));
     }
-    const settings = merge({ ...this }, options);
     if (settings.baseURL && settings.path)
       settings.baseURL = pathToUrl(settings.baseURL, settings.path);
     if (settings.url && settings.path)

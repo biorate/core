@@ -40,4 +40,28 @@ describe('@biorate/axios', function () {
     await Mocks1.fetch(options);
     await Mocks2.fetch(options);
   });
+
+  it('retry', async () => {
+    const options = {};
+    class Retry extends Yandex {
+      public retry = true;
+
+      public retries = 5;
+
+      public baseURL = 'http://undefined';
+
+      public retryDelay = (retryCount: number) => {
+        return 100;
+      };
+
+      public timeout = 3000;
+
+      public retryCondition = () => true;
+    }
+    try {
+      await Retry.fetch(options);
+    } catch (e: any) {
+      expect(e.code === 'ENOTFOUND').to.be.equal(true);
+    }
+  });
 });

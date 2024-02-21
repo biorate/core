@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
-    "axios-retry": "^3.3.1",
+    "axios-retry": "^4.0.0",
     "lodash": "^4.17.21",
     "path-to-url": "^0.1.0"
   },

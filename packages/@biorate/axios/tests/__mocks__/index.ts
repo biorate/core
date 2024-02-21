@@ -1,5 +1,5 @@
 import { Axios, IAxiosFetchOptions } from '../../src';
-import { inject, container, Types } from '@biorate/inversion';
+import { container, Types } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { AxiosResponse } from 'axios';
 import { set, get } from 'lodash';
@@ -7,10 +7,13 @@ import { set, get } from 'lodash';
 export class Yandex extends Axios {
   public static store: Record<string, any> = {};
 
-  @inject(Types.Config) public config: IConfig;
-  // @ts-ignore
   public baseURL = this.config.get<string>('baseURL');
+
   public timeout = 1500;
+
+  protected get config() {
+    return <IConfig>container.get(Types.Config);
+  }
 
   protected static getMock<T = any, D = any>(
     instance: Axios,
