@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.61.0](https://github.com/biorate/core/compare/v1.60.0...v1.61.0) (2024-03-04)
+
+### Features
+
+- **migrations:** amqp support added ([da4e6c3](https://github.com/biorate/core/commit/da4e6c35b54308098db3c41633cabbc043e13cb6))
+
 ## [1.58.1](https://github.com/biorate/core/compare/v1.58.0...v1.58.1) (2024-02-16)
 
 **Note:** Version bump only for package @biorate/migrations
