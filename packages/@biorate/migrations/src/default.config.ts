@@ -9,6 +9,7 @@ import { ISequelizeConnector, SequelizeConnector } from '@biorate/sequelize';
 import { IMinioConnector, MinioConnector } from '@biorate/minio';
 import { IMongoDBConnector, MongoDBConnector } from '@biorate/mongodb';
 import { IClickhouseConnector, ClickhouseConnector } from '@biorate/clickhouse';
+import { IAmqpConnector, AmqpConnector } from '@biorate/amqp';
 import { IKafkaJSAdminConnector, KafkaJSAdminConnector } from '@biorate/kafkajs';
 import { Root } from './';
 import * as Migrations from './types';
@@ -34,6 +35,7 @@ container
   .bind<IClickhouseConnector>(Types.Clickhouse)
   .to(ClickhouseConnector)
   .inSingletonScope();
+container.bind<IAmqpConnector>(Types.Amqp).to(AmqpConnector).inSingletonScope();
 container
   .bind<IKafkaJSAdminConnector>(Types.Kafka)
   .to(KafkaJSAdminConnector)
@@ -43,5 +45,6 @@ container.bind<Migrations.Minio>(Migrations.Minio).toSelf().inSingletonScope();
 container.bind<Migrations.Mongodb>(Migrations.Mongodb).toSelf().inSingletonScope();
 container.bind<Migrations.Kafka>(Migrations.Kafka).toSelf().inSingletonScope();
 container.bind<Migrations.Clickhouse>(Migrations.Clickhouse).toSelf().inSingletonScope();
+container.bind<Migrations.Amqp>(Migrations.Amqp).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 container.get<Root>(Root).$run().catch(console.error);

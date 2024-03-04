@@ -65,6 +65,12 @@ container.get<IConfig>(Types.Config).merge({
       options: {},
     },
   ],
+  Amqp: [
+    {
+      name: 'test',
+      urls: ['amqp://localhost:5672'],
+    },
+  ],
   migrations: {
     directory: '/tests/migrations',
   },

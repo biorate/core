@@ -16,6 +16,7 @@ export class Root extends Core() {
   @inject(Migrations.Mongodb) protected mongodb: Migrations.Mongodb;
   @inject(Migrations.Kafka) public kafkaJSAdmin: Migrations.Kafka;
   @inject(Migrations.Clickhouse) public clickhouse: Migrations.Clickhouse;
+  @inject(Migrations.Amqp) public amqp: Migrations.Amqp;
 
   @init() protected async initialize() {
     process.exit();
