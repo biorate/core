@@ -96,3 +96,9 @@ services:
     ports:
       - 8123:8123
       - 9002:9000
+  rabbit:
+    image: rabbitmq:3.10.7-management
+    restart: 'no'
+    ports:
+      - 5672:5672
+      - 15672:15672

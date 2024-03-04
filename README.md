@@ -41,6 +41,7 @@
 - [mocha-spec](https://biorate.github.io/core/modules/mocha_spec.html)
 - [playwright](https://biorate.github.io/core/modules/playwright.html)
 - [run-context](https://biorate.github.io/core/modules/run_context.html)
+- [amqp](https://biorate.github.io/core/modules/amqp.html)
 
 ### Learn
 
