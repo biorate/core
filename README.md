@@ -42,6 +42,7 @@
 - [playwright](https://biorate.github.io/core/modules/playwright.html)
 - [run-context](https://biorate.github.io/core/modules/run_context.html)
 - [amqp](https://biorate.github.io/core/modules/amqp.html)
+- [haproxy](https://biorate.github.io/core/modules/haproxy.html)
 
 ### Learn
 

@@ -75,6 +75,10 @@ export * from './interfaces';
 @injectable()
 export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnection> {
   /**
+   * @description config / connection mapping
+   */
+  #configs = new WeakMap<IHaproxyConnection, IHaproxyConfig>();
+  /**
    * @description Private connections storage
    */
   private '#connections': Map<string, IHaproxyConnection>;
@@ -121,6 +125,7 @@ export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnecti
       ])
         connection[method] = promisify(connection[method].bind(connection));
       await connection.start();
+      this.#configs.set(connection, config);
     } catch (e: unknown) {
       throw new HaproxyCantConnectError(<Error>e);
     }
@@ -168,6 +173,7 @@ export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnecti
     for (const [, connection] of this.connections) {
       try {
         await connection.stop();
+        this.cleanup(this.#configs.get(connection));
       } catch (e) {
         console.error(e);
       }
