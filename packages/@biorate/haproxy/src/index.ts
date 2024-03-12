@@ -36,31 +36,26 @@ export * from './interfaces';
  *       name: 'connection',
  *       debug: false,
  *       config: {
- *         global: { maxconn: 100 },
- *         defaults: {
- *           log: 'global',
- *           retries: 2,
- *           'timeout client': '30m',
- *           'timeout connect': '4s',
- *           'timeout server': '30m',
- *           'timeout check': '5s',
- *         },
- *         'listen stats': {
- *           mode: 'http',
- *           bind: '*:7001',
- *           stats: 'enable',
- *           'stats uri': '/',
- *         },
- *         'listen postgres': {
- *           mode: 'tcp',
- *           bind: '*:7000',
- *           option: 'httpchk',
- *           'http-check': 'expect status 200',
- *           'default-server': 'inter 3s fall 3 rise 2 on-marked-down shutdown-sessions',
- *           'server postgresql1': '127.0.0.1:5433 maxconn 100 check port 8008',
- *           'server postgresql2': '127.0.0.1:5434 maxconn 100 check port 8008',
- *           'server postgresql3': '127.0.0.1:5435 maxconn 100 check port 8008',
- *         },
+ *         global: ['maxconn 100'],
+ *         defaults: [
+ *           'log global',
+ *           'retries 2',
+ *           'timeout client 30m',
+ *           'timeout connect 4s',
+ *           'timeout server 30m',
+ *           'timeout check 5s',
+ *         ],
+ *         'listen stats': ['mode http', 'bind *:7001', 'stats enable', 'stats uri /'],
+ *         'listen postgres': [
+ *           'mode tcp',
+ *           'bind *:7000',
+ *           'option httpchk',
+ *           'http-check expect status 200',
+ *           'default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions',
+ *           'server postgresql1 127.0.0.1:5433 maxconn 100 check port 8008',
+ *           'server postgresql2 127.0.0.1:5434 maxconn 100 check port 8008',
+ *           'server postgresql3 127.0.0.1:5435 maxconn 100 check port 8008',
+ *         ],
  *       },
  *     },
  *   ],
@@ -159,8 +154,13 @@ export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnecti
     const file = this.path(config, 'config');
     for (const header in config.config) {
       data += header + EOL;
-      for (const field in config.config[header])
-        data += '  ' + field + ' ' + config.config[header][field] + EOL;
+      if (Array.isArray(config.config[header]))
+        for (const field of config.config[header] as string[]) data += '  ' + field + EOL;
+      else
+        for (const field in config.config[header] as {
+          [key: string]: string | number;
+        })
+          data += '  ' + field + ' ' + config.config[header][field] + EOL;
     }
     writeFileSync(file, data, 'utf-8');
     if (config.debug) console.debug(`Haproxy [${config.name}] config:${EOL}`, data);

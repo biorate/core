@@ -23,7 +23,7 @@
 <li>connector manager for haproxy</li>
 </ul>
 
-<h4>Example</h4><pre><code><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">inject</span><span class="hl-1">, </span><span class="hl-2">container</span><span class="hl-1">, </span><span class="hl-2">Types</span><span class="hl-1">, </span><span class="hl-2">Core</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@biorate/inversion&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">IConfig</span><span class="hl-1">, </span><span class="hl-2">Config</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@biorate/config&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">HaproxyConnector</span><span class="hl-1">, </span><span class="hl-2">HaproxyConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@biorate/haproxy&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">class</span><span class="hl-1"> </span><span class="hl-9">Root</span><span class="hl-1"> </span><span class="hl-4">extends</span><span class="hl-1"> </span><span class="hl-6">Core</span><span class="hl-1">() {</span><br/><span class="hl-1">  @</span><span class="hl-6">inject</span><span class="hl-1">(</span><span class="hl-2">HaproxyConnector</span><span class="hl-1">) </span><span class="hl-4">public</span><span class="hl-1"> </span><span class="hl-2">connector</span><span class="hl-1">: </span><span class="hl-9">HaproxyConnector</span><span class="hl-1">;</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">bind</span><span class="hl-1">&lt;</span><span class="hl-9">IConfig</span><span class="hl-1">&gt;(</span><span class="hl-2">Types</span><span class="hl-1">.</span><span class="hl-2">Config</span><span class="hl-1">).</span><span class="hl-6">to</span><span class="hl-1">(</span><span class="hl-2">Config</span><span class="hl-1">).</span><span class="hl-6">inSingletonScope</span><span class="hl-1">();</span><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">bind</span><span class="hl-1">&lt;</span><span class="hl-9">HaproxyConnector</span><span class="hl-1">&gt;(</span><span class="hl-2">HaproxyConnector</span><span class="hl-1">).</span><span class="hl-6">toSelf</span><span class="hl-1">().</span><span class="hl-6">inSingletonScope</span><span class="hl-1">();</span><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">bind</span><span class="hl-1">&lt;</span><span class="hl-9">Root</span><span class="hl-1">&gt;(</span><span class="hl-2">Root</span><span class="hl-1">).</span><span class="hl-6">toSelf</span><span class="hl-1">().</span><span class="hl-6">inSingletonScope</span><span class="hl-1">();</span><br/><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">get</span><span class="hl-1">&lt;</span><span class="hl-9">IConfig</span><span class="hl-1">&gt;(</span><span class="hl-2">Types</span><span class="hl-1">.</span><span class="hl-2">Config</span><span class="hl-1">).</span><span class="hl-6">merge</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">Haproxy:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;connection&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">debug:</span><span class="hl-1"> </span><span class="hl-4">false</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">config:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-2">global:</span><span class="hl-1"> { </span><span class="hl-2">maxconn:</span><span class="hl-1"> </span><span class="hl-7">100</span><span class="hl-1"> },</span><br/><span class="hl-1">        </span><span class="hl-2">defaults:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-2">log:</span><span class="hl-1"> </span><span class="hl-3">&#39;global&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-2">retries:</span><span class="hl-1"> </span><span class="hl-7">2</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout client&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;30m&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout connect&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;4s&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout server&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;30m&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout check&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;5s&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-3">&#39;listen stats&#39;</span><span class="hl-2">:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-3">&#39;http&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-2">bind:</span><span class="hl-1"> </span><span class="hl-3">&#39;*:7001&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-2">stats:</span><span class="hl-1"> </span><span class="hl-3">&#39;enable&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;stats uri&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;/&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        </span><span class="hl-3">&#39;listen postgres&#39;</span><span class="hl-2">:</span><span class="hl-1"> {</span><br/><span class="hl-1">          </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-3">&#39;tcp&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-2">bind:</span><span class="hl-1"> </span><span class="hl-3">&#39;*:7000&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-2">option:</span><span class="hl-1"> </span><span class="hl-3">&#39;httpchk&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;http-check&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;expect status 200&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;default-server&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;inter 3s fall 3 rise 2 on-marked-down shutdown-sessions&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;server postgresql1&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;127.0.0.1:5433 maxconn 100 check port 8008&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;server postgresql2&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;127.0.0.1:5434 maxconn 100 check port 8008&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;server postgresql3&#39;</span><span class="hl-2">:</span><span class="hl-1"> </span><span class="hl-3">&#39;127.0.0.1:5435 maxconn 100 check port 8008&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">      },</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-1">(</span><span class="hl-4">async</span><span class="hl-1"> () </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">root</span><span class="hl-1"> = &lt;</span><span class="hl-9">Root</span><span class="hl-1">&gt;</span><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">get</span><span class="hl-1">&lt;</span><span class="hl-9">Root</span><span class="hl-1">&gt;(</span><span class="hl-2">Root</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">root</span><span class="hl-1">.</span><span class="hl-6">$run</span><span class="hl-1">();</span><br/><span class="hl-1">})();</span>
+<h4>Example</h4><pre><code><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">inject</span><span class="hl-1">, </span><span class="hl-2">container</span><span class="hl-1">, </span><span class="hl-2">Types</span><span class="hl-1">, </span><span class="hl-2">Core</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@biorate/inversion&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">IConfig</span><span class="hl-1">, </span><span class="hl-2">Config</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@biorate/config&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">HaproxyConnector</span><span class="hl-1">, </span><span class="hl-2">HaproxyConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@biorate/haproxy&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">class</span><span class="hl-1"> </span><span class="hl-9">Root</span><span class="hl-1"> </span><span class="hl-4">extends</span><span class="hl-1"> </span><span class="hl-6">Core</span><span class="hl-1">() {</span><br/><span class="hl-1">  @</span><span class="hl-6">inject</span><span class="hl-1">(</span><span class="hl-2">HaproxyConnector</span><span class="hl-1">) </span><span class="hl-4">public</span><span class="hl-1"> </span><span class="hl-2">connector</span><span class="hl-1">: </span><span class="hl-9">HaproxyConnector</span><span class="hl-1">;</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">bind</span><span class="hl-1">&lt;</span><span class="hl-9">IConfig</span><span class="hl-1">&gt;(</span><span class="hl-2">Types</span><span class="hl-1">.</span><span class="hl-2">Config</span><span class="hl-1">).</span><span class="hl-6">to</span><span class="hl-1">(</span><span class="hl-2">Config</span><span class="hl-1">).</span><span class="hl-6">inSingletonScope</span><span class="hl-1">();</span><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">bind</span><span class="hl-1">&lt;</span><span class="hl-9">HaproxyConnector</span><span class="hl-1">&gt;(</span><span class="hl-2">HaproxyConnector</span><span class="hl-1">).</span><span class="hl-6">toSelf</span><span class="hl-1">().</span><span class="hl-6">inSingletonScope</span><span class="hl-1">();</span><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">bind</span><span class="hl-1">&lt;</span><span class="hl-9">Root</span><span class="hl-1">&gt;(</span><span class="hl-2">Root</span><span class="hl-1">).</span><span class="hl-6">toSelf</span><span class="hl-1">().</span><span class="hl-6">inSingletonScope</span><span class="hl-1">();</span><br/><br/><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">get</span><span class="hl-1">&lt;</span><span class="hl-9">IConfig</span><span class="hl-1">&gt;(</span><span class="hl-2">Types</span><span class="hl-1">.</span><span class="hl-2">Config</span><span class="hl-1">).</span><span class="hl-6">merge</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">Haproxy:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;connection&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">debug:</span><span class="hl-1"> </span><span class="hl-4">false</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">config:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-2">global:</span><span class="hl-1"> [</span><span class="hl-3">&#39;maxconn 100&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        </span><span class="hl-2">defaults:</span><span class="hl-1"> [</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;log global&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;retries 2&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout client 30m&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout connect 4s&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout server 30m&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;timeout check 5s&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        ],</span><br/><span class="hl-1">        </span><span class="hl-3">&#39;listen stats&#39;</span><span class="hl-2">:</span><span class="hl-1"> [</span><span class="hl-3">&#39;mode http&#39;</span><span class="hl-1">, </span><span class="hl-3">&#39;bind *:7001&#39;</span><span class="hl-1">, </span><span class="hl-3">&#39;stats enable&#39;</span><span class="hl-1">, </span><span class="hl-3">&#39;stats uri /&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        </span><span class="hl-3">&#39;listen postgres&#39;</span><span class="hl-2">:</span><span class="hl-1"> [</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;mode tcp&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;bind *:7000&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;option httpchk&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;http-check expect status 200&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;server postgresql1 127.0.0.1:5433 maxconn 100 check port 8008&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;server postgresql2 127.0.0.1:5434 maxconn 100 check port 8008&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&#39;server postgresql3 127.0.0.1:5435 maxconn 100 check port 8008&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        ],</span><br/><span class="hl-1">      },</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-1">(</span><span class="hl-4">async</span><span class="hl-1"> () </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">root</span><span class="hl-1"> = &lt;</span><span class="hl-9">Root</span><span class="hl-1">&gt;</span><span class="hl-2">container</span><span class="hl-1">.</span><span class="hl-6">get</span><span class="hl-1">&lt;</span><span class="hl-9">Root</span><span class="hl-1">&gt;(</span><span class="hl-2">Root</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">root</span><span class="hl-1">.</span><span class="hl-6">$run</span><span class="hl-1">();</span><br/><span class="hl-1">})();</span>
 </code><button>Copy</button></pre>
 </div></section>
 <section class="tsd-panel tsd-hierarchy">
@@ -33,7 +33,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">HaproxyConnector</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L76">packages/@biorate/haproxy/src/index.ts:76</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L71">packages/@biorate/haproxy/src/index.ts:71</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -89,7 +89,7 @@
 <h4>Description</h4><p>config / connection mapping</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L80">packages/@biorate/haproxy/src/index.ts:80</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L75">packages/@biorate/haproxy/src/index.ts:75</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private tsd-is-inherited"><a id="_connections" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>#connections</span><a href="#_connections" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#connections</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../types/haproxy.IHaproxyConnection.html" class="tsd-signature-type tsd-kind-type-alias">IHaproxyConnection</a><span class="tsd-signature-symbol">&gt;</span></div>
@@ -98,7 +98,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#_connections">#connections</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L84">packages/@biorate/haproxy/src/index.ts:84</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L79">packages/@biorate/haproxy/src/index.ts:79</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private tsd-is-inherited"><a id="_connections-1" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>#connections</span><a href="#_connections-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#connections</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../types/haproxy.IHaproxyConnection.html" class="tsd-signature-type tsd-kind-type-alias">IHaproxyConnection</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
@@ -107,7 +107,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from Connector.#connections</p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L65">packages/@biorate/connector/src/index.ts:65</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L65">packages/@biorate/connector/src/index.ts:65</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private tsd-is-inherited"><a id="_current" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>#current</span><a href="#_current" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#current</span><span class="tsd-signature-symbol">:</span> <a href="../types/haproxy.IHaproxyConnection.html" class="tsd-signature-type tsd-kind-type-alias">IHaproxyConnection</a></div>
@@ -116,7 +116,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#_current">#current</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L88">packages/@biorate/haproxy/src/index.ts:88</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L83">packages/@biorate/haproxy/src/index.ts:83</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private tsd-is-inherited"><a id="_current-1" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>#current</span><a href="#_current-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#current</span><span class="tsd-signature-symbol">:</span> <a href="../types/haproxy.IHaproxyConnection.html" class="tsd-signature-type tsd-kind-type-alias">IHaproxyConnection</a><span class="tsd-signature-symbol"> = undefined</span></div>
@@ -125,7 +125,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from Connector.#current</p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L69">packages/@biorate/connector/src/index.ts:69</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L69">packages/@biorate/connector/src/index.ts:69</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><a id="config" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/config.IConfig.html" class="tsd-signature-type tsd-kind-interface">IConfig</a></div>
@@ -134,7 +134,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#config">config</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L73">packages/@biorate/connector/src/index.ts:73</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L73">packages/@biorate/connector/src/index.ts:73</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="namespace" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>namespace</span><a href="#namespace" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">namespace</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;Haproxy&quot;</span><span class="tsd-signature-symbol"> = &#39;Haproxy&#39;</span></div>
@@ -143,7 +143,7 @@
 </div><aside class="tsd-sources">
 <p>Overrides <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#namespace">namespace</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L92">packages/@biorate/haproxy/src/index.ts:92</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L87">packages/@biorate/haproxy/src/index.ts:87</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="connections" class="tsd-anchor"></a>
@@ -157,7 +157,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from Connector.connections</p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L81">packages/@biorate/connector/src/index.ts:81</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L81">packages/@biorate/connector/src/index.ts:81</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="current" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>current</span><a href="#current" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -169,7 +169,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from Connector.current</p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L87">packages/@biorate/connector/src/index.ts:87</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L87">packages/@biorate/connector/src/index.ts:87</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="cleanup" class="tsd-anchor"></a>
@@ -187,7 +187,7 @@
 <h4>Description</h4><p>Cleanup files</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L143">packages/@biorate/haproxy/src/index.ts:143</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L138">packages/@biorate/haproxy/src/index.ts:138</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="connect" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>connect</span><a href="#connect" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -204,7 +204,7 @@
 </div><aside class="tsd-sources">
 <p>Overrides <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#connect">connect</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L96">packages/@biorate/haproxy/src/index.ts:96</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L91">packages/@biorate/haproxy/src/index.ts:91</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="connection" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>connection</span><a href="#connection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -221,7 +221,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#connection">connection</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L113">packages/@biorate/connector/src/index.ts:113</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L113">packages/@biorate/connector/src/index.ts:113</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="create" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>create</span><a href="#create" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -238,7 +238,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#create">create</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L97">packages/@biorate/connector/src/index.ts:97</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L97">packages/@biorate/connector/src/index.ts:97</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="createConfig" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>create<wbr/>Config</span><a href="#createConfig" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -254,7 +254,7 @@
 <h4>Description</h4><p>Create config file</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L157">packages/@biorate/haproxy/src/index.ts:157</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L152">packages/@biorate/haproxy/src/index.ts:152</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="destructor" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>destructor</span><a href="#destructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -265,7 +265,7 @@
 <h4>Description</h4><p>Destructor</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L172">packages/@biorate/haproxy/src/index.ts:172</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L172">packages/@biorate/haproxy/src/index.ts:172</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="get" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get</span><a href="#get" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -282,7 +282,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#get">get</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L124">packages/@biorate/connector/src/index.ts:124</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L124">packages/@biorate/connector/src/index.ts:124</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><a id="initialize" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>initialize</span><a href="#initialize" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
@@ -294,7 +294,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#initialize">initialize</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L130">packages/@biorate/connector/src/index.ts:130</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L130">packages/@biorate/connector/src/index.ts:130</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="path" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>path</span><a href="#path" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -312,7 +312,7 @@
 <h4>Description</h4><p>Make path</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/haproxy/src/index.ts#L137">packages/@biorate/haproxy/src/index.ts:137</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/haproxy/src/index.ts#L132">packages/@biorate/haproxy/src/index.ts:132</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="use" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>use</span><a href="#use" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -329,7 +329,7 @@
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="connector.Connector.html">Connector</a>.<a href="connector.Connector.html#use">use</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/801b7916/packages/@biorate/connector/src/index.ts#L105">packages/@biorate/connector/src/index.ts:105</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/biorate/core/blob/fb73bb8b/packages/@biorate/connector/src/index.ts#L105">packages/@biorate/connector/src/index.ts:105</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">

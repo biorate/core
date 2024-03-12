@@ -27,9 +27,11 @@ export type IHaproxyConnection = {
 
 export interface IHaproxyConfig extends IConnectorConfig {
   config: {
-    [key: string]: {
-      [key: string]: string | number;
-    };
+    [key: string]:
+      | {
+          [key: string]: string | number;
+        }
+      | string[];
   };
   debug?: boolean;
 }
