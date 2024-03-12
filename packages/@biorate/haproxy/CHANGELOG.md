@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.62.1](https://github.com/biorate/core/compare/v1.62.0...v1.62.1) (2024-03-12)
+
+### Bug Fixes
+
+- **haproxy:** .npmrc ([fb73bb8](https://github.com/biorate/core/commit/fb73bb8b22e07d06bb56c3b2d0b3bb7a894ad714))
+- **haproxy:** configuration multi-type ([81b51a3](https://github.com/biorate/core/commit/81b51a3a25c9585f502502726b01a02fa57406f4))
+
 # [1.62.0](https://github.com/biorate/core/compare/v1.61.0...v1.62.0) (2024-03-12)
 
 ### Bug Fixes
