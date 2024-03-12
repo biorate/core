@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.62.0](https://github.com/biorate/core/compare/v1.61.0...v1.62.0) (2024-03-12)
+
+### Bug Fixes
+
+- **haproxy:** cleanup in destructor ([03f2f4c](https://github.com/biorate/core/commit/03f2f4cdf8626a1965c482a6b9221cde3307b22b))
+
+### Features
+
+- **haproxy:** module added ([801b791](https://github.com/biorate/core/commit/801b79164d5fc920463b77f95f53014bfe065b8b))
+
 # [1.61.0](https://github.com/biorate/core/compare/v1.60.0...v1.61.0) (2024-03-04)
 
 ### Features

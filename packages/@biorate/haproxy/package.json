@@ -1,6 +1,6 @@
 {
   "name": "@biorate/haproxy",
-  "version": "0.0.0",
+  "version": "1.62.0",
   "description": "Haproxy runner",
   "author": "llevkin",
   "license": "MIT",
