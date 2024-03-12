@@ -13,5 +13,6 @@
   "dependencies": {
     "@biorate/connector": "^1.54.0",
     "haproxy": "^0.3.0"
-  }
+  },
+  "gitHead": "f965bf44d82fe808a88004a6647ecc0fbbe2af0e"
 }
