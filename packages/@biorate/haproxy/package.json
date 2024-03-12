@@ -2,17 +2,29 @@
   "name": "@biorate/haproxy",
   "version": "1.62.1",
   "description": "Haproxy runner",
-  "author": "llevkin",
-  "license": "MIT",
   "main": "dist",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/haproxy"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "haproxy"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
   "dependencies": {
     "@biorate/connector": "^1.54.0",
     "haproxy": "^0.3.0"
   },
-  "gitHead": "f965bf44d82fe808a88004a6647ecc0fbbe2af0e"
+  "gitHead": "9e9a6f5fb5e785cdf2a0b3c20426b9dd16c36ac8"
 }
