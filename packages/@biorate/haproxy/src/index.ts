@@ -1,11 +1,12 @@
 import * as HAProxy from 'haproxy';
+import { timer } from '@biorate/tools';
 import { injectable, kill } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { path } from '@biorate/tools';
 import { tmpdir, EOL } from 'os';
 import { unlinkSync, writeFileSync } from 'fs';
 import { promisify } from 'util';
-import { HaproxyCantConnectError } from './errors';
+import { HaproxyCantConnectError, HaproxyConnectionTimeoutError } from './errors';
 import { IHaproxyConfig, IHaproxyConnection } from './interfaces';
 
 export * from './errors';
@@ -35,8 +36,17 @@ export * from './interfaces';
  *     {
  *       name: 'connection',
  *       debug: false,
+ *       readiness: {
+ *         nodes: ['postgresql1', 'postgresql2', 'postgresql3'],
+ *         retries: 10,
+ *         delay: 1000,
+ *       },
  *       config: {
- *         global: ['maxconn 100'],
+ *         global: [
+ *           'maxconn 100',
+ *           'stats socket {{stat_socket_path}} mode 660 level admin expose-fd listeners',
+ *           'stats timeout 5s',
+ *         ],
  *         defaults: [
  *           'log global',
  *           'retries 2',
@@ -120,11 +130,32 @@ export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnecti
       ])
         connection[method] = promisify(connection[method].bind(connection));
       await connection.start();
+      await this.readiness(connection, config);
       this.#configs.set(connection, config);
     } catch (e: unknown) {
       throw new HaproxyCantConnectError(<Error>e);
     }
     return connection;
+  }
+  /**
+   * @description readiness check
+   */
+  protected async readiness(connection: IHaproxyConnection, config: IHaproxyConfig) {
+    if (config?.readiness?.nodes?.length) {
+      let i = 0;
+      w: while (true) {
+        const stats = await connection.stat();
+        for (const stat of stats) {
+          if (!config.readiness.nodes.includes(stat.svname)) continue;
+          if (stat.status === 'UP') break w;
+        }
+        console.debug(`Attempt to connect to Haproxy: [%s]`, config.name);
+        await timer.wait(config?.readiness?.delay ?? 1000);
+        ++i;
+        if (i > config?.readiness?.retries ?? 1)
+          throw new HaproxyConnectionTimeoutError(config.name);
+      }
+    }
   }
   /**
    * @description Make path
@@ -162,6 +193,7 @@ export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnecti
         })
           data += '  ' + field + ' ' + config.config[header][field] + EOL;
     }
+    data = data.replace('{{stat_socket_path}}', this.path(config, 'sock'));
     writeFileSync(file, data, 'utf-8');
     if (config.debug) console.debug(`Haproxy [${config.name}] config:${EOL}`, data);
     return file;

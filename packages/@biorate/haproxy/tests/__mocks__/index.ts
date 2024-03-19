@@ -19,8 +19,17 @@ container.get<IConfig>(Types.Config).merge({
     {
       name: 'connection',
       debug: false,
+      /*readiness: {
+        nodes: ['postgresql1', 'postgresql2', 'postgresql3'],
+        retries: 10,
+        delay: 1000,
+      },*/
       config: {
-        global: ['maxconn 100'],
+        global: [
+          'maxconn 100',
+          'stats socket {{stat_socket_path}} mode 660 level admin expose-fd listeners',
+          'stats timeout 5s',
+        ],
         defaults: [
           'log global',
           'retries 2',

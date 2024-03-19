@@ -5,3 +5,9 @@ export class HaproxyCantConnectError extends BaseError {
     super(`Can't connect to Haproxy: [%s]`, [e.message]);
   }
 }
+
+export class HaproxyConnectionTimeoutError extends BaseError {
+  public constructor(name: string) {
+    super(`Haproxy connection timeout: [%s]`, [name]);
+  }
+}
