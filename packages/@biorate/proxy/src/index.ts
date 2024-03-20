@@ -1,4 +1,8 @@
-import { injectable } from '@biorate/inversion';
+import { createServer } from 'http';
+import { compile } from 'pug';
+import { readFileSync } from 'fs';
+import { path } from '@biorate/tools';
+import { init, injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { ProxyCantConnectError } from './errors';
 import { ProxyConnection } from './connection';
@@ -119,5 +123,65 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
       throw new ProxyCantConnectError(<Error>e);
     }
     return connection;
+  }
+  /**
+   * @description stats server enable
+   */
+  protected stats() {
+    const { enabled, port, host } = this.config.get<{
+      enabled?: boolean;
+      port: number;
+      host?: string;
+    }>('ProxyStats', {
+      enabled: true,
+      port: 10000,
+      host: 'localhost',
+    });
+    if (!enabled) return;
+    const template = readFileSync(path.create(__dirname, '..', 'index.pug'), 'utf-8');
+    const compiled = compile(template);
+    const configs = this.config.get<IProxyConfig[]>(this.namespace, []);
+    createServer((req, res) => {
+      res.end(compiled(this.#getStatData(configs)));
+    }).listen({ port, host });
+  }
+  /**
+   * @description Get stat data
+   */
+  #getStatData = (configs: IProxyConfig[]) => {
+    const locals: {
+      rows: {
+        connection: string;
+        clientHost: string;
+        proxyHost: string;
+        active: boolean;
+        writed: number;
+        readed: number;
+      }[];
+    } = { rows: [] };
+    for (const config of configs) {
+      for (const client of config.clients) {
+        const connection = this.get(config.name);
+        const isActive = connection ? connection.isActive(client) : false;
+        const stat = isActive ? connection.stat : { writed: 0, readed: 0 };
+        locals.rows.push({
+          connection: config.name,
+          proxyHost:
+            config.server.address.path ??
+            `${config.server.address.host}:${config.server.address.port}`,
+          clientHost: `${client.address.host}:${client.address.port}`,
+          active: isActive,
+          ...stat,
+        });
+      }
+    }
+    return locals;
+  };
+  /**
+   * @description initialize
+   */
+  @init() protected async initialize() {
+    await super.initialize();
+    this.stats();
   }
 }

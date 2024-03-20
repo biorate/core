@@ -1,0 +1,86 @@
+doctype html
+html(lang="en")
+  head
+    title= "Proxy stats"
+  style.
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid rgb(140 140 140);
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    caption {
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    thead,
+    tfoot {
+      background-color: rgb(228 240 245);
+    }
+
+    th,
+    td {
+      border: 1px solid rgb(160 160 160);
+      padding: 8px 10px;
+    }
+
+    th[scope=row] {
+      font-weight: 100;
+    }
+
+    td:last-of-type {
+      text-align: center;
+    }
+
+    tbody > tr:nth-of-type(even) {
+      background-color: rgb(237 238 242);
+    }
+
+    tfoot th {
+      text-align: center;
+    }
+
+    tfoot td {
+      font-weight: bold;
+    }
+
+    .active {
+      background: rgba(173, 255, 47, 0.35);
+    }
+
+    .inactive {
+      background: rgba(255, 0, 0, 0.30);
+    }
+  body
+    table
+      caption Proxy stats
+      thead
+        tr
+          th(scope="col") Connection
+          th(scope="col") Proxy host
+          th(scope="col") Client host
+          th(scope="col") Active
+          th(scope="col") Writed
+          th(scope="col") Readed
+      tbody
+        each row in rows
+          tr
+            th(scope="row") #{row.connection}
+            th(scope="row") #{row.proxyHost}
+            th(scope="row") #{row.clientHost}
+            th(scope="row" class=row.active ? 'active' : 'inactive') #{row.active}
+            th(scope="row") #{row.writed}
+            th(scope="row") #{row.readed}
+      tfoot
+        tr
+          th(scope="col") Connection
+          th(scope="col") Proxy host
+          th(scope="col") Client host
+          th(scope="col") Active
+          th(scope="col") Writed
+          th(scope="col") Readed

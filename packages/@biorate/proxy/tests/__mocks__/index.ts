@@ -49,7 +49,7 @@ container.get<IConfig>(Types.Config).merge({
   Proxy: [
     {
       retry: 10,
-      name: 'connection',
+      name: 'test',
       server: {
         address: {
           host: 'localhost',
@@ -62,6 +62,20 @@ container.get<IConfig>(Types.Config).merge({
           address: {
             host: 'localhost',
             port: clientPort,
+          },
+        },
+        {
+          liveness: `http://localhost:8002`,
+          address: {
+            host: 'localhost',
+            port: 7003,
+          },
+        },
+        {
+          liveness: `http://localhost:8003`,
+          address: {
+            host: 'localhost',
+            port: 7004,
           },
         },
       ],

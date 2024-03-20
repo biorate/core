@@ -1,20 +1,14 @@
 import { Server, Socket } from 'net';
 import { EventEmitter } from 'events';
 import { events, timer } from '@biorate/tools';
-import { Axios } from '@biorate/axios';
 import { ProxyConnectionTimeoutError } from './errors';
+import { Ping } from './ping';
 import { IProxyConfig, IClientOption } from './interfaces';
-
-class Ping extends Axios {
-  public static fetch(baseURL: string) {
-    return this._fetch<unknown>({ baseURL });
-  }
-}
 
 export class ProxyConnection {
   public static async create(config: IProxyConfig) {
     const proxy = new this(config);
-    await proxy.connect();
+    await proxy.select();
     await proxy.listen();
     proxy.check().catch(() => process.kill(process.pid, 'SIGINT'));
     return proxy;
@@ -28,31 +22,37 @@ export class ProxyConnection {
 
   protected client: IClientOption;
 
+  protected writed = 0;
+
+  protected readed = 0;
+
   protected constructor(config: IProxyConfig) {
     this.config = config;
   }
 
   protected async listen() {
     this.server = new Server(this.config.server.options);
-    this.server.listen(this.config.server.address);
-    await events.once(<EventEmitter>this.server, 'listening');
-    this.server.on('connection', async (socket) => {
+    this.server.on('connection', (socket) => {
       const client = new Socket(this.client.options);
       client.connect(this.client.address);
       client.pipe(socket);
       socket.pipe(client);
+      client.on('data', (data) => (this.readed += Buffer.byteLength(data)));
+      socket.on('data', (data) => (this.writed += Buffer.byteLength(data)));
     });
+    this.server.listen(this.config.server.address);
+    await events.once(<EventEmitter>this.server, 'listening');
   }
 
   protected async check() {
-    if (!this.config.checkInterval) return;
+    if (!this.config.checkInterval || this.config.checkInterval < 0) return;
     while (true) {
-      await this.connect();
+      await this.select();
       await timer.wait(this.config.checkInterval);
     }
   }
 
-  protected async connect() {
+  protected async select() {
     let i = 0;
     w: while (true) {
       for (const client of this.config.clients) {
@@ -66,6 +66,8 @@ export class ProxyConnection {
         if (status !== 200) continue;
         if (this.client === client) break w;
         this.client = client;
+        this.readed = 0;
+        this.writed = 0;
         console.debug(
           `Proxy connection selected: %s:%s`,
           client.address.host,
@@ -79,5 +81,13 @@ export class ProxyConnection {
       if (i > (this.config.retry ?? 10))
         throw new ProxyConnectionTimeoutError(this.config.name);
     }
+  }
+
+  public isActive(client: IClientOption) {
+    return this.client === client;
+  }
+
+  public get stat() {
+    return { writed: this.writed, readed: this.readed };
   }
 }

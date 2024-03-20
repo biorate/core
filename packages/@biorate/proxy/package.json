@@ -30,6 +30,10 @@
     "@biorate/connector": "1.54.0",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.54.0",
-    "@biorate/tools": "1.28.0"
+    "@biorate/tools": "1.28.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/pug": "^2.0.10"
   }
 }
