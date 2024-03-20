@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.65.1](https://github.com/biorate/core/compare/v1.65.0...v1.65.1) (2024-03-20)
+
+### Bug Fixes
+
+- **proxy:** build fixed ([350481f](https://github.com/biorate/core/commit/350481f3fb03c0cd1f8d4cdd8f75d5570d8be3cd))
+
 # [1.65.0](https://github.com/biorate/core/compare/v1.64.0...v1.65.0) (2024-03-20)
 
 ### Features
