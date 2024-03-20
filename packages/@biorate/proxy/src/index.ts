@@ -157,7 +157,7 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
     const locals: {
       rows: {
         connection: string;
-        clientHost: string;
+        backendHost: string;
         proxyHost: string;
         active: boolean;
         writed: number;
@@ -174,7 +174,7 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
           proxyHost:
             config.server.address.path ??
             `${config.server.address.host}:${config.server.address.port}`,
-          clientHost: `${client.address.host}:${client.address.port}`,
+          backendHost: `${client.address.host}:${client.address.port}`,
           active: isActive,
           ...stat,
         });
