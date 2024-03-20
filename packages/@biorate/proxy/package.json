@@ -4,7 +4,7 @@
   "description": "Proxy connector",
   "main": "dist",
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist && npx copyfiles index.pug dist/",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
