@@ -1,3 +1,4 @@
+import { unlinkSync } from 'fs';
 import { Server, Socket } from 'net';
 import { EventEmitter } from 'events';
 import { events, timer } from '@biorate/tools';
@@ -40,6 +41,11 @@ export class ProxyConnection {
       client.on('data', (data) => (this.readed += Buffer.byteLength(data)));
       socket.on('data', (data) => (this.writed += Buffer.byteLength(data)));
     });
+    if (this.config.server.address.path) {
+      try {
+        unlinkSync(this.config.server.address.path);
+      } catch {}
+    }
     this.server.listen(this.config.server.address);
     await events.once(<EventEmitter>this.server, 'listening');
   }
