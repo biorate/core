@@ -24,6 +24,7 @@
     "reflect-metadata": "^0.1.13"
   },
   "dependencies": {
+    "@biorate/errors": "1.28.0",
     "@biorate/symbolic": "1.28.0",
     "@biorate/tools": "1.28.0"
   }

@@ -37,7 +37,7 @@ context.</p>
 <ul class="tsd-hierarchy">
 <li><a href="playwright.ChromiumBrowserContext.html" class="tsd-signature-type tsd-kind-interface">ChromiumBrowserContext</a></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7410</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7527</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -81,6 +81,7 @@ context.</p>
 <a href="playwright.BrowserContext.html#setOffline" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>set<wbr/>Offline</span></a>
 <a href="playwright.BrowserContext.html#storageState" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>storage<wbr/>State</span></a>
 <a href="playwright.BrowserContext.html#unroute" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>unroute</span></a>
+<a href="playwright.BrowserContext.html#unrouteAll" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>unroute<wbr/>All</span></a>
 <a href="playwright.BrowserContext.html#waitForEvent" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>wait<wbr/>For<wbr/>Event</span></a>
 </div></section></div></details></section></section>
 <section class="tsd-panel-group tsd-member-group">
@@ -92,12 +93,12 @@ context.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8736</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8868</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="tracing" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>tracing</span><a href="#tracing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">tracing</span><span class="tsd-signature-symbol">:</span> <a href="playwright.Tracing.html" class="tsd-signature-type tsd-kind-interface">Tracing</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8738</li></ul></aside></section></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8870</li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="addCookies" class="tsd-anchor"></a>
@@ -116,14 +117,14 @@ can be obtained via
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">cookies</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">domain</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">expires</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">httpOnly</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">path</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">sameSite</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;Strict&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;Lax&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;None&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">secure</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">url</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></h5>
+<h5><span class="tsd-kind-parameter">cookies</span>: <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">domain</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">expires</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">httpOnly</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">path</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">sameSite</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;Strict&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;Lax&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;None&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">secure</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">url</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></h5>
 <div class="tsd-comment tsd-typography"><p>Adds cookies to the browser context.</p>
 <p>For the cookie to apply to all subdomains as well, prefix domain with a dot, like this: &quot;.example.com&quot;.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8148</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8262</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="addInitScript" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add<wbr/>Init<wbr/>Script</span><a href="#addInitScript" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -167,7 +168,7 @@ defined.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7556</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7673</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="addListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add<wbr/>Listener</span><a href="#addListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -199,7 +200,7 @@ defined.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7759</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7875</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-2"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when Browser context gets closed. This might happen because of one of the following:</p>
@@ -230,11 +231,10 @@ defined.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7767</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7883</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-3"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>. Also
-emitted if the page throws an error or a warning.</p>
+<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>.</p>
 <p>The arguments passed into <code>console.log</code> and the page are available on the <a href="playwright.ConsoleMessage.html" class="tsd-kind-interface">ConsoleMessage</a> event handler
 argument.</p>
 <p><strong>Usage</strong></p>
@@ -262,7 +262,7 @@ argument.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7789</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7904</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-4"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a JavaScript dialog appears, such as <code>alert</code>, <code>prompt</code>, <code>confirm</code> or <code>beforeunload</code>. Listener <strong>must</strong>
@@ -298,7 +298,7 @@ listeners are present, all dialogs are automatically dismissed.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7810</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7925</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-5"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>The event is emitted when a new Page is created in the BrowserContext. The page may still be loading. The event
@@ -335,7 +335,7 @@ wait until the page gets to a particular state (you should not need it in most c
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7833</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7948</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-6"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request is issued from any pages created through this context. The [request] object is read-only. To
@@ -366,7 +366,7 @@ or <a href="https://playwright.dev/docs/api/class-page#page-route">page.route(ur
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7844</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7959</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-7"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request fails, for example by timing out. To only listen for failed requests from a particular page,
@@ -398,7 +398,7 @@ event and not with
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7856</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7971</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-8"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request finishes successfully after downloading the response body. For a successful response, the
@@ -427,7 +427,7 @@ particular page, use
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7864</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7979</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-9"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when [response] status and headers are received for a request. For a successful response, the sequence of
@@ -455,7 +455,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7871</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7986</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-10"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Service workers are only supported on Chromium-based browsers.</p>
@@ -482,7 +482,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7878</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7993</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-11"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#addListener.addListener-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when exception is unhandled in any of the pages in this context. To listen for errors from a particular
@@ -509,7 +509,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7884</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7999</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="backgroundPages" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>background<wbr/>Pages</span><a href="#backgroundPages" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -521,7 +521,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.Page.html" class="tsd-signature-type tsd-kind-interface">Page</a><span class="tsd-signature-symbol">[]</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8194</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8308</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="browser" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>browser</span><a href="#browser" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -532,7 +532,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.Browser.html" class="tsd-signature-type tsd-kind-interface">Browser</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8199</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8313</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="clearCookies" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>clear<wbr/>Cookies</span><a href="#clearCookies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -543,7 +543,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8204</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8318</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="clearPermissions" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>clear<wbr/>Permissions</span><a href="#clearPermissions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -557,7 +557,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8219</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8333</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="close" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>close</span><a href="#close" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -580,7 +580,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8227</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8341</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="cookies" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>cookies</span><a href="#cookies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -593,13 +593,13 @@ URLs are returned.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">urls</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">urls</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 <div class="tsd-comment tsd-typography"><p>Optional list of URLs.</p>
 </div><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Cookie.html" class="tsd-signature-type tsd-kind-interface">Cookie</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8239</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8353</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="exposeBinding" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>expose<wbr/>Binding</span><a href="#exposeBinding" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -649,7 +649,7 @@ for page-only version.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7466</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7583</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="exposeBinding.exposeBinding-2"><span class="tsd-kind-call-signature">expose<wbr/>Binding</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">name</span>, <span class="tsd-kind-parameter">playwrightBinding</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#exposeBinding.exposeBinding-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>The method adds a function called <code>name</code> on the <code>window</code> object of every frame in every page in the context. When
@@ -696,7 +696,7 @@ for page-only version.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7522</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7639</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="exposeFunction" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>expose<wbr/>Function</span><a href="#exposeFunction" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -726,7 +726,7 @@ page-only version.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8281</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8395</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="grantPermissions" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>grant<wbr/>Permissions</span><a href="#grantPermissions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -739,7 +739,7 @@ specified.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">permissions</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+<h5><span class="tsd-kind-parameter">permissions</span>: <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 <div class="tsd-comment tsd-typography"><p>A permission or an array of permissions to grant. Permissions can be one of the following values:</p>
 <ul>
 <li><code>&#39;geolocation&#39;</code></li>
@@ -770,7 +770,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8304</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8418</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="newCDPSession" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>newCDPSession</span><a href="#newCDPSession" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -790,7 +790,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.CDPSession.html" class="tsd-signature-type tsd-kind-interface">CDPSession</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8318</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8432</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="newPage" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>new<wbr/>Page</span><a href="#newPage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -801,7 +801,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Page.html" class="tsd-signature-type tsd-kind-interface">Page</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8323</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8437</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="off" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>off</span><a href="#off" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -830,7 +830,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7944</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8059</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-2"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -856,7 +856,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7949</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8064</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-3"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -882,7 +882,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7954</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8069</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-4"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -908,7 +908,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7959</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8074</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-5"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -934,7 +934,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7964</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8079</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-6"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -960,7 +960,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7969</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8084</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-7"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -986,7 +986,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7974</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8089</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-8"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -1012,7 +1012,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7979</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8094</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-9"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -1038,7 +1038,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7984</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8099</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-10"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -1064,7 +1064,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7989</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8104</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-11"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#off.off-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -1090,7 +1090,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7994</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8109</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="on" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on</span><a href="#on" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -1122,7 +1122,7 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7567</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7684</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-2"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when Browser context gets closed. This might happen because of one of the following:</p>
@@ -1153,11 +1153,10 @@ specified.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7575</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7692</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-3"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>. Also
-emitted if the page throws an error or a warning.</p>
+<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>.</p>
 <p>The arguments passed into <code>console.log</code> and the page are available on the <a href="playwright.ConsoleMessage.html" class="tsd-kind-interface">ConsoleMessage</a> event handler
 argument.</p>
 <p><strong>Usage</strong></p>
@@ -1185,7 +1184,7 @@ argument.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7597</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7713</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-4"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a JavaScript dialog appears, such as <code>alert</code>, <code>prompt</code>, <code>confirm</code> or <code>beforeunload</code>. Listener <strong>must</strong>
@@ -1221,7 +1220,7 @@ listeners are present, all dialogs are automatically dismissed.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7618</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7734</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-5"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>The event is emitted when a new Page is created in the BrowserContext. The page may still be loading. The event
@@ -1258,7 +1257,7 @@ wait until the page gets to a particular state (you should not need it in most c
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7641</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7757</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-6"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request is issued from any pages created through this context. The [request] object is read-only. To
@@ -1289,7 +1288,7 @@ or <a href="https://playwright.dev/docs/api/class-page#page-route">page.route(ur
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7652</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7768</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-7"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request fails, for example by timing out. To only listen for failed requests from a particular page,
@@ -1321,7 +1320,7 @@ event and not with
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7664</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7780</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-8"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request finishes successfully after downloading the response body. For a successful response, the
@@ -1350,7 +1349,7 @@ particular page, use
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7672</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7788</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-9"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when [response] status and headers are received for a request. For a successful response, the sequence of
@@ -1378,7 +1377,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7679</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7795</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-10"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Service workers are only supported on Chromium-based browsers.</p>
@@ -1405,7 +1404,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7686</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7802</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-11"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#on.on-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when exception is unhandled in any of the pages in this context. To listen for errors from a particular
@@ -1432,7 +1431,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7692</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7808</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="once" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>once</span><a href="#once" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -1461,7 +1460,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7697</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7813</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-2"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1487,7 +1486,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7702</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7818</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-3"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1513,7 +1512,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7707</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7823</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-4"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1539,7 +1538,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7712</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7828</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-5"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1565,7 +1564,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7717</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7833</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-6"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1591,7 +1590,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7722</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7838</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-7"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1617,7 +1616,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7727</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7843</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-8"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1643,7 +1642,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7732</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7848</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-9"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1669,7 +1668,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7737</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7853</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-10"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1695,7 +1694,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7742</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7858</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-11"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#once.once-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -1721,7 +1720,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7747</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7863</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="pages" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>pages</span><a href="#pages" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -1732,7 +1731,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.Page.html" class="tsd-signature-type tsd-kind-interface">Page</a><span class="tsd-signature-symbol">[]</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8328</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8442</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="prependListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>prepend<wbr/>Listener</span><a href="#prependListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -1764,7 +1763,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8006</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8121</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-2"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when Browser context gets closed. This might happen because of one of the following:</p>
@@ -1795,11 +1794,10 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8014</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8129</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-3"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>. Also
-emitted if the page throws an error or a warning.</p>
+<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>.</p>
 <p>The arguments passed into <code>console.log</code> and the page are available on the <a href="playwright.ConsoleMessage.html" class="tsd-kind-interface">ConsoleMessage</a> event handler
 argument.</p>
 <p><strong>Usage</strong></p>
@@ -1827,7 +1825,7 @@ argument.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8036</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8150</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-4"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a JavaScript dialog appears, such as <code>alert</code>, <code>prompt</code>, <code>confirm</code> or <code>beforeunload</code>. Listener <strong>must</strong>
@@ -1863,7 +1861,7 @@ listeners are present, all dialogs are automatically dismissed.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8057</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8171</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-5"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>The event is emitted when a new Page is created in the BrowserContext. The page may still be loading. The event
@@ -1900,7 +1898,7 @@ wait until the page gets to a particular state (you should not need it in most c
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8080</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8194</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-6"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request is issued from any pages created through this context. The [request] object is read-only. To
@@ -1931,7 +1929,7 @@ or <a href="https://playwright.dev/docs/api/class-page#page-route">page.route(ur
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8091</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8205</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-7"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request fails, for example by timing out. To only listen for failed requests from a particular page,
@@ -1963,7 +1961,7 @@ event and not with
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8103</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8217</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-8"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request finishes successfully after downloading the response body. For a successful response, the
@@ -1992,7 +1990,7 @@ particular page, use
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8111</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8225</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-9"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when [response] status and headers are received for a request. For a successful response, the sequence of
@@ -2020,7 +2018,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8118</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8232</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-10"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Service workers are only supported on Chromium-based browsers.</p>
@@ -2047,7 +2045,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8125</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8239</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-11"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#prependListener.prependListener-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when exception is unhandled in any of the pages in this context. To listen for errors from a particular
@@ -2074,7 +2072,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8131</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8245</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="removeListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>remove<wbr/>Listener</span><a href="#removeListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2103,7 +2101,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7889</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8004</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-2"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2129,7 +2127,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7894</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8009</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-3"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2155,7 +2153,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7899</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8014</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-4"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2181,7 +2179,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7904</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8019</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-5"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2207,7 +2205,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7909</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8024</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-6"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2233,7 +2231,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7914</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8029</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-7"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2259,7 +2257,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7919</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8034</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-8"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2285,7 +2283,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7924</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8039</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-9"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2311,7 +2309,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7929</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8044</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-10"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2337,7 +2335,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7934</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8049</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-11"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><a href="#removeListener.removeListener-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -2363,7 +2361,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:7939</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8054</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="route" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>route</span><a href="#route" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2385,7 +2383,7 @@ using request interception by setting <code>Browser.newContext.serviceWorkers</c
 </code><button>Copy</button></pre>
 <p>It is possible to examine the request to decide the route action. For example, mocking all requests that contain
 some post data, and leaving all other requests as is:</p>
-<pre><code class="language-js"><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">context</span><span class="hl-1">.</span><span class="hl-6">route</span><span class="hl-1">(</span><span class="hl-3">&#39;/api/**&#39;</span><span class="hl-1">, </span><span class="hl-2">route</span><span class="hl-1"> </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">if</span><span class="hl-1"> (</span><span class="hl-2">route</span><span class="hl-1">.</span><span class="hl-6">request</span><span class="hl-1">().</span><span class="hl-6">postData</span><span class="hl-1">().</span><span class="hl-6">includes</span><span class="hl-1">(</span><span class="hl-3">&#39;my-string&#39;</span><span class="hl-1">))</span><br/><span class="hl-1">    </span><span class="hl-2">route</span><span class="hl-1">.</span><span class="hl-6">fulfill</span><span class="hl-1">({ </span><span class="hl-2">body:</span><span class="hl-1"> </span><span class="hl-3">&#39;mocked-data&#39;</span><span class="hl-1"> });</span><br/><span class="hl-1">  </span><span class="hl-0">else</span><br/><span class="hl-1">    </span><span class="hl-2">route</span><span class="hl-1">.</span><span class="hl-6">continue</span><span class="hl-1">();</span><br/><span class="hl-1">});</span>
+<pre><code class="language-js"><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">context</span><span class="hl-1">.</span><span class="hl-6">route</span><span class="hl-1">(</span><span class="hl-3">&#39;/api/**&#39;</span><span class="hl-1">, </span><span class="hl-4">async</span><span class="hl-1"> </span><span class="hl-2">route</span><span class="hl-1"> </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">if</span><span class="hl-1"> (</span><span class="hl-2">route</span><span class="hl-1">.</span><span class="hl-6">request</span><span class="hl-1">().</span><span class="hl-6">postData</span><span class="hl-1">().</span><span class="hl-6">includes</span><span class="hl-1">(</span><span class="hl-3">&#39;my-string&#39;</span><span class="hl-1">))</span><br/><span class="hl-1">    </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">route</span><span class="hl-1">.</span><span class="hl-6">fulfill</span><span class="hl-1">({ </span><span class="hl-2">body:</span><span class="hl-1"> </span><span class="hl-3">&#39;mocked-data&#39;</span><span class="hl-1"> });</span><br/><span class="hl-1">  </span><span class="hl-0">else</span><br/><span class="hl-1">    </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">route</span><span class="hl-1">.</span><span class="hl-6">continue</span><span class="hl-1">();</span><br/><span class="hl-1">});</span>
 </code><button>Copy</button></pre>
 <p>Page routes (set up with
 <a href="https://playwright.dev/docs/api/class-page#page-route">page.route(url, handler[, options])</a>) take precedence over
@@ -2431,7 +2429,7 @@ options was provided and the passed URL is a path, it gets merged via the
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8388</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8502</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="routeFromHAR" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>route<wbr/>FromHAR</span><a href="#routeFromHAR" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2493,7 +2491,7 @@ pattern will be served from the HAR file. If not specified, all requests are ser
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8406</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8520</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="serviceWorkers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>service<wbr/>Workers</span><a href="#serviceWorkers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2505,7 +2503,7 @@ pattern will be served from the HAR file. If not specified, all requests are ser
 <h4 class="tsd-returns-title">Returns <a href="playwright.Worker.html" class="tsd-signature-type tsd-kind-interface">Worker</a><span class="tsd-signature-symbol">[]</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8448</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8562</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setDefaultNavigationTimeout" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Default<wbr/>Navigation<wbr/>Timeout</span><a href="#setDefaultNavigationTimeout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2536,7 +2534,7 @@ priority over
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8466</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8580</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setDefaultTimeout" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Default<wbr/>Timeout</span><a href="#setDefaultTimeout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2560,7 +2558,7 @@ take priority over
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8479</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8593</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setExtraHTTPHeaders" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>ExtraHTTPHeaders</span><a href="#setExtraHTTPHeaders" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2588,7 +2586,7 @@ does not guarantee the order of headers in the outgoing requests.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8493</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8607</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setGeolocation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Geolocation</span><a href="#setGeolocation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2626,7 +2624,7 @@ to grant permissions for the browser context pages to read its geolocation.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8509</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8623</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setHTTPCredentials" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>setHTTPCredentials</span><a href="#setHTTPCredentials" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2647,7 +2645,7 @@ to grant permissions for the browser context pages to read its geolocation.</p>
 <h4>Deprecated</h4><p>Browsers may cache credentials after successful authentication. Create a new browser context instead.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8530</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8644</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setOffline" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Offline</span><a href="#setOffline" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2663,7 +2661,7 @@ to grant permissions for the browser context pages to read its geolocation.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8539</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8653</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="storageState" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>storage<wbr/>State</span><a href="#storageState" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2686,7 +2684,7 @@ working directory. If no path is provided, storage state is still returned, but 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">cookies</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">domain</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">expires</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">httpOnly</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">path</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">sameSite</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Strict&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;Lax&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;None&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">secure</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">origins</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">localStorage</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span><br/><span>            </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>            </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">origin</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8545</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8659</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="unroute" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>unroute</span><a href="#unroute" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2725,7 +2723,39 @@ When <code>handler</code> is not specified, removes all routes for the <code>url
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8593</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8707</li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-external"><a id="unrouteAll" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>unroute<wbr/>All</span><a href="#unrouteAll" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-external">
+<li class="tsd-signature tsd-anchor-link" id="unrouteAll.unrouteAll-1"><span class="tsd-kind-call-signature">unroute<wbr/>All</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#unrouteAll.unrouteAll-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Removes all routes created with
+<a href="https://playwright.dev/docs/api/class-browsercontext#browser-context-route">browserContext.route(url, handler[, options])</a>
+and
+<a href="https://playwright.dev/docs/api/class-browsercontext#browser-context-route-from-har">browserContext.routeFromHAR(har[, options])</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">behavior</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;default&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wait&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ignoreErrors&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> 
+<ul class="tsd-parameters">
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">behavior</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;default&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wait&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ignoreErrors&quot;</span></h5>
+<div class="tsd-comment tsd-typography"><p>Specifies wether to wait for already running handlers and what to do if they throw errors:</p>
+<ul>
+<li><code>&#39;default&#39;</code> - do not wait for current handler calls (if any) to finish, if unrouted handler throws, it may
+result in unhandled error</li>
+<li><code>&#39;wait&#39;</code> - wait for current handler calls (if any) to finish</li>
+<li><code>&#39;ignoreErrors&#39;</code> - do not wait for current handler calls (if any) to finish, all errors thrown by the handlers
+after unrouting are silently caught</li>
+</ul>
+</div>
+<div class="tsd-comment tsd-typography"></div></li></ul></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8716</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="waitForEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>wait<wbr/>For<wbr/>Event</span><a href="#waitForEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -2746,7 +2776,7 @@ When <code>handler</code> is not specified, removes all routes for the <code>url
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Page.html" class="tsd-signature-type tsd-kind-interface">Page</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8605</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8738</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-2"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when Browser context gets closed. This might happen because of one of the following:</p>
@@ -2766,11 +2796,10 @@ When <code>handler</code> is not specified, removes all routes for the <code>url
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.BrowserContext.html" class="tsd-signature-type tsd-kind-interface">BrowserContext</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8613</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8746</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-3"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ConsoleMessage.html" class="tsd-signature-type tsd-kind-interface">ConsoleMessage</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>. Also
-emitted if the page throws an error or a warning.</p>
+<div class="tsd-comment tsd-typography"><p>Emitted when JavaScript within the page calls one of console API methods, e.g. <code>console.log</code> or <code>console.dir</code>.</p>
 <p>The arguments passed into <code>console.log</code> and the page are available on the <a href="playwright.ConsoleMessage.html" class="tsd-kind-interface">ConsoleMessage</a> event handler
 argument.</p>
 <p><strong>Usage</strong></p>
@@ -2787,7 +2816,7 @@ argument.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ConsoleMessage.html" class="tsd-signature-type tsd-kind-interface">ConsoleMessage</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8635</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8767</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-4"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Dialog.html" class="tsd-signature-type tsd-kind-interface">Dialog</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a JavaScript dialog appears, such as <code>alert</code>, <code>prompt</code>, <code>confirm</code> or <code>beforeunload</code>. Listener <strong>must</strong>
@@ -2812,7 +2841,7 @@ listeners are present, all dialogs are automatically dismissed.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Dialog.html" class="tsd-signature-type tsd-kind-interface">Dialog</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8656</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8788</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-5"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Page.html" class="tsd-signature-type tsd-kind-interface">Page</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>The event is emitted when a new Page is created in the BrowserContext. The page may still be loading. The event
@@ -2838,7 +2867,7 @@ wait until the page gets to a particular state (you should not need it in most c
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Page.html" class="tsd-signature-type tsd-kind-interface">Page</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8679</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8811</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-6"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request is issued from any pages created through this context. The [request] object is read-only. To
@@ -2858,7 +2887,7 @@ or <a href="https://playwright.dev/docs/api/class-page#page-route">page.route(ur
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8690</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8822</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-7"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request fails, for example by timing out. To only listen for failed requests from a particular page,
@@ -2879,7 +2908,7 @@ event and not with
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8702</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8834</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-8"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when a request finishes successfully after downloading the response body. For a successful response, the
@@ -2897,7 +2926,7 @@ particular page, use
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8710</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8842</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-9"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Response.html" class="tsd-signature-type tsd-kind-interface">Response</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when [response] status and headers are received for a request. For a successful response, the sequence of
@@ -2914,7 +2943,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Response.html" class="tsd-signature-type tsd-kind-interface">Response</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8717</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8849</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-10"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Worker.html" class="tsd-signature-type tsd-kind-interface">Worker</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-10" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Service workers are only supported on Chromium-based browsers.</p>
@@ -2930,7 +2959,7 @@ events is <code>request</code>, <code>response</code> and <code>requestfinished<
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Worker.html" class="tsd-signature-type tsd-kind-interface">Worker</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8724</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8856</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-11"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.WebError.html" class="tsd-signature-type tsd-kind-interface">WebError</a><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-11" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Emitted when exception is unhandled in any of the pages in this context. To listen for errors from a particular
@@ -2946,7 +2975,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.WebError.html" class="tsd-signature-type tsd-kind-interface">WebError</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8730</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8862</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -2999,6 +3028,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <li><a href="#setOffline" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>set<wbr/>Offline</span></a></li>
 <li><a href="#storageState" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>storage<wbr/>State</span></a></li>
 <li><a href="#unroute" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>unroute</span></a></li>
+<li><a href="#unrouteAll" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>unroute<wbr/>All</span></a></li>
 <li><a href="#waitForEvent" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>wait<wbr/>For<wbr/>Event</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../index.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>biorate</span></a>
@@ -3123,6 +3153,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -3161,6 +3192,7 @@ page, use <a href="https://playwright.dev/docs/api/class-page#page-event-page-er
 <li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
 <li><a href="../functions/playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
+<li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/rdkafka.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>rdkafka</span></a></li>
 <li><a href="../modules/react_virtual_table.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>react-<wbr/>virtual-<wbr/>table</span></a></li>
 <li><a href="../modules/redis.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>redis</span></a></li>

@@ -43,6 +43,7 @@
 - [run-context](https://biorate.github.io/core/modules/run_context.html)
 - [amqp](https://biorate.github.io/core/modules/amqp.html)
 - [haproxy](https://biorate.github.io/core/modules/haproxy.html)
+- [proxy](https://biorate.github.io/core/modules/proxy.html)
 
 ### Learn
 

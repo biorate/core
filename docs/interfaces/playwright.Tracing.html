@@ -29,7 +29,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">Tracing</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18970</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19366</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -62,9 +62,11 @@
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-<div class="tsd-comment tsd-typography"><p>If specified, the trace is going to be saved into the file with the given name inside the <code>tracesDir</code> folder
-specified in
-<a href="https://playwright.dev/docs/api/class-browsertype#browser-type-launch">browserType.launch([options])</a>.</p>
+<div class="tsd-comment tsd-typography"><p>If specified, intermediate trace files are going to be saved into the files with the given name prefix inside the
+<code>tracesDir</code> folder specified in
+<a href="https://playwright.dev/docs/api/class-browsertype#browser-type-launch">browserType.launch([options])</a>. To specify
+the final trace zip file name, you need to pass <code>path</code> option to
+<a href="https://playwright.dev/docs/api/class-tracing#tracing-stop">tracing.stop([options])</a> instead.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
@@ -94,7 +96,7 @@ specified in
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18985</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19381</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="startChunk" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>start<wbr/>Chunk</span><a href="#startChunk" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -117,9 +119,11 @@ multiple trace chunks with
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-<div class="tsd-comment tsd-typography"><p>If specified, the trace is going to be saved into the file with the given name inside the <code>tracesDir</code> folder
-specified in
-<a href="https://playwright.dev/docs/api/class-browsertype#browser-type-launch">browserType.launch([options])</a>.</p>
+<div class="tsd-comment tsd-typography"><p>If specified, intermediate trace files are going to be saved into the files with the given name prefix inside the
+<code>tracesDir</code> folder specified in
+<a href="https://playwright.dev/docs/api/class-browsertype#browser-type-launch">browserType.launch([options])</a>. To specify
+the final trace zip file name, you need to pass <code>path</code> option to
+<a href="https://playwright.dev/docs/api/class-tracing#tracing-stop-chunk">tracing.stopChunk([options])</a> instead.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
@@ -130,7 +134,7 @@ specified in
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19043</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19441</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="stop" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>stop</span><a href="#stop" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -152,7 +156,7 @@ specified in
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19061</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19461</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="stopChunk" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>stop<wbr/>Chunk</span><a href="#stopChunk" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -178,7 +182,7 @@ file with the given path.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19074</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:19474</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -325,6 +329,7 @@ file with the given path.</p>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -363,6 +368,7 @@ file with the given path.</p>
 <li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
 <li><a href="../functions/playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
+<li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/rdkafka.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>rdkafka</span></a></li>
 <li><a href="../modules/react_virtual_table.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>react-<wbr/>virtual-<wbr/>table</span></a></li>
 <li><a href="../modules/redis.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>redis</span></a></li>

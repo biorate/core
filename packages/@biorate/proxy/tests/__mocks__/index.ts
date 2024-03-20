@@ -1,0 +1,72 @@
+import { use } from 'chai';
+import { Server as HTTPServer } from 'http';
+import { Server as TCPServer, Socket as TCPSocket } from 'net';
+import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
+import { init, inject, container, Types, Core } from '@biorate/inversion';
+import { IConfig, Config } from '@biorate/config';
+import { ProxyConnector } from '../../src';
+
+use(jestSnapshotPlugin());
+
+const httpPort = 8001;
+const clientPort = 7001;
+const serverPort = 7002;
+
+export class Root extends Core() {
+  public static connect() {
+    const socket = new TCPSocket();
+    socket.connect(serverPort);
+    return socket;
+  }
+
+  @inject(ProxyConnector) public connector: ProxyConnector;
+
+  public http: HTTPServer;
+
+  public tcp: TCPServer;
+
+  protected constructor() {
+    super();
+    this.http = new HTTPServer();
+    this.http.listen(httpPort);
+    this.http.on('request', (req, res) => {
+      res.writeHead(200);
+      res.end('1');
+    });
+    this.tcp = new TCPServer();
+    this.tcp.listen(clientPort);
+    this.tcp.on('connection', (socket) =>
+      socket.on('data', (data) => socket.write(`${data} world!`)),
+    );
+  }
+}
+
+container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+container.bind<ProxyConnector>(ProxyConnector).toSelf().inSingletonScope();
+container.bind<Root>(Root).toSelf().inSingletonScope();
+
+container.get<IConfig>(Types.Config).merge({
+  Proxy: [
+    {
+      retry: 10,
+      name: 'connection',
+      server: {
+        address: {
+          host: 'localhost',
+          port: serverPort,
+        },
+      },
+      clients: [
+        {
+          liveness: `http://localhost:${httpPort}`,
+          address: {
+            host: 'localhost',
+            port: clientPort,
+          },
+        },
+      ],
+    },
+  ],
+});
+
+export const root = <Root>container.get<Root>(Root);

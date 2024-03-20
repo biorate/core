@@ -18,15 +18,50 @@
 <h1>Function _baseTest</h1></div>
 <section class="tsd-panel">
 <ul class="tsd-signatures tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="_baseTest"><span class="tsd-kind-call-signature">_base<wbr/>Test</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">title</span>, <span class="tsd-kind-parameter">testFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#_baseTest" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="_baseTest"><span class="tsd-kind-call-signature">_base<wbr/>Test</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">title</span>, <span class="tsd-kind-parameter">body</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#_baseTest" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Declares a test.</p>
+<ul>
+<li><code>test(title, body)</code></li>
+<li><code>test(title, details, body)</code></li>
+</ul>
+<p><strong>Usage</strong></p>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p><strong>Tags</strong></p>
+<p>You can tag tests by providing additional test details. Alternatively, you can include tags in the test title. Note
+that each tag must start with <code>@</code> symbol.</p>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-2">tag:</span><span class="hl-1"> </span><span class="hl-3">&#39;@smoke&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">}, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;another test @smoke&#39;</span><span class="hl-1">, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p>Test tags are displayed in the test report, and are available to a custom reporter via <code>TestCase.tags</code> property.</p>
+<p>You can also filter tests by their tags during test execution:</p>
+<ul>
+<li>in the <a href="https://playwright.dev/docs/test-cli#reference">command line</a>;</li>
+<li>in the config with <a href="https://playwright.dev/docs/api/class-testconfig#test-config-grep">testConfig.grep</a> and
+<a href="https://playwright.dev/docs/api/class-testproject#test-project-grep">testProject.grep</a>;</li>
+</ul>
+<p>Learn more about <a href="https://playwright.dev/docs/test-annotations#tag-tests">tagging</a>.</p>
+<p><strong>Annotations</strong></p>
+<p>You can annotate tests by providing additional test details.</p>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-2">annotation:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">type:</span><span class="hl-1"> </span><span class="hl-3">&#39;issue&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">description:</span><span class="hl-1"> </span><span class="hl-3">&#39;https://github.com/microsoft/playwright/issues/23180&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">}, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p>Test annotations are displayed in the test report, and are available to a custom reporter via
+<code>TestCase.annotations</code> property.</p>
+<p>You can also add annotations during runtime by manipulating
+<a href="https://playwright.dev/docs/api/class-testinfo#test-info-annotations">testInfo.annotations</a>.</p>
+<p>Learn more about <a href="https://playwright.dev/docs/test-annotations">test annotations</a>.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">title</span>: <span class="tsd-signature-type">string</span></h5></li>
+<h5><span class="tsd-kind-parameter">title</span>: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>Test title.</p>
+</div></li>
 <li>
-<h5><span class="tsd-kind-parameter">testFunction</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">args</span>, <span class="tsd-kind-parameter">testInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></h5>
+<h5><span class="tsd-kind-parameter">body</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">args</span>, <span class="tsd-kind-parameter">testInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></h5>
+<div class="tsd-comment tsd-typography"><p>Test body that takes one or two arguments: an object with fixtures and optional <a href="../interfaces/playwright.TestInfo.html" class="tsd-kind-interface">TestInfo</a>.</p>
+</div>
 <ul class="tsd-parameters">
 <li class="tsd-parameter-signature">
 <ul class="tsd-signatures tsd-is-external">
@@ -41,9 +76,76 @@
 <li>
 <h5><span class="tsd-kind-parameter">testInfo</span>: <a href="../interfaces/playwright.TestInfo.html" class="tsd-signature-type tsd-kind-interface">TestInfo</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2400</li></ul></aside></li></ul></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2732</li></ul></aside></li>
+<li class="tsd-signature tsd-anchor-link" id="_baseTest-1"><span class="tsd-kind-call-signature">_base<wbr/>Test</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">title</span>, <span class="tsd-kind-parameter">details</span>, <span class="tsd-kind-parameter">body</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#_baseTest-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Declares a test.</p>
+<ul>
+<li><code>test(title, body)</code></li>
+<li><code>test(title, details, body)</code></li>
+</ul>
+<p><strong>Usage</strong></p>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p><strong>Tags</strong></p>
+<p>You can tag tests by providing additional test details. Alternatively, you can include tags in the test title. Note
+that each tag must start with <code>@</code> symbol.</p>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-2">tag:</span><span class="hl-1"> </span><span class="hl-3">&#39;@smoke&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">}, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;another test @smoke&#39;</span><span class="hl-1">, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p>Test tags are displayed in the test report, and are available to a custom reporter via <code>TestCase.tags</code> property.</p>
+<p>You can also filter tests by their tags during test execution:</p>
+<ul>
+<li>in the <a href="https://playwright.dev/docs/test-cli#reference">command line</a>;</li>
+<li>in the config with <a href="https://playwright.dev/docs/api/class-testconfig#test-config-grep">testConfig.grep</a> and
+<a href="https://playwright.dev/docs/api/class-testproject#test-project-grep">testProject.grep</a>;</li>
+</ul>
+<p>Learn more about <a href="https://playwright.dev/docs/test-annotations#tag-tests">tagging</a>.</p>
+<p><strong>Annotations</strong></p>
+<p>You can annotate tests by providing additional test details.</p>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-2">annotation:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">type:</span><span class="hl-1"> </span><span class="hl-3">&#39;issue&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">description:</span><span class="hl-1"> </span><span class="hl-3">&#39;https://github.com/microsoft/playwright/issues/23180&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">}, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://playwright.dev/&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">// ...</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p>Test annotations are displayed in the test report, and are available to a custom reporter via
+<code>TestCase.annotations</code> property.</p>
+<p>You can also add annotations during runtime by manipulating
+<a href="https://playwright.dev/docs/api/class-testinfo#test-info-annotations">testInfo.annotations</a>.</p>
+<p>Learn more about <a href="https://playwright.dev/docs/test-annotations">test annotations</a>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">title</span>: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>Test title.</p>
+</div></li>
+<li>
+<h5><span class="tsd-kind-parameter">details</span>: <a href="../types/playwright.TestDetails.html" class="tsd-signature-type tsd-kind-type-alias">TestDetails</a></h5>
+<div class="tsd-comment tsd-typography"><p>Additional test details.</p>
+</div></li>
+<li>
+<h5><span class="tsd-kind-parameter">body</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">args</span>, <span class="tsd-kind-parameter">testInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></h5>
+<div class="tsd-comment tsd-typography"><p>Test body that takes one or two arguments: an object with fixtures and optional <a href="../interfaces/playwright.TestInfo.html" class="tsd-kind-interface">TestInfo</a>.</p>
+</div>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-is-external">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">args</span>, <span class="tsd-kind-parameter">testInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">args</span>: <span class="tsd-signature-symbol">{}</span></h5>
+<ul class="tsd-parameters"></ul></li>
+<li>
+<h5><span class="tsd-kind-parameter">testInfo</span>: <a href="../interfaces/playwright.TestInfo.html" class="tsd-signature-type tsd-kind-interface">TestInfo</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2808</li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -182,6 +284,7 @@
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -220,6 +323,7 @@
 <li><a href="playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
 <li><a href="playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
+<li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/rdkafka.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>rdkafka</span></a></li>
 <li><a href="../modules/react_virtual_table.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>react-<wbr/>virtual-<wbr/>table</span></a></li>
 <li><a href="../modules/redis.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>redis</span></a></li>

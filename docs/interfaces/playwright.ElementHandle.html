@@ -56,7 +56,7 @@ selector. So in the snippet below, underlying DOM element is going to be located
 <ul class="tsd-hierarchy">
 <li><span class="target">ElementHandle</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9055</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9187</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -116,7 +116,9 @@ selector. So in the snippet below, underlying DOM element is going to be located
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="_._-1"><span class="tsd-kind-call-signature">$</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#_._-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The method finds an element matching the specified selector in the <code>ElementHandle</code>&#39;s subtree. If no elements match
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-page#page-locator">page.locator(selector[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>The method finds an element matching the specified selector in the <code>ElementHandle</code>&#39;s subtree. If no elements match
 the selector, returns <code>null</code>.</p>
 </div>
 <section class="tsd-panel">
@@ -139,10 +141,12 @@ the selector, returns <code>null</code>.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9061</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9196</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="_._-2"><span class="tsd-kind-call-signature">$</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#_._-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The method finds an element matching the specified selector in the <code>ElementHandle</code>&#39;s subtree. If no elements match
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-page#page-locator">page.locator(selector[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>The method finds an element matching the specified selector in the <code>ElementHandle</code>&#39;s subtree. If no elements match
 the selector, returns <code>null</code>.</p>
 </div>
 <div class="tsd-parameters">
@@ -160,13 +164,15 @@ the selector, returns <code>null</code>.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9067</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9205</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="__" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>$$</span><a href="#__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="__.__-1"><span class="tsd-kind-call-signature">$$</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#__.__-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>s subtree. If no elements match
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-page#page-locator">page.locator(selector[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>s subtree. If no elements match
 the selector, returns empty array.</p>
 </div>
 <section class="tsd-panel">
@@ -184,10 +190,12 @@ the selector, returns empty array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9074</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9215</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="__.__-2"><span class="tsd-kind-call-signature">$$</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#__.__-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>s subtree. If no elements match
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-page#page-locator">page.locator(selector[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>s subtree. If no elements match
 the selector, returns empty array.</p>
 </div>
 <div class="tsd-parameters">
@@ -200,13 +208,16 @@ the selector, returns empty array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9080</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9224</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="__eval" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>$$eval</span><a href="#__eval" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="__eval.__eval-1"><span class="tsd-kind-call-signature">$$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">Arg</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#__eval.__eval-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> In most cases,
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate-all">locator.evaluateAll(pageFunction[, arg])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods and web-first assertions do a better job.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>&#39;s subtree and passes an array
 of matched elements as a first argument to <code>pageFunction</code>.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -245,10 +256,13 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9205</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9373</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="__eval.__eval-2"><span class="tsd-kind-call-signature">$$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">Arg</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">E</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#__eval.__eval-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> In most cases,
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate-all">locator.evaluateAll(pageFunction[, arg])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods and web-first assertions do a better job.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>&#39;s subtree and passes an array
 of matched elements as a first argument to <code>pageFunction</code>.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -287,10 +301,13 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9236</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9408</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="__eval.__eval-3"><span class="tsd-kind-call-signature">$$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#__eval.__eval-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> In most cases,
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate-all">locator.evaluateAll(pageFunction[, arg])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods and web-first assertions do a better job.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>&#39;s subtree and passes an array
 of matched elements as a first argument to <code>pageFunction</code>.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -327,10 +344,13 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9267</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9443</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="__eval.__eval-4"><span class="tsd-kind-call-signature">$$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">E</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#__eval.__eval-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> In most cases,
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate-all">locator.evaluateAll(pageFunction[, arg])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods and web-first assertions do a better job.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds all elements matching the specified selector in the <code>ElementHandle</code>&#39;s subtree and passes an array
 of matched elements as a first argument to <code>pageFunction</code>.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -367,13 +387,17 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9298</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9478</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="_eval" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>$eval</span><a href="#_eval" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="_eval._eval-1"><span class="tsd-kind-call-signature">$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">Arg</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#_eval._eval-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> This method does not wait for the element to pass actionability checks and therefore can lead to the flaky tests.
+Use
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate">locator.evaluate(pageFunction[, arg, options])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods or web-first assertions instead.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds an element matching the specified selector in the <code>ElementHandle</code>s subtree and passes it as a
 first argument to <code>pageFunction</code>. If no elements match the selector, the method throws an error.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -410,10 +434,14 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9104</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9253</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="_eval._eval-2"><span class="tsd-kind-call-signature">$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">Arg</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">E</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#_eval._eval-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> This method does not wait for the element to pass actionability checks and therefore can lead to the flaky tests.
+Use
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate">locator.evaluate(pageFunction[, arg, options])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods or web-first assertions instead.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds an element matching the specified selector in the <code>ElementHandle</code>s subtree and passes it as a
 first argument to <code>pageFunction</code>. If no elements match the selector, the method throws an error.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -450,10 +478,14 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9127</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9281</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="_eval._eval-3"><span class="tsd-kind-call-signature">$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#_eval._eval-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> This method does not wait for the element to pass actionability checks and therefore can lead to the flaky tests.
+Use
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate">locator.evaluate(pageFunction[, arg, options])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods or web-first assertions instead.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds an element matching the specified selector in the <code>ElementHandle</code>s subtree and passes it as a
 first argument to <code>pageFunction</code>. If no elements match the selector, the method throws an error.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -488,10 +520,14 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9150</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9309</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="_eval._eval-4"><span class="tsd-kind-call-signature">$eval</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">E</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#_eval._eval-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> This method does not wait for the element to pass actionability checks and therefore can lead to the flaky tests.
+Use
+<a href="https://playwright.dev/docs/api/class-locator#locator-evaluate">locator.evaluate(pageFunction[, arg, options])</a>,
+other <a href="playwright.Locator.html" class="tsd-kind-interface">Locator</a> helper methods or web-first assertions instead.</p>
+<p>Returns the return value of <code>pageFunction</code>.</p>
 <p>The method finds an element matching the specified selector in the <code>ElementHandle</code>s subtree and passes it as a
 first argument to <code>pageFunction</code>. If no elements match the selector, the method throws an error.</p>
 <p>If <code>pageFunction</code> returns a [Promise], then
@@ -526,7 +562,7 @@ would wait for the promise to resolve and return its value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9173</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9337</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="asElement" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>as<wbr/>Element</span><a href="#asElement" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -538,7 +574,7 @@ would wait for the promise to resolve and return its value.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#asElement">asElement</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8978</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9110</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="boundingBox" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>bounding<wbr/>Box</span><a href="#boundingBox" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -560,13 +596,15 @@ following snippet should click the center of the element.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">height</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">width</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">x</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">y</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9422</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9614</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="check" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>check</span><a href="#check" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="check.check-1"><span class="tsd-kind-call-signature">check</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#check.check-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method checks the element by performing the following steps:</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-check">locator.check([options])</a> instead.
+Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method checks the element by performing the following steps:</p>
 <ol>
 <li>Ensure that element is a checkbox or a radio input. If not, this method throws. If the element is already
 checked, this method returns immediately.</li>
@@ -626,13 +664,15 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9461</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9656</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="click" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>click</span><a href="#click" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="click.click-1"><span class="tsd-kind-call-signature">click</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#click.click-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method clicks the element by performing the following steps:</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-click">locator.click([options])</a> instead.
+Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method clicks the element by performing the following steps:</p>
 <ol>
 <li>Wait for <a href="https://playwright.dev/docs/actionability">actionability</a> checks on the element, unless <code>force</code> option is set.</li>
 <li>Scroll the element into view if needed.</li>
@@ -710,7 +750,7 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9513</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9711</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="contentFrame" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>content<wbr/>Frame</span><a href="#contentFrame" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -721,13 +761,15 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Frame.html" class="tsd-signature-type tsd-kind-interface">Frame</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9575</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9773</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="dblclick" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>dblclick</span><a href="#dblclick" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="dblclick.dblclick-1"><span class="tsd-kind-call-signature">dblclick</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#dblclick.dblclick-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method double clicks the element by performing the following steps:</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-dblclick">locator.dblclick([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method double clicks the element by performing the following steps:</p>
 <ol>
 <li>Wait for <a href="https://playwright.dev/docs/actionability">actionability</a> checks on the element, unless <code>force</code> option is set.</li>
 <li>Scroll the element into view if needed.</li>
@@ -802,13 +844,16 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9594</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9795</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="dispatchEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>dispatch<wbr/>Event</span><a href="#dispatchEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="dispatchEvent.dispatchEvent-1"><span class="tsd-kind-call-signature">dispatch<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">type</span>, <span class="tsd-kind-parameter">eventInit</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#dispatchEvent.dispatchEvent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The snippet below dispatches the <code>click</code> event on the element. Regardless of the visibility state of the element,
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-dispatch-event">locator.dispatchEvent(type[, eventInit, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>The snippet below dispatches the <code>click</code> event on the element. Regardless of the visibility state of the element,
 <code>click</code> is dispatched. This is equivalent to calling
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/click">element.click()</a>.</p>
 <p><strong>Usage</strong></p>
@@ -847,7 +892,7 @@ properties and dispatches it on the element. Events are <code>composed</code>, <
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9685</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9890</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="dispose" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>dispose</span><a href="#dispose" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -859,7 +904,7 @@ properties and dispatches it on the element. Events are <code>composed</code>, <
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#dispose">dispose</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8982</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9114</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="evaluate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>evaluate</span><a href="#evaluate" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -897,7 +942,7 @@ value.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#evaluate">evaluate</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8912</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9044</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="evaluate.evaluate-2"><span class="tsd-kind-call-signature">evaluate</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><a href="#evaluate.evaluate-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code>.</p>
@@ -930,7 +975,7 @@ value.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#evaluate">evaluate</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8931</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9063</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="evaluateHandle" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>evaluate<wbr/>Handle</span><a href="#evaluateHandle" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -969,7 +1014,7 @@ more details.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#evaluateHandle">evaluateHandle</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8949</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9081</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="evaluateHandle.evaluateHandle-2"><span class="tsd-kind-call-signature">evaluate<wbr/>Handle</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">pageFunction</span>, <span class="tsd-kind-parameter">arg</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">SmartHandle</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#evaluateHandle.evaluateHandle-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns the return value of <code>pageFunction</code> as a <a href="playwright.JSHandle.html" class="tsd-kind-interface">JSHandle</a>.</p>
@@ -1003,13 +1048,15 @@ more details.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#evaluateHandle">evaluateHandle</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8966</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9098</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="fill" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>fill</span><a href="#fill" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="fill.fill-1"><span class="tsd-kind-call-signature">fill</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#fill.fill-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, focuses the element, fills it and triggers an
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-fill">locator.fill(value[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, focuses the element, fills it and triggers an
 <code>input</code> event after filling. Note that you can pass an empty string to clear the input field.</p>
 <p>If the target element is not an <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code> or <code>[contenteditable]</code> element, this method throws an
 error. However, if the element is inside the <code>&lt;label&gt;</code> element that has an associated
@@ -1051,24 +1098,29 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9701</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9909</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="focus" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>focus</span><a href="#focus" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="focus.focus-1"><span class="tsd-kind-call-signature">focus</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#focus.focus-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Calls <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus">focus</a> on the element.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-focus">locator.focus([options])</a> instead.
+Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Calls <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus">focus</a> on the element.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9726</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9937</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="getAttribute" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Attribute</span><a href="#getAttribute" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="getAttribute.getAttribute-1"><span class="tsd-kind-call-signature">get<wbr/>Attribute</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">name</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#getAttribute.getAttribute-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns element attribute value.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-get-attribute">locator.getAttribute(name[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns element attribute value.</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -1080,7 +1132,7 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9732</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9947</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="getProperties" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Properties</span><a href="#getProperties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -1095,7 +1147,7 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#getProperties">getProperties</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8998</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9130</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="getProperty" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Property</span><a href="#getProperty" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -1114,13 +1166,15 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#getProperty">getProperty</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9004</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9136</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="hover" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>hover</span><a href="#hover" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="hover.hover-1"><span class="tsd-kind-call-signature">hover</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#hover.hover-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method hovers over the element by performing the following steps:</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-hover">locator.hover([options])</a> instead.
+Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method hovers over the element by performing the following steps:</p>
 <ol>
 <li>Wait for <a href="https://playwright.dev/docs/actionability">actionability</a> checks on the element, unless <code>force</code> option is set.</li>
 <li>Scroll the element into view if needed.</li>
@@ -1183,35 +1237,42 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9748</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9966</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="innerHTML" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>innerHTML</span><a href="#innerHTML" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="innerHTML.innerHTML-1"><span class="tsd-kind-call-signature">innerHTML</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#innerHTML.innerHTML-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the <code>element.innerHTML</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-inner-html">locator.innerHTML([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns the <code>element.innerHTML</code>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9795</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10016</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="innerText" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>inner<wbr/>Text</span><a href="#innerText" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="innerText.innerText-1"><span class="tsd-kind-call-signature">inner<wbr/>Text</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#innerText.innerText-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the <code>element.innerText</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-inner-text">locator.innerText([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns the <code>element.innerText</code>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9800</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10024</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="inputValue" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>input<wbr/>Value</span><a href="#inputValue" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="inputValue.inputValue-1"><span class="tsd-kind-call-signature">input<wbr/>Value</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#inputValue.inputValue-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns <code>input.value</code> for the selected <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> or <code>&lt;select&gt;</code> element.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-input-value">locator.inputValue([options])</a> instead. Read
+more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns <code>input.value</code> for the selected <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> or <code>&lt;select&gt;</code> element.</p>
 <p>Throws for non-input elements. However, if the element is inside the <code>&lt;label&gt;</code> element that has an associated
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/control">control</a>, returns the value of the
 control.</p>
@@ -1233,73 +1294,87 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9810</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10038</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isChecked" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Checked</span><a href="#isChecked" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="isChecked.isChecked-1"><span class="tsd-kind-call-signature">is<wbr/>Checked</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#isChecked.isChecked-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns whether the element is checked. Throws if the element is not a checkbox or radio input.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-is-checked">locator.isChecked([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns whether the element is checked. Throws if the element is not a checkbox or radio input.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9823</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10054</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isDisabled" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Disabled</span><a href="#isDisabled" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="isDisabled.isDisabled-1"><span class="tsd-kind-call-signature">is<wbr/>Disabled</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#isDisabled.isDisabled-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns whether the element is disabled, the opposite of <a href="https://playwright.dev/docs/actionability#enabled">enabled</a>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-is-disabled">locator.isDisabled([options])</a> instead. Read
+more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns whether the element is disabled, the opposite of <a href="https://playwright.dev/docs/actionability#enabled">enabled</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9828</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10063</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isEditable" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Editable</span><a href="#isEditable" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="isEditable.isEditable-1"><span class="tsd-kind-call-signature">is<wbr/>Editable</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#isEditable.isEditable-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns whether the element is <a href="https://playwright.dev/docs/actionability#editable">editable</a>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-is-editable">locator.isEditable([options])</a> instead. Read
+more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns whether the element is <a href="https://playwright.dev/docs/actionability#editable">editable</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9833</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10072</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isEnabled" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Enabled</span><a href="#isEnabled" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="isEnabled.isEnabled-1"><span class="tsd-kind-call-signature">is<wbr/>Enabled</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#isEnabled.isEnabled-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns whether the element is <a href="https://playwright.dev/docs/actionability#enabled">enabled</a>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-is-enabled">locator.isEnabled([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns whether the element is <a href="https://playwright.dev/docs/actionability#enabled">enabled</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9838</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10080</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isHidden" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Hidden</span><a href="#isHidden" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="isHidden.isHidden-1"><span class="tsd-kind-call-signature">is<wbr/>Hidden</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#isHidden.isHidden-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns whether the element is hidden, the opposite of <a href="https://playwright.dev/docs/actionability#visible">visible</a>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-is-hidden">locator.isHidden([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns whether the element is hidden, the opposite of <a href="https://playwright.dev/docs/actionability#visible">visible</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9843</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10088</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isVisible" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Visible</span><a href="#isVisible" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="isVisible.isVisible-1"><span class="tsd-kind-call-signature">is<wbr/>Visible</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#isVisible.isVisible-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns whether the element is <a href="https://playwright.dev/docs/actionability#visible">visible</a>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-is-visible">locator.isVisible([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns whether the element is <a href="https://playwright.dev/docs/actionability#visible">visible</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9848</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10096</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="jsonValue" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>json<wbr/>Value</span><a href="#jsonValue" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -1313,7 +1388,7 @@ an error if the object has circular references.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from <a href="playwright.JSHandle.html">JSHandle</a>.<a href="playwright.JSHandle.html#jsonValue">jsonValue</a></p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:8974</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9106</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="ownerFrame" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>owner<wbr/>Frame</span><a href="#ownerFrame" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -1324,13 +1399,15 @@ an error if the object has circular references.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Frame.html" class="tsd-signature-type tsd-kind-interface">Frame</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9853</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10101</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="press" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>press</span><a href="#press" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="press.press-1"><span class="tsd-kind-call-signature">press</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">key</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#press.press-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Focuses the element, and then uses
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-press">locator.press(key[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Focuses the element, and then uses
 <a href="https://playwright.dev/docs/api/class-keyboard#keyboard-down">keyboard.down(key)</a> and
 <a href="https://playwright.dev/docs/api/class-keyboard#keyboard-up">keyboard.up(key)</a>.</p>
 <p><code>key</code> can specify the intended
@@ -1344,8 +1421,8 @@ etc.</p>
 <p>Holding down <code>Shift</code> will type the text that corresponds to the <code>key</code> in the upper case.</p>
 <p>If <code>key</code> is a single character, it is case-sensitive, so the values <code>a</code> and <code>A</code> will generate different respective
 texts.</p>
-<p>Shortcuts such as <code>key: &quot;Control+o&quot;</code> or <code>key: &quot;Control+Shift+T&quot;</code> are supported as well. When specified with the
-modifier, modifier is pressed and being held while the subsequent key is being pressed.</p>
+<p>Shortcuts such as <code>key: &quot;Control+o&quot;</code>, <code>key: &quot;Control++</code> or <code>key: &quot;Control+Shift+T&quot;</code> are supported as well. When
+specified with the modifier, modifier is pressed and being held while the subsequent key is being pressed.</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -1380,13 +1457,15 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9881</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10132</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="screenshot" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>screenshot</span><a href="#screenshot" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="screenshot.screenshot-1"><span class="tsd-kind-call-signature">screenshot</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">&gt;</span><a href="#screenshot.screenshot-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method captures a screenshot of the page, clipped to the size and position of this particular element. If the
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-screenshot">locator.screenshot([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method captures a screenshot of the page, clipped to the size and position of this particular element. If the
 element is covered by other elements, it will not be actually visible on the screenshot. If the element is a
 scrollable container, only the currently scrolled content will be visible on the screenshot.</p>
 <p>This method waits for the <a href="https://playwright.dev/docs/actionability">actionability</a> checks, then scrolls element into view before taking
@@ -1397,7 +1476,7 @@ a screenshot. If the element is detached from DOM, the method throws an error.</
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">mask</span><span class="tsd-signature-symbol">?: </span><a href="playwright.Locator.html" class="tsd-signature-type tsd-kind-interface">Locator</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maskColor</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">omitBackground</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">path</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">quality</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;png&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;jpeg&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> 
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">mask</span><span class="tsd-signature-symbol">?: </span><a href="playwright.Locator.html" class="tsd-signature-type tsd-kind-interface">Locator</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maskColor</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">omitBackground</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">path</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">quality</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">style</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;png&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;jpeg&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> 
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span></h5>
@@ -1455,6 +1534,13 @@ screenshots of high-dpi devices will be twice as large or even larger.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">style</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>Text of the stylesheet to apply while making the screenshot. This is where you can hide dynamic elements, make
+elements invisible or change their properties to help you creating repeatable screenshots. This stylesheet pierces
+the Shadow DOM and applies to the inner frames.</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li>
+<li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
 <div class="tsd-comment tsd-typography"><p>Maximum time in milliseconds. Defaults to <code>0</code> - no timeout. The default value can be changed via <code>actionTimeout</code>
 option in the config, or by using the
@@ -1470,13 +1556,16 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9914</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10168</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="scrollIntoViewIfNeeded" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>scroll<wbr/>Into<wbr/>View<wbr/>If<wbr/>Needed</span><a href="#scrollIntoViewIfNeeded" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="scrollIntoViewIfNeeded.scrollIntoViewIfNeeded-1"><span class="tsd-kind-call-signature">scroll<wbr/>Into<wbr/>View<wbr/>If<wbr/>Needed</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#scrollIntoViewIfNeeded.scrollIntoViewIfNeeded-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, then tries to scroll element into view, unless
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-scroll-into-view-if-needed">locator.scrollIntoViewIfNeeded([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, then tries to scroll element into view, unless
 it is completely visible as defined by
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">IntersectionObserver</a>&#39;s <code>ratio</code>.</p>
 <p>Throws when <code>elementHandle</code> does not point to an element
@@ -1499,13 +1588,16 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9993</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10258</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="selectOption" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>select<wbr/>Option</span><a href="#selectOption" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="selectOption.selectOption-1"><span class="tsd-kind-call-signature">select<wbr/>Option</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">values</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#selectOption.selectOption-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, waits until all specified options are present in
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-select-option">locator.selectOption(values[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, waits until all specified options are present in
 the <code>&lt;select&gt;</code> element and selects these options.</p>
 <p>If the target element is not a <code>&lt;select&gt;</code> element, this method throws an error. However, if the element is inside
 the <code>&lt;label&gt;</code> element that has an associated
@@ -1521,7 +1613,7 @@ instead.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">values</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Node</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Node</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">index</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">label</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">index</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">label</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></h5>
+<h5><span class="tsd-kind-parameter">values</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Node</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Node</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">index</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">label</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">index</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">label</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></h5>
 <div class="tsd-comment tsd-typography"><p>Options to select. If the <code>&lt;select&gt;</code> has the <code>multiple</code> attribute, all matching options are selected, otherwise
 only the first option matching one of the passed options is selected. String values are matching both values and
 labels. Option is considered matching if all specified properties match.</p>
@@ -1552,13 +1644,16 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10034</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10303</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="selectText" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>select<wbr/>Text</span><a href="#selectText" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="selectText.selectText-1"><span class="tsd-kind-call-signature">select<wbr/>Text</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#selectText.selectText-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, then focuses the element and selects all its
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-select-text">locator.selectText([options])</a> instead. Read
+more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method waits for <a href="https://playwright.dev/docs/actionability">actionability</a> checks, then focuses the element and selects all its
 text content.</p>
 <p>If the element is inside the <code>&lt;label&gt;</code> element that has an associated
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/control">control</a>, focuses and selects text in
@@ -1586,13 +1681,16 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10095</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10368</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setChecked" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Checked</span><a href="#setChecked" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="setChecked.setChecked-1"><span class="tsd-kind-call-signature">set<wbr/>Checked</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">checked</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#setChecked.setChecked-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method checks or unchecks an element by performing the following steps:</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-set-checked">locator.setChecked(checked[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method checks or unchecks an element by performing the following steps:</p>
 <ol>
 <li>Ensure that element is a checkbox or a radio input. If not, this method throws.</li>
 <li>If the element already has the right checked state, this method returns immediately.</li>
@@ -1656,13 +1754,16 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10127</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10404</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setInputFiles" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Input<wbr/>Files</span><a href="#setInputFiles" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="setInputFiles.setInputFiles-1"><span class="tsd-kind-call-signature">set<wbr/>Input<wbr/>Files</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">files</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#setInputFiles.setInputFiles-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Sets the value of the file input to these file paths or files. If some of the <code>filePaths</code> are relative paths, then
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-set-input-files">locator.setInputFiles(files[, options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Sets the value of the file input to these file paths or files. If some of the <code>filePaths</code> are relative paths, then
 they are resolved relative to the current working directory. For empty array, clears the selected files.</p>
 <p>This method expects <a href="playwright.ElementHandle.html" class="tsd-kind-interface">ElementHandle</a> to point to an
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">input element</a>. However, if the element is inside
@@ -1673,7 +1774,7 @@ the <code>&lt;label&gt;</code> element that has an associated
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">files</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">buffer</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">mimeType</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">buffer</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">mimeType</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></h5></li>
+<h5><span class="tsd-kind-parameter">files</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">buffer</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">mimeType</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">buffer</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">mimeType</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></h5></li>
 <li>
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">noWaitAfter</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> 
 <ul class="tsd-parameters">
@@ -1695,13 +1796,15 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10176</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10457</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="tap" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>tap</span><a href="#tap" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="tap.tap-1"><span class="tsd-kind-call-signature">tap</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#tap.tap-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method taps the element by performing the following steps:</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-tap">locator.tap([options])</a> instead. Read
+more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method taps the element by performing the following steps:</p>
 <ol>
 <li>Wait for <a href="https://playwright.dev/docs/actionability">actionability</a> checks on the element, unless <code>force</code> option is set.</li>
 <li>Scroll the element into view if needed.</li>
@@ -1765,18 +1868,21 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10239</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10523</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="textContent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>text<wbr/>Content</span><a href="#textContent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="textContent.textContent-1"><span class="tsd-kind-call-signature">text<wbr/>Content</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#textContent.textContent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns the <code>node.textContent</code>.</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-text-content">locator.textContent([options])</a> instead. Read
+more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>Returns the <code>node.textContent</code>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10286</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10574</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="type" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>type</span><a href="#type" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -1826,13 +1932,15 @@ to press keys one by one if there is special keyboard handling on the page - in 
 <a href="https://playwright.dev/docs/api/class-locator#locator-press-sequentially">locator.pressSequentially(text[, options])</a>.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10303</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10591</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="uncheck" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>uncheck</span><a href="#uncheck" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="uncheck.uncheck-1"><span class="tsd-kind-call-signature">uncheck</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#uncheck.uncheck-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>This method checks the element by performing the following steps:</p>
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use locator-based <a href="https://playwright.dev/docs/api/class-locator#locator-uncheck">locator.uncheck([options])</a>
+instead. Read more about <a href="https://playwright.dev/docs/locators">locators</a>.</p>
+<p>This method checks the element by performing the following steps:</p>
 <ol>
 <li>Ensure that element is a checkbox or a radio input. If not, this method throws. If the element is already
 unchecked, this method returns immediately.</li>
@@ -1892,7 +2000,7 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10342</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10633</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="waitForElementState" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>wait<wbr/>For<wbr/>Element<wbr/>State</span><a href="#waitForElementState" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -1903,9 +2011,8 @@ to <code>false</code>. Useful to wait until the element is ready for the action 
 pass. This method throws when the element is detached while waiting, unless waiting for the <code>&quot;hidden&quot;</code> state.</p>
 <ul>
 <li><code>&quot;visible&quot;</code> Wait until the element is <a href="https://playwright.dev/docs/actionability#visible">visible</a>.</li>
-<li><code>&quot;hidden&quot;</code> Wait until the element is <a href="https://playwright.dev/docs/actionability#visible">not visible</a> or
-<a href="https://playwright.dev/docs/actionability#attached">not attached</a>. Note that waiting for hidden does not throw when the element
-detaches.</li>
+<li><code>&quot;hidden&quot;</code> Wait until the element is <a href="https://playwright.dev/docs/actionability#visible">not visible</a> or not attached. Note that
+waiting for hidden does not throw when the element detaches.</li>
 <li><code>&quot;stable&quot;</code> Wait until the element is both <a href="https://playwright.dev/docs/actionability#visible">visible</a> and
 <a href="https://playwright.dev/docs/actionability#stable">stable</a>.</li>
 <li><code>&quot;enabled&quot;</code> Wait until the element is <a href="https://playwright.dev/docs/actionability#enabled">enabled</a>.</li>
@@ -1935,13 +2042,15 @@ or <a href="https://playwright.dev/docs/api/class-page#page-set-default-timeout"
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10399</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:10689</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="waitForSelector" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>wait<wbr/>For<wbr/>Selector</span><a href="#waitForSelector" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="waitForSelector.waitForSelector-1"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Selector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#waitForSelector.waitForSelector-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use web assertions that assert visibility or a locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-wait-for">locator.waitFor([options])</a> instead.</p>
+<p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
 <code>detached</code>.</p>
 <p>Wait for the <code>selector</code> relative to the element handle to satisfy <code>state</code> option (either appear/disappear from dom,
 or become visible/hidden). If at the moment of calling the method <code>selector</code> already satisfies the condition, the
@@ -1971,10 +2080,12 @@ instead.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9324</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9507</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForSelector.waitForSelector-2"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Selector</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#waitForSelector.waitForSelector-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use web assertions that assert visibility or a locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-wait-for">locator.waitFor([options])</a> instead.</p>
+<p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
 <code>detached</code>.</p>
 <p>Wait for the <code>selector</code> relative to the element handle to satisfy <code>state</code> option (either appear/disappear from dom,
 or become visible/hidden). If at the moment of calling the method <code>selector</code> already satisfies the condition, the
@@ -1999,10 +2110,12 @@ instead.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9349</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9535</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForSelector.waitForSelector-3"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Selector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#waitForSelector.waitForSelector-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use web assertions that assert visibility or a locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-wait-for">locator.waitFor([options])</a> instead.</p>
+<p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
 <code>detached</code>.</p>
 <p>Wait for the <code>selector</code> relative to the element handle to satisfy <code>state</code> option (either appear/disappear from dom,
 or become visible/hidden). If at the moment of calling the method <code>selector</code> already satisfies the condition, the
@@ -2032,10 +2145,12 @@ instead.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ElementHandleForTag</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9374</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9563</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForSelector.waitForSelector-4"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Selector</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">selector</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#waitForSelector.waitForSelector-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
+<div class="tsd-comment tsd-typography"><p><strong>NOTE</strong> Use web assertions that assert visibility or a locator-based
+<a href="https://playwright.dev/docs/api/class-locator#locator-wait-for">locator.waitFor([options])</a> instead.</p>
+<p>Returns element specified by selector when it satisfies <code>state</code> option. Returns <code>null</code> if waiting for <code>hidden</code> or
 <code>detached</code>.</p>
 <p>Wait for the <code>selector</code> relative to the element handle to satisfy <code>state</code> option (either appear/disappear from dom,
 or become visible/hidden). If at the moment of calling the method <code>selector</code> already satisfies the condition, the
@@ -2060,7 +2175,7 @@ instead.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.ElementHandle.html" class="tsd-signature-type tsd-kind-interface">ElementHandle</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">SVGElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9399</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:9591</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -2247,6 +2362,7 @@ instead.</p>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -2285,6 +2401,7 @@ instead.</p>
 <li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
 <li><a href="../functions/playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
+<li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/rdkafka.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>rdkafka</span></a></li>
 <li><a href="../modules/react_virtual_table.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>react-<wbr/>virtual-<wbr/>table</span></a></li>
 <li><a href="../modules/redis.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>redis</span></a></li>

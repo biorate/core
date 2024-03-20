@@ -40,7 +40,7 @@ events as if they were generated from a real keyboard.</p>
 <ul class="tsd-hierarchy">
 <li><span class="target">Keyboard</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:17778</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18174</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -92,7 +92,7 @@ use <a href="https://playwright.dev/docs/api/class-keyboard#keyboard-up">keyboar
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:17810</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18206</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="insertText" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>insert<wbr/>Text</span><a href="#insertText" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -115,7 +115,7 @@ case.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:17825</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18221</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="press" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>press</span><a href="#press" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -134,8 +134,8 @@ etc.</p>
 <p>Holding down <code>Shift</code> will type the text that corresponds to the <code>key</code> in the upper case.</p>
 <p>If <code>key</code> is a single character, it is case-sensitive, so the values <code>a</code> and <code>A</code> will generate different respective
 texts.</p>
-<p>Shortcuts such as <code>key: &quot;Control+o&quot;</code> or <code>key: &quot;Control+Shift+T&quot;</code> are supported as well. When specified with the
-modifier, modifier is pressed and being held while the subsequent key is being pressed.</p>
+<p>Shortcuts such as <code>key: &quot;Control+o&quot;</code>, <code>key: &quot;Control++</code> or <code>key: &quot;Control+Shift+T&quot;</code> are supported as well. When
+specified with the modifier, modifier is pressed and being held while the subsequent key is being pressed.</p>
 <p><strong>Usage</strong></p>
 <pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">page</span><span class="hl-1"> = </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">browser</span><span class="hl-1">.</span><span class="hl-6">newPage</span><span class="hl-1">();</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">goto</span><span class="hl-1">(</span><span class="hl-3">&#39;https://keycode.info&#39;</span><span class="hl-1">);</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-2">keyboard</span><span class="hl-1">.</span><span class="hl-6">press</span><span class="hl-1">(</span><span class="hl-3">&#39;A&#39;</span><span class="hl-1">);</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">screenshot</span><span class="hl-1">({ </span><span class="hl-2">path:</span><span class="hl-1"> </span><span class="hl-3">&#39;A.png&#39;</span><span class="hl-1"> });</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-2">keyboard</span><span class="hl-1">.</span><span class="hl-6">press</span><span class="hl-1">(</span><span class="hl-3">&#39;ArrowLeft&#39;</span><span class="hl-1">);</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">screenshot</span><span class="hl-1">({ </span><span class="hl-2">path:</span><span class="hl-1"> </span><span class="hl-3">&#39;ArrowLeft.png&#39;</span><span class="hl-1"> });</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-2">keyboard</span><span class="hl-1">.</span><span class="hl-6">press</span><span class="hl-1">(</span><span class="hl-3">&#39;Shift+O&#39;</span><span class="hl-1">);</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">screenshot</span><span class="hl-1">({ </span><span class="hl-2">path:</span><span class="hl-1"> </span><span class="hl-3">&#39;O.png&#39;</span><span class="hl-1"> });</span><br/><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">browser</span><span class="hl-1">.</span><span class="hl-6">close</span><span class="hl-1">();</span>
 </code><button>Copy</button></pre>
@@ -160,7 +160,7 @@ modifier, modifier is pressed and being held while the subsequent key is being p
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:17869</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18265</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="type" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>type</span><a href="#type" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -197,7 +197,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:17900</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18296</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="up" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>up</span><a href="#up" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -215,7 +215,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:17911</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright-core/types/types.d.ts:18307</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -363,6 +363,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -401,6 +402,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
 <li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
 <li><a href="../functions/playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
+<li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/rdkafka.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>rdkafka</span></a></li>
 <li><a href="../modules/react_virtual_table.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>react-<wbr/>virtual-<wbr/>table</span></a></li>
 <li><a href="../modules/redis.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>redis</span></a></li>

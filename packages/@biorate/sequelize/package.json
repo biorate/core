@@ -3,11 +3,6 @@
   "version": "1.54.0",
   "description": "Sequelize ORM connector",
   "main": "dist",
-  "scripts": {
-    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biorate/core.git",

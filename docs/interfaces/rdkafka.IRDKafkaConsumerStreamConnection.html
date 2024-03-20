@@ -23,7 +23,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">IRDKafkaConsumerStreamConnection</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/9e9a6f5f/packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts#L20">packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts:20</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/biorate/core/blob/0a213f5c/packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts#L20">packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts:20</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -55,28 +55,38 @@
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="_captureRejectionSymbol_" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>[capture<wbr/>Rejection<wbr/>Symbol]</span><a href="#_captureRejectionSymbol_" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="_captureRejectionSymbol_._captureRejectionSymbol_-1"><span class="tsd-kind-call-signature">[capture<wbr/>Rejection<wbr/>Symbol]</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">error</span>, <span class="tsd-kind-parameter">event</span>, <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#_captureRejectionSymbol_._captureRejectionSymbol_-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="_captureRejectionSymbol_._captureRejectionSymbol_-1"><span class="tsd-kind-call-signature">[capture<wbr/>Rejection<wbr/>Symbol]</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">error</span>, <span class="tsd-kind-parameter">event</span>, <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#_captureRejectionSymbol_._captureRejectionSymbol_-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">error</span>: <span class="tsd-signature-type ">Error</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">event</span>: <span class="tsd-signature-type">string</span></h5></li>
+<h5><span class="tsd-kind-parameter">event</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5></li>
 <li>
-<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span>: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5><code class="tsd-tag ts-flagRest">Rest</code> </li></ul></div>
+<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span>: <span class="tsd-signature-type ">AnyRest</span></h5><code class="tsd-tag ts-flagRest">Rest</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Inherited from EventEmitter.[captureRejectionSymbol]</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:78</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:94</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="addListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add<wbr/>Listener</span><a href="#addListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="addListener.addListener-1"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#addListener.addListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="addListener.addListener-1"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#addListener.addListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Alias for <code>emitter.on(eventName, listener)</code>.</p>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -101,11 +111,11 @@
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.addListener</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:374</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:390</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="emit" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>emit</span><a href="#emit" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="emit.emit-1"><span class="tsd-kind-call-signature">emit</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><a href="#emit.emit-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="emit.emit-1"><span class="tsd-kind-call-signature">emit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><a href="#emit.emit-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Synchronously calls each of the listeners registered for the event named<code>eventName</code>, in the order they were registered, passing the supplied arguments
 to each.</p>
@@ -113,20 +123,25 @@ to each.</p>
 <pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">EventEmitter</span><span class="hl-1"> = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-3">&#39;events&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">myEmitter</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">EventEmitter</span><span class="hl-1">();</span><br/><br/><span class="hl-8">// First listener</span><br/><span class="hl-2">myEmitter</span><span class="hl-1">.</span><span class="hl-6">on</span><span class="hl-1">(</span><span class="hl-3">&#39;event&#39;</span><span class="hl-1">, </span><span class="hl-4">function</span><span class="hl-1"> </span><span class="hl-6">firstListener</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;Helloooo! first listener&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">});</span><br/><span class="hl-8">// Second listener</span><br/><span class="hl-2">myEmitter</span><span class="hl-1">.</span><span class="hl-6">on</span><span class="hl-1">(</span><span class="hl-3">&#39;event&#39;</span><span class="hl-1">, </span><span class="hl-4">function</span><span class="hl-1"> </span><span class="hl-6">secondListener</span><span class="hl-1">(</span><span class="hl-2">arg1</span><span class="hl-1">, </span><span class="hl-2">arg2</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">`event with parameters </span><span class="hl-4">${</span><span class="hl-2">arg1</span><span class="hl-4">}</span><span class="hl-3">, </span><span class="hl-4">${</span><span class="hl-2">arg2</span><span class="hl-4">}</span><span class="hl-3"> in second listener`</span><span class="hl-1">);</span><br/><span class="hl-1">});</span><br/><span class="hl-8">// Third listener</span><br/><span class="hl-2">myEmitter</span><span class="hl-1">.</span><span class="hl-6">on</span><span class="hl-1">(</span><span class="hl-3">&#39;event&#39;</span><span class="hl-1">, </span><span class="hl-4">function</span><span class="hl-1"> </span><span class="hl-6">thirdListener</span><span class="hl-1">(...</span><span class="hl-2">args</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">parameters</span><span class="hl-1"> = </span><span class="hl-2">args</span><span class="hl-1">.</span><span class="hl-6">join</span><span class="hl-1">(</span><span class="hl-3">&#39;, &#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">`event with parameters </span><span class="hl-4">${</span><span class="hl-2">parameters</span><span class="hl-4">}</span><span class="hl-3"> in third listener`</span><span class="hl-1">);</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-2">myEmitter</span><span class="hl-1">.</span><span class="hl-6">listeners</span><span class="hl-1">(</span><span class="hl-3">&#39;event&#39;</span><span class="hl-1">));</span><br/><br/><span class="hl-2">myEmitter</span><span class="hl-1">.</span><span class="hl-6">emit</span><span class="hl-1">(</span><span class="hl-3">&#39;event&#39;</span><span class="hl-1">, </span><span class="hl-7">1</span><span class="hl-1">, </span><span class="hl-7">2</span><span class="hl-1">, </span><span class="hl-7">3</span><span class="hl-1">, </span><span class="hl-7">4</span><span class="hl-1">, </span><span class="hl-7">5</span><span class="hl-1">);</span><br/><br/><span class="hl-8">// Prints:</span><br/><span class="hl-8">// [</span><br/><span class="hl-8">//   [Function: firstListener],</span><br/><span class="hl-8">//   [Function: secondListener],</span><br/><span class="hl-8">//   [Function: thirdListener]</span><br/><span class="hl-8">// ]</span><br/><span class="hl-8">// Helloooo! first listener</span><br/><span class="hl-8">// event with parameters 1, 2 in second listener</span><br/><span class="hl-8">// event with parameters 1, 2, 3, 4, 5 in third listener</span>
 </code><button>Copy</button></pre>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">eventName</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5></li>
 <li>
-<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span>: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5><code class="tsd-tag ts-flagRest">Rest</code> </li></ul></div>
+<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span>: <span class="tsd-signature-type ">AnyRest</span></h5><code class="tsd-tag ts-flagRest">Rest</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 <div class="tsd-comment tsd-typography">
 <h4>Since</h4><p>v0.1.26</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.emit</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:630</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:646</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="eventNames" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>event<wbr/>Names</span><a href="#eventNames" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -143,7 +158,7 @@ listeners. The values in the array are strings or <code>Symbol</code>s.</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.eventNames</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:689</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:705</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="getMaxListeners" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Max<wbr/>Listeners</span><a href="#getMaxListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -158,37 +173,49 @@ set by <code>emitter.setMaxListeners(n)</code> or defaults to defaultMaxListener
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.getMaxListeners</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:546</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:562</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="listenerCount" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>listener<wbr/>Count</span><a href="#listenerCount" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="listenerCount.listenerCount-1"><span class="tsd-kind-call-signature">listener<wbr/>Count</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><a href="#listenerCount.listenerCount-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="listenerCount.listenerCount-1"><span class="tsd-kind-call-signature">listener<wbr/>Count</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><a href="#listenerCount.listenerCount-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns the number of listeners listening to the event named <code>eventName</code>.</p>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5><span class="tsd-kind-parameter">eventName</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
 <div class="tsd-comment tsd-typography"><p>The name of the event being listened for</p>
-</div></li></ul></div>
+</div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">listener</span>: <span class="tsd-signature-type ">Function</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 <div class="tsd-comment tsd-typography">
 <h4>Since</h4><p>v3.2.0</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.listenerCount</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:636</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:652</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="listeners" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>listeners</span><a href="#listeners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="listeners.listeners-1"><span class="tsd-kind-call-signature">listeners</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Function</span><span class="tsd-signature-symbol">[]</span><a href="#listeners.listeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="listeners.listeners-1"><span class="tsd-kind-call-signature">listeners</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Function</span><span class="tsd-signature-symbol">[]</span><a href="#listeners.listeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns a copy of the array of listeners for the event named <code>eventName</code>.</p>
 <pre><code class="language-js"><span class="hl-2">server</span><span class="hl-1">.</span><span class="hl-6">on</span><span class="hl-1">(</span><span class="hl-3">&#39;connection&#39;</span><span class="hl-1">, (</span><span class="hl-2">stream</span><span class="hl-1">) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;someone connected!&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">});</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-2">util</span><span class="hl-1">.</span><span class="hl-6">inspect</span><span class="hl-1">(</span><span class="hl-2">server</span><span class="hl-1">.</span><span class="hl-6">listeners</span><span class="hl-1">(</span><span class="hl-3">&#39;connection&#39;</span><span class="hl-1">)));</span><br/><span class="hl-8">// Prints: [ [Function] ]</span>
 </code><button>Copy</button></pre>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -200,14 +227,19 @@ set by <code>emitter.setMaxListeners(n)</code> or defaults to defaultMaxListener
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.listeners</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:559</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:575</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="off" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>off</span><a href="#off" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="off.off-1"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#off.off-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="off.off-1"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#off.off-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Alias for <code>emitter.removeListener()</code>.</p>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -232,11 +264,11 @@ set by <code>emitter.setMaxListeners(n)</code> or defaults to defaultMaxListener
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.off</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:519</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:535</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="on" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on</span><a href="#on" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="on.on-1"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#on.on-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="on.on-1"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#on.on-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds the <code>listener</code> function to the end of the listeners array for the
 event named <code>eventName</code>. No checks are made to see if the <code>listener</code> has
@@ -250,6 +282,11 @@ event listener to the beginning of the listeners array.</p>
 <pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">myEE</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">EventEmitter</span><span class="hl-1">();</span><br/><span class="hl-2">myEE</span><span class="hl-1">.</span><span class="hl-6">on</span><span class="hl-1">(</span><span class="hl-3">&#39;foo&#39;</span><span class="hl-1">, () </span><span class="hl-4">=&gt;</span><span class="hl-1"> </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;a&#39;</span><span class="hl-1">));</span><br/><span class="hl-2">myEE</span><span class="hl-1">.</span><span class="hl-6">prependListener</span><span class="hl-1">(</span><span class="hl-3">&#39;foo&#39;</span><span class="hl-1">, () </span><span class="hl-4">=&gt;</span><span class="hl-1"> </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;b&#39;</span><span class="hl-1">));</span><br/><span class="hl-2">myEE</span><span class="hl-1">.</span><span class="hl-6">emit</span><span class="hl-1">(</span><span class="hl-3">&#39;foo&#39;</span><span class="hl-1">);</span><br/><span class="hl-8">// Prints:</span><br/><span class="hl-8">//   b</span><br/><span class="hl-8">//   a</span>
 </code><button>Copy</button></pre>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -278,11 +315,11 @@ event listener to the beginning of the listeners array.</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.on</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:405</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:421</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="once" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>once</span><a href="#once" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="once.once-1"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#once.once-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="once.once-1"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#once.once-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds a <strong>one-time</strong><code>listener</code> function for the event named <code>eventName</code>. The
 next time <code>eventName</code> is triggered, this listener is removed and then invoked.</p>
@@ -294,6 +331,11 @@ event listener to the beginning of the listeners array.</p>
 <pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">myEE</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">EventEmitter</span><span class="hl-1">();</span><br/><span class="hl-2">myEE</span><span class="hl-1">.</span><span class="hl-6">once</span><span class="hl-1">(</span><span class="hl-3">&#39;foo&#39;</span><span class="hl-1">, () </span><span class="hl-4">=&gt;</span><span class="hl-1"> </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;a&#39;</span><span class="hl-1">));</span><br/><span class="hl-2">myEE</span><span class="hl-1">.</span><span class="hl-6">prependOnceListener</span><span class="hl-1">(</span><span class="hl-3">&#39;foo&#39;</span><span class="hl-1">, () </span><span class="hl-4">=&gt;</span><span class="hl-1"> </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;b&#39;</span><span class="hl-1">));</span><br/><span class="hl-2">myEE</span><span class="hl-1">.</span><span class="hl-6">emit</span><span class="hl-1">(</span><span class="hl-3">&#39;foo&#39;</span><span class="hl-1">);</span><br/><span class="hl-8">// Prints:</span><br/><span class="hl-8">//   b</span><br/><span class="hl-8">//   a</span>
 </code><button>Copy</button></pre>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -322,11 +364,11 @@ event listener to the beginning of the listeners array.</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.once</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:434</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:450</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="prependListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>prepend<wbr/>Listener</span><a href="#prependListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-1"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#prependListener.prependListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-1"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#prependListener.prependListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds the <code>listener</code> function to the <em>beginning</em> of the listeners array for the
 event named <code>eventName</code>. No checks are made to see if the <code>listener</code> has
@@ -336,6 +378,11 @@ times.</p>
 </code><button>Copy</button></pre>
 <p>Returns a reference to the <code>EventEmitter</code>, so that calls can be chained.</p>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -364,11 +411,11 @@ times.</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.prependListener</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:654</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:670</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="prependOnceListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>prepend<wbr/>Once<wbr/>Listener</span><a href="#prependOnceListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="prependOnceListener.prependOnceListener-1"><span class="tsd-kind-call-signature">prepend<wbr/>Once<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#prependOnceListener.prependOnceListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="prependOnceListener.prependOnceListener-1"><span class="tsd-kind-call-signature">prepend<wbr/>Once<wbr/>Listener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#prependOnceListener.prependOnceListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds a <strong>one-time</strong><code>listener</code> function for the event named <code>eventName</code> to the_beginning_ of the listeners array. The next time <code>eventName</code> is triggered, this
 listener is removed, and then invoked.</p>
@@ -376,6 +423,11 @@ listener is removed, and then invoked.</p>
 </code><button>Copy</button></pre>
 <p>Returns a reference to the <code>EventEmitter</code>, so that calls can be chained.</p>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -404,17 +456,22 @@ listener is removed, and then invoked.</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.prependOnceListener</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:670</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:686</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="rawListeners" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>raw<wbr/>Listeners</span><a href="#rawListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="rawListeners.rawListeners-1"><span class="tsd-kind-call-signature">raw<wbr/>Listeners</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Function</span><span class="tsd-signature-symbol">[]</span><a href="#rawListeners.rawListeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="rawListeners.rawListeners-1"><span class="tsd-kind-call-signature">raw<wbr/>Listeners</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Function</span><span class="tsd-signature-symbol">[]</span><a href="#rawListeners.rawListeners-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns a copy of the array of listeners for the event named <code>eventName</code>,
 including any wrappers (such as those created by <code>.once()</code>).</p>
 <pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">emitter</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">EventEmitter</span><span class="hl-1">();</span><br/><span class="hl-2">emitter</span><span class="hl-1">.</span><span class="hl-6">once</span><span class="hl-1">(</span><span class="hl-3">&#39;log&#39;</span><span class="hl-1">, () </span><span class="hl-4">=&gt;</span><span class="hl-1"> </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;log once&#39;</span><span class="hl-1">));</span><br/><br/><span class="hl-8">// Returns a new Array with a function `onceWrapper` which has a property</span><br/><span class="hl-8">// `listener` which contains the original listener bound above</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">listeners</span><span class="hl-1"> = </span><span class="hl-2">emitter</span><span class="hl-1">.</span><span class="hl-6">rawListeners</span><span class="hl-1">(</span><span class="hl-3">&#39;log&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">logFnWrapper</span><span class="hl-1"> = </span><span class="hl-2">listeners</span><span class="hl-1">[</span><span class="hl-7">0</span><span class="hl-1">];</span><br/><br/><span class="hl-8">// Logs &quot;log once&quot; to the console and does not unbind the `once` event</span><br/><span class="hl-2">logFnWrapper</span><span class="hl-1">.</span><span class="hl-6">listener</span><span class="hl-1">();</span><br/><br/><span class="hl-8">// Logs &quot;log once&quot; to the console and removes the listener</span><br/><span class="hl-6">logFnWrapper</span><span class="hl-1">();</span><br/><br/><span class="hl-2">emitter</span><span class="hl-1">.</span><span class="hl-6">on</span><span class="hl-1">(</span><span class="hl-3">&#39;log&#39;</span><span class="hl-1">, () </span><span class="hl-4">=&gt;</span><span class="hl-1"> </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;log persistently&#39;</span><span class="hl-1">));</span><br/><span class="hl-8">// Will return a new Array with a single function bound by `.on()` above</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">newListeners</span><span class="hl-1"> = </span><span class="hl-2">emitter</span><span class="hl-1">.</span><span class="hl-6">rawListeners</span><span class="hl-1">(</span><span class="hl-3">&#39;log&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-8">// Logs &quot;log persistently&quot; twice</span><br/><span class="hl-2">newListeners</span><span class="hl-1">[</span><span class="hl-7">0</span><span class="hl-1">]();</span><br/><span class="hl-2">emitter</span><span class="hl-1">.</span><span class="hl-6">emit</span><span class="hl-1">(</span><span class="hl-3">&#39;log&#39;</span><span class="hl-1">);</span>
 </code><button>Copy</button></pre>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -426,7 +483,7 @@ including any wrappers (such as those created by <code>.once()</code>).</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.rawListeners</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:589</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:605</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="removeAllListeners" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>remove<wbr/>All<wbr/>Listeners</span><a href="#removeAllListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -449,11 +506,11 @@ component or module (e.g. sockets or file streams).</p>
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.removeAllListeners</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:530</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:546</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="removeListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>remove<wbr/>Listener</span><a href="#removeListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-<li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-1"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#removeListener.removeListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-1"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">eventName</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rdkafka.IRDKafkaConsumerStreamConnection.html" class="tsd-signature-type tsd-kind-interface">IRDKafkaConsumerStreamConnection</a><a href="#removeListener.removeListener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes the specified <code>listener</code> from the listener array for the event named<code>eventName</code>.</p>
 <pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-6">callback</span><span class="hl-1"> = (</span><span class="hl-2">stream</span><span class="hl-1">) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">&#39;someone connected!&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">};</span><br/><span class="hl-2">server</span><span class="hl-1">.</span><span class="hl-6">on</span><span class="hl-1">(</span><span class="hl-3">&#39;connection&#39;</span><span class="hl-1">, </span><span class="hl-2">callback</span><span class="hl-1">);</span><br/><span class="hl-8">// ...</span><br/><span class="hl-2">server</span><span class="hl-1">.</span><span class="hl-6">removeListener</span><span class="hl-1">(</span><span class="hl-3">&#39;connection&#39;</span><span class="hl-1">, </span><span class="hl-2">callback</span><span class="hl-1">);</span>
@@ -479,6 +536,11 @@ recently added instance. In the example the <code>once(&#39;ping&#39;)</code>lis
 </code><button>Copy</button></pre>
 <p>Returns a reference to the <code>EventEmitter</code>, so that calls can be chained.</p>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">K</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -503,7 +565,7 @@ recently added instance. In the example the <code>once(&#39;ping&#39;)</code>lis
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.removeListener</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:514</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:530</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="setMaxListeners" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Max<wbr/>Listeners</span><a href="#setMaxListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -526,7 +588,7 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 </div><aside class="tsd-sources">
 <p>Inherited from EventEmitter.setMaxListeners</p>
 <ul>
-<li>Defined in node_modules/@types/node/events.d.ts:540</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/@types/node/events.d.ts:556</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="subscribe" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>subscribe</span><a href="#subscribe" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -550,7 +612,7 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/9e9a6f5f/packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts#L21">packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts:21</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/0a213f5c/packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts#L21">packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts:21</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="unsubscribe" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>unsubscribe</span><a href="#unsubscribe" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -558,7 +620,7 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/9e9a6f5f/packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts#L23">packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts:23</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/biorate/core/blob/0a213f5c/packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts#L23">packages/@biorate/rdkafka/src/interfaces/consumer-stream.ts:23</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -630,6 +692,7 @@ modified for this specific <code>EventEmitter</code> instance. The value can be 
 <li><a href="../modules/pg.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>pg</span></a></li>
 <li><a href="../modules/playwright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>playwright</span></a></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
+<li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li>
 <details class="tsd-index-accordion" open data-key="rdkafka"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg><a href="../modules/rdkafka.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>rdkafka</span></a></summary>
 <div class="tsd-accordion-details">

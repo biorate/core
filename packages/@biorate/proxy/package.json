@@ -1,0 +1,35 @@
+{
+  "name": "@biorate/proxy",
+  "version": "1.54.0",
+  "description": "Proxy connector",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/proxy"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "proxy",
+    "patroni",
+    "connector"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/axios": "1.59.0",
+    "@biorate/config": "1.54.0",
+    "@biorate/connector": "1.54.0",
+    "@biorate/errors": "1.28.0",
+    "@biorate/inversion": "1.54.0",
+    "@biorate/tools": "1.28.0"
+  }
+}
