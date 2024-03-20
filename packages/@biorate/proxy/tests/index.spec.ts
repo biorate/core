@@ -16,6 +16,4 @@ describe('@biorate/proxy', function () {
       done();
     });
   });
-
-  it('connection', (done) => {});
 });

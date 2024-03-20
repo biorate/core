@@ -46,6 +46,10 @@ container.bind<ProxyConnector>(ProxyConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
+  ProxyStats: {
+    enabled: true,
+    port: 8765,
+  },
   Proxy: [
     {
       retry: 10,

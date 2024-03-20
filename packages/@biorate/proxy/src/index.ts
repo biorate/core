@@ -128,22 +128,27 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
    * @description stats server enable
    */
   protected stats() {
-    const { enabled, port, host } = this.config.get<{
+    let { enabled, port, host } = this.config.get<{
       enabled?: boolean;
       port: number;
       host?: string;
     }>('ProxyStats', {
-      enabled: true,
-      port: 10000,
+      enabled: false,
+      port: 0,
       host: 'localhost',
     });
     if (!enabled) return;
+    port = port ?? 0;
     const template = readFileSync(path.create(__dirname, '..', 'index.pug'), 'utf-8');
     const compiled = compile(template);
     const configs = this.config.get<IProxyConfig[]>(this.namespace, []);
-    createServer((req, res) => {
+    const server = createServer((req, res) => {
       res.end(compiled(this.#getStatData(configs)));
-    }).listen({ port, host });
+    }).listen({ port: port ?? 0, host });
+    server.on('listening', () => {
+      const attr = <{ address: string; port: number }>server.address();
+      console.debug(`ProxyStats server listened on [${attr.address}:${port}]`);
+    });
   }
   /**
    * @description Get stat data
