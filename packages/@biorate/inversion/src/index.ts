@@ -76,10 +76,16 @@ export function Core<T extends new (...any: any[]) => any>(Class?: T) {
   @injectable()
   class Core extends Class {
     public async $run(root = this, parent = null) {
+      const start = Date.now();
       await lifecycled(
         root ? root : this,
         (object) => {
-          $Core.log?.info?.(`[${object.constructor.name}] initialized`);
+          $Core.log?.info?.(
+            `[${object.constructor.name}] initialized [${(
+              (Date.now() - start) /
+              1000
+            ).toFixed(2)}s]`,
+          );
         },
         (object) => {
           $Core.log?.info?.(`[${object.constructor.name}] destructed!`);
