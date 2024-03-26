@@ -1,6 +1,6 @@
 {
   "name": "@biorate/proxy",
-  "version": "1.65.3",
+  "version": "1.65.4",
   "description": "Proxy connector",
   "main": "dist",
   "scripts": {
@@ -25,11 +25,11 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/axios": "1.59.0",
-    "@biorate/config": "1.54.0",
-    "@biorate/connector": "1.54.0",
+    "@biorate/axios": "1.65.4",
+    "@biorate/config": "1.65.4",
+    "@biorate/connector": "1.65.4",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.54.0",
+    "@biorate/inversion": "1.65.4",
     "@biorate/tools": "1.28.0",
     "pug": "^3.0.2"
   },

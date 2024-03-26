@@ -1,6 +1,6 @@
 {
   "name": "@biorate/sequelize",
-  "version": "1.64.0",
+  "version": "1.65.4",
   "description": "Sequelize ORM connector",
   "main": "dist",
   "repository": {
@@ -19,10 +19,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.54.0",
-    "@biorate/connector": "1.54.0",
+    "@biorate/config": "1.65.4",
+    "@biorate/connector": "1.65.4",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.54.0",
+    "@biorate/inversion": "1.65.4",
     "sequelize": "^6.19.0",
     "sequelize-typescript": "^2.1.3"
   },

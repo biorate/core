@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mssql",
-  "version": "1.54.0",
+  "version": "1.65.4",
   "description": "Mssql raw connector",
   "main": "dist",
   "scripts": {
@@ -24,10 +24,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.54.0",
-    "@biorate/connector": "1.54.0",
+    "@biorate/config": "1.65.4",
+    "@biorate/connector": "1.65.4",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.54.0",
+    "@biorate/inversion": "1.65.4",
     "@biorate/tools": "1.28.0",
     "mssql": "^9.0.1"
   },

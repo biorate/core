@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.65.4](https://github.com/biorate/core/compare/v1.65.3...v1.65.4) (2024-03-26)
+
+### Bug Fixes
+
+- **inversion:** init time ([fd92a04](https://github.com/biorate/core/commit/fd92a045947a2ff3aff0a78c58ab0274ed10cf7c))
+
 ## [1.65.3](https://github.com/biorate/core/compare/v1.65.2...v1.65.3) (2024-03-20)
 
 ### Bug Fixes
