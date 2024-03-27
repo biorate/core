@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "1.65.6",
+  "version": "1.65.7",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {
@@ -36,7 +36,7 @@
     "@biorate/kafkajs": "1.65.4",
     "@biorate/minio": "1.65.4",
     "@biorate/mongodb": "1.65.4",
-    "@biorate/sequelize": "1.65.6",
+    "@biorate/sequelize": "1.65.7",
     "@biorate/tools": "1.28.0",
     "@biorate/vault": "1.65.4"
   },

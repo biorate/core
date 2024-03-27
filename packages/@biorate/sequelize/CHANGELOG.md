@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.65.7](https://github.com/biorate/core/compare/v1.65.6...v1.65.7) (2024-03-27)
+
+### Bug Fixes
+
+- **sequelize:** export sequalize ([cb6210c](https://github.com/biorate/core/commit/cb6210cdc1cb753d40e354ec7328a3656666d81a))
+
 ## [1.65.6](https://github.com/biorate/core/compare/v1.65.5...v1.65.6) (2024-03-27)
 
 ### Bug Fixes
