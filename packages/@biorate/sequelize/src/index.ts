@@ -9,7 +9,13 @@ import { ISequelizeConfig, ISequelizeConnection, IModels } from './interfaces';
 export * from './errors';
 export * from './interfaces';
 export * from 'sequelize-typescript';
-export * as sequelize from 'sequelize';
+export {
+  QueryTypes,
+  QueryOptions,
+  QueryOptionsWithType,
+  Transaction,
+  TransactionOptions,
+} from 'sequelize';
 
 /**
  * @description Sequelize ORM connector
