@@ -6,6 +6,7 @@ Proxy connector
 
 - connection manager for simple proxy with/without http liveness probe
 - patroni compatible
+- stats page
 
 ### Examples:
 
