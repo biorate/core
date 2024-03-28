@@ -143,6 +143,7 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
     const compiled = compile(template);
     const configs = this.config.get<IProxyConfig[]>(this.namespace, []);
     const server = createServer((req, res) => {
+      res.setHeader('content-type', 'text/html; charset=UTF-8');
       res.end(compiled(this.#getStatData(configs)));
     }).listen({ port: port ?? 0, host });
     server.on('listening', () => {
