@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.65.9](https://github.com/biorate/core/compare/v1.65.8...v1.65.9) (2024-04-16)
+
+### Bug Fixes
+
+- **proxy:** typo errors ([8232afa](https://github.com/biorate/core/commit/8232afa31a7c1aa606e1efe70aa67a03e1ba9b0d))
+
 ## [1.65.4](https://github.com/biorate/core/compare/v1.65.3...v1.65.4) (2024-03-26)
 
 **Note:** Version bump only for package @biorate/rdkafka
