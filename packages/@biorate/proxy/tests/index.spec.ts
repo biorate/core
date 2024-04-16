@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { root, Root } from './__mocks__';
 
 describe('@biorate/proxy', function () {
-  this.timeout(Infinity);
+  this.timeout(30e3);
 
   it('connection', async () => {
     await root.$run();

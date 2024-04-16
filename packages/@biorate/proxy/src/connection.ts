@@ -23,9 +23,9 @@ export class ProxyConnection {
 
   protected client: IClientOption;
 
-  protected writed = 0;
+  protected write = 0;
 
-  protected readed = 0;
+  protected read = 0;
 
   protected constructor(config: IProxyConfig) {
     this.config = config;
@@ -38,8 +38,8 @@ export class ProxyConnection {
       client.connect(this.client.address);
       client.pipe(socket);
       socket.pipe(client);
-      client.on('data', (data) => (this.readed += Buffer.byteLength(data)));
-      socket.on('data', (data) => (this.writed += Buffer.byteLength(data)));
+      client.on('data', (data) => (this.read += Buffer.byteLength(data)));
+      socket.on('data', (data) => (this.write += Buffer.byteLength(data)));
     });
     if (this.config.server.address.path) {
       try {
@@ -72,8 +72,8 @@ export class ProxyConnection {
         if (status !== 200) continue;
         if (this.client === client) break w;
         this.client = client;
-        this.readed = 0;
-        this.writed = 0;
+        this.read = 0;
+        this.write = 0;
         console.debug(
           `Proxy connection selected: %s:%s`,
           client.address.host,
@@ -94,6 +94,6 @@ export class ProxyConnection {
   }
 
   public get stat() {
-    return { writed: this.writed, readed: this.readed };
+    return { write: this.write, read: this.read };
   }
 }

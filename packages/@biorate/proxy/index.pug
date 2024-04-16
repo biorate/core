@@ -65,8 +65,8 @@ html(lang="en")
           th(scope="col") Proxy host
           th(scope="col") Backend host
           th(scope="col") Active
-          th(scope="col") Writed
-          th(scope="col") Readed
+          th(scope="col") Write
+          th(scope="col") Read
       tbody
         each row in rows
           tr
@@ -74,13 +74,13 @@ html(lang="en")
             th(scope="row") #{row.proxyHost}
             th(scope="row") #{row.backendHost}
             th(scope="row" class=row.active ? 'active' : 'inactive') #{row.active}
-            th(scope="row") #{row.writed}
-            th(scope="row") #{row.readed}
+            th(scope="row") #{row.write}
+            th(scope="row") #{row.read}
       tfoot
         tr
           th(scope="col") Connection
           th(scope="col") Proxy host
           th(scope="col") Backend host
           th(scope="col") Active
-          th(scope="col") Writed
-          th(scope="col") Readed
+          th(scope="col") Write
+          th(scope="col") Read

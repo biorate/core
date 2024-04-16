@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { KafkaConsumer, ConsumerStream, Message } from 'node-rdkafka';
+import { KafkaConsumer, ConsumerStream, Message, CODES } from 'node-rdkafka';
 import { timer } from '@biorate/tools';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
 import { EventsConsumerStream } from '../enums';
@@ -38,6 +38,8 @@ export class RDKafkaConsumerStreamConnection
   })
   protected histogram: Histogram;
 
+  protected assignment: { topic: string; partition: number }[] = [];
+
   protected get buffer() {
     return this.config.buffer ?? 100;
   }
@@ -58,7 +60,27 @@ export class RDKafkaConsumerStreamConnection
   public subscribe(handler: (message: Message | Message[]) => Promise<void>) {
     if (this.handler) throw new RDKafkaConsumerStreamAlreadySubscribedError();
     this.stream = KafkaConsumer.createReadStream(
-      this.config.global,
+      {
+        rebalance_cb: (
+          err: Error & { code: number },
+          assignment: { topic: string; partition: number }[],
+        ) => {
+          this.assignment.length = 0;
+          if (err.code === CODES.ERRORS.ERR__ASSIGN_PARTITIONS) {
+            this.assignment = assignment;
+            // Note: this can throw when you are disconnected. Take care and wrap it in
+            // a try catch if that matters to you
+            this.stream.consumer.assign(assignment);
+          } else if (err.code === CODES.ERRORS.ERR__REVOKE_PARTITIONS) {
+            // Same as above
+            this.stream.consumer.unassign();
+          } else {
+            // We had a real error
+            throw err;
+          }
+        },
+        ...this.config.global,
+      },
       this.config.topic,
       this.config.stream,
     );

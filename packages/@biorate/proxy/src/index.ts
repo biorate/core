@@ -162,15 +162,15 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
         backendHost: string;
         proxyHost: string;
         active: boolean;
-        writed: number;
-        readed: number;
+        write: number;
+        read: number;
       }[];
     } = { rows: [] };
     for (const config of configs) {
       for (const client of config.clients) {
         const connection = this.get(config.name);
         const isActive = connection ? connection.isActive(client) : false;
-        const stat = isActive ? connection.stat : { writed: 0, readed: 0 };
+        const stat = isActive ? connection.stat : { write: 0, read: 0 };
         locals.rows.push({
           connection: config.name,
           proxyHost:

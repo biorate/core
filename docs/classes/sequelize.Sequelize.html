@@ -1681,7 +1681,7 @@ string to be escaped, use <code>sequelize.literal</code>.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptions</span></h5>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptions.html" class="tsd-signature-type tsd-kind-interface">QueryOptions</a></h5>
 <div class="tsd-comment tsd-typography"><p>Query Options for authentication</p>
 </div><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2825,7 +2825,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">UPDATE</span><span class="tsd-signature-symbol">&gt;</span></h5>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#UPDATE" class="tsd-signature-type tsd-kind-enum-member">UPDATE</a><span class="tsd-signature-symbol">&gt;</span></h5>
 <div class="tsd-comment tsd-typography"><p>Query options</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2841,7 +2841,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">BULKUPDATE</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#BULKUPDATE" class="tsd-signature-type tsd-kind-enum-member">BULKUPDATE</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2854,7 +2854,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">INSERT</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#INSERT" class="tsd-signature-type tsd-kind-enum-member">INSERT</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2867,7 +2867,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">UPSERT</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#UPSERT" class="tsd-signature-type tsd-kind-enum-member">UPSERT</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2880,7 +2880,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">DELETE</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#DELETE" class="tsd-signature-type tsd-kind-enum-member">DELETE</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2893,7 +2893,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">BULKDELETE</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#BULKDELETE" class="tsd-signature-type tsd-kind-enum-member">BULKDELETE</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2906,7 +2906,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">SHOWTABLES</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#SHOWTABLES" class="tsd-signature-type tsd-kind-enum-member">SHOWTABLES</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2919,7 +2919,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">DESCRIBE</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#DESCRIBE" class="tsd-signature-type tsd-kind-enum-member">DESCRIBE</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">ColumnsDescription</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2973,7 +2973,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">SELECT</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">plain</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#SELECT" class="tsd-signature-type tsd-kind-enum-member">SELECT</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">plain</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -2991,7 +2991,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">SELECT</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#SELECT" class="tsd-signature-type tsd-kind-enum-member">SELECT</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -3017,7 +3017,7 @@ can pass in a query type to make sequelize format the results:</p>
 <li>
 <h5><span class="tsd-kind-parameter">sql</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">query</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">values</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptions</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">QueryOptionsWithType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">RAW</span><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptions.html" class="tsd-signature-type tsd-kind-interface">QueryOptions</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-signature-type tsd-kind-interface">QueryOptionsWithType</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/sequelize.QueryTypes.html#RAW" class="tsd-signature-type tsd-kind-enum-member">RAW</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.query</p>
 <ul>
@@ -3153,7 +3153,7 @@ project, create a namespace and set it on the sequelize constructor:</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">TransactionOptions</span></h5>
+<h5><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.TransactionOptions.html" class="tsd-signature-type tsd-kind-interface">TransactionOptions</a></h5>
 <div class="tsd-comment tsd-typography"><p>Transaction Options</p>
 </div></li>
 <li>
@@ -3169,7 +3169,7 @@ project, create a namespace and set it on the sequelize constructor:</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">t</span>: <span class="tsd-signature-type ">Transaction</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">t</span>: <a href="sequelize.Transaction-1.html" class="tsd-signature-type tsd-kind-class">Transaction</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
@@ -3197,20 +3197,20 @@ project, create a namespace and set it on the sequelize constructor:</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">t</span>: <span class="tsd-signature-type ">Transaction</span></h5></li></ul></div>
+<h5><span class="tsd-kind-parameter">t</span>: <a href="sequelize.Transaction-1.html" class="tsd-signature-type tsd-kind-class">Transaction</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.transaction</p>
 <ul>
 <li>Defined in packages/@biorate/sequelize/node_modules/sequelize/types/sequelize.d.ts:1427</li></ul></aside></li>
-<li class="tsd-signature tsd-anchor-link" id="transaction.transaction-3"><span class="tsd-kind-call-signature">transaction</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Transaction</span><span class="tsd-signature-symbol">&gt;</span><a href="#transaction.transaction-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="transaction.transaction-3"><span class="tsd-kind-call-signature">transaction</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="sequelize.Transaction-1.html" class="tsd-signature-type tsd-kind-class">Transaction</a><span class="tsd-signature-symbol">&gt;</span><a href="#transaction.transaction-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">TransactionOptions</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Transaction</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.TransactionOptions.html" class="tsd-signature-type tsd-kind-interface">TransactionOptions</a></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="sequelize.Transaction-1.html" class="tsd-signature-type tsd-kind-class">Transaction</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.transaction</p>
 <ul>
 <li>Defined in packages/@biorate/sequelize/node_modules/sequelize/types/sequelize.d.ts:1428</li></ul></aside></li></ul></section>
@@ -3243,7 +3243,7 @@ by calling Model.truncate() on each model.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">QueryOptions</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <a href="../interfaces/sequelize.QueryOptions.html" class="tsd-signature-type tsd-kind-interface">QueryOptions</a></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from OriginSequelize.validate</p>
 <ul>
@@ -5493,7 +5493,9 @@ and Promise is patched to use the namespace, using <code>cls-hooked</code> modul
 <details class="tsd-index-accordion" open data-key="sequelize"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg><a href="../modules/sequelize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>sequelize</span></a></summary>
 <div class="tsd-accordion-details">
 <ul class="tsd-nested-navigation">
+<li><a href="../modules/sequelize.Transaction.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Transaction</span></a></li>
 <li><a href="../enums/sequelize.Association.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-8"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-enum)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.45 16V7.24H14.49V8.224H10.518V10.936H14.07V11.908H10.518V15.016H14.49V16H9.45Z" fill="var(--color-text)"></path></g></svg><span>Association</span></a></li>
+<li><a href="../enums/sequelize.QueryTypes.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8"></use></svg><span>Query<wbr/>Types</span></a></li>
 <li><a href="sequelize.BaseAssociation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Base<wbr/>Association</span></a></li>
 <li><a href="sequelize.BelongsToAssociation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Belongs<wbr/>To<wbr/>Association</span></a></li>
 <li><a href="sequelize.BelongsToManyAssociation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Belongs<wbr/>To<wbr/>Many<wbr/>Association</span></a></li>
@@ -5502,17 +5504,21 @@ and Promise is patched to use the namespace, using <code>cls-hooked</code> modul
 <li><a href="sequelize.Sequelize.html" class="current tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Sequelize</span></a></li>
 <li><a href="sequelize.SequelizeCantConnectError.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Sequelize<wbr/>Cant<wbr/>Connect<wbr/>Error</span></a></li>
 <li><a href="sequelize.SequelizeConnector.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Sequelize<wbr/>Connector</span></a></li>
+<li><a href="sequelize.Transaction-1.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Transaction</span></a></li>
 <li><a href="sequelize.UndefinedConnectionError.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Undefined<wbr/>Connection<wbr/>Error</span></a></li>
 <li><a href="../interfaces/sequelize.AssociationActionOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-256"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)"></path></g></svg><span>Association<wbr/>Action<wbr/>Options</span></a></li>
 <li><a href="../interfaces/sequelize.HookOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Hook<wbr/>Options</span></a></li>
 <li><a href="../interfaces/sequelize.ISequelizeConfig.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>ISequelize<wbr/>Config</span></a></li>
 <li><a href="../interfaces/sequelize.IndexFieldOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Index<wbr/>Field<wbr/>Options</span></a></li>
 <li><a href="../interfaces/sequelize.IndexesMeta.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Indexes<wbr/>Meta</span></a></li>
+<li><a href="../interfaces/sequelize.QueryOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Query<wbr/>Options</span></a></li>
+<li><a href="../interfaces/sequelize.QueryOptionsWithType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Query<wbr/>Options<wbr/>With<wbr/>Type</span></a></li>
 <li><a href="../interfaces/sequelize.ScopeOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Scope<wbr/>Options</span></a></li>
 <li><a href="../interfaces/sequelize.ScopeOptionsGetters.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Scope<wbr/>Options<wbr/>Getters</span></a></li>
 <li><a href="../interfaces/sequelize.ScopeTableOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Scope<wbr/>Table<wbr/>Options</span></a></li>
 <li><a href="../interfaces/sequelize.SequelizeOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Sequelize<wbr/>Options</span></a></li>
 <li><a href="../interfaces/sequelize.TableOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Table<wbr/>Options</span></a></li>
+<li><a href="../interfaces/sequelize.TransactionOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Transaction<wbr/>Options</span></a></li>
 <li><a href="../types/sequelize._GetType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>$<wbr/>Get<wbr/>Type</span></a></li>
 <li><a href="../types/sequelize.AssociationCountOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Association<wbr/>Count<wbr/>Options</span></a></li>
 <li><a href="../types/sequelize.AssociationGetOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Association<wbr/>Get<wbr/>Options</span></a></li>
