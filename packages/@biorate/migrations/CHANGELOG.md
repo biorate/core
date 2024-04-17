@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.69.0](https://github.com/biorate/core/compare/v1.68.0...v1.69.0) (2024-04-17)
+
+### Features
+
+- **migrations:** proxy added ([14a147b](https://github.com/biorate/core/commit/14a147be110b84e4cd0277f8f1ef3e30855ae0b2))
+
 # [1.68.0](https://github.com/biorate/core/compare/v1.67.0...v1.68.0) (2024-04-17)
 
 **Note:** Version bump only for package @biorate/migrations
