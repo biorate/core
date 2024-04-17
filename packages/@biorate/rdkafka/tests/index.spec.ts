@@ -76,4 +76,8 @@ describe('@biorate/rdkafka', function () {
     );
     expect(res).to.be.a('number');
   });
+
+  // it('metrics', async () => {
+  //   console.log(await root.prometheus.registry.metrics());
+  // });
 });

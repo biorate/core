@@ -1,6 +1,7 @@
 import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
+import { Prometheus, IPrometheus } from '@biorate/prometheus';
 import { IConfig, Config } from '@biorate/config';
 import {
   RDKafkaAdminConnector,
@@ -13,6 +14,7 @@ import {
 use(jestSnapshotPlugin());
 
 export class Root extends Core() {
+  @inject(Prometheus) public prometheus: IPrometheus;
   @inject(RDKafkaAdminConnector) public admin: RDKafkaAdminConnector;
   @inject(RDKafkaProducerConnector) public producer: RDKafkaProducerConnector;
   @inject(RDKafkaConsumerConnector) public consumer: RDKafkaConsumerConnector;
@@ -22,6 +24,7 @@ export class Root extends Core() {
   public highLevelProducer: RDKafkaHighLevelProducerConnector;
 }
 
+container.bind<IPrometheus>(Prometheus).to(Prometheus).inSingletonScope();
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
 container.bind<RDKafkaAdminConnector>(RDKafkaAdminConnector).toSelf().inSingletonScope();
 container
