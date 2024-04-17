@@ -35,7 +35,7 @@ export class KafkaJSConsumerConnector extends Connector<
   @counter({
     name: 'kafka_consumer_seconds_count',
     help: 'Kafka consumer seconds count',
-    labelNames: ['topic', 'status'],
+    labelNames: ['topic', 'status', 'group', 'partition'],
   })
   protected counter: Counter;
   /**
@@ -44,7 +44,7 @@ export class KafkaJSConsumerConnector extends Connector<
   @histogram({
     name: 'kafka_consumer_seconds',
     help: 'Kafka consumer seconds bucket',
-    labelNames: ['topic', 'status'],
+    labelNames: ['topic', 'status', 'group', 'partition'],
     buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
   })
   protected histogram: Histogram;
@@ -108,11 +108,23 @@ export class KafkaJSConsumerConnector extends Connector<
           const start = Date.now();
           try {
             await handler(messages, omit(batch, 'messages'));
-            this.histogram.labels({ topic, status: 200 }).observe(Date.now() - start);
-            this.counter.labels({ topic, status: 200 }).inc(messages.length);
+            const labels = {
+              topic,
+              status: 200,
+              group: config.options.groupId ?? 'unknown',
+              partition: batch.partition,
+            };
+            this.histogram.labels(labels).observe(Date.now() - start);
+            this.counter.labels(labels).inc(messages.length);
           } catch (e) {
-            this.histogram.labels({ topic, status: 400 }).observe(Date.now() - start);
-            this.counter.labels({ topic, status: 400 }).inc(messages.length);
+            const labels = {
+              topic,
+              status: 400,
+              group: config.options.groupId ?? 'unknown',
+              partition: batch.partition,
+            };
+            this.histogram.labels(labels).observe(Date.now() - start);
+            this.counter.labels(labels).inc(messages.length);
             await this.catch(<Error>e, messages, omit(batch, 'messages'));
           }
           await heartbeat();
