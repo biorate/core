@@ -36,6 +36,7 @@
     "@biorate/kafkajs": "1.68.0",
     "@biorate/minio": "1.65.4",
     "@biorate/mongodb": "1.65.4",
+    "@biorate/proxy": "1.65.9",
     "@biorate/sequelize": "1.65.7",
     "@biorate/tools": "1.28.0",
     "@biorate/vault": "1.65.4"
