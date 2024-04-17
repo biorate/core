@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.67.0](https://github.com/biorate/core/compare/v1.66.2...v1.67.0) (2024-04-17)
+
+### Features
+
+- **kafkajs:** metrics ([863a009](https://github.com/biorate/core/commit/863a009703260a8a4c1291a9423215b6ce19a8ad))
+
 ## [1.65.4](https://github.com/biorate/core/compare/v1.65.3...v1.65.4) (2024-03-26)
 
 **Note:** Version bump only for package @biorate/kafkajs
