@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.68.0](https://github.com/biorate/core/compare/v1.67.0...v1.68.0) (2024-04-17)
+
+### Features
+
+- **rdkafka:** metrics ([abe0981](https://github.com/biorate/core/commit/abe09811b302ffdcdcfe11920ae0b8c32974b27a))
+
 # [1.67.0](https://github.com/biorate/core/compare/v1.66.2...v1.67.0) (2024-04-17)
 
 ### Features
