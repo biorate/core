@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.66.1](https://github.com/biorate/core/compare/v1.66.0...v1.66.1) (2024-04-17)
+
+### Bug Fixes
+
+- **rdkafka:** added some folders to .npmignore ([d241226](https://github.com/biorate/core/commit/d2412263a469183d0d8140df54f7f6288a581788))
+
 # [1.66.0](https://github.com/biorate/core/compare/v1.65.9...v1.66.0) (2024-04-17)
 
 ### Features
