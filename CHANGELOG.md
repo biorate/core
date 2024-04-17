@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.66.0](https://github.com/biorate/core/compare/v1.65.9...v1.66.0) (2024-04-17)
+
+### Features
+
+- **rdkafka:** partitions + group in metrics added ([1942b2d](https://github.com/biorate/core/commit/1942b2dc09582b250c2cac384f5f0230d7496141))
+
 ## [1.65.9](https://github.com/biorate/core/compare/v1.65.8...v1.65.9) (2024-04-16)
 
 ### Bug Fixes
