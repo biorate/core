@@ -33,8 +33,8 @@ export class KafkaJSConsumerConnector extends Connector<
    * @description Counter
    */
   @counter({
-    name: 'kafka_consumer_seconds_count',
-    help: 'Kafka consumer seconds count',
+    name: 'kafka_consumer_count',
+    help: 'Kafka consumer count',
     labelNames: ['topic', 'status', 'group', 'partition'],
   })
   protected counter: Counter;

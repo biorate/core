@@ -25,8 +25,8 @@ export class RDKafkaConsumerStreamConnection
   protected pool: Message[] = [];
   protected started = false;
   @counter({
-    name: 'kafka_consumer_seconds_count',
-    help: 'Kafka consumer seconds count',
+    name: 'kafka_consumer_count',
+    help: 'Kafka consumer count',
     labelNames: ['topic', 'status', 'group', 'partition'],
   })
   protected counter: Counter;
@@ -127,7 +127,10 @@ export class RDKafkaConsumerStreamConnection
           const prev = latest.get(message.partition);
           const last = !prev || message.offset > prev.offset ? message : prev;
           latest.set(message.partition, last);
-          counter.set(message.topic, (counter.get(message.topic) ?? 0) + 1);
+          counter.set(
+            `${message.topic}_${message.partition}`,
+            (counter.get(message.topic) ?? 0) + 1,
+          );
         }
         if (this.config.batch) tasks.push(this.handler!(messages));
         await Promise.all(tasks);
@@ -147,9 +150,10 @@ export class RDKafkaConsumerStreamConnection
   };
 
   #setMetrics = (counter: Map<string, number>, status: number, time: number) => {
-    for (const [topic, count] of counter) {
+    for (const [key, count] of counter) {
+      const [topic, partition] = key.split('_');
       for (const item of this.assignment) {
-        if (topic !== item.topic) continue;
+        if (topic !== item.topic || Number(partition) !== item.partition) continue;
         const labels = {
           topic,
           status,
