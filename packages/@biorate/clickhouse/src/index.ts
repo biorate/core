@@ -40,8 +40,10 @@ export * from './interfaces';
  * (async () => {
  *   const root = container.get<Root>(Root);
  *   await root.$run();
- *
- *   const data = await root.connector!.query<{ result: number }>('SELECT 1 AS result;');
+ *   const cursor = await root.connector
+ *       .get()
+ *       .query({ query: 'SELECT 1 AS result;', format: 'JSON' });
+ *   const { data } = await cursor.json<{ result: number }>();
  *   console.log(data); // [{ result: 1 }]
  * })();
  * ```
