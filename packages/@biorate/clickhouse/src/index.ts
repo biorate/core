@@ -1,14 +1,8 @@
-import { omit } from 'lodash';
 import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
-import { ClickHouse } from 'clickhouse';
+import { createClient, ClickHouseClient } from '@clickhouse/client';
 import { ClickhouseCantConnectError } from './errors';
-import {
-  IClickhouseConfig,
-  IClickhouseConnection,
-  IQueryParams,
-  IInsertParams,
-} from './interfaces';
+import { IClickhouseConfig, IClickhouseConnection } from './interfaces';
 
 export * from './errors';
 export * from './interfaces';
@@ -73,27 +67,13 @@ export class ClickhouseConnector extends Connector<
    * @description Create connection
    */
   protected async connect(config: IClickhouseConfig) {
-    let connection: ClickHouse;
+    let connection: ClickHouseClient;
     try {
-      connection = new ClickHouse(config.options);
-      await connection.query('SELECT 1').toPromise();
+      connection = createClient(config.options);
+      await connection.query({ query: 'SELECT 1' });
     } catch (e: unknown) {
       throw new ClickhouseCantConnectError(<Error>e);
     }
     return connection;
-  }
-  /**
-   * @description Make a query
-   */
-  public query<T = unknown>(query: string, params: IQueryParams = {}) {
-    return this.get(params.connection)
-      .query(query, omit(params, 'connection'))
-      .toPromise() as unknown as Promise<T[]>;
-  }
-  /**
-   * @description Make a insert
-   */
-  public insert(query: string, params: IInsertParams = {}) {
-    return this.get(params.connection).insert(query, params.rows).toPromise();
   }
 }

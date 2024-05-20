@@ -1,18 +1,18 @@
 import { expect } from 'chai';
-import { container } from '@biorate/inversion';
-import { Root } from './__mocks__';
+import { root } from './__mocks__';
 
 describe('@biorate/clickhouse', function () {
-  let root: Root;
   this.timeout(3e4);
 
   before(async () => {
-    root = container.get<Root>(Root);
     await root.$run();
   });
 
-  it('test', async () => {
-    const data = await root.connector!.query<{ result: number }>('SELECT 1 AS result;');
+  it('query', async () => {
+    const cursor = await root.connector
+      .get()
+      .query({ query: 'SELECT 1 AS result;', format: 'JSON' });
+    const { data } = await cursor.json<{ result: number }>();
     expect(data[0].result).toMatchSnapshot();
   });
 });
