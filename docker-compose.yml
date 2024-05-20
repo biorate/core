@@ -72,7 +72,7 @@ services:
     environment:
       VAULT_DEV_ROOT_TOKEN_ID: admin
   mssql:
-    image: mcr.microsoft.com/mssql/server
+    image: mcr.microsoft.com/mssql/server:2022-latest
     network_mode: host
     ports:
       - 1433:1433
