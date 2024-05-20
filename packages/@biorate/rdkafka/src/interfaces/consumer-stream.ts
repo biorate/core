@@ -5,6 +5,7 @@ import {
   ConsumerTopicConfig,
   ReadStreamOptions,
   Message,
+  ConsumerStream,
 } from 'node-rdkafka';
 
 export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
@@ -18,6 +19,8 @@ export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
 };
 
 export interface IRDKafkaConsumerStreamConnection extends EventEmitter {
+  stream: ConsumerStream;
+
   subscribe(handler: (message: Message | Message[]) => Promise<void> | void): void;
 
   unsubscribe(): Promise<void>;
