@@ -26,20 +26,34 @@ export class Clickhouse extends Migration {
           ENGINE = MergeTree()
           PRIMARY KEY (name);
         `;
-        await connection.query(createQuery, { params: { tableName } }).toPromise();
+        await connection.command({
+          query: createQuery,
+          query_params: { tableName },
+          clickhouse_settings: {
+            wait_end_of_query: 1,
+          },
+        });
         await this.forEachPath(paths, async (file, name) => {
-          const item = await connection
-            .query(`SELECT * FROM {tableName:Identifier} WHERE name = {name:String};`, {
-              params: { name, tableName },
-            })
-            .toPromise();
-          if (item.length) return;
-          await connection.query(await fs.readFile(file, 'utf8')).toPromise();
-          await connection
-            .query(`INSERT INTO {tableName:Identifier} (name) VALUES ({name:String})`, {
-              params: { name, tableName },
-            })
-            .toPromise();
+          const cursor = await connection.query({
+            query: `SELECT * FROM {tableName:Identifier} WHERE name = {name:String};`,
+            query_params: { name, tableName },
+            format: 'JSON',
+          });
+          const { data } = await cursor.json<{ name: string }>();
+          if (data.length) return;
+          await connection.command({
+            query: await fs.readFile(file, 'utf8'),
+            clickhouse_settings: {
+              wait_end_of_query: 1,
+            },
+          });
+          await connection.command({
+            query: `INSERT INTO {tableName:Identifier} (name) VALUES ({name:String})`,
+            query_params: { name, tableName },
+            clickhouse_settings: {
+              wait_end_of_query: 1,
+            },
+          });
           this.log(config.name, name);
         });
       },
