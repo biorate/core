@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.70.0](https://github.com/biorate/core/compare/v1.69.0...v1.70.0) (2024-05-20)
+
+### Bug Fixes
+
+- **rdkafka:** public stream in consumer-stream interface ([d780e67](https://github.com/biorate/core/commit/d780e67c4847df2f444f0424edaf2c0e7c49ae6c))
+- **rdkafka:** public stream in consumer-stream interface ([a0eb109](https://github.com/biorate/core/commit/a0eb10913236a73d7949dc97aac3c53569b69a4d))
+
+### Features
+
+- **clickhouse:** changed to original clickhouse driver ([21bbebd](https://github.com/biorate/core/commit/21bbebd96b8c549cfd1f02788adae4471472720a))
+- **migrations:** changed to original clickhouse driver ([171b0f7](https://github.com/biorate/core/commit/171b0f78ad52a6a76629990057a2d4bca00fedd4))
+
 # [1.69.0](https://github.com/biorate/core/compare/v1.68.0...v1.69.0) (2024-04-17)
 
 ### Features

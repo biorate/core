@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.70.0](https://github.com/biorate/core/compare/v1.69.0...v1.70.0) (2024-05-20)
+
+### Bug Fixes
+
+- **rdkafka:** public stream in consumer-stream interface ([d780e67](https://github.com/biorate/core/commit/d780e67c4847df2f444f0424edaf2c0e7c49ae6c))
+
 # [1.68.0](https://github.com/biorate/core/compare/v1.67.0...v1.68.0) (2024-04-17)
 
 ### Features
