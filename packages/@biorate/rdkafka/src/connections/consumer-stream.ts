@@ -89,6 +89,10 @@ export class RDKafkaConsumerStreamConnection
       if (this.pool.length >= this.buffer) this.stream.pause();
       this.pool.push(message);
     });
+    this.stream.consumer.on('event.error', (e) => {
+      console.error(e);
+      process.kill(process.pid);
+    });
     this.timer = setInterval(() => {
       if (this.pool.length < this.buffer) this.stream.resume();
     });
