@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.71.1](https://github.com/biorate/core/compare/v1.71.0...v1.71.1) (2024-05-20)
+
+### Bug Fixes
+
+- **playwright:** tests ([a198dc4](https://github.com/biorate/core/commit/a198dc4f16c6363a613c248852aab650032b05d8))
+
 # [1.71.0](https://github.com/biorate/core/compare/v1.70.0...v1.71.0) (2024-05-20)
 
 ### Features
