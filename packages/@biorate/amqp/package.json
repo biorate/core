@@ -29,10 +29,10 @@
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.65.4",
     "@biorate/tools": "1.28.0",
-    "amqp-connection-manager": "^4.1.14",
-    "amqplib": "^0.10.3"
+    "amqp-connection-manager": "4.1.14",
+    "amqplib": "0.10.3"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.10.5"
+    "@types/amqplib": "0.10.5"
   }
 }

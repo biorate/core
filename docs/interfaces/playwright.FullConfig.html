@@ -38,7 +38,7 @@ or <code>testDir</code>. These options are described in the TestConfig object in
 <ul class="tsd-hierarchy">
 <li><span class="target">FullConfig</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1464</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1448</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -74,21 +74,20 @@ or <code>testDir</code>. These options are described in the TestConfig object in
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>config<wbr/>File</span><a href="#configFile" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">config<wbr/>File</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1881</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1864</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="forbidOnly" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>forbid<wbr/>Only</span><a href="#forbidOnly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">forbid<wbr/>Only</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 <div class="tsd-comment tsd-typography"><p>Whether to exit with an error if any tests or groups are marked as
-<a href="https://playwright.dev/docs/api/class-test#test-only">test.only(title[, details, body])</a> or
-<a href="https://playwright.dev/docs/api/class-test#test-describe-only">test.describe.only([title, details, callback])</a>.
-Useful on CI.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-only">test.only(title, testFunction)</a> or
+<a href="https://playwright.dev/docs/api/class-test#test-describe-only">test.describe.only(title, callback)</a>. Useful on CI.</p>
 <p><strong>Usage</strong></p>
 <pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">forbidOnly:</span><span class="hl-1"> !!</span><span class="hl-2">process</span><span class="hl-1">.</span><span class="hl-2">env</span><span class="hl-1">.</span><span class="hl-5">CI</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
 </code><button>Copy</button></pre>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1483</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1466</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="fullyParallel" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>fully<wbr/>Parallel</span><a href="#fullyParallel" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">fully<wbr/>Parallel</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -102,7 +101,7 @@ worker process.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1503</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1486</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="globalSetup" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>global<wbr/>Setup</span><a href="#globalSetup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">global<wbr/>Setup</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -115,7 +114,7 @@ function that takes a [<code>TestConfig</code>] argument.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1522</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1505</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="globalTeardown" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>global<wbr/>Teardown</span><a href="#globalTeardown" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">global<wbr/>Teardown</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -129,7 +128,7 @@ function. See also
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1542</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1525</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="globalTimeout" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>global<wbr/>Timeout</span><a href="#globalTimeout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">global<wbr/>Timeout</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -142,7 +141,7 @@ CI to prevent broken setup from running too long and wasting resources. Learn mo
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1560</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1543</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="grep" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>grep</span><a href="#grep" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
@@ -157,7 +156,7 @@ any) and the test name divided by spaces, e.g. <code>my-test.spec.ts my-suite my
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1581</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1564</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="grepInvert" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>grep<wbr/>Invert</span><a href="#grepInvert" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep<wbr/>Invert</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
@@ -171,7 +170,7 @@ any) and the test name divided by spaces, e.g. <code>my-test.spec.ts my-suite my
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1601</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1584</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="maxFailures" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>max<wbr/>Failures</span><a href="#maxFailures" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">max<wbr/>Failures</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -184,7 +183,7 @@ exit with an error. Setting to zero (default) disables this behavior.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1620</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1603</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="metadata" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>metadata</span><a href="#metadata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">metadata</span><span class="tsd-signature-symbol">:</span> <a href="../types/playwright.Metadata.html" class="tsd-signature-type tsd-kind-type-alias">Metadata</a></div>
@@ -195,7 +194,7 @@ exit with an error. Setting to zero (default) disables this behavior.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1636</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1619</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="preserveOutput" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>preserve<wbr/>Output</span><a href="#preserveOutput" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">preserve<wbr/>Output</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;always&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;never&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;failures-only&quot;</span></div>
@@ -213,7 +212,7 @@ exit with an error. Setting to zero (default) disables this behavior.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1658</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1641</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="projects" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>projects</span><a href="#projects" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">projects</span><span class="tsd-signature-symbol">:</span> <a href="playwright.FullProject.html" class="tsd-signature-type tsd-kind-interface">FullProject</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">TestArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">WorkerArgs</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
@@ -225,7 +224,7 @@ information.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1677</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1660</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="quiet" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>quiet</span><a href="#quiet" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">quiet</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -236,7 +235,7 @@ information.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1737</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1720</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="reportSlowTests" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>report<wbr/>Slow<wbr/>Tests</span><a href="#reportSlowTests" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">report<wbr/>Slow<wbr/>Tests</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">max</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
@@ -257,7 +256,7 @@ more than <code>max</code> number of them. Passing zero as <code>max</code> repo
 <h5><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5></li></ul></div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1720</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1703</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="reporter" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>reporter</span><a href="#reporter" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">reporter</span><span class="tsd-signature-symbol">:</span> <a href="../types/playwright.ReporterDescription.html" class="tsd-signature-type tsd-kind-type-alias">ReporterDescription</a><span class="tsd-signature-symbol">[]</span></div>
@@ -275,12 +274,12 @@ more than <code>max</code> number of them. Passing zero as <code>max</code> repo
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1700</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1683</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="rootDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>root<wbr/>Dir</span><a href="#rootDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">root<wbr/>Dir</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1721</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1704</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="shard" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>shard</span><a href="#shard" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">shard</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">current</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">total</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
@@ -299,7 +298,7 @@ more than <code>max</code> number of them. Passing zero as <code>max</code> repo
 <h5><span class="tsd-kind-property">total</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5></li></ul></div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1755</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1738</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="updateSnapshots" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>update<wbr/>Snapshots</span><a href="#updateSnapshots" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">update<wbr/>Snapshots</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;none&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;missing&quot;</span></div>
@@ -318,12 +317,12 @@ time. This is the default.</li>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1778</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1761</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="version" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>version</span><a href="#version" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">version</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1637</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1620</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="webServer" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>web<wbr/>Server</span><a href="#webServer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">web<wbr/>Server</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">TestConfigWebServer</span></div>
@@ -353,7 +352,7 @@ that tests could use relative urls.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1880</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1863</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="workers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>workers</span><a href="#workers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">workers</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -369,7 +368,7 @@ used to speed up test execution.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1801</li></ul></aside></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1784</li></ul></aside></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -533,7 +532,6 @@ used to speed up test execution.</p>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
-<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
