@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "1.70.0",
+  "version": "1.72.0",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {
@@ -23,7 +23,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/amqp": "1.65.4",
+    "@biorate/amqp": "1.72.0",
     "@biorate/clickhouse": "1.70.0",
     "@biorate/config": "1.65.4",
     "@biorate/config-loader": "1.65.4",

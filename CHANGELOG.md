@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.72.0](https://github.com/biorate/core/compare/v1.71.1...v1.72.0) (2024-05-21)
+
+### Features
+
+- **amqp:** version freeze ([c989e33](https://github.com/biorate/core/commit/c989e33786da1a8577f8bdcea72fa4d656957801))
+
 ## [1.71.1](https://github.com/biorate/core/compare/v1.71.0...v1.71.1) (2024-05-20)
 
 ### Bug Fixes
