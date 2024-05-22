@@ -132,7 +132,7 @@ export class RDKafkaConsumerStreamConnection
           const last = !prev || message.offset > prev.offset ? message : prev;
           latest.set(message.partition, last);
           counter.set(
-            `${message.topic}_${message.partition}`,
+            `${message.topic}\0${message.partition}`,
             (counter.get(message.topic) ?? 0) + 1,
           );
         }
@@ -146,7 +146,10 @@ export class RDKafkaConsumerStreamConnection
       } catch (e) {
         counter.clear();
         for (const message of messages)
-          counter.set(message.topic, (counter.get(message.topic) ?? 0) + 1);
+          counter.set(
+            `${message.topic}\0${message.partition}`,
+            (counter.get(message.topic) ?? 0) + 1,
+          );
         this.#setMetrics(counter, 500, time!());
         console.error(e);
       }
@@ -155,7 +158,7 @@ export class RDKafkaConsumerStreamConnection
 
   #setMetrics = (counter: Map<string, number>, status: number, time: number) => {
     for (const [key, count] of counter) {
-      const [topic, partition] = key.split('_');
+      const [topic, partition] = key.split('\0');
       for (const item of this.assignment) {
         if (topic !== item.topic || Number(partition) !== item.partition) continue;
         const labels = {
