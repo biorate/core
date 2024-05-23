@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.73.1](https://github.com/biorate/core/compare/v1.73.0...v1.73.1) (2024-05-23)
+
+### Bug Fixes
+
+- **rdkafka:** pool repush on error ([f0084f9](https://github.com/biorate/core/commit/f0084f913296c06eeb3ff748907c67eccf3b0c12))
+
 # [1.73.0](https://github.com/biorate/core/compare/v1.72.0...v1.73.0) (2024-05-22)
 
 ### Features
