@@ -144,14 +144,14 @@ export class RDKafkaConsumerStreamConnection
         }
         this.#setMetrics(counter, 200, time());
       } catch (e) {
+        if (messages.length) this.pool.unshift(...messages);
         counter.clear();
-        for (const message of messages) {
-          this.pool.push(message);
+        for (const message of messages)
           counter.set(
             `${message.topic}\0${message.partition}`,
             (counter.get(message.topic) ?? 0) + 1,
           );
-        }
+
         this.#setMetrics(counter, 500, time!());
         console.error(e);
       }
