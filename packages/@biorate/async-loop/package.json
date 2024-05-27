@@ -1,0 +1,29 @@
+{
+  "name": "@biorate/async-loop",
+  "version": "1.65.4",
+  "description": "Async loop function",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/async-loop"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "async",
+    "loop"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/tools": "1.28.0"
+  }
+}
