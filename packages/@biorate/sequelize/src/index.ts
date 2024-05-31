@@ -15,6 +15,7 @@ export {
   QueryOptionsWithType,
   Transaction,
   TransactionOptions,
+  Op,
 } from 'sequelize';
 
 /**
