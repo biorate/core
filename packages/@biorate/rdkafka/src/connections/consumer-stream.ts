@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import { uniqWith, isEqual } from 'lodash';
 import { KafkaConsumer, ConsumerStream, Message, CODES } from 'node-rdkafka';
 import { timer } from '@biorate/tools';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
@@ -125,7 +126,7 @@ export class RDKafkaConsumerStreamConnection
         counter.clear();
         messages.length = 0;
         tasks.length = 0;
-        messages.push(...this.pool.splice(0, this.concurrency));
+        messages.push(...uniqWith(this.pool.splice(0, this.concurrency), isEqual));
         for (const message of messages) {
           if (!this.config.batch) tasks.push(this.handler!(message));
           const prev = latest.get(message.partition);
