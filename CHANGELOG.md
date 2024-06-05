@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.74.2](https://github.com/biorate/core/compare/v1.74.1...v1.74.2) (2024-06-05)
+
+### Bug Fixes
+
+- **rdkafka:** uniqWith filter on rebalance ([252e1ab](https://github.com/biorate/core/commit/252e1abdbc2eb1841a0c678fd07796f5f3c795d1))
+
 ## [1.74.1](https://github.com/biorate/core/compare/v1.74.0...v1.74.1) (2024-05-31)
 
 ### Bug Fixes
