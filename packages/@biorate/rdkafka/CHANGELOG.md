@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.75.0](https://github.com/biorate/core/compare/v1.74.2...v1.75.0) (2024-06-17)
+
+### Features
+
+- **rdkafka:** manual error handling ([580f03d](https://github.com/biorate/core/commit/580f03d0fdb8a370fd061b1ad9362d6df7377b92))
+
 ## [1.74.2](https://github.com/biorate/core/compare/v1.74.1...v1.74.2) (2024-06-05)
 
 ### Bug Fixes
