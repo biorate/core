@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.76.1](https://github.com/biorate/core/compare/v1.76.0...v1.76.1) (2024-07-01)
+
+### Bug Fixes
+
+- **async-loop:** error callback ([0a10807](https://github.com/biorate/core/commit/0a10807bdc13ab958a8d64522fa2b8fed7720c5e))
+
 # [1.76.0](https://github.com/biorate/core/compare/v1.75.0...v1.76.0) (2024-06-18)
 
 ### Features
