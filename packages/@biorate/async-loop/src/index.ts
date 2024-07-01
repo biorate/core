@@ -32,7 +32,7 @@ export class AsyncLoop {
 
   public constructor(
     process: () => Promise<void> | void,
-    error?: () => Promise<void> | void,
+    error?: (...e: any[]) => Promise<void> | void,
     interval = 1000,
   ) {
     this.#process = process;
