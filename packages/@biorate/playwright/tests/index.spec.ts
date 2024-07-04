@@ -9,6 +9,7 @@ import {
   story,
   owner,
   tag,
+  tags,
   Page,
   expect,
   Context,
@@ -17,13 +18,13 @@ import { Scenario1, Scenario2 } from './scenarios';
 
 @suite('Test123')
 class Test {
-  @issue('1')
+  @issue('1', 'http://google.com')
   @severity(Severity.MINOR)
   @epic('Epic allure test')
   @feature('Feature allure test')
   @story('Story allure test')
   @owner('60000000')
-  @tag('tag')
+  @tags('tag2', 'tag1')
   @test('test1')
   protected async test1({ page }: { page: Page }) {
     await page.goto('https://playwright.dev/');

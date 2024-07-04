@@ -40,6 +40,8 @@ export class PlayWright {
 
   public readonly tag;
 
+  public readonly tags;
+
   public readonly issue;
 
   public readonly description;
@@ -62,6 +64,7 @@ export class PlayWright {
     this.owner = this.#owner;
     this.severity = this.#severity;
     this.tag = this.#tag;
+    this.tags = this.#tags;
     this.issue = this.#issue;
     this.description = this.#description;
   }
@@ -224,6 +227,12 @@ export class PlayWright {
       this.#setAllureMethod(target, 'tag', [tag]);
     };
 
+  #tags =
+    (...tags: string[]) =>
+    (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+      this.#setAllureMethod(target, 'tags', tags);
+    };
+
   #issue =
     (name: string, url?: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
@@ -270,6 +279,7 @@ export const {
   owner,
   severity,
   tag,
+  tags,
   description,
   issue,
 } = new PlayWright();
