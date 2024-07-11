@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.77.0](https://github.com/biorate/core/compare/v1.76.3...v1.77.0) (2024-07-11)
+
+### Features
+
+- **config-loader-env:** ENV=debug by default ([a843ad6](https://github.com/biorate/core/commit/a843ad6d29ce29e9e0ad2ffafa6b9264ee9cf282))
+
 ## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
 
 ### Bug Fixes
