@@ -1,5 +1,6 @@
 import { init, injectable } from '@biorate/inversion';
 import { ConfigLoader } from '@biorate/config-loader';
+import './default-env';
 
 /**
  * @description Env-based config loader
@@ -40,7 +41,6 @@ export class ConfigLoaderEnv extends ConfigLoader {
    * @description Initialize
    */
   @init() protected initialize() {
-    process.env.ENV = process.env.ENV ?? 'debug';
     this.config.merge(process.env);
     console.info(`ConfigLoaderEnv: environment - merged`);
   }
