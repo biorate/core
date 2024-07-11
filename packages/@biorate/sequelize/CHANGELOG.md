@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
+
+**Note:** Version bump only for package @biorate/sequelize
+
 ## [1.74.1](https://github.com/biorate/core/compare/v1.74.0...v1.74.1) (2024-05-31)
 
 ### Bug Fixes

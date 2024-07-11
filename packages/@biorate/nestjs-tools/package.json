@@ -1,6 +1,6 @@
 {
   "name": "@biorate/nestjs-tools",
-  "version": "1.65.4",
+  "version": "1.76.3",
   "description": "NestJS tools",
   "main": "dist",
   "scripts": {
@@ -21,10 +21,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.65.4",
+    "@biorate/config": "1.76.3",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.65.4",
-    "@biorate/prometheus": "1.65.4",
+    "@biorate/prometheus": "1.76.3",
     "@biorate/tools": "1.28.0",
     "@nestjs/common": "^9.3.12",
     "@nestjs/core": "^9.3.12",

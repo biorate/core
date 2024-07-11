@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
+
+### Bug Fixes
+
+- **config:** README.md ([4495108](https://github.com/biorate/core/commit/4495108346ce8a1d3604560992c36827cd7d8a39))
+
 ## [1.76.2](https://github.com/biorate/core/compare/v1.76.1...v1.76.2) (2024-07-04)
 
 ### Bug Fixes

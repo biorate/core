@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
+
+**Note:** Version bump only for package @biorate/proxy
+
 ## [1.65.9](https://github.com/biorate/core/compare/v1.65.8...v1.65.9) (2024-04-16)
 
 ### Bug Fixes
