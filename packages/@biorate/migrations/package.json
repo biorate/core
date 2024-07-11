@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "1.77.0",
+  "version": "1.78.0",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {
@@ -27,7 +27,7 @@
     "@biorate/clickhouse": "1.76.3",
     "@biorate/config": "1.76.3",
     "@biorate/config-loader": "1.76.3",
-    "@biorate/config-loader-env": "1.77.0",
+    "@biorate/config-loader-env": "1.78.0",
     "@biorate/config-loader-fs": "1.76.3",
     "@biorate/config-loader-vault": "1.76.3",
     "@biorate/connector": "1.76.3",
