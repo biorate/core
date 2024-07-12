@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.79.0](https://github.com/biorate/core/compare/v1.78.0...v1.79.0) (2024-07-12)
+
+### Features
+
+- **sequelize:** dependency up ([4407c19](https://github.com/biorate/core/commit/4407c19d13789d8fb79592f48b65080489841acd))
+
 ## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
 
 **Note:** Version bump only for package @biorate/sequelize
