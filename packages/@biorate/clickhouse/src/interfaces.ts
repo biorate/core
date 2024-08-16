@@ -2,6 +2,8 @@ import { IConnectorConfig, IConnector } from '@biorate/connector';
 import type { NodeClickHouseClientConfigOptions } from '@clickhouse/client/dist/config';
 import type { NodeClickHouseClient } from '@clickhouse/client/dist/client';
 
+export type * from '@clickhouse/client';
+
 export type IClickhouseConnection = NodeClickHouseClient;
 
 export interface IClickhouseConfig extends IConnectorConfig {
