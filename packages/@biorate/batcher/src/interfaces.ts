@@ -12,4 +12,6 @@ export interface IBatcher<O = unknown, M = IMetadata> {
   rollback(tasks: [O, ITask<M>][]): void;
 
   add(object: O, metadata?: M): Promise<unknown>;
+
+  force(): Promise<void>;
 }
