@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.83.1](https://github.com/biorate/core/compare/v1.83.0...v1.83.1) (2024-08-20)
+
+### Bug Fixes
+
+- **batcher:** types ([1efb6e7](https://github.com/biorate/core/commit/1efb6e7f7afc9a2b875b944f6c4746bb8c9890af))
+
 # [1.83.0](https://github.com/biorate/core/compare/v1.82.0...v1.83.0) (2024-08-20)
 
 ### Features
