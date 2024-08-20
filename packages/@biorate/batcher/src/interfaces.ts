@@ -7,7 +7,7 @@ export type ITask<M = IMetadata> = {
 };
 
 export interface IBatcher<O = unknown, M = IMetadata> {
-  register(callback: (tasks: [O, ITask<M>][]) => void): void;
+  register(callback: (tasks: [O, ITask<M>][]) => void | Promise<void>): void;
 
   rollback(tasks: [O, ITask<M>][]): void;
 

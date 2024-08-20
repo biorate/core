@@ -57,7 +57,7 @@ export * from './interfaces';
 export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
   protected stamp = Date.now();
   protected tasks: [O, ITask<M>][] = [];
-  protected callback: (tasks: [O, ITask<M>][]) => void;
+  protected callback: (tasks: [O, ITask<M>][]) => void | Promise<void>;
   protected unique = new Set<symbol | string>();
 
   public constructor(protected count = 100, protected timeout = 100) {
@@ -68,7 +68,7 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
     return this.tasks.length;
   }
 
-  public register(callback: (tasks: [O, ITask<M>][]) => void) {
+  public register(callback: (tasks: [O, ITask<M>][]) => void | Promise<void>) {
     this.callback = callback;
   }
 

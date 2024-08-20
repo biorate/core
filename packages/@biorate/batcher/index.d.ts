@@ -4,9 +4,13 @@ import { IBatcher, IMetadata, ITask } from './src';
 declare module '@biorate/batcher' {
   export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
     protected config: IConfig;
+
     protected stamp: number;
+
     protected tasks: [O, ITask<M>][];
-    protected callback: (tasks: [O, ITask<M>][]) => void;
+
+    protected callback: (tasks: [O, ITask<M>][]) => void | Promise<void>;
+
     protected unique: Set<symbol | string>;
 
     protected get count(): number;
@@ -25,7 +29,7 @@ declare module '@biorate/batcher' {
 
     public constructor();
 
-    public register(callback: (tasks: [O, ITask<M>][]) => void): void;
+    public register(callback: (tasks: [O, ITask<M>][]) => void | Promise<void>): void;
 
     public rollback(tasks: [O, ITask<M>][]): void;
 
