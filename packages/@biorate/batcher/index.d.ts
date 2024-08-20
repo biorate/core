@@ -1,5 +1,5 @@
-import { IBatcher, IMetadata, ITask } from './src';
 import { IConfig } from '@biorate/config';
+import { IBatcher, IMetadata, ITask } from './src';
 
 declare module '@biorate/batcher' {
   export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
@@ -12,7 +12,6 @@ declare module '@biorate/batcher' {
     protected get count(): number;
 
     protected get timeout(): number;
-
 
     protected panic(e: Error): void;
 
@@ -31,5 +30,7 @@ declare module '@biorate/batcher' {
     public rollback(tasks: [O, ITask<M>][]): void;
 
     public add(object: O, metadata?: M): Promise<unknown>;
+
+    public force(): Promise<void>;
   }
 }
