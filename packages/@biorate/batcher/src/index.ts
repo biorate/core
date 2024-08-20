@@ -89,7 +89,7 @@ export class Batcher<O = unknown, M = IMetadata> implements IBatcher<O, M> {
     );
   }
 
-  protected async force() {
+  public async force() {
     const tasks = this.tasks.slice();
     this.tasks.length = 0;
     await this.callback(this.deduplicate(tasks));
