@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.80.0](https://github.com/biorate/core/compare/v1.79.1...v1.80.0) (2024-08-20)
+
+### Features
+
+- **batcher:** force finish add ([0845f8f](https://github.com/biorate/core/commit/0845f8f87250c9cc7dfcb89601eef83c02ae086c))
+
 ## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
 
 **Note:** Version bump only for package @biorate/batcher
