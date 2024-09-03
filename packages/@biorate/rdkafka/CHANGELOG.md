@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.84.0](https://github.com/biorate/core/compare/v1.83.1...v1.84.0) (2024-09-03)
+
+### Features
+
+- **rdkafka:** librdkafka version up ([35dba19](https://github.com/biorate/core/commit/35dba1947ce275a5e5cfdd51e222cbad2b762ae8))
+
 ## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
 
 **Note:** Version bump only for package @biorate/rdkafka
