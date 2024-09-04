@@ -36,7 +36,7 @@ export class ProxyConnector extends BaseProxyConnector {
   })
   protected read: Gauge;
   /**
-   * @description initialize
+   * @description activity status metric
    */
   @gauge({
     name: 'proxy_connector_active',
