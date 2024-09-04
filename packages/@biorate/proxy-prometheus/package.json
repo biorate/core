@@ -1,0 +1,35 @@
+{
+  "name": "@biorate/proxy-prometheus",
+  "version": "1.84.1",
+  "description": "Proxy connector with prometheus metrics",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/proxy-prometheus"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "proxy",
+    "patroni",
+    "connector",
+    "prometheus"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/config": "1.76.3",
+    "@biorate/prometheus": "1.76.3",
+    "@biorate/proxy": "1.84.1",
+    "@biorate/inversion": "1.65.4",
+    "@biorate/tools": "1.28.0"
+  }
+}

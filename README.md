@@ -44,6 +44,7 @@
 - [amqp](https://biorate.github.io/core/modules/amqp.html)
 - [haproxy](https://biorate.github.io/core/modules/haproxy.html)
 - [proxy](https://biorate.github.io/core/modules/proxy.html)
+- [proxy-prometheus](https://biorate.github.io/core/modules/proxy_prometheus.html)
 - [async-loop](https://biorate.github.io/core/modules/async-loop.html)
 
 ### Learn
