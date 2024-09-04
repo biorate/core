@@ -3,6 +3,8 @@ import { timer } from '@biorate/tools';
 import { gauge, Gauge } from '@biorate/prometheus';
 import { ProxyConnector as BaseProxyConnector } from '@biorate/proxy';
 
+export type * from '@biorate/proxy';
+
 /**
  * @description Proxy connector with prometheus metrics
  *
