@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.84.1](https://github.com/biorate/core/compare/v1.84.0...v1.84.1) (2024-09-04)
+
+### Bug Fixes
+
+- **proxy:** getStatData private -> protected ([f681d58](https://github.com/biorate/core/commit/f681d58670fd0dfccbf91f1db0ba24068272a545))
+
 ## [1.76.3](https://github.com/biorate/core/compare/v1.76.2...v1.76.3) (2024-07-11)
 
 **Note:** Version bump only for package @biorate/proxy
