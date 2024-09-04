@@ -142,10 +142,9 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
     port = port ?? 0;
     const template = readFileSync(path.create(__dirname, '..', 'index.pug'), 'utf-8');
     const compiled = compile(template);
-    const configs = this.config.get<IProxyConfig[]>(this.namespace, []);
     const server = createServer((req, res) => {
       res.setHeader('content-type', 'text/html; charset=UTF-8');
-      res.end(compiled(this.#getStatData(configs)));
+      res.end(compiled({ rows: this.getStatData() }));
     }).listen({ port: port ?? 0, host });
     server.on('listening', () => {
       const attr = <{ address: string; port: number }>server.address();
@@ -155,23 +154,22 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
   /**
    * @description Get stat data
    */
-  #getStatData = (configs: IProxyConfig[]) => {
-    const locals: {
-      rows: {
-        connection: string;
-        backendHost: string;
-        proxyHost: string;
-        active: boolean;
-        write: number;
-        read: number;
-      }[];
-    } = { rows: [] };
+  protected getStatData() {
+    const configs = this.config.get<IProxyConfig[]>(this.namespace, []);
+    const data: {
+      connection: string;
+      backendHost: string;
+      proxyHost: string;
+      active: boolean;
+      write: number;
+      read: number;
+    }[] = [];
     for (const config of configs) {
       for (const client of config.clients) {
         const connection = this.get(config.name);
         const isActive = connection ? connection.isActive(client) : false;
         const stat = isActive ? connection.stat : { write: 0, read: 0 };
-        locals.rows.push({
+        data.push({
           connection: config.name,
           proxyHost:
             config.server.address.path ??
@@ -182,8 +180,8 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
         });
       }
     }
-    return locals;
-  };
+    return data;
+  }
   /**
    * @description initialize
    */
