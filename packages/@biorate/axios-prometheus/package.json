@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios-prometheus",
-  "version": "1.76.3",
+  "version": "1.86.0",
   "description": "Axios-prometheus HTTP interface",
   "main": "dist",
   "scripts": {
@@ -23,7 +23,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/axios": "1.76.3",
+    "@biorate/axios": "1.86.0",
     "@biorate/config": "1.76.3",
     "@biorate/inversion": "1.65.4",
     "@biorate/prometheus": "1.76.3",

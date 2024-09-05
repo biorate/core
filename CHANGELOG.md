@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.86.0](https://github.com/biorate/core/compare/v1.85.2...v1.86.0) (2024-09-05)
+
+### Features
+
+- **axios:** defaults added ([64e7016](https://github.com/biorate/core/commit/64e7016e9b9a5e019875f5ed1ab4cc8e9fc3de51))
+
 ## [1.85.2](https://github.com/biorate/core/compare/v1.85.1...v1.85.2) (2024-09-04)
 
 ### Bug Fixes
