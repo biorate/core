@@ -1,5 +1,5 @@
 import { omit, pick, merge } from 'lodash';
-import axios, { AxiosResponse, AxiosInstance } from 'axios';
+import axios, { AxiosResponse, AxiosInstance, AxiosDefaults } from 'axios';
 import retry from 'axios-retry';
 import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
 // @ts-ignore
@@ -62,6 +62,12 @@ export class Axios {
    */
   public static useMock() {
     this.mocks.set(this, { value: true });
+  }
+  /**
+   * @description Set defaults
+   */
+  public static get defaults() {
+    return axios.defaults;
   }
   /**
    * @description Get mock static method

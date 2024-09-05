@@ -64,4 +64,12 @@ describe('@biorate/axios', function () {
       expect(e.code === 'ENOTFOUND').to.be.equal(true);
     }
   });
+
+  it('defaults', async () => {
+    class Defaults extends Yandex {}
+    Defaults.defaults.headers.common['x-test'] = 1;
+    const { config } = await Defaults.fetch();
+    const headers = <Record<string, unknown>>config.headers;
+    expect(headers['x-test']).to.be.equal(1);
+  });
 });
