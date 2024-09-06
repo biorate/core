@@ -1,7 +1,7 @@
-import { expect, Scenario, step } from '../../src';
+import { expect, Scenario, Step } from '../../src';
 
 export class SubScenario1 extends Scenario {
-  @step()
+  @Step()
   protected async step0() {
     await this.page.goto('https://google.com/');
     await expect(this.page).toHaveTitle(/Google/);
@@ -9,12 +9,12 @@ export class SubScenario1 extends Scenario {
 }
 
 export class Scenario1 extends SubScenario1 {
-  @step('Scenario1, test step 1')
+  @Step('Scenario1, test step 1')
   protected async step1() {
     await this.page.goto('https://google.com/');
   }
 
-  @step()
+  @Step()
   protected async step2() {
     await expect(this.page).toHaveTitle(/Google/);
   }
