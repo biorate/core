@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.87.0](https://github.com/biorate/core/compare/v1.86.0...v1.87.0) (2024-09-06)
+
+### Features
+
+- **playwright:** playwright version up, rename [@step](https://github.com/step)() -> @Step() ([1457b3b](https://github.com/biorate/core/commit/1457b3bb4d13d4e570735ec656cf9531ab724924))
+
 ## [1.76.2](https://github.com/biorate/core/compare/v1.76.1...v1.76.2) (2024-07-04)
 
 ### Bug Fixes
