@@ -18,12 +18,12 @@
 <h1>Interface TestInfo</h1></div>
 <section class="tsd-panel tsd-comment">
 <div class="tsd-comment tsd-typography"><p><code>TestInfo</code> contains information about currently running test. It is available to test functions,
-<a href="https://playwright.dev/docs/api/class-test#test-before-each-1">test.beforeEach(hookFunction)</a>,
-<a href="https://playwright.dev/docs/api/class-test#test-after-each-1">test.afterEach(hookFunction)</a>,
-<a href="https://playwright.dev/docs/api/class-test#test-before-all-1">test.beforeAll(hookFunction)</a> and
-<a href="https://playwright.dev/docs/api/class-test#test-after-all-1">test.afterAll(hookFunction)</a> hooks, and test-scoped
-fixtures. <code>TestInfo</code> provides utilities to control test execution: attach files, update test timeout, determine
-which test is currently running and whether it was retried, etc.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-before-each">test.beforeEach([title, hookFunction])</a>,
+<a href="https://playwright.dev/docs/api/class-test#test-after-each">test.afterEach([title, hookFunction])</a>,
+<a href="https://playwright.dev/docs/api/class-test#test-before-all">test.beforeAll([title, hookFunction])</a> and
+<a href="https://playwright.dev/docs/api/class-test#test-after-all">test.afterAll([title, hookFunction])</a> hooks, and
+test-scoped fixtures. <code>TestInfo</code> provides utilities to control test execution: attach files, update test timeout,
+determine which test is currently running and whether it was retried, etc.</p>
 <pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">, </span><span class="hl-4">async</span><span class="hl-1"> ({ </span><span class="hl-2">page</span><span class="hl-1"> }, </span><span class="hl-2">testInfo</span><span class="hl-1">) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-6">expect</span><span class="hl-1">(</span><span class="hl-2">testInfo</span><span class="hl-1">.</span><span class="hl-2">title</span><span class="hl-1">).</span><span class="hl-6">toBe</span><span class="hl-1">(</span><span class="hl-3">&#39;basic test&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">screenshot</span><span class="hl-1">(</span><span class="hl-2">testInfo</span><span class="hl-1">.</span><span class="hl-6">outputPath</span><span class="hl-1">(</span><span class="hl-3">&#39;screenshot.png&#39;</span><span class="hl-1">));</span><br/><span class="hl-1">});</span>
 </code><button>Copy</button></pre>
 </div>
@@ -33,7 +33,7 @@ which test is currently running and whether it was retried, etc.</p>
 <ul class="tsd-hierarchy">
 <li><span class="target">TestInfo</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1921</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:7936</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -60,8 +60,7 @@ which test is currently running and whether it was retried, etc.</p>
 <a href="playwright.TestInfo.html#snapshotDir" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>snapshot<wbr/>Dir</span></a>
 <a href="playwright.TestInfo.html#snapshotSuffix" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>snapshot<wbr/>Suffix</span></a>
 <a href="playwright.TestInfo.html#status" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>status?</span></a>
-<a href="playwright.TestInfo.html#stderr" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stderr</span></a>
-<a href="playwright.TestInfo.html#stdout" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stdout</span></a>
+<a href="playwright.TestInfo.html#tags" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>tags</span></a>
 <a href="playwright.TestInfo.html#testId" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Id</span></a>
 <a href="playwright.TestInfo.html#timeout" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout</span></a>
 <a href="playwright.TestInfo.html#title" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>title</span></a>
@@ -85,8 +84,8 @@ which test is currently running and whether it was retried, etc.</p>
 <h3 class="tsd-anchor-link"><span>annotations</span><a href="#annotations" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">annotations</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">description</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></div>
 <div class="tsd-comment tsd-typography"><p>The list of annotations applicable to the current test. Includes annotations from the test, annotations from all
-<a href="https://playwright.dev/docs/api/class-test#test-describe-1">test.describe(title, callback)</a> groups the test
-belongs to and file-level annotations for the test file.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-describe">test.describe([title, details, callback])</a> groups the
+test belongs to and file-level annotations for the test file.</p>
 <p>Learn more about <a href="https://playwright.dev/docs/test-annotations">test annotations</a>.</p>
 </div>
 <div class="tsd-type-declaration">
@@ -104,7 +103,7 @@ belongs to and file-level annotations for the test file.</p>
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2105</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8113</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="attachments" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>attachments</span><a href="#attachments" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">attachments</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">body</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">contentType</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">path</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span></div>
@@ -139,7 +138,7 @@ directly pushing onto this array.</p>
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2124</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8132</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="column" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>column</span><a href="#column" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">column</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -147,7 +146,7 @@ directly pushing onto this array.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2150</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8158</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="config" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">:</span> <a href="playwright.FullConfig.html" class="tsd-signature-type tsd-kind-interface">FullConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></div>
@@ -161,17 +160,17 @@ directly pushing onto this array.</p>
 <ul class="tsd-parameters"></ul></div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1925</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8163</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="duration" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>duration</span><a href="#duration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">duration</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-comment tsd-typography"><p>The number of milliseconds the test took to finish. Always zero before the test finishes, either successfully or
-not. Can be used in <a href="https://playwright.dev/docs/api/class-test#test-after-each-1">test.afterEach(hookFunction)</a>
-hook.</p>
+not. Can be used in
+<a href="https://playwright.dev/docs/api/class-test#test-after-each">test.afterEach([title, hookFunction])</a> hook.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2157</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8170</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="error" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>error</span><a href="#error" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">error</span><span class="tsd-signature-symbol">?:</span> <a href="playwright.TestInfoError.html" class="tsd-signature-type tsd-kind-interface">TestInfoError</a></div>
@@ -180,7 +179,7 @@ hook.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2163</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8176</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="errors" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>errors</span><a href="#errors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">errors</span><span class="tsd-signature-symbol">:</span> <a href="playwright.TestInfoError.html" class="tsd-signature-type tsd-kind-interface">TestInfoError</a><span class="tsd-signature-symbol">[]</span></div>
@@ -188,15 +187,16 @@ hook.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2168</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8181</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="expectedStatus" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>expected<wbr/>Status</span><a href="#expectedStatus" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">expected<wbr/>Status</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;passed&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;failed&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;timedOut&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;skipped&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;interrupted&quot;</span></div>
 <div class="tsd-comment tsd-typography"><p>Expected status for the currently running test. This is usually <code>&#39;passed&#39;</code>, except for a few cases:</p>
 <ul>
-<li><code>&#39;skipped&#39;</code> for skipped tests, e.g. with <a href="https://playwright.dev/docs/api/class-test#test-skip-2">test.skip()</a>;</li>
+<li><code>&#39;skipped&#39;</code> for skipped tests, e.g. with
+<a href="https://playwright.dev/docs/api/class-test#test-skip">test.skip([title, details, body, condition, callback, description])</a>;</li>
 <li><code>&#39;failed&#39;</code> for tests marked as failed with
-<a href="https://playwright.dev/docs/api/class-test#test-fail-1">test.fail()</a>.</li>
+<a href="https://playwright.dev/docs/api/class-test#test-fail">test.fail([title, details, body, condition, callback, description])</a>.</li>
 </ul>
 <p>Expected status is usually compared with the actual
 <a href="https://playwright.dev/docs/api/class-testinfo#test-info-status">testInfo.status</a>:</p>
@@ -205,7 +205,7 @@ hook.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2189</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8203</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="file" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>file</span><a href="#file" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">file</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -213,7 +213,7 @@ hook.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2194</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8208</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="fn" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>fn</span><a href="#fn" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">fn</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">Function</span></div>
@@ -221,7 +221,7 @@ hook.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2199</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8213</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="line" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>line</span><a href="#line" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">line</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -229,7 +229,7 @@ hook.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2204</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8218</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="outputDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>output<wbr/>Dir</span><a href="#outputDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">output<wbr/>Dir</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -238,7 +238,7 @@ cannot conflict.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2210</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8224</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="parallelIndex" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>parallel<wbr/>Index</span><a href="#parallelIndex" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">parallel<wbr/>Index</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -250,7 +250,7 @@ the same <code>parallelIndex</code>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2220</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8234</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="project" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>project</span><a href="#project" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">project</span><span class="tsd-signature-symbol">:</span> <a href="playwright.FullProject.html" class="tsd-signature-type tsd-kind-interface">FullProject</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></div>
@@ -264,7 +264,7 @@ the same <code>parallelIndex</code>.</p>
 <ul class="tsd-parameters"></ul></div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1929</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8239</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="repeatEachIndex" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>repeat<wbr/>Each<wbr/>Index</span><a href="#repeatEachIndex" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">repeat<wbr/>Each<wbr/>Index</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -273,7 +273,7 @@ to the <a href="https://playwright.dev/docs/test-cli">command line</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2226</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8245</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="retry" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>retry</span><a href="#retry" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">retry</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -285,7 +285,7 @@ it equal to one, and so on. Learn more about <a href="https://playwright.dev/doc
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2251</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8270</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="snapshotDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>snapshot<wbr/>Dir</span><a href="#snapshotDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">snapshot<wbr/>Dir</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -297,7 +297,7 @@ configuration.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2261</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8280</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="snapshotSuffix" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>snapshot<wbr/>Suffix</span><a href="#snapshotSuffix" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">snapshot<wbr/>Suffix</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -312,12 +312,13 @@ about <a href="https://playwright.dev/docs/test-snapshots">snapshots</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2274</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8293</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="status" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>status</span><a href="#status" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">status</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">&quot;passed&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;failed&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;timedOut&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;skipped&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;interrupted&quot;</span></div>
 <div class="tsd-comment tsd-typography"><p>Actual status for the currently running test. Available after the test has finished in
-<a href="https://playwright.dev/docs/api/class-test#test-after-each-1">test.afterEach(hookFunction)</a> hook and fixtures.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-after-each">test.afterEach([title, hookFunction])</a> hook and
+fixtures.</p>
 <p>Status is usually compared with the
 <a href="https://playwright.dev/docs/api/class-testinfo#test-info-expected-status">testInfo.expectedStatus</a>:</p>
 <pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-2">test</span><span class="hl-1">.</span><span class="hl-6">afterEach</span><span class="hl-1">(</span><span class="hl-4">async</span><span class="hl-1"> ({}, </span><span class="hl-2">testInfo</span><span class="hl-1">) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">if</span><span class="hl-1"> (</span><span class="hl-2">testInfo</span><span class="hl-1">.</span><span class="hl-2">status</span><span class="hl-1"> !== </span><span class="hl-2">testInfo</span><span class="hl-1">.</span><span class="hl-2">expectedStatus</span><span class="hl-1">)</span><br/><span class="hl-1">    </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-6">log</span><span class="hl-1">(</span><span class="hl-3">`</span><span class="hl-4">${</span><span class="hl-2">testInfo</span><span class="hl-12">.</span><span class="hl-2">title</span><span class="hl-4">}</span><span class="hl-3"> did not run as expected!`</span><span class="hl-1">);</span><br/><span class="hl-1">});</span>
@@ -325,23 +326,16 @@ about <a href="https://playwright.dev/docs/test-snapshots">snapshots</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2293</li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-external"><a id="stderr" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>stderr</span><a href="#stderr" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">stderr</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>Output written to <code>process.stderr</code> or <code>console.error</code> during the test execution.</p>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8313</li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-external"><a id="tags" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>tags</span><a href="#tags" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">tags</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+<div class="tsd-comment tsd-typography"><p>Tags that apply to the test. Learn more about <a href="https://playwright.dev/docs/test-annotations#tag-tests">tags</a>.</p>
+<p>Note that any changes made to this list while the test is running will not be visible to test reporters.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2298</li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-external"><a id="stdout" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>stdout</span><a href="#stdout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">stdout</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>Output written to <code>process.stdout</code> or <code>console.log</code> during the test execution.</p>
-</div>
-<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2303</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8320</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="testId" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>test<wbr/>Id</span><a href="#testId" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -349,7 +343,7 @@ about <a href="https://playwright.dev/docs/test-snapshots">snapshots</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2308</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8325</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="timeout" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>timeout</span><a href="#timeout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -361,7 +355,7 @@ about <a href="https://playwright.dev/docs/test-snapshots">snapshots</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2326</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8343</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="title" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>title</span><a href="#title" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">title</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -369,7 +363,7 @@ about <a href="https://playwright.dev/docs/test-snapshots">snapshots</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2331</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8348</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="titlePath" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>title<wbr/>Path</span><a href="#titlePath" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">title<wbr/>Path</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
@@ -377,7 +371,7 @@ about <a href="https://playwright.dev/docs/test-snapshots">snapshots</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2336</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8353</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="workerIndex" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>worker<wbr/>Index</span><a href="#workerIndex" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">worker<wbr/>Index</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -388,7 +382,7 @@ with Playwright Test.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2345</li></ul></aside></section></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8362</li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="attach" class="tsd-anchor"></a>
@@ -438,7 +432,7 @@ attachments and <code>application/octet-stream</code> for [Buffer] attachments.<
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1964</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:7971</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="fail" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>fail</span><a href="#fail" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -446,16 +440,17 @@ attachments and <code>application/octet-stream</code> for [Buffer] attachments.<
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Marks the currently running test as &quot;should fail&quot;. Playwright Test runs this test and ensures that it is actually
 failing. This is useful for documentation purposes to acknowledge that some functionality is broken until it is
-fixed. This is similar to <a href="https://playwright.dev/docs/api/class-test#test-fail-1">test.fail()</a>.</p>
+fixed. This is similar to
+<a href="https://playwright.dev/docs/api/class-test#test-fail">test.fail([title, details, body, condition, callback, description])</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1988</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:7996</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="fail.fail-2"><span class="tsd-kind-call-signature">fail</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">condition</span>, <span class="tsd-kind-parameter">description</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#fail.fail-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Conditionally mark the currently running test as &quot;should fail&quot; with an optional description. This is similar to
-<a href="https://playwright.dev/docs/api/class-test#test-fail-2">test.fail(condition[, description])</a>.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-fail">test.fail([title, details, body, condition, callback, description])</a>.</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -471,23 +466,23 @@ fixed. This is similar to <a href="https://playwright.dev/docs/api/class-test#te
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1996</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8004</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="fixme" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>fixme</span><a href="#fixme" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="fixme.fixme-1"><span class="tsd-kind-call-signature">fixme</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#fixme.fixme-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Mark a test as &quot;fixme&quot;, with the intention to fix it. Test is immediately aborted. This is similar to
-<a href="https://playwright.dev/docs/api/class-test#test-fixme-2">test.fixme()</a>.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-fixme">test.fixme([title, details, body, condition, callback, description])</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2002</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8010</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="fixme.fixme-2"><span class="tsd-kind-call-signature">fixme</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">condition</span>, <span class="tsd-kind-parameter">description</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#fixme.fixme-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Conditionally mark the currently running test as &quot;fixme&quot; with an optional description. This is similar to
-<a href="https://playwright.dev/docs/api/class-test#test-fixme-3">test.fixme(condition[, description])</a>.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-fixme">test.fixme([title, details, body, condition, callback, description])</a>.</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +498,7 @@ fixed. This is similar to <a href="https://playwright.dev/docs/api/class-test#te
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2010</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8018</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="outputPath" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>output<wbr/>Path</span><a href="#outputPath" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -526,13 +521,13 @@ However, this path must stay within the
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">pathSegments</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">pathSegments</span>: <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 <div class="tsd-comment tsd-typography"><p>Path segments to append at the end of the resulting path.</p>
 </div><code class="tsd-tag ts-flagRest">Rest</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2034</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8042</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="setTimeout" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Timeout</span><a href="#setTimeout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -555,23 +550,23 @@ change the timeout in certain scenarios:</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2054</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8062</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="skip" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>skip</span><a href="#skip" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="skip.skip-1"><span class="tsd-kind-call-signature">skip</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#skip.skip-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Unconditionally skip the currently running test. Test is immediately aborted. This is similar to
-<a href="https://playwright.dev/docs/api/class-test#test-skip-2">test.skip()</a>.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-skip">test.skip([title, details, body, condition, callback, description])</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2060</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8068</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="skip.skip-2"><span class="tsd-kind-call-signature">skip</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">condition</span>, <span class="tsd-kind-parameter">description</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#skip.skip-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Conditionally skips the currently running test with an optional description. This is similar to
-<a href="https://playwright.dev/docs/api/class-test#test-skip-3">test.skip(condition[, description])</a>.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-skip">test.skip([title, details, body, condition, callback, description])</a>.</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -587,24 +582,24 @@ change the timeout in certain scenarios:</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2068</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8076</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="slow" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>slow</span><a href="#slow" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
 <li class="tsd-signature tsd-anchor-link" id="slow.slow-1"><span class="tsd-kind-call-signature">slow</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#slow.slow-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Marks the currently running test as &quot;slow&quot;, giving it triple the default timeout. This is similar to
-<a href="https://playwright.dev/docs/api/class-test#test-slow-1">test.slow()</a>.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-slow">test.slow([condition, callback, description])</a>.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2074</li></ul></aside></li>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8082</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="slow.slow-2"><span class="tsd-kind-call-signature">slow</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">condition</span>, <span class="tsd-kind-parameter">description</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#slow.slow-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Conditionally mark the currently running test as &quot;slow&quot; with an optional description, giving it triple the default
 timeout. This is similar to
-<a href="https://playwright.dev/docs/api/class-test#test-slow-2">test.slow(condition[, description])</a>.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-slow">test.slow([condition, callback, description])</a>.</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -620,7 +615,7 @@ timeout. This is similar to
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2083</li></ul></aside></li></ul></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8091</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="snapshotPath" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>snapshot<wbr/>Path</span><a href="#snapshotPath" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -638,14 +633,14 @@ otherwise it will throw.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">pathSegments</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+<h5><code class="tsd-tag ts-flagRest">Rest</code> <span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">pathSegments</span>: <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 <div class="tsd-comment tsd-typography"><p>The name of the snapshot or the path segments to define the snapshot file path. Snapshots with the same name in the
 same test file are expected to be the same.</p>
 </div><code class="tsd-tag ts-flagRest">Rest</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:2096</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:8104</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -684,8 +679,7 @@ same test file are expected to be the same.</p>
 <li><a href="#snapshotDir" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>snapshot<wbr/>Dir</span></a></li>
 <li><a href="#snapshotSuffix" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>snapshot<wbr/>Suffix</span></a></li>
 <li><a href="#status" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>status</span></a></li>
-<li><a href="#stderr" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stderr</span></a></li>
-<li><a href="#stdout" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stdout</span></a></li>
+<li><a href="#tags" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>tags</span></a></li>
 <li><a href="#testId" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Id</span></a></li>
 <li><a href="#timeout" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout</span></a></li>
 <li><a href="#title" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>title</span></a></li>
@@ -736,8 +730,8 @@ same test file are expected to be the same.</p>
 <details class="tsd-index-accordion" open data-key="playwright"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg><a href="../modules/playwright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>playwright</span></a></summary>
 <div class="tsd-accordion-details">
 <ul class="tsd-nested-navigation">
-<li><a href="../modules/playwright.html#LabelName" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4194304"><rect fill="var(--color-icon-background)" stroke="#FF4D82" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M10.354 17V8.24H13.066C13.586 8.24 14.042 8.348 14.434 8.564C14.826 8.772 15.13 9.064 15.346 9.44C15.562 9.816 15.67 10.256 15.67 10.76C15.67 11.352 15.514 11.86 15.202 12.284C14.898 12.708 14.482 13 13.954 13.16L15.79 17H14.518L12.838 13.28H11.434V17H10.354ZM11.434 12.308H13.066C13.514 12.308 13.874 12.168 14.146 11.888C14.418 11.6 14.554 11.224 14.554 10.76C14.554 10.288 14.418 9.912 14.146 9.632C13.874 9.352 13.514 9.212 13.066 9.212H11.434V12.308Z" fill="var(--color-text)"></path></g></svg><span>Label<wbr/>Name</span></a></li>
 <li><a href="../modules/playwright.errors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>errors</span></a></li>
+<li><a href="../enums/playwright.LabelName.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-8"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-enum)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.45 16V7.24H14.49V8.224H10.518V10.936H14.07V11.908H10.518V15.016H14.49V16H9.45Z" fill="var(--color-text)"></path></g></svg><span>Label<wbr/>Name</span></a></li>
 <li><a href="../classes/playwright.Context.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Context</span></a></li>
 <li><a href="../classes/playwright.PlayWright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Play<wbr/>Wright</span></a></li>
 <li><a href="../classes/playwright.Scenario.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Scenario</span></a></li>
@@ -818,11 +812,13 @@ same test file are expected to be the same.</p>
 <li><a href="../types/playwright.ExpectMatcherState.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect<wbr/>Matcher<wbr/>State</span></a></li>
 <li><a href="../types/playwright.Fixtures.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fixtures</span></a></li>
 <li><a href="../types/playwright.MatcherHintOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Hint<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.MatcherReturnType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Return<wbr/>Type</span></a></li>
 <li><a href="../types/playwright.Metadata.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Metadata</span></a></li>
 <li><a href="../types/playwright.PlaywrightTestConfig.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Config</span></a></li>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -855,12 +851,12 @@ same test file are expected to be the same.</p>
 <li><a href="../variables/playwright.tags.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>tags</span></a></li>
 <li><a href="../variables/playwright.test.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>test</span></a></li>
 <li><a href="../variables/playwright.webkit.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>webkit</span></a></li>
-<li><a href="../functions/playwright._baseTest.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>_base<wbr/>Test</span></a></li>
+<li><a href="../functions/playwright.Step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>Step</span></a></li>
+<li><a href="../functions/playwright._baseTest.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>_base<wbr/>Test</span></a></li>
 <li><a href="../functions/playwright.defineConfig.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>define<wbr/>Config</span></a></li>
 <li><a href="../functions/playwright.expect-1.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>expect</span></a></li>
 <li><a href="../functions/playwright.mergeExpects.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Expects</span></a></li>
-<li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
-<li><a href="../functions/playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
+<li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
 <li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/proxy_prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy-<wbr/>prometheus</span></a></li>

@@ -15,17 +15,7 @@
 <li><a href="../index.html">biorate</a></li>
 <li><a href="../modules/playwright.html">playwright</a></li>
 <li><a href="playwright.Config.html">Config</a></li></ul>
-<h1>Interface Config&lt;TestArgs, WorkerArgs&gt;</h1></div>
-<section class="tsd-panel tsd-comment">
-<div class="tsd-comment tsd-typography"><p>Playwright Test provides many options to configure how your tests are collected and executed, for example <code>timeout</code>
-or <code>testDir</code>. These options are described in the TestConfig object in the
-<a href="https://playwright.dev/docs/test-configuration">configuration file</a>.</p>
-<p>Playwright Test supports running multiple test projects at the same time. Project-specific options should be put to
-<a href="https://playwright.dev/docs/api/class-testconfig#test-config-projects">testConfig.projects</a>, but top-level TestConfig can also define base options shared between all projects.</p>
-<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">timeout:</span><span class="hl-1"> </span><span class="hl-7">30000</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">globalTimeout:</span><span class="hl-1"> </span><span class="hl-7">600000</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">reporter:</span><span class="hl-1"> </span><span class="hl-3">&#39;list&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">testDir:</span><span class="hl-1"> </span><span class="hl-3">&#39;./tests&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
-</code><button>Copy</button></pre>
-</div>
-<div class="tsd-comment tsd-typography"></div></section> 
+<h1>Interface Config&lt;TestArgs, WorkerArgs&gt;</h1></div> 
 <section class="tsd-panel">
 <h4>Type Parameters</h4>
 <ul class="tsd-type-parameter-list">
@@ -36,11 +26,11 @@ or <code>testDir</code>. These options are described in the TestConfig object in
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
-<li><span class="tsd-signature-type ">TestConfig</span>
+<li><span class="tsd-signature-type ">TestConfig</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">TestArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">WorkerArgs</span><span class="tsd-signature-symbol">&gt;</span>
 <ul class="tsd-hierarchy">
 <li><span class="target">Config</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1382</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1668</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -63,7 +53,7 @@ or <code>testDir</code>. These options are described in the TestConfig object in
 <a href="playwright.Config.html#name" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name?</span></a>
 <a href="playwright.Config.html#outputDir" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>output<wbr/>Dir?</span></a>
 <a href="playwright.Config.html#preserveOutput" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>preserve<wbr/>Output?</span></a>
-<a href="playwright.Config.html#projects" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>projects?</span></a>
+<a href="playwright.Config.html#projects" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>projects?</span></a>
 <a href="playwright.Config.html#quiet" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>quiet?</span></a>
 <a href="playwright.Config.html#repeatEach" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>repeat<wbr/>Each?</span></a>
 <a href="playwright.Config.html#reportSlowTests" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>report<wbr/>Slow<wbr/>Tests?</span></a>
@@ -75,9 +65,9 @@ or <code>testDir</code>. These options are described in the TestConfig object in
 <a href="playwright.Config.html#testDir" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Dir?</span></a>
 <a href="playwright.Config.html#testIgnore" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Ignore?</span></a>
 <a href="playwright.Config.html#testMatch" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Match?</span></a>
-<a href="playwright.Config.html#timeout-1" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout?</span></a>
+<a href="playwright.Config.html#timeout-2" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout?</span></a>
 <a href="playwright.Config.html#updateSnapshots" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>update<wbr/>Snapshots?</span></a>
-<a href="playwright.Config.html#use" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>use?</span></a>
+<a href="playwright.Config.html#use" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>use?</span></a>
 <a href="playwright.Config.html#webServer" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>web<wbr/>Server?</span></a>
 <a href="playwright.Config.html#workers" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>workers?</span></a>
 </div></section></div></details></section></section>
@@ -103,10 +93,10 @@ test uses are listed here.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.build</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:590</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:897</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="expect" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>expect</span><a href="#expect" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">expect</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toHaveScreenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toMatchSnapshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
+<div class="tsd-signature"><span class="tsd-kind-property">expect</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toHaveScreenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">stylePath</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toMatchSnapshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toPass</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">intervals</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
 <div class="tsd-comment tsd-typography"><p>Configuration for the <code>expect</code> assertion library. Learn more about <a href="https://playwright.dev/docs/test-timeouts">various timeouts</a>.</p>
 <p><strong>Usage</strong></p>
 <pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">expect:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">timeout:</span><span class="hl-1"> </span><span class="hl-7">10000</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">toMatchSnapshot:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-2">maxDiffPixels:</span><span class="hl-1"> </span><span class="hl-7">10</span><span class="hl-1">,</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">});</span>
@@ -121,7 +111,7 @@ test uses are listed here.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">to<wbr/>Have<wbr/>Screenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">to<wbr/>Have<wbr/>Screenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">stylePath</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
 <div class="tsd-comment tsd-typography"><p>Configuration for the
 <a href="https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-1">expect(page).toHaveScreenshot(name[, options])</a>
 method.</p>
@@ -142,13 +132,13 @@ to <code>&quot;hide&quot;</code>.</p>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">max<wbr/>Diff<wbr/>Pixel<wbr/>Ratio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
-<div class="tsd-comment tsd-typography"><p>an acceptable ratio of pixels that are different to the total amount of pixels, between <code>0</code> and <code>1</code> , unset by
+<div class="tsd-comment tsd-typography"><p>An acceptable ratio of pixels that are different to the total amount of pixels, between <code>0</code> and <code>1</code> , unset by
 default.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">max<wbr/>Diff<wbr/>Pixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
-<div class="tsd-comment tsd-typography"><p>an acceptable amount of pixels that could be different, unset by default.</p>
+<div class="tsd-comment tsd-typography"><p>An acceptable amount of pixels that could be different, unset by default.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
@@ -158,8 +148,13 @@ to <code>&quot;css&quot;</code>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">style<wbr/>Path</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+<div class="tsd-comment tsd-typography"><p>See <code>style</code> in <a href="https://playwright.dev/docs/api/class-page#page-screenshot">page.screenshot([options])</a>.</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li>
+<li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
-<div class="tsd-comment tsd-typography"><p>an acceptable perceived color difference between the same pixel in compared images, ranging from <code>0</code> (strict) and
+<div class="tsd-comment tsd-typography"><p>An acceptable perceived color difference between the same pixel in compared images, ranging from <code>0</code> (strict) and
 <code>1</code> (lax). <code>&quot;pixelmatch&quot;</code> comparator computes color difference in
 <a href="https://en.wikipedia.org/wiki/YIQ">YIQ color space</a> and defaults <code>threshold</code> value to <code>0.2</code>.</p>
 </div>
@@ -174,32 +169,49 @@ method.</p>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">max<wbr/>Diff<wbr/>Pixel<wbr/>Ratio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
-<div class="tsd-comment tsd-typography"><p>an acceptable ratio of pixels that are different to the total amount of pixels, between <code>0</code> and <code>1</code> , unset by
+<div class="tsd-comment tsd-typography"><p>An acceptable ratio of pixels that are different to the total amount of pixels, between <code>0</code> and <code>1</code> , unset by
 default.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">max<wbr/>Diff<wbr/>Pixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
-<div class="tsd-comment tsd-typography"><p>an acceptable amount of pixels that could be different, unset by default.</p>
+<div class="tsd-comment tsd-typography"><p>An acceptable amount of pixels that could be different, unset by default.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
-<div class="tsd-comment tsd-typography"><p>an acceptable perceived color difference between the same pixel in compared images, ranging from <code>0</code> (strict) and
+<div class="tsd-comment tsd-typography"><p>An acceptable perceived color difference between the same pixel in compared images, ranging from <code>0</code> (strict) and
 <code>1</code> (lax). <code>&quot;pixelmatch&quot;</code> comparator computes color difference in
 <a href="https://en.wikipedia.org/wiki/YIQ">YIQ color space</a> and defaults <code>threshold</code> value to <code>0.2</code>.</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li></ul></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">to<wbr/>Pass</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">intervals</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
+<div class="tsd-comment tsd-typography"><p>Configuration for the <a href="https://playwright.dev/docs/test-assertions#expecttopass">expect(value).toPass()</a> method.</p>
+</div>
+<div class="tsd-comment tsd-typography"></div>
+<ul class="tsd-parameters">
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">intervals</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+<div class="tsd-comment tsd-typography"><p>Probe intervals for toPass method in milliseconds.</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>Timeout for toPass method in milliseconds.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li></ul></li></ul></div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.expect</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:618</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:925</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="forbidOnly" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>forbid<wbr/>Only</span><a href="#forbidOnly" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">forbid<wbr/>Only</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
 <div class="tsd-comment tsd-typography"><p>Whether to exit with an error if any tests or groups are marked as
-<a href="https://playwright.dev/docs/api/class-test#test-only">test.only(title, testFunction)</a> or
-<a href="https://playwright.dev/docs/api/class-test#test-describe-only">test.describe.only(title, callback)</a>. Useful on CI.</p>
+<a href="https://playwright.dev/docs/api/class-test#test-only">test.only(title[, details, body])</a> or
+<a href="https://playwright.dev/docs/api/class-test#test-describe-only">test.describe.only([title, details, callback])</a>.
+Useful on CI.</p>
 <p><strong>Usage</strong></p>
 <pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">forbidOnly:</span><span class="hl-1"> !!</span><span class="hl-2">process</span><span class="hl-1">.</span><span class="hl-2">env</span><span class="hl-1">.</span><span class="hl-5">CI</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
 </code><button>Copy</button></pre>
@@ -207,7 +219,7 @@ default.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.forbidOnly</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:710</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1038</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="fullyParallel" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>fully<wbr/>Parallel</span><a href="#fullyParallel" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">fully<wbr/>Parallel</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -222,12 +234,12 @@ worker process.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.fullyParallel</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:731</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1059</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="globalSetup" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>global<wbr/>Setup</span><a href="#globalSetup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">global<wbr/>Setup</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
 <div class="tsd-comment tsd-typography"><p>Path to the global setup file. This file will be required and run before all the tests. It must export a single
-function that takes a [<code>TestConfig</code>] argument.</p>
+function that takes a <a href="playwright.FullConfig.html" class="tsd-kind-interface">FullConfig</a> argument.</p>
 <p>Learn more about <a href="https://playwright.dev/docs/test-global-setup-teardown">global setup and teardown</a>.</p>
 <p><strong>Usage</strong></p>
 <pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">globalSetup:</span><span class="hl-1"> </span><span class="hl-3">&#39;./global-setup&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
@@ -236,7 +248,7 @@ function that takes a [<code>TestConfig</code>] argument.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.globalSetup</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:751</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1079</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="globalTeardown" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>global<wbr/>Teardown</span><a href="#globalTeardown" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">global<wbr/>Teardown</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -251,7 +263,7 @@ function. See also
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.globalTeardown</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:772</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1100</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="globalTimeout" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>global<wbr/>Timeout</span><a href="#globalTimeout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">global<wbr/>Timeout</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
@@ -265,7 +277,7 @@ CI to prevent broken setup from running too long and wasting resources. Learn mo
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.globalTimeout</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:791</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1119</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="grep" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>grep</span><a href="#grep" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
@@ -281,7 +293,7 @@ any) and the test name divided by spaces, e.g. <code>my-test.spec.ts my-suite my
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.grep</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:813</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1141</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="grepInvert" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>grep<wbr/>Invert</span><a href="#grepInvert" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep<wbr/>Invert</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
@@ -296,7 +308,7 @@ any) and the test name divided by spaces, e.g. <code>my-test.spec.ts my-suite my
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.grepInvert</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:834</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1162</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="ignoreSnapshots" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>ignore<wbr/>Snapshots</span><a href="#ignoreSnapshots" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">ignore<wbr/>Snapshots</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -308,7 +320,7 @@ any) and the test name divided by spaces, e.g. <code>my-test.spec.ts my-suite my
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.ignoreSnapshots</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:852</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1180</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="maxFailures" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>max<wbr/>Failures</span><a href="#maxFailures" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">max<wbr/>Failures</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
@@ -322,7 +334,7 @@ exit with an error. Setting to zero (default) disables this behavior.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.maxFailures</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:872</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1200</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="metadata" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>metadata</span><a href="#metadata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">metadata</span><span class="tsd-signature-symbol">?:</span> <a href="../types/playwright.Metadata.html" class="tsd-signature-type tsd-kind-type-alias">Metadata</a></div>
@@ -334,7 +346,7 @@ exit with an error. Setting to zero (default) disables this behavior.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.metadata</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:889</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1217</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -347,7 +359,7 @@ exit with an error. Setting to zero (default) disables this behavior.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.name</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:907</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1235</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="outputDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>output<wbr/>Dir</span><a href="#outputDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">output<wbr/>Dir</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -370,7 +382,7 @@ create a temporary file.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.outputDir</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:946</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1274</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="preserveOutput" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>preserve<wbr/>Output</span><a href="#preserveOutput" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">preserve<wbr/>Output</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">&quot;always&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;never&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;failures-only&quot;</span></div>
@@ -389,8 +401,8 @@ create a temporary file.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.preserveOutput</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:968</li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-external"><a id="projects" class="tsd-anchor"></a>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1296</li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="projects" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>projects</span><a href="#projects" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">projects</span><span class="tsd-signature-symbol">?:</span> <a href="playwright.Project.html" class="tsd-signature-type tsd-kind-interface">Project</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">TestArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">WorkerArgs</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 <div class="tsd-comment tsd-typography"><p>Playwright Test supports running multiple test projects at the same time. See TestProject for more
@@ -400,9 +412,9 @@ information.</p>
 </code><button>Copy</button></pre>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Overrides TestConfig.projects</p>
+<p>Inherited from TestConfig.projects</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1401</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:757</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="quiet" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>quiet</span><a href="#quiet" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">quiet</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -414,7 +426,7 @@ information.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.quiet</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1005</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1313</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="repeatEach" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>repeat<wbr/>Each</span><a href="#repeatEach" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">repeat<wbr/>Each</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
@@ -426,7 +438,7 @@ information.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.repeatEach</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1022</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1330</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="reportSlowTests" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>report<wbr/>Slow<wbr/>Tests</span><a href="#reportSlowTests" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">report<wbr/>Slow<wbr/>Tests</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">max</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
@@ -454,7 +466,7 @@ more than <code>max</code> number of them. Passing zero as <code>max</code> repo
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.reportSlowTests</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1043</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1351</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="reporter" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>reporter</span><a href="#reporter" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">reporter</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">LiteralUnion</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">&quot;null&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;json&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;list&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dot&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;line&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;github&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;junit&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;html&quot;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../types/playwright.ReporterDescription.html" class="tsd-signature-type tsd-kind-type-alias">ReporterDescription</a><span class="tsd-signature-symbol">[]</span></div>
@@ -473,7 +485,7 @@ more than <code>max</code> number of them. Passing zero as <code>max</code> repo
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.reporter</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:493</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:780</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="retries" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>retries</span><a href="#retries" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">retries</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
@@ -486,7 +498,7 @@ about <a href="https://playwright.dev/docs/test-retries#retries">test retries</a
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.retries</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1071</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1379</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="shard" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>shard</span><a href="#shard" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">shard</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">current</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">total</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
@@ -512,7 +524,7 @@ about <a href="https://playwright.dev/docs/test-retries#retries">test retries</a
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.shard</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1090</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1398</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="snapshotDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>snapshot<wbr/>Dir</span><a href="#snapshotDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">snapshot<wbr/>Dir</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -535,7 +547,7 @@ would resolve to <code>snapshots/a.spec.js-snapshots</code>.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.snapshotDir</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1131</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1439</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="snapshotPathTemplate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>snapshot<wbr/>Path<wbr/>Template</span><a href="#snapshotPathTemplate" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">snapshot<wbr/>Path<wbr/>Template</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -559,10 +571,19 @@ tests/
 </code><button>Copy</button></pre>
 <p>The list of supported tokens:</p>
 <ul>
-<li><code>{testDir}</code> - Project&#39;s
-<a href="https://playwright.dev/docs/api/class-testconfig#test-config-test-dir">testConfig.testDir</a>.<ul>
-<li>Value: <code>/home/playwright/tests</code> (absolute path is since <code>testDir</code> is resolved relative to directory with
-config)</li>
+<li><code>{arg}</code> - Relative snapshot path <strong>without extension</strong>. These come from the arguments passed to the
+<code>toHaveScreenshot()</code> and <code>toMatchSnapshot()</code> calls; if called without arguments, this will be an auto-generated
+snapshot name.<ul>
+<li>Value: <code>foo/bar/baz</code></li>
+</ul>
+</li>
+<li><code>{ext}</code> - snapshot extension (with dots)<ul>
+<li>Value: <code>.png</code></li>
+</ul>
+</li>
+<li><code>{platform}</code> - The value of <code>process.platform</code>.</li>
+<li><code>{projectName}</code> - Project&#39;s file-system-sanitized name, if any.<ul>
+<li>Value: <code>&#39;&#39;</code> (empty string).</li>
 </ul>
 </li>
 <li><code>{snapshotDir}</code> - Project&#39;s
@@ -570,9 +591,10 @@ config)</li>
 <li>Value: <code>/home/playwright/tests</code> (since <code>snapshotDir</code> is not provided in config, it defaults to <code>testDir</code>)</li>
 </ul>
 </li>
-<li><code>{platform}</code> - The value of <code>process.platform</code>.</li>
-<li><code>{projectName}</code> - Project&#39;s file-system-sanitized name, if any.<ul>
-<li>Value: <code>&#39;&#39;</code> (empty string).</li>
+<li><code>{testDir}</code> - Project&#39;s
+<a href="https://playwright.dev/docs/api/class-testconfig#test-config-test-dir">testConfig.testDir</a>.<ul>
+<li>Value: <code>/home/playwright/tests</code> (absolute path is since <code>testDir</code> is resolved relative to directory with
+config)</li>
 </ul>
 </li>
 <li><code>{testFileDir}</code> - Directories in relative path from <code>testDir</code> to <strong>test file</strong>.<ul>
@@ -589,16 +611,6 @@ config)</li>
 </li>
 <li><code>{testName}</code> - File-system-sanitized test title, including parent describes but excluding file name.<ul>
 <li>Value: <code>suite-test-should-work</code></li>
-</ul>
-</li>
-<li><code>{arg}</code> - Relative snapshot path <strong>without extension</strong>. These come from the arguments passed to the
-<code>toHaveScreenshot()</code> and <code>toMatchSnapshot()</code> calls; if called without arguments, this will be an auto-generated
-snapshot name.<ul>
-<li>Value: <code>foo/bar/baz</code></li>
-</ul>
-</li>
-<li><code>{ext}</code> - snapshot extension (with dots)<ul>
-<li>Value: <code>.png</code></li>
 </ul>
 </li>
 </ul>
@@ -619,7 +631,7 @@ snapshot name.<ul>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.snapshotPathTemplate</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1229</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1537</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="testDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>test<wbr/>Dir</span><a href="#testDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Dir</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -631,7 +643,7 @@ snapshot name.<ul>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.testDir</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1246</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1554</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="testIgnore" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>test<wbr/>Ignore</span><a href="#testIgnore" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Ignore</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
@@ -645,7 +657,7 @@ file path. Strings are treated as glob patterns.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.testIgnore</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1266</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1574</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="testMatch" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>test<wbr/>Match</span><a href="#testMatch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Match</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
@@ -655,15 +667,15 @@ absolute file path. Strings are treated as glob patterns.</p>
 This means JavaScript or TypeScript files with <code>&quot;.test&quot;</code> or <code>&quot;.spec&quot;</code> suffix, for example
 <code>login-screen.wrong-credentials.spec.ts</code>.</p>
 <p><strong>Usage</strong></p>
-<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">testMatch:</span><span class="hl-13"> /.</span><span class="hl-16">*</span><span class="hl-11">\.</span><span class="hl-13">e2e</span><span class="hl-11">\.</span><span class="hl-13">js/</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
+<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">testMatch:</span><span class="hl-13"> /.</span><span class="hl-14">*</span><span class="hl-11">\.</span><span class="hl-13">e2e</span><span class="hl-11">\.</span><span class="hl-13">js/</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
 </code><button>Copy</button></pre>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.testMatch</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1288</li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="timeout-1" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>timeout</span><a href="#timeout-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1596</li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="timeout-2" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>timeout</span><a href="#timeout-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-comment tsd-typography"><p>Timeout for each test in milliseconds. Defaults to 30 seconds.</p>
 <p>This is a base timeout for all tests. In addition, each test can configure its own timeout with
@@ -676,7 +688,7 @@ This means JavaScript or TypeScript files with <code>&quot;.test&quot;</code> or
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.timeout</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1309</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1617</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="updateSnapshots" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>update<wbr/>Snapshots</span><a href="#updateSnapshots" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">update<wbr/>Snapshots</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">&quot;none&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;missing&quot;</span></div>
@@ -696,8 +708,8 @@ time. This is the default.</li>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.updateSnapshots</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1333</li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-external"><a id="use" class="tsd-anchor"></a>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1641</li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="use" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>use</span><a href="#use" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">use</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">UseOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">TestArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">WorkerArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
 <div class="tsd-comment tsd-typography"><p>Global options for all tests, for example
@@ -708,8 +720,9 @@ about <a href="https://playwright.dev/docs/test-configuration">configuration</a>
 </code><button>Copy</button></pre>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
+<p>Inherited from TestConfig.use</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1421</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:800</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="webServer" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>web<wbr/>Server</span><a href="#webServer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">web<wbr/>Server</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">TestConfigWebServer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">TestConfigWebServer</span><span class="tsd-signature-symbol">[]</span></div>
@@ -740,7 +753,7 @@ that tests could use relative urls.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.webServer</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:572</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:879</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="workers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>workers</span><a href="#workers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">workers</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
@@ -757,7 +770,7 @@ used to speed up test execution.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestConfig.workers</p>
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1357</li></ul></aside></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:1665</li></ul></aside></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -792,7 +805,7 @@ used to speed up test execution.</p>
 <li><a href="#name" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name</span></a></li>
 <li><a href="#outputDir" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>output<wbr/>Dir</span></a></li>
 <li><a href="#preserveOutput" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>preserve<wbr/>Output</span></a></li>
-<li><a href="#projects" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>projects</span></a></li>
+<li><a href="#projects" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>projects</span></a></li>
 <li><a href="#quiet" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>quiet</span></a></li>
 <li><a href="#repeatEach" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>repeat<wbr/>Each</span></a></li>
 <li><a href="#reportSlowTests" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>report<wbr/>Slow<wbr/>Tests</span></a></li>
@@ -804,9 +817,9 @@ used to speed up test execution.</p>
 <li><a href="#testDir" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Dir</span></a></li>
 <li><a href="#testIgnore" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Ignore</span></a></li>
 <li><a href="#testMatch" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Match</span></a></li>
-<li><a href="#timeout-1" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout</span></a></li>
+<li><a href="#timeout-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout</span></a></li>
 <li><a href="#updateSnapshots" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>update<wbr/>Snapshots</span></a></li>
-<li><a href="#use" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>use</span></a></li>
+<li><a href="#use" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>use</span></a></li>
 <li><a href="#webServer" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>web<wbr/>Server</span></a></li>
 <li><a href="#workers" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>workers</span></a></li></ul></div></details></div>
 <div class="site-menu">
@@ -846,8 +859,8 @@ used to speed up test execution.</p>
 <details class="tsd-index-accordion" open data-key="playwright"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg><a href="../modules/playwright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>playwright</span></a></summary>
 <div class="tsd-accordion-details">
 <ul class="tsd-nested-navigation">
-<li><a href="../modules/playwright.html#LabelName" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4194304"><rect fill="var(--color-icon-background)" stroke="#FF4D82" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M10.354 17V8.24H13.066C13.586 8.24 14.042 8.348 14.434 8.564C14.826 8.772 15.13 9.064 15.346 9.44C15.562 9.816 15.67 10.256 15.67 10.76C15.67 11.352 15.514 11.86 15.202 12.284C14.898 12.708 14.482 13 13.954 13.16L15.79 17H14.518L12.838 13.28H11.434V17H10.354ZM11.434 12.308H13.066C13.514 12.308 13.874 12.168 14.146 11.888C14.418 11.6 14.554 11.224 14.554 10.76C14.554 10.288 14.418 9.912 14.146 9.632C13.874 9.352 13.514 9.212 13.066 9.212H11.434V12.308Z" fill="var(--color-text)"></path></g></svg><span>Label<wbr/>Name</span></a></li>
 <li><a href="../modules/playwright.errors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>errors</span></a></li>
+<li><a href="../enums/playwright.LabelName.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-8"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-enum)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.45 16V7.24H14.49V8.224H10.518V10.936H14.07V11.908H10.518V15.016H14.49V16H9.45Z" fill="var(--color-text)"></path></g></svg><span>Label<wbr/>Name</span></a></li>
 <li><a href="../classes/playwright.Context.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Context</span></a></li>
 <li><a href="../classes/playwright.PlayWright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Play<wbr/>Wright</span></a></li>
 <li><a href="../classes/playwright.Scenario.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Scenario</span></a></li>
@@ -928,11 +941,13 @@ used to speed up test execution.</p>
 <li><a href="../types/playwright.ExpectMatcherState.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect<wbr/>Matcher<wbr/>State</span></a></li>
 <li><a href="../types/playwright.Fixtures.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fixtures</span></a></li>
 <li><a href="../types/playwright.MatcherHintOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Hint<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.MatcherReturnType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Return<wbr/>Type</span></a></li>
 <li><a href="../types/playwright.Metadata.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Metadata</span></a></li>
 <li><a href="../types/playwright.PlaywrightTestConfig.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Config</span></a></li>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -965,12 +980,12 @@ used to speed up test execution.</p>
 <li><a href="../variables/playwright.tags.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>tags</span></a></li>
 <li><a href="../variables/playwright.test.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>test</span></a></li>
 <li><a href="../variables/playwright.webkit.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>webkit</span></a></li>
-<li><a href="../functions/playwright._baseTest.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>_base<wbr/>Test</span></a></li>
+<li><a href="../functions/playwright.Step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>Step</span></a></li>
+<li><a href="../functions/playwright._baseTest.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>_base<wbr/>Test</span></a></li>
 <li><a href="../functions/playwright.defineConfig.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>define<wbr/>Config</span></a></li>
 <li><a href="../functions/playwright.expect-1.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>expect</span></a></li>
 <li><a href="../functions/playwright.mergeExpects.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Expects</span></a></li>
-<li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
-<li><a href="../functions/playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
+<li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
 <li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/proxy_prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy-<wbr/>prometheus</span></a></li>

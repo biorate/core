@@ -17,16 +17,10 @@
 <li><a href="playwright.FullProject.html">FullProject</a></li></ul>
 <h1>Interface FullProject&lt;TestArgs, WorkerArgs&gt;</h1></div>
 <section class="tsd-panel tsd-comment">
-<div class="tsd-comment tsd-typography"><p>Playwright Test supports running multiple test projects at the same time. This is useful for running tests in
-multiple configurations. For example, consider running tests against multiple browsers.</p>
-<p><code>TestProject</code> encapsulates configuration specific to a single project. Projects are configured in
-<a href="https://playwright.dev/docs/api/class-testconfig#test-config-projects">testConfig.projects</a> specified in the
-<a href="https://playwright.dev/docs/test-configuration">configuration file</a>. Note that all properties of TestProject are available in
-the top-level TestConfig, in which case they are shared between all projects.</p>
-<p>Here is an example configuration that runs every test in Chromium, Firefox and WebKit, both Desktop and Mobile
-versions.</p>
-<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1">, </span><span class="hl-2">devices</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-8">// Options shared for all projects.</span><br/><span class="hl-1">  </span><span class="hl-2">timeout:</span><span class="hl-1"> </span><span class="hl-7">30000</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">use:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">ignoreHTTPSErrors:</span><span class="hl-1"> </span><span class="hl-4">true</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><br/><span class="hl-1">  </span><span class="hl-8">// Options specific to each project.</span><br/><span class="hl-1">  </span><span class="hl-2">projects:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Chrome&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;firefox&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Firefox&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;webkit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Safari&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;Mobile Chrome&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Pixel 5&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;Mobile Safari&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;iPhone 12&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span>
-</code><button>Copy</button></pre>
+<div class="tsd-comment tsd-typography"><p>Runtime representation of the test project configuration. It is accessible in the tests via
+<a href="https://playwright.dev/docs/api/class-testinfo#test-info-project">testInfo.project</a> and
+<a href="https://playwright.dev/docs/api/class-workerinfo#worker-info-project">workerInfo.project</a> and is passed to the
+test reporters. To see the format of the project in the Playwright configuration file please see TestProject instead.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></section> 
 <section class="tsd-panel">
@@ -41,7 +35,7 @@ versions.</p>
 <ul class="tsd-hierarchy">
 <li><span class="target">FullProject</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:163</li></ul></aside>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:637</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -70,199 +64,123 @@ versions.</p>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="dependencies" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>dependencies</span><a href="#dependencies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">dependencies</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>List of projects that need to run before any test in this project runs. Dependencies can be useful for configuring
-the global setup actions in a way that every action is in a form of a test. Passing <code>--no-deps</code> argument ignores
-the dependencies and behaves as if they were not specified.</p>
-<p>Using dependencies allows global setup to produce traces and other artifacts, see the setup steps in the test
-report, etc.</p>
-<p><strong>Usage</strong></p>
-<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">projects:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">testMatch:</span><span class="hl-13"> /global.setup</span><span class="hl-11">\.</span><span class="hl-13">ts/</span><span class="hl-1">,</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Chrome&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">      </span><span class="hl-2">dependencies:</span><span class="hl-1"> [</span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;firefox&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Firefox&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">      </span><span class="hl-2">dependencies:</span><span class="hl-1"> [</span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;webkit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Safari&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">      </span><span class="hl-2">dependencies:</span><span class="hl-1"> [</span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span>
-</code><button>Copy</button></pre>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-dependencies">testProject.dependencies</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:229</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:645</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="grep" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>grep</span><a href="#grep" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>Filter to only run tests with a title matching one of the patterns. For example, passing <code>grep: /cart/</code> should only
-run tests with &quot;cart&quot; in the title. Also available globally and in the <a href="https://playwright.dev/docs/test-cli">command line</a> with the <code>-g</code>
-option. The regular expression will be tested against the string that consists of the test file name,
-<code>test.describe</code> name (if any) and the test name divided by spaces, e.g. <code>my-test.spec.ts my-suite my-test</code>.</p>
-<p><code>grep</code> option is also useful for <a href="https://playwright.dev/docs/test-annotations#tag-tests">tagging tests</a>.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-grep">testProject.grep</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:172</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:650</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="grepInvert" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>grep<wbr/>Invert</span><a href="#grepInvert" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep<wbr/>Invert</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>Filter to only run tests with a title <strong>not</strong> matching one of the patterns. This is the opposite of
-<a href="https://playwright.dev/docs/api/class-testproject#test-project-grep">testProject.grep</a>. Also available globally
-and in the <a href="https://playwright.dev/docs/test-cli">command line</a> with the <code>--grep-invert</code> option.</p>
-<p><code>grepInvert</code> option is also useful for <a href="https://playwright.dev/docs/test-annotations#tag-tests">tagging tests</a>.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-grep-invert">testProject.grepInvert</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:180</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:655</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="metadata" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>metadata</span><a href="#metadata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">metadata</span><span class="tsd-signature-symbol">:</span> <a href="../types/playwright.Metadata.html" class="tsd-signature-type tsd-kind-type-alias">Metadata</a></div>
-<div class="tsd-comment tsd-typography"><p>Metadata that will be put directly to the test report serialized as JSON.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-metadata">testProject.metadata</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:184</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:660</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>Project name is visible in the report and during test execution.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-name">testProject.name</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:188</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:665</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="outputDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>output<wbr/>Dir</span><a href="#outputDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">output<wbr/>Dir</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>The output directory for files created during test execution. Defaults to <code>&lt;package.json-directory&gt;/test-results</code>.</p>
-<p>This directory is cleaned at the start. When running a test, a unique subdirectory inside the
-<a href="https://playwright.dev/docs/api/class-testproject#test-project-output-dir">testProject.outputDir</a> is created,
-guaranteeing that test running in parallel do not conflict. This directory can be accessed by
-<a href="https://playwright.dev/docs/api/class-testinfo#test-info-output-dir">testInfo.outputDir</a> and
-<a href="https://playwright.dev/docs/api/class-testinfo#test-info-output-path">testInfo.outputPath(...pathSegments)</a>.</p>
-<p>Here is an example that uses
-<a href="https://playwright.dev/docs/api/class-testinfo#test-info-output-path">testInfo.outputPath(...pathSegments)</a> to
-create a temporary file.</p>
-<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">test</span><span class="hl-1">, </span><span class="hl-2">expect</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">fs</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;fs&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">test</span><span class="hl-1">(</span><span class="hl-3">&#39;example test&#39;</span><span class="hl-1">, </span><span class="hl-4">async</span><span class="hl-1"> ({}, </span><span class="hl-2">testInfo</span><span class="hl-1">) </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">file</span><span class="hl-1"> = </span><span class="hl-2">testInfo</span><span class="hl-1">.</span><span class="hl-6">outputPath</span><span class="hl-1">(</span><span class="hl-3">&#39;temporary-file.txt&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">fs</span><span class="hl-1">.</span><span class="hl-2">promises</span><span class="hl-1">.</span><span class="hl-6">writeFile</span><span class="hl-1">(</span><span class="hl-2">file</span><span class="hl-1">, </span><span class="hl-3">&#39;Put some data to the file&#39;</span><span class="hl-1">, </span><span class="hl-3">&#39;utf8&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">});</span>
-</code><button>Copy</button></pre>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-output-dir">testConfig.outputDir</a> to change this
-option for all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-output-dir">testProject.outputDir</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:269</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:670</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="repeatEach" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>repeat<wbr/>Each</span><a href="#repeatEach" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">repeat<wbr/>Each</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-<div class="tsd-comment tsd-typography"><p>The number of times to repeat each test, useful for debugging flaky tests.</p>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-repeat-each">testConfig.repeatEach</a> to change
-this option for all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-repeat-each">testProject.repeatEach</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:276</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:675</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="retries" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>retries</span><a href="#retries" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">retries</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-<div class="tsd-comment tsd-typography"><p>The maximum number of retry attempts given to failed tests. Learn more about
-<a href="https://playwright.dev/docs/test-retries#retries">test retries</a>.</p>
-<p>Use <a href="https://playwright.dev/docs/api/class-test#test-describe-configure">test.describe.configure([options])</a> to
-change the number of retries for a specific file or a group of tests.</p>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-retries">testConfig.retries</a> to change this
-option for all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-retries">testProject.retries</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:287</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:680</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="snapshotDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>snapshot<wbr/>Dir</span><a href="#snapshotDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">snapshot<wbr/>Dir</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>The base directory, relative to the config file, for snapshot files created with <code>toMatchSnapshot</code>. Defaults to
-<a href="https://playwright.dev/docs/api/class-testproject#test-project-test-dir">testProject.testDir</a>.</p>
-<p>The directory for each test can be accessed by
-<a href="https://playwright.dev/docs/api/class-testinfo#test-info-snapshot-dir">testInfo.snapshotDir</a> and
-<a href="https://playwright.dev/docs/api/class-testinfo#test-info-snapshot-path">testInfo.snapshotPath(...pathSegments)</a>.</p>
-<p>This path will serve as the base directory for each test file snapshot directory. Setting <code>snapshotDir</code> to
-<code>&#39;snapshots&#39;</code>, the <a href="https://playwright.dev/docs/api/class-testinfo#test-info-snapshot-dir">testInfo.snapshotDir</a>
-would resolve to <code>snapshots/a.spec.js-snapshots</code>.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-snapshot-dir">testProject.snapshotDir</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:242</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:685</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="teardown" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>teardown</span><a href="#teardown" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">teardown</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>Name of a project that needs to run after this and all dependent projects have finished. Teardown is useful to
-cleanup any resources acquired by this project.</p>
-<p>Passing <code>--no-deps</code> argument ignores
-<a href="https://playwright.dev/docs/api/class-testproject#test-project-teardown">testProject.teardown</a> and behaves as if
-it was not specified.</p>
-<p><strong>Usage</strong></p>
-<p>A common pattern is a &quot;setup&quot; dependency that has a corresponding &quot;teardown&quot;:</p>
-<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">projects:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">testMatch:</span><span class="hl-13"> /global.setup</span><span class="hl-11">\.</span><span class="hl-13">ts/</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">teardown:</span><span class="hl-1"> </span><span class="hl-3">&#39;teardown&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;teardown&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">testMatch:</span><span class="hl-13"> /global.teardown</span><span class="hl-11">\.</span><span class="hl-13">ts/</span><span class="hl-1">,</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Chrome&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">      </span><span class="hl-2">dependencies:</span><span class="hl-1"> [</span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;firefox&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Firefox&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">      </span><span class="hl-2">dependencies:</span><span class="hl-1"> [</span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;webkit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> </span><span class="hl-2">devices</span><span class="hl-1">[</span><span class="hl-3">&#39;Desktop Safari&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">      </span><span class="hl-2">dependencies:</span><span class="hl-1"> [</span><span class="hl-3">&#39;setup&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span>
-</code><button>Copy</button></pre>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-teardown">testProject.teardown</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:335</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:690</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="testDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>test<wbr/>Dir</span><a href="#testDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Dir</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>Directory that will be recursively scanned for test files. Defaults to the directory of the configuration file.</p>
-<p>Each project can use a different directory. Here is an example that runs smoke tests in three browsers and all
-other tests in stable Chrome browser.</p>
-<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">projects:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;Smoke Chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">testDir:</span><span class="hl-1"> </span><span class="hl-3">&#39;./smoke-tests&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-2">browserName:</span><span class="hl-1"> </span><span class="hl-3">&#39;chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;Smoke WebKit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">testDir:</span><span class="hl-1"> </span><span class="hl-3">&#39;./smoke-tests&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-2">browserName:</span><span class="hl-1"> </span><span class="hl-3">&#39;webkit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;Smoke Firefox&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">testDir:</span><span class="hl-1"> </span><span class="hl-3">&#39;./smoke-tests&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-2">browserName:</span><span class="hl-1"> </span><span class="hl-3">&#39;firefox&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;Chrome Stable&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">testDir:</span><span class="hl-1"> </span><span class="hl-3">&#39;./&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-2">browserName:</span><span class="hl-1"> </span><span class="hl-3">&#39;chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-2">channel:</span><span class="hl-1"> </span><span class="hl-3">&#39;chrome&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span>
-</code><button>Copy</button></pre>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-test-dir">testConfig.testDir</a> to change this
-option for all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-test-dir">testProject.testDir</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:384</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:695</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="testIgnore" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>test<wbr/>Ignore</span><a href="#testIgnore" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Ignore</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>Files matching one of these patterns are not executed as test files. Matching is performed against the absolute
-file path. Strings are treated as glob patterns.</p>
-<p>For example, <code>&#39;**/test-assets/**&#39;</code> will ignore any files in the <code>test-assets</code> directory.</p>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-test-ignore">testConfig.testIgnore</a> to change
-this option for all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-test-ignore">testProject.testIgnore</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:394</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:700</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="testMatch" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>test<wbr/>Match</span><a href="#testMatch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Match</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>Only the files matching one of these patterns are executed as test files. Matching is performed against the
-absolute file path. Strings are treated as glob patterns.</p>
-<p>By default, Playwright looks for files matching the following glob pattern: <code>**/*.@(spec|test).?(c|m)[jt]s?(x)</code>.
-This means JavaScript or TypeScript files with <code>&quot;.test&quot;</code> or <code>&quot;.spec&quot;</code> suffix, for example
-<code>login-screen.wrong-credentials.spec.ts</code>.</p>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-test-match">testConfig.testMatch</a> to change this
-option for all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-test-match">testProject.testMatch</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:406</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:705</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="timeout" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>timeout</span><a href="#timeout" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-<div class="tsd-comment tsd-typography"><p>Timeout for each test in milliseconds. Defaults to 30 seconds.</p>
-<p>This is a base timeout for all tests. Each test can configure its own timeout with
-<a href="https://playwright.dev/docs/api/class-test#test-set-timeout">test.setTimeout(timeout)</a>. Each file or a group of
-tests can configure the timeout with
-<a href="https://playwright.dev/docs/api/class-test#test-describe-configure">test.describe.configure([options])</a>.</p>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-timeout">testConfig.timeout</a> to change this
-option for all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-timeout">testProject.timeout</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:418</li></ul></aside></section>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:710</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="use" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>use</span><a href="#use" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">use</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">UseOptions</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.PlaywrightTestOptions.html" class="tsd-signature-type tsd-kind-interface">PlaywrightTestOptions</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type tsd-kind-type-parameter">TestArgs</span><span class="tsd-signature-symbol">, </span><a href="playwright.PlaywrightWorkerOptions.html" class="tsd-signature-type tsd-kind-interface">PlaywrightWorkerOptions</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type tsd-kind-type-parameter">WorkerArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
-<div class="tsd-comment tsd-typography"><p>Options for all tests in this project, for example
-<a href="https://playwright.dev/docs/api/class-testoptions#test-options-browser-name">testOptions.browserName</a>. Learn more
-about <a href="https://playwright.dev/docs/test-configuration">configuration</a> and see [available options]TestOptions.</p>
-<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">projects:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;Chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">use:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-2">browserName:</span><span class="hl-1"> </span><span class="hl-3">&#39;chromium&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      },</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span>
-</code><button>Copy</button></pre>
-<p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-use">testConfig.use</a> to change this option for
-all projects.</p>
+<div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-testproject#test-project-use">testProject.use</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:443</li></ul></aside></section></section></div>
+<li>Defined in packages/@biorate/playwright/node_modules/playwright/types/test.d.ts:641</li></ul></aside></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -334,8 +252,8 @@ all projects.</p>
 <details class="tsd-index-accordion" open data-key="playwright"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg><a href="../modules/playwright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>playwright</span></a></summary>
 <div class="tsd-accordion-details">
 <ul class="tsd-nested-navigation">
-<li><a href="../modules/playwright.html#LabelName" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4194304"><rect fill="var(--color-icon-background)" stroke="#FF4D82" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M10.354 17V8.24H13.066C13.586 8.24 14.042 8.348 14.434 8.564C14.826 8.772 15.13 9.064 15.346 9.44C15.562 9.816 15.67 10.256 15.67 10.76C15.67 11.352 15.514 11.86 15.202 12.284C14.898 12.708 14.482 13 13.954 13.16L15.79 17H14.518L12.838 13.28H11.434V17H10.354ZM11.434 12.308H13.066C13.514 12.308 13.874 12.168 14.146 11.888C14.418 11.6 14.554 11.224 14.554 10.76C14.554 10.288 14.418 9.912 14.146 9.632C13.874 9.352 13.514 9.212 13.066 9.212H11.434V12.308Z" fill="var(--color-text)"></path></g></svg><span>Label<wbr/>Name</span></a></li>
 <li><a href="../modules/playwright.errors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>errors</span></a></li>
+<li><a href="../enums/playwright.LabelName.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-8"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-enum)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.45 16V7.24H14.49V8.224H10.518V10.936H14.07V11.908H10.518V15.016H14.49V16H9.45Z" fill="var(--color-text)"></path></g></svg><span>Label<wbr/>Name</span></a></li>
 <li><a href="../classes/playwright.Context.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Context</span></a></li>
 <li><a href="../classes/playwright.PlayWright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Play<wbr/>Wright</span></a></li>
 <li><a href="../classes/playwright.Scenario.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Scenario</span></a></li>
@@ -416,11 +334,13 @@ all projects.</p>
 <li><a href="../types/playwright.ExpectMatcherState.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect<wbr/>Matcher<wbr/>State</span></a></li>
 <li><a href="../types/playwright.Fixtures.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fixtures</span></a></li>
 <li><a href="../types/playwright.MatcherHintOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Hint<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.MatcherReturnType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Return<wbr/>Type</span></a></li>
 <li><a href="../types/playwright.Metadata.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Metadata</span></a></li>
 <li><a href="../types/playwright.PlaywrightTestConfig.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Config</span></a></li>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Fixture</span></a></li>
 <li><a href="../types/playwright.TestStatus.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Status</span></a></li>
 <li><a href="../types/playwright.TraceMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Trace<wbr/>Mode</span></a></li>
@@ -453,12 +373,12 @@ all projects.</p>
 <li><a href="../variables/playwright.tags.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>tags</span></a></li>
 <li><a href="../variables/playwright.test.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>test</span></a></li>
 <li><a href="../variables/playwright.webkit.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>webkit</span></a></li>
-<li><a href="../functions/playwright._baseTest.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>_base<wbr/>Test</span></a></li>
+<li><a href="../functions/playwright.Step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>Step</span></a></li>
+<li><a href="../functions/playwright._baseTest.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>_base<wbr/>Test</span></a></li>
 <li><a href="../functions/playwright.defineConfig.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>define<wbr/>Config</span></a></li>
 <li><a href="../functions/playwright.expect-1.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>expect</span></a></li>
 <li><a href="../functions/playwright.mergeExpects.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Expects</span></a></li>
-<li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li>
-<li><a href="../functions/playwright.step.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>step</span></a></li></ul></div></details></li>
+<li><a href="../functions/playwright.mergeTests.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge<wbr/>Tests</span></a></li></ul></div></details></li>
 <li><a href="../modules/prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>prometheus</span></a></li>
 <li><a href="../modules/proxy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy</span></a></li>
 <li><a href="../modules/proxy_prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>proxy-<wbr/>prometheus</span></a></li>
