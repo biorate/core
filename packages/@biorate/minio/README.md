@@ -38,13 +38,13 @@ container.get<IConfig>(Types.Config).merge({
   await root.connector!.current!.makeBucket('test', 'test');
   await root.connector!.current!.putObject(
     'test',
-    'hello.world',
+    'test.file',
     Buffer.from('Hello world!'),
   ));
   root.connector!.current!.getObject('test', 'test.file', (e, stream) => {
     let data = '';
     stream
-      .on('data', (chunk) => (data += chunk.length))
+      .on('data', (chunk) => (data += chunk.toString('utf8')))
       .on('end', () => console.log(data)); // 'Hello world!'
    });
 })();
