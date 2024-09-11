@@ -16,7 +16,6 @@ export type IClientOption = {
 export type IProxyConnection = ProxyConnection;
 
 export interface IProxyConfig extends IConnectorConfig {
-  host: string;
   retry?: number;
   timeout?: number;
   checkInterval?: number;
