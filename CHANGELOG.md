@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.87.1](https://github.com/biorate/core/compare/v1.87.0...v1.87.1) (2024-09-11)
+
+### Bug Fixes
+
+- **minio:** documentation ([7e0f910](https://github.com/biorate/core/commit/7e0f910c4df41f4cf25df9c7a6ababa523bebb23))
+
 # [1.87.0](https://github.com/biorate/core/compare/v1.86.0...v1.87.0) (2024-09-06)
 
 ### Features
