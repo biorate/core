@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.87.3](https://github.com/biorate/core/compare/v1.87.2...v1.87.3) (2024-09-17)
+
+### Bug Fixes
+
+- **migrations:** transaction fix ([f6ca180](https://github.com/biorate/core/commit/f6ca180a831fd2d1a9eebac39b97dee7dfd86059))
+
 ## [1.87.2](https://github.com/biorate/core/compare/v1.87.1...v1.87.2) (2024-09-11)
 
 ### Bug Fixes
