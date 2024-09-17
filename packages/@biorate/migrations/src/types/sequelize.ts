@@ -6,6 +6,7 @@ import {
   ISequelizeConfig,
   ISequelizeConnection,
   DataType,
+  Transaction,
 } from '@biorate/sequelize';
 /**
  * @description Sequelize migration class
@@ -33,11 +34,11 @@ export class Sequelize extends Migration {
         await this.forEachPath(
           paths,
           async (file, name) =>
-            await connection.transaction(async () => {
-              const item = await model.findOne({ where: { name } });
+            await connection.transaction(async (transaction: Transaction) => {
+              const item = await model.findOne({ where: { name }, transaction });
               if (item) return;
-              await connection.query(await fs.readFile(file, 'utf8'));
-              await model.create({ name });
+              await connection.query(await fs.readFile(file, 'utf8'), { transaction });
+              await model.create({ name }, { transaction });
               this.log(config.name, name);
             }),
         );
