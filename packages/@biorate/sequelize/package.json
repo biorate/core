@@ -28,11 +28,11 @@
     "@biorate/connector": "1.76.3",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.65.4",
-    "sequelize": "^6.37.3",
-    "sequelize-typescript": "^2.1.6"
+    "sequelize": "6.37.3",
+    "sequelize-typescript": "2.1.6"
   },
   "devDependencies": {
-    "sqlite3": "^5.0.7"
+    "sqlite3": "5.0.7"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }
