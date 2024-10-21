@@ -2,23 +2,24 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { ElasticConnector, IElasticConnector } from '../../src';
+import { OpenSearchConnector, IOpenSearchConnector } from '../../src';
 
 use(jestSnapshotPlugin());
 
 export class Root extends Core() {
-  @inject(ElasticConnector) public elasticConnector: IElasticConnector;
+  @inject(OpenSearchConnector) public opensearchConnector: IOpenSearchConnector;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<IElasticConnector>(ElasticConnector).toSelf().inSingletonScope();
+container.bind<IOpenSearchConnector>(OpenSearchConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Elastic: [
+  OpenSearch: [
     {
+      name: 'dev',
       options: {
-        node: 'https://admin:admin@localhost:9200',
+        node: 'https://admin:fo4Gai1phah7eexu@localhost:9200',
         ssl: {
           rejectUnauthorized: false,
         },

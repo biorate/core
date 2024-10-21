@@ -2,7 +2,7 @@ import { container } from '@biorate/inversion';
 import { Root } from './__mocks__';
 import { expect } from 'chai';
 
-describe('@biorate/elastic', function () {
+describe('@biorate/opensearch', function () {
   let root: Root;
 
   before(async () => {
@@ -11,14 +11,14 @@ describe('@biorate/elastic', function () {
   });
 
   after(async () => {
-    await root.elasticConnector.current?.indices.delete({
+    await root.opensearchConnector.current?.indices.delete({
       index: 'connector_test',
     });
   });
 
   it('create', async () =>
     expect(
-      await root.elasticConnector.current?.indices.create({
+      await root.opensearchConnector.current?.indices.create({
         index: 'connector_test',
         body: {
           settings: {

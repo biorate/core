@@ -1,7 +1,7 @@
 {
-  "name": "@biorate/elastic",
+  "name": "@biorate/opensearch",
   "version": "1.0.0",
-  "description": "Elastic OOP static interface",
+  "description": "OpenSearch OOP static interface",
   "main": "dist",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
@@ -11,20 +11,21 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biorate/core.git",
-    "directory": "packages/@biorate/elastic"
+    "directory": "packages/@biorate/opensearch"
   },
   "publishConfig": {
     "access": "public"
   },
   "homepage": "https://biorate.github.io/core",
   "keywords": [
-    "Elastic"
+    "Elastic",
+    "OpenSearch"
   ],
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
     "@biorate/connector": "1.76.3",
-    "@biorate/errors": "^1.28.0",
+    "@biorate/errors": "1.28.0",
     "@opensearch-project/opensearch": "2.10.0"
   },
   "devDependencies": {
