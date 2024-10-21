@@ -24,7 +24,7 @@ container.get<IConfig>(Types.Config).merge({
     {
       name: 'dev',
       options: {
-        node: 'https://admin:fo4Gai1phah7eexu@localhost:9200',
+        node: 'https://admin:admin_pass@localhost:9200',
         ssl: {
           rejectUnauthorized: false,
         },
