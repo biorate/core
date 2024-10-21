@@ -2,10 +2,7 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import {
-  ElasticConnector,
-  IElasticConnector,
-} from '../../src';
+import { ElasticConnector, IElasticConnector } from '../../src';
 
 use(jestSnapshotPlugin());
 
@@ -21,10 +18,10 @@ container.get<IConfig>(Types.Config).merge({
   Elastic: [
     {
       options: {
-        node: "https://admin:admin@localhost:9200",
+        node: 'https://admin:admin@localhost:9200',
         ssl: {
-          rejectUnauthorized: false
-        }
+          rejectUnauthorized: false,
+        },
       },
     },
   ],
