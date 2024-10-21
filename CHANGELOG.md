@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.88.1](https://github.com/biorate/core/compare/v1.88.0...v1.88.1) (2024-10-21)
+
+### Bug Fixes
+
+- **opensearch:** doc ([9ff51f3](https://github.com/biorate/core/commit/9ff51f394c0af4ef67164eadc850f55991914961))
+- **opensearch:** doc ([d794b1e](https://github.com/biorate/core/commit/d794b1ec93f831dc5b2831f17c4dc30064a7fcc7))
+
 # [1.88.0](https://github.com/biorate/core/compare/v1.87.4...v1.88.0) (2024-10-21)
 
 ### Features
