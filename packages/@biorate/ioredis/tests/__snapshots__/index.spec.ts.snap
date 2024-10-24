@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/ioredis delete 1`] = `1`;
+
+exports[`@biorate/ioredis get 1`] = `"value"`;
+
+exports[`@biorate/ioredis set 1`] = `"OK"`;

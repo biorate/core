@@ -24,6 +24,7 @@
 - [mssql](https://biorate.github.io/core/modules/mssql.html)
 - [pg](https://biorate.github.io/core/modules/pg.html)
 - [redis](https://biorate.github.io/core/modules/redis.html)
+- [ioredis](https://biorate.github.io/core/modules/ioredis.html)
 - [vault](https://biorate.github.io/core/modules/vault.html)
 - [config-loader](https://biorate.github.io/core/modules/config_loader.html)
 - [config-loader-fs](https://biorate.github.io/core/modules/config_loader_fs.html)
