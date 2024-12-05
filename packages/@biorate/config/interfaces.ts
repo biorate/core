@@ -6,3 +6,5 @@ export interface IConfig {
   set(path: PropertyPath, value: unknown): void;
   merge(data: unknown): void;
 }
+
+export type IResult = { value: string | RegExp | (() => unknown) };

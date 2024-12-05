@@ -35,4 +35,14 @@ describe('@biorate/config', () => {
   it('template (link)', () => {
     assert.equal(config.get('template.object'), config.get('two'));
   });
+
+  it('template (RegExp)', () => {
+    assert(config.get<RegExp>('reg') instanceof RegExp);
+    assert(config.get<RegExp>('reg').test('test'));
+  });
+
+  it('template (Function)', () => {
+    assert(config.get<(...args: number[]) => number>('fn') instanceof Function);
+    assert(config.get<(...args: number[]) => number>('fn')(1, 2, 3) === 6);
+  });
 });

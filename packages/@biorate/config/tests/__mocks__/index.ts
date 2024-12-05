@@ -1,6 +1,8 @@
 import { Config } from '../../src';
 
 export const data = {
+  reg: 'R{/^test$/igm}',
+  fn: 'F{a, b, c => let d = a + b + c; return d;}',
   one: 1,
   two: {
     one: 'one',
