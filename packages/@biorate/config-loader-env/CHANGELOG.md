@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.90.0](https://github.com/biorate/core/compare/v1.89.0...v1.90.0) (2024-12-05)
+
+**Note:** Version bump only for package @biorate/config-loader-env
+
 # [1.78.0](https://github.com/biorate/core/compare/v1.77.0...v1.78.0) (2024-07-11)
 
 ### Features

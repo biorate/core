@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.90.0](https://github.com/biorate/core/compare/v1.89.0...v1.90.0) (2024-12-05)
+
+**Note:** Version bump only for package @biorate/schema-registry
+
 # [1.86.0](https://github.com/biorate/core/compare/v1.85.2...v1.86.0) (2024-09-05)
 
 **Note:** Version bump only for package @biorate/schema-registry

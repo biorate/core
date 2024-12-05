@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.90.0](https://github.com/biorate/core/compare/v1.89.0...v1.90.0) (2024-12-05)
+
+### Features
+
+- **config:** RegExp and Function (R{...}, F{...}) templates added ([ac7e6aa](https://github.com/biorate/core/commit/ac7e6aafc80b3a9957469379bd58d7c2946ee7be))
+
 # [1.89.0](https://github.com/biorate/core/compare/v1.88.1...v1.89.0) (2024-10-24)
 
 ### Features
