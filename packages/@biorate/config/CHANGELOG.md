@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.91.0](https://github.com/biorate/core/compare/v1.90.0...v1.91.0) (2024-12-05)
+
+### Features
+
+- **config:** add empty template ([62ae333](https://github.com/biorate/core/commit/62ae333924f234d526df391a99575cce7ae33471))
+
 # [1.90.0](https://github.com/biorate/core/compare/v1.89.0...v1.90.0) (2024-12-05)
 
 ### Features
