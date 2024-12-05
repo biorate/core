@@ -34,4 +34,18 @@ export class Template {
         new Function(...match?.[1].trim().split(/\s*,\s*/), match?.[2].trim()).bind({})
       );
   }
+
+  public static empty(this: Config, value: string, result: IResult) {
+    if (!Config.Template.empty) return;
+    let regExp = /^!{([^}{]+)+?}$/g;
+    const match = regExp.exec(value)?.[1];
+    if (match) {
+      if (match === 'object') result.value = {};
+      else if (match === 'array') result.value = [];
+      else if (match === 'void') result.value = undefined;
+      else if (match === 'null') result.value = null;
+      else if (match === 'string') result.value = '';
+      else result.value = null;
+    }
+  }
 }

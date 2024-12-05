@@ -12,6 +12,7 @@ export class Config implements IConfig {
     link: true,
     regexp: true,
     function: true,
+    empty: true,
   };
   /**
    * @description Data storage
@@ -27,6 +28,7 @@ export class Config implements IConfig {
     Template.link.call(this, value, result);
     Template.regexp.call(this, value, result);
     Template.function.call(this, value, result);
+    Template.empty.call(this, value, result);
     return result.value;
   }
 

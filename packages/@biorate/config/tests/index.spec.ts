@@ -45,4 +45,18 @@ describe('@biorate/config', () => {
     assert(config.get<(...args: number[]) => number>('fn') instanceof Function);
     assert(config.get<(...args: number[]) => number>('fn')(1, 2, 3) === 6);
   });
+
+  for (const { data, template, result } of [
+    { data: { a: 1, b: 2, c: 3 }, template: '!{object}', result: {} },
+    { data: [1, 2, 3], template: '!{array}', result: [] },
+    { data: 'test', template: '!{void}', result: void 0 },
+    { data: 123, template: '!{null}', result: null },
+    { data: false, template: '!{string}', result: '' },
+    { data: [1, 2, 3], template: '!{ }', result: null },
+  ])
+    it(`template (empty) - ${template}`, () => {
+      config.merge({ data });
+      config.merge({ data: template });
+      assert.deepEqual(config.get('data'), result);
+    });
 });

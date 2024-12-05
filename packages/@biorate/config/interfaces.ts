@@ -7,4 +7,13 @@ export interface IConfig {
   merge(data: unknown): void;
 }
 
-export type IResult = { value: string | RegExp | (() => unknown) };
+export type IResult = {
+  value:
+    | string
+    | RegExp
+    | (() => unknown)
+    | unknown[]
+    | Record<string, unknown>
+    | null
+    | undefined;
+};
