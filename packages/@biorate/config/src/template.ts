@@ -21,7 +21,6 @@ export class Template {
 
   public static regexp(this: Config, value: string, result: IResult) {
     if (!Config.Template.regexp) return;
-    // let regExp = /^R\{\/([^\/]+)\/([^\/]+)}$/g;
     let regExp = /^R\{\/(.*?)\/([^\/]*)}$/;
     const match = regExp.exec(value);
     if (match?.[1] && match?.[2]) result.value = new RegExpExt(match?.[1], match?.[2]);
