@@ -7,6 +7,9 @@ import { IConfig, IResult } from '../interfaces';
 
 @injectable()
 export class Config implements IConfig {
+  /**
+   * @description Template enabling settings
+   * */
   public static readonly Template = {
     string: true,
     link: true,
@@ -14,6 +17,7 @@ export class Config implements IConfig {
     function: true,
     empty: true,
   };
+
   /**
    * @description Data storage
    * */
