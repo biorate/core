@@ -1,5 +1,5 @@
 export class RegExpExt extends RegExp {
-  public valueOf() {
-    return this.toString();
+  public toJSON() {
+    return `R{${this.toString().replace(/\\/g, '')}}`;
   }
 }

@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import { config, data } from './__mocks__';
+import { RegExpExt } from '../src/reg-exp-ext';
 
 describe('@biorate/config', () => {
   it('get', () => assert.equal(config.get('two.one'), data.two.one));
@@ -37,13 +38,17 @@ describe('@biorate/config', () => {
   });
 
   it('template (RegExp)', () => {
-    assert(config.get<RegExp>('reg') instanceof RegExp);
-    assert(config.get<RegExp>('reg').test('test'));
+    assert(config.get<RegExp>('template.reg') instanceof RegExp);
+    assert(config.get<RegExp>('template.reg').test('http://yandex.ru/test'));
+    assert(
+      JSON.stringify(config.get<string>('template.reg')) ===
+        JSON.stringify(data.template.reg),
+    );
   });
 
   it('template (Function)', () => {
-    assert(config.get<(...args: number[]) => number>('fn') instanceof Function);
-    assert(config.get<(...args: number[]) => number>('fn')(1, 2, 3) === 6);
+    assert(config.get<(...args: number[]) => number>('template.fn') instanceof Function);
+    assert(config.get<(...args: number[]) => number>('template.fn')(1, 2, 3) === 6);
   });
 
   for (const { data, template, result } of [
