@@ -6,6 +6,14 @@ declare module '@biorate/config' {
   export type IConfig = IConfigType;
 
   export class Config {
+    public static readonly Template: {
+      string: boolean;
+      link: boolean;
+      regexp: boolean;
+      function: boolean;
+      empty: boolean;
+    };
+
     protected data: Record<string | symbol, unknown>;
 
     protected template(value: string): string;

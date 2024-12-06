@@ -1,4 +1,5 @@
 import { Config } from './config';
+import { RegExpExt } from './reg-exp-ext';
 import { IResult } from '../interfaces';
 
 export class Template {
@@ -22,7 +23,7 @@ export class Template {
     if (!Config.Template.regexp) return;
     let regExp = /^R\{\/([^\/]+)\/([^\/]+)\}$/g;
     const match = regExp.exec(value);
-    if (match?.[1] && match?.[2]) result.value = new RegExp(match?.[1], match?.[2]);
+    if (match?.[1] && match?.[2]) result.value = new RegExpExt(match?.[1], match?.[2]);
   }
 
   public static function(this: Config, value: string, result: IResult) {
