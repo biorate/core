@@ -1,6 +1,6 @@
 {
   "name": "@biorate/i18n",
-  "version": "1.91.4",
+  "version": "1.91.5",
   "description": "Internationalization library",
   "main": "dist",
   "scripts": {
@@ -21,7 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.91.4",
+    "@biorate/config": "1.91.5",
     "@biorate/inversion": "1.65.4",
     "i18next": "23.4.2"
   }
