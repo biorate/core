@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader",
-  "version": "1.91.3",
+  "version": "1.91.4",
   "description": "Config loader abstraction",
   "main": "dist",
   "scripts": {
@@ -21,7 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.91.3",
+    "@biorate/config": "1.91.4",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.65.4"
   },

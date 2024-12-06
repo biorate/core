@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "1.91.3",
+  "version": "1.91.4",
   "description": "Migrations tools",
   "main": "dist",
   "scripts": {
@@ -23,23 +23,23 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/amqp": "1.91.3",
-    "@biorate/clickhouse": "1.91.3",
-    "@biorate/config": "1.91.3",
-    "@biorate/config-loader": "1.91.3",
-    "@biorate/config-loader-env": "1.91.3",
-    "@biorate/config-loader-fs": "1.91.3",
-    "@biorate/config-loader-vault": "1.91.3",
-    "@biorate/connector": "1.91.3",
+    "@biorate/amqp": "1.91.4",
+    "@biorate/clickhouse": "1.91.4",
+    "@biorate/config": "1.91.4",
+    "@biorate/config-loader": "1.91.4",
+    "@biorate/config-loader-env": "1.91.4",
+    "@biorate/config-loader-fs": "1.91.4",
+    "@biorate/config-loader-vault": "1.91.4",
+    "@biorate/connector": "1.91.4",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.65.4",
-    "@biorate/kafkajs": "1.91.3",
-    "@biorate/minio": "1.91.3",
-    "@biorate/mongodb": "1.91.3",
-    "@biorate/proxy": "1.91.3",
-    "@biorate/sequelize": "1.91.3",
+    "@biorate/kafkajs": "1.91.4",
+    "@biorate/minio": "1.91.4",
+    "@biorate/mongodb": "1.91.4",
+    "@biorate/proxy": "1.91.4",
+    "@biorate/sequelize": "1.91.4",
     "@biorate/tools": "1.28.0",
-    "@biorate/vault": "1.91.3"
+    "@biorate/vault": "1.91.4"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
 }
