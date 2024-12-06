@@ -1,6 +1,6 @@
 {
   "name": "@biorate/rdkafka",
-  "version": "1.91.2",
+  "version": "1.91.3",
   "description": "Rdkafka connector",
   "main": "dist",
   "scripts": {
@@ -25,11 +25,11 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.91.2",
-    "@biorate/connector": "1.91.2",
+    "@biorate/config": "1.91.3",
+    "@biorate/connector": "1.91.3",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.65.4",
-    "@biorate/prometheus": "1.91.2",
+    "@biorate/prometheus": "1.91.3",
     "@biorate/tools": "1.28.0",
     "node-rdkafka": "^3.1.0"
   },
