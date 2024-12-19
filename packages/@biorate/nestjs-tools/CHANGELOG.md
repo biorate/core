@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.92.0](https://github.com/biorate/core/compare/v1.91.5...v1.92.0) (2024-12-19)
+
+### Features
+
+- **nestjs-tools:** ws deps reduce ([83dcb9f](https://github.com/biorate/core/commit/83dcb9ff8cdeee67d56f5056f2912125fa98dd81))
+
 ## [1.91.5](https://github.com/biorate/core/compare/v1.91.4...v1.91.5) (2024-12-06)
 
 **Note:** Version bump only for package @biorate/nestjs-tools
