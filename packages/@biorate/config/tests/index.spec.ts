@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import { config, data } from './__mocks__';
-import { RegExpExt } from '../src/reg-exp-ext';
 
 describe('@biorate/config', () => {
   it('get', () => assert.equal(config.get('two.one'), data.two.one));
@@ -8,7 +7,7 @@ describe('@biorate/config', () => {
   it('get default', () =>
     assert.equal(config.get('non-existent-property', 'default'), 'default'));
 
-  it('get non - existent', () => assert.throw(() => config.get('non-existent-property')));
+  it('get not existing', () => assert.throw(() => config.get('not-existing-property')));
 
   it('has', () => assert(config.has('two.one')));
 
