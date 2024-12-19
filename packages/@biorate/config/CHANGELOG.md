@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.93.1](https://github.com/biorate/core/compare/v1.93.0...v1.93.1) (2024-12-19)
+
+### Bug Fixes
+
+- **config:** tests ([05e3b13](https://github.com/biorate/core/commit/05e3b13f88b8894358892fd7f8d98f13d11fd2ce))
+
 # [1.93.0](https://github.com/biorate/core/compare/v1.92.0...v1.93.0) (2024-12-19)
 
 ### Features
