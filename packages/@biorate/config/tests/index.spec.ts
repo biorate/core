@@ -64,4 +64,10 @@ describe('@biorate/config', () => {
       config.merge({ data: template });
       assert.deepEqual(config.get('data'), result);
     });
+
+  it('templated default value', () => {
+    const def = 'test';
+    config.merge({ default_value: { test: '#{test}' } });
+    assert.deepEqual(config.get<string>('default_value.test', def), def);
+  });
 });

@@ -13,6 +13,7 @@ export type IResult = {
     | RegExp
     | (() => unknown)
     | unknown[]
+    | unknown
     | Record<string, unknown>
     | null
     | undefined;

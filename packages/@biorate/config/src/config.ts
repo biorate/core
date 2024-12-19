@@ -26,20 +26,20 @@ export class Config implements IConfig {
   /**
    * @description Set template value
    * */
-  protected template(value: string) {
+  protected template<T = unknown>(value: string, def?: T) {
     const result: IResult = { value };
-    Template.string.call(this, value, result);
-    Template.link.call(this, value, result);
-    Template.regexp.call(this, value, result);
-    Template.function.call(this, value, result);
-    Template.empty.call(this, value, result);
+    Template.string.call(this, value, result, def);
+    Template.link.call(this, value, result, def);
+    Template.regexp.call(this, value, result, def);
+    Template.function.call(this, value, result, def);
+    Template.empty.call(this, value, result, def);
     return result.value;
   }
 
   /**
    * @description Walk object recursive to templatize internal values
    * */
-  protected templatize(object: unknown) {
+  protected templatize<T = unknown>(object: unknown, def?: T) {
     const template = this.template.bind(this);
     return traverse(object).forEach(function (value) {
       if (typeof value === 'string') this.update(template(value));
@@ -75,9 +75,9 @@ export class Config implements IConfig {
     const result: any = get(this.data, path);
     switch (typeof result) {
       case 'string':
-        return <T>(<unknown>this.template(result));
+        return <T>(<unknown>this.template<T>(result, def));
       case 'object':
-        return result ? this.templatize(result) : result;
+        return result ? this.templatize<T>(result, def) : result;
       default:
         return result;
     }
