@@ -38,7 +38,7 @@
     "ws": "8.18.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
+    "@types/express": "4.17.21",
     "@types/ws": "8.5.13"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
