@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.94.0](https://github.com/biorate/core/compare/v1.93.1...v1.94.0) (2024-12-20)
+
+### Features
+
+- **nestjs-tools:** @nestjs/core migration to version 10 \n BREAKING CHANGE: updating nestjs major version ([db9ce3c](https://github.com/biorate/core/commit/db9ce3cdf202e0cabd5c471245d648e095ea3eba))
+
 ## [1.93.1](https://github.com/biorate/core/compare/v1.93.0...v1.93.1) (2024-12-19)
 
 ### Bug Fixes
