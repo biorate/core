@@ -1,6 +1,6 @@
 {
   "name": "@biorate/proxy-prometheus",
-  "version": "1.95.1",
+  "version": "1.96.0",
   "description": "Proxy connector with prometheus metrics",
   "main": "dist",
   "scripts": {
@@ -26,10 +26,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.95.1",
-    "@biorate/inversion": "1.95.1",
-    "@biorate/prometheus": "1.95.1",
-    "@biorate/proxy": "1.95.1",
+    "@biorate/config": "1.96.0",
+    "@biorate/inversion": "1.96.0",
+    "@biorate/prometheus": "1.96.0",
+    "@biorate/proxy": "1.96.0",
     "@biorate/tools": "1.28.0"
   }
 }

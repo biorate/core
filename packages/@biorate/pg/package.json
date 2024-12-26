@@ -1,6 +1,6 @@
 {
   "name": "@biorate/pg",
-  "version": "1.95.1",
+  "version": "1.96.0",
   "description": "PostgreSQL raw connector",
   "main": "dist",
   "scripts": {
@@ -26,10 +26,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.95.1",
-    "@biorate/connector": "1.95.1",
+    "@biorate/config": "1.96.0",
+    "@biorate/connector": "1.96.0",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.95.1",
+    "@biorate/inversion": "1.96.0",
     "@biorate/tools": "1.28.0",
     "pg": "^8.8.0",
     "pg-cursor": "^2.7.4",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.96.0](https://github.com/biorate/core/compare/v1.95.1...v1.96.0) (2024-12-26)
+
+### Features
+
+- **inversion:** inject.multi ([9228f55](https://github.com/biorate/core/commit/9228f55f11601ad30fe60dc33d188a935df80821))
+
 ## [1.95.1](https://github.com/biorate/core/compare/v1.95.0...v1.95.1) (2024-12-26)
 
 ### Bug Fixes
