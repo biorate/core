@@ -24,11 +24,16 @@ describe('@biorate/inversion', function () {
       assert.deepEqual(...(await mocks.inherits.dual.parent())));
 
     it('composition', async () => {
-      const [root, result, One, Two, Three] = await mocks.composition();
+      const [root, result, One, Two, Three, Multi, Multi1, Mult2] =
+        await mocks.composition();
       assert.deepEqual(result, [One.name, Two.name, Three.name]);
       assert(root.one instanceof One);
       assert(root.two instanceof Two);
       assert(root.three instanceof Three);
+      assert(root.multi[0] instanceof Multi);
+      assert(root.multi[1] instanceof Multi);
+      assert(root.multi[0] instanceof Multi1);
+      assert(root.multi[1] instanceof Mult2);
     });
 
     it('multiinit', async () => assert.deepEqual(...(await mocks.multiinit())));

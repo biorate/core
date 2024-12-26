@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import { Done } from 'mocha';
-import { Core, init, injectable, inject, container, on, kill } from '../../src';
+import { Core, init, injectable, inject, container, on, kill, Types } from '../../src';
 
 // @ts-ignore
 Core.log = null;
@@ -172,16 +172,34 @@ export async function composition() {
       result.push(this.constructor.name);
     }
   }
+  @injectable()
+  class Multi {}
+  @injectable()
+  class Multi1 extends Multi {}
+  @injectable()
+  class Multi2 extends Multi {}
   class Root extends Core() {
     @inject(One) public one: One;
     @inject(Two) public two: Two;
     @inject(Three) public three: Three;
+    @inject.multi(Types.Multi) public multi: Multi[];
   }
   container.bind(One).toSelf();
   container.bind(Two).toSelf();
   container.bind(Three).toSelf();
   container.bind(Root).toSelf();
-  return [await container.get(Root).$run(), result, One, Two, Three];
+  container.bind(Types.Multi).to(Multi1);
+  container.bind(Types.Multi).to(Multi2);
+  return [
+    await container.get(Root).$run(),
+    result,
+    One,
+    Two,
+    Three,
+    Multi,
+    Multi1,
+    Multi2,
+  ];
 }
 
 export async function multiinit(): Promise<[string[], string[]]> {

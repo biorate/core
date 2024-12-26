@@ -18,12 +18,16 @@ if (!globalThisLink[Metadata.InversifyContainer]) {
 
 export const container = globalThisLink[Metadata.InversifyContainer].container;
 
-const { lazyInject, lazyInjectNamed, lazyInjectTagged } =
+const { lazyInject, lazyInjectNamed, lazyInjectTagged, lazyMultiInject } =
   globalThisLink[Metadata.InversifyContainer];
 
 export function inject(service: IService) {
   return lazyInject(service);
 }
+
+inject.multi = (service: IService) => {
+  return lazyMultiInject(service);
+};
 
 inject.named = (service: IService, name: string) => {
   lazyInjectNamed(service, name);
