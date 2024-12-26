@@ -1,24 +1,10 @@
 import 'reflect-metadata';
-import { injectable, addMetadata, container } from './inversify';
-import { Metadata } from './labels';
+import { injectable } from './inversify';
 import { lifecycled } from '@biorate/lifecycled';
 
 export { injectable, inject, container } from './inversify';
-
 export { Types } from './labels';
-
 export { init, kill, on } from '@biorate/lifecycled';
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function factory(Type: Object, Child: Object, Parent: Object, Root: Object) {
-  addMetadata(Metadata.Factory, {}, null, Child);
-  container.bind(Type).toFactory((context: any) => (...args: unknown[]) => {
-    const item = context.container.get(Child);
-    Reflect.defineMetadata(Metadata.Args, args, item);
-    item.$promise = item.$run(container.get(Root), container.get(Parent));
-    return item;
-  });
-}
 
 /**
  * @example
