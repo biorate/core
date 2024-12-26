@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader-vault",
-  "version": "1.95.0",
+  "version": "1.95.1",
   "description": "Config loader for vault config",
   "main": "dist",
   "scripts": {
@@ -21,12 +21,12 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.95.0",
-    "@biorate/config-loader": "1.95.0",
+    "@biorate/config": "1.95.1",
+    "@biorate/config-loader": "1.95.1",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.95.0",
+    "@biorate/inversion": "1.95.1",
     "@biorate/tools": "1.28.0",
-    "@biorate/vault": "1.95.0"
+    "@biorate/vault": "1.95.1"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }

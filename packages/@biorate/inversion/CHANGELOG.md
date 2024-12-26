@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.95.1](https://github.com/biorate/core/compare/v1.95.0...v1.95.1) (2024-12-26)
+
+### Bug Fixes
+
+- **@biorate/inversion:** multi version warning added ([425e14b](https://github.com/biorate/core/commit/425e14bb7621aa9a1247827e2b3236763068a5ec))
+
 # [1.95.0](https://github.com/biorate/core/compare/v1.94.1...v1.95.0) (2024-12-26)
 
 ### Features
