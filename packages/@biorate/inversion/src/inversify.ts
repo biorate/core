@@ -14,7 +14,7 @@ if (!globalThisLink[Metadata.InversifyContainer]) {
     container,
     ...getDecorators(container),
   };
-}
+} else console.warn(`Warning! Multi version packages [@biorate/inversion] included!`);
 
 export const container = globalThisLink[Metadata.InversifyContainer].container;
 
