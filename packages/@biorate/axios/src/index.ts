@@ -131,13 +131,13 @@ export class Axios {
     const startTime = this.getStartTime();
     try {
       const result = await this.#client(params);
-      await this.after<T>(result, startTime);
+      await this.after<T>(result, startTime, params);
       return result;
     } catch (e: unknown) {
-      await this.catch(<Error>e, startTime);
+      await this.catch(<Error>e, startTime, params);
       throw e;
     } finally {
-      await this.finally(startTime);
+      await this.finally(startTime, params);
     }
   }
   /**
@@ -156,13 +156,18 @@ export class Axios {
   protected async after<T = any, D = any>(
     result: AxiosResponse<T, D>,
     startTime: [number, number],
+    params: IAxiosFetchOptions,
   ) {}
   /**
    * @description Catch hook
    */
-  protected async catch(e: Error, startTime: [number, number]) {}
+  protected async catch(
+    e: Error,
+    startTime: [number, number],
+    params: IAxiosFetchOptions,
+  ) {}
   /**
    * @description Finally hook
    */
-  protected async finally(startTime: [number, number]) {}
+  protected async finally(startTime: [number, number], params: IAxiosFetchOptions) {}
 }

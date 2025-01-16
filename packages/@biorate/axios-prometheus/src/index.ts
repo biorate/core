@@ -176,11 +176,19 @@ export abstract class AxiosPrometheus extends Axios {
       .observe(time);
   }
 
-  protected async after(result: AxiosResponse, startTime: [number, number]) {
+  protected async after(
+    result: AxiosResponse,
+    startTime: [number, number],
+    params: IAxiosFetchOptions,
+  ) {
     this.log(result.status, startTime);
   }
 
-  protected async catch(e: Error | AxiosError, startTime: [number, number]) {
+  protected async catch(
+    e: Error | AxiosError,
+    startTime: [number, number],
+    params: IAxiosFetchOptions,
+  ) {
     if ('response' in e) this.log(e!.response!.status, startTime);
   }
 }
