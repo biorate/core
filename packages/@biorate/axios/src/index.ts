@@ -149,14 +149,14 @@ export class Axios {
   /**
    * @description Before hook
    */
-  protected async before(params: IAxiosFetchOptions) {}
+  protected async before(params?: IAxiosFetchOptions) {}
   /**
    * @description After hook
    */
   protected async after<T = any, D = any>(
     result: AxiosResponse<T, D>,
     startTime: [number, number],
-    params: IAxiosFetchOptions,
+    params?: IAxiosFetchOptions,
   ) {}
   /**
    * @description Catch hook
@@ -164,10 +164,10 @@ export class Axios {
   protected async catch(
     e: Error,
     startTime: [number, number],
-    params: IAxiosFetchOptions,
+    params?: IAxiosFetchOptions,
   ) {}
   /**
    * @description Finally hook
    */
-  protected async finally(startTime: [number, number], params: IAxiosFetchOptions) {}
+  protected async finally(startTime: [number, number], params?: IAxiosFetchOptions) {}
 }
