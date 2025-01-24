@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.96.2](https://github.com/biorate/core/compare/v1.96.1...v1.96.2) (2025-01-24)
+
+### Bug Fixes
+
+- **axios:** hooks params to optional, interfaces fix ([fc595d9](https://github.com/biorate/core/commit/fc595d90690a499469441c22ab96245f13a948b3))
+
 ## [1.96.1](https://github.com/biorate/core/compare/v1.96.0...v1.96.1) (2025-01-16)
 
 ### Bug Fixes
