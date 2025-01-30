@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.97.0](https://github.com/biorate/core/compare/v1.96.2...v1.97.0) (2025-01-30)
+
+### Features
+
+- **nestjs-tools:** peerDependency ([81d238e](https://github.com/biorate/core/commit/81d238e38b991170d819513d56ae50444f7c76e0))
+
 ## [1.96.2](https://github.com/biorate/core/compare/v1.96.1...v1.96.2) (2025-01-24)
 
 ### Bug Fixes
