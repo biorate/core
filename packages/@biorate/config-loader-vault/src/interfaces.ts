@@ -9,4 +9,5 @@ export type IConfigLoaderVaultOption = {
   connection: string;
   cache?: boolean;
   directory?: string;
+  required?: boolean;
 };

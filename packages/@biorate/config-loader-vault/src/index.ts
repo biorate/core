@@ -118,7 +118,16 @@ export class ConfigLoaderVault extends ConfigLoader {
       this.constructor.name,
       [],
     )) {
-      await this[option.action](await this.read(option), option);
+      try {
+        await this[option.action](await this.read(option), option);
+      } catch (e) {
+        if (option?.required ?? true) throw e;
+        console.info(
+          `ConfigLoaderVault: file [${option.path}] ${option.action}ing error [${
+            (<Error>e)?.message ?? 'unknown'
+          }]`,
+        );
+      }
     }
   }
   /**
@@ -173,13 +182,17 @@ export class ConfigLoaderVault extends ConfigLoader {
     option: IConfigLoaderVaultOption,
   ) {
     const directory = option?.directory ?? 'downloads';
-    for (const file in data) {
-      await fs.mkdir(path.create(process.cwd(), directory), {
-        recursive: true,
-      });
-      await fs.writeFile(path.create(process.cwd(), directory, file), data[file]);
-    }
     this.config.merge(data);
-    console.info(`ConfigLoaderVault: file [${option.path}] - ${option.action}ed`);
+    for (const file in data) {
+      try {
+        await fs.mkdir(path.create(process.cwd(), directory), {
+          recursive: true,
+        });
+        await fs.writeFile(path.create(process.cwd(), directory, file), data[file]);
+        console.info(`ConfigLoaderVault: file [${option.path}] - ${option.action}ed`);
+      } catch (e) {
+        if (option?.required ?? true) throw e;
+      }
+    }
   }
 }

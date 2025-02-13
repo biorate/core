@@ -12,6 +12,7 @@ use(jestSnapshotPlugin());
 export const paths = {
   config: 'secret/data/config.json',
   files: 'secret/data/files.json',
+  notExists: 'secret/data/not-exists.json',
 };
 
 export const data = {
@@ -56,6 +57,13 @@ container.get<IConfig>(Types.Config).merge({
       path: paths.files,
       connection: 'connection',
       cache: true,
+    },
+    {
+      action: 'download',
+      path: paths.notExists,
+      connection: 'connection',
+      cache: true,
+      required: false,
     },
   ],
 });
