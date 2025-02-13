@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.98.0](https://github.com/biorate/core/compare/v1.97.0...v1.98.0) (2025-02-13)
+
+### Features
+
+- **config-loader-vault:** required option added ([01ddca7](https://github.com/biorate/core/commit/01ddca7e7335e9a357877d52d1b48b2cf79996e7))
+
 # [1.96.0](https://github.com/biorate/core/compare/v1.95.1...v1.96.0) (2024-12-26)
 
 **Note:** Version bump only for package @biorate/config-loader-vault
