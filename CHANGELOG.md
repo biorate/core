@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.98.1](https://github.com/biorate/core/compare/v1.98.0...v1.98.1) (2025-02-18)
+
+### Bug Fixes
+
+- **config-loadedr-vault:** Download files log fix ([3149f8e](https://github.com/biorate/core/commit/3149f8e25b4f2c8d63870080386d54234fa26737))
+
 # [1.98.0](https://github.com/biorate/core/compare/v1.97.0...v1.98.0) (2025-02-13)
 
 ### Features
