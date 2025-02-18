@@ -189,9 +189,16 @@ export class ConfigLoaderVault extends ConfigLoader {
           recursive: true,
         });
         await fs.writeFile(path.create(process.cwd(), directory, file), data[file]);
-        console.info(`ConfigLoaderVault: file [${option.path}] - ${option.action}ed`);
-      } catch (e) {
+        console.info(
+          `ConfigLoaderVault: file [${option.path}|${file}] - ${option.action}ed`,
+        );
+      } catch (e: any) {
         if (option?.required ?? true) throw e;
+        console.warn(
+          `ConfigLoaderVault: file [${option.path}|${file}] - didn't ${
+            option.action
+          }ed [${e?.message ?? 'unknown'}]`,
+        );
       }
     }
   }
