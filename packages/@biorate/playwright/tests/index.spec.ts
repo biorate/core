@@ -2,6 +2,7 @@ import { Severity } from 'allure-js-commons';
 import {
   suite,
   test,
+  slow,
   issue,
   severity,
   epic,
@@ -25,6 +26,7 @@ class Test {
   @story('Story allure test')
   @owner('60000000')
   @tags('tag2', 'tag1')
+  @slow()
   @test('test1')
   protected async test1({ page }: { page: Page }) {
     await page.goto('https://playwright.dev/');

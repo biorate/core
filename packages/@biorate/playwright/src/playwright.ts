@@ -1,7 +1,7 @@
 import { object as o } from '@biorate/tools';
 import { test as t } from '@playwright/test';
 import { allure } from 'allure-playwright';
-import { Test, Skip, Only, Allure, Suite } from './symbols';
+import { Test, Skip, Only, Slow, Allure, Suite } from './symbols';
 
 export * from 'allure-playwright';
 export * from 'playwright';
@@ -15,6 +15,8 @@ export class PlayWright {
   public readonly skip;
 
   public readonly only;
+
+  public readonly slow;
 
   public readonly label;
 
@@ -51,6 +53,7 @@ export class PlayWright {
     this.test = this.#test;
     this.skip = this.#skip;
     this.only = this.#only;
+    this.slow = this.#slow;
 
     this.label = this.#label;
     this.link = this.#link;
@@ -84,6 +87,7 @@ export class PlayWright {
         const allureMethods = Reflect.getMetadata(Allure, descriptor?.value);
         const skip = Reflect.getMetadata(Skip, descriptor?.value);
         const only = Reflect.getMetadata(Only, descriptor?.value);
+        const slow = Reflect.getMetadata(Slow, descriptor?.value);
         if (skip && only)
           throw new Error(`Can't use both "@skip()" and "@only()" decorators`);
         let test: any = t;
@@ -97,6 +101,7 @@ export class PlayWright {
               await allure[method](...allureMethods[method]);
             }
           }
+          if (slow) test.slow(...slow);
           await instance[name]({ page }, testInfo);
         });
       }
@@ -154,6 +159,11 @@ export class PlayWright {
     () =>
     (target: any, ...args: any[]) =>
       Reflect.defineMetadata(Only, true, target);
+
+  #slow =
+    (...opts: any[]) =>
+    (target: any, ...args: any[]) =>
+      Reflect.defineMetadata(Slow, opts, target);
 
   #label =
     (name: string, value: string) =>
@@ -266,6 +276,7 @@ export const {
   suite,
   skip,
   only,
+  slow,
   test,
   label,
   link,
