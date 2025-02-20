@@ -1,6 +1,6 @@
 {
   "name": "@biorate/playwright",
-  "version": "1.87.0",
+  "version": "1.99.0",
   "description": "OOP test decorators for playwright",
   "main": "dist",
   "scripts": {

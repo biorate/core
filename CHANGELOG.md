@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.99.0](https://github.com/biorate/core/compare/v1.98.1...v1.99.0) (2025-02-20)
+
+### Features
+
+- **playwright:** slow() decorator added ([22422d3](https://github.com/biorate/core/commit/22422d3736bc4f7ccd35f575c9e366efbf70ad57))
+
 ## [1.98.1](https://github.com/biorate/core/compare/v1.98.0...v1.98.1) (2025-02-18)
 
 ### Bug Fixes
