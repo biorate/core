@@ -1,6 +1,6 @@
 {
   "name": "@biorate/clickhouse",
-  "version": "1.96.0",
+  "version": "1.100.0",
   "description": "Clickhouse connector",
   "main": "dist",
   "scripts": {
@@ -24,11 +24,11 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.96.0",
-    "@biorate/connector": "1.96.0",
+    "@biorate/config": "1.100.0",
+    "@biorate/connector": "1.100.0",
     "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.96.0",
-    "@biorate/tools": "1.28.0",
+    "@biorate/inversion": "1.100.0",
+    "@biorate/tools": "1.100.0",
     "@clickhouse/client": "^1.0.1",
     "clickhouse": "^2.6.0",
     "lodash": "^4.17.21"

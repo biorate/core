@@ -1,6 +1,6 @@
 {
   "name": "@biorate/tools",
-  "version": "1.28.0",
+  "version": "1.100.0",
   "description": "Tools",
   "main": "dist",
   "scripts": {

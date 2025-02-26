@@ -1,6 +1,6 @@
 {
   "name": "@biorate/lifecycled",
-  "version": "1.54.0",
+  "version": "1.100.0",
   "description": "Decorators pack for bring lifecycle control in you application",
   "main": "dist",
   "scripts": {
@@ -24,8 +24,8 @@
     "reflect-metadata": "^0.1.13"
   },
   "dependencies": {
-    "@biorate/shutdown-hook": "1.42.1",
-    "@biorate/tools": "1.28.0",
+    "@biorate/shutdown-hook": "1.100.0",
+    "@biorate/tools": "1.100.0",
     "async-exit-hook": "^2.0.1"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"

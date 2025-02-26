@@ -1,6 +1,6 @@
 {
   "name": "@biorate/async-loop",
-  "version": "1.76.1",
+  "version": "1.100.0",
   "description": "Async loop function",
   "main": "dist",
   "scripts": {
@@ -24,6 +24,6 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/tools": "1.28.0"
+    "@biorate/tools": "1.100.0"
   }
 }

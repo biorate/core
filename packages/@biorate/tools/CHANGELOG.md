@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.100.0](https://github.com/biorate/core/compare/v1.99.0...v1.100.0) (2025-02-26)
+
+### Features
+
+- **nestjs-tools:** milliseconds to seconds format changed, url to uri renamed in buckets, last backslash removed in requests metrics ([178fde7](https://github.com/biorate/core/commit/178fde718195e4fd744fa1dac792f60e0313b155))
+
 # [1.28.0](https://github.com/biorate/core/compare/v1.27.7...v1.28.0) (2023-05-04)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/playwright",
-  "version": "1.99.0",
+  "version": "1.100.0",
   "description": "OOP test decorators for playwright",
   "main": "dist",
   "scripts": {
@@ -24,9 +24,9 @@
     "reflect-metadata": "^0.1.13"
   },
   "dependencies": {
-    "@biorate/run-context": "1.64.0",
+    "@biorate/run-context": "1.100.0",
     "@biorate/symbolic": "1.28.0",
-    "@biorate/tools": "1.28.0",
+    "@biorate/tools": "1.100.0",
     "@playwright/test": "^1.44.0",
     "allure-playwright": "2.10.0",
     "playwright": "^1.44.0"
