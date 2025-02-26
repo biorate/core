@@ -13,15 +13,15 @@ export class ProxyPrometheusMiddleware {
   @counter({
     name: 'http_proxy_server_requests_seconds_count',
     help: 'Http proxy server requests count',
-    labelNames: ['method', 'url', 'status'],
+    labelNames: ['method', 'uri', 'status'],
   })
   private counter: Counter;
 
   @histogram({
     name: 'http_proxy_server_requests_seconds',
     help: 'Http proxy server requests seconds bucket',
-    labelNames: ['method', 'url', 'status'],
-    buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
+    labelNames: ['method', 'uri', 'status'],
+    buckets: [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
   })
   private histogram: Histogram;
 
@@ -51,17 +51,17 @@ export class ProxyPrometheusMiddleware {
         this.counter
           .labels({
             method: req.method,
-            url: req.baseUrl,
+            uri: req.baseUrl,
             status: res.statusCode,
           })
           .inc();
         this.histogram
           .labels({
             method: req.method,
-            url: req.baseUrl,
+            uri: req.baseUrl,
             status: res.statusCode,
           })
-          .observe(diff!.time());
+          .observe(time.msTo(diff!.time(), 's'));
         return onProxyRes?.(proxyRes, req, res);
       },
     });

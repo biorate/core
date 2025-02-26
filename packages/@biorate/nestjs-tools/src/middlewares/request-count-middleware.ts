@@ -14,7 +14,7 @@ export class RequestCountMiddleware implements NestMiddleware {
   @counter({
     name: 'http_server_requests_seconds_count',
     help: 'Http server requests count',
-    labelNames: ['method', 'url', 'status'],
+    labelNames: ['method', 'uri', 'status'],
   })
   private counter: Counter;
 
@@ -24,7 +24,7 @@ export class RequestCountMiddleware implements NestMiddleware {
       this.counter
         .labels({
           method: req.method,
-          url:
+          uri:
             route?.path ??
             (this.config.get<boolean>(
               'app.middleware.RequestCountMiddleware.log-base-url',

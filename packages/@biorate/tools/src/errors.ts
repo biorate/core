@@ -9,3 +9,9 @@ export class UInt29OutOfBoundsError extends BaseError {
     ]);
   }
 }
+
+export class TimeIncorrectFormatError extends BaseError {
+  public constructor(format: string) {
+    super('Time incorrect format: [%s]', [format]);
+  }
+}

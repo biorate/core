@@ -21,8 +21,8 @@ export class ResponseTimeMiddleware implements NestMiddleware {
   @histogram({
     name: 'http_server_requests_seconds',
     help: 'Http server requests seconds bucket',
-    labelNames: ['method', 'url', 'status'],
-    buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 5000, 10000],
+    labelNames: ['method', 'uri', 'status'],
+    buckets: [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
   })
   private histogram: Histogram;
 
@@ -43,13 +43,14 @@ export class ResponseTimeMiddleware implements NestMiddleware {
 
   public use(req: Request, res: Response, next: NextFunction) {
     const diff = time.diff();
+    const msTo = time.msTo;
     onHeaders(res, () => {
       const time = diff();
       const route = RoutesInterceptor.map.get(req);
       this.histogram
         .labels({
           method: req.method,
-          url:
+          uri:
             route?.path ??
             (this.config.get<boolean>(
               'app.middleware.ResponseTimeMiddleware.log-base-url',
@@ -59,7 +60,7 @@ export class ResponseTimeMiddleware implements NestMiddleware {
               : '/'),
           status: res.statusCode,
         })
-        .observe(time);
+        .observe(msTo(time, 's'));
       res.setHeader(this.header, time.toFixed(this.digits) + (this.suffix ? 'ms' : ''));
     });
     next();
