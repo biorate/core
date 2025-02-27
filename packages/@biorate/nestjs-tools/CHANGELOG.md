@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.100.1](https://github.com/biorate/core/compare/v1.100.0...v1.100.1) (2025-02-27)
+
+### Bug Fixes
+
+- **nestjs-tools:** last backslash removed in requests metrics ([9aaae01](https://github.com/biorate/core/commit/9aaae01a007953eb255fd9794b21eb5319acef0d))
+
 # [1.100.0](https://github.com/biorate/core/compare/v1.99.0...v1.100.0) (2025-02-26)
 
 ### Features
