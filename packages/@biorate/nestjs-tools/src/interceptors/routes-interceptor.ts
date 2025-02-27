@@ -30,7 +30,8 @@ export class RoutesInterceptor implements NestInterceptor {
           '/',
           Array.isArray(namespaces) ? namespaces[0] : namespaces,
           Array.isArray(routes) ? routes[0] : routes,
-        ),
+          '/',
+        ).slice(0, -1),
       ),
     });
     return next.handle();
