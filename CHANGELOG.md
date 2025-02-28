@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.102.0](https://github.com/biorate/core/compare/v1.101.0...v1.102.0) (2025-02-28)
+
+### Features
+
+- migration to pnpm ([c64c2bc](https://github.com/biorate/core/commit/c64c2bc5660ce4c94799fe5eef33feb951a83775))
+- migration to pnpm ([6d850d9](https://github.com/biorate/core/commit/6d850d92e6490b0c05646fd37216fbee5ca4395b))
+- migration to pnpm ([83fb3c2](https://github.com/biorate/core/commit/83fb3c25ed9000d4755dc48c40b996d3649c8b73))
+- migration to pnpm ([462d120](https://github.com/biorate/core/commit/462d12068108fc6977906f4e379da6917aca42c3))
+
 # [1.101.0](https://github.com/biorate/core/compare/v1.100.1...v1.101.0) (2025-02-28)
 
 ### Features

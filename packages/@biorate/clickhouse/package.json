@@ -1,6 +1,6 @@
 {
   "name": "@biorate/clickhouse",
-  "version": "1.100.0",
+  "version": "1.102.0",
   "description": "Clickhouse connector",
   "main": "dist",
   "scripts": {
