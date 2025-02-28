@@ -1,6 +1,6 @@
 {
   "name": "@biorate/async-loop",
-  "version": "1.102.0",
+  "version": "1.102.1",
   "description": "Async loop function",
   "main": "dist",
   "scripts": {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.102.1](https://github.com/biorate/core/compare/v1.102.0...v1.102.1) (2025-02-28)
+
+### Bug Fixes
+
+- **tools:** @biorate/errors deps ([9f7a7aa](https://github.com/biorate/core/commit/9f7a7aa4984cfec8a2f7a84dc30983e6defec045))
+
 # [1.102.0](https://github.com/biorate/core/compare/v1.101.0...v1.102.0) (2025-02-28)
 
 ### Features

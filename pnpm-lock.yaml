@@ -1087,8 +1087,8 @@ importers:
   packages/@biorate/tools:
     dependencies:
       '@biorate/errors':
-        specifier: 1.28.0
-        version: 1.28.0
+        specifier: workspace:*
+        version: link:../errors
 
   packages/@biorate/vault:
     dependencies:

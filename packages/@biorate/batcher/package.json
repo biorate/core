@@ -1,6 +1,6 @@
 {
   "name": "@biorate/batcher",
-  "version": "1.102.0",
+  "version": "1.102.1",
   "description": "Tasks batcher",
   "main": "dist",
   "scripts": {

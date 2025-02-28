@@ -1,6 +1,6 @@
 {
   "name": "@biorate/connector",
-  "version": "1.102.0",
+  "version": "1.102.1",
   "description": "Connector interface",
   "main": "dist",
   "scripts": {
