@@ -8,6 +8,8 @@ import { Axios, AxiosError, AxiosResponse, IAxiosFetchOptions } from '@biorate/a
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
 import { get, set, pick } from 'lodash';
 
+export * from '@biorate/axios';
+
 /**
  * @description
  * Axios-prometheus HTTP interface

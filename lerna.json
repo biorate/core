@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/@biorate/*"],
+  "useWorkspaces": true,
   "command": {
     "version": {
       "allowBranch": "master",
@@ -8,6 +8,7 @@
       "message": "chore(release): %s"
     }
   },
+  "npmClient": "pnpm",
   "useNx": true,
   "version": "1.101.0"
 }

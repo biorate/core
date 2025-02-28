@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -27,11 +27,11 @@
     "redis": ">=4.4.0"
   },
   "dependencies": {
-    "@biorate/config": "1.100.0",
-    "@biorate/connector": "1.100.0",
-    "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.100.0",
-    "@biorate/tools": "1.100.0"
+    "@biorate/config": "workspace:*",
+    "@biorate/connector": "workspace:*",
+    "@biorate/errors": "workspace:*",
+    "@biorate/inversion": "workspace:*",
+    "@biorate/tools": "workspace:*"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }

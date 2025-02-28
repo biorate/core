@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -23,23 +23,23 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/amqp": "1.100.0",
-    "@biorate/clickhouse": "1.100.0",
-    "@biorate/config": "1.100.0",
-    "@biorate/config-loader": "1.100.0",
-    "@biorate/config-loader-env": "1.100.0",
-    "@biorate/config-loader-fs": "1.100.0",
-    "@biorate/config-loader-vault": "1.100.0",
-    "@biorate/connector": "1.100.0",
-    "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.100.0",
-    "@biorate/kafkajs": "1.100.0",
-    "@biorate/minio": "1.101.0",
-    "@biorate/mongodb": "1.100.0",
-    "@biorate/proxy": "1.100.0",
-    "@biorate/sequelize": "1.100.0",
-    "@biorate/tools": "1.100.0",
-    "@biorate/vault": "1.100.0"
+    "@biorate/amqp": "workspace:*",
+    "@biorate/clickhouse": "workspace:*",
+    "@biorate/config": "workspace:*",
+    "@biorate/config-loader": "workspace:*",
+    "@biorate/config-loader-env": "workspace:*",
+    "@biorate/config-loader-fs": "workspace:*",
+    "@biorate/config-loader-vault": "workspace:*",
+    "@biorate/connector": "workspace:*",
+    "@biorate/errors": "workspace:*",
+    "@biorate/inversion": "workspace:*",
+    "@biorate/kafkajs": "workspace:*",
+    "@biorate/minio": "workspace:*",
+    "@biorate/mongodb": "workspace:*",
+    "@biorate/proxy": "workspace:*",
+    "@biorate/sequelize": "workspace:*",
+    "@biorate/tools": "workspace:*",
+    "@biorate/vault": "workspace:*"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
 }

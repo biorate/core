@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc --outDir ./dist",
     "test": "npx playwright test",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -21,18 +21,15 @@
   "author": "llevkin",
   "license": "MIT",
   "peerDependencies": {
-    "reflect-metadata": "^0.1.13"
+    "@playwright/test": ">=1.44.0",
+    "allure-playwright": ">=2.10.0",
+    "playwright": ">=1.44.0",
+    "reflect-metadata": ">=0.1.13"
   },
   "dependencies": {
-    "@biorate/run-context": "1.100.0",
-    "@biorate/symbolic": "1.28.0",
-    "@biorate/tools": "1.100.0",
-    "@playwright/test": "^1.44.0",
-    "allure-playwright": "2.10.0",
-    "playwright": "^1.44.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.10.4"
+    "@biorate/run-context": "workspace:*",
+    "@biorate/symbolic": "workspace:*",
+    "@biorate/tools": "workspace:*"
   },
   "gitHead": "b9ab225c32dfebaf6dc8a9d750a1421ac62307cd"
 }

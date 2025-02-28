@@ -7,7 +7,7 @@
     "build": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./index.ts  -o ./dist",
     "demo": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./../../../docs/demo/@biorate/react-virtual-table",
     "demo:dev": "npx webpack serve --config=../../../webpack.config.js --mode=development --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./dist",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "@biorate/collection": "1.100.0",
+    "@biorate/collection": "workspace:*",
     "@types/react": "^16.8.0",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",

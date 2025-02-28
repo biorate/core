@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,9 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/lifecycled": "1.100.0",
-    "@biorate/symbolic": "1.28.0",
-    "@biorate/tools": "1.100.0",
+    "@biorate/lifecycled": "workspace:*",
+    "@biorate/symbolic": "workspace:*",
+    "@biorate/tools": "workspace:*",
     "async-exit-hook": "^2.0.1",
     "inversify": "^5.1.1",
     "inversify-inject-decorators": "^3.1.0",

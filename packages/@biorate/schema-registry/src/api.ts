@@ -1,5 +1,4 @@
-import { AxiosInstance } from 'axios';
-import { AxiosPrometheus } from '@biorate/axios-prometheus';
+import { AxiosPrometheus, AxiosInstance } from '@biorate/axios-prometheus';
 import { Type } from 'avsc';
 import { ISchemaRegistryConfig } from './interfaces';
 import { SchemaRegistryAvroSchemaParseError } from './errors';

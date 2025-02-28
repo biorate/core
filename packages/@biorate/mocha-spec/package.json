@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "mocha-chai-jest-snapshot": "^1.1.4"
   },
   "devDependencies": {
-    "@biorate/mocha": "1.100.0",
+    "@biorate/mocha": "workspace:*",
     "@types/supertest": "^2.0.11"
   },
   "dependencies": {

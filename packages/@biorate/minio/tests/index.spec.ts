@@ -21,10 +21,10 @@ describe('@biorate/minio', function () {
     ));
 
   it('getObject', (done) => {
-    root.connector!.current!.getObject('test', 'test.file', (e, stream) => {
+    root.connector!.current!.getObject('test', 'test.file', (e: any, stream: any) => {
       let data = '';
       stream
-        .on('data', (chunk) => (data += chunk.toString('utf8')))
+        .on('data', (chunk: Buffer) => (data += chunk.toString('utf8')))
         .on('end', () => (expect(data).toMatchSnapshot(), done()));
     });
   });

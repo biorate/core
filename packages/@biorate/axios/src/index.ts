@@ -1,5 +1,5 @@
 import { omit, pick, merge } from 'lodash';
-import axios, { AxiosResponse, AxiosInstance, AxiosDefaults } from 'axios';
+import axios, { AxiosResponse, AxiosInstance } from 'axios';
 import retry from 'axios-retry';
 import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
 // @ts-ignore

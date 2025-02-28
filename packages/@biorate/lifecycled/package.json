@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,8 @@
     "reflect-metadata": "^0.1.13"
   },
   "dependencies": {
-    "@biorate/shutdown-hook": "1.100.0",
-    "@biorate/tools": "1.100.0",
+    "@biorate/shutdown-hook": "workspace:*",
+    "@biorate/tools": "workspace:*",
     "async-exit-hook": "^2.0.1"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"

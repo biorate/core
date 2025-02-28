@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.100.0",
-    "@biorate/inversion": "1.100.0",
+    "@biorate/config": "workspace:*",
+    "@biorate/inversion": "workspace:*",
     "i18next": "23.4.2"
   }
 }
