@@ -1,6 +1,6 @@
 {
   "name": "@biorate/minio",
-  "version": "1.103.0",
+  "version": "1.104.0",
   "description": "Minio connector",
   "main": "dist",
   "scripts": {

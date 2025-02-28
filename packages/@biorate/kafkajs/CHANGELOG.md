@@ -3,13 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.104.0](https://github.com/biorate/core/compare/v1.102.1...v1.104.0) (2025-02-28)
+
+### Features
+
+- migration to pnpm ([18c83a3](https://github.com/biorate/core/commit/18c83a30319fdfe0d9d2c5ebd94f5fba499e06cd))
+
 # [1.103.0](https://github.com/biorate/core/compare/v1.102.1...v1.103.0) (2025-02-28)
 
 **Note:** Version bump only for package @biorate/kafkajs
-
-
-
-
 
 ## [1.102.1](https://github.com/biorate/core/compare/v1.102.0...v1.102.1) (2025-02-28)
 

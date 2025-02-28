@@ -1,6 +1,6 @@
 {
   "name": "@biorate/sequelize",
-  "version": "1.103.0",
+  "version": "1.104.0",
   "description": "Sequelize ORM connector",
   "main": "dist",
   "scripts": {
