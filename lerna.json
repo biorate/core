@@ -2,7 +2,7 @@
   "useWorkspaces": true,
   "command": {
     "version": {
-      "allowBranch": "master",
+      "allowBranch": "develop",
       "exact": true,
       "conventionalCommits": true,
       "message": "chore(release): %s"
