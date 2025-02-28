@@ -1,6 +1,6 @@
 {
   "name": "@biorate/errors",
-  "version": "1.28.0",
+  "version": "1.101.0",
   "description": "Errors factory",
   "main": "dist",
   "scripts": {
