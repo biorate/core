@@ -1,5 +1,5 @@
 import http from 'http';
-import * as httpProxy from 'http-proxy';
+import type { ServerOptions } from 'http-proxy';
 import { pick, omit } from 'lodash';
 import { Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
@@ -41,7 +41,7 @@ export class ProxyPrometheusMiddleware {
         proxyReq: http.ClientRequest,
         req: Request,
         res: Response,
-        options: httpProxy.ServerOptions,
+        options: ServerOptions,
       ) => {
         this.time.set(req, { time: time.diff() });
         return onProxyReq?.(proxyReq, req, res, options);

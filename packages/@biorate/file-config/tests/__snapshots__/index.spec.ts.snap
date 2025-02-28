@@ -7,6 +7,7 @@ Object {
   "keywords": Array [],
   "license": "MIT",
   "name": "file-config-test",
+  "private": true,
   "version": "0.0.0",
 }
 `;

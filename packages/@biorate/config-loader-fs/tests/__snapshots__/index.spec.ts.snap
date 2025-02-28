@@ -6,7 +6,8 @@ Object {
   "description": "Test package.json",
   "keywords": Array [],
   "license": "MIT",
-  "name": "file-config-test",
+  "name": "config-loader-fs-test",
+  "private": true,
   "version": "0.0.0",
 }
 `;

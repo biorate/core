@@ -1,5 +1,5 @@
 {
-  "name": "file-config-test1",
+  "name": "config-loader-fs-test",
   "private": true,
   "version": "0.0.0",
   "description": "Test package.json",
