@@ -1,2 +1,2 @@
 packages:
-  - packages/@biorate/*
+  - packages/**/*
