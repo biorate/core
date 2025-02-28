@@ -21,8 +21,8 @@ describe('@biorate/minio', function () {
     ));
 
   it('getObject', (done) => {
-    root.connector!.current!.getObject('test', 'test.file', (e: any, stream: any) => {
-      let data = '';
+    let data = '';
+    root.connector!.current!.getObject('test', 'test.file').then((stream) => {
       stream
         .on('data', (chunk: Buffer) => (data += chunk.toString('utf8')))
         .on('end', () => (expect(data).toMatchSnapshot(), done()));

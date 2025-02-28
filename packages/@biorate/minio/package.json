@@ -29,10 +29,7 @@
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "minio": "7.0.30"
-  },
-  "devDependencies": {
-    "@types/minio": "7.0.13"
+    "minio": "8.0.4"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }
