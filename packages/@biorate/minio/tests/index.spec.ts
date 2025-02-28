@@ -28,4 +28,9 @@ describe('@biorate/minio', function () {
         .on('end', () => (expect(data).toMatchSnapshot(), done()));
     });
   });
+
+  it('removeObject', async () =>
+    await root.connector!.current!.removeObjects('test', ['test.file']));
+
+  it('removeBucket', async () => await root.connector!.current!.removeBucket('test'));
 });

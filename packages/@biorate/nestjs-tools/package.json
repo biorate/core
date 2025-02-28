@@ -27,7 +27,7 @@
     "class-validator": ">=0.14.0",
     "express": ">=4.21.2",
     "http-proxy": ">=1.18.1",
-    "http-proxy-middleware": ">=2.0.7",
+    "http-proxy-middleware": "=2.0.6",
     "lodash": ">=4.17.21",
     "ws": ">=8.18.0"
   },
@@ -37,6 +37,7 @@
     "@biorate/inversion": "1.100.0",
     "@biorate/prometheus": "1.100.0",
     "@biorate/tools": "1.100.0",
+    "http-proxy-middleware": "2.0.6",
     "on-headers": "1.0.2"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"

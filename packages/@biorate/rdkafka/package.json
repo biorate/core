@@ -24,14 +24,16 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "node-rdkafka": ">=3.1.0"
+  },
   "dependencies": {
     "@biorate/config": "1.100.0",
     "@biorate/connector": "1.100.0",
     "@biorate/errors": "1.28.0",
     "@biorate/inversion": "1.100.0",
     "@biorate/prometheus": "1.100.0",
-    "@biorate/tools": "1.100.0",
-    "node-rdkafka": "^3.1.0"
+    "@biorate/tools": "1.100.0"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
 }
