@@ -30,7 +30,7 @@
     "mocha-chai-jest-snapshot": "^1.1.4"
   },
   "devDependencies": {
-    "@biorate/mocha": "1.100.0",
+    "@biorate/mocha": "workspace:*",
     "@types/supertest": "^2.0.11"
   },
   "dependencies": {

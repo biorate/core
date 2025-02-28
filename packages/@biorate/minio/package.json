@@ -24,11 +24,11 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.100.0",
-    "@biorate/connector": "1.100.0",
-    "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.100.0",
-    "@biorate/tools": "1.100.0",
+    "@biorate/config": "workspace:*",
+    "@biorate/connector": "workspace:*",
+    "@biorate/errors": "workspace:*",
+    "@biorate/inversion": "workspace:*",
+    "@biorate/tools": "workspace:*",
     "minio": "^7.0.30"
   },
   "devDependencies": {

@@ -30,7 +30,7 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "@biorate/collection": "1.100.0",
+    "@biorate/collection": "workspace:*",
     "@types/react": "^16.8.0",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",

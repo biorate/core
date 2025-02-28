@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.100.0",
-    "@biorate/inversion": "1.100.0",
+    "@biorate/config": "workspace:*",
+    "@biorate/inversion": "workspace:*",
     "prom-client": "^14.0.1"
   },
   "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"

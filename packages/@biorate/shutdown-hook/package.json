@@ -21,7 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/tools": "1.100.0"
+    "@biorate/tools": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^16.18.23"

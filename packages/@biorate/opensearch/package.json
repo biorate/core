@@ -24,12 +24,12 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/connector": "1.100.0",
-    "@biorate/errors": "1.28.0",
+    "@biorate/connector": "workspace:*",
+    "@biorate/errors": "workspace:*",
     "@opensearch-project/opensearch": "2.10.0"
   },
   "devDependencies": {
-    "@biorate/config": "1.100.0",
-    "@biorate/inversion": "1.100.0"
+    "@biorate/config": "workspace:*",
+    "@biorate/inversion": "workspace:*"
   }
 }

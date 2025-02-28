@@ -25,12 +25,12 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/axios": "1.100.0",
-    "@biorate/config": "1.100.0",
-    "@biorate/connector": "1.100.0",
-    "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.100.0",
-    "@biorate/tools": "1.100.0",
+    "@biorate/axios": "workspace:*",
+    "@biorate/config": "workspace:*",
+    "@biorate/connector": "workspace:*",
+    "@biorate/errors": "workspace:*",
+    "@biorate/inversion": "workspace:*",
+    "@biorate/tools": "workspace:*",
     "pug": "^3.0.2"
   },
   "devDependencies": {

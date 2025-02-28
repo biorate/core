@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/errors": "1.28.0",
-    "@biorate/inversion": "1.100.0",
+    "@biorate/errors": "workspace:*",
+    "@biorate/inversion": "workspace:*",
     "lodash": "^4.17.21",
     "traverse": "^0.6.6"
   },

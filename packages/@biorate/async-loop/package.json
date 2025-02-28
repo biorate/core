@@ -24,6 +24,6 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/tools": "1.100.0"
+    "@biorate/tools": "workspace:*"
   }
 }

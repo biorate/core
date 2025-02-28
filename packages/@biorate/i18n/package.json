@@ -21,8 +21,8 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "1.100.0",
-    "@biorate/inversion": "1.100.0",
+    "@biorate/config": "workspace:*",
+    "@biorate/inversion": "workspace:*",
     "i18next": "23.4.2"
   }
 }
