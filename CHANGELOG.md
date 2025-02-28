@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.101.0](https://github.com/biorate/core/compare/v1.100.1...v1.101.0) (2025-02-28)
+
+### Features
+
+- peerDependency ([fa848f9](https://github.com/biorate/core/commit/fa848f94d642b4ba3022b9e61931d73a402855a6))
+- peerDependency ([7c67645](https://github.com/biorate/core/commit/7c67645b369b815d74b7c34ae765ad8fd7de7367))
+
 ## [1.100.1](https://github.com/biorate/core/compare/v1.100.0...v1.100.1) (2025-02-27)
 
 ### Bug Fixes
