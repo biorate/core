@@ -13,4 +13,11 @@ export type ISchemaRegistryConnector = IConnector<
   ISchemaRegistryConnection
 >;
 
-export type ICompatibilities = 'BACKWARD' | 'FORWARD' | 'FULL' | 'TRANSITIVE';
+export type ICompatibilities =
+  | 'BACKWARD'
+  | 'BACKWARD_TRANSITIVE'
+  | 'FORWARD'
+  | 'FORWARD_TRANSITIVE'
+  | 'FULL'
+  | 'FULL_TRANSITIVE'
+  | 'NONE';
