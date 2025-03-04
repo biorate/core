@@ -37,6 +37,7 @@
     "@biorate/minio": "workspace:*",
     "@biorate/mongodb": "workspace:*",
     "@biorate/proxy": "workspace:*",
+    "@biorate/schema-registry": "workspace:*",
     "@biorate/sequelize": "workspace:*",
     "@biorate/tools": "workspace:*",
     "@biorate/vault": "workspace:*"

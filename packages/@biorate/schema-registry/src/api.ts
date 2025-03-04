@@ -1,6 +1,6 @@
 import { AxiosPrometheus, AxiosInstance } from '@biorate/axios-prometheus';
 import { Type } from 'avsc';
-import { ISchemaRegistryConfig } from './interfaces';
+import { ICompatibilities, ISchemaRegistryConfig } from './interfaces';
 import { SchemaRegistryAvroSchemaParseError } from './errors';
 
 export const create = (config: ISchemaRegistryConfig) => {
@@ -155,6 +155,20 @@ export const create = (config: ISchemaRegistryConfig) => {
     }
   }
 
+  class PutConfig extends SchemaRegistryApi {
+    public url = '/config/:subject';
+    public method = 'put';
+
+    public static fetch(data: { subject: string; compatibility: ICompatibilities }) {
+      return this._fetch<{
+        compatibility: ICompatibilities;
+      }>({
+        path: { subject: data.subject },
+        data: { compatibility: data.compatibility },
+      });
+    }
+  }
+
   async function encode(
     subject: string,
     data: Record<string, any>,
@@ -218,6 +232,7 @@ export const create = (config: ISchemaRegistryConfig) => {
     postSubjectsVersions: <typeof PostSubjectsVersions.fetch>(
       PostSubjectsVersions.fetch.bind(PostSubjectsVersions)
     ),
+    putConfig: <typeof PutConfig.fetch>PutConfig.fetch.bind(PutConfig),
     encode,
     decode,
   };

@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "Test",
+  "namespace": "test",
+  "fields": [
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    },
+    {
+      "name": "age",
+      "type": "int"
+    },
+    {
+      "name": "ver",
+      "type": "int"
+    },
+    {
+      "name": "test",
+      "type": "string"
+    }
+  ]
+}

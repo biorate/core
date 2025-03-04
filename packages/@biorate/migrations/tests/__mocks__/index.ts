@@ -71,6 +71,7 @@ container.get<IConfig>(Types.Config).merge({
       urls: ['amqp://localhost:5672'],
     },
   ],
+  SchemaRegistry: [{ name: 'test', baseURL: 'http://localhost:8085' }],
   migrations: {
     directory: '/tests/migrations',
   },

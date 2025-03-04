@@ -1,5 +1,5 @@
 // import { expect } from 'chai';
-// import { container } from '@biorate/inversion';
+import { container } from '@biorate/inversion';
 import './__mocks__';
 
 describe('@biorate/migrations', function () {

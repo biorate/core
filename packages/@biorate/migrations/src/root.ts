@@ -7,29 +7,32 @@ import * as Migrations from './types';
 
 @injectable()
 export class Root extends Core() {
-  @inject(Types.Config) public config: IConfig;
+  @inject(Types.Config) public readonly config: IConfig;
 
-  @inject(Types.ConfigLoaderEnv) public configLoaderEnv: ConfigLoader;
+  @inject(Types.ConfigLoaderEnv) public readonly configLoaderEnv: ConfigLoader;
 
-  @inject(Types.ConfigLoaderFs) public configLoaderFs: ConfigLoader;
+  @inject(Types.ConfigLoaderFs) public readonly configLoaderFs: ConfigLoader;
 
-  @inject(Types.ConfigLoaderVault) public configLoaderVault: ConfigLoader;
+  @inject(Types.ConfigLoaderVault) public readonly configLoaderVault: ConfigLoader;
 
-  @inject(Types.Vault) public vault: IVaultConnector;
+  @inject(Types.Vault) public readonly vault: IVaultConnector;
 
-  @inject(Types.Proxy) public proxy: IProxyConnector;
+  @inject(Types.Proxy) public readonly proxy: IProxyConnector;
 
-  @inject(Migrations.Sequelize) public sequelize: Migrations.Sequelize;
+  @inject(Migrations.Sequelize) public readonly sequelize: Migrations.Sequelize;
 
-  @inject(Migrations.Minio) protected minio: Migrations.Minio;
+  @inject(Migrations.Minio) public readonly minio: Migrations.Minio;
 
-  @inject(Migrations.Mongodb) protected mongodb: Migrations.Mongodb;
+  @inject(Migrations.Mongodb) public readonly mongodb: Migrations.Mongodb;
 
-  @inject(Migrations.Kafka) public kafkaJSAdmin: Migrations.Kafka;
+  @inject(Migrations.Kafka) public readonly kafkaJSAdmin: Migrations.Kafka;
 
-  @inject(Migrations.Clickhouse) public clickhouse: Migrations.Clickhouse;
+  @inject(Migrations.Clickhouse) public readonly clickhouse: Migrations.Clickhouse;
 
-  @inject(Migrations.Amqp) public amqp: Migrations.Amqp;
+  @inject(Migrations.Amqp) public readonly amqp: Migrations.Amqp;
+
+  @inject(Migrations.SchemaRegistry)
+  public readonly schemaRegistry: Migrations.SchemaRegistry;
 
   @init() protected async initialize() {
     process.exit();

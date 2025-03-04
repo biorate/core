@@ -31,7 +31,7 @@ export abstract class Migration {
         this.path(...args, item),
       );
     } catch {
-      return [] as string[];
+      return <string[]>[];
     }
   }
   /**
@@ -55,7 +55,7 @@ export abstract class Migration {
    * @description Initialize method
    */
   @init() protected async initialize() {
-    console.log(this.constructor.name);
+    console.info(this.constructor.name);
     await this.process();
   }
   /**

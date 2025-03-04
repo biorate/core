@@ -12,6 +12,10 @@ import { IClickhouseConnector, ClickhouseConnector } from '@biorate/clickhouse';
 import { IAmqpConnector, AmqpConnector } from '@biorate/amqp';
 import { IKafkaJSAdminConnector, KafkaJSAdminConnector } from '@biorate/kafkajs';
 import { IProxyConnector, ProxyConnector } from '@biorate/proxy';
+import {
+  ISchemaRegistryConnector,
+  SchemaRegistryConnector,
+} from '@biorate/schema-registry';
 import { Root } from './';
 import * as Migrations from './types';
 
@@ -42,11 +46,19 @@ container
   .to(KafkaJSAdminConnector)
   .inSingletonScope();
 container.bind<IProxyConnector>(Types.Proxy).to(ProxyConnector).inSingletonScope();
+container
+  .bind<ISchemaRegistryConnector>(Types.SchemaRegistry)
+  .to(SchemaRegistryConnector)
+  .inSingletonScope();
 container.bind<Migrations.Sequelize>(Migrations.Sequelize).toSelf().inSingletonScope();
 container.bind<Migrations.Minio>(Migrations.Minio).toSelf().inSingletonScope();
 container.bind<Migrations.Mongodb>(Migrations.Mongodb).toSelf().inSingletonScope();
 container.bind<Migrations.Kafka>(Migrations.Kafka).toSelf().inSingletonScope();
 container.bind<Migrations.Clickhouse>(Migrations.Clickhouse).toSelf().inSingletonScope();
 container.bind<Migrations.Amqp>(Migrations.Amqp).toSelf().inSingletonScope();
+container
+  .bind<Migrations.SchemaRegistry>(Migrations.SchemaRegistry)
+  .toSelf()
+  .inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 container.get<Root>(Root).$run().catch(console.error);
