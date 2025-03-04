@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.105.1](https://github.com/biorate/core/compare/v1.105.0...v1.105.1) (2025-03-04)
+
+### Bug Fixes
+
+- **schema-registry:** ICompatibilities ([040458b](https://github.com/biorate/core/commit/040458be2b6f421f3b01e2c1c93a7bc5032ce183))
+
 # [1.105.0](https://github.com/biorate/core/compare/v1.104.0...v1.105.0) (2025-03-04)
 
 ### Features
