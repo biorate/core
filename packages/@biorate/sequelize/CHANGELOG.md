@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.105.2](https://github.com/biorate/core/compare/v1.105.1...v1.105.2) (2025-03-05)
+
+### Bug Fixes
+
+- **sequelize:** peerDependencies ([c179505](https://github.com/biorate/core/commit/c179505a80e3f5891143c5e9b8dfd0a6efa612e6))
+
 # [1.104.0](https://github.com/biorate/core/compare/v1.102.1...v1.104.0) (2025-02-28)
 
 ### Features
