@@ -23,13 +23,15 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "sequelize": "6.37.3",
+    "sequelize-typescript": "2.1.6"
+  },
   "dependencies": {
     "@biorate/config": "workspace:*",
     "@biorate/connector": "workspace:*",
     "@biorate/errors": "workspace:*",
-    "@biorate/inversion": "workspace:*",
-    "sequelize": "6.37.3",
-    "sequelize-typescript": "2.1.6"
+    "@biorate/inversion": "workspace:*"
   },
   "devDependencies": {
     "sqlite3": "5.0.7"
