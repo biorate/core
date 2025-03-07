@@ -882,6 +882,9 @@ importers:
       '@playwright/test':
         specifier: '>=1.44.0'
         version: 1.50.1
+      allure-js-commons:
+        specifier: '>=3.2.0'
+        version: 3.2.0(allure-playwright@3.2.0(@playwright/test@1.50.1))
       allure-playwright:
         specifier: '>=2.10.0'
         version: 3.2.0(@playwright/test@1.50.1)

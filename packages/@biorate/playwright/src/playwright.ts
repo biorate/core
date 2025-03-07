@@ -1,11 +1,12 @@
 import { object as o } from '@biorate/tools';
 import { test as t } from '@playwright/test';
-import { allure } from 'allure-playwright';
+import * as allure from 'allure-js-commons';
 import { Test, Skip, Only, Slow, Allure, Suite } from './symbols';
 
 export * from 'allure-playwright';
 export * from 'playwright';
 export * from '@playwright/test';
+export * as allure from 'allure-js-commons';
 
 export class PlayWright {
   public readonly suite;

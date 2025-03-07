@@ -14,6 +14,7 @@ import {
   Page,
   expect,
   Context,
+  allure,
 } from '../src';
 import { Scenario1, Scenario2 } from './scenarios';
 
@@ -28,8 +29,10 @@ class Test {
   @tags('tag2', 'tag1')
   @test('test1')
   protected async test1({ page }: { page: Page }) {
-    await page.goto('https://playwright.dev/');
-    await expect(page).toHaveTitle(/Playwright/);
+    await allure.step('playwright.dev', async () => {
+      await page.goto('https://playwright.dev/');
+      await expect(page).toHaveTitle(/Playwright/);
+    });
   }
 
   @issue('2')

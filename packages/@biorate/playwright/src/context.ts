@@ -1,4 +1,4 @@
-import { allure } from 'allure-playwright';
+import * as allure from 'allure-js-commons';
 import { Context as ContextCommon } from '@biorate/run-context';
 import { Scenario as ScenarioSymbol } from './symbols';
 
