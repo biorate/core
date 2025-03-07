@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.106.0](https://github.com/biorate/core/compare/v1.105.2...v1.106.0) (2025-03-07)
+
+### Features
+
+- **playwright:** allure-js-commons deps added, removed reprecated deps "allure" from playwright package ([01e5144](https://github.com/biorate/core/commit/01e5144c60bab88f0a5b07a72a29265c0d1f9b8d))
+
 ## [1.102.1](https://github.com/biorate/core/compare/v1.102.0...v1.102.1) (2025-02-28)
 
 **Note:** Version bump only for package @biorate/playwright
