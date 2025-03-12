@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.107.0](https://github.com/biorate/core/compare/v1.106.0...v1.107.0) (2025-03-12)
+
+### Features
+
+- **nestjs-tools:** meta support in AllExceptionsFilter ([fa76c3b](https://github.com/biorate/core/commit/fa76c3b8586e29137430de685bb785b29064e7d3))
+
 # [1.104.0](https://github.com/biorate/core/compare/v1.102.1...v1.104.0) (2025-02-28)
 
 ### Features
