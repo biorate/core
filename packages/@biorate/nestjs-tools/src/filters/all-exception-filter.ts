@@ -23,30 +23,37 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
+    const meta = (exception as BaseError)?.meta;
     const status =
       exception instanceof HttpException
         ? exception.getStatus()
-        : (exception as BaseError)?.meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
+        : meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
     this.log(exception);
     response.status(status).json({
       status,
       code: this.code(exception),
       hint: this.hint(exception),
       path: request.url,
+      meta: meta?.meta,
     });
   }
 
   private _ws(exception: Error, host: ArgumentsHost) {
     const ctx = host.switchToWs();
     const socket = ctx.getClient<WebSocket>();
-    const status =
-      (exception as BaseError)?.meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
+    const meta = (exception as BaseError)?.meta;
+    const status = meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
     this.log(exception);
     socket.send(
       //TODO: add serializers factory
       JSON.stringify({
         event: 'error',
-        data: { status, code: this.code(exception), hint: this.hint(exception) },
+        data: {
+          status,
+          code: this.code(exception),
+          hint: this.hint(exception),
+          meta: meta?.meta,
+        },
       }),
     );
   }
