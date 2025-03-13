@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.109.1](https://github.com/biorate/core/compare/v1.109.0...v1.109.1) (2025-03-13)
+
+### Bug Fixes
+
+- **mocha-spec:** types ([6ad4159](https://github.com/biorate/core/commit/6ad415978337dc5e4f0edd149d3b3b2110511512))
+
 # [1.109.0](https://github.com/biorate/core/compare/v1.108.0...v1.109.0) (2025-03-13)
 
 ### Features
