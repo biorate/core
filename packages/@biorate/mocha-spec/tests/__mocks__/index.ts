@@ -1,9 +1,5 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { IsNumber, IsString, IsBoolean } from 'class-validator';
 import { Spec as CommonSpec } from '../../src';
-
-use(jestSnapshotPlugin());
 
 export abstract class Spec extends CommonSpec {
   protected get httpServer() {

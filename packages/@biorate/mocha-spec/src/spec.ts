@@ -1,10 +1,28 @@
 import * as supertest from 'supertest';
+import * as nock from 'nock';
+import * as sinon from 'sinon';
+import * as chai from 'chai';
+import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { api } from './api';
 import { Unit } from './unit';
 import { Validator } from './validator';
 import { IUnitOptions, IValidatorOptions } from './interfaces';
 
+chai.use(jestSnapshotPlugin());
+
 export abstract class Spec {
+  public static get nock() {
+    return nock;
+  }
+
+  public static get sinon() {
+    return sinon;
+  }
+
+  public static get chai() {
+    return chai;
+  }
+
   protected testDir = 'tests';
 
   protected abstract get httpServer(): any;
@@ -16,6 +34,18 @@ export abstract class Spec {
   protected get supertest() {
     if (!this.#supertest) this.#supertest = supertest(this.httpServer);
     return this.#supertest;
+  }
+
+  protected get nock() {
+    return nock;
+  }
+
+  protected get sinon() {
+    return sinon;
+  }
+
+  protected get chai() {
+    return chai;
   }
 
   protected logReq(method: string, url: string, data: string) {}
