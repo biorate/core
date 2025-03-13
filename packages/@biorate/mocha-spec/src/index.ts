@@ -1,2 +1,2 @@
 export * from './spec';
-export * from './validator';
+export { exactly, validate } from './api';

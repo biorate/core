@@ -1,4 +1,7 @@
 import type { SuperTest, Test, Response } from 'supertest';
+import { expect } from 'chai';
+import { IValidatorOptions } from './interfaces';
+import { Validator } from './validator';
 
 type Ctx = { _qs: Record<string, unknown>; _data: Record<string, unknown> };
 
@@ -30,3 +33,15 @@ export const api = (
           .use(use(logReq));
     },
   });
+
+export const validate =
+  <T = Response>(schema: any, options?: Omit<IValidatorOptions, 'data' | 'schema'>) =>
+  (data: any): Promise<T> =>
+    Validator.validate({ data, schema, field: 'body', ...options });
+
+export const exactly =
+  <T = Response>(data: any, field = 'body') =>
+  (result: any): T => {
+    expect(result[field]).deep.equal(data);
+    return result;
+  };

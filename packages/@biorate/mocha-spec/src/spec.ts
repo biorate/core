@@ -18,13 +18,9 @@ export abstract class Spec {
     return this.#supertest;
   }
 
-  protected logReq(method: string, url: string, data: string) {
-    console.log(method, url, data);
-  }
+  protected logReq(method: string, url: string, data: string) {}
 
-  protected logRes(status: number, body: string) {
-    console.log(status, body);
-  }
+  protected logRes(status: number, body: string) {}
 
   protected api(url?: string) {
     return api(
