@@ -7,6 +7,13 @@ export class ValidationError extends BaseError {
     });
   }
 }
+
+export class ValidationSchemaWrongTypeError extends BaseError {
+  public constructor(type: string) {
+    super(`validation schema wrong type: [%s]`, [type]);
+  }
+}
+
 export class MochaChaiJestSnapshotError extends BaseError {
   public constructor() {
     super(`[chai] module with [mocha-chai-jest-snapshot] plugin required!`, [], {});

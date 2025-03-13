@@ -26,17 +26,18 @@
   "author": "llevkin",
   "license": "MIT",
   "peerDependencies": {
-    "chai": "^4.3.4",
-    "mocha-chai-jest-snapshot": "^1.1.4"
+    "chai": ">=4.3.4",
+    "class-validator": ">=0.14.1",
+    "mocha-chai-jest-snapshot": ">=1.1.4"
   },
   "devDependencies": {
     "@biorate/mocha": "workspace:*",
-    "@types/supertest": "^2.0.11"
+    "@types/supertest": "^2.0.11",
+    "nock": "^14.0.1"
   },
   "dependencies": {
     "@biorate/errors": "1.28.0",
     "@biorate/tools": "1.100.0",
-    "class-validator": "^0.14.0",
-    "supertest": "^6.1.6"
+    "supertest": "6.1.6"
   }
 }
