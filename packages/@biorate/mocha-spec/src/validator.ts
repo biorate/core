@@ -37,6 +37,7 @@ export class Validator {
       const err = new ValidationError('schema', options.schema, errors);
       if (!options?.catch?.(err)) throw err;
     }
+    return options.data;
   }
 
   protected async validateByFunction(options: IValidatorOptions) {
@@ -48,6 +49,7 @@ export class Validator {
       const err = new ValidationError('function', options.schema, [value]);
       if (!options?.catch?.(err)) throw err;
     }
+    return options.data;
   }
 }
 

@@ -29,6 +29,12 @@ class MochaApiSpec extends Spec {
       .post('/')
       .query({ a: 1 })
       .send({ b: 1 })
-      .then(validate(Response));
+      // .expect('Content-Type', /json/)
+      // .expect(200)
+      .then(validate(Response))
+      .then((res) => {
+        console.log(res.body);
+        return res;
+      });
   }
 }
