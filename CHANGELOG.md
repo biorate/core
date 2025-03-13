@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.108.0](https://github.com/biorate/core/compare/v1.107.0...v1.108.0) (2025-03-13)
+
+### Features
+
+- **mocha-spec:** api test helper added ([29be9e0](https://github.com/biorate/core/commit/29be9e01b66699975c57c58e9cfc7b794895c872))
+
 # [1.107.0](https://github.com/biorate/core/compare/v1.106.0...v1.107.0) (2025-03-12)
 
 ### Features
