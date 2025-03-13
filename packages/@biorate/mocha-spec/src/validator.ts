@@ -1,19 +1,25 @@
 import { get, merge } from 'lodash';
-import { validate } from 'class-validator';
+import { validate as val } from 'class-validator';
 import { ValidationError } from './errors';
 import { IValidatorOptions } from './interfaces';
 
 export class Validator {
+  protected static instance: Validator;
+
+  public static validate(options: IValidatorOptions) {
+    if (!this.instance) this.instance = new this();
+    return this.instance.validate(options);
+  }
+
+  protected constructor() {}
+
   public validate(options: IValidatorOptions) {
     let isSchema: boolean;
     options.data = options.field ? get(options.data, options.field) : options.data;
-    try {
-      options.schema();
-      isSchema = false;
-    } catch (e: any) {
-      if (!e?.message?.includes?.("cannot be invoked without 'new'")) throw e;
-      isSchema = true;
-    }
+    if (typeof options.schema !== 'function') throw new Error();
+    isSchema =
+      typeof options.schema === 'function' &&
+      /^\s*class\s+/.test(options.schema.toString());
     return isSchema ? this.validateBySchema(options) : this.validateByFunction(options);
   }
 
@@ -23,7 +29,7 @@ export class Validator {
     else
       schemas.push(...options.data.map((item: any) => merge(new options.schema(), item)));
     for (const schema of schemas) {
-      const results = await validate(schema, options.validatorOptions);
+      const results = await val(schema, options.validatorOptions);
       if (!results.length) continue;
       const errors: string[] = [];
       for (const result of results)
@@ -44,3 +50,7 @@ export class Validator {
     }
   }
 }
+
+export const validate =
+  (schema: any, options?: Omit<IValidatorOptions, 'data' | 'schema'>) => (data: any) =>
+    Validator.validate({ data, schema, field: 'body', ...options });
