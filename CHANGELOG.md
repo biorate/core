@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.109.0](https://github.com/biorate/core/compare/v1.108.0...v1.109.0) (2025-03-13)
+
+### Features
+
+- **mocha-spec:** deps -> devDeps, chai, nock, sinon, supertest added into devDeps ([6168d1e](https://github.com/biorate/core/commit/6168d1e0b130de25c85bae934ca8b71d464f9d8e))
+
 # [1.108.0](https://github.com/biorate/core/compare/v1.107.0...v1.108.0) (2025-03-13)
 
 ### Features
