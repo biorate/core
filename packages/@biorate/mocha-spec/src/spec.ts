@@ -2,6 +2,7 @@ import * as supertest from 'supertest';
 import * as nock from 'nock';
 import * as sinon from 'sinon';
 import * as chai from 'chai';
+import type { Test, SuperTest } from 'supertest';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { api } from './api';
 import { Unit } from './unit';
@@ -27,7 +28,7 @@ export abstract class Spec {
 
   protected abstract get httpServer(): any;
 
-  #supertest: supertest.SuperTest<supertest.Test>;
+  #supertest: SuperTest<Test>;
 
   #unit = new Unit(this.testDir);
 

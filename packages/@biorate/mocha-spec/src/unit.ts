@@ -1,4 +1,3 @@
-import 'mocha-chai-jest-snapshot';
 import * as fs from 'fs';
 import { path } from '@biorate/tools';
 import { expect } from 'chai';
