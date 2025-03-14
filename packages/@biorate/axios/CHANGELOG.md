@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.110.0](https://github.com/biorate/core/compare/v1.109.1...v1.110.0) (2025-03-14)
+
+### Features
+
+- **axios:** stubs api added ([b1b2a5b](https://github.com/biorate/core/commit/b1b2a5b47922719f64275482fd3f54f1da39f222))
+
 # [1.104.0](https://github.com/biorate/core/compare/v1.102.1...v1.104.0) (2025-02-28)
 
 ### Features
