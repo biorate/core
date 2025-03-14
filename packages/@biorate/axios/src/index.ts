@@ -52,10 +52,40 @@ export class Axios {
    */
   protected static mocks = new WeakMap<typeof Axios, { value: boolean }>();
   /**
+   * @description Stubs instance cache
+   */
+  protected static stubs = new WeakMap<typeof Axios, typeof Axios.fetch>();
+  /**
    * @description Fetch static method
    */
   public static fetch(options?: any) {
     return this._fetch(options);
+  }
+  /**
+   * @description Stub static method
+   */
+  public static stub(
+    params: {
+      data: Record<string, any> | string;
+      status?: number;
+      statusText?: string;
+      headers?: Record<string, any>;
+      config?: Record<string, any>;
+    },
+    persist = false,
+  ) {
+    this.stubs.set(this, this.fetch);
+    this.fetch = async (options?: any) => {
+      if (!persist) this.unstub();
+      return { config: {}, headers: {}, statusText: '', status: 200, ...params };
+    };
+  }
+  /**
+   * @description Unstub static method
+   */
+  public static unstub() {
+    if (!this.stubs.has(this)) return;
+    this.fetch = this.stubs.get(this)!;
   }
   /**
    * @description Use mock static method

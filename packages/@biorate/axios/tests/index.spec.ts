@@ -72,4 +72,35 @@ describe('@biorate/axios', function () {
     const headers = <Record<string, unknown>>config.headers;
     expect(headers['x-test']).to.be.equal(1);
   });
+
+  it('stubs default', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data });
+    let result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+    result = await Stubs.fetch();
+    expect(result.data).to.be.not.equal(data);
+  });
+
+  it('stubs unmock', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data }, true);
+    let result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+    Stubs.unstub();
+    result = await Stubs.fetch();
+    expect(result.data).to.be.not.equal(data);
+  });
+
+  it('stubs persistent', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data }, true);
+    let result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+    result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+  });
 });
