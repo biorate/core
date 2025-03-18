@@ -688,10 +688,6 @@ importers:
 
   packages/@biorate/mocha-spec:
     dependencies:
-      class-validator:
-        specifier: '>=0.14.1'
-        version: 0.14.1
-    devDependencies:
       '@biorate/errors':
         specifier: workspace:*
         version: link:../errors
@@ -701,15 +697,12 @@ importers:
       '@biorate/tools':
         specifier: workspace:*
         version: link:../tools
-      '@types/sinon':
-        specifier: ^17.0.4
-        version: 17.0.4
-      '@types/supertest':
-        specifier: 2.0.11
-        version: 2.0.11
       chai:
         specifier: 4.3.6
         version: 4.3.6
+      class-validator:
+        specifier: '>=0.14.1'
+        version: 0.14.1
       mocha-chai-jest-snapshot:
         specifier: 1.1.4
         version: 1.1.4(chai@4.3.6)
@@ -722,6 +715,13 @@ importers:
       supertest:
         specifier: 6.1.6
         version: 6.1.6
+    devDependencies:
+      '@types/sinon':
+        specifier: ^17.0.4
+        version: 17.0.4
+      '@types/supertest':
+        specifier: 2.0.11
+        version: 2.0.11
 
   packages/@biorate/mongodb:
     dependencies:
