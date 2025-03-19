@@ -55,7 +55,7 @@ export abstract class Spec {
 
   protected api(url?: string) {
     return api(
-      url ? supertest(url) : this.#supertest,
+      url ? supertest(url) : this.supertest,
       this.logReq.bind(this),
       this.logRes.bind(this),
     );
