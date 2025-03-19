@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.110.2](https://github.com/biorate/core/compare/v1.110.1...v1.110.2) (2025-03-19)
+
+### Bug Fixes
+
+- **mocha-spec:** supertest api method ([63a9a5d](https://github.com/biorate/core/commit/63a9a5d5988e25041d90d24adde3a4cb3e9b5350))
+
 ## [1.110.1](https://github.com/biorate/core/compare/v1.110.0...v1.110.1) (2025-03-18)
 
 ### Bug Fixes
