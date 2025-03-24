@@ -1,3 +1,4 @@
+import { AxiosError } from '@biorate/axios';
 import { BaseError } from '@biorate/errors';
 import { WebSocket } from 'ws';
 import {
@@ -8,7 +9,7 @@ import {
   HttpStatus,
   BadRequestException,
 } from '@nestjs/common';
-import { UnsupportedProtocolError } from '../errors';
+import { AxiosRequestError, UnsupportedProtocolError } from '../errors';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -77,6 +78,14 @@ export class AllExceptionsFilter implements ExceptionFilter {
   }
 
   protected log(exception: Error) {
-    console.error(exception.stack);
+    if (exception instanceof AxiosError)
+      console.error(
+        new AxiosRequestError(
+          exception?.response?.data?.statusCode,
+          exception?.response?.data?.error,
+          exception?.response?.data?.message,
+        ),
+      );
+    else console.error(exception.stack);
   }
 }

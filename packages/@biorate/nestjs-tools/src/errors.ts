@@ -5,3 +5,9 @@ export class UnsupportedProtocolError extends BaseError {
     super(`Unsupported protocol: [%s]`, [name]);
   }
 }
+
+export class AxiosRequestError extends BaseError {
+  public constructor(code: number, error: string, message: string) {
+    super(`Axios request error (%s) [%s]: %s`, [code, error, message]);
+  }
+}

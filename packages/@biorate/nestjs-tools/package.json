@@ -32,6 +32,7 @@
     "ws": ">=8.18.0"
   },
   "dependencies": {
+    "@biorate/axios": "workspace:*",
     "@biorate/config": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
