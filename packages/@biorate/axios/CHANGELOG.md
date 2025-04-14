@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.112.0](https://github.com/biorate/core/compare/v1.111.0...v1.112.0) (2025-04-14)
+
+### Features
+
+- **axios:** stub errors ([abda6fb](https://github.com/biorate/core/commit/abda6fb7b0104fba0ef903e3359d2755c83e48f2))
+- **axios:** stub errors ([8583fec](https://github.com/biorate/core/commit/8583fec1a7b8522aef9a9423291c5a6003489c13))
+
 # [1.110.0](https://github.com/biorate/core/compare/v1.109.1...v1.110.0) (2025-03-14)
 
 ### Features
