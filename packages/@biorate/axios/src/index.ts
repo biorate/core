@@ -1,5 +1,5 @@
 import { omit, pick, merge } from 'lodash';
-import axios, { AxiosResponse, AxiosInstance } from 'axios';
+import axios, { AxiosResponse, AxiosInstance, AxiosError } from 'axios';
 import retry from 'axios-retry';
 import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
 // @ts-ignore
@@ -71,13 +71,26 @@ export class Axios {
       statusText?: string;
       headers?: Record<string, any>;
       config?: Record<string, any>;
+      error?: Error;
     },
     persist = false,
   ) {
+    const status = params?.status ?? 200;
+    if (!this.cache.has(this)) this.cache.set(this, new this());
+    const instance = this.cache.get(this)! as Axios & {
+      validateStatus?: (status: number) => boolean;
+    };
     this.stubs.set(this, this.fetch);
     this.fetch = async (options?: any) => {
       if (!persist) this.unstub();
-      return { config: {}, headers: {}, statusText: '', status: 200, ...params };
+      if (
+        ['4', '5'].includes(String(status)[0]) ||
+        instance?.validateStatus?.(status) === false
+      )
+        throw (
+          params.error ?? new AxiosError('Internal Server Error', '500', params.config)
+        );
+      return { config: {}, headers: {}, statusText: '', status, ...params };
     };
   }
   /**

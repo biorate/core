@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { Yandex } from './__mocks__';
+import { AxiosError } from '../src';
 
 describe('@biorate/axios', function () {
   this.timeout(3000);
@@ -101,6 +102,25 @@ describe('@biorate/axios', function () {
     let result = await Stubs.fetch();
     expect(result.data).to.be.equal(data);
     result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+  });
+
+  it('stubs throws errors', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data, status: 400 }, true);
+    try {
+      await Stubs.fetch();
+    } catch (e) {
+      expect(e instanceof AxiosError);
+    }
+  });
+
+  it('stubs un throw errors', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data, status: 200 }, true);
+    const result = await Stubs.fetch();
     expect(result.data).to.be.equal(data);
   });
 });
