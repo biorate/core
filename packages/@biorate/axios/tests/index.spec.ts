@@ -105,7 +105,7 @@ describe('@biorate/axios', function () {
     expect(result.data).to.be.equal(data);
   });
 
-  it('stubs throws errors', async () => {
+  it('stubs throws error', async () => {
     class Stubs extends Yandex {}
     const data = 'hello world!';
     Stubs.stub({ data, status: 400 }, true);
@@ -113,6 +113,18 @@ describe('@biorate/axios', function () {
       await Stubs.fetch();
     } catch (e) {
       expect(e instanceof AxiosError);
+    }
+  });
+
+  it('stubs throws custom error', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    class CustomError extends Error {}
+    Stubs.stub({ data, status: 400, error: new CustomError('test') }, true);
+    try {
+      await Stubs.fetch();
+    } catch (e) {
+      expect(e instanceof CustomError);
     }
   });
 
