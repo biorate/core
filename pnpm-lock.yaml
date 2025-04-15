@@ -264,6 +264,9 @@ importers:
       '@biorate/inversion':
         specifier: workspace:*
         version: link:../inversion
+      '@biorate/singleton':
+        specifier: workspace:*
+        version: link:../singleton
 
   packages/@biorate/axios-prometheus:
     dependencies:

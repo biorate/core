@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios",
-  "version": "1.112.0",
+  "version": "1.114.0",
   "description": "Axios OOP static interface",
   "main": "dist",
   "scripts": {
