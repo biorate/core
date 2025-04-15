@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.115.0](https://github.com/biorate/core/compare/v1.114.0...v1.115.0) (2025-04-15)
+
+### Features
+
+- **mocha-stub:** exactly options added ([e2357c3](https://github.com/biorate/core/commit/e2357c3410bdb28252acc2a7578f53fb0da5e35f))
+- **mocha-stub:** exactly options added ([d695aed](https://github.com/biorate/core/commit/d695aed0dee56d454876f4638adbd75652ba5622))
+
 ## [1.110.2](https://github.com/biorate/core/compare/v1.110.1...v1.110.2) (2025-03-19)
 
 ### Bug Fixes

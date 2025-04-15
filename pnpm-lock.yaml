@@ -245,6 +245,9 @@ importers:
 
   packages/@biorate/axios:
     dependencies:
+      '@biorate/singleton':
+        specifier: workspace:*
+        version: link:../singleton
       axios:
         specifier: ^0.27.2
         version: 0.27.2
@@ -264,9 +267,6 @@ importers:
       '@biorate/inversion':
         specifier: workspace:*
         version: link:../inversion
-      '@biorate/singleton':
-        specifier: workspace:*
-        version: link:../singleton
 
   packages/@biorate/axios-prometheus:
     dependencies:
