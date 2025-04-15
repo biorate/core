@@ -23,6 +23,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
+    "@biorate/singleton": "workspace:*",
     "axios": "^0.27.2",
     "axios-retry": "^4.0.0",
     "lodash": "^4.17.21",
@@ -30,8 +31,7 @@
   },
   "devDependencies": {
     "@biorate/config": "workspace:*",
-    "@biorate/inversion": "workspace:*",
-    "@biorate/singleton": "workspace:*"
+    "@biorate/inversion": "workspace:*"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }

@@ -68,4 +68,8 @@ export abstract class Spec {
   protected validate(options: IValidatorOptions) {
     return Validator.validate(options);
   }
+
+  protected exactly(result: any, expect: any, message?: string) {
+    return chai.expect(result).is.deep.equal(expect, message);
+  }
 }
