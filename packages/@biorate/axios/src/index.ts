@@ -1,10 +1,12 @@
 import { omit, pick, merge } from 'lodash';
-import axios, { AxiosResponse, AxiosInstance, AxiosError } from 'axios';
+import axios, { AxiosResponse, AxiosInstance } from 'axios';
 import retry from 'axios-retry';
 import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
 // @ts-ignore
 import * as pathToUrl from 'path-to-url';
-import { IAxiosFetchOptions } from './interfaces';
+import { Singleton } from '@biorate/singleton';
+import { Stubs } from './stubs';
+import { IAxiosFetchOptions, IStubParam } from './interfaces';
 
 export * from 'axios';
 export * from './interfaces';
@@ -42,11 +44,7 @@ const axiosExcludeKeys = ['path', 'config', 'retry'];
  * })();
  * ```
  */
-export class Axios {
-  /**
-   * @description Axios instance cache
-   */
-  protected static cache = new WeakMap<typeof Axios, Axios>();
+export class Axios extends Singleton {
   /**
    * @description Axios instance cache
    */
@@ -54,7 +52,15 @@ export class Axios {
   /**
    * @description Stubs instance cache
    */
-  protected static stubs = new WeakMap<typeof Axios, typeof Axios.fetch>();
+  protected static get stubs() {
+    return Stubs.get(this);
+  }
+  /**
+   * @description Stubs options cache
+   */
+  public static get options() {
+    return Stubs.get(this).options;
+  }
   /**
    * @description Fetch static method
    */
@@ -64,41 +70,14 @@ export class Axios {
   /**
    * @description Stub static method
    */
-  public static stub(
-    params: {
-      data: Record<string, any> | string;
-      status?: number;
-      statusText?: string;
-      headers?: Record<string, any>;
-      config?: Record<string, any>;
-      error?: Error;
-    },
-    persist = false,
-  ) {
-    const status = params?.status ?? 200;
-    if (!this.cache.has(this)) this.cache.set(this, new this());
-    const instance = this.cache.get(this)! as Axios & {
-      validateStatus?: (status: number) => boolean;
-    };
-    this.stubs.set(this, this.fetch);
-    this.fetch = async (options?: any) => {
-      if (!persist) this.unstub();
-      if (
-        ['4', '5'].includes(String(status)[0]) ||
-        instance?.validateStatus?.(status) === false
-      )
-        throw (
-          params.error ?? new AxiosError('Internal Server Error', '500', params.config)
-        );
-      return { config: {}, headers: {}, statusText: '', status, ...params };
-    };
+  public static stub(params: IStubParam, persist = false) {
+    this.stubs.stub(this.instance<Axios>(), params, persist);
   }
   /**
    * @description Unstub static method
    */
   public static unstub() {
-    if (!this.stubs.has(this)) return;
-    this.fetch = this.stubs.get(this)!;
+    this.stubs.unstub();
   }
   /**
    * @description Use mock static method
@@ -135,8 +114,7 @@ export class Axios {
   protected static async _fetch<T = any, D = any>(
     options?: IAxiosFetchOptions,
   ): Promise<AxiosResponse<T, D>> {
-    if (!this.cache.has(this)) this.cache.set(this, new this());
-    const instance = this.cache.get(this)!;
+    const instance = this.instance<Axios>();
     const useMock = this.mocks.get(this)?.value;
     if (useMock) {
       const mock = this.getMock<T, D>(instance, options);

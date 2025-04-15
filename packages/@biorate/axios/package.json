@@ -30,7 +30,8 @@
   },
   "devDependencies": {
     "@biorate/config": "workspace:*",
-    "@biorate/inversion": "workspace:*"
+    "@biorate/inversion": "workspace:*",
+    "@biorate/singleton": "workspace:*"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }

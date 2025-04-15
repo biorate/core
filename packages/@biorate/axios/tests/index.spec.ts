@@ -132,7 +132,19 @@ describe('@biorate/axios', function () {
     class Stubs extends Yandex {}
     const data = 'hello world!';
     Stubs.stub({ data, status: 200 }, true);
-    const result = await Stubs.fetch();
+    const result = await Stubs.fetch(1);
     expect(result.data).to.be.equal(data);
+  });
+
+  it('options check', async () => {
+    class Options extends Yandex {}
+    const data = 'hello world!';
+    Options.stub({ data, status: 200 }, true);
+    await Options.fetch(1);
+    await Options.fetch(2);
+    await Options.fetch(3);
+    expect(Options.options.first).to.be.equal(1);
+    expect(Options.options.last).to.be.equal(3);
+    expect(Options.options[1]).to.be.equal(2);
   });
 });
