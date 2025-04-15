@@ -1102,6 +1102,8 @@ importers:
         specifier: ^16.18.23
         version: 16.18.23
 
+  packages/@biorate/singleton: {}
+
   packages/@biorate/symbolic: {}
 
   packages/@biorate/tools:

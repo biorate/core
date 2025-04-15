@@ -1,6 +1,6 @@
 {
   "name": "@biorate/singleton",
-  "version": "1.102.0",
+  "version": "1.113.0",
   "description": "Abstract singleton class",
   "main": "dist",
   "scripts": {
