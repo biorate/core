@@ -47,6 +47,7 @@
 - [proxy](https://biorate.github.io/core/modules/proxy.html)
 - [proxy-prometheus](https://biorate.github.io/core/modules/proxy_prometheus.html)
 - [async-loop](https://biorate.github.io/core/modules/async-loop.html)
+- [singleton](https://biorate.github.io/core/modules/singleton.html)
 
 ### Learn
 
