@@ -116,18 +116,6 @@ describe('@biorate/axios', function () {
     }
   });
 
-  it('stubs throws custom error', async () => {
-    class Stubs extends Yandex {}
-    const data = 'hello world!';
-    class CustomError extends Error {}
-    Stubs.stub({ data, status: 400, error: new CustomError('test') }, true);
-    try {
-      await Stubs.fetch();
-    } catch (e) {
-      expect(e instanceof CustomError);
-    }
-  });
-
   it('stubs un throw errors', async () => {
     class Stubs extends Yandex {}
     const data = 'hello world!';

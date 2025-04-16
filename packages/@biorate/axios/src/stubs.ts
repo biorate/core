@@ -1,6 +1,8 @@
+import { AxiosError } from 'axios';
+import { status as statuses } from 'http-status';
 import { Axios, IStubParam } from './index';
 import { Options } from './options';
-import { AxiosError } from 'axios';
+import { FakeResponse } from './fake-response';
 
 export class Stubs {
   static #cache = new WeakMap<typeof Axios, Stubs>();
@@ -24,6 +26,14 @@ export class Stubs {
     persist = false,
   ) {
     const status = params?.status ?? 200;
+    const statusText = String(statuses[<keyof typeof statuses>status] ?? statuses[500]);
+    const response = new FakeResponse<typeof params.data>(
+      params.data,
+      status,
+      statusText,
+      params.headers ?? {},
+      params.config ?? {},
+    );
     this.fetch.set(this.Class, this.Class.fetch);
     this.Class.fetch = async (options?: any) => {
       this.options.push(options);
@@ -32,10 +42,14 @@ export class Stubs {
         ['4', '5'].includes(String(status)[0]) ||
         instance?.validateStatus?.(status) === false
       )
-        throw (
-          params.error ?? new AxiosError('Internal Server Error', '500', params.config)
+        throw new AxiosError(
+          statusText,
+          String(status),
+          params.config,
+          params.headers,
+          response,
         );
-      return { config: {}, headers: {}, statusText: '', status, ...params };
+      return response;
     };
   }
 

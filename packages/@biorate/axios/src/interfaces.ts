@@ -11,5 +11,4 @@ export type IStubParam = {
   statusText?: string;
   headers?: Record<string, any>;
   config?: Record<string, any>;
-  error?: Error;
 };

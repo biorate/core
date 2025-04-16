@@ -1,7 +1,7 @@
 {
-  "name": "@biorate/axios",
-  "version": "1.115.0",
-  "description": "Axios OOP static interface",
+  "name": "@biorate/config",
+  "version": "1.104.0",
+  "description": "Application configurator",
   "main": "dist",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
@@ -11,28 +11,23 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biorate/core.git",
-    "directory": "packages/@biorate/axios"
+    "directory": "packages/@biorate/config"
   },
   "publishConfig": {
     "access": "public"
   },
   "homepage": "https://biorate.github.io/core",
-  "keywords": [
-    "Axios"
-  ],
+  "keywords": [],
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/singleton": "workspace:*",
-    "axios": "^0.27.2",
-    "axios-retry": "^4.0.0",
-    "http-status": "^2.1.0",
+    "@biorate/errors": "workspace:*",
+    "@biorate/inversion": "workspace:*",
     "lodash": "^4.17.21",
-    "path-to-url": "^0.1.0"
+    "traverse": "^0.6.6"
   },
+  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
   "devDependencies": {
-    "@biorate/config": "workspace:*",
-    "@biorate/inversion": "workspace:*"
-  },
-  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
+    "@types/traverse": "^0.6.32"
+  }
 }
