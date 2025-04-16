@@ -1,13 +1,8 @@
+import { compact } from 'lodash';
 import { BaseError } from '@biorate/errors';
 
-export class AmqpCantConnectError extends BaseError {
-  public constructor(e: Error) {
-    super(`Can't connect to Amqp: [%s]`, [e.message]);
-  }
-}
-
-export class ChannelNotExistsError extends BaseError {
-  public constructor(name: string) {
-    super(`Channel not exists: [%s]`, [name]);
+export class CommandExecutionError extends BaseError {
+  public constructor(command: string, e: Error) {
+    super(`Command execution error [%s]: %s`, [command, compact(e.message.split(/\n/g))]);
   }
 }

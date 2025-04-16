@@ -1,7 +1,7 @@
 {
-  "name": "@biorate/config",
-  "version": "1.104.0",
-  "description": "Application configurator",
+  "name": "@biorate/command",
+  "version": "0.0.0",
+  "description": "Command executor",
   "main": "dist",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biorate/core.git",
-    "directory": "packages/@biorate/config"
+    "directory": "packages/@biorate/command"
   },
   "publishConfig": {
     "access": "public"
@@ -21,13 +21,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
+    "@biorate/config": "workspace:*",
     "@biorate/errors": "workspace:*",
-    "@biorate/inversion": "workspace:*",
-    "lodash": "^4.17.21",
-    "traverse": "^0.6.6"
-  },
-  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
-  "devDependencies": {
-    "@types/traverse": "^0.6.32"
+    "@biorate/singleton": "workspace:*",
+    "@biorate/tools": "workspace:*",
+    "lodash": "4.17.21"
   }
 }

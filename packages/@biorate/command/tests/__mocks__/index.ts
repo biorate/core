@@ -1,19 +1,39 @@
-import { Config } from '../../src';
+import { CommonCommandSync, CommonCommandAsync } from '../../src';
 
-export const data = {
-  one: 1,
-  two: {
-    one: 'one',
-    two: 'two',
-  },
-  template: {
-    one: '${two.one}',
-    two: 'hello_${one}',
-    object: '#{two}',
-    reg: 'R{/http://yandex.ru/test/}',
-    fn: 'F{a, b, c => let d = a + b + c; return d;}',
-  },
-};
+export class EchoSyncCommand extends CommonCommandSync {
+  protected command = [`echo #{value}`];
 
-export const config = new Config();
-config.merge(data);
+  protected override options = { cwd: '/tmp' };
+
+  public static override execute(options: { value: string | number }) {
+    return super.execute(options);
+  }
+}
+
+export class EchoAsyncCommand extends CommonCommandAsync {
+  protected command = [`echo #{value}`];
+
+  protected override options = { cwd: '/tmp' };
+
+  public static override execute(options: { value: string | number }) {
+    return super.execute(options);
+  }
+}
+
+export class EchoSyncErrorCommand extends CommonCommandSync {
+  protected command = [`undefined_command`];
+}
+
+export class EchoAsyncErrorCommand extends CommonCommandAsync {
+  protected command = [`undefined_command`];
+}
+
+export class ReturnAsyncSTDERRCommand extends CommonCommandAsync {
+  public static stderrText = 'stderr';
+  public static stdoutText = 'stdout';
+
+  protected command = [
+    `echo "${ReturnAsyncSTDERRCommand.stderrText}" >&2;`,
+    `echo "${ReturnAsyncSTDERRCommand.stdoutText}";`,
+  ];
+}
