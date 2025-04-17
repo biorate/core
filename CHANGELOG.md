@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.116.0](https://github.com/biorate/core/compare/v1.115.0...v1.116.0) (2025-04-16)
+
+### Features
+
+- **axios:** FakeREsponse and error FakeAxiosError in stubs ([1d43f41](https://github.com/biorate/core/commit/1d43f411bf0eacf0e0ebbd9b4c18cdbdf93aaaae))
+- **command:** release ([eb36007](https://github.com/biorate/core/commit/eb36007311696b8f48ca5a413f5a793ab10c26ff))
+
+# [1.115.0](https://github.com/biorate/core/compare/v1.114.0...v1.115.0) (2025-04-15)
+
+### Features
+
+- **mocha-stub:** exactly options added ([e2357c3](https://github.com/biorate/core/commit/e2357c3410bdb28252acc2a7578f53fb0da5e35f))
+- **mocha-stub:** exactly options added ([d695aed](https://github.com/biorate/core/commit/d695aed0dee56d454876f4638adbd75652ba5622))
+
+# [1.114.0](https://github.com/biorate/core/compare/v1.113.0...v1.114.0) (2025-04-15)
+
+### Features
+
+- **axios:** options in stubs ([9ee3c4a](https://github.com/biorate/core/commit/9ee3c4acfc8c023371a9fc379e17c280432caae1))
+
+# [1.113.0](https://github.com/biorate/core/compare/v1.112.0...v1.113.0) (2025-04-15)
+
+### Features
+
+- **singleton:** release ([34be7ae](https://github.com/biorate/core/commit/34be7ae3876a9cc3cdabd66607cec4540bdbec4a))
+
+# [1.112.0](https://github.com/biorate/core/compare/v1.111.0...v1.112.0) (2025-04-14)
+
+### Features
+
+- **axios:** stub errors ([abda6fb](https://github.com/biorate/core/commit/abda6fb7b0104fba0ef903e3359d2755c83e48f2))
+- **axios:** stub errors ([8583fec](https://github.com/biorate/core/commit/8583fec1a7b8522aef9a9423291c5a6003489c13))
+
+# [1.111.0](https://github.com/biorate/core/compare/v1.110.2...v1.111.0) (2025-03-24)
+
+### Features
+
+- **nestjs-tools:** AxiosError catch ([14a6a55](https://github.com/biorate/core/commit/14a6a5524db8a6e4e71b4fc88511b9a2ed99c03d))
+
+## [1.110.2](https://github.com/biorate/core/compare/v1.110.1...v1.110.2) (2025-03-19)
+
+### Bug Fixes
+
+- **mocha-spec:** supertest api method ([63a9a5d](https://github.com/biorate/core/commit/63a9a5d5988e25041d90d24adde3a4cb3e9b5350))
+
+## [1.110.1](https://github.com/biorate/core/compare/v1.110.0...v1.110.1) (2025-03-18)
+
+### Bug Fixes
+
+- **mocha-spec:** deps ([104aea0](https://github.com/biorate/core/commit/104aea0992720546e8a4b9eba95c10b61d4ada7c))
+
+# [1.110.0](https://github.com/biorate/core/compare/v1.109.1...v1.110.0) (2025-03-14)
+
+### Features
+
+- **axios:** stubs api added ([b1b2a5b](https://github.com/biorate/core/commit/b1b2a5b47922719f64275482fd3f54f1da39f222))
+
+## [1.109.1](https://github.com/biorate/core/compare/v1.109.0...v1.109.1) (2025-03-13)
+
+### Bug Fixes
+
+- **mocha-spec:** types ([6ad4159](https://github.com/biorate/core/commit/6ad415978337dc5e4f0edd149d3b3b2110511512))
+
+# [1.109.0](https://github.com/biorate/core/compare/v1.108.0...v1.109.0) (2025-03-13)
+
+### Features
+
+- **mocha-spec:** deps -> devDeps, chai, nock, sinon, supertest added into devDeps ([6168d1e](https://github.com/biorate/core/commit/6168d1e0b130de25c85bae934ca8b71d464f9d8e))
+
+# [1.108.0](https://github.com/biorate/core/compare/v1.107.0...v1.108.0) (2025-03-13)
+
+### Features
+
+- **mocha-spec:** api test helper added ([29be9e0](https://github.com/biorate/core/commit/29be9e01b66699975c57c58e9cfc7b794895c872))
+
 # [1.107.0](https://github.com/biorate/core/compare/v1.106.0...v1.107.0) (2025-03-12)
 
 ### Features

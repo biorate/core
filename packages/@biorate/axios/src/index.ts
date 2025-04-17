@@ -4,7 +4,9 @@ import retry from 'axios-retry';
 import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
 // @ts-ignore
 import * as pathToUrl from 'path-to-url';
-import { IAxiosFetchOptions } from './interfaces';
+import { Singleton } from '@biorate/singleton';
+import { Stubs } from './stubs';
+import { IAxiosFetchOptions, IStubParam } from './interfaces';
 
 export * from 'axios';
 export * from './interfaces';
@@ -42,20 +44,40 @@ const axiosExcludeKeys = ['path', 'config', 'retry'];
  * })();
  * ```
  */
-export class Axios {
-  /**
-   * @description Axios instance cache
-   */
-  protected static cache = new WeakMap<typeof Axios, Axios>();
+export class Axios extends Singleton {
   /**
    * @description Axios instance cache
    */
   protected static mocks = new WeakMap<typeof Axios, { value: boolean }>();
   /**
+   * @description Stubs instance cache
+   */
+  protected static get stubs() {
+    return Stubs.get(this);
+  }
+  /**
+   * @description Stubs options cache
+   */
+  public static get options() {
+    return Stubs.get(this).options;
+  }
+  /**
    * @description Fetch static method
    */
   public static fetch(options?: any) {
     return this._fetch(options);
+  }
+  /**
+   * @description Stub static method
+   */
+  public static stub(params: IStubParam, persist = false) {
+    this.stubs.stub(this.instance<Axios>(), params, persist);
+  }
+  /**
+   * @description Unstub static method
+   */
+  public static unstub() {
+    this.stubs.unstub();
   }
   /**
    * @description Use mock static method
@@ -92,8 +114,7 @@ export class Axios {
   protected static async _fetch<T = any, D = any>(
     options?: IAxiosFetchOptions,
   ): Promise<AxiosResponse<T, D>> {
-    if (!this.cache.has(this)) this.cache.set(this, new this());
-    const instance = this.cache.get(this)!;
+    const instance = this.instance<Axios>();
     const useMock = this.mocks.get(this)?.value;
     if (useMock) {
       const mock = this.getMock<T, D>(instance, options);

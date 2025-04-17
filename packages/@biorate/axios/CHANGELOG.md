@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.116.0](https://github.com/biorate/core/compare/v1.115.0...v1.116.0) (2025-04-16)
+
+### Features
+
+- **axios:** FakeREsponse and error FakeAxiosError in stubs ([1d43f41](https://github.com/biorate/core/commit/1d43f411bf0eacf0e0ebbd9b4c18cdbdf93aaaae))
+
+# [1.115.0](https://github.com/biorate/core/compare/v1.114.0...v1.115.0) (2025-04-15)
+
+### Features
+
+- **mocha-stub:** exactly options added ([d695aed](https://github.com/biorate/core/commit/d695aed0dee56d454876f4638adbd75652ba5622))
+
+# [1.114.0](https://github.com/biorate/core/compare/v1.113.0...v1.114.0) (2025-04-15)
+
+### Features
+
+- **axios:** options in stubs ([9ee3c4a](https://github.com/biorate/core/commit/9ee3c4acfc8c023371a9fc379e17c280432caae1))
+
+# [1.112.0](https://github.com/biorate/core/compare/v1.111.0...v1.112.0) (2025-04-14)
+
+### Features
+
+- **axios:** stub errors ([abda6fb](https://github.com/biorate/core/commit/abda6fb7b0104fba0ef903e3359d2755c83e48f2))
+- **axios:** stub errors ([8583fec](https://github.com/biorate/core/commit/8583fec1a7b8522aef9a9423291c5a6003489c13))
+
+# [1.110.0](https://github.com/biorate/core/compare/v1.109.1...v1.110.0) (2025-03-14)
+
+### Features
+
+- **axios:** stubs api added ([b1b2a5b](https://github.com/biorate/core/commit/b1b2a5b47922719f64275482fd3f54f1da39f222))
+
 # [1.104.0](https://github.com/biorate/core/compare/v1.102.1...v1.104.0) (2025-02-28)
 
 ### Features

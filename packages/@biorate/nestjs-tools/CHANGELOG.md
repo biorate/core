@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.116.0](https://github.com/biorate/core/compare/v1.115.0...v1.116.0) (2025-04-16)
+
+**Note:** Version bump only for package @biorate/nestjs-tools
+
+# [1.115.0](https://github.com/biorate/core/compare/v1.114.0...v1.115.0) (2025-04-15)
+
+**Note:** Version bump only for package @biorate/nestjs-tools
+
+# [1.114.0](https://github.com/biorate/core/compare/v1.113.0...v1.114.0) (2025-04-15)
+
+**Note:** Version bump only for package @biorate/nestjs-tools
+
+# [1.112.0](https://github.com/biorate/core/compare/v1.111.0...v1.112.0) (2025-04-14)
+
+**Note:** Version bump only for package @biorate/nestjs-tools
+
+# [1.111.0](https://github.com/biorate/core/compare/v1.110.2...v1.111.0) (2025-03-24)
+
+### Features
+
+- **nestjs-tools:** AxiosError catch ([14a6a55](https://github.com/biorate/core/commit/14a6a5524db8a6e4e71b4fc88511b9a2ed99c03d))
+
 # [1.107.0](https://github.com/biorate/core/compare/v1.106.0...v1.107.0) (2025-03-12)
 
 ### Features

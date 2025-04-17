@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios",
-  "version": "1.104.0",
+  "version": "1.116.0",
   "description": "Axios OOP static interface",
   "main": "dist",
   "scripts": {
@@ -23,8 +23,10 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
+    "@biorate/singleton": "workspace:*",
     "axios": "^0.27.2",
     "axios-retry": "^4.0.0",
+    "http-status": "^2.1.0",
     "lodash": "^4.17.21",
     "path-to-url": "^0.1.0"
   },

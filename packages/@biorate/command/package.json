@@ -1,0 +1,30 @@
+{
+  "name": "@biorate/command",
+  "version": "1.116.0",
+  "description": "Command executor",
+  "main": "dist",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/command"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/config": "workspace:*",
+    "@biorate/errors": "workspace:*",
+    "@biorate/singleton": "workspace:*",
+    "@biorate/tools": "workspace:*",
+    "lodash": "4.17.21"
+  }
+}

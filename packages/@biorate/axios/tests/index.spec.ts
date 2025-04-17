@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { Yandex } from './__mocks__';
+import { AxiosError } from '../src';
 
 describe('@biorate/axios', function () {
   this.timeout(3000);
@@ -71,5 +72,67 @@ describe('@biorate/axios', function () {
     const { config } = await Defaults.fetch();
     const headers = <Record<string, unknown>>config.headers;
     expect(headers['x-test']).to.be.equal(1);
+  });
+
+  it('stubs default', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data });
+    let result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+    result = await Stubs.fetch();
+    expect(result.data).to.be.not.equal(data);
+  });
+
+  it('stubs unmock', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data }, true);
+    let result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+    Stubs.unstub();
+    result = await Stubs.fetch();
+    expect(result.data).to.be.not.equal(data);
+  });
+
+  it('stubs persistent', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data }, true);
+    let result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+    result = await Stubs.fetch();
+    expect(result.data).to.be.equal(data);
+  });
+
+  it('stubs throws error', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data, status: 400 }, true);
+    try {
+      await Stubs.fetch();
+    } catch (e) {
+      expect(e instanceof AxiosError);
+    }
+  });
+
+  it('stubs un throw errors', async () => {
+    class Stubs extends Yandex {}
+    const data = 'hello world!';
+    Stubs.stub({ data, status: 200 }, true);
+    const result = await Stubs.fetch(1);
+    expect(result.data).to.be.equal(data);
+  });
+
+  it('options check', async () => {
+    class Options extends Yandex {}
+    const data = 'hello world!';
+    Options.stub({ data, status: 200 }, true);
+    await Options.fetch(1);
+    await Options.fetch(2);
+    await Options.fetch(3);
+    expect(Options.options.first).to.be.equal(1);
+    expect(Options.options.last).to.be.equal(3);
+    expect(Options.options[1]).to.be.equal(2);
   });
 });

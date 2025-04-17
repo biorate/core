@@ -34,7 +34,7 @@
 <ul class="tsd-hierarchy">
 <li><a href="axios_prometheus.AxiosPrometheus.html" class="tsd-signature-type tsd-kind-class">AxiosPrometheus</a></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L45">packages/@biorate/axios/src/index.ts:45</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L45">packages/@biorate/axios/src/index.ts:45</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -49,6 +49,7 @@
 <div class="tsd-index-list"><a href="axios.Axios.html#_client" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-1024"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)"></path></g></svg><span>#client</span></a>
 <a href="axios.Axios.html#cache" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>cache</span></a>
 <a href="axios.Axios.html#mocks" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>mocks</span></a>
+<a href="axios.Axios.html#stubs" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stubs</span></a>
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Accessors</h3>
@@ -66,6 +67,8 @@
 <a href="axios.Axios.html#fetch-2" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>fetch</span></a>
 <a href="axios.Axios.html#getMock" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>get<wbr/>Mock</span></a>
 <a href="axios.Axios.html#setMock" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>set<wbr/>Mock</span></a>
+<a href="axios.Axios.html#stub" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>stub</span></a>
+<a href="axios.Axios.html#unstub" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>unstub</span></a>
 <a href="axios.Axios.html#useMock" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>use<wbr/>Mock</span></a>
 </div></section></div></details></section></section>
 <section class="tsd-panel-group tsd-member-group">
@@ -85,7 +88,7 @@
 <h4>Description</h4><p>Axios client cache</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L109">packages/@biorate/axios/src/index.ts:109</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L152">packages/@biorate/axios/src/index.ts:152</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="cache" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagProtected">Protected</code> <span>cache</span><a href="#cache" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">cache</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">WeakMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="axios.Axios.html" class="tsd-signature-type tsd-kind-class">Axios</a><span class="tsd-signature-symbol">, </span><a href="axios.Axios.html" class="tsd-signature-type tsd-kind-class">Axios</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
@@ -93,7 +96,7 @@
 <h4>Description</h4><p>Axios instance cache</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L49">packages/@biorate/axios/src/index.ts:49</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L49">packages/@biorate/axios/src/index.ts:49</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="mocks" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagProtected">Protected</code> <span>mocks</span><a href="#mocks" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">mocks</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">WeakMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="axios.Axios.html" class="tsd-signature-type tsd-kind-class">Axios</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
@@ -106,7 +109,28 @@
 <h4>Description</h4><p>Axios instance cache</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L53">packages/@biorate/axios/src/index.ts:53</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L53">packages/@biorate/axios/src/index.ts:53</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-protected"><a id="stubs" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagProtected">Protected</code> <span>stubs</span><a href="#stubs" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">stubs</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">WeakMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="axios.Axios.html" class="tsd-signature-type tsd-kind-class">Axios</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/axios.AxiosResponse.html" class="tsd-signature-type tsd-kind-interface">AxiosResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
+<div class="tsd-type-declaration">
+<h4>Type declaration</h4>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/axios.AxiosResponse.html" class="tsd-signature-type tsd-kind-interface">AxiosResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type">any</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/axios.AxiosResponse.html" class="tsd-signature-type tsd-kind-interface">AxiosResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></div>
+<div class="tsd-comment tsd-typography">
+<h4>Description</h4><p>Stubs instance cache</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L57">packages/@biorate/axios/src/index.ts:57</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member"><a id="defaults" class="tsd-anchor"></a>
@@ -119,7 +143,7 @@
 <h4>Description</h4><p>Set defaults</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L69">packages/@biorate/axios/src/index.ts:69</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L112">packages/@biorate/axios/src/index.ts:112</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="after" class="tsd-anchor"></a>
@@ -148,7 +172,7 @@
 <h4>Description</h4><p>After hook</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L156">packages/@biorate/axios/src/index.ts:156</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L199">packages/@biorate/axios/src/index.ts:199</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="before" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>before</span><a href="#before" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -164,7 +188,7 @@
 <h4>Description</h4><p>Before hook</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L152">packages/@biorate/axios/src/index.ts:152</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L195">packages/@biorate/axios/src/index.ts:195</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="catch" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>catch</span><a href="#catch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -184,7 +208,7 @@
 <h4>Description</h4><p>Catch hook</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L164">packages/@biorate/axios/src/index.ts:164</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L207">packages/@biorate/axios/src/index.ts:207</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="fetch" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>fetch</span><a href="#fetch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -207,7 +231,7 @@
 <h4>Description</h4><p>Fetch method</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L113">packages/@biorate/axios/src/index.ts:113</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L156">packages/@biorate/axios/src/index.ts:156</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="finally" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>finally</span><a href="#finally" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -225,7 +249,7 @@
 <h4>Description</h4><p>Finally hook</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L172">packages/@biorate/axios/src/index.ts:172</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L215">packages/@biorate/axios/src/index.ts:215</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="getStartTime" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>get<wbr/>Start<wbr/>Time</span><a href="#getStartTime" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -236,7 +260,7 @@
 <h4>Description</h4><p>Get start time method</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L146">packages/@biorate/axios/src/index.ts:146</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L189">packages/@biorate/axios/src/index.ts:189</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="_fetch" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagProtected">Protected</code> <span>_fetch</span><a href="#_fetch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -259,7 +283,7 @@
 <h4>Description</h4><p>Protected fetch static method</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L92">packages/@biorate/axios/src/index.ts:92</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L135">packages/@biorate/axios/src/index.ts:135</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="fetch-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>fetch</span><a href="#fetch-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -275,7 +299,7 @@
 <h4>Description</h4><p>Fetch static method</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L57">packages/@biorate/axios/src/index.ts:57</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L61">packages/@biorate/axios/src/index.ts:61</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="getMock" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagProtected">Protected</code> <span>get<wbr/>Mock</span><a href="#getMock" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -300,7 +324,7 @@
 <h4>Description</h4><p>Get mock static method</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L75">packages/@biorate/axios/src/index.ts:75</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L118">packages/@biorate/axios/src/index.ts:118</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="setMock" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagProtected">Protected</code> <span>set<wbr/>Mock</span><a href="#setMock" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -327,7 +351,49 @@
 <h4>Description</h4><p>Set mock static method</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L84">packages/@biorate/axios/src/index.ts:84</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L127">packages/@biorate/axios/src/index.ts:127</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member"><a id="stub" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>stub</span><a href="#stub" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="tsd-signature tsd-anchor-link" id="stub.stub-1"><span class="tsd-kind-call-signature">stub</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">params</span>, <span class="tsd-kind-parameter">persist</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#stub.stub-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">params</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type ">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">data</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">error</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type ">Error</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">headers</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type ">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">status</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">statusText</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type ">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5></li>
+<li class="tsd-parameter">
+<h5><span class="tsd-kind-property">data</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">error</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type ">Error</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">headers</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type ">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">status</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">status<wbr/>Text</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5></li></ul></li>
+<li>
+<h5><span class="tsd-kind-parameter">persist</span>: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+<div class="tsd-comment tsd-typography">
+<h4>Description</h4><p>Stub static method</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L67">packages/@biorate/axios/src/index.ts:67</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member"><a id="unstub" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>unstub</span><a href="#unstub" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="tsd-signature tsd-anchor-link" id="unstub.unstub-1"><span class="tsd-kind-call-signature">unstub</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><a href="#unstub.unstub-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+<div class="tsd-comment tsd-typography">
+<h4>Description</h4><p>Unstub static method</p>
+</div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L99">packages/@biorate/axios/src/index.ts:99</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="useMock" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>use<wbr/>Mock</span><a href="#useMock" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -338,7 +404,7 @@
 <h4>Description</h4><p>Use mock static method</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/biorate/core/blob/7c67645b/packages/@biorate/axios/src/index.ts#L63">packages/@biorate/axios/src/index.ts:63</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/biorate/core/blob/64af35a1/packages/@biorate/axios/src/index.ts#L106">packages/@biorate/axios/src/index.ts:106</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -365,6 +431,7 @@
 <li><a href="#_client" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>#client</span></a></li>
 <li><a href="#cache" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>cache</span></a></li>
 <li><a href="#mocks" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>mocks</span></a></li>
+<li><a href="#stubs" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>stubs</span></a></li>
 <li><a href="#defaults" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-262144"></use></svg><span>defaults</span></a></li>
 <li><a href="#after" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>after</span></a></li>
 <li><a href="#before" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>before</span></a></li>
@@ -376,6 +443,8 @@
 <li><a href="#fetch-2" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>fetch</span></a></li>
 <li><a href="#getMock" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>get<wbr/>Mock</span></a></li>
 <li><a href="#setMock" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>set<wbr/>Mock</span></a></li>
+<li><a href="#stub" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>stub</span></a></li>
+<li><a href="#unstub" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>unstub</span></a></li>
 <li><a href="#useMock" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>use<wbr/>Mock</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../index.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>biorate</span></a>
@@ -456,6 +525,7 @@
 <li><a href="../modules/schema_registry.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>schema-<wbr/>registry</span></a></li>
 <li><a href="../modules/sequelize.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>sequelize</span></a></li>
 <li><a href="../modules/shutdown_hook.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>shutdown-<wbr/>hook</span></a></li>
+<li><a href="../modules/singleton.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>singleton</span></a></li>
 <li><a href="../modules/symbolic.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>symbolic</span></a></li>
 <li><a href="../modules/tools.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>tools</span></a></li>
 <li><a href="../modules/vault.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>vault</span></a></li></ul></nav></div></div></div>

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/nestjs-tools",
-  "version": "1.107.0",
+  "version": "1.116.0",
   "description": "NestJS tools",
   "main": "dist",
   "scripts": {
@@ -32,6 +32,7 @@
     "ws": ">=8.18.0"
   },
   "dependencies": {
+    "@biorate/axios": "workspace:*",
     "@biorate/config": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",

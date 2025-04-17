@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.116.0](https://github.com/biorate/core/compare/v1.115.0...v1.116.0) (2025-04-16)
+
+**Note:** Version bump only for package @biorate/schema-registry
+
+# [1.115.0](https://github.com/biorate/core/compare/v1.114.0...v1.115.0) (2025-04-15)
+
+**Note:** Version bump only for package @biorate/schema-registry
+
+# [1.114.0](https://github.com/biorate/core/compare/v1.113.0...v1.114.0) (2025-04-15)
+
+**Note:** Version bump only for package @biorate/schema-registry
+
+# [1.112.0](https://github.com/biorate/core/compare/v1.111.0...v1.112.0) (2025-04-14)
+
+**Note:** Version bump only for package @biorate/schema-registry
+
+# [1.110.0](https://github.com/biorate/core/compare/v1.109.1...v1.110.0) (2025-03-14)
+
+**Note:** Version bump only for package @biorate/schema-registry
+
 ## [1.105.1](https://github.com/biorate/core/compare/v1.105.0...v1.105.1) (2025-03-04)
 
 ### Bug Fixes
