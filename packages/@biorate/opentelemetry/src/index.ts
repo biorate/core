@@ -7,6 +7,7 @@ import { containerDetector } from '@opentelemetry/resource-detector-container';
 import { gcpDetector } from '@opentelemetry/resource-detector-gcp';
 import { alibabaCloudEcsDetector } from '@opentelemetry/resource-detector-alibaba-cloud';
 import { awsEksDetector, awsEc2Detector } from '@opentelemetry/resource-detector-aws';
+import { ResourceDetector } from '@opentelemetry/resources';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import {
   PeriodicExportingMetricReader,
@@ -69,26 +70,35 @@ function getMetricReader() {
   }
 }
 
+const resources = {
+  // Standard resource detectors.
+  containerDetector,
+  envDetector,
+  hostDetector,
+  osDetector,
+  processDetector,
+  // Cloud resource detectors.
+  alibabaCloudEcsDetector,
+  // Ordered AWS Resource Detectors as per:
+  // https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md#ordering
+  awsEksDetector,
+  awsEc2Detector,
+  gcpDetector,
+};
+
+const otelExcludeDetectors = (process.env.OTEL_EXCLUDED_DETECTORS ?? '').split(',');
+
+const resourceDetectors: ResourceDetector[] = [];
+for (const field in resources)
+  if (!otelExcludeDetectors.includes(field))
+    resourceDetectors.push(resources[<keyof typeof resources>field]);
+
 const sdk = new NodeSDK({
   autoDetectResources: true,
   instrumentations: [getNodeAutoInstrumentations()],
   traceExporter: new OTLPTraceExporter(),
   metricReader: getMetricReader(),
-  resourceDetectors: [
-    // Standard resource detectors.
-    containerDetector,
-    envDetector,
-    hostDetector,
-    osDetector,
-    processDetector,
-    // Cloud resource detectors.
-    alibabaCloudEcsDetector,
-    // Ordered AWS Resource Detectors as per:
-    // https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md#ordering
-    awsEksDetector,
-    awsEc2Detector,
-    gcpDetector,
-  ],
+  resourceDetectors,
 });
 
 sdk.start();
