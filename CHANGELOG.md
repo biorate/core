@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.117.2](https://github.com/biorate/core/compare/v1.117.1...v1.117.2) (2025-04-21)
+
+### Bug Fixes
+
+- **opentelemetry:** index.d.ts ([dc27bf5](https://github.com/biorate/core/commit/dc27bf5c9e007eff1b830b2d190a70246a7ae83b))
+
 ## [1.117.1](https://github.com/biorate/core/compare/v1.117.0...v1.117.1) (2025-04-21)
 
 ### Bug Fixes
