@@ -49,6 +49,7 @@
 - [async-loop](https://biorate.github.io/core/modules/async-loop.html)
 - [singleton](https://biorate.github.io/core/modules/singleton.html)
 - [command](https://biorate.github.io/core/modules/command.html)
+- [opentelemetry](https://biorate.github.io/core/modules/opentelemetry.html)
 
 ### Learn
 
