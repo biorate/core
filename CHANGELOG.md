@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.117.0](https://github.com/biorate/core/compare/v1.116.0...v1.117.0) (2025-04-21)
+
+### Bug Fixes
+
+- **command:** index.d.ts ([f39168b](https://github.com/biorate/core/commit/f39168b381936ad510c1dc82959062977cc1389c))
+
+### Features
+
+- mocha-spec ([631d9b3](https://github.com/biorate/core/commit/631d9b3e158532c383d2cc86c08f2ca8103961f6))
+- mocha-spec ([ec73135](https://github.com/biorate/core/commit/ec731354b2ba88b31217bbd5c5d30dced17192e4))
+- **mocha-spec:** api test helper added ([24e19fc](https://github.com/biorate/core/commit/24e19fc8e5e178cfd409c96279b684a92e7190b3))
+- **opentelemetry:** release ([56e8d97](https://github.com/biorate/core/commit/56e8d97ece2dcf7aecbf61246954af11ca709f7c))
+
 # [1.116.0](https://github.com/biorate/core/compare/v1.115.0...v1.116.0) (2025-04-16)
 
 ### Features

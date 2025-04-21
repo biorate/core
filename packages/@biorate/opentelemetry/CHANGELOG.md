@@ -5,10 +5,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.117.0](https://github.com/biorate/core/compare/v1.116.0...v1.117.0) (2025-04-21)
 
-**Note:** Version bump only for package @biorate/singleton
-
-# [1.113.0](https://github.com/biorate/core/compare/v1.112.0...v1.113.0) (2025-04-15)
-
 ### Features
 
-- **singleton:** release ([34be7ae](https://github.com/biorate/core/commit/34be7ae3876a9cc3cdabd66607cec4540bdbec4a))
+- **opentelemetry:** release ([56e8d97](https://github.com/biorate/core/commit/56e8d97ece2dcf7aecbf61246954af11ca709f7c))

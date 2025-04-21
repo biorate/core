@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.117.0](https://github.com/biorate/core/compare/v1.116.0...v1.117.0) (2025-04-21)
+
+### Bug Fixes
+
+- **command:** index.d.ts ([f39168b](https://github.com/biorate/core/commit/f39168b381936ad510c1dc82959062977cc1389c))
+
 # [1.116.0](https://github.com/biorate/core/compare/v1.115.0...v1.116.0) (2025-04-16)
 
 ### Features
