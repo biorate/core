@@ -7,7 +7,7 @@ import { containerDetector } from '@opentelemetry/resource-detector-container';
 import { gcpDetector } from '@opentelemetry/resource-detector-gcp';
 import { alibabaCloudEcsDetector } from '@opentelemetry/resource-detector-alibaba-cloud';
 import { awsEksDetector, awsEc2Detector } from '@opentelemetry/resource-detector-aws';
-import { ResourceDetector } from '@opentelemetry/resources';
+// import { ResourceDetector } from '@opentelemetry/resources';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import {
   PeriodicExportingMetricReader,
@@ -88,7 +88,7 @@ const resources = {
 
 const otelExcludeDetectors = (process.env.OTEL_EXCLUDED_DETECTORS ?? '').split(',');
 
-const resourceDetectors: ResourceDetector[] = [];
+const resourceDetectors: any[] = []; //TODO:
 for (const field in resources)
   if (!otelExcludeDetectors.includes(field))
     resourceDetectors.push(resources[<keyof typeof resources>field]);
