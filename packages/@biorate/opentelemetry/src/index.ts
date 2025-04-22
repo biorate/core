@@ -57,14 +57,14 @@ function getMetricReader() {
   switch (process.env.OTEL_METRICS_EXPORTER) {
     case undefined:
     case '':
+    case 'none':
+      return;
     case 'otlp':
       return new PeriodicExportingMetricReader({ exporter: new OTLPMetricExporter() });
     case 'prometheus':
       return new PrometheusExporter({});
     case 'console':
       return new PeriodicExportingMetricReader({ exporter: new ConsoleMetricExporter() });
-    case 'none':
-      return;
     default:
       throw new OTELMetricsExporterError();
   }
