@@ -1,6 +1,6 @@
 {
   "name": "@biorate/opentelemetry",
-  "version": "1.117.2",
+  "version": "1.118.0",
   "description": "OpenTelemetry integration",
   "main": "dist",
   "scripts": {
