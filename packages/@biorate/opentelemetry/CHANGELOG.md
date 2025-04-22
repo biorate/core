@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.119.0](https://github.com/biorate/core/compare/v1.118.0...v1.119.0) (2025-04-22)
+
+### Features
+
+- **opentelemetry:** deps version up ([a7283f2](https://github.com/biorate/core/commit/a7283f2e0b6dba9a351be91e5d57f7a08f0fe813))
+- **opentelemetry:** deps version up ([485445e](https://github.com/biorate/core/commit/485445eef0eba3ce823aa27fe9f5f80263f7ef08))
+
 # [1.118.0](https://github.com/biorate/core/compare/v1.117.2...v1.118.0) (2025-04-22)
 
 ### Features
