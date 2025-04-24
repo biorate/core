@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.119.2](https://github.com/biorate/core/compare/v1.119.1...v1.119.2) (2025-04-24)
+
+### Bug Fixes
+
+- **opentelemetry:** span decorator copy metadata ([027dc43](https://github.com/biorate/core/commit/027dc43e44001e590f592445469aab0c55b32391))
+
 ## [1.119.1](https://github.com/biorate/core/compare/v1.119.0...v1.119.1) (2025-04-24)
 
 ### Bug Fixes
