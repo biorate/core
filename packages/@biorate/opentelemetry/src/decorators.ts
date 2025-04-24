@@ -45,4 +45,5 @@ export const span =
         }
       });
     };
+    return descriptor;
   };
