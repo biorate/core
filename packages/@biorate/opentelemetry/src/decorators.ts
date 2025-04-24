@@ -1,5 +1,6 @@
 import { trace, SpanStatusCode, Tracer } from '@opentelemetry/api';
 import { OTELUndefinedTracerError } from './errors';
+import { copyMetadata } from './utils';
 
 const key = Symbol('tracer');
 
@@ -45,5 +46,5 @@ export const span =
         }
       });
     };
-    return descriptor;
+    copyMetadata(method, descriptor.value);
   };
