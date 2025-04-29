@@ -1,6 +1,6 @@
 {
   "name": "@biorate/lifecycled",
-  "version": "1.102.1",
+  "version": "1.120.0",
   "description": "Decorators pack for bring lifecycle control in you application",
   "main": "dist",
   "scripts": {

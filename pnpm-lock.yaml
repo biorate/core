@@ -243,6 +243,24 @@ importers:
         specifier: workspace:*
         version: link:../tools
 
+  packages/@biorate/auto-object:
+    dependencies:
+      '@biorate/errors':
+        specifier: workspace:*
+        version: link:../errors
+      '@biorate/tools':
+        specifier: workspace:*
+        version: link:../tools
+      class-validator:
+        specifier: 0.14.1
+        version: 0.14.1
+      lodash:
+        specifier: 4.17.21
+        version: 4.17.21
+      reflect-metadata:
+        specifier: '>=0.1.13'
+        version: 0.1.13
+
   packages/@biorate/axios:
     dependencies:
       '@biorate/singleton':
@@ -351,7 +369,7 @@ importers:
         specifier: ^5.15.7
         version: 5.15.7
       reflect-metadata:
-        specifier: ^0.1.13
+        specifier: '>=0.1.13'
         version: 0.1.13
     devDependencies:
       '@types/lodash':
@@ -608,7 +626,7 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       reflect-metadata:
-        specifier: ^0.1.13
+        specifier: '>=0.1.13'
         version: 0.1.13
 
   packages/@biorate/migrations:
@@ -911,7 +929,7 @@ importers:
         specifier: ^0.200.0
         version: 0.200.0(@opentelemetry/api@1.9.0)
       reflect-metadata:
-        specifier: 0.1.13
+        specifier: '>=0.1.13'
         version: 0.1.13
 
   packages/@biorate/pg:
@@ -18813,7 +18831,7 @@ snapshots:
   git-semver-tags@4.1.1:
     dependencies:
       meow: 8.1.2
-      semver: 7.5.2
+      semver: 6.3.1
 
   git-up@7.0.0:
     dependencies:
@@ -20711,14 +20729,14 @@ snapshots:
     dependencies:
       hosted-git-info: 5.2.1
       is-core-module: 2.16.1
-      semver: 7.7.1
+      semver: 7.5.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@5.0.0:
     dependencies:
       hosted-git-info: 6.1.3
       is-core-module: 2.16.1
-      semver: 7.7.1
+      semver: 7.5.2
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}

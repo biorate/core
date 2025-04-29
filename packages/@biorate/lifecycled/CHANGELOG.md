@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.120.0](https://github.com/biorate/core/compare/v1.119.2...v1.120.0) (2025-04-29)
+
+### Bug Fixes
+
+- reflect-metadata indo peerDependencies ([f18682d](https://github.com/biorate/core/commit/f18682dfa53baa3efcb1a33cffa3695d06a7b24e))
+
 ## [1.102.1](https://github.com/biorate/core/compare/v1.102.0...v1.102.1) (2025-02-28)
 
 **Note:** Version bump only for package @biorate/lifecycled

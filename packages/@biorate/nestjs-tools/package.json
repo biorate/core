@@ -1,6 +1,6 @@
 {
   "name": "@biorate/nestjs-tools",
-  "version": "1.117.0",
+  "version": "1.120.0",
   "description": "NestJS tools",
   "main": "dist",
   "scripts": {
