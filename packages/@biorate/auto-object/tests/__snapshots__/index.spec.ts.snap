@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@biorate/auto-object AutoObject 1`] = `
+User {
+  "address": Address {
+    "city": "Moscow",
+    "flat": 74,
+    "geo": Array [
+      12321,
+      32123,
+    ],
+    "index": 123321,
+    "street": "Gogolya",
+  },
+  "firstName": "Vasya",
+  "id": 1,
+  "lastName": "Pupkin",
+}
+`;
+
+exports[`@biorate/auto-object AutoObject 2`] = `"123321, Moscow, Gogolya №74"`;
