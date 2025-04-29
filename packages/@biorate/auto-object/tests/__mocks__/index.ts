@@ -7,7 +7,7 @@ use(jestSnapshotPlugin());
 
 class Geo extends Array<number> {}
 
-export class Address extends AutoObject<Address> {
+class Address extends AutoObject<Address> {
   @IsString()
   public city: string;
 
