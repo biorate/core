@@ -30,14 +30,16 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "reflect-metadata": ">=0.1.13"
+  },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/symbolic": "workspace:*",
     "@biorate/tools": "workspace:*",
     "lodash": "^4.17.21",
     "luxon": "^1.27.0",
-    "mobx": "^5.15.7",
-    "reflect-metadata": "^0.1.13"
+    "mobx": "^5.15.7"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.169",

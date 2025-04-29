@@ -20,6 +20,9 @@
   "keywords": [],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "reflect-metadata": ">=0.1.13"
+  },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@opentelemetry/api": "^1.9.0",
@@ -33,7 +36,6 @@
     "@opentelemetry/resource-detector-gcp": "^0.34.0",
     "@opentelemetry/resources": "^2.0.0",
     "@opentelemetry/sdk-metrics": "^2.0.0",
-    "@opentelemetry/sdk-node": "^0.200.0",
-    "reflect-metadata": "0.1.13"
+    "@opentelemetry/sdk-node": "^0.200.0"
   }
 }

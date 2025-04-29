@@ -21,7 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "peerDependencies": {
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": ">=0.1.13"
   },
   "dependencies": {
     "@biorate/shutdown-hook": "workspace:*",
