@@ -5,5 +5,5 @@ declare module '@biorate/auto-object' {
     public constructor(data: PropertiesOnly<T>);
   }
 
-  export { Getter, Setter } from './src/interfaces';
+  export { Getter, Setter, PropertiesOnly } from './src/interfaces';
 }

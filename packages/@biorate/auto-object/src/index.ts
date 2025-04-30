@@ -1,9 +1,8 @@
 import 'reflect-metadata';
-import { merge } from 'lodash';
-import { validate, walkMetadataKeys } from './utils';
-import { IMetadata, PropertiesOnly } from './interfaces';
+import { auto } from './utils';
+import { PropertiesOnly } from './interfaces';
 
-export { Getter, Setter } from './interfaces';
+export { Getter, Setter, PropertiesOnly } from './interfaces';
 export * from './decorators';
 /**
  * @description
@@ -21,16 +20,18 @@ export * from './decorators';
  *   public street: string;
  *
  *   @IsNumber()
- *   public flat: number;
+ *   public apartment: number;
  *
  *   @IsNumber()
- *   public index: number;
+ *   public postal: number;
  *
  *   @IsArray()
  *   public geo: Geo;
  *
  *   public get inline() {
- *     return <Getter<string>>`${this.index}, ${this.city}, ${this.street} №${this.flat}`;
+ *     return <Getter<string>>(
+ *       `${this.postal}, ${this.city}, ${this.street} №${this.apartment}`
+ *     );
  *   }
  * }
  *
@@ -56,38 +57,43 @@ export * from './decorators';
  *   address: {
  *     city: 'Moscow',
  *     street: 'Gogolya',
- *     index: 123321,
- *     flat: 74,
+ *     postal: 123321,
+ *     apartment: 74,
  *     geo: [12321, 32123],
  *   },
  * });
  *
- * console.log(user);  // User {
- *                     //   "address": Address {
- *                     //     "city": "Moscow",
- *                     //     "flat": 74,
- *                     //     "geo": Array [
- *                     //       12321,
- *                     //       32123,
- *                     //     ],
- *                     //     "index": 123321,
- *                     //     "street": "Gogolya",
- *                     //   },
- *                     //   "firstName": "Vasya",
- *                     //   "id": 1,
- *                     //   "lastName": "Pupkin",
- *                     // }
+ * console.log(user); // User {
+ * //   "address": Address {
+ * //     "city": "Moscow",
+ * //     "apartment": 74,
+ * //     "geo": Array [
+ * //       12321,
+ * //       32123,
+ * //     ],
+ * //     "postal": 123321,
+ * //     "street": "Gogolya",
+ * //   },
+ * //   "firstName": "Vasya",
+ * //   "id": 1,
+ * //   "lastName": "Pupkin",
+ * // }
  * ```
  */
-export abstract class AutoObject<T = Record<string, unknown>> {
+export abstract class AutoObject<T = Record<string, any>> {
+  public static extends<C extends new (...args: any[]) => any, T = Record<string, any>>(
+    Class: C,
+  ) {
+    Class = Class ? Class : (class {} as unknown as C);
+    return class AutoObject extends Class {
+      public constructor(...args: any[]) {
+        super(...args.slice(1));
+        auto<PropertiesOnly<T>>(this, args[0]);
+      }
+    };
+  }
+
   public constructor(data: PropertiesOnly<T>) {
-    walkMetadataKeys(this, (metadata: IMetadata) => {
-      this[<keyof typeof this>metadata.name] = new metadata.Class(
-        data[<keyof typeof data>metadata.name],
-      );
-      delete data[<keyof typeof data>metadata.name];
-    });
-    merge(this, data);
-    validate(this);
+    auto<PropertiesOnly<T>>(this, data);
   }
 }

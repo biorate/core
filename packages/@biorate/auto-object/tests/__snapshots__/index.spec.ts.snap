@@ -3,14 +3,14 @@
 exports[`@biorate/auto-object AutoObject 1`] = `
 User {
   "address": Address {
+    "apartment": 74,
     "city": "Moscow",
-    "flat": 74,
     "geo": Array [
       12321,
       32123,
     ],
-    "index": 123321,
-    "street": "Gogolya",
+    "postal": 123321,
+    "street": "Gogol str.",
   },
   "firstName": "Vasya",
   "id": 1,
@@ -18,4 +18,30 @@ User {
 }
 `;
 
-exports[`@biorate/auto-object AutoObject 2`] = `"123321, Moscow, Gogolya №74"`;
+exports[`@biorate/auto-object AutoObject 2`] = `"123321, Moscow, Gogol str. №74"`;
+
+exports[`@biorate/auto-object AutoObject.extends 1`] = `
+Event {
+  "_events": Object {},
+  "_eventsCount": 0,
+  "_maxListeners": undefined,
+  "name": "user",
+  "payload": User {
+    "address": Address {
+      "apartment": 74,
+      "city": "Moscow",
+      "geo": Array [
+        12321,
+        32123,
+      ],
+      "postal": 123321,
+      "street": "Gogol str.",
+    },
+    "firstName": "Vasya",
+    "id": 1,
+    "lastName": "Pupkin",
+  },
+  Symbol(shapeMode): false,
+  Symbol(kCapture): false,
+}
+`;
