@@ -1,5 +1,6 @@
 import 'reflect-metadata';
-import { auto } from './utils';
+import { flattenDeep } from 'lodash';
+import { auto, transaction } from './utils';
 import { PropertiesOnly } from './interfaces';
 
 export { Getter, Setter, PropertiesOnly } from './interfaces';
@@ -84,8 +85,7 @@ export abstract class AutoObject<T = Record<string, any>> {
   public static extends<C extends new (...args: any[]) => any, T = Record<string, any>>(
     Class: C,
   ) {
-    Class = Class ? Class : (class {} as unknown as C);
-    return class AutoObject extends Class {
+    return class AutoObject extends (Class ? Class : <C>class {}) {
       public constructor(...args: any[]) {
         super(...args.slice(1));
         auto<PropertiesOnly<T>>(this, args[0]);
@@ -95,5 +95,42 @@ export abstract class AutoObject<T = Record<string, any>> {
 
   public constructor(data: PropertiesOnly<T>) {
     auto<PropertiesOnly<T>>(this, data);
+  }
+}
+
+export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
+  #transform = (data: PropertiesOnly<T>) => new this.Class(data);
+
+  protected abstract get Class(): new (...args: any[]) => any;
+
+  public constructor(...args: PropertiesOnly<T>[]) {
+    super();
+    this.push(...args.map(this.#transform));
+  }
+
+  public push(...args: PropertiesOnly<T>[]) {
+    return super.push(...args.map(this.#transform));
+  }
+
+  public unshift(...args: PropertiesOnly<T>[]) {
+    return super.unshift(...args.map(this.#transform));
+  }
+
+  public slice(start: number, deleteCount?: number): this {
+    return <typeof this>transaction(() => super.slice(start, deleteCount));
+  }
+
+  public splice(start: number, deleteCount: number, ...args: PropertiesOnly<T>[]): this {
+    return <typeof this>(
+      transaction(() => super.splice(start, deleteCount, ...args.map(this.#transform)))
+    );
+  }
+
+  public concat(...args: (PropertiesOnly<T> | ConcatArray<PropertiesOnly<T>>)[]): this {
+    return <typeof this>(
+      transaction(() =>
+        super.concat((<PropertiesOnly<T>[]>flattenDeep(<any>args)).map(this.#transform)),
+      )
+    );
   }
 }

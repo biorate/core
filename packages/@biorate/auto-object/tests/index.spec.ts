@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { User, Event } from './__mocks__';
+import { User, Event, Pet, PetArray } from './__mocks__';
 
 describe('@biorate/auto-object', function () {
   it('AutoObject', () => {
@@ -38,5 +38,33 @@ describe('@biorate/auto-object', function () {
     };
     const event = new Event(data);
     expect(event).toMatchSnapshot();
+  });
+
+  it('AutoArray::create', () => {
+    const pets = new PetArray({ type: 'cat' });
+    pets.push({ type: 'dog' });
+    pets.push(new Pet({ type: 'fox' }));
+    expect(pets).toMatchSnapshot();
+  });
+
+  it('AutoArray::slice', () => {
+    const pets = new PetArray({ type: 'cat' }, { type: 'dog' }, { type: 'fox' });
+    const part = pets.slice(0, 2);
+    expect(part).toMatchSnapshot();
+    expect(part.test()).toMatchSnapshot();
+  });
+
+  it('AutoArray::splice', () => {
+    const pets = new PetArray({ type: 'cat' }, { type: 'dog' }, { type: 'fox' });
+    const part = pets.splice(1, 2, { type: 'bird' });
+    expect(part).toMatchSnapshot();
+    expect(part.test()).toMatchSnapshot();
+  });
+
+  it('AutoArray::concat', () => {
+    const pets = new PetArray({ type: 'cat' }, { type: 'dog' }, { type: 'fox' });
+    const result = pets.concat({ type: 'bird' }, { type: 'iguana' });
+    expect(result).toMatchSnapshot();
+    expect(result.test()).toMatchSnapshot();
   });
 });

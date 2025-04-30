@@ -1,5 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@biorate/auto-object AutoArray::concat 1`] = `
+PetArray [
+  Pet {
+    "type": "cat",
+  },
+  Pet {
+    "type": "dog",
+  },
+  Pet {
+    "type": "fox",
+  },
+  Pet {
+    "type": "bird",
+  },
+  Pet {
+    "type": "iguana",
+  },
+]
+`;
+
+exports[`@biorate/auto-object AutoArray::concat 2`] = `"Hello world!"`;
+
+exports[`@biorate/auto-object AutoArray::create 1`] = `
+PetArray [
+  Pet {
+    "type": "cat",
+  },
+  Pet {
+    "type": "dog",
+  },
+  Pet {
+    "type": "fox",
+  },
+]
+`;
+
+exports[`@biorate/auto-object AutoArray::slice 1`] = `
+PetArray [
+  Pet {
+    "type": "cat",
+  },
+  Pet {
+    "type": "dog",
+  },
+]
+`;
+
+exports[`@biorate/auto-object AutoArray::slice 2`] = `"Hello world!"`;
+
+exports[`@biorate/auto-object AutoArray::splice 1`] = `
+PetArray [
+  Pet {
+    "type": "dog",
+  },
+  Pet {
+    "type": "fox",
+  },
+]
+`;
+
+exports[`@biorate/auto-object AutoArray::splice 2`] = `"Hello world!"`;
+
 exports[`@biorate/auto-object AutoObject 1`] = `
 User {
   "address": Address {

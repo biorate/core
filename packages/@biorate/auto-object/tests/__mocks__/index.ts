@@ -2,7 +2,7 @@ import { use } from 'chai';
 import { EventEmitter } from 'events';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { IsInt, IsObject, IsString, IsNumber, IsArray } from 'class-validator';
-import { AutoObject, ValueObject, Getter, PropertiesOnly } from '../../src';
+import { AutoObject, AutoArray, ValueObject, Getter, PropertiesOnly } from '../../src';
 
 use(jestSnapshotPlugin());
 
@@ -56,5 +56,20 @@ export class Event extends AutoObject.extends<typeof EventEmitter, Event>(EventE
 
   public constructor(data: PropertiesOnly<Event>, ...args: any[]) {
     super(...[data, ...args]);
+  }
+}
+
+export class Pet extends AutoObject<Pet> {
+  @IsString()
+  public type: string;
+}
+
+export class PetArray extends AutoArray<Pet> {
+  protected get Class() {
+    return Pet;
+  }
+
+  public test() {
+    return 'Hello world!';
   }
 }
