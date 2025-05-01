@@ -6,3 +6,4 @@ export * from './middlewares';
 export * from './providers';
 export * from './errors';
 export * from './http';
+export * from './app';

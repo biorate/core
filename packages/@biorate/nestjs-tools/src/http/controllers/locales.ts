@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, Header } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { path } from '@biorate/tools';
 import { promises as fs, readFileSync, writeFileSync, mkdirSync } from 'fs';
@@ -53,13 +53,21 @@ export class LocalesController {
   }
 
   @Get(':lang/:namespace')
-  @ApiOperation({ summary: 'Get locales' })
+  @Header(
+    'Deprecation',
+    'Use domain controller instead [@biorate/nestjs-tools >= v1.121.0]',
+  )
+  @ApiOperation({ summary: 'Get locales', deprecated: true })
   protected get(@Param() param: GetLocalesDTO) {
     return LocalesController.getFile(param.namespace, param.lang);
   }
 
   @Post(':lang/:namespace')
-  @ApiOperation({ summary: 'Put locales' })
+  @Header(
+    'Deprecation',
+    'Use domain controller instead [@biorate/nestjs-tools >= v1.121.0]',
+  )
+  @ApiOperation({ summary: 'Put locales', deprecated: true })
   protected async post(
     @Param() param: PostLocalesDTO,
     @Body() body: Record<string, string>,

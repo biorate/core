@@ -10,7 +10,11 @@ export class MetricsController {
 
   @Get()
   @Header('content-type', 'text/plain')
-  @ApiOperation({ summary: 'Prometheus metrics hook' })
+  @Header(
+    'Deprecation',
+    'Use domain controller instead [@biorate/nestjs-tools >= v1.121.0]',
+  )
+  @ApiOperation({ summary: 'Prometheus metrics hook', deprecated: true })
   protected async metrics() {
     return this.prometheus.registry.metrics();
   }
