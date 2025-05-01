@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.124.0](https://github.com/biorate/core/compare/v1.123.0...v1.124.0) (2025-05-01)
+
+### Features
+
+- **nestjs-common:** domain added ([7fbc15a](https://github.com/biorate/core/commit/7fbc15a74e22bb6d66f45bc106143ba905e0c5d5))
+
 # [1.123.0](https://github.com/biorate/core/compare/v1.122.0...v1.123.0) (2025-05-01)
 
 ### Features
