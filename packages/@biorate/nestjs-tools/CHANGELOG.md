@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.124.5](https://github.com/biorate/core/compare/v1.124.4...v1.124.5) (2025-05-02)
+
+### Bug Fixes
+
+- **nestjs-common:** d.ts update ([8e93ce9](https://github.com/biorate/core/commit/8e93ce9862167f224518cc38cd9ed24a2f2e74a9))
+
 ## [1.124.4](https://github.com/biorate/core/compare/v1.124.3...v1.124.4) (2025-05-02)
 
 ### Bug Fixes
