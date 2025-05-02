@@ -1,27 +1,17 @@
 import {
   ArgumentsHost,
-  Body,
   CallHandler,
   CanActivate,
   ExceptionFilter,
   ExecutionContext,
-  Get,
-  Header,
   NestInterceptor,
   NestMiddleware,
-  Param,
-  Post,
 } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { Observable } from 'rxjs';
 import { Options, RequestHandler } from 'http-proxy-middleware/dist/types';
-import { mkdirSync, promises as fs, readFileSync, writeFileSync } from 'fs';
-import { path } from '@biorate/tools';
-import { ApiOperation } from '@nestjs/swagger';
-import { merge } from 'lodash';
-import { inject, Types } from '@biorate/inversion';
 import { IPrometheus } from '@biorate/prometheus';
-import { ILocalesDTO } from './interfaces';
+import { ClientProviderPort, ILocalesDTO, MetricsProviderPort } from './interfaces';
 
 export * from './interfaces';
 
@@ -112,5 +102,38 @@ declare module '@biorate/nestjs-tools' {
     protected readiness(): number;
 
     protected healthz(): number;
+  }
+
+  export class GetLocaleUseCase {
+    public async execute(
+      lang: string,
+      namespace: string,
+    ): Promise<Record<string, string>>;
+  }
+
+  export class SetLocaleUseCase {
+    public async execute(lang: string, namespace: string): Promise<void>;
+  }
+
+  export class GetMetricsUseCase {
+    public async execute(): Promise<string>;
+  }
+
+  export class ClientRepositoryAdapter implements ClientProviderPort {}
+
+  export class MetricsRepositoryAdapter implements MetricsProviderPort {}
+
+  export class ClientController {
+    public constructor(
+      protected readonly getLoc: GetLocaleUseCase,
+      protected readonly setLoc: SetLocaleUseCase,
+    ) {}
+
+    protected getLocale(param: GetLocalesDTO): Promise<Record<string, string>>;
+
+    protected postLocale(
+      param: PostLocalesDTO,
+      body: Record<string, string>,
+    ): Promise<void>;
   }
 }

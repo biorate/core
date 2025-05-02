@@ -1,3 +1,1 @@
-export interface MetricsProviderPort {
-  get(): Promise<string>;
-}
+export { MetricsProviderPort } from '../../../../../../interfaces';
