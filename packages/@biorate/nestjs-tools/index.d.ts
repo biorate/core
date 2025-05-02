@@ -119,9 +119,15 @@ declare module '@biorate/nestjs-tools' {
     public async execute(): Promise<string>;
   }
 
-  export class ClientRepositoryAdapter implements ClientProviderPort {}
+  export class ClientRepositoryAdapter implements ClientProviderPort {
+    getLang(lang: string, namespace: string): Record<string, string>;
 
-  export class MetricsRepositoryAdapter implements MetricsProviderPort {}
+    setLang(data: Record<string, string>, lang: string, namespace: string): void;
+  }
+
+  export class MetricsRepositoryAdapter implements MetricsProviderPort {
+    get(): Promise<string>;
+  }
 
   export class ClientController {
     public constructor(
