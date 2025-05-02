@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync, readFileSync } from 'fs';
 import { Injectable } from '@nestjs/common';
 import { path } from '@biorate/tools';
-import { ClientProviderPort } from '../../application/ports/output';
+import { ClientProviderPort } from '../../application';
 
 @Injectable()
 export class ClientRepositoryAdapter implements ClientProviderPort {

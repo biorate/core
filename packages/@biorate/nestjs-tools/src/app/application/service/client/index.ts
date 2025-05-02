@@ -1,2 +1,2 @@
-export * from './get-lang.use-case';
-export * from './set-lang.use-case';
+export * from './get-locale.use-case';
+export * from './set-locale.use-case';

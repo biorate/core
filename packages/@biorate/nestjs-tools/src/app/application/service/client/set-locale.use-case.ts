@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Types } from '@biorate/inversion';
-import { ClientProviderPort } from '../../ports/output';
+import { ClientProviderPort } from '../../ports';
 
 @Injectable()
-export class SetLangUseCase {
+export class SetLocaleUseCase {
   @Inject(Types.ClientProviderPort)
   protected readonly clientProvider: ClientProviderPort;
 
