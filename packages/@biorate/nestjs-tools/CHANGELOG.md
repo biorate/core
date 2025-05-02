@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.124.1](https://github.com/biorate/core/compare/v1.124.0...v1.124.1) (2025-05-02)
+
+### Bug Fixes
+
+- **nestjs-common:** nameing refactoring ([8225159](https://github.com/biorate/core/commit/82251596524c8e1081ec3c0825f41aef91003558))
+
 # [1.124.0](https://github.com/biorate/core/compare/v1.123.0...v1.124.0) (2025-05-01)
 
 ### Features
