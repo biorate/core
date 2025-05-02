@@ -140,4 +140,12 @@ declare module '@biorate/nestjs-tools' {
       body: Record<string, string>,
     ): Promise<void>;
   }
+
+  export class MetricsController {
+    protected readonly getMetrics: GetMetricsUseCase;
+
+    protected metrics(): Promise<void>;
+  }
+
+  export const controllers = { ClientController, MetricsController };
 }
