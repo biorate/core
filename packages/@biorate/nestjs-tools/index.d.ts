@@ -129,23 +129,23 @@ declare module '@biorate/nestjs-tools' {
     get(): Promise<string>;
   }
 
-  export class ClientController {
-    protected readonly getLoc: GetLocaleUseCase;
-    protected readonly setLoc: SetLocaleUseCase;
-
-    protected getLocale(param: GetLocalesDTO): Promise<Record<string, string>>;
-
-    protected postLocale(
-      param: PostLocalesDTO,
-      body: Record<string, string>,
-    ): Promise<void>;
-  }
-
-  export class MetricsController {
-    protected readonly getMetrics: GetMetricsUseCase;
-
-    protected metrics(): Promise<void>;
-  }
+  // export class ClientController {
+  //   protected readonly getLoc: GetLocaleUseCase;
+  //   protected readonly setLoc: SetLocaleUseCase;
+  //
+  //   protected getLocale(param: GetLocalesDTO): Promise<Record<string, string>>;
+  //
+  //   protected postLocale(
+  //     param: PostLocalesDTO,
+  //     body: Record<string, string>,
+  //   ): Promise<void>;
+  // }
+  //
+  // export class MetricsController {
+  //   protected readonly getMetrics: GetMetricsUseCase;
+  //
+  //   protected metrics(): Promise<void>;
+  // }
 
   export const controllers = { ClientController, MetricsController };
 }
