@@ -130,10 +130,8 @@ declare module '@biorate/nestjs-tools' {
   }
 
   export class ClientController {
-    public constructor(
-      protected readonly getLoc: GetLocaleUseCase,
-      protected readonly setLoc: SetLocaleUseCase,
-    ) {}
+    protected readonly getLoc: GetLocaleUseCase;
+    protected readonly setLoc: SetLocaleUseCase;
 
     protected getLocale(param: GetLocalesDTO): Promise<Record<string, string>>;
 
