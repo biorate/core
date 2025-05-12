@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Types } from '@biorate/inversion';
-import { MetricsProviderPort } from '../../ports/output';
+import { MetricsProviderPort } from '../../ports';
 
 @Injectable()
 export class GetMetricsUseCase {
