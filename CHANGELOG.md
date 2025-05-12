@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.124.9](https://github.com/biorate/core/compare/v1.124.8...v1.124.9) (2025-05-12)
+
+### Bug Fixes
+
+- **nestis-tools:** application folder structure ([2828189](https://github.com/biorate/core/commit/28281896627e97da152a0ba19472c6963e55c4cb))
+
 ## [1.124.8](https://github.com/biorate/core/compare/v1.124.7...v1.124.8) (2025-05-12)
 
 ### Bug Fixes
