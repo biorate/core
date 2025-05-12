@@ -1,1 +1,1 @@
-export { ClientProviderPort } from '../../../../../../interfaces';
+export { ClientProviderPort } from '../../../../interfaces';

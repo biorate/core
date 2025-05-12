@@ -1,1 +1,1 @@
-export { MetricsProviderPort } from '../../../../../../interfaces';
+export { MetricsProviderPort } from '../../../../interfaces';
