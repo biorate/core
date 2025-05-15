@@ -11,7 +11,7 @@ import { Request, Response, NextFunction } from 'express';
 import { Observable } from 'rxjs';
 import { Options, RequestHandler } from 'http-proxy-middleware/dist/types';
 import { IPrometheus } from '@biorate/prometheus';
-import { ClientProviderPort, ILocalesDTO, MetricsProviderPort } from './interfaces';
+import { ClientDrivenPort, MetricsDrivenPort, ILocalesDTO } from './interfaces';
 
 export * from './interfaces';
 
@@ -119,13 +119,13 @@ declare module '@biorate/nestjs-tools' {
     public async execute(): Promise<string>;
   }
 
-  export class ClientRepositoryAdapter implements ClientProviderPort {
+  export class ClientRepositoryAdapter implements ClientDrivenPort {
     getLang(lang: string, namespace: string): Record<string, string>;
 
     setLang(data: Record<string, string>, lang: string, namespace: string): void;
   }
 
-  export class MetricsRepositoryAdapter implements MetricsProviderPort {
+  export class MetricsRepositoryAdapter implements MetricsDrivenPort {
     get(): Promise<string>;
   }
 

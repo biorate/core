@@ -1,1 +1,0 @@
-export { ClientProviderPort } from '../../../../interfaces';

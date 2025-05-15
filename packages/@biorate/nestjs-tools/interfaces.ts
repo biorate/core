@@ -8,12 +8,12 @@ export interface ILocalesDTO {
   namespace: string;
 }
 
-export interface ClientProviderPort {
+export interface ClientDrivenPort {
   getLang(lang: string, namespace: string): Record<string, string>;
 
   setLang(data: Record<string, string>, lang: string, namespace: string): void;
 }
 
-export interface MetricsProviderPort {
+export interface MetricsDrivenPort {
   get(): Promise<string>;
 }
