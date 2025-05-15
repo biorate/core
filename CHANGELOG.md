@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.125.0](https://github.com/biorate/core/compare/v1.124.10...v1.125.0) (2025-05-15)
+
+### Features
+
+- **nestjs-tools:** provider -> driven naming changed ([0c4ea63](https://github.com/biorate/core/commit/0c4ea639b0345ad6a68c7eead679b4ab950508a7))
+
 ## [1.124.10](https://github.com/biorate/core/compare/v1.124.9...v1.124.10) (2025-05-12)
 
 ### Bug Fixes
