@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.125.2](https://github.com/biorate/core/compare/v1.125.1...v1.125.2) (2025-05-21)
+
+### Bug Fixes
+
+- **nestjs-tools:** probe controller -> hexogonal arch ([102381c](https://github.com/biorate/core/commit/102381cdfb2c90e917444561b103133a409bd46d))
+
 ## [1.125.1](https://github.com/biorate/core/compare/v1.125.0...v1.125.1) (2025-05-21)
 
 ### Bug Fixes
