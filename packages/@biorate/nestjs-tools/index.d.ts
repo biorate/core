@@ -147,5 +147,5 @@ declare module '@biorate/nestjs-tools' {
     protected metrics(): Promise<void>;
   }
 
-  export const controllers = { ClientController, MetricsController };
+  export const controllers = { ClientController, MetricsController, ProbeController };
 }
