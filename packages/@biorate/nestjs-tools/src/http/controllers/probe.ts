@@ -1,17 +1,25 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Header } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Probe')
 @Controller('probe')
 export class ProbeController {
   @Get('readiness')
-  @ApiOperation({ summary: 'Readiness probe' })
+  @Header(
+    'Deprecation',
+    'Use domain controller instead [@biorate/nestjs-tools >= v1.121.0]',
+  )
+  @ApiOperation({ summary: 'Readiness probe', deprecated: true })
   protected readiness() {
     return 1;
   }
 
   @Get('healthz')
-  @ApiOperation({ summary: 'Healthz probe' })
+  @Header(
+    'Deprecation',
+    'Use domain controller instead [@biorate/nestjs-tools >= v1.121.0]',
+  )
+  @ApiOperation({ summary: 'Healthz probe', deprecated: true })
   protected healthz() {
     return 1;
   }
