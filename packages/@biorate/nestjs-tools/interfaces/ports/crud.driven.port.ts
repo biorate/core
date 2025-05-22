@@ -1,9 +1,9 @@
 export type CrudCreateDrivenPort<E> = {
-  create(data: E): E;
+  create(data: E): Promise<E>;
 };
 
 export type CrudFindOneDrivenPort<E, I> = {
-  findOne(id: I): E;
+  findOne(id: I): Promise<E>;
 };
 
 export type CrudFindManyDrivenPort<
@@ -11,31 +11,31 @@ export type CrudFindManyDrivenPort<
   F = { offset: number; limit: number },
   R = { total: number; offset: number; limit: number; items: E[] },
 > = {
-  findMany(filter?: F): R;
+  findMany(filter?: F): Promise<R>;
 };
 
 export type CrudUpdateOneDrivenPort<E, I, D = E> = {
-  updateOne(id: I, data: D): E;
+  updateOne(id: I, data: D): Promise<E>;
 };
 
 export type CrudUpdateManyDrivenPort<E, C, D = E[]> = {
-  updateMany(criteria: C, data: D): E[];
+  updateMany(criteria: C, data: D): Promise<E[]>;
 };
 
 export type CrudInsertOneDrivenPort<E> = {
-  insertOne(data: E): E;
+  insertOne(data: E): Promise<E>;
 };
 
 export type CrudInsertManyDrivenPort<E, R = E[]> = {
-  insertOne(items: E[]): R;
+  insertOne(items: E[]): Promise<R>;
 };
 
 export type CrudDeleteOneDrivenPort<I, R = boolean> = {
-  deleteOne(id: I): R;
+  deleteOne(id: I): Promise<R>;
 };
 
 export type CrudDeleteManyDrivenPort<CD, R = number> = {
-  deleteMany(criteria?: CD): R;
+  deleteMany(criteria?: CD): Promise<R>;
 };
 
 export type CrudDrivenPort<
