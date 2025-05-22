@@ -7,5 +7,3 @@ export interface ILocalesDTO {
   lang: string;
   namespace: string;
 }
-
-export * from './src/app/application/ports';
