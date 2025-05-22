@@ -1,1 +1,3 @@
-export { MetricsDrivenPort } from '../../../../interfaces';
+export interface MetricsDrivenPort {
+  get(): Promise<string>;
+}
