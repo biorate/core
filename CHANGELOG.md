@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.127.0](https://github.com/biorate/core/compare/v1.126.0...v1.127.0) (2025-05-22)
+
+### Features
+
+- **nestjs-tools:** CRUD interfaces added ([16ba676](https://github.com/biorate/core/commit/16ba676283165637c2a78bfb5d4d52eb0d1ebb80))
+
 # [1.126.0](https://github.com/biorate/core/compare/v1.125.2...v1.126.0) (2025-05-22)
 
 ### Features
