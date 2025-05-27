@@ -9,3 +9,4 @@ export const Slow = Symbols.Slow;
 export const Suite = Symbols.Suite;
 export const Allure = Symbols.Allure;
 export const Scenario = Symbols.Scenario;
+export const Extends = Symbols.Extends;

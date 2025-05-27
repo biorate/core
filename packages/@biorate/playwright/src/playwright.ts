@@ -1,7 +1,14 @@
 import { object as o } from '@biorate/tools';
-import { test as t } from '@playwright/test';
 import * as allure from 'allure-js-commons';
-import { Test, Skip, Only, Slow, Allure, Suite } from './symbols';
+import {
+  test as t,
+  TestInfo,
+  Page,
+  BrowserContext,
+  Browser,
+  APIRequestContext,
+} from '@playwright/test';
+import { Test, Skip, Only, Slow, Allure, Suite, Extends } from './symbols';
 
 export * from 'allure-playwright';
 export * from 'playwright';
@@ -10,6 +17,8 @@ export * as allure from 'allure-js-commons';
 
 export class PlayWright {
   public readonly suite;
+
+  public readonly extend;
 
   public readonly test;
 
@@ -51,6 +60,7 @@ export class PlayWright {
 
   public constructor() {
     this.suite = this.#suite;
+    this.extend = this.#extend;
     this.test = this.#test;
     this.skip = this.#skip;
     this.only = this.#only;
@@ -75,6 +85,8 @@ export class PlayWright {
 
   protected walkProto(instance: any) {
     const methods = new Set();
+    this.before(instance);
+    this.after(instance);
     o.walkProto(instance, (object: any) => {
       const names = Object.getOwnPropertyNames(object);
       for (const name of names) {
@@ -83,28 +95,59 @@ export class PlayWright {
         const descriptor = Object.getOwnPropertyDescriptor(object, name);
         const meta = Reflect.getMetadata(Test, descriptor?.value);
         if (!meta) continue;
-        this.before(name, instance);
-        this.after(name, instance);
         const allureMethods = Reflect.getMetadata(Allure, descriptor?.value);
         const skip = Reflect.getMetadata(Skip, descriptor?.value);
         const only = Reflect.getMetadata(Only, descriptor?.value);
         const slow = Reflect.getMetadata(Slow, descriptor?.value);
+        const extend = Reflect.getMetadata(Extends, descriptor?.value);
         if (skip && only)
           throw new Error(`Can't use both "@skip()" and "@only()" decorators`);
-        let test: any = t;
+        let test: any = extend ? t.extend(extend) : t;
         if (skip) test = t.skip;
         else if (only) test = t.only;
         // @ts-ignore
-        test(meta.name ?? name, async function ({ page }, testInfo) {
-          for (const method in allureMethods) {
-            if (method in allure) {
-              // @ts-ignore
-              await allure[method](...allureMethods[method]);
+        test(
+          meta.name ?? name,
+          async function (
+            {
+              page,
+              context,
+              browser,
+              browserName,
+              request,
+            }: {
+              page: Page;
+              context: BrowserContext;
+              browser: Browser;
+              browserName: string;
+              request: APIRequestContext;
+            },
+            info: TestInfo,
+          ) {
+            for (const method in allureMethods) {
+              if (method in allure) {
+                // @ts-ignore
+                const args: any = allure[method];
+                if (Array.isArray(allureMethods[method]?.[0]))
+                  for (const params of allureMethods[method]) await args(...params);
+                else await args(...allureMethods[method]);
+              }
             }
-          }
-          if (slow) test.slow(...slow);
-          await instance[name]({ page }, testInfo);
-        });
+            if (slow) test.slow(...slow);
+            // eslint-disable-next-line prefer-rest-params
+            await instance[name](
+              {
+                page,
+                context,
+                browser,
+                browserName,
+                request,
+                ...extend,
+              },
+              info,
+            );
+          },
+        );
       }
     });
   }
@@ -135,15 +178,22 @@ export class PlayWright {
     });
   };
 
-  #setAllureMethod = (target: any, method: string, args: string[]) => {
-    let allureOptions: Record<string, string[]> | undefined = Reflect.getMetadata(
-      Allure,
-      target,
-    );
+  #setAllureMethod = (target: any, method: string, args: string[], append = false) => {
+    let allureOptions: Record<string, string[] | string[][]> | undefined =
+      Reflect.getMetadata(Allure, target);
     if (!allureOptions) allureOptions = {};
-    allureOptions[method] = args;
+    if (!allureOptions[method]) allureOptions[method] = append ? [args] : args;
+    else
+      allureOptions[method] = append
+        ? [...(<string[][]>allureOptions[method]), args]
+        : args;
     Reflect.defineMetadata(Allure, allureOptions, target);
   };
+
+  #extend =
+    (params: Record<string, any>) =>
+    (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+      Reflect.defineMetadata(Extends, params, target);
 
   #test =
     (name?: string) =>
@@ -169,7 +219,7 @@ export class PlayWright {
   #label =
     (name: string, value: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
-      this.#setAllureMethod(target, 'label', [name, value]);
+      this.#setAllureMethod(target, 'label', [name, value], true);
     };
 
   #link =
@@ -256,12 +306,14 @@ export class PlayWright {
       this.#setAllureMethod(target, 'description', [value]);
     };
 
-  protected before(name: string, instance: any) {
-    if (name === this.before.name) t.beforeEach(instance[name].bind(instance));
+  protected before(instance: any) {
+    if (this.before.name in instance)
+      t.beforeEach(instance[this.before.name].bind(instance));
   }
 
-  protected after(name: string, instance: any) {
-    if (name === this.after.name) t.afterEach(instance[name].bind(instance));
+  protected after(instance: any) {
+    if (this.after.name in instance)
+      t.afterEach(instance[this.after.name].bind(instance));
   }
 
   protected beforeAll(Class: any) {
@@ -294,4 +346,5 @@ export const {
   tags,
   description,
   issue,
+  extend,
 } = new PlayWright();
