@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.133.0](https://github.com/biorate/core/compare/v1.132.0...v1.133.0) (2025-05-27)
+
+### Features
+
+- **playeright:** beforeEach and afterEach hooks fix, [@extend](https://github.com/extend) added, test params passthrough ([2c2be2f](https://github.com/biorate/core/commit/2c2be2fab07ba6fec8570f455733084fd199fbc6))
+- **playwright:** beforeEach and afterEach hooks fix, [@extend](https://github.com/extend) added, test params passthrough ([bdd14c3](https://github.com/biorate/core/commit/bdd14c372af9155be2a67283ec8483ff9f839b26))
+
 # [1.132.0](https://github.com/biorate/core/compare/v1.131.0...v1.132.0) (2025-05-27)
 
 ### Features
