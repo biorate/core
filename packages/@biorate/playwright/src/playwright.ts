@@ -317,8 +317,8 @@ export class PlayWright {
 
 export const {
   suite,
-  skip,
   only,
+  skip,
   slow,
   test,
   label,
