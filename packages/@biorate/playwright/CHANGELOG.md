@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.132.0](https://github.com/biorate/core/compare/v1.131.0...v1.132.0) (2025-05-27)
+
+### Features
+
+- **playeright:** beforeEach and afterEach hooks fix, [@extend](https://github.com/extend) added, test params passthrow ([17e5e23](https://github.com/biorate/core/commit/17e5e230960359e81c41d932e4557f2a31dfe6c7))
+
 # [1.106.0](https://github.com/biorate/core/compare/v1.105.2...v1.106.0) (2025-03-07)
 
 ### Features
