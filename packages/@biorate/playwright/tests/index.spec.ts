@@ -20,6 +20,7 @@ import {
   extend,
 } from '../src';
 import { Scenario1, Scenario2 } from './scenarios';
+import { TestArgs } from '../interfaces';
 
 @suite('Test123')
 class Test {
@@ -49,7 +50,7 @@ class Test {
   @label('label2', 'description2')
   @tags('tag2', 'tag1')
   @test('test1')
-  protected async test1({ page }: { page: Page }) {
+  protected async test1({ page }: TestArgs) {
     await allure.step('playwright.dev', async () => {
       await page.goto('https://playwright.dev/');
       await page.goto('https://playwright.dev/');
@@ -65,7 +66,7 @@ class Test {
   @owner('60000000')
   @tag('api')
   @test('test2')
-  protected async test2({ page }: { page: Page }) {
+  protected async test2({ page }: TestArgs) {
     await page.goto('https://playwright.dev/');
     await expect(page).toHaveTitle(/Playwright/);
   }
@@ -79,7 +80,7 @@ class Test {
   @tag('api')
   @extend({ extra: 'hello world!' })
   @test('test3')
-  protected async test3({ page, extra }: { page: Page; extra: string }) {
+  protected async test3({ page, extra }: TestArgs & { extra: string }) {
     chai.expect(extra).to.be.eq('hello world!');
     await Context.run([Scenario1, Scenario2], { page });
   }

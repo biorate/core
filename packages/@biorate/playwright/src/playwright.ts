@@ -9,6 +9,8 @@ import {
   APIRequestContext,
 } from '@playwright/test';
 import { Test, Skip, Only, Slow, Allure, Suite, Extends } from './symbols';
+import { wrapAll, wrapEach } from './utils';
+import { TestArgs } from '../interfaces';
 
 export * from 'allure-playwright';
 export * from 'playwright';
@@ -109,19 +111,7 @@ export class PlayWright {
         test(
           meta.name ?? name,
           async function (
-            {
-              page,
-              context,
-              browser,
-              browserName,
-              request,
-            }: {
-              page: Page;
-              context: BrowserContext;
-              browser: Browser;
-              browserName: string;
-              request: APIRequestContext;
-            },
+            { page, context, browser, browserName, request }: TestArgs,
             info: TestInfo,
           ) {
             for (const method in allureMethods) {
@@ -308,20 +298,20 @@ export class PlayWright {
 
   protected before(instance: any) {
     if (this.before.name in instance)
-      t.beforeEach(instance[this.before.name].bind(instance));
+      t.beforeEach(wrapEach(instance[this.before.name].bind(instance)));
   }
 
   protected after(instance: any) {
     if (this.after.name in instance)
-      t.afterEach(instance[this.after.name].bind(instance));
+      t.afterEach(wrapEach(instance[this.after.name].bind(instance)));
   }
 
   protected beforeAll(Class: any) {
-    if (Class.before) t.beforeAll(Class.before.bind(Class));
+    if (Class.before) t.beforeAll(wrapAll(Class.before.bind(Class)));
   }
 
   protected afterAll(Class: any) {
-    if (Class.after) t.afterAll(Class.after.bind(Class));
+    if (Class.before) t.beforeAll(wrapAll(Class.after.bind(Class)));
   }
 }
 
