@@ -87,13 +87,13 @@ export abstract class AutoObject<T = Record<string, any>> {
     return class AutoObject extends (Class ? Class : <C>class {}) {
       public constructor(...args: any[]) {
         super(...args.slice(1));
-        auto<PropertiesOnly<T>>(this, args[0]);
+        return auto<PropertiesOnly<T>>(this, args[0]);
       }
     };
   }
 
   public constructor(data: PropertiesOnly<T>) {
-    auto<PropertiesOnly<T>>(this, data);
+    return auto<PropertiesOnly<T>>(this, data);
   }
 }
 

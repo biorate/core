@@ -29,4 +29,5 @@ export const auto = <T>(ctx: any, data: T) => {
   if (!data) return;
   merge(ctx, plainToInstance(ctx.constructor, data));
   validate(ctx);
+  return ctx;
 };
