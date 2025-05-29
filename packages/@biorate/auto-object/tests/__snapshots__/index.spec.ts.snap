@@ -67,11 +67,11 @@ User {
   "address": Address {
     "apartment": 74,
     "city": "Moscow",
-    "geo": Array [
+    "geo": Geo [
       12321,
       32123,
     ],
-    "postal": 123321,
+    "postal": 137186,
     "street": "Gogol str.",
   },
   "firstName": "Vasya",
@@ -80,7 +80,7 @@ User {
 }
 `;
 
-exports[`@biorate/auto-object AutoObject 2`] = `"123321, Moscow, Gogol str. №74"`;
+exports[`@biorate/auto-object AutoObject 2`] = `"137186, Moscow, Gogol str. №74"`;
 
 exports[`@biorate/auto-object AutoObject.extends 1`] = `
 Event {
@@ -92,7 +92,7 @@ Event {
     "address": Address {
       "apartment": 74,
       "city": "Moscow",
-      "geo": Array [
+      "geo": Geo [
         12321,
         32123,
       ],

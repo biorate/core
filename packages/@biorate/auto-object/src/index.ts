@@ -4,7 +4,6 @@ import { auto, transaction } from './utils';
 import { PropertiesOnly } from './interfaces';
 
 export { Getter, Setter, PropertiesOnly } from './interfaces';
-export * from './decorators';
 /**
  * @description
  * Auto initialized object

@@ -1,8 +1,16 @@
 import { use } from 'chai';
 import { EventEmitter } from 'events';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
-import { IsInt, IsObject, IsString, IsNumber, IsArray } from 'class-validator';
-import { AutoObject, AutoArray, ValueObject, Getter, PropertiesOnly } from '../../src';
+import {
+  IsInt,
+  IsObject,
+  IsString,
+  IsNumber,
+  IsArray,
+  IsOptional,
+} from 'class-validator';
+import { Type } from 'class-transformer';
+import { AutoObject, AutoArray, Getter, PropertiesOnly } from '../../src';
 
 use(jestSnapshotPlugin());
 
@@ -19,9 +27,11 @@ class Address extends AutoObject<Address> {
   public apartment: number;
 
   @IsNumber()
-  public postal: number;
+  @IsOptional()
+  public postal?: number = 137186;
 
   @IsArray()
+  @Type(() => Geo)
   public geo: Geo;
 
   public get inline() {
@@ -42,7 +52,7 @@ export class User extends AutoObject<User> {
   public lastName: string;
 
   @IsObject()
-  @ValueObject(Address)
+  @Type(() => Address)
   public address: Address;
 }
 
@@ -51,7 +61,7 @@ export class Event extends AutoObject.extends<typeof EventEmitter, Event>(EventE
   public name: string;
 
   @IsObject()
-  @ValueObject(User)
+  @Type(() => User)
   public payload: User;
 
   public constructor(data: PropertiesOnly<Event>, ...args: any[]) {

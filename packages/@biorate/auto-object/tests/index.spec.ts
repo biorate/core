@@ -10,7 +10,6 @@ describe('@biorate/auto-object', function () {
       address: {
         city: 'Moscow',
         street: 'Gogol str.',
-        postal: 123321,
         apartment: 74,
         geo: [12321, 32123],
       },
