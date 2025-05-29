@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.137.0](https://github.com/biorate/core/compare/v1.136.1...v1.137.0) (2025-05-29)
+
+### Features
+
+- **auto-object:** deafult value decorator ([503c7d1](https://github.com/biorate/core/commit/503c7d180ee92c0c23d3a533ebffede9c7712603))
+
 ## [1.136.1](https://github.com/biorate/core/compare/v1.136.0...v1.136.1) (2025-05-29)
 
 ### Bug Fixes
