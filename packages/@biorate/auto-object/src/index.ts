@@ -3,6 +3,7 @@ import { flattenDeep } from 'lodash';
 import { auto, transaction } from './utils';
 import { PropertiesOnly } from './interfaces';
 
+export * from './decorators';
 export { Getter, Setter, PropertiesOnly } from './interfaces';
 /**
  * @description

@@ -9,8 +9,8 @@ import {
   IsArray,
   IsOptional,
 } from 'class-validator';
-import { Type } from 'class-transformer';
-import { AutoObject, AutoArray, Getter, PropertiesOnly } from '../../src';
+import { Type, Transform, Expose } from 'class-transformer';
+import { AutoObject, AutoArray, Getter, PropertiesOnly, Default } from '../../src';
 
 use(jestSnapshotPlugin());
 
@@ -49,7 +49,9 @@ export class User extends AutoObject<User> {
   public firstName: string;
 
   @IsString()
-  public lastName: string;
+  @IsOptional()
+  @Default('Pupkin')
+  public lastName?: string;
 
   @IsObject()
   @Type(() => Address)
