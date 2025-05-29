@@ -339,13 +339,10 @@ importers:
         specifier: workspace:*
         version: link:../tools
       '@clickhouse/client':
-        specifier: ^1.0.1
-        version: 1.10.1
-      clickhouse:
-        specifier: ^2.6.0
-        version: 2.6.0
+        specifier: 1.11.1
+        version: 1.11.1
       lodash:
-        specifier: ^4.17.21
+        specifier: 4.17.21
         version: 4.17.21
 
   packages/@biorate/collection:
@@ -1728,16 +1725,16 @@ packages:
         integrity: sha512-hJfqii2OaayrAqQJubh+uy/cBwJdw1MvBsroiZ04ILEnM6lc6qQBiPBM5jLF0yAjCSvHfatcYSCJajFiwbHY4w==,
       }
 
-  '@clickhouse/client-common@1.10.1':
+  '@clickhouse/client-common@1.11.1':
     resolution:
       {
-        integrity: sha512-Duh3cign2ChvXABpjVj9Hkz5y20Zf48OE0Y50S4qBVPdhI81S4Rh4MI/bEwvwMnzHubSkiEQ+VhC5HzV8ybnpg==,
+        integrity: sha512-bme0le2yhDSAh13d2fxhSW5ZrNoVqZ3LTyac8jK6hNH0qkksXnjYkLS6KQalPU6NMpffxHmpI4+/Gi2MnX0NCA==,
       }
 
-  '@clickhouse/client@1.10.1':
+  '@clickhouse/client@1.11.1':
     resolution:
       {
-        integrity: sha512-Ot/6l4hFALK6NtZDS2UegukfRXWkkftWHCnzKUwanpOQ3Jd+RVKx5dxQreeBG5XcRjt1xyf5904PFjbCnaulXg==,
+        integrity: sha512-u9h++h72SmWystijNqfNvMkfA+5+Y1LNfmLL/odCL3VgI3oyAPP9ubSw/Yrt2zRZkLKehMMD1kuOej0QHbSoBA==,
       }
     engines: { node: '>=16' }
 
@@ -4256,13 +4253,6 @@ packages:
         integrity: sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==,
       }
 
-  JSONStream@1.3.4:
-    resolution:
-      {
-        integrity: sha512-Y7vfi3I5oMOYIr+WxV8NZxDSwcbNgzdKYsTNInmycOq9bUYwGg9ryu57Wg5NLmCjqdFPNUmpMBo3kSJN9tCbXg==,
-      }
-    hasBin: true
-
   JSONStream@1.3.5:
     resolution:
       {
@@ -5391,12 +5381,6 @@ packages:
         integrity: sha512-FxqpkPPwu1HjuN93Omfm4h8uIanXofW0RxVEW3k5RKx+mJJYSthzNhp32Kzxxy3YAEZ/Dc/EWN1vZRY0+kOhbw==,
       }
     engines: { node: '>= 10' }
-
-  clickhouse@2.6.0:
-    resolution:
-      {
-        integrity: sha512-HC5OV99GJOup4qZsTuWWPpXlj+847Z0OeygDU2x22rNYost0V/vWapzFWYZdV/5iRbGMrhFQPOyQEzmGvoaWRQ==,
-      }
 
   cliui@2.1.0:
     resolution:
@@ -11683,12 +11667,6 @@ packages:
         integrity: sha512-uBi6kmc9f3SZ3PXxqcHiUZLmIXgfgWooKWXcwSGwQd2Zi5Rb0bT14+8CJjJgI8AB+nndLaNgHGrcc6bPIB665g==,
       }
 
-  punycode@1.4.1:
-    resolution:
-      {
-        integrity: sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==,
-      }
-
   punycode@2.3.1:
     resolution:
       {
@@ -11734,14 +11712,6 @@ packages:
         integrity: sha512-hh2WYhq4fi8+b+/2Kg9CEge4fDPvHS534aOOvOZeQ3+Vf2mCFsaFBYj0i+iXcAq6I9Vzp5fjMFBlONvayDC1qg==,
       }
     engines: { node: '>=6' }
-
-  querystring@0.2.0:
-    resolution:
-      {
-        integrity: sha512-X/xY82scca2tau62i9mDyU9K+I+djTMUsvwf7xnUX5GLvVzgJybOJf4Y6o9Zx3oJK/LSXg5tTZBjwzqVPaPO2g==,
-      }
-    engines: { node: '>=0.4.x' }
-    deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
 
   querystringify@2.2.0:
     resolution:
@@ -12025,14 +11995,6 @@ packages:
         integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==,
       }
     engines: { node: '>=0.10' }
-
-  request@2.88.0:
-    resolution:
-      {
-        integrity: sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==,
-      }
-    engines: { node: '>= 4' }
-    deprecated: request has been deprecated, see https://github.com/request/request/issues/3142
 
   request@2.88.2:
     resolution:
@@ -12848,12 +12810,6 @@ packages:
         integrity: sha512-aI+qKFiwoDV4rsXiS7WRoCt+v2RX1nUj17+KJC5r2gfh5xoSJIfP6Y3Do/HtvesFcTSWthIuJ3l1cvKQY/+nZg==,
       }
 
-  stream2asynciter@1.0.3:
-    resolution:
-      {
-        integrity: sha512-9/dEZW+LQjuW6ub5hmWi4n9Pn8W8qA8k7NAE1isecesA164e73xTdy1CJ3S9o9YS+O21HuiK7T+4uS7FgKDy4w==,
-      }
-
   strict-event-emitter@0.5.1:
     resolution:
       {
@@ -13294,13 +13250,6 @@ packages:
         integrity: sha512-OsLcGGbYF3rMjPUf8oKktyvCiUxSbqMMS39m33MAjLTC1DVIH6x3WSt63/M77ihI09+Sdfk1AXvfhCEeUmC7mg==,
       }
 
-  tough-cookie@2.4.3:
-    resolution:
-      {
-        integrity: sha512-Q5srk/4vDM54WJsJio3XNn6K2sCG+CQ8G5Wz6bZhRZoAe/+TxjWB/GlFAnYEbkYVlON9FMk/fE3h2RLpPXo4lQ==,
-      }
-    engines: { node: '>=0.8' }
-
   tough-cookie@2.5.0:
     resolution:
       {
@@ -13411,12 +13360,6 @@ packages:
     engines: { node: '>= 6' }
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-
-  tsv@0.2.0:
-    resolution:
-      {
-        integrity: sha512-GG6xbOP85giXXom0dS6z9uyDsxktznjpa1AuDlPrIXDqDnbhjr9Vk6Us8iz6U1nENL4CPS2jZDvIjEdaZsmc4Q==,
-      }
 
   tuf-js@1.1.7:
     resolution:
@@ -14824,11 +14767,11 @@ snapshots:
     dependencies:
       '@biorate/errors': 1.102.0
 
-  '@clickhouse/client-common@1.10.1': {}
+  '@clickhouse/client-common@1.11.1': {}
 
-  '@clickhouse/client@1.10.1':
+  '@clickhouse/client@1.11.1':
     dependencies:
-      '@clickhouse/client-common': 1.10.1
+      '@clickhouse/client-common': 1.11.1
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -16849,11 +16792,6 @@ snapshots:
   '@zxing/text-encoding@0.9.0':
     optional: true
 
-  JSONStream@1.3.4:
-    dependencies:
-      jsonparse: 1.3.1
-      through: 2.3.8
-
   JSONStream@1.3.5:
     dependencies:
       jsonparse: 1.3.1
@@ -17566,17 +17504,6 @@ snapshots:
   cli-spinners@2.9.2: {}
 
   cli-width@3.0.0: {}
-
-  clickhouse@2.6.0:
-    dependencies:
-      JSONStream: 1.3.4
-      lodash: 4.17.21
-      querystring: 0.2.0
-      request: 2.88.0
-      stream2asynciter: 1.0.3
-      through: 2.3.8
-      tsv: 0.2.0
-      uuid: 3.4.0
 
   cliui@2.1.0:
     dependencies:
@@ -18903,7 +18830,7 @@ snapshots:
   git-semver-tags@4.1.1:
     dependencies:
       meow: 8.1.2
-      semver: 6.3.1
+      semver: 7.5.2
 
   git-up@7.0.0:
     dependencies:
@@ -21860,8 +21787,6 @@ snapshots:
       pug-runtime: 3.0.1
       pug-strip-comments: 2.0.0
 
-  punycode@1.4.1: {}
-
   punycode@2.3.1: {}
 
   q@1.5.1: {}
@@ -21882,8 +21807,6 @@ snapshots:
       filter-obj: 1.1.0
       split-on-first: 1.1.0
       strict-uri-encode: 2.0.0
-
-  querystring@0.2.0: {}
 
   querystringify@2.2.0: {}
 
@@ -22081,29 +22004,6 @@ snapshots:
       es6-error: 4.1.1
 
   repeat-string@1.6.1: {}
-
-  request@2.88.0:
-    dependencies:
-      aws-sign2: 0.7.0
-      aws4: 1.13.2
-      caseless: 0.12.0
-      combined-stream: 1.0.8
-      extend: 3.0.2
-      forever-agent: 0.6.1
-      form-data: 2.3.3
-      har-validator: 5.1.5
-      http-signature: 1.2.0
-      is-typedarray: 1.0.0
-      isstream: 0.1.2
-      json-stringify-safe: 5.0.1
-      mime-types: 2.1.35
-      oauth-sign: 0.9.0
-      performance-now: 2.1.0
-      qs: 6.5.3
-      safe-buffer: 5.2.1
-      tough-cookie: 2.4.3
-      tunnel-agent: 0.6.0
-      uuid: 3.4.0
 
   request@2.88.2:
     dependencies:
@@ -22654,8 +22554,6 @@ snapshots:
     dependencies:
       bluebird: 2.11.0
 
-  stream2asynciter@1.0.3: {}
-
   strict-event-emitter@0.5.1: {}
 
   strict-uri-encode@2.0.0: {}
@@ -22971,11 +22869,6 @@ snapshots:
 
   toposort-class@1.0.1: {}
 
-  tough-cookie@2.4.3:
-    dependencies:
-      psl: 1.15.0
-      punycode: 1.4.1
-
   tough-cookie@2.5.0:
     dependencies:
       psl: 1.15.0
@@ -23049,8 +22942,6 @@ snapshots:
     dependencies:
       tslib: 1.14.1
       typescript: 5.0.4
-
-  tsv@0.2.0: {}
 
   tuf-js@1.1.7:
     dependencies:

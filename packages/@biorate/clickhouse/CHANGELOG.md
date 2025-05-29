@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.134.0](https://github.com/biorate/core/compare/v1.133.0...v1.134.0) (2025-05-29)
+
+### Features
+
+- **clickhouse:** deps update ([b92503a](https://github.com/biorate/core/commit/b92503ae29c2d262d1fc61046eb061d274fa422e))
+
 # [1.120.0](https://github.com/biorate/core/compare/v1.119.2...v1.120.0) (2025-04-29)
 
 **Note:** Version bump only for package @biorate/clickhouse
