@@ -27,7 +27,7 @@ export const transaction = <T>(callback: () => T) => {
 
 export const auto = <T>(ctx: any, data: T) => {
   if (!data) return;
-  merge(ctx, plainToInstance(ctx.constructor, data));
+  merge(ctx, plainToInstance(ctx.constructor, data, { enableImplicitConversion: true }));
   validate(ctx);
   return ctx;
 };
