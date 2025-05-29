@@ -9,7 +9,7 @@ import {
   IsArray,
   IsOptional,
 } from 'class-validator';
-import { Type, Transform } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { AutoObject, AutoArray, Getter, PropertiesOnly } from '../../src';
 
 use(jestSnapshotPlugin());

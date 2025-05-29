@@ -15,6 +15,7 @@ describe('@biorate/auto-object', function () {
       },
     };
     const user = new User(data);
+    console.log(user);
     expect(user).toMatchSnapshot();
     expect(user.address.inline).toMatchSnapshot();
   });
