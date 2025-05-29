@@ -29,8 +29,7 @@
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "@clickhouse/client": "^1.0.1",
-    "clickhouse": "^2.6.0",
-    "lodash": "^4.17.21"
+    "@clickhouse/client": "1.11.1",
+    "lodash": "4.17.21"
   }
 }
