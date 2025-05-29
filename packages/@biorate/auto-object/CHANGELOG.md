@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.136.0](https://github.com/biorate/core/compare/v1.135.0...v1.136.0) (2025-05-29)
+
+### Features
+
+- **auto-object:** class-transform added ([e3fa499](https://github.com/biorate/core/commit/e3fa49946111fdcc3dbac88c65f0393e17aa1598))
+
 # [1.135.0](https://github.com/biorate/core/compare/v1.134.0...v1.135.0) (2025-05-29)
 
 ### Features
