@@ -1,7 +1,6 @@
 import { validateSync } from 'class-validator';
-import { plainToInstance, instanceToPlain } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import { CommonFactoryValidationError } from './errors';
-import { IMetadata } from './interfaces';
 import { merge } from 'lodash';
 
 let validateEnabled = true;
