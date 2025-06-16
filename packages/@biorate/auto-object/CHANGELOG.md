@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.138.1](https://github.com/biorate/core/compare/v1.138.0...v1.138.1) (2025-06-16)
+
+### Bug Fixes
+
+- **auto-object:** cleanup ([0f51a20](https://github.com/biorate/core/commit/0f51a20d5e9e8551e50a9a9463309416e9e6aefc))
+
 # [1.138.0](https://github.com/biorate/core/compare/v1.137.0...v1.138.0) (2025-05-29)
 
 ### Features

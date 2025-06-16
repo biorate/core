@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.138.1](https://github.com/biorate/core/compare/v1.138.0...v1.138.1) (2025-06-16)
+
+### Bug Fixes
+
+- **auto-object:** cleanup ([0f51a20](https://github.com/biorate/core/commit/0f51a20d5e9e8551e50a9a9463309416e9e6aefc))
+- **axios:** validateStatus check ([6cc06ae](https://github.com/biorate/core/commit/6cc06ae37827f1aca68b9124db3185620b6e20b5))
+- **nestjs-tools:** deps ([82cb7b0](https://github.com/biorate/core/commit/82cb7b0ed4f4352eef2e72e22ab8fc6753d0ff47))
+
 # [1.138.0](https://github.com/biorate/core/compare/v1.137.0...v1.138.0) (2025-05-29)
 
 ### Features

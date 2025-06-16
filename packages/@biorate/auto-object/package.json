@@ -1,6 +1,6 @@
 {
   "name": "@biorate/auto-object",
-  "version": "1.138.0",
+  "version": "1.138.1",
   "description": "Auto object",
   "main": "dist",
   "scripts": {

@@ -820,32 +820,32 @@ importers:
   packages/@biorate/nestjs-tools:
     dependencies:
       '@biorate/axios':
-        specifier: 1.120.0
-        version: 1.120.0
+        specifier: workspace:*
+        version: link:../axios
       '@biorate/config':
-        specifier: 1.120.0
-        version: 1.120.0
+        specifier: workspace:*
+        version: link:../config
       '@biorate/errors':
-        specifier: 1.102.0
-        version: 1.102.0
+        specifier: workspace:*
+        version: link:../errors
       '@biorate/inversion':
-        specifier: 1.120.0
-        version: 1.120.0
+        specifier: workspace:*
+        version: link:../inversion
       '@biorate/prometheus':
-        specifier: 1.120.0
-        version: 1.120.0
+        specifier: workspace:*
+        version: link:../prometheus
       '@biorate/tools':
-        specifier: 1.102.1
-        version: 1.102.1
+        specifier: workspace:*
+        version: link:../tools
       '@nestjs/common':
         specifier: '>=10.4.15'
-        version: 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2)
+        version: 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@nestjs/core':
         specifier: '>=10.4.15'
-        version: 10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.13)(rxjs@7.8.2)
+        version: 10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@nestjs/swagger':
         specifier: '>=8.1.0'
-        version: 8.1.0(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.13)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)
+        version: 8.1.0(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)
       class-validator:
         specifier: '>=0.14.0'
         version: 0.14.1
@@ -1665,68 +1665,6 @@ packages:
         integrity: sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw==,
       }
     engines: { node: '>=6.9.0' }
-
-  '@biorate/axios@1.120.0':
-    resolution:
-      {
-        integrity: sha512-rOx7IdW3ukaPIcwRrUnRxcBrtn3HjjZyJZe0fR7j93b2oGfmiAsOV5XTkXMg+KX06UAiwoGiA4NKNWFkplXJ8A==,
-      }
-
-  '@biorate/config@1.120.0':
-    resolution:
-      {
-        integrity: sha512-RN6729dDhFHIs/73WFS7Grb4PDvlqvszQxnzuWzeKwmA96C5cgWlDMnyE/H8jgYJn33178nYFQRImxVtvJh0Wg==,
-      }
-
-  '@biorate/errors@1.102.0':
-    resolution:
-      {
-        integrity: sha512-r3xoEwNmCh6w6djSPoEud2JRYeRM+ZXILcSvlLUMydM+5Rti6CpxU62Icnd8nZ2xvX+/MnsS+ZqWAYHARf6HiQ==,
-      }
-
-  '@biorate/inversion@1.120.0':
-    resolution:
-      {
-        integrity: sha512-W0kWBBnEWxDFqkgGi9dCm1U0QFyja358EiU7jScXyuOgKByYwVsrvqzCXlRxBkY8LQpwYGk61OVIm5pQ5VCA6w==,
-      }
-
-  '@biorate/lifecycled@1.120.0':
-    resolution:
-      {
-        integrity: sha512-ficMkS7NaBn0/1fuvEoct3BDw72ru2ON+CIhuHiPI0DhXHy/VP7VgneiYLkZKFN90O2oRhA/06S/0dN8UuXr+Q==,
-      }
-    peerDependencies:
-      reflect-metadata: '>=0.1.13'
-
-  '@biorate/prometheus@1.120.0':
-    resolution:
-      {
-        integrity: sha512-N8kdHEC9JtogDtgZPH02yO1QvqSs0XoV9eklBlyu2ZPAehqH5nlX7Skk3EBjjDUb7R/DpU7Dh4910FSIzlngBQ==,
-      }
-
-  '@biorate/shutdown-hook@1.102.1':
-    resolution:
-      {
-        integrity: sha512-Q9SgMK6l55us4Gm87Y7vRp4Zs52uTmM3lnaGAKGQQLgwc/maSBEdNx4pu0bsnkV1zgqePd+pwcld+thO6Af9zw==,
-      }
-
-  '@biorate/singleton@1.117.0':
-    resolution:
-      {
-        integrity: sha512-OPp7Y+MdZvDccRpwfV8gv8BZIhOnvJDv8QhGuWuVpOLwvW3tk/uMOsmrHCiwsVnsZbwzsTTrdMX/lrjWA9YEuQ==,
-      }
-
-  '@biorate/symbolic@1.102.0':
-    resolution:
-      {
-        integrity: sha512-VlvRd50UUvgekJf04dsmwXp/E6/ldoYwe0iiEimvqOcleRD1ocLsMub16iqk1ufcdZdllQRU4TU597qcTaUg2g==,
-      }
-
-  '@biorate/tools@1.102.1':
-    resolution:
-      {
-        integrity: sha512-hJfqii2OaayrAqQJubh+uy/cBwJdw1MvBsroiZ04ILEnM6lc6qQBiPBM5jLF0yAjCSvHfatcYSCJajFiwbHY4w==,
-      }
 
   '@clickhouse/client-common@1.11.1':
     resolution:
@@ -14721,61 +14659,6 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@biorate/axios@1.120.0':
-    dependencies:
-      '@biorate/singleton': 1.117.0
-      axios: 0.27.2
-      axios-retry: 4.5.0(axios@0.27.2)
-      http-status: 2.1.0
-      lodash: 4.17.21
-      path-to-url: 0.1.0
-    transitivePeerDependencies:
-      - debug
-
-  '@biorate/config@1.120.0':
-    dependencies:
-      '@biorate/errors': 1.102.0
-      '@biorate/inversion': 1.120.0
-      lodash: 4.17.21
-      traverse: 0.6.11
-
-  '@biorate/errors@1.102.0': {}
-
-  '@biorate/inversion@1.120.0':
-    dependencies:
-      '@biorate/lifecycled': 1.120.0(reflect-metadata@0.1.13)
-      '@biorate/symbolic': 1.102.0
-      '@biorate/tools': 1.102.1
-      async-exit-hook: 2.0.1
-      inversify: 5.1.1
-      inversify-inject-decorators: 3.1.0
-      reflect-metadata: 0.1.13
-
-  '@biorate/lifecycled@1.120.0(reflect-metadata@0.1.13)':
-    dependencies:
-      '@biorate/shutdown-hook': 1.102.1
-      '@biorate/tools': 1.102.1
-      async-exit-hook: 2.0.1
-      reflect-metadata: 0.1.13
-
-  '@biorate/prometheus@1.120.0':
-    dependencies:
-      '@biorate/config': 1.120.0
-      '@biorate/inversion': 1.120.0
-      prom-client: 14.2.0
-
-  '@biorate/shutdown-hook@1.102.1':
-    dependencies:
-      '@biorate/tools': 1.102.1
-
-  '@biorate/singleton@1.117.0': {}
-
-  '@biorate/symbolic@1.102.0': {}
-
-  '@biorate/tools@1.102.1':
-    dependencies:
-      '@biorate/errors': 1.102.0
-
   '@clickhouse/client-common@1.11.1': {}
 
   '@clickhouse/client@1.11.1':
@@ -15104,6 +14987,17 @@ snapshots:
       class-transformer: 0.5.1
       class-validator: 0.14.1
 
+  '@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2)':
+    dependencies:
+      iterare: 1.2.1
+      reflect-metadata: 0.1.14
+      rxjs: 7.8.2
+      tslib: 2.8.1
+      uid: 2.0.2
+    optionalDependencies:
+      class-transformer: 0.5.1
+      class-validator: 0.14.1
+
   '@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.13)(rxjs@7.8.2)':
     dependencies:
       '@nestjs/common': 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2)
@@ -15118,10 +15012,32 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
+  '@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)':
+    dependencies:
+      '@nestjs/common': 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2)
+      '@nuxtjs/opencollective': 0.3.2(encoding@0.1.13)
+      fast-safe-stringify: 2.1.1
+      iterare: 1.2.1
+      path-to-regexp: 3.3.0
+      reflect-metadata: 0.1.14
+      rxjs: 7.8.2
+      tslib: 2.8.1
+      uid: 2.0.2
+    transitivePeerDependencies:
+      - encoding
+
   '@nestjs/mapped-types@2.0.6(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)':
     dependencies:
       '@nestjs/common': 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2)
       reflect-metadata: 0.1.13
+    optionalDependencies:
+      class-transformer: 0.5.1
+      class-validator: 0.14.1
+
+  '@nestjs/mapped-types@2.0.6(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)':
+    dependencies:
+      '@nestjs/common': 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2)
+      reflect-metadata: 0.1.14
     optionalDependencies:
       class-transformer: 0.5.1
       class-validator: 0.14.1
@@ -15136,6 +15052,21 @@ snapshots:
       lodash: 4.17.21
       path-to-regexp: 3.3.0
       reflect-metadata: 0.1.13
+      swagger-ui-dist: 5.18.2
+    optionalDependencies:
+      class-transformer: 0.5.1
+      class-validator: 0.14.1
+
+  '@nestjs/swagger@8.1.0(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)':
+    dependencies:
+      '@microsoft/tsdoc': 0.15.1
+      '@nestjs/common': 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2)
+      '@nestjs/core': 10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)
+      '@nestjs/mapped-types': 2.0.6(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)
+      js-yaml: 4.1.0
+      lodash: 4.17.21
+      path-to-regexp: 3.3.0
+      reflect-metadata: 0.1.14
       swagger-ui-dist: 5.18.2
     optionalDependencies:
       class-transformer: 0.5.1
