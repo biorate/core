@@ -7,6 +7,21 @@ import { FakeResponse } from './fake-response';
 export class Stubs {
   static #cache = new WeakMap<typeof Axios, Stubs>();
 
+  #halt = (
+    statusText: string,
+    status: number,
+    params: IStubParam,
+    response: FakeResponse,
+  ) => {
+    throw new AxiosError(
+      statusText,
+      String(status),
+      params.config,
+      params.headers,
+      response,
+    );
+  };
+
   public static get(Class: typeof Axios) {
     if (!this.#cache.has(Class)) this.#cache.set(Class, new this(Class));
     return this.#cache.get(Class)!;
@@ -38,17 +53,10 @@ export class Stubs {
     this.Class.fetch = async (options?: any) => {
       this.options.push(options);
       if (!persist) this.unstub();
-      if (
-        ['4', '5'].includes(String(status)[0]) ||
-        instance?.validateStatus?.(status) === false
-      )
-        throw new AxiosError(
-          statusText,
-          String(status),
-          params.config,
-          params.headers,
-          response,
-        );
+      if (instance?.validateStatus?.(status) === false)
+        this.#halt(statusText, status, params, response);
+      else if (['4', '5'].includes(String(status)[0]))
+        this.#halt(statusText, status, params, response);
       return response;
     };
   }

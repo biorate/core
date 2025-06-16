@@ -116,12 +116,25 @@ describe('@biorate/axios', function () {
     }
   });
 
-  it('stubs un throw errors', async () => {
+  it("stubs don't throw errors", async () => {
     class Stubs extends Yandex {}
     const data = 'hello world!';
     Stubs.stub({ data, status: 200 }, true);
     const result = await Stubs.fetch(1);
     expect(result.data).to.be.equal(data);
+  });
+
+  it("stubs don't throws error if validateStatus ok", async () => {
+    class Stubs extends Yandex {
+      validateStatus: () => true;
+    }
+    const data = 'hello world!';
+    Stubs.stub({ data, status: 400 }, true);
+    try {
+      await Stubs.fetch();
+    } catch (e) {
+      expect(e instanceof AxiosError);
+    }
   });
 
   it('options check', async () => {
