@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.138.2](https://github.com/biorate/core/compare/v1.138.1...v1.138.2) (2025-06-17)
+
+### Bug Fixes
+
+- **axios:** validateStatus stub check ([f69bfbb](https://github.com/biorate/core/commit/f69bfbb551c57165e23d3c8bb1fb44b7a754a764))
+
 ## [1.138.1](https://github.com/biorate/core/compare/v1.138.0...v1.138.1) (2025-06-16)
 
 ### Bug Fixes
