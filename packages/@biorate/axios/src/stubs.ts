@@ -53,9 +53,8 @@ export class Stubs {
     this.Class.fetch = async (options?: any) => {
       this.options.push(options);
       if (!persist) this.unstub();
-      if (instance?.validateStatus?.(status) === false)
-        this.#halt(statusText, status, params, response);
-      else if (['4', '5'].includes(String(status)[0]))
+      if (instance?.validateStatus?.(status)) return response;
+      if (['4', '5'].includes(String(status)[0]))
         this.#halt(statusText, status, params, response);
       return response;
     };
