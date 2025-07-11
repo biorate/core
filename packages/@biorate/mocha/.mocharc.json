@@ -1,0 +1,8 @@
+{
+  "require": "source-map-support/register,ts-node/register",
+  "spec": "tests/**/*.spec.ts",
+  "reporter": "mocha-multi-reporters",
+  "reporter-option": "configFile=.reporters.json",
+  "exit": true,
+  "parallel": false
+}

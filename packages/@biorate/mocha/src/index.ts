@@ -160,7 +160,8 @@ interface MochaClassTestUI {
  * ```
  */
 export * from '@biorate/run-context';
-export * as common from 'allure-js-commons';
+export * as allure from 'allure-js-commons';
+export { ContentType, Severity } from 'allure-js-commons';
 export * from 'allure-mocha';
 export { Done } from 'mocha';
 export {

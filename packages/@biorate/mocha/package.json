@@ -28,6 +28,7 @@
   "peerDependencies": {
     "allure-js-commons": ">=3.2.0",
     "mocha": ">=10.2.0",
+    "mocha-multi-reporters": "^1.5.1",
     "reflect-metadata": ">=0.1.13"
   },
   "dependencies": {

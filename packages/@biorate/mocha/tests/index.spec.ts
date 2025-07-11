@@ -1,3 +1,4 @@
+import './setup';
 import { suite, test, timeout, parallel, Done, Context } from '../src';
 import { Scenario1, Scenario2 } from './scenarios';
 
