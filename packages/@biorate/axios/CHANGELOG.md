@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.139.0](https://github.com/biorate/core/compare/v1.138.2...v1.139.0) (2025-07-11)
+
+### Bug Fixes
+
+- axios tests and mocha deps ([04e0aba](https://github.com/biorate/core/commit/04e0abaac8e8505f9b8b5db91c7851182f50c0bc))
+
 ## [1.138.2](https://github.com/biorate/core/compare/v1.138.1...v1.138.2) (2025-06-17)
 
 ### Bug Fixes

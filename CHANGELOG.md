@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.139.0](https://github.com/biorate/core/compare/v1.138.2...v1.139.0) (2025-07-11)
+
+### Bug Fixes
+
+- axios tests and mocha deps ([04e0aba](https://github.com/biorate/core/commit/04e0abaac8e8505f9b8b5db91c7851182f50c0bc))
+
+### Features
+
+- **mocha:** deps update ([ae1f49a](https://github.com/biorate/core/commit/ae1f49a071dd6057bcf0a083a92e39960a858402))
+- **mocha:** deps update ([7aabf35](https://github.com/biorate/core/commit/7aabf35147fac058480800a04c92f6f56006d0aa))
+- **mocha:** label decorator added ([bc00c89](https://github.com/biorate/core/commit/bc00c89a1753146738d80a61d56f6e342b160839))
+
 ## [1.138.2](https://github.com/biorate/core/compare/v1.138.1...v1.138.2) (2025-06-17)
 
 ### Bug Fixes
