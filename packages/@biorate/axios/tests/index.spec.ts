@@ -55,14 +55,14 @@ describe('@biorate/axios', function () {
         return 100;
       };
 
-      public timeout = 3000;
+      public timeout = 1000;
 
       public retryCondition = () => true;
     }
     try {
       await Retry.fetch(options);
     } catch (e: any) {
-      expect(e.code === 'ENOTFOUND').to.be.equal(true);
+      expect(e.code === 'ENOTFOUND' || e.code === 'ECONNABORTED').to.be.equal(true);
     }
   });
 

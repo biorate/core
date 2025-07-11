@@ -25,12 +25,15 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "allure-js-commons": ">=3.2.0",
+    "mocha": ">=10.2.0",
+    "reflect-metadata": ">=0.1.13"
+  },
   "dependencies": {
     "@biorate/run-context": "workspace:*",
-    "allure-decorators": "^2.10.0",
-    "allure-js-commons": "^2.10.0",
-    "allure-mocha": "^2.10.0",
-    "mocha": "^10.2.0",
-    "mocha.parallel": "^0.15.6"
+    "allure-decorators": "2.15.1",
+    "allure-mocha": "3.3.0",
+    "mocha.parallel": "0.15.6"
   }
 }
