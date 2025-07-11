@@ -160,9 +160,8 @@ interface MochaClassTestUI {
  * ```
  */
 export * from '@biorate/run-context';
-export * as allure from 'allure-js-commons';
 export { ContentType, Severity } from 'allure-js-commons';
-export * from 'allure-mocha';
+export * from 'allure-mocha/runtime';
 export { Done } from 'mocha';
 export {
   step as allureStep,
@@ -180,7 +179,8 @@ export {
   assignPmsUrl,
   assignTmsUrl,
   data,
-} from 'allure-decorators';
+  label,
+} from './allure-decorators';
 export const {
   context,
   suite,

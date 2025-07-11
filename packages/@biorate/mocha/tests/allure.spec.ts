@@ -5,7 +5,6 @@ import {
   parallel,
   ContentType,
   Severity,
-  allure,
   description,
   epic,
   feature,
@@ -15,6 +14,8 @@ import {
   story,
   tag,
   testCaseId,
+  allure,
+  label,
 } from '../src';
 
 @suite('Allure')
@@ -25,6 +26,8 @@ class Allure {
   }
 
   @issue('1')
+  @label('test1', 'test-1')
+  @label('test2', 'test-2')
   @testCaseId('1')
   @severity(Severity.MINOR)
   @epic('HTTP API tests')
