@@ -89,37 +89,67 @@ services:
       POSTGRES_USER: 'postgres'
   redis:
     image: redis
+    network_mode: host
     ports:
       - 6379:6379
   clickhouse:
     image: yandex/clickhouse-server
+    network_mode: host
     ports:
       - 8123:8123
       - 9002:9000
   rabbit:
     image: rabbitmq:3.10.7-management
+    network_mode: host
     restart: 'no'
     ports:
       - 5672:5672
       - 15672:15672
   opensearch:
     image: opensearchproject/opensearch
+    network_mode: host
     container_name: opensearch
     environment:
       - cluster.name=opensearch-cluster
       - node.name=opensearch
       - discovery.seed_hosts=opensearch
       - cluster.initial_master_nodes=opensearch
-      - bootstrap.memory_lock=true  # along with the memlock settings below, disables swapping
-      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m  # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+      - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
       - OPENSEARCH_INITIAL_ADMIN_PASSWORD=fo4Gai1phah7eexu
     ulimits:
       memlock:
         soft: -1
         hard: -1
       nofile:
-        soft: 65536  # maximum number of open files for the OpenSearch user, set to at least 65536 on modern systems
+        soft: 65536 # maximum number of open files for the OpenSearch user, set to at least 65536 on modern systems
         hard: 65536
     ports:
       - 9200:9200
-      - 9600:9600  # required for Performance Analyzer
+      - 9600:9600 # required for Performance Analyzer
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib
+    network_mode: host
+    volumes:
+      - ./otel-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - 1888:1888 # pprof extension
+      - 8888:8888 # Prometheus metrics exposed by the Collector
+      - 8889:8889 # Prometheus exporter metrics
+      - 13133:13133 # health_check extension
+      - 4317:4317 # OTLP gRPC receiver
+      - 4318:4318 # OTLP http receiver
+      - 55679:55679 # zpages extension
+    depends_on:
+      - jaeger
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    network_mode: host
+    ports:
+      - "16686:16686"   # Jaeger UI
+      - "14268:14268"   # Jaeger HTTP receiver
+      - "14250:14250"   # Jaeger gRPC-порт
+      - "6831:6831/udp" # Jaeger agent (UDP)
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - SPAN_STORAGE_TYPE=memory
