@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.141.0](https://github.com/biorate/core/compare/v1.140.0...v1.141.0) (2025-07-17)
+
+### Features
+
+- TracingInterceptor catchError added ([7afbf69](https://github.com/biorate/core/commit/7afbf690288f1a5c2f1fa2e8d80a21b3298f1e84))
+
 # [1.140.0](https://github.com/biorate/core/compare/v1.139.0...v1.140.0) (2025-07-17)
 
 ### Bug Fixes
