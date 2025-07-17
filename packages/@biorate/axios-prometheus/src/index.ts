@@ -185,20 +185,39 @@ export abstract class AxiosPrometheus extends Axios {
   protected stringify(data: unknown) {
     return typeof data === 'object' ? JSON.stringify(data) : String(data);
   }
+  /**
+   * @description Check need to trace
+   */
+  protected needTrace(url: string, span?: Span) {
+    if (!span) return false;
+    const excluded = this.config.get<(string | RegExp)[]>(
+      'AxiosPrometheus.tracing.excluded',
+      [],
+    );
+    for (const item of excluded) {
+      if (typeof item === 'string' && url.startsWith(item)) return false;
+      if (item instanceof RegExp && item.test(url)) return false;
+    }
+    return true;
+  }
+  /**
+   * @description Get full url = baseURL + url
+   */
+  protected fullUrl(params?: IAxiosFetchOptions) {
+    return params?.baseURL ?? '' + params?.url ?? '';
+  }
 
   protected async before(params?: IAxiosFetchOptions) {
     await super.before(params);
     const span = trace.getActiveSpan();
-    if (!span) return;
-    span.setAttribute(
-      'request.url',
-      this.stringify(params?.baseURL ?? '' + params?.url ?? ''),
-    );
-    span.setAttribute('request.body', this.stringify(params?.data));
-    span.setAttribute('request.headers', this.stringify(params?.headers));
-    span.setAttribute('request.method', this.stringify(params?.method));
-    span.setAttribute('request.params', this.stringify(params?.path));
-    span.setAttribute('request.query', this.stringify(params?.params));
+    const url = this.fullUrl(params);
+    if (!this.needTrace(url, span)) return;
+    span!.setAttribute('request.url', this.stringify(url));
+    span!.setAttribute('request.body', this.stringify(params?.data));
+    span!.setAttribute('request.headers', this.stringify(params?.headers));
+    span!.setAttribute('request.method', this.stringify(params?.method));
+    span!.setAttribute('request.params', this.stringify(params?.path));
+    span!.setAttribute('request.query', this.stringify(params?.params));
   }
 
   protected async after(
@@ -209,10 +228,11 @@ export abstract class AxiosPrometheus extends Axios {
     await super.after(result, startTime, params);
     this.log(result.status, startTime);
     const span = trace.getActiveSpan();
-    if (!span) return;
-    span.setAttribute('response.headers', this.stringify(result.headers));
-    span.setAttribute('response.statusCode', this.stringify(result.status));
-    span.setAttribute('response.data', this.stringify(result.data));
+    const url = this.fullUrl(params);
+    if (!this.needTrace(url, span)) return;
+    span!.setAttribute('response.headers', this.stringify(result.headers));
+    span!.setAttribute('response.statusCode', this.stringify(result.status));
+    span!.setAttribute('response.data', this.stringify(result.data));
   }
 
   protected async catch(
@@ -224,9 +244,10 @@ export abstract class AxiosPrometheus extends Axios {
     if (!('response' in e)) return;
     this.log(e!.response!.status, startTime);
     const span = trace.getActiveSpan();
-    if (!span) return;
-    span.setAttribute('response.headers', this.stringify(e!.response!.headers));
-    span.setAttribute('response.statusCode', this.stringify(e!.response!.status));
-    span.setAttribute('response.data', this.stringify(e!.response!.data));
+    const url = this.fullUrl(params);
+    if (!this.needTrace(url, span)) return;
+    span!.setAttribute('response.headers', this.stringify(e!.response!.headers));
+    span!.setAttribute('response.statusCode', this.stringify(e!.response!.status));
+    span!.setAttribute('response.data', this.stringify(e!.response!.data));
   }
 }

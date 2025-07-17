@@ -17,10 +17,23 @@ export class TracingInterceptor implements NestInterceptor {
     return typeof data === 'object' ? JSON.stringify(data) : String(data);
   }
 
+  protected excluded(url: string) {
+    const excluded = this.config.get<(string | RegExp)[]>(
+      'TracingInterceptor.excluded',
+      [],
+    );
+    for (const item of excluded) {
+      if (typeof item === 'string' && url.startsWith(item)) return true;
+      if (item instanceof RegExp && item.test(url)) return true;
+    }
+    return false;
+  }
+
   protected http(span: Span, context: ExecutionContext, next: CallHandler) {
     const host = context.switchToHttp();
     const req = host.getRequest();
     const res = host.getResponse();
+    if (this.excluded(req.url)) return next.handle();
     return next.handle().pipe(
       tap((data) => {
         span.setAttribute('request.url', this.stringify(req.url));
