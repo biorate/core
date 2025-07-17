@@ -212,12 +212,12 @@ export abstract class AxiosPrometheus extends Axios {
     const span = trace.getActiveSpan();
     const url = this.fullUrl(params);
     if (!this.needTrace(url, span)) return;
-    span!.setAttribute('request.url', this.stringify(url));
-    span!.setAttribute('request.body', this.stringify(params?.data));
-    span!.setAttribute('request.headers', this.stringify(params?.headers));
-    span!.setAttribute('request.method', this.stringify(params?.method));
-    span!.setAttribute('request.params', this.stringify(params?.path));
-    span!.setAttribute('request.query', this.stringify(params?.params));
+    span!.setAttribute('outgoing.request.url', this.stringify(url));
+    span!.setAttribute('outgoing.request.body', this.stringify(params?.data));
+    span!.setAttribute('outgoing.request.headers', this.stringify(params?.headers));
+    span!.setAttribute('outgoing.request.method', this.stringify(params?.method));
+    span!.setAttribute('outgoing.request.params', this.stringify(params?.path));
+    span!.setAttribute('outgoing.request.query', this.stringify(params?.params));
   }
 
   protected async after(
@@ -230,9 +230,9 @@ export abstract class AxiosPrometheus extends Axios {
     const span = trace.getActiveSpan();
     const url = this.fullUrl(params);
     if (!this.needTrace(url, span)) return;
-    span!.setAttribute('response.headers', this.stringify(result.headers));
-    span!.setAttribute('response.statusCode', this.stringify(result.status));
-    span!.setAttribute('response.data', this.stringify(result.data));
+    span!.setAttribute('outgoing.response.headers', this.stringify(result.headers));
+    span!.setAttribute('outgoing.response.statusCode', this.stringify(result.status));
+    span!.setAttribute('outgoing.response.data', this.stringify(result.data));
   }
 
   protected async catch(
@@ -246,8 +246,11 @@ export abstract class AxiosPrometheus extends Axios {
     const span = trace.getActiveSpan();
     const url = this.fullUrl(params);
     if (!this.needTrace(url, span)) return;
-    span!.setAttribute('response.headers', this.stringify(e!.response!.headers));
-    span!.setAttribute('response.statusCode', this.stringify(e!.response!.status));
-    span!.setAttribute('response.data', this.stringify(e!.response!.data));
+    span!.setAttribute('outgoing.response.headers', this.stringify(e!.response!.headers));
+    span!.setAttribute(
+      'outgoing.response.statusCode',
+      this.stringify(e!.response!.status),
+    );
+    span!.setAttribute('outgoing.response.data', this.stringify(e!.response!.data));
   }
 }

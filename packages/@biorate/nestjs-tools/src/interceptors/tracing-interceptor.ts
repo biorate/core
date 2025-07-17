@@ -34,20 +34,24 @@ export class TracingInterceptor implements NestInterceptor {
     const req = host.getRequest();
     const res = host.getResponse();
     if (this.excluded(req.url)) return next.handle();
-    span.setAttribute('request.url', this.stringify(req.url));
-    span.setAttribute('request.body', this.stringify(req.body));
-    span.setAttribute('request.headers', this.stringify(req.headers));
-    span.setAttribute('request.method', this.stringify(req.method));
-    span.setAttribute('request.params', this.stringify(req.params));
-    span.setAttribute('request.query', this.stringify(req.query));
+    span.setAttribute('incoming.request.url', this.stringify(req.url));
+    span.setAttribute('incoming.request.body', this.stringify(req.body));
+    span.setAttribute('incoming.request.headers', this.stringify(req.headers));
+    span.setAttribute('incoming.request.method', this.stringify(req.method));
+    span.setAttribute('incoming.request.params', this.stringify(req.params));
+    span.setAttribute('incoming.request.query', this.stringify(req.query));
     return next.handle().pipe(
-      catchError((e: Error) => {
+      catchError((e) => {
+        span.setAttribute('incoming.response.headers', this.stringify(res.headers));
+        span.setAttribute('incoming.response.statusCode', this.stringify(res.statusCode));
+        span.setAttribute('incoming.response.errorCode', this.stringify(e.code));
+        span.setAttribute('incoming.response.data', this.stringify(e?.response?.data));
         throw e;
       }),
       tap((data) => {
-        span.setAttribute('response.headers', this.stringify(res.headers));
-        span.setAttribute('response.statusCode', this.stringify(res.statusCode));
-        span.setAttribute('response.data', this.stringify(data));
+        span.setAttribute('incoming.response.headers', this.stringify(res.headers));
+        span.setAttribute('incoming.response.statusCode', this.stringify(res.statusCode));
+        span.setAttribute('incoming.response.data', this.stringify(data));
       }),
     );
   }
