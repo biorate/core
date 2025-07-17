@@ -30,6 +30,8 @@ exports[`nestjs-tools RolesGuardProvider 1`] = `[Function]`;
 
 exports[`nestjs-tools RoutesInterceptor 1`] = `[Function]`;
 
+exports[`nestjs-tools TracingInterceptor 1`] = `[Function]`;
+
 exports[`nestjs-tools UnsupportedProtocolError 1`] = `[Function]`;
 
 exports[`nestjs-tools UserRoles 1`] = `

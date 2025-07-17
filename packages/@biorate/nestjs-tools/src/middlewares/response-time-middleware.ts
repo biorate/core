@@ -5,8 +5,8 @@ import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { histogram, Histogram } from '@biorate/prometheus';
 import { Request, Response, NextFunction } from 'express';
-import { RoutesInterceptor } from '../interceptors';
 import { time } from '@biorate/tools';
+import { RoutesInterceptor } from '../interceptors';
 
 @Injectable()
 export class ResponseTimeMiddleware implements NestMiddleware {

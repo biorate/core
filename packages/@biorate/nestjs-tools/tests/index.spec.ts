@@ -17,6 +17,7 @@ import {
   PostLocalesDTO,
   GetLocalesDTO,
   UnsupportedProtocolError,
+  TracingInterceptor,
   ROLES_KEY,
 } from '../src';
 
@@ -56,6 +57,8 @@ describe('nestjs-tools', () => {
 
   it('UnsupportedProtocolError', () =>
     expect(UnsupportedProtocolError).toMatchSnapshot());
+
+  it('TracingInterceptor', () => expect(TracingInterceptor).toMatchSnapshot());
 
   it('ROLES_KEY', () => expect(ROLES_KEY).toMatchSnapshot());
 });

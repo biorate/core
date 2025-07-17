@@ -26,6 +26,7 @@
     "@biorate/axios": "workspace:*",
     "@biorate/config": "workspace:*",
     "@biorate/inversion": "workspace:*",
+    "@biorate/opentelemetry": "workspace:*",
     "@biorate/prometheus": "workspace:*",
     "@biorate/tools": "workspace:*"
   },

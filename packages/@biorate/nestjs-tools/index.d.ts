@@ -50,6 +50,10 @@ declare module '@biorate/nestjs-tools' {
     public intercept(context: ExecutionContext, next: CallHandler): Observable<any>;
   }
 
+  export class TracingInterceptor implements NestInterceptor {
+    public intercept(context: ExecutionContext, next: CallHandler): Observable<any>;
+  }
+
   export class ProxyPrometheusMiddleware {
     public static create(options?: Options): RequestHandler;
   }

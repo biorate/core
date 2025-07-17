@@ -1,11 +1,12 @@
 // noinspection TypeScriptUnresolvedVariable
 
 import { readFileSync, writeFileSync, statSync, mkdirSync } from 'fs';
-import { path } from '@biorate/tools';
+import { path, time as timeTools } from '@biorate/tools';
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { Axios, AxiosError, AxiosResponse, IAxiosFetchOptions } from '@biorate/axios';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
+import { trace, Span } from '@biorate/opentelemetry';
 import { get, set, pick } from 'lodash';
 
 export * from '@biorate/axios';
@@ -135,15 +136,15 @@ export abstract class AxiosPrometheus extends Axios {
   @counter({
     name: 'http_client_requests_seconds_count',
     help: 'Http client requests count',
-    labelNames: ['method', 'url', 'status'],
+    labelNames: ['method', 'uri', 'status'],
   })
   protected counter: Counter;
 
   @histogram({
     name: 'http_client_requests_seconds',
     help: 'Http client requests seconds bucket',
-    labelNames: ['method', 'url', 'status'],
-    buckets: [5, 10, 20, 50, 100, 300, 500, 1000, 2000, 3000, 4000, 5000, 10000],
+    labelNames: ['method', 'uri', 'status'],
+    buckets: [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
   })
   protected histogram: Histogram;
 
@@ -162,20 +163,42 @@ export abstract class AxiosPrometheus extends Axios {
   protected log(statusCode: number, startTime: [number, number]) {
     const diff = process.hrtime(startTime);
     const time = diff[0] * 1e3 + diff[1] * 1e-6;
+    const msTo = timeTools.msTo;
     this.counter
       .labels({
         method: this.method,
-        url: this.baseURL + this.url,
+        uri: this.baseURL + this.url,
         status: statusCode,
       })
       .inc();
     this.histogram
       .labels({
         method: this.method,
-        url: this.baseURL + this.url,
+        uri: this.baseURL + this.url,
         status: statusCode,
       })
-      .observe(time);
+      .observe(msTo(time, 's'));
+  }
+  /**
+   * @description Stringify data
+   */
+  protected stringify(data: unknown) {
+    return typeof data === 'object' ? JSON.stringify(data) : String(data);
+  }
+
+  protected async before(params?: IAxiosFetchOptions) {
+    await super.before(params);
+    const span = trace.getActiveSpan();
+    if (!span) return;
+    span.setAttribute(
+      'request.url',
+      this.stringify(params?.baseURL ?? '' + params?.url ?? ''),
+    );
+    span.setAttribute('request.body', this.stringify(params?.data));
+    span.setAttribute('request.headers', this.stringify(params?.headers));
+    span.setAttribute('request.method', this.stringify(params?.method));
+    span.setAttribute('request.params', this.stringify(params?.path));
+    span.setAttribute('request.query', this.stringify(params?.params));
   }
 
   protected async after(
@@ -183,7 +206,13 @@ export abstract class AxiosPrometheus extends Axios {
     startTime: [number, number],
     params: IAxiosFetchOptions,
   ) {
+    await super.after(result, startTime, params);
     this.log(result.status, startTime);
+    const span = trace.getActiveSpan();
+    if (!span) return;
+    span.setAttribute('response.headers', this.stringify(result.headers));
+    span.setAttribute('response.statusCode', this.stringify(result.status));
+    span.setAttribute('response.data', this.stringify(result.data));
   }
 
   protected async catch(
@@ -191,6 +220,13 @@ export abstract class AxiosPrometheus extends Axios {
     startTime: [number, number],
     params: IAxiosFetchOptions,
   ) {
-    if ('response' in e) this.log(e!.response!.status, startTime);
+    await super.catch(e, startTime, params);
+    if (!('response' in e)) return;
+    this.log(e!.response!.status, startTime);
+    const span = trace.getActiveSpan();
+    if (!span) return;
+    span.setAttribute('response.headers', this.stringify(e!.response!.headers));
+    span.setAttribute('response.statusCode', this.stringify(e!.response!.status));
+    span.setAttribute('response.data', this.stringify(e!.response!.data));
   }
 }

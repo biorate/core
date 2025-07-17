@@ -29,6 +29,7 @@
     "http-proxy": ">=1.18.1",
     "http-proxy-middleware": "=2.0.6",
     "lodash": ">=4.17.21",
+    "rxjs": ">=7.8.2",
     "ws": ">=8.18.0"
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "@biorate/config": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
+    "@biorate/opentelemetry": "workspace:*",
     "@biorate/prometheus": "workspace:*",
     "@biorate/tools": "workspace:*",
     "http-proxy": "1.18.1",
