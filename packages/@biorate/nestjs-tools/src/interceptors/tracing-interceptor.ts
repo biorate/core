@@ -1,4 +1,4 @@
-import { tap } from 'rxjs';
+import { tap, catchError } from 'rxjs';
 import { trace, Span } from '@biorate/opentelemetry';
 import {
   Injectable,
@@ -34,14 +34,17 @@ export class TracingInterceptor implements NestInterceptor {
     const req = host.getRequest();
     const res = host.getResponse();
     if (this.excluded(req.url)) return next.handle();
+    span.setAttribute('request.url', this.stringify(req.url));
+    span.setAttribute('request.body', this.stringify(req.body));
+    span.setAttribute('request.headers', this.stringify(req.headers));
+    span.setAttribute('request.method', this.stringify(req.method));
+    span.setAttribute('request.params', this.stringify(req.params));
+    span.setAttribute('request.query', this.stringify(req.query));
     return next.handle().pipe(
+      catchError((e: Error) => {
+        throw e;
+      }),
       tap((data) => {
-        span.setAttribute('request.url', this.stringify(req.url));
-        span.setAttribute('request.body', this.stringify(req.body));
-        span.setAttribute('request.headers', this.stringify(req.headers));
-        span.setAttribute('request.method', this.stringify(req.method));
-        span.setAttribute('request.params', this.stringify(req.params));
-        span.setAttribute('request.query', this.stringify(req.query));
         span.setAttribute('response.headers', this.stringify(res.headers));
         span.setAttribute('response.statusCode', this.stringify(res.statusCode));
         span.setAttribute('response.data', this.stringify(data));
