@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.140.0](https://github.com/biorate/core/compare/v1.139.0...v1.140.0) (2025-07-17)
+
+### Bug Fixes
+
+- **opentelemetry:** docker-compose - jaeger + otel-collector local integration ([f3bee4e](https://github.com/biorate/core/commit/f3bee4e6489bfbd098224ce69f5a922005df456f))
+
 # [1.120.0](https://github.com/biorate/core/compare/v1.119.2...v1.120.0) (2025-04-29)
 
 ### Bug Fixes

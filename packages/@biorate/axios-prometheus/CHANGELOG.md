@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.140.0](https://github.com/biorate/core/compare/v1.139.0...v1.140.0) (2025-07-17)
+
+### Features
+
+- excluded in AxiosPrometheus and TracingInterceptor added ([c5f26f3](https://github.com/biorate/core/commit/c5f26f31d5a104b8129da3cbbc00c4e9430f609f))
+- tracing added in axios-prometheus and nestjs-tools ([36e6ff9](https://github.com/biorate/core/commit/36e6ff944966efcc7c8f778b2ea6708ac7272e2a))
+
 # [1.139.0](https://github.com/biorate/core/compare/v1.138.2...v1.139.0) (2025-07-11)
 
 **Note:** Version bump only for package @biorate/axios-prometheus
