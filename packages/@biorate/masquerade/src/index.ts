@@ -3,6 +3,10 @@ import { JsonMask2Configs, maskJSON2 } from 'maskdata';
 class Mask {
   protected config: JsonMask2Configs | undefined;
 
+  public get enabled() {
+    return !!this.config;
+  }
+
   public configure(config: JsonMask2Configs) {
     this.config = config;
   }
