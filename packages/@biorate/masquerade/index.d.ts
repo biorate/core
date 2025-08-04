@@ -1,32 +1,32 @@
 import type { JsonMask2Configs } from 'maskdata';
 
 declare module '@biorate/masquerade' {
-  // Объявление класса внутри модуля
+  // Class declaration inside the module
   class Mask {
     protected config?: JsonMask2Configs;
 
     /**
-     * Проверяет, включена ли маскировка
+     * Checks if data masking is enabled
      */
     readonly enabled: boolean;
 
     /**
-     * Настраивает параметры маскировки
-     * @param config Конфигурация маскировки
+     * Configures masking parameters
+     * @param config Masking configuration
      */
     configure(config: JsonMask2Configs): void;
 
     /**
-     * Применяет маскировку к данным
-     * @param data Объект для маскировки
-     * @returns Маскированный объект
+     * Applies data masking
+     * @param data Object to mask
+     * @returns Masked object
      */
     processJSON<T extends object>(data: T): T;
   }
 
-  // Экспорт экземпляра mask
+  // Export mask instance
   export const mask: Mask;
 
-  // Реэкспорт ВСЕХ экспортов из maskdata
+  // Re-export ALL exports from maskdata
   export * from 'maskdata';
 }
