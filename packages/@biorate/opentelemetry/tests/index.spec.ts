@@ -4,7 +4,7 @@ import { Test } from './__mocks__';
 describe('@biorate/opentelemetry', function () {
   this.timeout(10000);
 
-  it('test', async () => {
+  it('span', async () => {
     const test = new Test();
     test.test1(1, 2);
     test.test2(3, 4);
@@ -12,5 +12,10 @@ describe('@biorate/opentelemetry', function () {
       test.test3(5, 6);
     } catch {}
     await setTimeout(5000);
+  });
+
+  it('masking', async () => {
+    const test = new Test();
+    test.test4('in@mail.com');
   });
 });

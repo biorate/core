@@ -12,7 +12,12 @@ process.env.OTEL_RESOURCE_ATTRIBUTES =
 process.env.OTEL_POD_IP = 'localhost';
 process.env.OTEL_RESOURCE_ATTRIBUTES_POD_NAME = 'app';
 
-const { scope, span } = require('../../src');
+import { mask } from '@biorate/masquerade';
+import { scope, span } from '../../src';
+
+mask.configure({
+  emailFields: ['result.email', 'arguments.*'],
+});
 
 @scope('v2')
 export class Test {
@@ -29,5 +34,10 @@ export class Test {
   @span()
   public test3(a: number, b: number) {
     throw new Error('test error');
+  }
+
+  @span()
+  public test4(email: string) {
+    return { email: 'out@mail.com' };
   }
 }

@@ -20,6 +20,7 @@ import {
   processDetector,
 } from '@opentelemetry/resources';
 import { OTELMetricsExporterError } from './errors';
+import { DataMaskingProcessor } from './data-masking-processor';
 
 export * from '@opentelemetry/api';
 export * from './decorators';
@@ -93,10 +94,13 @@ for (const field in resources)
   if (!otelExcludeDetectors.includes(field))
     resourceDetectors.push(resources[<keyof typeof resources>field]);
 
+const exporter = new OTLPTraceExporter();
+
 const sdk = new NodeSDK({
   autoDetectResources: true,
   instrumentations: [getNodeAutoInstrumentations()],
-  traceExporter: new OTLPTraceExporter(),
+  spanProcessors: [new DataMaskingProcessor(exporter)],
+  traceExporter: exporter,
   metricReader: getMetricReader(),
   resourceDetectors,
 });
