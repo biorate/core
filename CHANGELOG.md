@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.147.0](https://github.com/biorate/core/compare/v1.146.0...v1.147.0) (2025-08-05)
+
+### Features
+
+- **masquerade:** common-mask export ([f2bb1c7](https://github.com/biorate/core/commit/f2bb1c7e0fcd2490f47e537fb37aaf16a20a6d39))
+
 # [1.146.0](https://github.com/biorate/core/compare/v1.145.0...v1.146.0) (2025-08-05)
 
 ### Features
