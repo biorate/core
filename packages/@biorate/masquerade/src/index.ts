@@ -11,7 +11,7 @@ export * from './phone-mask';
 export * from './card-mask';
 /**
  * @description
- * Masquerade provides functionality to redact sensitive info.
+ * Masquerade provides functionality to redact sensitive info
  *
  * @example
  * ```

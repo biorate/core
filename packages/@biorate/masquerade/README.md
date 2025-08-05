@@ -1,6 +1,6 @@
 # Masquerade
 
-Masquerade provides functionality to redact sensitive info.
+Masquerade provides functionality to redact sensitive info
 
 #### Example:
 
