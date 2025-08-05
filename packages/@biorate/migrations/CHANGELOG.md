@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.145.0](https://github.com/biorate/core/compare/v1.144.0...v1.145.0) (2025-08-05)
+
+**Note:** Version bump only for package @biorate/migrations
+
 # [1.144.0](https://github.com/biorate/core/compare/v1.143.0...v1.144.0) (2025-08-05)
 
 **Note:** Version bump only for package @biorate/migrations

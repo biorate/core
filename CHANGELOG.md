@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.145.0](https://github.com/biorate/core/compare/v1.144.0...v1.145.0) (2025-08-05)
+
+### Features
+
+- **masquerade:** enabled flag added ([47f9962](https://github.com/biorate/core/commit/47f9962fb548963f28f68745170abd238d47074a))
+- **masquerade:** processString method added ([64ca483](https://github.com/biorate/core/commit/64ca483ec0fac758d6df86f26cc23fb0c3070e81))
+- **masquerade:** processString method added ([6943f31](https://github.com/biorate/core/commit/6943f31deadfd7a1fe28bad09742af7b8a12ce88))
+
 # [1.144.0](https://github.com/biorate/core/compare/v1.143.0...v1.144.0) (2025-08-05)
 
 ### Features
