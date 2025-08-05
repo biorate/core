@@ -1,37 +1,27 @@
 import type { JsonMask2Configs } from 'maskdata';
+import { IMaskOptions, IMasqueradeConfig, MaskConstructor } from './interfaces';
+import { CommonMask } from './src/common-mask';
 
 declare module '@biorate/masquerade' {
-  // Class declaration inside the module
   export class Masquerade {
-    protected static config: JsonMask2Configs | null;
+    protected static config: IMasqueradeConfig | null;
 
-    /**
-     * Checks if data masking is enabled
-     * @returns True if masking configuration is present
-     */
-    public static get enabled(): boolean;
+    protected static maskers: Map<string, CommonMask>;
 
-    /**
-     * Configures data masking parameters
-     * @param config Masking configuration object
-     */
-    public static configure(config: JsonMask2Configs): void;
+    public static get maskdataEnabled(): boolean;
 
-    /**
-     * Applies data masking to JSON objects
-     * @param data Input data to be masked
-     * @returns Masked data object
-     * @template T Type of input data
-     */
-    public static processJSON<T extends object>(data: T): T;
+    public static use<T extends CommonMask>(Mask: MaskConstructor<T>): Masquerade;
 
-    /** @internal Dependency injected configuration */
+    public static unuse<T extends CommonMask>(Mask: MaskConstructor<T>): Masquerade;
+
+    public static configure(config: IMasqueradeConfig | null): Masquerade;
+
+    public static processJSON<T extends object>(data: T, options?: JsonMask2Configs): T;
+
+    public static processString(data: string, options?: IMaskOptions): string;
+
     protected config: IConfig;
 
-    /** @internal Initializer hook */
     protected initialize(): void;
   }
-
-  // Re-export ALL exports from maskdata
-  export * from 'maskdata';
 }

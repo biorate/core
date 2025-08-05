@@ -1,3 +1,5 @@
+import { CardMask, EmailMask, Masquerade, PhoneMask } from '@biorate/masquerade';
+
 process.env.OTEL_METRICS_EXPORTER = 'console';
 process.env.OTEL_KUBE_NODE_NAME = 'localhost';
 process.env.OTEL_SERVICE_NAME = 'test-app';
@@ -12,12 +14,13 @@ process.env.OTEL_RESOURCE_ATTRIBUTES =
 process.env.OTEL_POD_IP = 'localhost';
 process.env.OTEL_RESOURCE_ATTRIBUTES_POD_NAME = 'app';
 
-import { Masquerade } from '@biorate/masquerade';
 import { scope, span } from '../../src';
 
 Masquerade.configure({
-  emailFields: ['result.email', 'arguments.*'],
+  maskJSON2: { emailFields: ['result.email', 'arguments.*'] },
 });
+
+Masquerade.use(EmailMask).use(PhoneMask).use(CardMask);
 
 @scope('v2')
 export class Test {

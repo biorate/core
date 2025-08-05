@@ -1,7 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@biorate/masquerade process 1`] = `
+exports[`@biorate/masquerade processJSON 1`] = `
 Object {
   "email": "tes*@*******om",
 }
 `;
+
+exports[`@biorate/masquerade processString (card) 1`] = `"Карты: **** **** **** 1111 (Visa), ****-****-****-0004 (MC), ***********0009 (Amex)"`;
+
+exports[`@biorate/masquerade processString (common) 1`] = `
+"Contact: u***@**********m or s******@*********o!
+        Contact us at +* (***) ***-1234, ***-1234, or ******7890. *******1224,
+        Карты: **** **** **** 1111 (Visa), ****-****-****-0004 (MC), ***********0009 (Amex),"
+`;
+
+exports[`@biorate/masquerade processString (email) 1`] = `"Contact: u***@**********m or s******@*********o!"`;
+
+exports[`@biorate/masquerade processString (phone) 1`] = `"Contact us at +* (***) ***-1234, ***-1234, or ******7890. *******6163"`;

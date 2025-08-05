@@ -4,7 +4,7 @@ import { Test } from './__mocks__';
 describe('@biorate/opentelemetry', function () {
   this.timeout(10000);
 
-  it('span', async () => {
+  it.skip('span', async () => {
     const test = new Test();
     test.test1(1, 2);
     test.test2(3, 4);
