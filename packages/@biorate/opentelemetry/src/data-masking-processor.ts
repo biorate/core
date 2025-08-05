@@ -1,9 +1,10 @@
 import { SimpleSpanProcessor, Span } from '@opentelemetry/sdk-trace-base';
-import { mask } from '@biorate/masquerade';
+import { Masquerade } from '@biorate/masquerade';
 
 export class DataMaskingProcessor extends SimpleSpanProcessor {
   public onEnd(span: Span) {
-    const data = mask.processJSON({
+    if (!Masquerade.enabled) return void super.onEnd(span);
+    const data = Masquerade.processJSON({
       ...span.attributes,
       arguments: JSON.parse(<string>span.attributes.arguments),
       result: JSON.parse(<string>span.attributes.result),

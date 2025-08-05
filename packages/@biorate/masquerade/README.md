@@ -5,6 +5,13 @@ Mask data configurator
 #### Example:
 
 ```ts
+import { Masquerade } from '@biorate/masquerade';
+
+Masquerade.configure({ emailFields: ['email'] });
+
+const result = Masquerade.processJSON({ email: 'test@email.com' });
+
+console.log(result); // { "email": "tes*@*******om" }
 ```
 
 ### Learn

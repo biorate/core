@@ -1,3 +1,3 @@
-import { mask } from '../../src';
+import { Masquerade } from '../../src';
 
-mask.configure({ emailFields: ['email'] });
+Masquerade.configure({ emailFields: ['email'] });

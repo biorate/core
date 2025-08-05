@@ -1,22 +1,45 @@
 import { JsonMask2Configs, maskJSON2 } from 'maskdata';
+import { Types, injectable, inject, init } from '@biorate/inversion';
+import { IConfig } from '@biorate/config';
+/**
+ * @description
+ * Mask data configurator
+ *
+ * @example
+ * ```
+ * import { Masquerade } from '@biorate/masquerade';
+ *
+ * Masquerade.configure({ emailFields: ['email'] });
+ *
+ * const result = Masquerade.processJSON({ email: 'test@email.com' });
+ *
+ * console.log(result); // { "email": "tes*@*******om" }
+ * ```
+ */
+@injectable()
+export class Masquerade {
+  protected static config: JsonMask2Configs | null;
 
-class Mask {
-  protected config: JsonMask2Configs | undefined;
-
-  public get enabled() {
+  public static get enabled() {
     return !!this.config;
   }
 
-  public configure(config: JsonMask2Configs) {
+  public static configure(config: JsonMask2Configs) {
     this.config = config;
   }
 
-  public processJSON<T extends object>(data: T) {
-    if (!this.config) return data;
-    return maskJSON2(data, this.config);
+  public static processJSON<T extends object>(data: T) {
+    if (!Masquerade.config) return data;
+    return maskJSON2(data, Masquerade.config);
+  }
+
+  @inject(Types.Config) protected config: IConfig;
+
+  @init() protected initialize() {
+    const config = this.config.get<JsonMask2Configs | null>('Masquerade', null);
+    if (!config) return;
+    Masquerade.configure(config);
   }
 }
 
 export * from 'maskdata';
-
-export const mask = new Mask();

@@ -12,10 +12,10 @@ process.env.OTEL_RESOURCE_ATTRIBUTES =
 process.env.OTEL_POD_IP = 'localhost';
 process.env.OTEL_RESOURCE_ATTRIBUTES_POD_NAME = 'app';
 
-import { mask } from '@biorate/masquerade';
+import { Masquerade } from '@biorate/masquerade';
 import { scope, span } from '../../src';
 
-mask.configure({
+Masquerade.configure({
   emailFields: ['result.email', 'arguments.*'],
 });
 
