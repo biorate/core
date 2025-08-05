@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.146.0](https://github.com/biorate/core/compare/v1.145.0...v1.146.0) (2025-08-05)
+
+### Features
+
+- **masquerade:** doc update ([924b9f4](https://github.com/biorate/core/commit/924b9f49fdac452661fab114fd0d949ea98dd59c))
+
 # [1.145.0](https://github.com/biorate/core/compare/v1.144.0...v1.145.0) (2025-08-05)
 
 ### Features
