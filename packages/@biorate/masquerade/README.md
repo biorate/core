@@ -1,6 +1,6 @@
 # Masquerade
 
-Mask data configurator
+Masquerade provides functionality to redact sensitive info.
 
 #### Example:
 
