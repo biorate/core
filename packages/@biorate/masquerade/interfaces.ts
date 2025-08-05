@@ -14,6 +14,7 @@ export interface IMask {
 
 export interface IMaskOptions {
   maskChar?: string;
+  enabled?: boolean;
 }
 
 export interface IEmailMaskOptions extends IMaskOptions {

@@ -15,7 +15,12 @@ export abstract class CommonMask implements IMask {
     return this.options?.maskChar ?? '*';
   }
 
+  protected get enabled() {
+    return this.options?.enabled ?? true;
+  }
+
   public process(text: string, options?: IMaskOptions) {
+    if (!this.enabled) return text;
     this.options = options;
     return this.parse(text);
   }
