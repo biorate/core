@@ -646,6 +646,9 @@ importers:
       '@biorate/inversion':
         specifier: workspace:*
         version: link:../inversion
+      lodash:
+        specifier: '>=4.17.21'
+        version: 4.17.21
       maskdata:
         specifier: 1.3.3
         version: 1.3.3
