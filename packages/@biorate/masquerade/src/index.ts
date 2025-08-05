@@ -5,6 +5,7 @@ import { IConfig } from '@biorate/config';
 import { CommonMask } from './common-mask';
 import { MaskConstructor, IMaskOptions, IMasqueradeConfig } from '../interfaces';
 
+export * from './common-mask';
 export * from './email-mask';
 export * from './phone-mask';
 export * from './card-mask';
