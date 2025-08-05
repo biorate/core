@@ -16,7 +16,7 @@ export * from './card-mask';
  * ```
  * import { Masquerade } from '@biorate/masquerade';
  *
- * Masquerade.configure({ emailFields: ['email'] });
+ * Masquerade.configure({ maskJSON2: { emailFields: ['email'] } });
  *
  * const result = Masquerade.processJSON({ email: 'test@email.com' });
  *
