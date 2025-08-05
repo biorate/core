@@ -70,7 +70,10 @@ export class Masquerade {
   public static processString(text: string, options?: IMaskOptions) {
     for (const [, mask] of Masquerade.maskers) {
       const opts =
-        options ?? Masquerade.config?.[<keyof IMasqueradeConfig>mask.constructor.name];
+        options ??
+        <IMaskOptions>(
+          (<unknown>Masquerade.config?.[<keyof IMasqueradeConfig>mask.constructor.name])
+        );
       text = mask.process(text, opts);
     }
     return text;
