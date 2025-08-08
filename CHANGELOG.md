@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.148.2](https://github.com/biorate/core/compare/v1.148.1...v1.148.2) (2025-08-08)
+
+### Bug Fixes
+
+- **masquerade:** test ([cee88d9](https://github.com/biorate/core/commit/cee88d9057d737b88930770a377c46625575f9cb))
+
 ## [1.148.1](https://github.com/biorate/core/compare/v1.148.0...v1.148.1) (2025-08-08)
 
 ### Bug Fixes
