@@ -4,6 +4,8 @@ import type { ICardMaskOptions } from '../interfaces';
 export class CardMask extends CommonMask {
   protected options?: ICardMaskOptions;
 
+  protected regexp = /\b(?:\d[ \t\-\.]*?){15,18}\d\b/g;
+
   protected get firstDigits() {
     return this.options?.firstDigits ?? 6;
   }
@@ -13,7 +15,7 @@ export class CardMask extends CommonMask {
   }
 
   protected parse(text: string) {
-    return text.replace(/\b(?:\d[ \t\-\.]*?){15,18}\d\b/g, (card) => {
+    return text.replace(this.regexp, (card) => {
       const digits = card.replace(/\D/g, '');
       const len = digits.length;
       // Check the length (standard cards: 13-19 digits)

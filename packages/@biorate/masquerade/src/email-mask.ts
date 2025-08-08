@@ -4,6 +4,8 @@ import type { IEmailMaskOptions } from '../interfaces';
 export class EmailMask extends CommonMask {
   protected options?: IEmailMaskOptions;
 
+  protected regexp = /\b[\w.%+-]+@[\w.-]+\.[a-z]{2,}\b/gi;
+
   protected get unmaskedEndChars() {
     return this.options?.unmaskedEndChars ?? 1;
   }
@@ -13,7 +15,7 @@ export class EmailMask extends CommonMask {
   }
 
   protected parse(text: string) {
-    return text.replace(/\b[\w.%+-]+@[\w.-]+\.[a-z]{2,}\b/gi, (email) => {
+    return text.replace(this.regexp, (email) => {
       const [local, domain] = email.split('@');
       if (local.length <= 1) return email;
       return (

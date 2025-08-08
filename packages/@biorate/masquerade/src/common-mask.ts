@@ -7,6 +7,8 @@ export abstract class CommonMask implements IMask {
 
   protected abstract options?: IMaskOptions | null;
 
+  protected abstract regexp: RegExp;
+
   protected get name() {
     return this.constructor.name;
   }

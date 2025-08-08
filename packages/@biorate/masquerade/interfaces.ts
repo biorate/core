@@ -24,6 +24,7 @@ export interface IEmailMaskOptions extends IMaskOptions {
 
 export interface IPhoneMaskOptions extends IMaskOptions {
   minDigits?: number;
+  preserveCount?: number;
 }
 
 export interface ICardMaskOptions extends IMaskOptions {
