@@ -15,8 +15,4 @@ describe('@biorate/masquerade', function () {
   it('processString', () => {
     expect(Masquerade.processString(text)).toMatchSnapshot();
   });
-
-  it.only('processString', () => {
-    console.log(Masquerade.processString(text));
-  });
 });

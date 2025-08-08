@@ -21,5 +21,4 @@ container.bind<Masquerade>(Types.Masquerade).to(Masquerade).inSingletonScope();
 
 Masquerade.configure({ maskJSON2: { emailFields: ['email'] } });
 
-// Masquerade.use(CardMask).use(PhoneMask).use(EmailMask);
-Masquerade.use(PhoneMask);
+Masquerade.use(CardMask).use(PhoneMask).use(EmailMask);
