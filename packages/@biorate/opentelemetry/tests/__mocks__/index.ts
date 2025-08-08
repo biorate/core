@@ -15,6 +15,7 @@ process.env.OTEL_POD_IP = 'localhost';
 process.env.OTEL_RESOURCE_ATTRIBUTES_POD_NAME = 'app';
 
 import { scope, span } from '../../src';
+import { setTimeout } from 'timers/promises';
 
 Masquerade.configure({
   maskJSON2: { emailFields: ['result.email', 'arguments.*'] },
@@ -42,5 +43,11 @@ export class Test {
   @span()
   public test4(email: string) {
     return { email: 'out@mail.com' };
+  }
+
+  @span()
+  public async test5(a: number) {
+    await setTimeout(1000);
+    return 1;
   }
 }

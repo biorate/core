@@ -14,7 +14,6 @@ export const span =
   (name?: string) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
-    const metadataKeys = Reflect.getOwnMetadataKeys(method);
     descriptor.value = function (...args: any[]) {
       const tracer: Tracer = Reflect.getOwnMetadata(key, target.constructor);
       if (!tracer) throw new OTELUndefinedTracerError(target.constructor.name);
@@ -37,22 +36,15 @@ export const span =
               })
               .finally(() => span.end());
           else span.setAttribute('result', JSON.stringify(result));
+          span.end();
           return result;
         } catch (e) {
           span.recordException(<Error>e);
           span.setStatus({ code: SpanStatusCode.ERROR });
-          throw e;
-        } finally {
           span.end();
+          throw e;
         }
       });
-      for (const key of metadataKeys) {
-        Reflect.defineMetadata(
-          key,
-          Reflect.getOwnMetadata(key, method),
-          descriptor.value,
-        );
-      }
     };
     copyMetadata(method, descriptor.value);
   };

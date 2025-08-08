@@ -11,7 +11,12 @@ describe('@biorate/opentelemetry', function () {
     try {
       test.test3(5, 6);
     } catch {}
-    await setTimeout(5000);
+    await setTimeout(1000);
+  });
+
+  it('async span', async () => {
+    const test = new Test();
+    await test.test5(1);
   });
 
   it('masking', async () => {
