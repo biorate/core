@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.149.0](https://github.com/biorate/core/compare/v1.148.2...v1.149.0) (2025-08-08)
+
+### Features
+
+- **axios:** default timeout ([637ef93](https://github.com/biorate/core/commit/637ef93113554350fc4e40aeb72d21330c4c1d5d))
+
 ## [1.148.2](https://github.com/biorate/core/compare/v1.148.1...v1.148.2) (2025-08-08)
 
 ### Bug Fixes
