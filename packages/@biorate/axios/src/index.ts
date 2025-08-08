@@ -129,6 +129,10 @@ export class Axios extends Singleton {
    */
   #client: AxiosInstance;
   /**
+   * @description Default timeout limit
+   */
+  public timeout = 15000;
+  /**
    * @description Fetch method
    */
   protected async fetch<T, D>(
