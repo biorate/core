@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.148.1](https://github.com/biorate/core/compare/v1.148.0...v1.148.1) (2025-08-08)
+
+### Bug Fixes
+
+- **masquerade:** regexps updated ([62a6541](https://github.com/biorate/core/commit/62a65419db304e0803e0c20530a8c88f906f5baf))
+- **masquerade:** regexps updated ([017e26e](https://github.com/biorate/core/commit/017e26ee841f91db4caaed9bf1cbca19696803ff))
+
 # [1.148.0](https://github.com/biorate/core/compare/v1.147.0...v1.148.0) (2025-08-05)
 
 ### Features
