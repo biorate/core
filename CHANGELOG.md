@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.150.0](https://github.com/biorate/core/compare/v1.149.0...v1.150.0) (2025-08-08)
+
+### Features
+
+- **opentelemetry:** metadata copy ([4754a8c](https://github.com/biorate/core/commit/4754a8ca80424aa4e793463529025c509c5abc09))
+
 # [1.149.0](https://github.com/biorate/core/compare/v1.148.2...v1.149.0) (2025-08-08)
 
 ### Features
