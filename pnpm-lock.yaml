@@ -888,6 +888,9 @@ importers:
       http-proxy-middleware:
         specifier: 2.0.6
         version: 2.0.6(@types/express@4.17.21)
+      json-stringify-safe:
+        specifier: 5.0.1
+        version: 5.0.1
       lodash:
         specifier: '>=4.17.21'
         version: 4.17.21
@@ -900,6 +903,10 @@ importers:
       ws:
         specifier: '>=8.18.0'
         version: 8.18.0
+    devDependencies:
+      '@types/json-stringify-safe':
+        specifier: 5.0.3
+        version: 5.0.3
 
   packages/@biorate/opensearch:
     dependencies:
@@ -3668,6 +3675,12 @@ packages:
     resolution:
       {
         integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==,
+      }
+
+  '@types/json-stringify-safe@5.0.3':
+    resolution:
+      {
+        integrity: sha512-oNOjRxLfPeYbBSQ60maucaFNqbslVOPU4WWs5t/sHvAh6tyo/CThXSG+E24tEzkgh/fzvxyDrYdOJufgeNy1sQ==,
       }
 
   '@types/json5@0.0.29':
@@ -16417,6 +16430,8 @@ snapshots:
       '@types/istanbul-lib-report': 3.0.3
 
   '@types/json-schema@7.0.15': {}
+
+  '@types/json-stringify-safe@5.0.3': {}
 
   '@types/json5@0.0.29': {}
 

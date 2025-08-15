@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.151.1](https://github.com/biorate/core/compare/v1.151.0...v1.151.1) (2025-08-15)
+
+### Bug Fixes
+
+- **nestjs-tools:** json-stringify-safe added ([586d120](https://github.com/biorate/core/commit/586d12064f110d76d0987cdcf2e49c0defee8463))
+
 # [1.151.0](https://github.com/biorate/core/compare/v1.150.0...v1.151.0) (2025-08-08)
 
 ### Features
