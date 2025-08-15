@@ -1,4 +1,5 @@
 import { tap, catchError } from 'rxjs';
+import * as stringify from 'json-stringify-safe';
 import { trace, Span } from '@biorate/opentelemetry';
 import {
   Injectable,
@@ -14,7 +15,7 @@ export class TracingInterceptor implements NestInterceptor {
   @inject(Types.Config) protected readonly config: IConfig;
 
   protected stringify(data: unknown) {
-    return typeof data === 'object' ? JSON.stringify(data) : String(data);
+    return typeof data === 'object' ? stringify(data) : String(data);
   }
 
   protected excluded(url: string) {

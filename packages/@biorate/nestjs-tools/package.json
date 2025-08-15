@@ -42,7 +42,11 @@
     "@biorate/tools": "workspace:*",
     "http-proxy": "1.18.1",
     "http-proxy-middleware": "2.0.6",
+    "json-stringify-safe": "5.0.1",
     "on-headers": "1.0.2"
   },
-  "gitHead": "844476bb73750f0219545e7d95d259105db46e71"
+  "gitHead": "844476bb73750f0219545e7d95d259105db46e71",
+  "devDependencies": {
+    "@types/json-stringify-safe": "5.0.3"
+  }
 }
