@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.152.0](https://github.com/biorate/core/compare/v1.151.1...v1.152.0) (2025-09-01)
+
+### Features
+
+- **opentelemetry:** JSON.stringify to json-stringify-safe ([7a7254c](https://github.com/biorate/core/commit/7a7254cf30093d94505ecc389b91cd1154e17068))
+
 ## [1.151.1](https://github.com/biorate/core/compare/v1.151.0...v1.151.1) (2025-08-15)
 
 ### Bug Fixes

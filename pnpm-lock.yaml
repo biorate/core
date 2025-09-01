@@ -974,9 +974,16 @@ importers:
       '@opentelemetry/sdk-trace-base':
         specifier: 2.0.1
         version: 2.0.1(@opentelemetry/api@1.9.0)
+      json-stringify-safe:
+        specifier: 5.0.1
+        version: 5.0.1
       reflect-metadata:
         specifier: '>=0.1.13'
         version: 0.1.13
+    devDependencies:
+      '@types/json-stringify-safe':
+        specifier: 5.0.3
+        version: 5.0.3
 
   packages/@biorate/pg:
     dependencies:
