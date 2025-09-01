@@ -38,6 +38,10 @@
     "@opentelemetry/resources": "2.0.0",
     "@opentelemetry/sdk-metrics": "2.0.0",
     "@opentelemetry/sdk-node": "0.200.0",
-    "@opentelemetry/sdk-trace-base": "2.0.1"
+    "@opentelemetry/sdk-trace-base": "2.0.1",
+    "json-stringify-safe": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/json-stringify-safe": "5.0.3"
   }
 }

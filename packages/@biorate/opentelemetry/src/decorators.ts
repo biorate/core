@@ -1,3 +1,4 @@
+import * as stringify from 'json-stringify-safe';
 import { trace, SpanStatusCode, Tracer } from '@opentelemetry/api';
 import { OTELUndefinedTracerError } from './errors';
 import { copyMetadata } from './utils';
@@ -21,12 +22,12 @@ export const span =
         try {
           span.setAttribute('class', target.constructor.name);
           span.setAttribute('method', propertyKey);
-          span.setAttribute('arguments', JSON.stringify(args));
+          span.setAttribute('arguments', stringify(args));
           const result = method.apply(this, args);
           if (result instanceof Promise)
             return result
               .then((result: unknown) => {
-                span.setAttribute('result', JSON.stringify(result));
+                span.setAttribute('result', stringify(result));
                 return result;
               })
               .catch((e: unknown) => {
@@ -35,7 +36,7 @@ export const span =
                 throw e;
               })
               .finally(() => span.end());
-          else span.setAttribute('result', JSON.stringify(result));
+          else span.setAttribute('result', stringify(result));
           span.end();
           return result;
         } catch (e) {
