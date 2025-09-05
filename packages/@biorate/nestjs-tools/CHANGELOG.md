@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.152.1](https://github.com/biorate/core/compare/v1.152.0...v1.152.1) (2025-09-05)
+
+### Bug Fixes
+
+- axios-prometheus, nsetjs-tools - hystogram metrics bucket config ([976c666](https://github.com/biorate/core/commit/976c666a56d7fca2ed93f9978f473d83d3251282))
+
 # [1.152.0](https://github.com/biorate/core/compare/v1.151.1...v1.152.0) (2025-09-01)
 
 **Note:** Version bump only for package @biorate/nestjs-tools
