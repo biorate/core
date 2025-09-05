@@ -5,7 +5,11 @@ export type IIORedisConnection = Redis;
 
 export interface IIORedisConfig extends IConnectorConfig {
   host: string;
-  options: RedisOptions;
+  options: RedisOptions & {
+    reconnectTimes?: number;
+    reconnectTimeoutDelta?: number;
+    reconnectTimeoutLimit?: number;
+  };
 }
 
 export type IIORedisConnector = IConnector<IIORedisConfig, IIORedisConnection>;
