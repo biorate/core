@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.153.0](https://github.com/biorate/core/compare/v1.152.1...v1.153.0) (2025-09-05)
+
+### Features
+
+- **ioredis:** default retryStrategy ([66b7acc](https://github.com/biorate/core/commit/66b7acc7c19ac55c5f0adaf8657ec844717d36e4))
+
 # [1.120.0](https://github.com/biorate/core/compare/v1.119.2...v1.120.0) (2025-04-29)
 
 **Note:** Version bump only for package @biorate/ioredis
