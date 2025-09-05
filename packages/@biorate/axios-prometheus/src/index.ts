@@ -5,12 +5,11 @@ import { path, time as timeTools } from '@biorate/tools';
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { Axios, AxiosError, AxiosResponse, IAxiosFetchOptions } from '@biorate/axios';
-import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
+import { counter, Counter, Histogram, Prometheus } from '@biorate/prometheus';
 import { trace, Span } from '@biorate/opentelemetry';
 import { get, set, pick } from 'lodash';
 
 export * from '@biorate/axios';
-
 /**
  * @description
  * Axios-prometheus HTTP interface
@@ -129,6 +128,20 @@ export abstract class AxiosPrometheus extends Axios {
     }
   }
 
+  public constructor() {
+    super();
+    this.histogram = new Histogram({
+      name: 'http_client_requests_seconds',
+      help: 'Http client requests seconds bucket',
+      labelNames: ['method', 'uri', 'status'],
+      buckets: this.config.get<number[]>(
+        'AxiosPrometheus.histogram.buckets',
+        [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
+      ),
+      registers: [Prometheus.registry],
+    });
+  }
+
   protected get config() {
     return container.get<IConfig>(Types.Config);
   }
@@ -140,16 +153,12 @@ export abstract class AxiosPrometheus extends Axios {
   })
   protected counter: Counter;
 
-  @histogram({
-    name: 'http_client_requests_seconds',
-    help: 'Http client requests seconds bucket',
-    labelNames: ['method', 'uri', 'status'],
-    buckets: [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
-  })
   protected histogram: Histogram;
 
   public abstract baseURL: string;
+
   public abstract url: string;
+
   public abstract method: string;
   /**
    * @description Get start time method

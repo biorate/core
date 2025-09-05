@@ -3,7 +3,7 @@ import * as onHeaders from 'on-headers';
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { histogram, Histogram } from '@biorate/prometheus';
+import { Prometheus, Histogram } from '@biorate/prometheus';
 import { Request, Response, NextFunction } from 'express';
 import { time } from '@biorate/tools';
 import { RoutesInterceptor } from '../interceptors';
@@ -18,12 +18,6 @@ export class ResponseTimeMiddleware implements NestMiddleware {
 
   private readonly digits: number;
 
-  @histogram({
-    name: 'http_server_requests_seconds',
-    help: 'Http server requests seconds bucket',
-    labelNames: ['method', 'uri', 'status'],
-    buckets: [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
-  })
   private histogram: Histogram;
 
   public constructor() {
@@ -39,6 +33,16 @@ export class ResponseTimeMiddleware implements NestMiddleware {
       'app.middleware.ResponseTimeMiddleware.digits',
       3,
     );
+    this.histogram = new Histogram({
+      name: 'http_server_requests_seconds',
+      help: 'Http server requests seconds bucket',
+      labelNames: ['method', 'uri', 'status'],
+      buckets: this.config.get<number[]>(
+        'ResponseTimeMiddleware.histogram.buckets',
+        [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
+      ),
+      registers: [Prometheus.registry],
+    });
   }
 
   public use(req: Request, res: Response, next: NextFunction) {

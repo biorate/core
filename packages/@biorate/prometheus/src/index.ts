@@ -1,6 +1,5 @@
 import { injectable, init, inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { IPrometheus, IdefaultSettings } from './interfaces';
 import {
   collectDefaultMetrics,
   Registry,
@@ -14,6 +13,9 @@ import {
   Summary,
   SummaryConfiguration,
 } from 'prom-client';
+import { IPrometheus, IdefaultSettings } from './interfaces';
+
+export { Counter, Summary, Gauge, Histogram };
 
 export * from './interfaces';
 

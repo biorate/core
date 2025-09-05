@@ -2,6 +2,8 @@ import { container, Types } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { AxiosPrometheus } from '../../src';
 
+export { Prometheus } from '@biorate/prometheus';
+
 export class Google extends AxiosPrometheus {
   public static logResult: { statusCode: number; startTime: [number, number] };
   public baseURL = this.config.get<string>('baseURL');

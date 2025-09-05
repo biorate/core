@@ -5,11 +5,15 @@ import { Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { Options, RequestHandler } from 'http-proxy-middleware/dist/types';
 import { Injectable } from '@nestjs/common';
-import { counter, histogram, Counter, Histogram } from '@biorate/prometheus';
+import { counter, Counter, Histogram, Prometheus } from '@biorate/prometheus';
 import { time } from '@biorate/tools';
+import { inject, Types } from '@biorate/inversion';
+import { IConfig } from '@biorate/config';
 
 @Injectable()
 export class ProxyPrometheusMiddleware {
+  @inject(Types.Config) private config: IConfig;
+
   @counter({
     name: 'http_proxy_server_requests_seconds_count',
     help: 'Http proxy server requests count',
@@ -17,12 +21,6 @@ export class ProxyPrometheusMiddleware {
   })
   private counter: Counter;
 
-  @histogram({
-    name: 'http_proxy_server_requests_seconds',
-    help: 'Http proxy server requests seconds bucket',
-    labelNames: ['method', 'uri', 'status'],
-    buckets: [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
-  })
   private histogram: Histogram;
 
   private handler: RequestHandler;
@@ -35,6 +33,16 @@ export class ProxyPrometheusMiddleware {
 
   private constructor(options: Options = {}) {
     const { onProxyReq, onProxyRes } = pick(options, 'onProxyReq', 'onProxyRes');
+    this.histogram = new Histogram({
+      name: 'http_proxy_server_requests_seconds',
+      help: 'Http proxy server requests seconds bucket',
+      labelNames: ['method', 'uri', 'status'],
+      buckets: this.config.get<number[]>(
+        'ProxyPrometheusMiddleware.histogram.buckets',
+        [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
+      ),
+      registers: [Prometheus.registry],
+    });
     this.handler = createProxyMiddleware({
       ...omit(options, 'onProxyReq', 'onProxyRes'),
       onProxyReq: (

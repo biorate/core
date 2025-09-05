@@ -9,11 +9,12 @@ import {
   Summary,
   SummaryConfiguration,
 } from 'prom-client';
-import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { IPrometheus } from './src/interfaces';
+import { IPrometheus } from './src';
 
 declare module '@biorate/prometheus' {
+  export { Counter, Gauge, Summary, Histogram } from 'prom-client';
+
   export class Prometheus implements IPrometheus {
     public static readonly registry: Registry;
     protected static readonly counters: Map<string, Counter<string>>;
