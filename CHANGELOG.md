@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.155.0](https://github.com/biorate/core/compare/v1.154.0...v1.155.0) (2025-09-09)
+
+### Features
+
+- **opentelemetry:** nestjs fix ([81059bb](https://github.com/biorate/core/commit/81059bb265d0e712fa598f1721cf13fdab056e3e))
+
 # [1.154.0](https://github.com/biorate/core/compare/v1.153.0...v1.154.0) (2025-09-09)
 
 ### Features
