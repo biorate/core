@@ -128,18 +128,21 @@ export abstract class AxiosPrometheus extends Axios {
     }
   }
 
-  public constructor() {
-    super();
-    this.histogram = new Histogram({
-      name: 'http_client_requests_seconds',
-      help: 'Http client requests seconds bucket',
-      labelNames: ['method', 'uri', 'status'],
-      buckets: this.config.get<number[]>(
-        'AxiosPrometheus.histogram.buckets',
-        [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
-      ),
-      registers: [Prometheus.registry],
-    });
+  static #histogram: Histogram;
+
+  protected get histogram() {
+    if (!AxiosPrometheus.#histogram)
+      AxiosPrometheus.#histogram = new Histogram({
+        name: 'http_client_requests_seconds',
+        help: 'Http client requests seconds bucket',
+        labelNames: ['method', 'uri', 'status'],
+        buckets: this.config.get<number[]>(
+          'AxiosPrometheus.histogram.buckets',
+          [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
+        ),
+        registers: [Prometheus.registry],
+      });
+    return AxiosPrometheus.#histogram;
   }
 
   protected get config() {
@@ -152,8 +155,6 @@ export abstract class AxiosPrometheus extends Axios {
     labelNames: ['method', 'uri', 'status'],
   })
   protected counter: Counter;
-
-  protected histogram: Histogram;
 
   public abstract baseURL: string;
 
