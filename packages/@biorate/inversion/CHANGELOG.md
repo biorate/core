@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.156.2](https://github.com/biorate/core/compare/v1.156.1...v1.156.2) (2025-09-18)
+
+### Bug Fixes
+
+- **nestjs-tools:** prom metrix fix ([0e3f0f1](https://github.com/biorate/core/commit/0e3f0f1e6b73704d2360063cd470c2cc09de30a8))
+
 # [1.156.0](https://github.com/biorate/core/compare/v1.155.0...v1.156.0) (2025-09-18)
 
 **Note:** Version bump only for package @biorate/inversion

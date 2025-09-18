@@ -1,6 +1,6 @@
 {
   "name": "@biorate/masquerade",
-  "version": "1.156.1",
+  "version": "1.156.2",
   "description": "Masquerade provides functionality to redact sensitive info",
   "main": "dist",
   "scripts": {
