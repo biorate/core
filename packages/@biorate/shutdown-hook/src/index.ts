@@ -83,6 +83,9 @@ export class ShutdownHook {
   #log = (e: Error, code: number) => {
     this.#code = code;
     console.error(e);
+    this.#onShutdown(
+      code === 1 ? Reasons.UNCAUGHT_EXCEPTION : Reasons.UNHANDLED_REJECTION,
+    );
   };
   /**
    * @description Before exit handler
