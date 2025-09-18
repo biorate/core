@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.156.0](https://github.com/biorate/core/compare/v1.155.0...v1.156.0) (2025-09-18)
+
+### Features
+
+- **shutdown-hook :** shutdown on uncaughtException and unhandledRejection ([5d9ad7f](https://github.com/biorate/core/commit/5d9ad7f3afd386c1175172bda90b3d55372b019a))
+
 # [1.155.0](https://github.com/biorate/core/compare/v1.154.0...v1.155.0) (2025-09-09)
 
 ### Features
