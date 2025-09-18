@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.156.1](https://github.com/biorate/core/compare/v1.156.0...v1.156.1) (2025-09-18)
+
+### Bug Fixes
+
+- **masquerade:** @biorate/tools deps added ([44f6044](https://github.com/biorate/core/commit/44f6044c07424a4b3c65cae348be75cc90a34d79))
+
 # [1.156.0](https://github.com/biorate/core/compare/v1.155.0...v1.156.0) (2025-09-18)
 
 ### Features

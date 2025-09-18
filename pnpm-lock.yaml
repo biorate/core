@@ -646,6 +646,9 @@ importers:
       '@biorate/inversion':
         specifier: workspace:*
         version: link:../inversion
+      '@biorate/tools':
+        specifier: workspace:*
+        version: link:../tools
       lodash:
         specifier: '>=4.17.21'
         version: 4.17.21
