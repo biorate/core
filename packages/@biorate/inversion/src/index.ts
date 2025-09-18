@@ -1,10 +1,10 @@
 import 'reflect-metadata';
-import { injectable } from './inversify';
 import { lifecycled } from '@biorate/lifecycled';
+import { injectable } from './inversify';
 
+export { init, kill, on } from '@biorate/lifecycled';
 export { injectable, inject, container } from './inversify';
 export { Types } from './labels';
-export { init, kill, on } from '@biorate/lifecycled';
 
 /**
  * @example

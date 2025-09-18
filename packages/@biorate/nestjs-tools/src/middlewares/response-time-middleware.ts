@@ -18,7 +18,7 @@ export class ResponseTimeMiddleware implements NestMiddleware {
 
   private readonly digits: number;
 
-  private histogram: Histogram;
+  private static histogram: Histogram;
 
   public constructor() {
     this.suffix = this.config.get<boolean>(
@@ -33,16 +33,17 @@ export class ResponseTimeMiddleware implements NestMiddleware {
       'app.middleware.ResponseTimeMiddleware.digits',
       3,
     );
-    this.histogram = new Histogram({
-      name: 'http_server_requests_seconds',
-      help: 'Http server requests seconds bucket',
-      labelNames: ['method', 'uri', 'status'],
-      buckets: this.config.get<number[]>(
-        'ResponseTimeMiddleware.histogram.buckets',
-        [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
-      ),
-      registers: [Prometheus.registry],
-    });
+    if (!ResponseTimeMiddleware.histogram)
+      ResponseTimeMiddleware.histogram = new Histogram({
+        name: 'http_server_requests_seconds',
+        help: 'Http server requests seconds bucket',
+        labelNames: ['method', 'uri', 'status'],
+        buckets: this.config.get<number[]>(
+          'ResponseTimeMiddleware.histogram.buckets',
+          [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
+        ),
+        registers: [Prometheus.registry],
+      });
   }
 
   public use(req: Request, res: Response, next: NextFunction) {
@@ -51,7 +52,7 @@ export class ResponseTimeMiddleware implements NestMiddleware {
     onHeaders(res, () => {
       const time = diff();
       const route = RoutesInterceptor.map.get(req);
-      this.histogram
+      ResponseTimeMiddleware.histogram
         .labels({
           method: req.method,
           uri:

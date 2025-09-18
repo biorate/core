@@ -21,11 +21,11 @@ export class ProxyPrometheusMiddleware {
   })
   private counter: Counter;
 
-  private histogram: Histogram;
-
   private handler: RequestHandler;
 
   private time = new WeakMap<Request, { time: () => number }>();
+
+  private static histogram: Histogram;
 
   public static create(options?: Options) {
     return new this(options).handler;
@@ -33,16 +33,17 @@ export class ProxyPrometheusMiddleware {
 
   private constructor(options: Options = {}) {
     const { onProxyReq, onProxyRes } = pick(options, 'onProxyReq', 'onProxyRes');
-    this.histogram = new Histogram({
-      name: 'http_proxy_server_requests_seconds',
-      help: 'Http proxy server requests seconds bucket',
-      labelNames: ['method', 'uri', 'status'],
-      buckets: this.config.get<number[]>(
-        'ProxyPrometheusMiddleware.histogram.buckets',
-        [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
-      ),
-      registers: [Prometheus.registry],
-    });
+    if (!ProxyPrometheusMiddleware.histogram)
+      ProxyPrometheusMiddleware.histogram = new Histogram({
+        name: 'http_proxy_server_requests_seconds',
+        help: 'Http proxy server requests seconds bucket',
+        labelNames: ['method', 'uri', 'status'],
+        buckets: this.config.get<number[]>(
+          'ProxyPrometheusMiddleware.histogram.buckets',
+          [0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 2, 3, 5, 10],
+        ),
+        registers: [Prometheus.registry],
+      });
     this.handler = createProxyMiddleware({
       ...omit(options, 'onProxyReq', 'onProxyRes'),
       onProxyReq: (
@@ -63,7 +64,7 @@ export class ProxyPrometheusMiddleware {
             status: res.statusCode,
           })
           .inc();
-        this.histogram
+        ProxyPrometheusMiddleware.histogram
           .labels({
             method: req.method,
             uri: req.baseUrl,
