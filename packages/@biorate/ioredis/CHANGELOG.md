@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.157.0](https://github.com/biorate/core/compare/v1.156.2...v1.157.0) (2025-09-23)
+
+### Features
+
+- **ioredis:** unlimit reconnection ([bcaa34c](https://github.com/biorate/core/commit/bcaa34cdcd5f587e149d7217645d9059a41add61))
+
 ## [1.156.2](https://github.com/biorate/core/compare/v1.156.1...v1.156.2) (2025-09-18)
 
 **Note:** Version bump only for package @biorate/ioredis
