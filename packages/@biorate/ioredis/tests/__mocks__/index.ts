@@ -21,6 +21,9 @@ container.get<IConfig>(Types.Config).merge({
       options: {
         host: 'localhost',
         port: 6379,
+        reconnectTimes: -1,
+        reconnectTimeoutDelta: 1000,
+        reconnectTimeoutLimit: 1000,
       },
     },
   ],

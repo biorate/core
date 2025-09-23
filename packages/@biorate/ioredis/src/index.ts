@@ -73,7 +73,7 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
     try {
       connection = new Redis({
         retryStrategy: (times) => {
-          if (times > reconnectTimes) return null;
+          if (times > reconnectTimes && reconnectTimes !== -1) return null;
           return Math.min(times * reconnectTimeoutDelta, reconnectTimeoutLimit);
         },
         ...config.options,
