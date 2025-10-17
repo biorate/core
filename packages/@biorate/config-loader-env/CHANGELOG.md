@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.158.0](https://github.com/biorate/core/compare/v1.157.0...v1.158.0) (2025-10-17)
+
+### Features
+
+- **config-loader-env:** dotenvx integration added ([f7bd38e](https://github.com/biorate/core/commit/f7bd38e3dace71772b39c2cd67e8c4622969e9bc))
+
 ## [1.156.2](https://github.com/biorate/core/compare/v1.156.1...v1.156.2) (2025-09-18)
 
 **Note:** Version bump only for package @biorate/config-loader-env
