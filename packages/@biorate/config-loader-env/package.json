@@ -24,7 +24,8 @@
     "@biorate/config": "workspace:*",
     "@biorate/config-loader": "workspace:*",
     "@biorate/errors": "workspace:*",
-    "@biorate/inversion": "workspace:*"
+    "@biorate/inversion": "workspace:*",
+    "@dotenvx/dotenvx": "^1.51.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

@@ -2,8 +2,6 @@ import { use } from 'chai';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-// import { IConfigLoader } from '../../src';
-// import { ConfigLoader } from './config-loader';
 import { ConfigLoaderEnv } from '../../src';
 
 use(jestSnapshotPlugin());
