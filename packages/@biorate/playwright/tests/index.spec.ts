@@ -25,7 +25,7 @@ import { TestArgs } from '../interfaces';
 @suite('Test123')
 class Test {
   protected static async before() {
-    console.log('beforeAll');
+    // console.log('beforeAll');
   }
 
   protected static async after() {
