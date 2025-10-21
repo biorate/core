@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.162.0](https://github.com/biorate/core/compare/v1.161.0...v1.162.0) (2025-10-21)
+
+### Features
+
+- **playwright:** deps version update ([7aa73c6](https://github.com/biorate/core/commit/7aa73c66e1f6abaad918773585e630aed1f5b9db))
+
 # [1.161.0](https://github.com/biorate/core/compare/v1.160.0...v1.161.0) (2025-10-21)
 
 ### Features
