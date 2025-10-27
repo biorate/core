@@ -228,6 +228,7 @@ export abstract class AxiosPrometheus extends Axios {
     span!.setAttribute('outgoing.request.method', this.stringify(params?.method));
     span!.setAttribute('outgoing.request.params', this.stringify(params?.path));
     span!.setAttribute('outgoing.request.query', this.stringify(params?.params));
+    span!.setAttribute('SpanKind', 'CLIENT');
   }
 
   protected async after(

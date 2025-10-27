@@ -12,7 +12,7 @@ export const scope = (version?: string, name?: string) => (Class: any) => {
 };
 
 export const span =
-  (name?: string) =>
+  ({ name, spanKind }: { name?: string; spanKind?: string }) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const obj = {
@@ -24,6 +24,7 @@ export const span =
             span.setAttribute('class', target.constructor.name);
             span.setAttribute('method', propertyKey);
             span.setAttribute('arguments', stringify(args));
+            span.setAttribute('SpanKind', spanKind ?? 'SERVER');
             const result = method.apply(this, args);
             if (result instanceof Promise)
               return result
