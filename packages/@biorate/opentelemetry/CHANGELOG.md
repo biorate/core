@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.163.0](https://github.com/biorate/core/compare/v1.162.0...v1.163.0) (2025-10-27)
+
+### Features
+
+- SpanKind added into axios-prometheus and opentelemetry ([98670d7](https://github.com/biorate/core/commit/98670d70d80e982df4e61421d2cfeb23af80f618))
+
 ## [1.156.2](https://github.com/biorate/core/compare/v1.156.1...v1.156.2) (2025-09-18)
 
 **Note:** Version bump only for package @biorate/opentelemetry

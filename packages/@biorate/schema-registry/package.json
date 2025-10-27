@@ -1,6 +1,6 @@
 {
   "name": "@biorate/schema-registry",
-  "version": "1.156.2",
+  "version": "1.163.0",
   "description": "Schema registry connector",
   "main": "dist",
   "scripts": {
