@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.163.1](https://github.com/biorate/core/compare/v1.163.0...v1.163.1) (2025-11-17)
+
+### Bug Fixes
+
+- **playwright:** types fix ([f0543d8](https://github.com/biorate/core/commit/f0543d89c589534d46340ab82aba410be9eda320))
+
 # [1.162.0](https://github.com/biorate/core/compare/v1.161.0...v1.162.0) (2025-10-21)
 
 ### Features
