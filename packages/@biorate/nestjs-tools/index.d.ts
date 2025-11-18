@@ -152,4 +152,9 @@ declare module '@biorate/nestjs-tools' {
   }
 
   export const controllers = { ClientController, MetricsController, ProbeController };
+
+  export function corsOriginHandler(
+    origin: string,
+    callback: (error: null | Error, origin: string) => void,
+  ): void;
 }
