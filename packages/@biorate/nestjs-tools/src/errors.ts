@@ -11,3 +11,9 @@ export class AxiosRequestError extends BaseError {
     super(`Axios request error (%s) [%s]: %s`, [code, error, message]);
   }
 }
+
+export class CorsBadOriginError extends BaseError {
+  public constructor(origin: string) {
+    super(`Cors bad origin error: [%s]`, [origin]);
+  }
+}
