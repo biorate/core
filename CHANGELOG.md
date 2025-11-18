@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.163.3](https://github.com/biorate/core/compare/v1.163.2...v1.163.3) (2025-11-18)
+
+### Bug Fixes
+
+- **nestjs-tools:** corsOriginHandler added ([b39bfe7](https://github.com/biorate/core/commit/b39bfe73168c0d43cea8b7b738199e2806547303))
+
 ## [1.163.2](https://github.com/biorate/core/compare/v1.163.1...v1.163.2) (2025-11-18)
 
 ### Bug Fixes
