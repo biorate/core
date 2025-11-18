@@ -10,7 +10,7 @@ export function corsOriginHandler(
   const config = container.get<IConfig>(Types.Config);
   const regexp = new RegExp(
     config.get<string>(
-      'allowedOrigin',
+      'ALLOWED_ORIGIN',
       config.get<string>('package.name').replace('-server', ''),
     ),
   );
