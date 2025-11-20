@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.164.0](https://github.com/biorate/core/compare/v1.163.4...v1.164.0) (2025-11-20)
+
+### Features
+
+- **nestjs-tools:** cors debug ignore ([cf261b9](https://github.com/biorate/core/commit/cf261b92942a9f7959ebfb19785c2f6c8c0fdbfb))
+
 ## [1.163.4](https://github.com/biorate/core/compare/v1.163.3...v1.163.4) (2025-11-18)
 
 ### Bug Fixes
