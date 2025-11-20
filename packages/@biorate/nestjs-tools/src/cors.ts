@@ -8,6 +8,7 @@ export function corsOriginHandler(
 ) {
   if (!origin) return callback(null, origin);
   const config = container.get<IConfig>(Types.Config);
+  if (config.get<string>('ENV') === 'debug') return callback(null, origin);
   const regexp = new RegExp(
     config.get<string>(
       'ALLOWED_ORIGIN',
