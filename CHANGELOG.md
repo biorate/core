@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.164.1](https://github.com/biorate/core/compare/v1.164.0...v1.164.1) (2025-12-01)
+
+### Bug Fixes
+
+- **nestjs-tools:** setLang method fix ([f6aef04](https://github.com/biorate/core/commit/f6aef049b54cc5d81c27c24530c5cc42c315b2cd))
+
 # [1.164.0](https://github.com/biorate/core/compare/v1.163.4...v1.164.0) (2025-11-20)
 
 ### Features
