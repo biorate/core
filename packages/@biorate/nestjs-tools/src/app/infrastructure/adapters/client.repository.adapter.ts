@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import { mkdirSync, writeFileSync, readFileSync } from 'fs';
 import { Injectable } from '@nestjs/common';
 import { path } from '@biorate/tools';
@@ -24,7 +25,7 @@ export class ClientRepositoryAdapter implements ClientDrivenPort {
       mkdirSync(directory, { recursive: true });
       writeFileSync(
         path.create(directory, `${lang}.json`),
-        JSON.stringify(data, null, '  '),
+        JSON.stringify(merge(this.getLang(lang, namespace), data), null, '  '),
         'utf-8',
       );
     } catch (e) {
