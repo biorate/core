@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.167.0](https://github.com/biorate/core/compare/v1.166.0...v1.167.0) (2026-01-15)
+
+### Features
+
+- **rdkafka:** @confluentinc/kafka-javascript migration ([d493d48](https://github.com/biorate/core/commit/d493d480e15122d1a808a6e2b79cfdd40403f29f))
+
 # [1.166.0](https://github.com/biorate/core/compare/v1.165.0...v1.166.0) (2026-01-15)
 
 ### Features
