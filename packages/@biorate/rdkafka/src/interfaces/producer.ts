@@ -6,7 +6,7 @@ import {
   KafkaConsumer,
   MetadataOptions,
   ProducerGlobalConfig,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 
 export type IRDKafkaProducerConfig = IConnectorConfig & {
   global: ProducerGlobalConfig;

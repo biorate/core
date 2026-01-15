@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { timer } from '@biorate/tools';
-import { Message } from 'node-rdkafka';
+import { Message } from '@confluentinc/kafka-javascript';
 import { root } from './__mocks__';
 
 describe('@biorate/rdkafka', function () {

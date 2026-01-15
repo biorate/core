@@ -6,7 +6,7 @@ import {
   TopicPartitionTime,
   TopicPartition,
   Message,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 import { IRDKafkaConsumerConnection } from '../interfaces';
 // noinspection JSAnnotator
 /**

@@ -6,7 +6,7 @@ import {
   ReadStreamOptions,
   Message,
   ConsumerStream,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 
 export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
   global: ConsumerGlobalConfig;

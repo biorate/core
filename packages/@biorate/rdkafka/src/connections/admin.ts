@@ -1,5 +1,5 @@
 import { promisify } from 'util';
-import { GlobalConfig, AdminClient, IAdminClient, NewTopic } from 'node-rdkafka';
+import { GlobalConfig, AdminClient, IAdminClient, NewTopic } from '@confluentinc/kafka-javascript';
 import { IRDKafkaAdminConnection } from '../interfaces';
 /**
  * @description RDKafka admin client connection

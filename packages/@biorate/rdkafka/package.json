@@ -25,7 +25,7 @@
   "author": "llevkin",
   "license": "MIT",
   "peerDependencies": {
-    "node-rdkafka": ">=3.1.0"
+    "@confluentinc/kafka-javascript": ">=1.8.0"
   },
   "dependencies": {
     "@biorate/config": "workspace:*",

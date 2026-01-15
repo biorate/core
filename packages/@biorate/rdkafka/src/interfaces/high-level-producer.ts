@@ -8,7 +8,7 @@ import {
   MetadataOptions,
   NumberNullUndefined,
   MessageHeader,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 
 export type IRDKafkaHighLevelProducerConfig = IConnectorConfig & {
   global: ProducerGlobalConfig;

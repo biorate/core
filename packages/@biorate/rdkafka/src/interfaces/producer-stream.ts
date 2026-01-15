@@ -3,7 +3,7 @@ import {
   ProducerGlobalConfig,
   ProducerTopicConfig,
   WriteStreamOptions,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 
 export type IRDKafkaProducerStreamConfig = IConnectorConfig & {
   global: ProducerGlobalConfig;

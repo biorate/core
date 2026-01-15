@@ -4,7 +4,7 @@ import {
   Producer,
   TopicPartitionOffset,
   MetadataOptions,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 import { IRDKafkaProducerConnection } from '../interfaces';
 // noinspection JSAnnotator
 /**

@@ -1,6 +1,11 @@
 import { EventEmitter } from 'events';
 import { uniqWith, isEqual } from 'lodash';
-import { KafkaConsumer, ConsumerStream, Message, CODES } from 'node-rdkafka';
+import {
+  KafkaConsumer,
+  ConsumerStream,
+  Message,
+  CODES,
+} from '@confluentinc/kafka-javascript';
 import { timer } from '@biorate/tools';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
 import { EventsConsumerStream } from '../enums';

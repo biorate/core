@@ -6,7 +6,7 @@ import {
   MetadataOptions,
   NumberNullUndefined,
   MessageHeader,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
 import { timeDiff } from '../helpers';
 import { IRDKafkaHighLevelProducerConnection } from '../interfaces';

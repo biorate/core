@@ -8,7 +8,7 @@ import {
   TopicPartitionTime,
   TopicPartition,
   Message,
-} from 'node-rdkafka';
+} from '@confluentinc/kafka-javascript';
 
 export type IRDKafkaConsumerConfig = IConnectorConfig & {
   global: ConsumerGlobalConfig;
