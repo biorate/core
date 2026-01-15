@@ -55,7 +55,7 @@ export class RDKafkaConsumerStreamConnection
   }
 
   protected get delay() {
-    return this.config.delay ?? 100;
+    return this.config.delay ?? 0;
   }
 
   public constructor(config: IRDKafkaConsumerStreamConfig) {
@@ -98,7 +98,7 @@ export class RDKafkaConsumerStreamConnection
     this.stream.consumer.on('event.error', (e) => void this.emit('error', e));
     this.timer = setInterval(() => {
       if (this.pool.length < this.buffer) this.stream.resume();
-    }, 100);
+    });
     this.started = true;
     this.#handle();
   }
