@@ -1139,9 +1139,9 @@ importers:
       '@biorate/tools':
         specifier: workspace:*
         version: link:../tools
-      node-rdkafka:
-        specifier: '>=3.1.0'
-        version: 3.3.1
+      '@confluentinc/kafka-javascript':
+        specifier: '>=1.8.0'
+        version: 1.8.0(encoding@0.1.13)
 
   packages/@biorate/react-virtual-table:
     devDependencies:
@@ -1746,6 +1746,13 @@ packages:
         integrity: sha512-u9h++h72SmWystijNqfNvMkfA+5+Y1LNfmLL/odCL3VgI3oyAPP9ubSw/Yrt2zRZkLKehMMD1kuOej0QHbSoBA==,
       }
     engines: { node: '>=16' }
+
+  '@confluentinc/kafka-javascript@1.8.0':
+    resolution:
+      {
+        integrity: sha512-VNrfUkLmnTYklLsjgrq1xDq6e6DU/oSGTkfSDeA5TnkTN8PC9dyWhn/8VLQ6ywsV5i1FwQfqs6Y021Fi6NDKKw==,
+      }
+    engines: { node: '>=18.0.0' }
 
   '@cspotcode/source-map-support@0.8.1':
     resolution:
@@ -13143,7 +13150,7 @@ packages:
         integrity: sha512-OUDHEssirmplo3F+1HWKUrUjvnQuA+nZI6i/JJBdXb5eq9IyEQwPyPpqND+SSsxf6TygpBEkUjISVRN4/VOpeg==,
       }
     engines: { node: '>= 7.0.0' }
-    deprecated: Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net
+    deprecated: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
 
   supertest@6.1.6:
     resolution:
@@ -14901,6 +14908,15 @@ snapshots:
     dependencies:
       '@clickhouse/client-common': 1.11.1
 
+  '@confluentinc/kafka-javascript@1.8.0(encoding@0.1.13)':
+    dependencies:
+      '@mapbox/node-pre-gyp': 1.0.11(encoding@0.1.13)
+      bindings: 1.5.0
+      nan: 2.22.2
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
@@ -15508,7 +15524,7 @@ snapshots:
       ejs: 3.1.10
       ignore: 5.3.2
       nx: 15.9.7
-      semver: 7.5.2
+      semver: 7.5.4
       tmp: 0.2.3
       tslib: 2.8.1
 
@@ -19086,7 +19102,7 @@ snapshots:
   git-semver-tags@4.1.1:
     dependencies:
       meow: 8.1.2
-      semver: 7.5.2
+      semver: 6.3.1
 
   git-up@7.0.0:
     dependencies:
@@ -20998,7 +21014,7 @@ snapshots:
     dependencies:
       hosted-git-info: 5.2.1
       is-core-module: 2.16.1
-      semver: 7.5.2
+      semver: 7.7.1
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@5.0.0:
