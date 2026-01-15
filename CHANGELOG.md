@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.165.0](https://github.com/biorate/core/compare/v1.164.1...v1.165.0) (2026-01-15)
+
+### Features
+
+- **rdkafka:** setImmediate on data ([273f9ed](https://github.com/biorate/core/commit/273f9ed7853898ab3c9382b13735c3fe97ebbc55))
+
 ## [1.164.1](https://github.com/biorate/core/compare/v1.164.0...v1.164.1) (2025-12-01)
 
 ### Bug Fixes
