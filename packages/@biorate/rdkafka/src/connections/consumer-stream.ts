@@ -55,7 +55,7 @@ export class RDKafkaConsumerStreamConnection
   }
 
   protected get delay() {
-    return this.config.delay ?? 0;
+    return this.config.delay ?? 100;
   }
 
   public constructor(config: IRDKafkaConsumerStreamConfig) {
@@ -92,15 +92,13 @@ export class RDKafkaConsumerStreamConnection
     );
     this.handler = handler;
     this.stream.on('data', (message: Message) => {
-      setImmediate(() => {
-        if (this.pool.length >= this.buffer) this.stream.pause();
-        this.pool.push(message);
-      });
+      if (this.pool.length >= this.buffer) this.stream.pause();
+      this.pool.push(message);
     });
     this.stream.consumer.on('event.error', (e) => void this.emit('error', e));
     this.timer = setInterval(() => {
       if (this.pool.length < this.buffer) this.stream.resume();
-    });
+    }, 100);
     this.started = true;
     this.#handle();
   }
