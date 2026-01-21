@@ -1,0 +1,32 @@
+{
+  "name": "@biorate/cleanup",
+  "version": "1.156.2",
+  "description": "Cleanup files and directories",
+  "main": "dist",
+  "scripts": {
+    "cleanup": "node ./dist/src/cleanup-by-argv.js",
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/cleanup"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/errors": "workspace:*",
+    "glob": "^13.0.0",
+    "minimist": "1.2.8"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.5"
+  }
+}
