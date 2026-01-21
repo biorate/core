@@ -9,7 +9,7 @@
     "bootstrap": "npx lerna bootstrap",
     "version": "npx lerna version",
     "demo": "npx lerna run demo",
-    "doc": "npx typedoc packages/@biorate/*/index.ts",
+    "doc": "npx typedoc --skipErrorChecking packages/@biorate/*/index.ts",
     "postdoc": "npm run demo",
     "publish": "npx lerna publish from-package",
     "cleanup:node_modules": "rm -rf $(find -type d -name 'node_modules')"

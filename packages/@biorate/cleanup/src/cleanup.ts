@@ -10,7 +10,15 @@ export * from './interfaces';
  * - Platform independent script for cleanup dirs and files
  *
  * @example
+ * ```ts
+ * import {} from '@biorate/cleanup';
+ *
+ * (async () => await cleanup('./tests/dir'))();
  * ```
+ *
+ * @example
+ * ```sh
+ * pnpm run ./node_modules/@biorate/cleanup/dist/src/cleanup-by-argv.js ./tests.dir;
  * ```
  */
 export async function cleanup(...paths: string[]) {

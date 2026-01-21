@@ -30,7 +30,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">Project</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:677</li></ul></aside>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:737</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -58,6 +58,7 @@
 <a href="playwright.Project.html#testMatch" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Match?</span></a>
 <a href="playwright.Project.html#timeout-2" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout?</span></a>
 <a href="playwright.Project.html#use" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>use?</span></a>
+<a href="playwright.Project.html#workers" class="tsd-index-link tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>workers?</span></a>
 </div></section></div></details></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
@@ -76,10 +77,10 @@ report, etc.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.dependencies</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:156</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:171</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="expect" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>expect</span><a href="#expect" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">expect</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toHaveScreenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">pathTemplate</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">stylePath</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toMatchAriaSnapshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">pathTemplate</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toMatchSnapshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toPass</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">intervals</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
+<div class="tsd-signature"><span class="tsd-kind-property">expect</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toHaveScreenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">pathTemplate</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">stylePath</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toMatchAriaSnapshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">pathTemplate</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toMatchSnapshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">toPass</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">intervals</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
 <div class="tsd-comment tsd-typography"><p>Configuration for the <code>expect</code> assertion library.</p>
 <p>Use <a href="https://playwright.dev/docs/api/class-testconfig#test-config-expect">testConfig.expect</a> to change this option
 for all projects.</p>
@@ -93,7 +94,7 @@ for all projects.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">to<wbr/>Have<wbr/>Screenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">pathTemplate</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">stylePath</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">to<wbr/>Have<wbr/>Screenshot</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixelRatio</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">maxDiffPixels</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">pathTemplate</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">scale</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;css&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;device&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">stylePath</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">threshold</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
 <div class="tsd-comment tsd-typography"><p>Configuration for the
 <a href="https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-1">expect(page).toHaveScreenshot(name[, options])</a>
 method.</p>
@@ -101,13 +102,13 @@ method.</p>
 <div class="tsd-comment tsd-typography"></div>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;disabled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;allow&quot;</span></h5>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">animations</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;allow&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;disabled&quot;</span></h5>
 <div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-page#page-screenshot-option-animations"><code>animations</code></a> in
 <a href="https://playwright.dev/docs/api/class-page#page-screenshot">page.screenshot([options])</a>. Defaults to <code>&quot;disabled&quot;</code>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;initial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hide&quot;</span></h5>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">caret</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;hide&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;initial&quot;</span></h5>
 <div class="tsd-comment tsd-typography"><p>See <a href="https://playwright.dev/docs/api/class-page#page-screenshot-option-caret"><code>caret</code></a> in
 <a href="https://playwright.dev/docs/api/class-page#page-screenshot">page.screenshot([options])</a>. Defaults to <code>&quot;hide&quot;</code>.</p>
 </div>
@@ -209,7 +210,7 @@ default.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.expect</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:164</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:179</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="fullyParallel" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>fully<wbr/>Parallel</span><a href="#fullyParallel" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">fully<wbr/>Parallel</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -221,7 +222,7 @@ worker process.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.fullyParallel</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:288</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:303</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="grep" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>grep</span><a href="#grep" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
@@ -234,11 +235,11 @@ name, the <code>test.describe</code> name (if any), the test name and the test t
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.grep</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:299</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:314</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="grepInvert" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>grep<wbr/>Invert</span><a href="#grepInvert" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">grep<wbr/>Invert</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">[]</span></div>
-<div class="tsd-comment tsd-typography"><p>Filter to only run tests with a title <strong>not</strong> matching one of the patterns. This is the opposite of
+<div class="tsd-comment tsd-typography"><p>Filter to only run tests with a title <strong>not</strong> matching any of the patterns. This is the opposite of
 <a href="https://playwright.dev/docs/api/class-testproject#test-project-grep">testProject.grep</a>. Also available globally
 and in the <a href="https://playwright.dev/docs/test-cli">command line</a> with the <code>--grep-invert</code> option.</p>
 <p><code>grepInvert</code> option is also useful for <a href="https://playwright.dev/docs/test-annotations#tag-tests">tagging tests</a>.</p>
@@ -246,7 +247,7 @@ and in the <a href="https://playwright.dev/docs/test-cli">command line</a> with 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.grepInvert</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:308</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:323</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="ignoreSnapshots" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>ignore<wbr/>Snapshots</span><a href="#ignoreSnapshots" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">ignore<wbr/>Snapshots</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -259,7 +260,7 @@ and in the <a href="https://playwright.dev/docs/test-cli">command line</a> with 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.ignoreSnapshots</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:343</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:358</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="metadata" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>metadata</span><a href="#metadata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">metadata</span><span class="tsd-signature-symbol">?:</span> <a href="../types/playwright.Metadata.html" class="tsd-signature-type tsd-kind-type-alias">Metadata</a></div>
@@ -268,16 +269,18 @@ and in the <a href="https://playwright.dev/docs/test-cli">command line</a> with 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.metadata</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:348</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:363</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
 <div class="tsd-comment tsd-typography"><p>Project name is visible in the report and during test execution.</p>
+<p><strong>NOTE</strong> Playwright executes the configuration file multiple times. Do not dynamically produce non-stable values in
+your configuration.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.name</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:353</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:372</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="outputDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>output<wbr/>Dir</span><a href="#outputDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">output<wbr/>Dir</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -298,7 +301,7 @@ option for all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.outputDir</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:381</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:400</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="repeatEach" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>repeat<wbr/>Each</span><a href="#repeatEach" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">repeat<wbr/>Each</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
@@ -309,7 +312,7 @@ this option for all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.repeatEach</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:389</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:408</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="respectGitIgnore" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>respect<wbr/>Git<wbr/>Ignore</span><a href="#respectGitIgnore" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">respect<wbr/>Git<wbr/>Ignore</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div>
@@ -322,7 +325,7 @@ behavior.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.respectGitIgnore</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:398</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:417</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="retries" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>retries</span><a href="#retries" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">retries</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
@@ -336,7 +339,7 @@ option for all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.retries</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:410</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:429</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="snapshotDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>snapshot<wbr/>Dir</span><a href="#snapshotDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">snapshot<wbr/>Dir</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -344,7 +347,7 @@ option for all projects.</p>
 <a href="https://playwright.dev/docs/api/class-testproject#test-project-test-dir">testProject.testDir</a>.</p>
 <p>The directory for each test can be accessed by
 <a href="https://playwright.dev/docs/api/class-testinfo#test-info-snapshot-dir">testInfo.snapshotDir</a> and
-<a href="https://playwright.dev/docs/api/class-testinfo#test-info-snapshot-path">testInfo.snapshotPath(...pathSegments)</a>.</p>
+<a href="https://playwright.dev/docs/api/class-testinfo#test-info-snapshot-path">testInfo.snapshotPath(...name[, options])</a>.</p>
 <p>This path will serve as the base directory for each test file snapshot directory. Setting <code>snapshotDir</code> to
 <code>&#39;snapshots&#39;</code>, the <a href="https://playwright.dev/docs/api/class-testinfo#test-info-snapshot-dir">testInfo.snapshotDir</a>
 would resolve to <code>snapshots/a.spec.js-snapshots</code>.</p>
@@ -352,7 +355,7 @@ would resolve to <code>snapshots/a.spec.js-snapshots</code>.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.snapshotDir</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:424</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:443</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="snapshotPathTemplate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>snapshot<wbr/>Path<wbr/>Template</span><a href="#snapshotPathTemplate" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">snapshot<wbr/>Path<wbr/>Template</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -439,7 +442,7 @@ config)</li>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.snapshotPathTemplate</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:538</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:557</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="teardown" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>teardown</span><a href="#teardown" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">teardown</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -456,7 +459,7 @@ it was not specified.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.teardown</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:587</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:606</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="testDir" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>test<wbr/>Dir</span><a href="#testDir" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Dir</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -471,7 +474,7 @@ option for all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.testDir</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:637</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:656</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="testIgnore" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>test<wbr/>Ignore</span><a href="#testIgnore" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Ignore</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
@@ -484,7 +487,7 @@ this option for all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.testIgnore</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:648</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:667</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="testMatch" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>test<wbr/>Match</span><a href="#testMatch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">test<wbr/>Match</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
@@ -499,7 +502,7 @@ option for all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.testMatch</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:661</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:680</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="timeout-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>timeout</span><a href="#timeout-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">timeout</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
@@ -514,7 +517,7 @@ option for all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.timeout</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:674</li></ul></aside></section>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:693</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="use" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>use</span><a href="#use" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">use</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">UseOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">TestArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">WorkerArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
@@ -530,7 +533,30 @@ all projects.</p>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <p>Inherited from TestProject.use</p>
 <ul>
-<li>Defined in node_modules/.pnpm/playwright@1.50.1/node_modules/playwright/types/test.d.ts:115</li></ul></aside></section></section></div>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:130</li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"><a id="workers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>workers</span><a href="#workers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">workers</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+<div class="tsd-comment tsd-typography"><p>The maximum number of concurrent worker processes to use for parallelizing tests from this project. Can also be set
+as percentage of logical CPU cores, e.g. <code>&#39;50%&#39;.</code></p>
+<p>This could be useful, for example, when all tests from a project share a single resource like a test account, and
+therefore cannot be executed in parallel. Limiting workers to one for such a project will prevent simultaneous use
+of the shared resource.</p>
+<p>Note that the global <a href="https://playwright.dev/docs/api/class-testconfig#test-config-workers">testConfig.workers</a>
+limit applies to the total number of worker processes. However, Playwright will limit the number of workers used
+for this project by the value of
+<a href="https://playwright.dev/docs/api/class-testproject#test-project-workers">testProject.workers</a>.</p>
+<p>By default, there is no limit per project. See
+<a href="https://playwright.dev/docs/api/class-testconfig#test-config-workers">testConfig.workers</a> for the default of the
+total worker limit.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-js"><span class="hl-8">// playwright.config.ts</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">defineConfig</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@playwright/test&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">export</span><span class="hl-1"> </span><span class="hl-0">default</span><span class="hl-1"> </span><span class="hl-6">defineConfig</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-2">workers:</span><span class="hl-1"> </span><span class="hl-7">10</span><span class="hl-1">,  </span><span class="hl-8">// total workers limit</span><br/><br/><span class="hl-1">  </span><span class="hl-2">projects:</span><span class="hl-1"> [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;runs in parallel&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-2">name:</span><span class="hl-1"> </span><span class="hl-3">&#39;one at a time&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">workers:</span><span class="hl-1"> </span><span class="hl-7">1</span><span class="hl-1">,  </span><span class="hl-8">// workers limit for this project</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+</div>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
+<p>Inherited from TestProject.workers</p>
+<ul>
+<li>Defined in node_modules/.pnpm/playwright@1.56.1/node_modules/playwright/types/test.d.ts:734</li></ul></aside></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -569,7 +595,8 @@ all projects.</p>
 <li><a href="#testIgnore" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Ignore</span></a></li>
 <li><a href="#testMatch" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>test<wbr/>Match</span></a></li>
 <li><a href="#timeout-2" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>timeout</span></a></li>
-<li><a href="#use" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>use</span></a></li></ul></div></details></div>
+<li><a href="#use" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>use</span></a></li>
+<li><a href="#workers" class="tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>workers</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../index.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>biorate</span></a>
 <ul class="tsd-small-nested-navigation">
@@ -581,6 +608,7 @@ all projects.</p>
 <li><a href="../modules/axios_prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>axios-<wbr/>prometheus</span></a></li>
 <li><a href="../modules/batcher.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>batcher</span></a></li>
 <li><a href="../modules/bit_array.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>bit-<wbr/>array</span></a></li>
+<li><a href="../modules/cleanup.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>cleanup</span></a></li>
 <li><a href="../modules/clickhouse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>clickhouse</span></a></li>
 <li><a href="../modules/collection.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>collection</span></a></li>
 <li><a href="../modules/command.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>command</span></a></li>
@@ -680,6 +708,7 @@ all projects.</p>
 <li><a href="playwright.Selectors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Selectors</span></a></li>
 <li><a href="playwright.TestInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info</span></a></li>
 <li><a href="playwright.TestInfoError.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info<wbr/>Error</span></a></li>
+<li><a href="playwright.TestStepInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Step<wbr/>Info</span></a></li>
 <li><a href="playwright.TestType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Type</span></a></li>
 <li><a href="playwright.Touchscreen.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Touchscreen</span></a></li>
 <li><a href="playwright.Tracing.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Tracing</span></a></li>
@@ -694,9 +723,14 @@ all projects.</p>
 <li><a href="../types/playwright.AndroidElementInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Android<wbr/>Element<wbr/>Info</span></a></li>
 <li><a href="../types/playwright.AndroidKey.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Key</span></a></li>
 <li><a href="../types/playwright.AndroidSelector.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Selector</span></a></li>
+<li><a href="../types/playwright.BlobReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Blob<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.Expect.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect</span></a></li>
 <li><a href="../types/playwright.ExpectMatcherState.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect<wbr/>Matcher<wbr/>State</span></a></li>
 <li><a href="../types/playwright.Fixtures.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fixtures</span></a></li>
+<li><a href="../types/playwright.HtmlReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Html<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JUnitReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>JUnit<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JsonReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Json<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.ListReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>List<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherHintOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Hint<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherReturnType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Return<wbr/>Type</span></a></li>
 <li><a href="../types/playwright.Metadata.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Metadata</span></a></li>
@@ -704,6 +738,7 @@ all projects.</p>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Annotation</span></a></li>
 <li><a href="../types/playwright.TestArgs.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Args</span></a></li>
 <li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestDetailsAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details<wbr/>Annotation</span></a></li>

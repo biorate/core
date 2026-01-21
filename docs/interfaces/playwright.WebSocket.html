@@ -17,8 +17,10 @@
 <li><a href="playwright.WebSocket.html">WebSocket</a></li></ul>
 <h1>Interface WebSocket</h1></div>
 <section class="tsd-panel tsd-comment">
-<div class="tsd-comment tsd-typography"><p>The <a href="https://playwright.dev/docs/api/class-websocket">WebSocket</a> class represents websocket connections in the
-page.</p>
+<div class="tsd-comment tsd-typography"><p>The <a href="https://playwright.dev/docs/api/class-websocket">WebSocket</a> class represents WebSocket connections within a
+page. It provides the ability to inspect and manipulate the data being transmitted and received.</p>
+<p>If you want to intercept or modify WebSocket frames, consider using
+<a href="https://playwright.dev/docs/api/class-websocketroute">WebSocketRoute</a>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></section>
 <section class="tsd-panel tsd-hierarchy">
@@ -26,7 +28,7 @@ page.</p>
 <ul class="tsd-hierarchy">
 <li><span class="target">WebSocket</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21323</li></ul></aside>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21484</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -74,7 +76,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21387</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21548</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-2"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#addListener.addListener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket receives a frame.</p>
@@ -106,7 +108,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21392</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21553</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-3"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#addListener.addListener-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket sends a frame.</p>
@@ -138,7 +140,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21402</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21563</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="addListener.addListener-4"><span class="tsd-kind-call-signature">add<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#addListener.addListener-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket has an error.</p>
@@ -164,7 +166,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21412</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21573</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isClosed" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Closed</span><a href="#isClosed" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -175,7 +177,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21507</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21668</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="off" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>off</span><a href="#off" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -204,7 +206,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21447</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21608</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-2"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#off.off-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -236,7 +238,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21452</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21613</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-3"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#off.off-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -268,7 +270,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21462</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21623</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="off.off-4"><span class="tsd-kind-call-signature">off</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#off.off-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -294,7 +296,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21472</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21633</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="on" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on</span><a href="#on" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -323,7 +325,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21327</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21488</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-2"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#on.on-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket receives a frame.</p>
@@ -355,7 +357,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21332</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21493</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-3"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#on.on-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket sends a frame.</p>
@@ -387,7 +389,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21342</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21503</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="on.on-4"><span class="tsd-kind-call-signature">on</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#on.on-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket has an error.</p>
@@ -413,7 +415,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21352</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21513</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="once" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>once</span><a href="#once" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -442,7 +444,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21357</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21518</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-2"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#once.once-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -474,7 +476,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21362</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21523</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-3"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#once.once-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -506,7 +508,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21372</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21533</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="once.once-4"><span class="tsd-kind-call-signature">once</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#once.once-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Adds an event listener that will be automatically removed after it is triggered once. See <code>addListener</code> for more information about this event.</p>
@@ -532,7 +534,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21382</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21543</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="prependListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>prepend<wbr/>Listener</span><a href="#prependListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -561,7 +563,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21477</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21638</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-2"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#prependListener.prependListener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket receives a frame.</p>
@@ -593,7 +595,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21482</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21643</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-3"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#prependListener.prependListener-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket sends a frame.</p>
@@ -625,7 +627,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21492</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21653</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="prependListener.prependListener-4"><span class="tsd-kind-call-signature">prepend<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#prependListener.prependListener-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket has an error.</p>
@@ -651,7 +653,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21502</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21663</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="removeListener" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>remove<wbr/>Listener</span><a href="#removeListener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -680,7 +682,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21417</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21578</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-2"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#removeListener.removeListener-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -712,7 +714,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21422</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21583</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-3"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#removeListener.removeListener-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -744,7 +746,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21432</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21593</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="removeListener.removeListener-4"><span class="tsd-kind-call-signature">remove<wbr/>Listener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">listener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><a href="#removeListener.removeListener-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Removes an event listener added by <code>on</code> or <code>addListener</code>.</p>
@@ -770,7 +772,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21442</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21603</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="url" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>url</span><a href="#url" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -781,7 +783,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21512</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21673</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="waitForEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>wait<wbr/>For<wbr/>Event</span><a href="#waitForEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -799,7 +801,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.WebSocket.html" class="tsd-signature-type tsd-kind-interface">WebSocket</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21517</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21678</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-2"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">payload</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket receives a frame.</p>
@@ -814,7 +816,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">payload</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21522</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21683</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-3"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">payload</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket sends a frame.</p>
@@ -829,7 +831,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">payload</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Buffer</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21542</li></ul></aside></li>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21703</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="waitForEvent.waitForEvent-4"><span class="tsd-kind-call-signature">wait<wbr/>For<wbr/>Event</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span>, <span class="tsd-kind-parameter">optionsOrPredicate</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#waitForEvent.waitForEvent-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Fired when the websocket has an error.</p>
@@ -844,7 +846,7 @@ page.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:21562</li></ul></aside></li></ul></section></section></div>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:21723</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -884,6 +886,7 @@ page.</p>
 <li><a href="../modules/axios_prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>axios-<wbr/>prometheus</span></a></li>
 <li><a href="../modules/batcher.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>batcher</span></a></li>
 <li><a href="../modules/bit_array.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>bit-<wbr/>array</span></a></li>
+<li><a href="../modules/cleanup.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>cleanup</span></a></li>
 <li><a href="../modules/clickhouse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>clickhouse</span></a></li>
 <li><a href="../modules/collection.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>collection</span></a></li>
 <li><a href="../modules/command.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>command</span></a></li>
@@ -983,6 +986,7 @@ page.</p>
 <li><a href="playwright.Selectors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Selectors</span></a></li>
 <li><a href="playwright.TestInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info</span></a></li>
 <li><a href="playwright.TestInfoError.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info<wbr/>Error</span></a></li>
+<li><a href="playwright.TestStepInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Step<wbr/>Info</span></a></li>
 <li><a href="playwright.TestType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Type</span></a></li>
 <li><a href="playwright.Touchscreen.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Touchscreen</span></a></li>
 <li><a href="playwright.Tracing.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Tracing</span></a></li>
@@ -997,9 +1001,14 @@ page.</p>
 <li><a href="../types/playwright.AndroidElementInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Android<wbr/>Element<wbr/>Info</span></a></li>
 <li><a href="../types/playwright.AndroidKey.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Key</span></a></li>
 <li><a href="../types/playwright.AndroidSelector.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Selector</span></a></li>
+<li><a href="../types/playwright.BlobReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Blob<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.Expect.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect</span></a></li>
 <li><a href="../types/playwright.ExpectMatcherState.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect<wbr/>Matcher<wbr/>State</span></a></li>
 <li><a href="../types/playwright.Fixtures.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fixtures</span></a></li>
+<li><a href="../types/playwright.HtmlReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Html<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JUnitReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>JUnit<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JsonReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Json<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.ListReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>List<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherHintOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Hint<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherReturnType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Return<wbr/>Type</span></a></li>
 <li><a href="../types/playwright.Metadata.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Metadata</span></a></li>
@@ -1007,6 +1016,7 @@ page.</p>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Annotation</span></a></li>
 <li><a href="../types/playwright.TestArgs.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Args</span></a></li>
 <li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestDetailsAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details<wbr/>Annotation</span></a></li>

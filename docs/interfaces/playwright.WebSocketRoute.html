@@ -22,7 +22,7 @@
 <a href="https://playwright.dev/docs/api/class-browsercontext#browser-context-route-web-socket">browserContext.routeWebSocket(url, handler)</a>,
 the <code>WebSocketRoute</code> object allows to handle the WebSocket, like an actual server would do.</p>
 <p><strong>Mocking</strong></p>
-<p>By default, the routed WebSocket will not connect to the server. This way, you can mock entire communcation over
+<p>By default, the routed WebSocket will not connect to the server. This way, you can mock entire communication over
 the WebSocket. Here is an example that responds to a <code>&quot;request&quot;</code> with a <code>&quot;response&quot;</code>.</p>
 <pre><code class="language-js"><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">page</span><span class="hl-1">.</span><span class="hl-6">routeWebSocket</span><span class="hl-1">(</span><span class="hl-3">&#39;wss://example.com/ws&#39;</span><span class="hl-1">, </span><span class="hl-2">ws</span><span class="hl-1"> </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">ws</span><span class="hl-1">.</span><span class="hl-6">onMessage</span><span class="hl-1">(</span><span class="hl-2">message</span><span class="hl-1"> </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">if</span><span class="hl-1"> (</span><span class="hl-2">message</span><span class="hl-1"> === </span><span class="hl-3">&#39;request&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">      </span><span class="hl-2">ws</span><span class="hl-1">.</span><span class="hl-6">send</span><span class="hl-1">(</span><span class="hl-3">&#39;response&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  });</span><br/><span class="hl-1">});</span>
 </code><button>Copy</button></pre>
@@ -65,7 +65,7 @@ in both directions, there is no automatic forwarding at all.</p>
 <ul class="tsd-hierarchy">
 <li><span class="target">WebSocketRoute</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:15522</li></ul></aside>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:15607</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -108,7 +108,7 @@ in both directions, there is no automatic forwarding at all.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:15558</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:15643</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="connectToServer" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>connect<wbr/>To<wbr/>Server</span><a href="#connectToServer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -133,7 +133,7 @@ is called on the original <code>WebSocketRoute</code>.</li>
 <h4 class="tsd-returns-title">Returns <a href="playwright.WebSocketRoute.html" class="tsd-signature-type tsd-kind-interface">WebSocketRoute</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:15587</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:15672</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="onClose" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Close</span><a href="#onClose" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -170,7 +170,7 @@ handler is set up, the default forwarding of closure is disabled, and handler sh
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:15553</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:15638</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="onMessage" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Message</span><a href="#onMessage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -210,7 +210,7 @@ examples at the top for more details.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:15541</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:15626</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="send" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>send</span><a href="#send" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -231,7 +231,7 @@ sends the message to the server. See examples at the top for more details.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:15596</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:15681</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="url" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>url</span><a href="#url" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -242,7 +242,7 @@ sends the message to the server. See examples at the top for more details.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:15601</li></ul></aside></li></ul></section></section></div>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:15686</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -279,6 +279,7 @@ sends the message to the server. See examples at the top for more details.</p>
 <li><a href="../modules/axios_prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>axios-<wbr/>prometheus</span></a></li>
 <li><a href="../modules/batcher.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>batcher</span></a></li>
 <li><a href="../modules/bit_array.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>bit-<wbr/>array</span></a></li>
+<li><a href="../modules/cleanup.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>cleanup</span></a></li>
 <li><a href="../modules/clickhouse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>clickhouse</span></a></li>
 <li><a href="../modules/collection.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>collection</span></a></li>
 <li><a href="../modules/command.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>command</span></a></li>
@@ -378,6 +379,7 @@ sends the message to the server. See examples at the top for more details.</p>
 <li><a href="playwright.Selectors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Selectors</span></a></li>
 <li><a href="playwright.TestInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info</span></a></li>
 <li><a href="playwright.TestInfoError.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info<wbr/>Error</span></a></li>
+<li><a href="playwright.TestStepInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Step<wbr/>Info</span></a></li>
 <li><a href="playwright.TestType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Type</span></a></li>
 <li><a href="playwright.Touchscreen.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Touchscreen</span></a></li>
 <li><a href="playwright.Tracing.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Tracing</span></a></li>
@@ -392,9 +394,14 @@ sends the message to the server. See examples at the top for more details.</p>
 <li><a href="../types/playwright.AndroidElementInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Android<wbr/>Element<wbr/>Info</span></a></li>
 <li><a href="../types/playwright.AndroidKey.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Key</span></a></li>
 <li><a href="../types/playwright.AndroidSelector.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Selector</span></a></li>
+<li><a href="../types/playwright.BlobReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Blob<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.Expect.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect</span></a></li>
 <li><a href="../types/playwright.ExpectMatcherState.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect<wbr/>Matcher<wbr/>State</span></a></li>
 <li><a href="../types/playwright.Fixtures.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fixtures</span></a></li>
+<li><a href="../types/playwright.HtmlReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Html<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JUnitReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>JUnit<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JsonReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Json<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.ListReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>List<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherHintOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Hint<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherReturnType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Return<wbr/>Type</span></a></li>
 <li><a href="../types/playwright.Metadata.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Metadata</span></a></li>
@@ -402,6 +409,7 @@ sends the message to the server. See examples at the top for more details.</p>
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Annotation</span></a></li>
 <li><a href="../types/playwright.TestArgs.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Args</span></a></li>
 <li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestDetailsAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details<wbr/>Annotation</span></a></li>

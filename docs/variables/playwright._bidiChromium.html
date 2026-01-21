@@ -18,7 +18,7 @@
 <h1>Variable _bidiChromium<code class="tsd-tag ts-flagConst">Const</code> </h1></div>
 <div class="tsd-signature"><span class="tsd-kind-variable">_bidi<wbr/>Chromium</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/playwright.BrowserType.html" class="tsd-signature-type tsd-kind-interface">BrowserType</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.50.1/node_modules/playwright-core/types/types.d.ts:16193</li></ul></aside></div>
+<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:16294</li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -45,6 +45,7 @@
 <li><a href="../modules/axios_prometheus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>axios-<wbr/>prometheus</span></a></li>
 <li><a href="../modules/batcher.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>batcher</span></a></li>
 <li><a href="../modules/bit_array.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>bit-<wbr/>array</span></a></li>
+<li><a href="../modules/cleanup.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>cleanup</span></a></li>
 <li><a href="../modules/clickhouse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>clickhouse</span></a></li>
 <li><a href="../modules/collection.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>collection</span></a></li>
 <li><a href="../modules/command.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>command</span></a></li>
@@ -144,6 +145,7 @@
 <li><a href="../interfaces/playwright.Selectors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Selectors</span></a></li>
 <li><a href="../interfaces/playwright.TestInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info</span></a></li>
 <li><a href="../interfaces/playwright.TestInfoError.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info<wbr/>Error</span></a></li>
+<li><a href="../interfaces/playwright.TestStepInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Step<wbr/>Info</span></a></li>
 <li><a href="../interfaces/playwright.TestType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Type</span></a></li>
 <li><a href="../interfaces/playwright.Touchscreen.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Touchscreen</span></a></li>
 <li><a href="../interfaces/playwright.Tracing.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Tracing</span></a></li>
@@ -158,9 +160,14 @@
 <li><a href="../types/playwright.AndroidElementInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Android<wbr/>Element<wbr/>Info</span></a></li>
 <li><a href="../types/playwright.AndroidKey.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Key</span></a></li>
 <li><a href="../types/playwright.AndroidSelector.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Selector</span></a></li>
+<li><a href="../types/playwright.BlobReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Blob<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.Expect.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect</span></a></li>
 <li><a href="../types/playwright.ExpectMatcherState.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Expect<wbr/>Matcher<wbr/>State</span></a></li>
 <li><a href="../types/playwright.Fixtures.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fixtures</span></a></li>
+<li><a href="../types/playwright.HtmlReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Html<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JUnitReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>JUnit<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.JsonReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Json<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.ListReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>List<wbr/>Reporter<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherHintOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Hint<wbr/>Options</span></a></li>
 <li><a href="../types/playwright.MatcherReturnType.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Matcher<wbr/>Return<wbr/>Type</span></a></li>
 <li><a href="../types/playwright.Metadata.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Metadata</span></a></li>
@@ -168,6 +175,7 @@
 <li><a href="../types/playwright.PlaywrightTestProject.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Playwright<wbr/>Test<wbr/>Project</span></a></li>
 <li><a href="../types/playwright.ReporterDescription.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Reporter<wbr/>Description</span></a></li>
 <li><a href="../types/playwright.ScreenshotMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Screenshot<wbr/>Mode</span></a></li>
+<li><a href="../types/playwright.TestAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Annotation</span></a></li>
 <li><a href="../types/playwright.TestArgs.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Args</span></a></li>
 <li><a href="../types/playwright.TestDetails.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details</span></a></li>
 <li><a href="../types/playwright.TestDetailsAnnotation.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Test<wbr/>Details<wbr/>Annotation</span></a></li>

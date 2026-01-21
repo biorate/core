@@ -5,6 +5,13 @@ Cleanup files and directories
 ### Examples:
 
 ```ts
+import {} from '@biorate/cleanup';
+
+(async () => await cleanup('./tests/dir'))();
+```
+
+```sh
+pnpm run ./node_modules/@biorate/cleanup/dist/src/cleanup-by-argv.js ./tests.dir;
 ```
 
 ### Learn
