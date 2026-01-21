@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.168.1](https://github.com/biorate/core/compare/v1.168.0...v1.168.1) (2026-01-21)
+
+### Bug Fixes
+
+- **cleanup:** doc ([235729c](https://github.com/biorate/core/commit/235729c77b8937be6704f0faf07a310a5fb5a317))
+
 # [1.168.0](https://github.com/biorate/core/compare/v1.167.1...v1.168.0) (2026-01-21)
 
 ### Features
