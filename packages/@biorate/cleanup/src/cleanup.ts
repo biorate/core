@@ -18,7 +18,8 @@ export * from './interfaces';
  *
  * @example
  * ```sh
- * pnpm run ./node_modules/@biorate/cleanup/dist/src/cleanup-by-argv.js ./tests.dir;
+ * pnpm i -g @biorate/cleanup;
+ * cleanup ./tests/dir;
  * ```
  */
 export async function cleanup(...paths: string[]) {

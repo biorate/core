@@ -11,7 +11,8 @@ import {} from '@biorate/cleanup';
 ```
 
 ```sh
-pnpm run ./node_modules/@biorate/cleanup/dist/src/cleanup-by-argv.js ./tests.dir;
+pnpm i -g @biorate/cleanup;
+cleanup ./tests/dir;
 ```
 
 ### Learn
