@@ -3,6 +3,9 @@
   "version": "1.168.1",
   "description": "Cleanup files and directories",
   "main": "dist",
+  "bin": {
+    "cleanup": "./bin/cleanup"
+  },
   "scripts": {
     "cleanup": "node ./dist/src/cleanup-by-argv.js",
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
