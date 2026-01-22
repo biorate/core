@@ -10,5 +10,5 @@
   },
   "npmClient": "pnpm",
   "useNx": true,
-  "version": "1.168.1"
+  "version": "1.169.0"
 }
