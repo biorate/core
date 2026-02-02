@@ -3,9 +3,10 @@
   "version": "1.102.0",
   "description": "Bit array class",
   "main": "dist",
+  "type": "module",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx nyc -- npx mocha tests/**/*.spec.ts",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {

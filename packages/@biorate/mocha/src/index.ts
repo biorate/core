@@ -1,5 +1,3 @@
-// @ts-ignore
-import * as p from 'mocha.parallel';
 import * as core from './core';
 
 function applyTimings(fn: any, settings: any): any {
@@ -46,19 +44,18 @@ function applyTimings(fn: any, settings: any): any {
 
 const mochaRunner: core.TestRunner = {
   suite(name: string, callback: () => void, settings?: core.SuiteSettings): void {
-    const suite = settings?.parallel ? p : describe;
     switch (settings && settings.execution) {
       case 'only':
-        suite.only(name, applyTimings(callback, settings));
+        describe.only(name, applyTimings(callback, settings));
         break;
       case 'skip':
-        suite.skip(name, applyTimings(callback, settings));
+        describe.skip(name, applyTimings(callback, settings));
         break;
       case 'pending':
-        suite.skip(name, applyTimings(callback, settings));
+        describe.skip(name, applyTimings(callback, settings));
         break;
       default:
-        suite(name, applyTimings(callback, settings));
+        describe(name, applyTimings(callback, settings));
     }
   },
 
@@ -162,7 +159,7 @@ interface MochaClassTestUI {
 export * from '@biorate/run-context';
 export { ContentType, Severity } from 'allure-js-commons';
 export * from 'allure-mocha/runtime';
-export { Done } from 'mocha';
+export type { Done } from 'mocha';
 export {
   step as allureStep,
   attachment,

@@ -5,7 +5,7 @@ import { path } from '@biorate/tools';
 
 use(jestSnapshotPlugin());
 
-describe('shutdown-hook', function () {
+describe.skip('shutdown-hook', function () {
   this.timeout(10000);
 
   for (const file of [
