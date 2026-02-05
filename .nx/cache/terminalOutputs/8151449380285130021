@@ -1,0 +1,51 @@
+
+> @biorate/singleton@1.117.0 test /www/biorate/core/packages/@biorate/singleton
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/singleton/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/singleton/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+Error: ENOENT: no such file or directory, open '/www/biorate/core/packages/@biorate/singleton/.reporters.json'
+[90m    at Object.openSync (node:fs:559:18)[39m
+[90m    at Object.readFileSync (node:fs:443:35)[39m
+    at MultiReporters.getCustomOptions (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha-multi-reporters@1.5.1_mocha@11.7.5/node_modules/[4mmocha-multi-reporters[24m/lib/MultiReporters.js:160:47)
+    at MultiReporters.getOptions (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha-multi-reporters@1.5.1_mocha@11.7.5/node_modules/[4mmocha-multi-reporters[24m/lib/MultiReporters.js:140:73)
+    at new MultiReporters (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha-multi-reporters@1.5.1_mocha@11.7.5/node_modules/[4mmocha-multi-reporters[24m/lib/MultiReporters.js:47:24)
+    at Mocha.run (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/mocha.js:972:18)
+    at singleRun (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/cli/run-helpers.js:169:16)
+    at async Object.exports.handler (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/cli/run.js:379:5) {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'open'[39m,
+  path: [32m'/www/biorate/core/packages/@biorate/singleton/.reporters.json'[39m
+}
+
+ Exception during run: Error: ENOENT: no such file or directory, open '/www/biorate/core/packages/@biorate/singleton/.reporters.json'
+[90m    at Object.openSync (node:fs:559:18)[39m
+[90m    at Object.readFileSync (node:fs:443:35)[39m
+    at MultiReporters.getCustomOptions (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha-multi-reporters@1.5.1_mocha@11.7.5/node_modules/[4mmocha-multi-reporters[24m/lib/MultiReporters.js:160:47)
+    at MultiReporters.getOptions (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha-multi-reporters@1.5.1_mocha@11.7.5/node_modules/[4mmocha-multi-reporters[24m/lib/MultiReporters.js:140:73)
+    at new MultiReporters (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha-multi-reporters@1.5.1_mocha@11.7.5/node_modules/[4mmocha-multi-reporters[24m/lib/MultiReporters.js:47:24)
+    at Mocha.run (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/mocha.js:972:18)
+    at singleRun (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/cli/run-helpers.js:169:16)
+    at async Object.exports.handler (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/cli/run.js:379:5) {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'open'[39m,
+  path: [32m'/www/biorate/core/packages/@biorate/singleton/.reporters.json'[39m
+}
+
+=============================== Coverage summary ===============================
+[31;1mStatements   : 20% ( 2/10 )[0m
+[31;1mBranches     : 0% ( 0/2 )[0m
+[31;1mFunctions    : 0% ( 0/4 )[0m
+[31;1mLines        : 20% ( 2/10 )[0m
+================================================================================
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m

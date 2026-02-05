@@ -1,0 +1,26 @@
+
+> @biorate/errors@1.102.0 test /www/biorate/core/packages/@biorate/errors
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:197565) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/errors/tests/index.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/errors/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  Errors[0m
+  [32m  [32m✔[39m[0m[90m message[0m
+  [32m  [32m✔[39m[0m[90m code[0m
+  [32m  [32m✔[39m[0m[90m meta[0m
+  [32m  [32m✔[39m[0m[90m no args[0m
+
+
+[92m [0m[32m 4 passing[0m[90m (7ms)[0m
+
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 100% ( 10/10 )[0m
+[32;1mBranches     : 80% ( 8/10 )[0m
+[32;1mFunctions    : 100% ( 3/3 )[0m
+[32;1mLines        : 100% ( 10/10 )[0m
+================================================================================

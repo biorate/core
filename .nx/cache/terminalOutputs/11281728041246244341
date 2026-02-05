@@ -1,0 +1,38 @@
+
+> @biorate/amf@1.102.0 test /www/biorate/core/packages/@biorate/amf
+> npx nyc -- npx mocha tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/amf/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/amf/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+
+[0m[0m
+[0m  @biorate/amf[0m
+[0m    decode / encode[0m
+    [32m  [32m✔[39m[0m[90m string[0m
+    [32m  [32m✔[39m[0m[90m number[0m
+    [32m  [32m✔[39m[0m[90m boolean[0m
+    [32m  [32m✔[39m[0m[90m date[0m
+    [32m  [32m✔[39m[0m[90m null[0m
+    [32m  [32m✔[39m[0m[90m undefined[0m
+    [32m  [32m✔[39m[0m[90m NaN[0m
+    [32m  [32m✔[39m[0m[90m object[0m
+    [32m  [32m✔[39m[0m[90m array[0m
+
+
+[92m [0m[32m 9 passing[0m[90m (22ms)[0m
+
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 81.25% ( 130/160 )[0m
+[32;1mBranches     : 81.63% ( 40/49 )[0m
+[32;1mFunctions    : 94.73% ( 18/19 )[0m
+[32;1mLines        : 81.88% ( 113/138 )[0m
+================================================================================

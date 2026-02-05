@@ -1,0 +1,177 @@
+
+> @biorate/auto-object@1.138.1 test /www/biorate/core/packages/@biorate/auto-object
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:209784) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/auto-object/tests/index.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/auto-object/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  @biorate/auto-object[0m
+  [31m  1) AutoObject[0m
+  [31m  2) AutoObject.extends[0m
+  [31m  3) AutoArray::create[0m
+  [31m  4) AutoArray::slice[0m
+  [31m  5) AutoArray::splice[0m
+  [31m  6) AutoArray::concat[0m
+
+
+[1mSnapshot Summary[22m
+[1m[31m › 2 snapshots failed[39m[22m from 1 test suite. [2mInspect your code changes or re-run mocha with `--update` to update them to update them.[22m
+[1m[33m › 8 snapshots obsolete [39m[22mfrom 1 test suite. [2mTo remove them all, re-run mocha with `--update` to update them.[22m
+   ↳ [2mtests/[22m[1mindex.spec.ts[22m
+       • @biorate/auto-object AutoArray::concat 1
+       • @biorate/auto-object AutoArray::concat 2
+       • @biorate/auto-object AutoArray::create 1
+       • @biorate/auto-object AutoArray::slice 1
+       • @biorate/auto-object AutoArray::slice 2
+       • @biorate/auto-object AutoArray::splice 1
+       • @biorate/auto-object AutoArray::splice 2
+       • @biorate/auto-object AutoObject 2
+
+[92m [0m[32m 0 passing[0m[90m (33ms)[0m
+[31m  6 failing[0m
+
+[0m  1) @biorate/auto-object
+       AutoObject:
+
+      [31mAssertionError: Snapshot name: `@biorate/auto-object AutoObject 1`: expected 'User {\n  "address": undefined,\n  "f…' to equal 'User {\n  "address": Address {\n    "…'[0m
+      [32m+ expected[0m [31m- actual[0m
+
+       User {
+      [31m-  "address": undefined,[0m
+      [31m-  "firstName": undefined,[0m
+      [31m-  "id": undefined,[0m
+      [31m-  "lastName": undefined,[0m
+      [32m+  "address": Address {[0m
+      [32m+    "apartment": 74,[0m
+      [32m+    "city": "Moscow",[0m
+      [32m+    "geo": Geo [[0m
+      [32m+      12321,[0m
+      [32m+      32123,[0m
+      [32m+    ],[0m
+      [32m+    "postal": 137186,[0m
+      [32m+    "street": "Gogol str.",[0m
+      [32m+  },[0m
+      [32m+  "firstName": "Vasya",[0m
+      [32m+  "id": 1,[0m
+      [32m+  "lastName": "Pupkin",[0m
+       }
+      [0m[90m
+      at SnapshotManager.assert (/www/biorate/core/node_modules/.pnpm/mocha-chai-jest-snapshot@1.1.4_chai@4.3.6/node_modules/mocha-chai-jest-snapshot/src/manager.ts:63:29)
+      at Proxy.<anonymous> (/www/biorate/core/node_modules/.pnpm/mocha-chai-jest-snapshot@1.1.4_chai@4.3.6/node_modules/mocha-chai-jest-snapshot/src/index.ts:81:20)
+      at Proxy.methodWrapper (/www/biorate/core/node_modules/.pnpm/chai@4.3.6/node_modules/chai/lib/chai/utils/addMethod.js:57:25)
+      at Context.<anonymous> (tests/index.spec.ts:17:18)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  2) @biorate/auto-object
+       AutoObject.extends:
+
+      [31mAssertionError: Snapshot name: `@biorate/auto-object AutoObject.extends 1`: expected 'Event {\n  "_events": Object {},\n  "…' to equal 'Event {\n  "_events": Object {},\n  "…'[0m
+      [32m+ expected[0m [31m- actual[0m
+
+       Event {
+         "_events": Object {},
+         "_eventsCount": 0,
+         "_maxListeners": undefined,
+      [31m-  "name": undefined,[0m
+      [31m-  "payload": undefined,[0m
+      [32m+  "name": "user",[0m
+      [32m+  "payload": User {[0m
+      [32m+    "address": Address {[0m
+      [32m+      "apartment": 74,[0m
+      [32m+      "city": "Moscow",[0m
+      [32m+      "geo": Geo [[0m
+      [32m+        12321,[0m
+      [32m+        32123,[0m
+      [32m+      ],[0m
+      [32m+      "postal": 123321,[0m
+      [32m+      "street": "Gogol str.",[0m
+      [32m+    },[0m
+      [32m+    "firstName": "Vasya",[0m
+      [32m+    "id": 1,[0m
+      [32m+    "lastName": "Pupkin",[0m
+      [32m+  },[0m
+         Symbol(shapeMode): false,
+         Symbol(kCapture): false,
+       }
+      [0m[90m
+      at SnapshotManager.assert (/www/biorate/core/node_modules/.pnpm/mocha-chai-jest-snapshot@1.1.4_chai@4.3.6/node_modules/mocha-chai-jest-snapshot/src/manager.ts:63:29)
+      at Proxy.<anonymous> (/www/biorate/core/node_modules/.pnpm/mocha-chai-jest-snapshot@1.1.4_chai@4.3.6/node_modules/mocha-chai-jest-snapshot/src/index.ts:81:20)
+      at Proxy.methodWrapper (/www/biorate/core/node_modules/.pnpm/chai@4.3.6/node_modules/chai/lib/chai/utils/addMethod.js:57:25)
+      at Context.<anonymous> (tests/index.spec.ts:38:19)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  3) @biorate/auto-object
+       AutoArray::create:
+[0m[31m     CommonFactoryValidationError: Validation error [Pet], [ 'type must be a string' ][0m[90m
+      at validate (src/utils.ts:2:1204)
+      at auto (src/utils.ts:2:2049)
+      at new AutoObject (src/index.ts:2:2657)
+      at new Pet (tests/__mocks__/index.ts:74:1)
+      at #transform (src/index.ts:2:2856)
+      at Array.map (<anonymous>)
+      at PetArray.push (src/index.ts:2:3113)
+      at new AutoArray (src/index.ts:2:2988)
+      at new PetArray (tests/__mocks__/index.ts:79:1)
+      at Context.<anonymous> (tests/index.spec.ts:42:18)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  4) @biorate/auto-object
+       AutoArray::slice:
+[0m[31m     CommonFactoryValidationError: Validation error [Pet], [ 'type must be a string' ][0m[90m
+      at validate (src/utils.ts:2:1204)
+      at auto (src/utils.ts:2:2049)
+      at new AutoObject (src/index.ts:2:2657)
+      at new Pet (tests/__mocks__/index.ts:74:1)
+      at #transform (src/index.ts:2:2856)
+      at Array.map (<anonymous>)
+      at PetArray.push (src/index.ts:2:3113)
+      at new AutoArray (src/index.ts:2:2988)
+      at new PetArray (tests/__mocks__/index.ts:79:1)
+      at Context.<anonymous> (tests/index.spec.ts:49:18)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  5) @biorate/auto-object
+       AutoArray::splice:
+[0m[31m     CommonFactoryValidationError: Validation error [Pet], [ 'type must be a string' ][0m[90m
+      at validate (src/utils.ts:2:1204)
+      at auto (src/utils.ts:2:2049)
+      at new AutoObject (src/index.ts:2:2657)
+      at new Pet (tests/__mocks__/index.ts:74:1)
+      at #transform (src/index.ts:2:2856)
+      at Array.map (<anonymous>)
+      at PetArray.push (src/index.ts:2:3113)
+      at new AutoArray (src/index.ts:2:2988)
+      at new PetArray (tests/__mocks__/index.ts:79:1)
+      at Context.<anonymous> (tests/index.spec.ts:56:18)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  6) @biorate/auto-object
+       AutoArray::concat:
+[0m[31m     CommonFactoryValidationError: Validation error [Pet], [ 'type must be a string' ][0m[90m
+      at validate (src/utils.ts:2:1204)
+      at auto (src/utils.ts:2:2049)
+      at new AutoObject (src/index.ts:2:2657)
+      at new Pet (tests/__mocks__/index.ts:74:1)
+      at #transform (src/index.ts:2:2856)
+      at Array.map (<anonymous>)
+      at PetArray.push (src/index.ts:2:3113)
+      at new AutoArray (src/index.ts:2:2988)
+      at new PetArray (tests/__mocks__/index.ts:79:1)
+      at Context.<anonymous> (tests/index.spec.ts:63:18)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+
+
+Command failed: /www/biorate/core/node_modules/.bin/mocha -r,ts-node/register,tests/**/*.spec.ts
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 80% ( 48/60 )[0m
+[33;1mBranches     : 75% ( 9/12 )[0m
+[33;1mFunctions    : 60% ( 12/20 )[0m
+[32;1mLines        : 80.76% ( 42/52 )[0m
+================================================================================
+Command failed: /www/biorate/core/node_modules/.bin/nyc --reporter=lcov,--reporter=text-summary,--,npx,mocha,-r,ts-node/register,tests/**/*.spec.ts
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m

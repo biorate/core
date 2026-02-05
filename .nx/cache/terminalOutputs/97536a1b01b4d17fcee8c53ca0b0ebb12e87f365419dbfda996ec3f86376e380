@@ -1,0 +1,65 @@
+
+> @biorate/collection@1.120.0 test /www/biorate/core/packages/@biorate/collection
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:198310) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/collection/tests/factory.list.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/collection/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  Factory list[0m
+  [32m  [32m✔[39m[0m[90m find[0m
+
+[0m  Factory multiindex list[0m
+  [32m  [32m✔[39m[0m[90m listAB[0m
+  [32m  [32m✔[39m[0m[90m listABBC[0m
+
+[0m  Item embed props[0m
+  [32m  [32m✔[39m[0m[90m initialize[0m
+  [32m  [32m✔[39m[0m[90m set[0m
+
+[0m  Item embeded list[0m
+  [32m  [32m✔[39m[0m[90m initialize[0m
+
+[0m  Item simple props[0m
+  [32m  [32m✔[39m[0m[90m initialize[0m
+
+[0m  Observable collection[0m
+  [32m  [32m✔[39m[0m[90m update[0m
+
+[0m  Observable item[0m
+  [32m  [32m✔[39m[0m[90m update[0m
+  [32m  [32m✔[39m[0m[90m update nested[0m
+
+[0m  Observable list[0m
+  [32m  [32m✔[39m[0m[90m set[0m
+  [32m  [32m✔[39m[0m[90m delete[0m
+
+[0m  Simple indexed list[0m
+  [32m  [32m✔[39m[0m[90m get[0m
+  [32m  [32m✔[39m[0m[90m find[0m
+  [32m  [32m✔[39m[0m[90m has[0m
+  [32m  [32m✔[39m[0m[90m set[0m
+  [32m  [32m✔[39m[0m[90m delete pop[0m
+  [32m  [32m✔[39m[0m[90m delete shift[0m
+
+[0m  Simple list[0m
+  [32m  [32m✔[39m[0m[90m get[0m
+  [32m  [32m✔[39m[0m[90m find[0m
+  [32m  [32m✔[39m[0m[90m has[0m
+  [32m  [32m✔[39m[0m[90m set[0m
+  [32m  [32m✔[39m[0m[90m delete[0m
+  [32m  [32m✔[39m[0m[90m getBy[0m
+  [32m  [32m✔[39m[0m[90m clear[0m
+
+
+[92m [0m[32m 25 passing[0m[90m (29ms)[0m
+
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 93.81% ( 258/275 )[0m
+[33;1mBranches     : 75% ( 96/128 )[0m
+[32;1mFunctions    : 90.47% ( 57/63 )[0m
+[32;1mLines        : 95.88% ( 233/243 )[0m
+================================================================================

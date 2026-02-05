@@ -1,0 +1,31 @@
+
+> @biorate/bit-array@1.102.0 test /www/biorate/core/packages/@biorate/bit-array
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:209081) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/bit-array/tests/index.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/bit-array/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  @biorate/bit-array[0m
+  [32m  [32m✔[39m[0m[90m get, set, remove[0m
+  [32m  [32m✔[39m[0m[90m value[0m
+  [32m  [32m✔[39m[0m[90m define[0m
+  [32m  [32m✔[39m[0m[90m bits[0m
+  [32m  [32m✔[39m[0m[90m overflow[0m
+  [32m  [32m✔[39m[0m[90m empty remove[0m
+  [32m  [32m✔[39m[0m[90m toInt, valueOf[0m
+  [32m  [32m✔[39m[0m[90m toBinary[0m
+  [32m  [32m✔[39m[0m[90m clear[0m
+
+
+[92m [0m[32m 9 passing[0m[90m (14ms)[0m
+
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 100% ( 34/34 )[0m
+[32;1mBranches     : 100% ( 10/10 )[0m
+[32;1mFunctions    : 100% ( 14/14 )[0m
+[32;1mLines        : 100% ( 28/28 )[0m
+================================================================================

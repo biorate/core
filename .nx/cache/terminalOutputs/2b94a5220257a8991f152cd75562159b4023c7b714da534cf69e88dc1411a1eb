@@ -1,0 +1,64 @@
+
+> @biorate/shutdown-hook@1.156.0 test /www/biorate/core/packages/@biorate/shutdown-hook
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:209831) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/shutdown-hook/tests/index.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/shutdown-hook/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  shutdown-hook[0m
+  [31m  1) process.EXIT[0m
+  [31m  2) process.SHUTDOWN[0m
+  [31m  3) process.SIGINT[0m
+  [31m  4) process.SIGTERM[0m
+
+
+[1mSnapshot Summary[22m
+[1m[33m › 4 snapshots obsolete [39m[22mfrom 1 test suite. [2mTo remove them all, re-run mocha with `--update` to update them.[22m
+   ↳ [2mtests/[22m[1mindex.spec.ts[22m
+       • shutdown-hook process.EXIT 1
+       • shutdown-hook process.SHUTDOWN 1
+       • shutdown-hook process.SIGINT 1
+       • shutdown-hook process.SIGTERM 1
+
+[92m [0m[32m 0 passing[0m[90m (46ms)[0m
+[31m  4 failing[0m
+
+[0m  1) shutdown-hook
+       process.EXIT:
+[0m[31m     ReferenceError: __dirname is not defined[0m[90m
+      at Context.<anonymous> (file:///www/biorate/core/packages/@biorate/shutdown-hook/tests/index.spec.ts:18:38)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  2) shutdown-hook
+       process.SHUTDOWN:
+[0m[31m     ReferenceError: __dirname is not defined[0m[90m
+      at Context.<anonymous> (file:///www/biorate/core/packages/@biorate/shutdown-hook/tests/index.spec.ts:18:38)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  3) shutdown-hook
+       process.SIGINT:
+[0m[31m     ReferenceError: __dirname is not defined[0m[90m
+      at Context.<anonymous> (file:///www/biorate/core/packages/@biorate/shutdown-hook/tests/index.spec.ts:18:38)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+[0m  4) shutdown-hook
+       process.SIGTERM:
+[0m[31m     ReferenceError: __dirname is not defined[0m[90m
+      at Context.<anonymous> (file:///www/biorate/core/packages/@biorate/shutdown-hook/tests/index.spec.ts:18:38)
+      at processImmediate (node:internal/timers:485:21)
+[0m
+
+
+Command failed: /www/biorate/core/node_modules/.bin/mocha -r,ts-node/register,tests/**/*.spec.ts
+
+=============================== Coverage summary ===============================
+[33;1mStatements   : Unknown% ( 0/0 )[0m
+[33;1mBranches     : Unknown% ( 0/0 )[0m
+[33;1mFunctions    : Unknown% ( 0/0 )[0m
+[33;1mLines        : Unknown% ( 0/0 )[0m
+================================================================================
+Command failed: /www/biorate/core/node_modules/.bin/nyc --reporter=lcov,--reporter=text-summary,--,npx,mocha,-r,ts-node/register,tests/**/*.spec.ts
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m

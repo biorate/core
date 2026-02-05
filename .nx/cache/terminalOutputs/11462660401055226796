@@ -1,0 +1,12 @@
+
+> @biorate/errors@1.102.0 test /www/biorate/core/packages/@biorate/errors
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/errors/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+Could not resolve configuration file @istanbuljs/nyc-config-typescript from /www/biorate/core.
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m
+[43m[30m WARN [39m[49m  Local package.json exists, but node_modules missing, did you mean to install?

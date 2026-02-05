@@ -1,0 +1,84 @@
+
+> @biorate/tools@1.102.1 test /www/biorate/core/packages/@biorate/tools
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:197810) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/tools/tests/buffer.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/tools/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  buffer[0m
+[0m    writeUInt29[0m
+    [32m  [32m✔[39m[0m[90m write uInt29 1 byte length[0m
+    [32m  [32m✔[39m[0m[90m write uInt29 2 byte length[0m
+    [32m  [32m✔[39m[0m[90m write uInt29 3 byte length[0m
+    [32m  [32m✔[39m[0m[90m write uInt29 4 byte length[0m
+    [32m  [32m✔[39m[0m[90m overflow MAX_UINT29[0m
+    [32m  [32m✔[39m[0m[90m overflow MIN_UINT29[0m
+[0m    readUInt29[0m
+    [32m  [32m✔[39m[0m[90m read uInt29 1 byte length[0m
+    [32m  [32m✔[39m[0m[90m read uInt29 2 byte length[0m
+    [32m  [32m✔[39m[0m[90m read uInt29 3 byte length[0m
+    [32m  [32m✔[39m[0m[90m read uInt29 4 byte length[0m
+[0m    uInt29BytesLength[0m
+    [32m  [32m✔[39m[0m[90m get length of uInt29 1 byte length[0m
+    [32m  [32m✔[39m[0m[90m get length of uInt29 2 byte length[0m
+    [32m  [32m✔[39m[0m[90m get length of uInt29 3 byte length[0m
+    [32m  [32m✔[39m[0m[90m get length of uInt29 4 byte length[0m
+    [32m  [32m✔[39m[0m[90m overflow MAX_UINT29[0m
+    [32m  [32m✔[39m[0m[90m overflow MIN_UINT29[0m
+
+[0m  define[0m
+  [32m  [32m✔[39m[0m[90m define prop [c][0m
+  [32m  [32m✔[39m[0m[90m define prop [w][0m
+  [32m  [32m✔[39m[0m[90m define prop [e][0m
+  [32m  [32m✔[39m[0m[90m define prop [ce][0m
+  [32m  [32m✔[39m[0m[90m define prop [we][0m
+  [32m  [32m✔[39m[0m[90m define prop [cw][0m
+  [32m  [32m✔[39m[0m[90m define prop [cwe][0m
+  [32m  [32m✔[39m[0m[90m accessors prop [c][0m
+  [32m  [32m✔[39m[0m[90m accessors prop [e][0m
+  [32m  [32m✔[39m[0m[90m accessors prop [ce][0m
+
+[0m  env[0m
+  [32m  [32m✔[39m[0m[90m isServer[0m
+
+[0m  events[0m
+  [32m  [32m✔[39m[0m[90m once[0m
+
+[0m  object[0m
+  [32m  [32m✔[39m[0m[90m walkProto[0m
+  [32m  [32m✔[39m[0m[90m kSort[0m
+  [32m  [32m✔[39m[0m[90m isAccessor[0m
+
+[0m  path[0m
+  [32m  [32m✔[39m[0m[90m dirname not full[0m
+  [32m  [32m✔[39m[0m[90m dirname full[0m
+  [32m  [32m✔[39m[0m[90m basename without ext[0m
+  [32m  [32m✔[39m[0m[90m basename with ext[0m
+  [32m  [32m✔[39m[0m[90m extname[0m
+  [32m  [32m✔[39m[0m[90m create[0m
+
+[0m  stream[0m
+  [32m  [32m✔[39m[0m[90m load[0m
+
+[0m  time[0m
+  [32m  [32m✔[39m[0m[90m diff[0m
+  [32m  [32m✔[39m[0m[90m msTo[0m
+
+[0m  timer[0m
+  [32m  [32m✔[39m[0m[90m wait[0m
+  [32m  [32m✔[39m[0m[90m tick[0m
+  [32m  [32m✔[39m[0m[90m immediate[0m
+
+
+[92m [0m[32m 43 passing[0m[90m (32ms)[0m
+
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 96.02% ( 145/151 )[0m
+[33;1mBranches     : 77.98% ( 85/109 )[0m
+[32;1mFunctions    : 91.42% ( 32/35 )[0m
+[32;1mLines        : 96.15% ( 125/130 )[0m
+================================================================================

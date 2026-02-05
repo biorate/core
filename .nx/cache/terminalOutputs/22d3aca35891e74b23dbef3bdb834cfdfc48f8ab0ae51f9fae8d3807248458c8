@@ -1,0 +1,23 @@
+
+> @biorate/async-loop@1.102.1 test /www/biorate/core/packages/@biorate/async-loop
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:198261) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/async-loop/tests/index.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/async-loop/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  @biorate/async-loop[0m
+  [32m  [32m✔[39m[0m[90m run[0m[31m (1001ms)[0m
+
+
+[92m [0m[32m 1 passing[0m[90m (1s)[0m
+
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 82.6% ( 19/23 )[0m
+[33;1mBranches     : 77.77% ( 7/9 )[0m
+[33;1mFunctions    : 60% ( 3/5 )[0m
+[32;1mLines        : 85.71% ( 18/21 )[0m
+================================================================================

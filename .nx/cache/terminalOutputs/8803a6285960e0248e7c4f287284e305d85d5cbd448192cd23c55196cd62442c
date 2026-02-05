@@ -1,0 +1,23 @@
+
+> @biorate/singleton@1.117.0 test /www/biorate/core/packages/@biorate/singleton
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+(node:197549) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///www/biorate/core/packages/@biorate/singleton/tests/index.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /www/biorate/core/packages/@biorate/singleton/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[0m[0m
+[0m  Singleton[0m
+  [32m  [32m✔[39m[0m[90m get instance[0m
+
+
+[92m [0m[32m 1 passing[0m[90m (10ms)[0m
+
+
+=============================== Coverage summary ===============================
+[32;1mStatements   : 100% ( 5/5 )[0m
+[32;1mBranches     : 100% ( 2/2 )[0m
+[32;1mFunctions    : 100% ( 2/2 )[0m
+[32;1mLines        : 100% ( 5/5 )[0m
+================================================================================

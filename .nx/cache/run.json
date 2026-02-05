@@ -1,0 +1,142 @@
+{
+  "run": {
+    "command": "cli run test",
+    "startTime": "2026-02-05T10:42:56.774Z",
+    "endTime": "2026-02-05T10:43:22.730Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@biorate/symbolic:test",
+      "target": "test",
+      "projectName": "@biorate/symbolic",
+      "hash": "f2f144d6565d6894dedcfd8fccbd82f3df4ee69fec09a7bbc9ff29e2ad77762b",
+      "startTime": "2026-02-05T10:42:56.782Z",
+      "endTime": "2026-02-05T10:43:06.977Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/errors:test",
+      "target": "test",
+      "projectName": "@biorate/errors",
+      "hash": "8cfda3a8bbdf4edcd01ca0d6cbddd2b87e47d9793dcb8d2a355f6347afc23fde",
+      "startTime": "2026-02-05T10:42:56.782Z",
+      "endTime": "2026-02-05T10:43:07.132Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/singleton:test",
+      "target": "test",
+      "projectName": "@biorate/singleton",
+      "hash": "bee1409aa33dee5bde5a1ce6ec6ec52a7898ab0b9f5dd404ee0811ded9674678",
+      "startTime": "2026-02-05T10:42:56.783Z",
+      "endTime": "2026-02-05T10:43:07.211Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/bit-array:test",
+      "target": "test",
+      "projectName": "@biorate/bit-array",
+      "hash": "e448c879ba2cf5341ee0832c4dfdbb68e65310c5b3e5b6960f56726512d739eb",
+      "startTime": "2026-02-05T10:42:56.783Z",
+      "endTime": "2026-02-05T10:43:07.393Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/amf:test",
+      "target": "test",
+      "projectName": "@biorate/amf",
+      "hash": "df01e67734313449ac30eccbf7e105bb7be16f6c6103a603205ce8fb47424134",
+      "startTime": "2026-02-05T10:42:56.783Z",
+      "endTime": "2026-02-05T10:43:07.429Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/cleanup:test",
+      "target": "test",
+      "projectName": "@biorate/cleanup",
+      "hash": "92529307e047d425a772c04572af84bf0ebddb973d6d17fb685b71f61dbd2398",
+      "startTime": "2026-02-05T10:43:07.133Z",
+      "endTime": "2026-02-05T10:43:12.523Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/tools:test",
+      "target": "test",
+      "projectName": "@biorate/tools",
+      "hash": "3bb7c532fb8828ce8167d2b4b345837b751c1117561f41434ea82907d5e76c13",
+      "startTime": "2026-02-05T10:43:07.133Z",
+      "endTime": "2026-02-05T10:43:13.616Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/shutdown-hook:test",
+      "target": "test",
+      "projectName": "@biorate/shutdown-hook",
+      "hash": "2b94a5220257a8991f152cd75562159b4023c7b714da534cf69e88dc1411a1eb",
+      "startTime": "2026-02-05T10:43:13.617Z",
+      "endTime": "2026-02-05T10:43:17.711Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    },
+    {
+      "taskId": "@biorate/run-context:test",
+      "target": "test",
+      "projectName": "@biorate/run-context",
+      "hash": "c09aca26fa5826decb7d0442d59bcbe48eb3e9cd2a0eba0a9099456d4dcfcaec",
+      "startTime": "2026-02-05T10:43:13.617Z",
+      "endTime": "2026-02-05T10:43:21.197Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/auto-object:test",
+      "target": "test",
+      "projectName": "@biorate/auto-object",
+      "hash": "2f5e6b03cfbdd22dca5a28a21633420e488433d56955965b4e254b13cb130b0b",
+      "startTime": "2026-02-05T10:43:13.618Z",
+      "endTime": "2026-02-05T10:43:21.633Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    },
+    {
+      "taskId": "@biorate/async-loop:test",
+      "target": "test",
+      "projectName": "@biorate/async-loop",
+      "hash": "cc7c901eee1e2fb2f2b363c8f5d7ce190855d3d9f79aa51b013e0a4ade8b3bea",
+      "startTime": "2026-02-05T10:43:13.618Z",
+      "endTime": "2026-02-05T10:43:22.364Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/collection:test",
+      "target": "test",
+      "projectName": "@biorate/collection",
+      "hash": "e1a408fe55e5a6555dfe1e0f55455d414f42b4aff8591f9d44cb3478361fc10a",
+      "startTime": "2026-02-05T10:43:13.617Z",
+      "endTime": "2026-02-05T10:43:22.729Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}
