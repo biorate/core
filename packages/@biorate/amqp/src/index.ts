@@ -6,7 +6,7 @@ import { connect, ChannelWrapper } from 'amqp-connection-manager';
 import { AmqpCantConnectError, ChannelNotExistsError } from './errors';
 import { IAmqpConfig, IAmqpConnection, ICreateChannelOpts } from './interfaces';
 
-export { ConsumeMessage } from 'amqplib/properties';
+export { type ConsumeMessage } from 'amqplib';
 export * from 'amqp-connection-manager';
 export * from './errors';
 export * from './interfaces';

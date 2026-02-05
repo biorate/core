@@ -3,6 +3,7 @@
   "version": "1.156.2",
   "description": "AMQP connector",
   "main": "dist",
+  "type": "module",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
@@ -29,10 +30,10 @@
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "amqp-connection-manager": "4.1.14",
-    "amqplib": "0.10.3"
+    "amqp-connection-manager": "5.0.0",
+    "amqplib": "0.10.9"
   },
   "devDependencies": {
-    "@types/amqplib": "0.10.5"
+    "@types/amqplib": "0.10.8"
   }
 }
