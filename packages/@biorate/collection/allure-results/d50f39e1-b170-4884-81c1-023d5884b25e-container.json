@@ -1,1 +1,0 @@
-{"uuid":"d50f39e1-b170-4884-81c1-023d5884b25e","children":["b6c2282f-2caf-4830-9768-d0d4005548fe"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"name":"\"before each\" hook for \"find\""}],"afters":[],"name":"Factory list"}

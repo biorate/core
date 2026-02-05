@@ -1,1 +1,0 @@
-{"uuid":"325b3c3b-d8cf-4014-81d9-99971d5beedf","children":["0fe7a923-8647-4f42-9c41-867bd2557675"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"name":"\"before each\" hook for \"Context.run\""}],"afters":[],"name":"@biorate/run-context"}

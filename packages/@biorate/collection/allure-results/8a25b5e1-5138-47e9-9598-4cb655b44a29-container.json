@@ -1,1 +1,0 @@
-{"uuid":"8a25b5e1-5138-47e9-9598-4cb655b44a29","children":["e295bb88-f1a7-41a0-941d-417267835330"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"name":"\"before each\" hook for \"initialize\""}],"afters":[],"name":"Item embeded list"}
