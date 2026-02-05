@@ -2,7 +2,7 @@
   "require": "source-map-support/register,ts-node/register,tsconfig-paths/register",
   "spec": "tests/**/*.spec.ts",
   "reporter": "mocha-multi-reporters",
-  "reporter-option": "configFile=.reporters.json",
+  "reporter-option": ["configFile=.reporters.json"],
   "exit": true,
   "parallel": false
 }

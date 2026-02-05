@@ -4,8 +4,8 @@
   "description": "Action Message Format (AMF) protocol realization for JS",
   "main": "dist",
   "scripts": {
-    "build": "tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "nyc --nycrc-path ../../../.nycrc.json -- mocha tests/**/*.spec.ts",
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx nyc --nycrc-path ../../../.nycrc.json -- npx mocha tests/**/*.spec.ts",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {

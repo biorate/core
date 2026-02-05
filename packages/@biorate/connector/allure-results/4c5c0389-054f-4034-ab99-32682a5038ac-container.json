@@ -1,0 +1,1 @@
+{"uuid":"4c5c0389-054f-4034-ab99-32682a5038ac","children":["27f04704-175d-499e-905f-5d2f46639201"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"name":"\"before all\" hook for \"get connection\""}],"afters":[],"name":"@biorate/connector"}

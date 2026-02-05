@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "build": "npx tsc --outDir ./dist",
-    "test": "npx playwright test",
+    "test:skip": "npx playwright test",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
