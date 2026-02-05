@@ -7,7 +7,6 @@ onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@scarf/scarf'
   - core-js
-  - node-rdkafka
   - nx
   - protobufjs
   - sqlite3

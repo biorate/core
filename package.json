@@ -12,7 +12,8 @@
     "doc": "npx typedoc --skipErrorChecking packages/@biorate/*/index.ts",
     "postdoc": "npm run demo",
     "publish": "npx lerna publish from-package",
-    "cleanup:node_modules": "rm -rf $(find -type d -name 'node_modules')"
+    "cleanup:node_modules": "cleanup **/node_modules",
+    "cleanup:all": "pnpm run cleanup:node_modules './packages/**/{dist,.nyc_output,coverage,allure-results}'"
   },
   "keywords": [],
   "author": "llevkin",
@@ -21,6 +22,7 @@
     "packages/*/*"
   ],
   "devDependencies": {
+    "@biorate/cleanup": "^1.169.1",
     "@nestjs/common": "10.4.15",
     "@nestjs/core": "10.4.15",
     "@nestjs/swagger": "8.1.0",
