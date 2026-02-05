@@ -1,4 +1,4 @@
-import { ShutdownHook } from '../../src';
+import { ShutdownHook } from '../../src/index.ts';
 
 ShutdownHook.subscribe((reason) => {
   console.log(reason);

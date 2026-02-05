@@ -3,9 +3,10 @@
   "version": "1.156.0",
   "description": "Shutdown hook implementation for Node.JS",
   "main": "dist",
+  "type": "module",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/esm tests/**/*.spec.ts",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
@@ -23,8 +24,6 @@
   "dependencies": {
     "@biorate/tools": "workspace:*"
   },
-  "devDependencies": {
-    "@types/node": "^16.18.23"
-  },
+  "devDependencies": {},
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }

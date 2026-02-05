@@ -1,7 +1,7 @@
 import { env } from '@biorate/tools';
-import { IHook, Reasons } from './interfaces';
+import { IHook, Reasons } from './interfaces.ts';
 
-export * from './interfaces';
+export * from './interfaces.ts';
 
 /**
  * @description Shutdown hook implementation for Node.JS

@@ -3,6 +3,6 @@
   "compilerOptions": {
     "strict": true
   },
-  "include": ["index.ts", "src/**/*", "tests/**/*"],
+  "include": ["index.ts", "src/**/*", "tests/**/*", "tests/__mocks__/*"],
   "exclude": ["node_modules", "dist"]
 }
