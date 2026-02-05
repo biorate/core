@@ -12,19 +12,19 @@ export const scope = (version?: string, name?: string) => (Class: any) => {
 };
 
 export const span =
-  ({ name, spanKind }: { name?: string; spanKind?: string }) =>
+  (props?: { name?: string; spanKind?: string }) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const obj = {
       [propertyKey]: function (...args: any[]) {
         const tracer: Tracer = Reflect.getOwnMetadata(key, target.constructor);
         if (!tracer) throw new OTELUndefinedTracerError(target.constructor.name);
-        return tracer.startActiveSpan(name ?? propertyKey, (span) => {
+        return tracer.startActiveSpan(props?.name ?? propertyKey, (span) => {
           try {
             span.setAttribute('class', target.constructor.name);
             span.setAttribute('method', propertyKey);
             span.setAttribute('arguments', stringify(args));
-            span.setAttribute('SpanKind', spanKind ?? 'SERVER');
+            span.setAttribute('SpanKind', props?.spanKind ?? 'SERVER');
             const result = method.apply(this, args);
             if (result instanceof Promise)
               return result
