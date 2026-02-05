@@ -1,2 +1,13 @@
 packages:
   - packages/*/*
+
+onlyBuiltDependencies:
+  - '@confluentinc/kafka-javascript'
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@scarf/scarf'
+  - core-js
+  - node-rdkafka
+  - nx
+  - protobufjs
+  - sqlite3
