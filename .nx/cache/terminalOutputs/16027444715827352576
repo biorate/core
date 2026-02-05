@@ -1,0 +1,32 @@
+
+> @biorate/symbolic@1.102.0 test /www/biorate/core/packages/@biorate/symbolic
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/symbolic/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/symbolic/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+
+ Exception during run: tests/__mocks__/index.ts(2,215): error TS7006: Parameter 'target' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,222): error TS7006: Parameter 'all' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,322): error TS7006: Parameter 'to' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,325): error TS7006: Parameter 'from' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,330): error TS7006: Parameter 'except' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,337): error TS7006: Parameter 'desc' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,616): error TS7006: Parameter 'mod' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,621): error TS2554: Expected 4 arguments, but got 2.
+
+
+=============================== Coverage summary ===============================
+[31;1mStatements   : 0% ( 0/18 )[0m
+[31;1mBranches     : 0% ( 0/3 )[0m
+[31;1mFunctions    : 0% ( 0/11 )[0m
+[31;1mLines        : 0% ( 0/16 )[0m
+================================================================================
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m

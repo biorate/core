@@ -1,0 +1,56 @@
+
+> @biorate/amf@1.102.0 test /www/biorate/core/packages/@biorate/amf
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/amf/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/amf/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+
+ Exception during run: Error: Directory import '/www/biorate/core/packages/@biorate/amf/tests/__mocks__' is not supported resolving ES modules imported from /www/biorate/core/packages/@biorate/amf/tests/index.spec.ts
+[90m    at finalizeResolution (node:internal/modules/esm/resolve:262:11)[39m
+[90m    at moduleResolve (node:internal/modules/esm/resolve:864:10)[39m
+[90m    at defaultResolve (node:internal/modules/esm/resolve:990:11)[39m
+[90m    at ModuleLoader.#cachedDefaultResolve (node:internal/modules/esm/loader:718:20)[39m
+[90m    at ModuleLoader.#resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:735:38)[39m
+[90m    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:764:52)[39m
+[90m    at ModuleLoader.#resolve (node:internal/modules/esm/loader:700:17)[39m
+[90m    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:620:35)[39m
+[90m    at ModuleJob.syncLink (node:internal/modules/esm/module_job:143:33)[39m
+[90m    at ModuleJob.link (node:internal/modules/esm/module_job:228:17)[39m
+[90m    at new ModuleJob (node:internal/modules/esm/module_job:207:26)[39m
+[90m    at ModuleLoader.#getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:589:11)[39m
+[90m    at afterResolve (node:internal/modules/esm/loader:624:52)[39m
+[90m    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:630:12)[39m
+[90m    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:649:32)[39m
+[90m    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)[39m
+[90m    at ModuleLoader.import (node:internal/modules/esm/loader:645:21)[39m
+[90m    at defaultImportModuleDynamicallyForScript (node:internal/modules/esm/utils:239:31)[39m
+[90m    at importModuleDynamicallyCallback (node:internal/modules/esm/utils:263:12)[39m
+    at Object.exports.doImport (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/nodejs/esm-utils.js:36:41)
+    at formattedImport (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/nodejs/esm-utils.js:10:28)
+    at Object.requireModule [as requireOrImport] (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/nodejs/esm-utils.js:102:36)
+    at Object.exports.loadFilesAsync (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/nodejs/esm-utils.js:152:34)
+    at Mocha.loadFilesAsync (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/mocha.js:429:19)
+    at singleRun (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/cli/run-helpers.js:168:15)
+    at exports.runMocha (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/cli/run-helpers.js:245:10)
+    at Object.exports.handler (/www/biorate/core/node_modules/[4m.pnpm[24m/mocha@11.7.5/node_modules/[4mmocha[24m/lib/cli/run.js:379:11)
+    at /www/biorate/core/node_modules/[4m.pnpm[24m/yargs@17.7.2/node_modules/[4myargs[24m/build/index.cjs:1:8993
+    at /www/biorate/core/node_modules/[4m.pnpm[24m/yargs@17.7.2/node_modules/[4myargs[24m/build/index.cjs:1:4949 {
+  code: [32m'ERR_UNSUPPORTED_DIR_IMPORT'[39m,
+  url: [32m'file:///www/biorate/core/packages/@biorate/amf/tests/__mocks__'[39m
+}
+
+=============================== Coverage summary ===============================
+[33;1mStatements   : Unknown% ( 0/0 )[0m
+[33;1mBranches     : Unknown% ( 0/0 )[0m
+[33;1mFunctions    : Unknown% ( 0/0 )[0m
+[33;1mLines        : Unknown% ( 0/0 )[0m
+================================================================================
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m

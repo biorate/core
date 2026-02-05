@@ -1,14 +1,14 @@
 {
-  "useWorkspaces": true,
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "independent",
   "command": {
     "version": {
-      "allowBranch": "master",
+      "allowBranch": ["master"],
       "exact": true,
       "conventionalCommits": true,
+      "changelog": true,
       "message": "chore(release): %s"
     }
   },
-  "npmClient": "pnpm",
-  "useNx": true,
-  "version": "1.169.1"
+  "npmClient": "pnpm"
 }

@@ -1,0 +1,36 @@
+
+> @biorate/errors@1.102.0 test /www/biorate/core/packages/@biorate/errors
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/errors/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/errors/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+
+ Exception during run: tests/__mocks__/index.ts(2,213): error TS7006: Parameter 'target' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,220): error TS7006: Parameter 'value' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,293): error TS7006: Parameter 'target' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,300): error TS7006: Parameter 'all' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,400): error TS7006: Parameter 'to' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,403): error TS7006: Parameter 'from' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,408): error TS7006: Parameter 'except' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,415): error TS7006: Parameter 'desc' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,694): error TS7006: Parameter 'mod' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,699): error TS2554: Expected 4 arguments, but got 2.
+tests/__mocks__/index.ts(2,1142): error TS7006: Parameter 'args' implicitly has an 'any' type.
+tests/__mocks__/index.ts(2,1147): error TS7006: Parameter 'meta2' implicitly has an 'any' type.
+
+
+=============================== Coverage summary ===============================
+[31;1mStatements   : 0% ( 0/7 )[0m
+[31;1mBranches     : 0% ( 0/2 )[0m
+[31;1mFunctions    : 0% ( 0/3 )[0m
+[31;1mLines        : 0% ( 0/7 )[0m
+================================================================================
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m

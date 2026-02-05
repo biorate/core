@@ -3,6 +3,7 @@
   "version": "1.156.2",
   "description": "Application configurator",
   "main": "dist",
+  "type": "module",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
@@ -23,8 +24,8 @@
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "lodash": "^4.17.21",
-    "traverse": "^0.6.6"
+    "lodash-es": "4.17.23",
+    "traverse": "0.6.6"
   },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
   "devDependencies": {

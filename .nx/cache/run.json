@@ -1,0 +1,65 @@
+{
+  "run": {
+    "command": "cli run test",
+    "startTime": "2026-02-05T08:54:37.621Z",
+    "endTime": "2026-02-05T08:54:44.248Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@biorate/amf:test",
+      "target": "test",
+      "projectName": "@biorate/amf",
+      "hash": "8913403809269519106",
+      "startTime": "2026-02-05T08:54:37.652Z",
+      "endTime": "2026-02-05T08:54:42.837Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/bit-array:test",
+      "target": "test",
+      "projectName": "@biorate/bit-array",
+      "hash": "9459840709593890348",
+      "startTime": "2026-02-05T08:54:37.652Z",
+      "endTime": "2026-02-05T08:54:42.862Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@biorate/singleton:test",
+      "target": "test",
+      "projectName": "@biorate/singleton",
+      "hash": "554897351781370488",
+      "startTime": "2026-02-05T08:54:37.652Z",
+      "endTime": "2026-02-05T08:54:44.180Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    },
+    {
+      "taskId": "@biorate/errors:test",
+      "target": "test",
+      "projectName": "@biorate/errors",
+      "hash": "15495340460903524900",
+      "startTime": "2026-02-05T08:54:37.651Z",
+      "endTime": "2026-02-05T08:54:44.246Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    },
+    {
+      "taskId": "@biorate/symbolic:test",
+      "target": "test",
+      "projectName": "@biorate/symbolic",
+      "hash": "16027444715827352576",
+      "startTime": "2026-02-05T08:54:37.652Z",
+      "endTime": "2026-02-05T08:54:44.247Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}

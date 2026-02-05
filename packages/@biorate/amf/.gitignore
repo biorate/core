@@ -1,5 +1,7 @@
 # compiled output
 dist
+
+allure-results
 node_modules
 
 # Logs

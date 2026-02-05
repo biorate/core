@@ -1,0 +1,26 @@
+
+> @biorate/singleton@1.117.0 test /www/biorate/core/packages/@biorate/singleton
+> npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/singleton/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/singleton/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+
+ Exception during run: tests/index.spec.ts(2,62): error TS7006: Parameter 'target' implicitly has an 'any' type.
+tests/index.spec.ts(2,69): error TS7006: Parameter 'value' implicitly has an 'any' type.
+
+
+=============================== Coverage summary ===============================
+[31;1mStatements   : 0% ( 0/4 )[0m
+[31;1mBranches     : 0% ( 0/2 )[0m
+[31;1mFunctions    : 0% ( 0/2 )[0m
+[31;1mLines        : 0% ( 0/4 )[0m
+================================================================================
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m

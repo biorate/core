@@ -1,0 +1,37 @@
+
+> @biorate/bit-array@1.102.0 test /www/biorate/core/packages/@biorate/bit-array
+> npx nyc -- npx mocha tests/**/*.spec.ts
+
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/bit-array/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
+npm warn config ignoring workspace config at /www/biorate/core/packages/@biorate/bit-array/.npmrc
+npm warn Unknown global config "ignore-workspace-root-check". This will stop working in the next major version of npm.
+
+[0m[0m
+[0m  @biorate/bit-array[0m
+  [32m  [32m✔[39m[0m[90m get, set, remove[0m
+  [32m  [32m✔[39m[0m[90m value[0m
+  [32m  [32m✔[39m[0m[90m define[0m
+  [32m  [32m✔[39m[0m[90m bits[0m
+  [32m  [32m✔[39m[0m[90m overflow[0m
+  [32m  [32m✔[39m[0m[90m empty remove[0m
+  [32m  [32m✔[39m[0m[90m toInt, valueOf[0m
+  [32m  [32m✔[39m[0m[90m toBinary[0m
+  [32m  [32m✔[39m[0m[90m clear[0m
+
+
+[92m [0m[32m 9 passing[0m[90m (25ms)[0m
+
+
+=============================== Coverage summary ===============================
+[31;1mStatements   : 0% ( 0/33 )[0m
+[31;1mBranches     : 0% ( 0/10 )[0m
+[31;1mFunctions    : 0% ( 0/14 )[0m
+[31;1mLines        : 0% ( 0/27 )[0m
+================================================================================

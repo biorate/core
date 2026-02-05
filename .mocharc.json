@@ -3,7 +3,10 @@
   "node-option": ["import=tsx"],
   "spec": "tests/**/*.spec.ts",
   "reporter": "mocha-multi-reporters",
-  "reporter-option": "configFile=.reporters.json",
+  "reporter-option": [
+    "configFile=.reporters.json",
+    "allureMochaReporterOptions.resultsDir=./allure-results"
+  ],
   "exit": true,
   "parallel": false
 }

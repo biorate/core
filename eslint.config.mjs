@@ -1,10 +1,23 @@
-module.exports = {
+import tseslint from 'typescript-eslint';
+import globals from 'globals';
+
+export default {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  languageOptions: {
+    parser: tseslint.parser,
+    parserOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
+    globals: {
+      ...globals.node,
+    },
+  },
+  plugins: ['@typescript-eslint/eslint-plugin', tseslint.plugin],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
@@ -14,7 +27,6 @@ module.exports = {
   env: {
     node: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
   rules: {
     '@typescript-eslint/no-this-alias': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
