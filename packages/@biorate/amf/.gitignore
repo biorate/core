@@ -3,6 +3,7 @@ dist
 
 node_modules
 allure-results
+allure-report
 
 # Logs
 logs

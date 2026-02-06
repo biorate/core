@@ -1,1 +1,0 @@
-{"uuid":"a2cddec9-c95c-4bf5-aa93-e1446ff9bd75","children":["c509501d-b58f-45bb-8b69-d3efed9d747d"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"name":"\"before each\" hook for \"update\""}],"afters":[],"name":"Observable collection"}
