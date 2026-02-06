@@ -9,10 +9,10 @@ importers:
   .:
     devDependencies:
       '@biorate/cleanup':
-        specifier: ^1.169.1
+        specifier: 1.169.1
         version: 1.169.1
       '@istanbuljs/nyc-config-typescript':
-        specifier: ^1.0.2
+        specifier: 1.0.2
         version: 1.0.2(nyc@17.1.0)
       '@nestjs/common':
         specifier: 10.4.15
@@ -23,9 +23,6 @@ importers:
       '@nestjs/swagger':
         specifier: 8.1.0
         version: 8.1.0(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)(rxjs@7.8.2))(encoding@0.1.13)(reflect-metadata@0.1.13)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.13)
-      '@playwright/test':
-        specifier: ^1.44.0
-        version: 1.44.0
       '@types/chai':
         specifier: 4.2.18
         version: 4.2.18
@@ -76,10 +73,10 @@ importers:
         version: 2.4.1
       css-loader:
         specifier: 5.2.6
-        version: 5.2.6(webpack@5.97.1(webpack-cli@6.0.1))
+        version: 5.2.6(webpack@5.97.1)
       css-minimizer-webpack-plugin:
         specifier: 3.0.0
-        version: 3.0.0(webpack@5.97.1(webpack-cli@6.0.1))
+        version: 3.0.0(webpack@5.97.1)
       eslint:
         specifier: 7.32.0
         version: 7.32.0
@@ -103,7 +100,7 @@ importers:
         version: 4.21.2
       file-loader:
         specifier: 6.2.0
-        version: 6.2.0(webpack@5.97.1(webpack-cli@6.0.1))
+        version: 6.2.0(webpack@5.97.1)
       http-proxy:
         specifier: 1.18.1
         version: 1.18.1
@@ -121,13 +118,13 @@ importers:
         version: 4.1.1
       less-loader:
         specifier: 9.0.0
-        version: 9.0.0(less@4.1.1)(webpack@5.97.1(webpack-cli@6.0.1))
+        version: 9.0.0(less@4.1.1)(webpack@5.97.1)
       lodash:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: 4.17.23
+        version: 4.17.23
       mini-css-extract-plugin:
         specifier: 1.6.0
-        version: 1.6.0(webpack@5.97.1(webpack-cli@6.0.1))
+        version: 1.6.0(webpack@5.97.1)
       minimist:
         specifier: 1.2.8
         version: 1.2.8
@@ -152,9 +149,6 @@ importers:
       path-browserify:
         specifier: 1.0.1
         version: 1.0.1
-      playwright:
-        specifier: 1.44.0
-        version: 1.44.0
       prettier:
         specifier: 2.8.8
         version: 2.8.8
@@ -181,10 +175,10 @@ importers:
         version: 2.1.6(@types/node@16.18.23)(@types/validator@13.12.2)(reflect-metadata@0.1.13)(sequelize@6.37.3)
       terser-webpack-plugin:
         specifier: 5.1.2
-        version: 5.1.2(webpack@5.97.1(webpack-cli@6.0.1))
+        version: 5.1.2(webpack@5.97.1)
       ts-loader:
         specifier: 9.4.2
-        version: 9.4.2(typescript@5.0.4)(webpack@5.97.1(webpack-cli@6.0.1))
+        version: 9.4.2(typescript@5.0.4)(webpack@5.97.1)
       ts-node:
         specifier: 10.8.1
         version: 10.8.1(@types/node@16.18.23)(typescript@5.0.4)
@@ -2142,21 +2136,25 @@ packages:
     resolution: {integrity: sha512-6B/yCFiqjvV2Bkz6MKUtfFWjwtiF53DN07K1BFksMpQef+h2yE1IrGaG/OCl6VaVl4VRzQgLOluqP96M1yhDgg==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@nx/nx-linux-arm64-musl@22.4.5':
     resolution: {integrity: sha512-n0v60vRYn7BDHWB588snPZntLO2XC8/pvLd+QunneM2VGEPf51n5llX5U3AwTt/ybaZHWhbuHv0sJBIbT4I0GA==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@nx/nx-linux-x64-gnu@22.4.5':
     resolution: {integrity: sha512-zT7nb1PRE3NcW/HFnbgKJ9ZPtCOeVDpbJ5J4ZhHj36ZAUWZVXFEIPq9VTIZFy5+0pioLUIClQQY7OUfwnV/Zig==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@nx/nx-linux-x64-musl@22.4.5':
     resolution: {integrity: sha512-r8Rls5BS7lGQbUNX1Z1S370XrOacOU1bQ/dxY8i7qahFQKnMwpFo0W8odhgzjk+vrC/WLf9jOgz5/JPzehQBIw==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@nx/nx-win32-arm64-msvc@22.4.5':
     resolution: {integrity: sha512-Lv81LTnG6sSvBOq2vDSeyfzpF9X0cTGlJdzJOJzPZXCZGFhTV1ig9TdLiij/GM2JwV4Kvq5Co6YzA5dxtGUphQ==}
@@ -2712,11 +2710,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@playwright/test@1.44.0':
-    resolution: {integrity: sha512-rNX5lbNidamSUorBhB4XZ9SQTjAqfe5M+p37Z8ic0jPFBMo5iCtQz1kRWkEMg+rYOKSlVycpQmpqjSFq7LXOfg==}
-    engines: {node: '>=16'}
-    hasBin: true
 
   '@playwright/test@1.56.1':
     resolution: {integrity: sha512-vSMYtL/zOcFpvJCW71Q/OEGQb7KYBPAdKh35WNSkaZA75JlAO8ED8UN6GUNTm3drWomcbcqRPFqQbLae8yBTdg==}
@@ -6113,6 +6106,9 @@ packages:
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
+  lodash@4.17.23:
+    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
+
   log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
@@ -7064,19 +7060,9 @@ packages:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
 
-  playwright-core@1.44.0:
-    resolution: {integrity: sha512-ZTbkNpFfYcGWohvTTl+xewITm7EOuqIqex0c7dNZ+aXsbrLj0qI8XlGKfPpipjm0Wny/4Lt4CJsWJk1stVS5qQ==}
-    engines: {node: '>=16'}
-    hasBin: true
-
   playwright-core@1.56.1:
     resolution: {integrity: sha512-hutraynyn31F+Bifme+Ps9Vq59hKuUCz7H1kDOcBs+2oGguKkWTU50bBWrtz34OUWmIwpBTWDxaRPXrIXkgvmQ==}
     engines: {node: '>=18'}
-    hasBin: true
-
-  playwright@1.44.0:
-    resolution: {integrity: sha512-F9b3GUCLQ3Nffrfb6dunPOkE5Mh68tR7zN32L4jCk4FjQamgesGay7/dAAe1WaMEGV04DkdJfcJzjoCKygUaRQ==}
-    engines: {node: '>=16'}
     hasBin: true
 
   playwright@1.56.1:
@@ -7828,11 +7814,6 @@ packages:
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
-    hasBin: true
-
-  semver@7.5.2:
-    resolution: {integrity: sha512-SoftuTROv/cRjCze/scjGyiDtcUyxw1rgYQSZY7XTmtR5hX+dm76iDbTH8TkLPHCQmlbQVSSbNZCPM2hb0knnQ==}
-    engines: {node: '>=10'}
     hasBin: true
 
   semver@7.7.1:
@@ -10987,10 +10968,6 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@playwright/test@1.44.0':
-    dependencies:
-      playwright: 1.44.0
-
   '@playwright/test@1.56.1':
     dependencies:
       playwright: 1.56.1
@@ -11149,7 +11126,7 @@ snapshots:
       loglevel: 1.9.2
       mongoose: 7.8.6
       reflect-metadata: 0.1.14
-      semver: 7.5.2
+      semver: 7.7.2
       tslib: 2.8.1
 
   '@types/amqplib@0.10.5':
@@ -11616,17 +11593,17 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@6.0.1))':
+  '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1)(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1)
 
-  '@webpack-cli/info@3.0.1(webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@6.0.1))':
+  '@webpack-cli/info@3.0.1(webpack-cli@6.0.1)(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1)
 
-  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1))(webpack-dev-server@5.2.0(webpack-cli@6.0.1)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@6.0.1))':
+  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.0)(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1)
@@ -11995,7 +11972,7 @@ snapshots:
     dependencies:
       babel-runtime: 6.26.0
       esutils: 2.0.3
-      lodash: 4.17.21
+      lodash: 4.17.23
       to-fast-properties: 1.0.3
 
   babel-walk@3.0.0-canary-5:
@@ -12598,7 +12575,7 @@ snapshots:
     dependencies:
       postcss: 8.5.3
 
-  css-loader@5.2.6(webpack@5.97.1(webpack-cli@6.0.1)):
+  css-loader@5.2.6(webpack@5.97.1):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.3)
       loader-utils: 2.0.4
@@ -12612,7 +12589,7 @@ snapshots:
       semver: 7.7.1
       webpack: 5.97.1(webpack-cli@6.0.1)
 
-  css-minimizer-webpack-plugin@3.0.0(webpack@5.97.1(webpack-cli@6.0.1)):
+  css-minimizer-webpack-plugin@3.0.0(webpack@5.97.1):
     dependencies:
       cssnano: 5.1.15(postcss@8.5.3)
       jest-worker: 26.6.2
@@ -13377,7 +13354,7 @@ snapshots:
     dependencies:
       flat-cache: 3.2.0
 
-  file-loader@6.2.0(webpack@5.97.1(webpack-cli@6.0.1)):
+  file-loader@6.2.0(webpack@5.97.1):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
@@ -14758,7 +14735,7 @@ snapshots:
       - debug
       - supports-color
 
-  less-loader@9.0.0(less@4.1.1)(webpack@5.97.1(webpack-cli@6.0.1)):
+  less-loader@9.0.0(less@4.1.1)(webpack@5.97.1):
     dependencies:
       klona: 2.0.6
       less: 4.1.1
@@ -14892,6 +14869,8 @@ snapshots:
   lodash.uniq@4.5.0: {}
 
   lodash@4.17.21: {}
+
+  lodash@4.17.23: {}
 
   log-symbols@4.1.0:
     dependencies:
@@ -15093,7 +15072,7 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  mini-css-extract-plugin@1.6.0(webpack@5.97.1(webpack-cli@6.0.1)):
+  mini-css-extract-plugin@1.6.0(webpack@5.97.1):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
@@ -15264,7 +15243,7 @@ snapshots:
   mocha-multi-reporters@1.5.1(mocha@10.2.0):
     dependencies:
       debug: 4.4.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       mocha: 10.2.0
     transitivePeerDependencies:
       - supports-color
@@ -16062,15 +16041,7 @@ snapshots:
     dependencies:
       find-up: 4.1.0
 
-  playwright-core@1.44.0: {}
-
   playwright-core@1.56.1: {}
-
-  playwright@1.44.0:
-    dependencies:
-      playwright-core: 1.44.0
-    optionalDependencies:
-      fsevents: 2.3.2
 
   playwright@1.56.1:
     dependencies:
@@ -16893,10 +16864,6 @@ snapshots:
 
   semver@6.3.1: {}
 
-  semver@7.5.2:
-    dependencies:
-      lru-cache: 6.0.0
-
   semver@7.7.1: {}
 
   semver@7.7.2: {}
@@ -16944,7 +16911,7 @@ snapshots:
       debug: 4.4.0
       dottie: 2.0.6
       inflection: 1.13.4
-      lodash: 4.17.21
+      lodash: 4.17.23
       moment: 2.30.1
       moment-timezone: 0.5.47
       pg-connection-string: 2.7.0
@@ -17496,7 +17463,7 @@ snapshots:
 
   temp-dir@1.0.0: {}
 
-  terser-webpack-plugin@5.1.2(webpack@5.97.1(webpack-cli@6.0.1)):
+  terser-webpack-plugin@5.1.2(webpack@5.97.1):
     dependencies:
       jest-worker: 26.6.2
       p-limit: 3.1.0
@@ -17506,7 +17473,7 @@ snapshots:
       terser: 5.39.0
       webpack: 5.97.1(webpack-cli@6.0.1)
 
-  terser-webpack-plugin@5.3.12(webpack@5.97.1(webpack-cli@6.0.1)):
+  terser-webpack-plugin@5.3.12(webpack@5.97.1):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
@@ -17594,7 +17561,7 @@ snapshots:
 
   trim-newlines@3.0.1: {}
 
-  ts-loader@9.4.2(typescript@5.0.4)(webpack@5.97.1(webpack-cli@6.0.1)):
+  ts-loader@9.4.2(typescript@5.0.4)(webpack@5.97.1):
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 5.18.1
@@ -17907,9 +17874,9 @@ snapshots:
   webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1):
     dependencies:
       '@discoveryjs/json-ext': 0.6.3
-      '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@6.0.1))
-      '@webpack-cli/info': 3.0.1(webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@6.0.1))
-      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1))(webpack-dev-server@5.2.0(webpack-cli@6.0.1)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@6.0.1))
+      '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1)(webpack@5.97.1)
+      '@webpack-cli/info': 3.0.1(webpack-cli@6.0.1)(webpack@5.97.1)
+      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.0)(webpack@5.97.1)
       colorette: 2.0.20
       commander: 12.1.0
       cross-spawn: 7.0.6
@@ -17923,7 +17890,7 @@ snapshots:
     optionalDependencies:
       webpack-dev-server: 5.2.0(webpack-cli@6.0.1)(webpack@5.97.1)
 
-  webpack-dev-middleware@7.4.2(webpack@5.97.1(webpack-cli@6.0.1)):
+  webpack-dev-middleware@7.4.2(webpack@5.97.1):
     dependencies:
       colorette: 2.0.20
       memfs: 4.17.0
@@ -17961,7 +17928,7 @@ snapshots:
       serve-index: 1.9.1
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 7.4.2(webpack@5.97.1(webpack-cli@6.0.1))
+      webpack-dev-middleware: 7.4.2(webpack@5.97.1)
       ws: 8.18.0
     optionalDependencies:
       webpack: 5.97.1(webpack-cli@6.0.1)
@@ -18012,7 +17979,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.12(webpack@5.97.1(webpack-cli@6.0.1))
+      terser-webpack-plugin: 5.3.12(webpack@5.97.1)
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     optionalDependencies:

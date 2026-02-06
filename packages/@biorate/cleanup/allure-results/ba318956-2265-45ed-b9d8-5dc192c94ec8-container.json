@@ -1,0 +1,1 @@
+{"uuid":"ba318956-2265-45ed-b9d8-5dc192c94ec8","children":["14e90a6a-3b65-440a-8c86-30c4ebe9b32e","7fd23ed7-a8d2-4c7a-9ab4-e7a08471a9a4","5e976526-4fec-4785-8fe3-70a0100cfce0"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"name":"\"before all\" hook for \"dir exists\""}],"afters":[],"name":"@biorate/cleanup"}

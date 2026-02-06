@@ -30,6 +30,7 @@ describe('@biorate/config', () => {
   it('template (string)', () => {
     assert.equal(config.get('template.one'), config.get('two.one'));
     assert.equal(config.get('template.two'), 'hello_' + config.get('one'));
+    assert.equal(config.get('template.three'), 'hello_' + config.get('one'));
   });
 
   it('template (link)', () => {
