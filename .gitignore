@@ -1,6 +1,11 @@
 # compiled output
 dist
+
 node_modules
+allure-results
+allure-report
+
+# NX
 .nx
 
 # Logs
