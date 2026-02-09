@@ -2,7 +2,7 @@
   "name": "@biorate/axios-prometheus",
   "version": "1.163.0",
   "description": "Axios-prometheus HTTP interface",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",

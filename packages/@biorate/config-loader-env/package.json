@@ -2,7 +2,7 @@
   "name": "@biorate/config-loader-env",
   "version": "1.158.0",
   "description": "Config loader for ENV's config",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "cross-env TEST_ENV=test npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",

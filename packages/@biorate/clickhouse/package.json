@@ -2,7 +2,7 @@
   "name": "@biorate/clickhouse",
   "version": "1.156.2",
   "description": "Clickhouse connector",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",

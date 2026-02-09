@@ -2,7 +2,7 @@
   "name": "@biorate/masquerade",
   "version": "1.156.2",
   "description": "Masquerade provides functionality to redact sensitive info",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",

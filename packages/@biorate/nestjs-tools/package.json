@@ -2,7 +2,7 @@
   "name": "@biorate/nestjs-tools",
   "version": "1.164.1",
   "description": "NestJS tools",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",

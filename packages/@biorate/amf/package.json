@@ -2,7 +2,7 @@
   "name": "@biorate/amf",
   "version": "1.102.0",
   "description": "Action Message Format (AMF) protocol realization for JS",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
     "test": "npx nyc --nycrc-path ../../../.nycrc.json -- npx mocha tests/**/*.spec.ts",

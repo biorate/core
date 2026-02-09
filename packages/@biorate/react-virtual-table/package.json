@@ -2,7 +2,7 @@
   "name": "@biorate/react-virtual-table",
   "version": "1.120.0",
   "description": "React virtual table",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./index.ts  -o ./dist",
     "demo": "npx webpack --config=../../../webpack.config.js --mode=production --entry=./demo/index.tsx --entry=./demo/index.pug --entry=./demo/index.less -o ./../../../docs/demo/@biorate/react-virtual-table",

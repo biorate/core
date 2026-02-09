@@ -2,7 +2,7 @@
   "name": "@biorate/playwright",
   "version": "1.163.1",
   "description": "OOP test decorators for playwright",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc --outDir ./dist",
     "test": "npx playwright test",
