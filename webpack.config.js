@@ -138,7 +138,7 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: 'dist',
+    static: 'dist',
     compress: true,
     port: 10000,
   },
