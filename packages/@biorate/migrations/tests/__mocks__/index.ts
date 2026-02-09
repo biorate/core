@@ -5,7 +5,9 @@ import { join } from 'path';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import '../../src/default.config';
+import { ISchemaRegistryConnector } from '@biorate/schema-registry';
+import * as Migrations from '../../src/types';
+import { Root } from '../../src/root';
 
 use(jestSnapshotPlugin());
 
@@ -14,6 +16,33 @@ const storage = join(tmpdir(), 'sqlite-test.db');
 try {
   unlinkSync(storage);
 } catch {}
+
+class MockedSchemaRegistry extends Migrations.SchemaRegistry {
+  protected async process() {
+    await super.process();
+    const { deleteSubjects } = container.get<ISchemaRegistryConnector>(
+      Types.SchemaRegistry,
+    ).current!;
+    await Promise.all([
+      deleteSubjects({
+        subject: 'test2.avsc',
+        permanent: false,
+      }),
+      deleteSubjects({
+        subject: 'test.avsc',
+        permanent: false,
+      }),
+    ]);
+  }
+}
+
+container.unbind(Migrations.SchemaRegistry);
+container
+  .bind<Migrations.SchemaRegistry>(Migrations.SchemaRegistry)
+  .to(MockedSchemaRegistry)
+  .inSingletonScope();
+
+container.get<Root>(Root).$run().catch(console.error);
 
 container.get<IConfig>(Types.Config).merge({
   Sequelize: [
