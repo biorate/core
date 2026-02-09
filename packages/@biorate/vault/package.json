@@ -28,10 +28,7 @@
     "@biorate/connector": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "node-vault": "^0.10.2"
+    "node-vault": "0.10.9"
   },
-  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
-  "devDependencies": {
-    "@types/request": "^2.48.8"
-  }
+  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }
