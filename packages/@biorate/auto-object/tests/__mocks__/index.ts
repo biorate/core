@@ -67,7 +67,8 @@ export class Event extends AutoObject.extends<typeof EventEmitter, Event>(EventE
   public payload: User;
 
   public constructor(data: PropertiesOnly<Event>, ...args: any[]) {
-    super(...[data, ...args]);
+    // @ts-ignore
+    super(data, ...args);
   }
 }
 
