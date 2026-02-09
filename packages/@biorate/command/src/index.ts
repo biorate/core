@@ -112,7 +112,9 @@ export abstract class CommonCommandAsync extends CommonCommand {
         <ExecOptions>config.$options,
         (error, stdout, stderr) => {
           if (error) return void reject(error);
-          resolve(this.stderr ? stderr + stdout : stdout);
+          resolve(
+            this.stderr ? stderr.toString('utf8') + stdout.toString('utf8') : stdout,
+          );
         },
       ),
     );

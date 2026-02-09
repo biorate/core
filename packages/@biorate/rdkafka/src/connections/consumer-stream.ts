@@ -25,7 +25,7 @@ export class RDKafkaConsumerStreamConnection
 {
   public stream: ConsumerStream;
   protected config: IRDKafkaConsumerStreamConfig;
-  protected timer: NodeJS.Timer;
+  protected timer: NodeJS.Timeout;
   protected handler: ((message: Message | Message[]) => Promise<void> | void) | null =
     null;
   protected pool: Message[] = [];

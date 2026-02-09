@@ -36,7 +36,7 @@
     "@types/http-proxy": "1.17.16",
     "@types/lodash": "4.14.173",
     "@types/mocha": "8.2.2",
-    "@types/node": "16.18.23",
+    "@types/node": "24.10.12",
     "@types/request": "2.48.8",
     "@types/ws": "8.5.13",
     "@typescript-eslint/eslint-plugin": "5.37.0",
