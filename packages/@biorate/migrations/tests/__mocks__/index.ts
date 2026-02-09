@@ -8,6 +8,7 @@ import { IConfig } from '@biorate/config';
 import { ISchemaRegistryConnector } from '@biorate/schema-registry';
 import * as Migrations from '../../src/types';
 import { Root } from '../../src/root';
+import { kebabCase } from 'lodash';
 
 use(jestSnapshotPlugin());
 
@@ -18,21 +19,29 @@ try {
 } catch {}
 
 class MockedSchemaRegistry extends Migrations.SchemaRegistry {
+  protected override get type() {
+    return kebabCase(Migrations.SchemaRegistry.name);
+  }
+
   protected async process() {
     await super.process();
-    const { deleteSubjects } = container.get<ISchemaRegistryConnector>(
-      Types.SchemaRegistry,
-    ).current!;
-    await Promise.all([
-      deleteSubjects({
-        subject: 'test2.avsc',
-        permanent: false,
-      }),
-      deleteSubjects({
-        subject: 'test.avsc',
-        permanent: false,
-      }),
-    ]);
+    try {
+      const { deleteSubjects } = container.get<ISchemaRegistryConnector>(
+        Types.SchemaRegistry,
+      ).current!;
+      await Promise.all([
+        deleteSubjects({
+          subject: 'test2.avsc',
+          permanent: false,
+        }),
+        deleteSubjects({
+          subject: 'test.avsc',
+          permanent: false,
+        }),
+      ]);
+    } catch {
+      console.log('catch');
+    }
   }
 }
 
