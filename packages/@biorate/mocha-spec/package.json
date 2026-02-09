@@ -32,14 +32,14 @@
     "@biorate/errors": "workspace:*",
     "@biorate/mocha": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "chai": "4.3.6",
-    "mocha-chai-jest-snapshot": "1.1.4",
+    "chai": "6.2.2",
+    "mocha-chai-jest-snapshot": "1.1.7",
     "nock": "14.0.1",
     "sinon": "19.0.2",
     "supertest": "6.1.6"
   },
   "devDependencies": {
-    "@types/sinon": "^17.0.4",
+    "@types/sinon": "17.0.4",
     "@types/supertest": "2.0.11"
   }
 }
