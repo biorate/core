@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { status as statuses } from 'http-status';
 import { Axios, IStubParam } from './index';
 import { Options } from './options';
@@ -47,7 +47,7 @@ export class Stubs {
       status,
       statusText,
       params.headers ?? {},
-      params.config ?? {},
+      params.config ?? <InternalAxiosRequestConfig<any>>{},
     );
     this.fetch.set(this.Class, this.Class.fetch);
     this.Class.fetch = async (options?: any) => {

@@ -24,11 +24,11 @@
   "license": "MIT",
   "dependencies": {
     "@biorate/singleton": "workspace:*",
-    "axios": "^0.27.2",
-    "axios-retry": "^4.0.0",
-    "http-status": "^2.1.0",
-    "lodash": "^4.17.21",
-    "path-to-url": "^0.1.0"
+    "axios": "1.13.4",
+    "axios-retry": "4.5.0",
+    "http-status": "2.1.0",
+    "lodash": "4.17.23",
+    "path-to-url": "0.1.0"
   },
   "devDependencies": {
     "@biorate/config": "workspace:*",

@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios';
 
 export type IAxiosFetchOptions = AxiosRequestConfig & {
   path?: Record<string, string | number>;
@@ -10,5 +10,5 @@ export type IStubParam = {
   status?: number;
   statusText?: string;
   headers?: Record<string, any>;
-  config?: Record<string, any>;
+  config?: InternalAxiosRequestConfig<any>;
 };

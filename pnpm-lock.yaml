@@ -277,19 +277,19 @@ importers:
         specifier: workspace:*
         version: link:../singleton
       axios:
-        specifier: ^0.27.2
-        version: 0.27.2
+        specifier: 1.13.4
+        version: 1.13.4
       axios-retry:
-        specifier: ^4.0.0
-        version: 4.5.0(axios@0.27.2)
+        specifier: 4.5.0
+        version: 4.5.0(axios@1.13.4)
       http-status:
-        specifier: ^2.1.0
+        specifier: 2.1.0
         version: 2.1.0
       lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+        specifier: 4.17.23
+        version: 4.17.23
       path-to-url:
-        specifier: ^0.1.0
+        specifier: 0.1.0
         version: 0.1.0
     devDependencies:
       '@biorate/config':
@@ -3598,9 +3598,6 @@ packages:
     peerDependencies:
       axios: 0.x || 1.x
 
-  axios@0.27.2:
-    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
-
   axios@1.13.4:
     resolution: {integrity: sha512-1wVkUaAO6WyaYtCkcYCOx12ZgpGf9Zif+qXa4n+oYzK558YryKqiL6UWwd5DqiH3VRW0GYhTZQ/vlgJrCoNQlg==}
 
@@ -4908,10 +4905,6 @@ packages:
 
   form-data@3.0.3:
     resolution: {integrity: sha512-q5YBMeWy6E2Un0nMGWMgI65MAKtaylxfNJGJxpGh45YDciZB4epbWpaAfImil6CPAPTYB4sh0URQNDRIZG5F2w==}
-    engines: {node: '>= 6'}
-
-  form-data@4.0.2:
-    resolution: {integrity: sha512-hGfm/slu0ZabnNt4oaRZ6uREyfCj6P4fT/n6A1rGV+Z0VdGXjfOhVUpkn6qVQONHGIFwmveGXyDs75+nr6FM8w==}
     engines: {node: '>= 6'}
 
   form-data@4.0.5:
@@ -11122,7 +11115,7 @@ snapshots:
 
   '@typegoose/typegoose@11.8.1(mongoose@7.8.6)':
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.17.23
       loglevel: 1.9.2
       mongoose: 7.8.6
       reflect-metadata: 0.1.14
@@ -11367,7 +11360,7 @@ snapshots:
       '@types/cookiejar': 2.1.5
       '@types/methods': 1.1.4
       '@types/node': 16.18.23
-      form-data: 4.0.2
+      form-data: 4.0.5
 
   '@types/supertest@2.0.11':
     dependencies:
@@ -11914,17 +11907,10 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios-retry@4.5.0(axios@0.27.2):
+  axios-retry@4.5.0(axios@1.13.4):
     dependencies:
-      axios: 0.27.2
+      axios: 1.13.4
       is-retry-allowed: 2.2.0
-
-  axios@0.27.2:
-    dependencies:
-      follow-redirects: 1.15.9
-      form-data: 4.0.2
-    transitivePeerDependencies:
-      - debug
 
   axios@1.13.4:
     dependencies:
@@ -13443,13 +13429,6 @@ snapshots:
       safe-buffer: 5.2.1
 
   form-data@3.0.3:
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      es-set-tostringtag: 2.1.0
-      mime-types: 2.1.35
-
-  form-data@4.0.2:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -15005,7 +14984,7 @@ snapshots:
 
   maskdata@1.3.3:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.17.23
 
   math-intrinsics@1.1.0: {}
 
@@ -15126,7 +15105,7 @@ snapshots:
       eventemitter3: 5.0.1
       fast-xml-parser: 4.5.3
       ipaddr.js: 2.2.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       mime-types: 2.1.35
       query-string: 7.1.3
       stream-json: 1.9.1

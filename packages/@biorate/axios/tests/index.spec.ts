@@ -68,10 +68,10 @@ describe('@biorate/axios', function () {
 
   it('defaults', async () => {
     class Defaults extends Yandex {}
-    Defaults.defaults.headers.common['x-test'] = 1;
+    Defaults.defaults.headers.common['x-test'] = '1';
     const { config } = await Defaults.fetch();
     const headers = <Record<string, unknown>>config.headers;
-    expect(headers['x-test']).to.be.equal(1);
+    expect(headers['x-test']).to.be.equal('1');
   });
 
   it('stubs default', async () => {
