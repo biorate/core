@@ -3,6 +3,444 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.164.0 (2026-02-10)
+
+### Bug Fixes
+
+- .npmrc ([51785c1](https://github.com/biorate/core/commit/51785c175101225ae3cef838967b401417e68126))
+- **migrations:** test ([576cc82](https://github.com/biorate/core/commit/576cc82a2b098821f65ac92aaf34aa95f083f84f))
+- **migrations:** test ([01b6e67](https://github.com/biorate/core/commit/01b6e67d5e74cd1f37de98091915bdf3a1722515))
+- root .mocharc .nycrc.json ([6e906e9](https://github.com/biorate/core/commit/6e906e962d10360051c97a11df8516784895c3d8))
+- tests ([51a593f](https://github.com/biorate/core/commit/51a593f301b185e24a39513d503fcb0608e477f8))
+
+### Features
+
+- **config:** @{} = ${} template added ([744286f](https://github.com/biorate/core/commit/744286f5728828eb4b230d07c7c9872f442da6be))
+- update "main" value in package.json ([89de1e3](https://github.com/biorate/core/commit/89de1e3203bcd5123587d046c9277a304bbe4008))
+
+# 1.163.0 (2025-10-27)
+
+# 1.158.0 (2025-10-17)
+
+## 1.156.2 (2025-09-18)
+
+## 1.156.1 (2025-09-18)
+
+# 1.156.0 (2025-09-18)
+
+# 1.155.0 (2025-09-09)
+
+# 1.154.0 (2025-09-09)
+
+## 1.152.1 (2025-09-05)
+
+# 1.152.0 (2025-09-01)
+
+# 1.151.0 (2025-08-08)
+
+# 1.150.0 (2025-08-08)
+
+# 1.149.0 (2025-08-08)
+
+## 1.148.2 (2025-08-08)
+
+## 1.148.1 (2025-08-08)
+
+# 1.148.0 (2025-08-05)
+
+# 1.147.0 (2025-08-05)
+
+# 1.146.0 (2025-08-05)
+
+# 1.145.0 (2025-08-05)
+
+# 1.144.0 (2025-08-05)
+
+# 1.143.0 (2025-08-05)
+
+# 1.142.0 (2025-07-17)
+
+# 1.140.0 (2025-07-17)
+
+# 1.139.0 (2025-07-11)
+
+## 1.138.2 (2025-06-17)
+
+## 1.138.1 (2025-06-16)
+
+# 1.134.0 (2025-05-29)
+
+# 1.120.0 (2025-04-29)
+
+# 1.117.0 (2025-04-21)
+
+# 1.116.0 (2025-04-16)
+
+# 1.115.0 (2025-04-15)
+
+# 1.114.0 (2025-04-15)
+
+# 1.112.0 (2025-04-14)
+
+# 1.110.0 (2025-03-14)
+
+## 1.105.2 (2025-03-05)
+
+## 1.105.1 (2025-03-04)
+
+# 1.105.0 (2025-03-04)
+
+### Features
+
+- **migrations:** schema registry added ([47a5423](https://github.com/biorate/core/commit/47a542333c27c64916f4e35834eb25fc02354d0f))
+
+# 1.104.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([18c83a3](https://github.com/biorate/core/commit/18c83a30319fdfe0d9d2c5ebd94f5fba499e06cd))
+
+## 1.102.1 (2025-02-28)
+
+# 1.102.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([462d120](https://github.com/biorate/core/commit/462d12068108fc6977906f4e379da6917aca42c3))
+
+# 1.101.0 (2025-02-28)
+
+# 1.100.0 (2025-02-26)
+
+## 1.98.1 (2025-02-18)
+
+# 1.98.0 (2025-02-13)
+
+## 1.96.2 (2025-01-24)
+
+## 1.96.1 (2025-01-16)
+
+# 1.96.0 (2024-12-26)
+
+## 1.95.1 (2024-12-26)
+
+# 1.95.0 (2024-12-26)
+
+## 1.93.1 (2024-12-19)
+
+# 1.93.0 (2024-12-19)
+
+## 1.91.5 (2024-12-06)
+
+## 1.91.4 (2024-12-06)
+
+## 1.91.3 (2024-12-06)
+
+## 1.91.2 (2024-12-06)
+
+## 1.91.1 (2024-12-06)
+
+# 1.91.0 (2024-12-05)
+
+# 1.90.0 (2024-12-05)
+
+## 1.87.4 (2024-09-30)
+
+## 1.87.3 (2024-09-17)
+
+### Bug Fixes
+
+- **migrations:** transaction fix ([f6ca180](https://github.com/biorate/core/commit/f6ca180a831fd2d1a9eebac39b97dee7dfd86059))
+
+## 1.87.2 (2024-09-11)
+
+## 1.87.1 (2024-09-11)
+
+# 1.86.0 (2024-09-05)
+
+## 1.84.1 (2024-09-04)
+
+## 1.79.1 (2024-08-16)
+
+# 1.79.0 (2024-07-12)
+
+# 1.78.0 (2024-07-11)
+
+# 1.77.0 (2024-07-11)
+
+## 1.76.3 (2024-07-11)
+
+## 1.74.1 (2024-05-31)
+
+# 1.72.0 (2024-05-21)
+
+# 1.70.0 (2024-05-20)
+
+### Features
+
+- **migrations:** changed to original clickhouse driver ([171b0f7](https://github.com/biorate/core/commit/171b0f78ad52a6a76629990057a2d4bca00fedd4))
+
+# 1.69.0 (2024-04-17)
+
+### Features
+
+- **migrations:** proxy added ([14a147b](https://github.com/biorate/core/commit/14a147be110b84e4cd0277f8f1ef3e30855ae0b2))
+
+# 1.68.0 (2024-04-17)
+
+# 1.67.0 (2024-04-17)
+
+## 1.65.7 (2024-03-27)
+
+## 1.65.6 (2024-03-27)
+
+## 1.65.5 (2024-03-27)
+
+## 1.65.4 (2024-03-26)
+
+# 1.64.0 (2024-03-20)
+
+# 1.61.0 (2024-03-04)
+
+### Features
+
+- **migrations:** amqp support added ([da4e6c3](https://github.com/biorate/core/commit/da4e6c35b54308098db3c41633cabbc043e13cb6))
+
+## 1.58.1 (2024-02-16)
+
+# 1.54.0 (2024-01-11)
+
+# 1.43.0 (2023-10-10)
+
+## 1.42.5 (2023-09-19)
+
+## 1.42.4 (2023-09-19)
+
+## 1.42.3 (2023-09-19)
+
+## 1.42.2 (2023-09-07)
+
+## 1.42.1 (2023-09-04)
+
+## 1.39.1 (2023-08-23)
+
+### Bug Fixes
+
+- **migrations:** tableName in params ([9b40f3b](https://github.com/biorate/core/commit/9b40f3b41150042d6e7cbf35a3d06440bc4a8503))
+
+# 1.39.0 (2023-08-23)
+
+### Features
+
+- **migrations:** clickhouse added ([1c1793a](https://github.com/biorate/core/commit/1c1793a5d43748eef6d227477bfee6b7f8a1e87a))
+
+## 1.38.4 (2023-08-11)
+
+## 1.38.3 (2023-08-10)
+
+## 1.38.2 (2023-08-10)
+
+## 1.38.1 (2023-08-10)
+
+## 1.30.12 (2023-07-18)
+
+## 1.30.11 (2023-07-04)
+
+## 1.30.10 (2023-07-04)
+
+### Bug Fixes
+
+- **prometheus:** settings ts errors fix ([addf8e7](https://github.com/biorate/core/commit/addf8e7b1dc1574457d4671dedfc5b7ef40dddea))
+
+## 1.30.9 (2023-07-04)
+
+## 1.30.8 (2023-07-03)
+
+## 1.30.2 (2023-05-23)
+
+## 1.30.1 (2023-05-23)
+
+# 1.30.0 (2023-05-22)
+
+# 1.29.0 (2023-05-05)
+
+### Bug Fixes
+
+- **shutdown-hook:** allSettled startegy ([acc63c9](https://github.com/biorate/core/commit/acc63c9758ea8af95ded947184379b741837d1de))
+
+## 1.28.2 (2023-05-05)
+
+## 1.28.1 (2023-05-05)
+
+# 1.28.0 (2023-05-04)
+
+### Features
+
+- typescript5 migration ([3051757](https://github.com/biorate/core/commit/3051757e45d6895394b655a22066773f0cc30a9a))
+
+## 1.27.2 (2023-04-20)
+
+## 1.27.1 (2023-04-17)
+
+# 1.27.0 (2023-04-17)
+
+# 1.26.0 (2023-04-14)
+
+## 1.25.2 (2023-03-07)
+
+# 1.24.0 (2023-02-01)
+
+## 1.23.2 (2023-01-09)
+
+### Bug Fixes
+
+- **migrations:** globalConfig passthrough ([cdeb3bc](https://github.com/biorate/core/commit/cdeb3bcac7322e969b7816997a23c8eda652ba3c))
+
+# 1.23.0 (2023-01-09)
+
+### Features
+
+- **migrations:** kafka added ([52eeb71](https://github.com/biorate/core/commit/52eeb717545def3b70c7ad41a67c85ac24498347))
+
+## 1.22.7 (2022-12-07)
+
+## 1.22.1 (2022-11-16)
+
+### Bug Fixes
+
+- **migrations:** vault deps fix ([408247d](https://github.com/biorate/core/commit/408247dc81134136b0ed5fb79b933882085f9bde))
+
+# 1.22.0 (2022-11-16)
+
+### Features
+
+- **migrations:** file-loader replaced by config-loaders ([db919de](https://github.com/biorate/core/commit/db919de255ca96cf270726828a1e30d77fa63bad))
+
+## 1.20.1 (2022-11-10)
+
+## 1.11.2 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([5b83869](https://github.com/biorate/core/commit/5b8386953ce1d63783f380ca8fc36fb324a963b1))
+
+## 1.11.1 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([d48fff0](https://github.com/biorate/core/commit/d48fff0ebc75566b59aff08e17372ac97b595b30))
+
+# 1.11.0 (2022-09-21)
+
+## 1.7.1 (2022-09-08)
+
+# 1.7.0 (2022-09-08)
+
+# 1.6.0 (2022-09-08)
+
+## 1.4.4 (2022-08-22)
+
+### Bug Fixes
+
+- **migrations:** minio interface rename ([41e8a1f](https://github.com/biorate/core/commit/41e8a1fb7dc3b2ce2d9632040f5a51f2a8b8d29f))
+
+## 1.4.3 (2022-08-22)
+
+## 1.4.2 (2022-08-22)
+
+### Bug Fixes
+
+- **migrations:** scan dir catch ([0959a2d](https://github.com/biorate/core/commit/0959a2d9c46294e7a23d94cc4b6cd60aa00b0a53))
+
+# 1.4.0 (2022-08-15)
+
+### Features
+
+- **migrations:** minio & mongodb ([cf3079c](https://github.com/biorate/core/commit/cf3079c671b963c4f1734c58fbc012a5a74d2772))
+
+## 1.2.2 (2022-08-11)
+
+# 1.0.0 (2022-07-10)
+
+## 0.30.19 (2022-07-10)
+
+## 0.30.18 (2022-06-24)
+
+## 0.30.17 (2022-06-24)
+
+## 0.30.14 (2022-06-24)
+
+### Bug Fixes
+
+- **sequalize, file-config:** strict ([e3b471c](https://github.com/biorate/core/commit/e3b471c11aebc106d9562294458044b70eadba7a))
+
+## 0.30.13 (2022-06-24)
+
+### Bug Fixes
+
+- **migrations:** strict ([e0c7e55](https://github.com/biorate/core/commit/e0c7e55080753badbd6536d06e6a401b51f37862))
+
+## 0.30.11 (2022-06-24)
+
+## 0.30.10 (2022-06-24)
+
+## 0.30.9 (2022-06-23)
+
+### Bug Fixes
+
+- **config:** strict types ([d1e286e](https://github.com/biorate/core/commit/d1e286e9016938cb663ee8bcceb6c06b0dbfdb18))
+
+## 0.30.8 (2022-06-23)
+
+## 0.30.7 (2022-06-23)
+
+## 0.30.6 (2022-06-23)
+
+## 0.30.5 (2022-06-23)
+
+## 0.30.4 (2022-06-23)
+
+## 0.30.2 (2022-06-22)
+
+# 0.30.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([6a6be03](https://github.com/biorate/core/commit/6a6be030a1e8923df4b03d518f08618e759d06fa))
+
+## 0.29.1 (2022-06-20)
+
+# 0.29.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([f6e68b3](https://github.com/biorate/core/commit/f6e68b3a2291e7bfa013674db857db7879a26033))
+
+## 0.28.3 (2022-05-07)
+
+### Bug Fixes
+
+- **migrations:** tests and logic ([adaff11](https://github.com/biorate/core/commit/adaff116d1cbb74cf011df251db0d6c730850f56))
+
+## 0.28.2 (2022-05-06)
+
+## 0.28.1 (2022-05-06)
+
+### Bug Fixes
+
+- **migrations:** start default root script ([271fe83](https://github.com/biorate/core/commit/271fe83aa756336c3e13e8e519e1b5dbcf857f03))
+
+# 0.28.0 (2022-05-06)
+
+### Bug Fixes
+
+- **migrations:** architecture ([fb1b2bd](https://github.com/biorate/core/commit/fb1b2bd364f31fb1b38a6e404365db6b121cfb9c))
+- **migrations:** README.md ([478b2d6](https://github.com/biorate/core/commit/478b2d6a4b8f504559b37bdb38d2545c9e39d543))
+
+### Features
+
+- **migrations:** module added ([019bb2b](https://github.com/biorate/core/commit/019bb2b106c00427b9abc140d83262a72cd1751b))
+
 # [1.163.0](https://github.com/biorate/core/compare/v1.162.0...v1.163.0) (2025-10-27)
 
 **Note:** Version bump only for package @biorate/migrations

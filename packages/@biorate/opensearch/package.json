@@ -1,6 +1,6 @@
 {
   "name": "@biorate/opensearch",
-  "version": "1.156.2",
+  "version": "1.157.0",
   "description": "OpenSearch OOP static interface",
   "main": "dist/index.js",
   "scripts": {

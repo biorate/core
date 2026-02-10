@@ -1,6 +1,6 @@
 {
   "name": "@biorate/command",
-  "version": "1.156.2",
+  "version": "1.157.0",
   "description": "Command executor",
   "main": "dist/index.js",
   "scripts": {

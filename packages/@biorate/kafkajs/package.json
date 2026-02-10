@@ -1,6 +1,6 @@
 {
   "name": "@biorate/kafkajs",
-  "version": "1.156.2",
+  "version": "1.157.0",
   "description": "KafkaJS connector",
   "main": "dist/index.js",
   "scripts": {

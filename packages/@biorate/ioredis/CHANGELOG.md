@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.158.0 (2026-02-10)
+
+### Bug Fixes
+
+- .npmrc ([51785c1](https://github.com/biorate/core/commit/51785c175101225ae3cef838967b401417e68126))
+- root .mocharc .nycrc.json ([236c00d](https://github.com/biorate/core/commit/236c00d3b1db3c4417ab3c07206b812cbcb10000))
+- root .mocharc .nycrc.json ([6e906e9](https://github.com/biorate/core/commit/6e906e962d10360051c97a11df8516784895c3d8))
+- tests ([51a593f](https://github.com/biorate/core/commit/51a593f301b185e24a39513d503fcb0608e477f8))
+
+### Features
+
+- **config:** @{} = ${} template added ([744286f](https://github.com/biorate/core/commit/744286f5728828eb4b230d07c7c9872f442da6be))
+- **config:** @{} = ${} template added ([904fe69](https://github.com/biorate/core/commit/904fe698a4e605e9bf381abcbbab5e4d189c5c8b))
+- update "main" value in package.json ([89de1e3](https://github.com/biorate/core/commit/89de1e3203bcd5123587d046c9277a304bbe4008))
+
+# 1.157.0 (2025-09-23)
+
+### Features
+
+- **ioredis:** unlimit reconnection ([bcaa34c](https://github.com/biorate/core/commit/bcaa34cdcd5f587e149d7217645d9059a41add61))
+
+## 1.156.2 (2025-09-18)
+
+# 1.156.0 (2025-09-18)
+
+# 1.153.0 (2025-09-05)
+
+### Features
+
+- **ioredis:** default retryStrategy ([66b7acc](https://github.com/biorate/core/commit/66b7acc7c19ac55c5f0adaf8657ec844717d36e4))
+
+# 1.120.0 (2025-04-29)
+
+# 1.104.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([18c83a3](https://github.com/biorate/core/commit/18c83a30319fdfe0d9d2c5ebd94f5fba499e06cd))
+
+## 1.102.1 (2025-02-28)
+
+# 1.102.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([462d120](https://github.com/biorate/core/commit/462d12068108fc6977906f4e379da6917aca42c3))
+
+# 1.100.0 (2025-02-26)
+
+# 1.96.0 (2024-12-26)
+
+## 1.95.1 (2024-12-26)
+
+# 1.95.0 (2024-12-26)
+
+## 1.93.1 (2024-12-19)
+
+# 1.93.0 (2024-12-19)
+
+## 1.91.5 (2024-12-06)
+
+## 1.91.4 (2024-12-06)
+
+## 1.91.3 (2024-12-06)
+
+## 1.91.2 (2024-12-06)
+
+## 1.91.1 (2024-12-06)
+
+# 1.91.0 (2024-12-05)
+
+# 1.90.0 (2024-12-05)
+
+# 1.89.0 (2024-10-24)
+
+### Features
+
+- **ioredis:** module added ([b4662ee](https://github.com/biorate/core/commit/b4662ee95772b28126be249c133ddcfe30e65859))
+
 # [1.157.0](https://github.com/biorate/core/compare/v1.156.2...v1.157.0) (2025-09-23)
 
 ### Features

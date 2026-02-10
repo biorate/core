@@ -3,6 +3,294 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.164.0 (2026-02-10)
+
+### Bug Fixes
+
+- .npmrc ([51785c1](https://github.com/biorate/core/commit/51785c175101225ae3cef838967b401417e68126))
+- root .mocharc .nycrc.json ([236c00d](https://github.com/biorate/core/commit/236c00d3b1db3c4417ab3c07206b812cbcb10000))
+- root .mocharc .nycrc.json ([6e906e9](https://github.com/biorate/core/commit/6e906e962d10360051c97a11df8516784895c3d8))
+
+### Features
+
+- **config:** @{} = ${} template added ([744286f](https://github.com/biorate/core/commit/744286f5728828eb4b230d07c7c9872f442da6be))
+- **config:** @{} = ${} template added ([904fe69](https://github.com/biorate/core/commit/904fe698a4e605e9bf381abcbbab5e4d189c5c8b))
+- update "main" value in package.json ([89de1e3](https://github.com/biorate/core/commit/89de1e3203bcd5123587d046c9277a304bbe4008))
+
+# 1.163.0 (2025-10-27)
+
+### Features
+
+- SpanKind added into axios-prometheus and opentelemetry ([98670d7](https://github.com/biorate/core/commit/98670d70d80e982df4e61421d2cfeb23af80f618))
+
+## 1.156.2 (2025-09-18)
+
+## 1.156.1 (2025-09-18)
+
+# 1.156.0 (2025-09-18)
+
+# 1.155.0 (2025-09-09)
+
+# 1.154.0 (2025-09-09)
+
+### Features
+
+- **axios-prometheus:** metrics fix ([37d48ee](https://github.com/biorate/core/commit/37d48eee339a043fe57864c734f357b250b65a62))
+
+## 1.152.1 (2025-09-05)
+
+### Bug Fixes
+
+- axios-prometheus, nsetjs-tools - hystogram metrics bucket config ([976c666](https://github.com/biorate/core/commit/976c666a56d7fca2ed93f9978f473d83d3251282))
+
+# 1.152.0 (2025-09-01)
+
+# 1.151.0 (2025-08-08)
+
+# 1.150.0 (2025-08-08)
+
+# 1.149.0 (2025-08-08)
+
+## 1.148.2 (2025-08-08)
+
+## 1.148.1 (2025-08-08)
+
+# 1.148.0 (2025-08-05)
+
+# 1.147.0 (2025-08-05)
+
+# 1.146.0 (2025-08-05)
+
+# 1.145.0 (2025-08-05)
+
+# 1.144.0 (2025-08-05)
+
+# 1.143.0 (2025-08-05)
+
+# 1.142.0 (2025-07-17)
+
+### Features
+
+- TracingInterceptor catchError added ([d51f97d](https://github.com/biorate/core/commit/d51f97dca1b9d5ff8c219cf7004ed4107c499349))
+
+# 1.140.0 (2025-07-17)
+
+### Features
+
+- excluded in AxiosPrometheus and TracingInterceptor added ([c5f26f3](https://github.com/biorate/core/commit/c5f26f31d5a104b8129da3cbbc00c4e9430f609f))
+- tracing added in axios-prometheus and nestjs-tools ([36e6ff9](https://github.com/biorate/core/commit/36e6ff944966efcc7c8f778b2ea6708ac7272e2a))
+
+# 1.139.0 (2025-07-11)
+
+## 1.138.2 (2025-06-17)
+
+## 1.138.1 (2025-06-16)
+
+# 1.120.0 (2025-04-29)
+
+# 1.117.0 (2025-04-21)
+
+# 1.116.0 (2025-04-16)
+
+# 1.115.0 (2025-04-15)
+
+# 1.114.0 (2025-04-15)
+
+# 1.112.0 (2025-04-14)
+
+# 1.110.0 (2025-03-14)
+
+# 1.104.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([18c83a3](https://github.com/biorate/core/commit/18c83a30319fdfe0d9d2c5ebd94f5fba499e06cd))
+
+## 1.102.1 (2025-02-28)
+
+# 1.102.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([462d120](https://github.com/biorate/core/commit/462d12068108fc6977906f4e379da6917aca42c3))
+
+# 1.100.0 (2025-02-26)
+
+## 1.96.2 (2025-01-24)
+
+## 1.96.1 (2025-01-16)
+
+### Bug Fixes
+
+- **axios:** params in hooks ([3f3ce6f](https://github.com/biorate/core/commit/3f3ce6f459cdd8cccce996ad74d129a732cdfdb9))
+
+# 1.96.0 (2024-12-26)
+
+## 1.95.1 (2024-12-26)
+
+# 1.95.0 (2024-12-26)
+
+## 1.93.1 (2024-12-19)
+
+# 1.93.0 (2024-12-19)
+
+## 1.91.5 (2024-12-06)
+
+## 1.91.4 (2024-12-06)
+
+## 1.91.3 (2024-12-06)
+
+## 1.91.2 (2024-12-06)
+
+## 1.91.1 (2024-12-06)
+
+# 1.91.0 (2024-12-05)
+
+# 1.90.0 (2024-12-05)
+
+# 1.86.0 (2024-09-05)
+
+## 1.76.3 (2024-07-11)
+
+## 1.65.4 (2024-03-26)
+
+# 1.59.0 (2024-02-21)
+
+# 1.54.0 (2024-01-11)
+
+## 1.44.1 (2023-11-20)
+
+# 1.44.0 (2023-11-13)
+
+## 1.42.2 (2023-09-07)
+
+## 1.42.1 (2023-09-04)
+
+## 1.38.4 (2023-08-11)
+
+## 1.38.3 (2023-08-10)
+
+## 1.38.2 (2023-08-10)
+
+## 1.38.1 (2023-08-10)
+
+## 1.30.12 (2023-07-18)
+
+## 1.30.11 (2023-07-04)
+
+## 1.30.10 (2023-07-04)
+
+### Bug Fixes
+
+- **prometheus:** settings ts errors fix ([addf8e7](https://github.com/biorate/core/commit/addf8e7b1dc1574457d4671dedfc5b7ef40dddea))
+
+## 1.30.9 (2023-07-04)
+
+## 1.30.8 (2023-07-03)
+
+### Bug Fixes
+
+- **axios-prometheus:** override ([005fd07](https://github.com/biorate/core/commit/005fd074b7d43c8c8ad479c9942ee6edada08d0e))
+
+# 1.29.0 (2023-05-05)
+
+### Bug Fixes
+
+- **shutdown-hook:** allSettled startegy ([acc63c9](https://github.com/biorate/core/commit/acc63c9758ea8af95ded947184379b741837d1de))
+
+## 1.28.2 (2023-05-05)
+
+## 1.28.1 (2023-05-05)
+
+# 1.28.0 (2023-05-04)
+
+### Features
+
+- typescript5 migration ([3051757](https://github.com/biorate/core/commit/3051757e45d6895394b655a22066773f0cc30a9a))
+
+## 1.27.4 (2023-04-20)
+
+## 1.27.3 (2023-04-20)
+
+## 1.27.2 (2023-04-20)
+
+## 1.27.1 (2023-04-17)
+
+# 1.27.0 (2023-04-17)
+
+# 1.26.0 (2023-04-14)
+
+## 1.24.10 (2023-02-03)
+
+### Bug Fixes
+
+- **axios-prometheus:** mocks result fix ([0654a4d](https://github.com/biorate/core/commit/0654a4d795bcbc589d2ed166b72e36e834218ac1))
+
+## 1.24.9 (2023-02-02)
+
+### Bug Fixes
+
+- **axios-prometheus:** mocks introduced ([ae0c32c](https://github.com/biorate/core/commit/ae0c32c03bd4f8768b973ffc4dd8b0278c45976e))
+
+## 1.24.8 (2023-02-02)
+
+# 1.24.0 (2023-02-01)
+
+## 1.22.7 (2022-12-07)
+
+## 1.22.6 (2022-12-02)
+
+### Bug Fixes
+
+- **axios-prometheus:** metrics name fix ([85e7522](https://github.com/biorate/core/commit/85e7522c498ce65e6c2b99760a5cc5d47eae6bb0))
+
+## 1.11.8 (2022-10-26)
+
+### Bug Fixes
+
+- **axios-prometheus:** prometheus metrics labels rename ([067e08f](https://github.com/biorate/core/commit/067e08f7f68ff8e2e658726175780f2f53d8447a))
+
+## 1.11.7 (2022-10-26)
+
+### Bug Fixes
+
+- **axios-prometheus:** prometheus metrics rename ([796ff62](https://github.com/biorate/core/commit/796ff62599151603c5e67636e802445039dcfcb4))
+- **axios,axios-prometheus:** getStartTime method added ([e7d990f](https://github.com/biorate/core/commit/e7d990f36dcf9ac4a4cb1489e6e1ff714ad0a7bb))
+
+## 1.11.4 (2022-09-21)
+
+### Bug Fixes
+
+- **axiox-prometheus:** deps update ([d9f3095](https://github.com/biorate/core/commit/d9f3095bf2b436b7555d8b037746dac11c0e4d93))
+
+## 1.11.3 (2022-09-21)
+
+## 1.11.2 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([5b83869](https://github.com/biorate/core/commit/5b8386953ce1d63783f380ca8fc36fb324a963b1))
+
+## 1.11.1 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([d48fff0](https://github.com/biorate/core/commit/d48fff0ebc75566b59aff08e17372ac97b595b30))
+
+# 1.11.0 (2022-09-21)
+
+## 1.9.1 (2022-09-12)
+
+### Bug Fixes
+
+- **axios-prometheus:** types fix ([5f8c96f](https://github.com/biorate/core/commit/5f8c96fce46391675edcff55c16637eb31ee7012))
+
+# 1.9.0 (2022-09-12)
+
+### Features
+
+- **axios-prometheus:** module added ([4983fb7](https://github.com/biorate/core/commit/4983fb7f8aa3924c2358b9199c235f53b5f3875a))
+
 # [1.163.0](https://github.com/biorate/core/compare/v1.162.0...v1.163.0) (2025-10-27)
 
 ### Features

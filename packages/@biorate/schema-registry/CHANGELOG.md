@@ -3,6 +3,391 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-02-10)
+
+### Bug Fixes
+
+- .npmrc ([51785c1](https://github.com/biorate/core/commit/51785c175101225ae3cef838967b401417e68126))
+- root .mocharc .nycrc.json ([236c00d](https://github.com/biorate/core/commit/236c00d3b1db3c4417ab3c07206b812cbcb10000))
+- root .mocharc .nycrc.json ([6e906e9](https://github.com/biorate/core/commit/6e906e962d10360051c97a11df8516784895c3d8))
+
+### Features
+
+- **config:** @{} = ${} template added ([744286f](https://github.com/biorate/core/commit/744286f5728828eb4b230d07c7c9872f442da6be))
+- **config:** @{} = ${} template added ([904fe69](https://github.com/biorate/core/commit/904fe698a4e605e9bf381abcbbab5e4d189c5c8b))
+- update "main" value in package.json ([89de1e3](https://github.com/biorate/core/commit/89de1e3203bcd5123587d046c9277a304bbe4008))
+
+# 1.163.0 (2025-10-27)
+
+## 1.156.2 (2025-09-18)
+
+## 1.156.1 (2025-09-18)
+
+# 1.156.0 (2025-09-18)
+
+# 1.155.0 (2025-09-09)
+
+# 1.154.0 (2025-09-09)
+
+## 1.152.1 (2025-09-05)
+
+# 1.152.0 (2025-09-01)
+
+# 1.151.0 (2025-08-08)
+
+# 1.150.0 (2025-08-08)
+
+# 1.149.0 (2025-08-08)
+
+## 1.148.2 (2025-08-08)
+
+## 1.148.1 (2025-08-08)
+
+# 1.148.0 (2025-08-05)
+
+# 1.147.0 (2025-08-05)
+
+# 1.146.0 (2025-08-05)
+
+# 1.145.0 (2025-08-05)
+
+# 1.144.0 (2025-08-05)
+
+# 1.143.0 (2025-08-05)
+
+# 1.142.0 (2025-07-17)
+
+# 1.140.0 (2025-07-17)
+
+# 1.139.0 (2025-07-11)
+
+## 1.138.2 (2025-06-17)
+
+## 1.138.1 (2025-06-16)
+
+# 1.120.0 (2025-04-29)
+
+# 1.117.0 (2025-04-21)
+
+# 1.116.0 (2025-04-16)
+
+# 1.115.0 (2025-04-15)
+
+# 1.114.0 (2025-04-15)
+
+# 1.112.0 (2025-04-14)
+
+# 1.110.0 (2025-03-14)
+
+## 1.105.1 (2025-03-04)
+
+### Bug Fixes
+
+- **schema-registry:** ICompatibilities ([040458b](https://github.com/biorate/core/commit/040458be2b6f421f3b01e2c1c93a7bc5032ce183))
+
+# 1.105.0 (2025-03-04)
+
+### Features
+
+- **migrations:** schema registry added ([47a5423](https://github.com/biorate/core/commit/47a542333c27c64916f4e35834eb25fc02354d0f))
+
+# 1.104.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([18c83a3](https://github.com/biorate/core/commit/18c83a30319fdfe0d9d2c5ebd94f5fba499e06cd))
+
+## 1.102.1 (2025-02-28)
+
+# 1.102.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([462d120](https://github.com/biorate/core/commit/462d12068108fc6977906f4e379da6917aca42c3))
+
+# 1.100.0 (2025-02-26)
+
+## 1.96.2 (2025-01-24)
+
+## 1.96.1 (2025-01-16)
+
+# 1.96.0 (2024-12-26)
+
+## 1.95.1 (2024-12-26)
+
+# 1.95.0 (2024-12-26)
+
+## 1.93.1 (2024-12-19)
+
+# 1.93.0 (2024-12-19)
+
+## 1.91.5 (2024-12-06)
+
+## 1.91.4 (2024-12-06)
+
+## 1.91.3 (2024-12-06)
+
+## 1.91.2 (2024-12-06)
+
+## 1.91.1 (2024-12-06)
+
+# 1.91.0 (2024-12-05)
+
+# 1.90.0 (2024-12-05)
+
+# 1.86.0 (2024-09-05)
+
+## 1.76.3 (2024-07-11)
+
+## 1.65.4 (2024-03-26)
+
+# 1.59.0 (2024-02-21)
+
+# 1.54.0 (2024-01-11)
+
+## 1.44.1 (2023-11-20)
+
+# 1.44.0 (2023-11-13)
+
+## 1.42.2 (2023-09-07)
+
+## 1.42.1 (2023-09-04)
+
+## 1.38.4 (2023-08-11)
+
+## 1.38.3 (2023-08-10)
+
+## 1.38.2 (2023-08-10)
+
+## 1.38.1 (2023-08-10)
+
+## 1.30.12 (2023-07-18)
+
+## 1.30.11 (2023-07-04)
+
+## 1.30.10 (2023-07-04)
+
+### Bug Fixes
+
+- **prometheus:** settings ts errors fix ([addf8e7](https://github.com/biorate/core/commit/addf8e7b1dc1574457d4671dedfc5b7ef40dddea))
+
+## 1.30.9 (2023-07-04)
+
+## 1.30.8 (2023-07-03)
+
+# 1.29.0 (2023-05-05)
+
+### Bug Fixes
+
+- **shutdown-hook:** allSettled startegy ([acc63c9](https://github.com/biorate/core/commit/acc63c9758ea8af95ded947184379b741837d1de))
+
+## 1.28.2 (2023-05-05)
+
+## 1.28.1 (2023-05-05)
+
+# 1.28.0 (2023-05-04)
+
+### Features
+
+- typescript5 migration ([3051757](https://github.com/biorate/core/commit/3051757e45d6895394b655a22066773f0cc30a9a))
+
+## 1.27.4 (2023-04-20)
+
+## 1.27.3 (2023-04-20)
+
+## 1.27.2 (2023-04-20)
+
+## 1.27.1 (2023-04-17)
+
+# 1.27.0 (2023-04-17)
+
+# 1.26.0 (2023-04-14)
+
+## 1.24.10 (2023-02-03)
+
+## 1.24.9 (2023-02-02)
+
+## 1.24.8 (2023-02-02)
+
+# 1.24.0 (2023-02-01)
+
+## 1.22.7 (2022-12-07)
+
+## 1.22.6 (2022-12-02)
+
+# 1.21.0 (2022-11-10)
+
+### Features
+
+- **schema-registry:** headers added in config ([92fa587](https://github.com/biorate/core/commit/92fa587f3ade6e1e3e976ca4bda362a02e6b643b))
+
+## 1.20.1 (2022-11-10)
+
+## 1.11.8 (2022-10-26)
+
+## 1.11.7 (2022-10-26)
+
+### Bug Fixes
+
+- **axios-prometheus:** prometheus metrics rename ([796ff62](https://github.com/biorate/core/commit/796ff62599151603c5e67636e802445039dcfcb4))
+
+## 1.11.4 (2022-09-21)
+
+### Bug Fixes
+
+- **axiox-prometheus:** deps update ([d9f3095](https://github.com/biorate/core/commit/d9f3095bf2b436b7555d8b037746dac11c0e4d93))
+
+## 1.11.3 (2022-09-21)
+
+## 1.11.2 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([5b83869](https://github.com/biorate/core/commit/5b8386953ce1d63783f380ca8fc36fb324a963b1))
+
+## 1.11.1 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([d48fff0](https://github.com/biorate/core/commit/d48fff0ebc75566b59aff08e17372ac97b595b30))
+
+# 1.11.0 (2022-09-21)
+
+# 1.10.0 (2022-09-12)
+
+### Features
+
+- **shema-registry:** @biorate/axios -> @biorate/axios-prometheus deps fix ([1d42608](https://github.com/biorate/core/commit/1d42608d711c96052211332d4752522373807d14))
+
+## 1.7.2 (2022-09-08)
+
+## 1.7.1 (2022-09-08)
+
+# 1.7.0 (2022-09-08)
+
+# 1.6.0 (2022-09-08)
+
+# 1.5.0 (2022-09-01)
+
+## 1.4.1 (2022-08-19)
+
+# 1.4.0 (2022-08-15)
+
+## 1.2.2 (2022-08-11)
+
+# 1.0.0 (2022-07-10)
+
+## 0.30.19 (2022-07-10)
+
+## 0.30.18 (2022-06-24)
+
+## 0.30.17 (2022-06-24)
+
+### Bug Fixes
+
+- **connector, schema-registry:** strict ([5714899](https://github.com/biorate/core/commit/5714899a82ed95b9d252369971ab99982d70b9c3))
+
+## 0.30.16 (2022-06-24)
+
+## 0.30.11 (2022-06-24)
+
+## 0.30.10 (2022-06-24)
+
+## 0.30.9 (2022-06-23)
+
+### Bug Fixes
+
+- **config:** strict types ([d1e286e](https://github.com/biorate/core/commit/d1e286e9016938cb663ee8bcceb6c06b0dbfdb18))
+
+## 0.30.8 (2022-06-23)
+
+## 0.30.7 (2022-06-23)
+
+## 0.30.6 (2022-06-23)
+
+## 0.30.5 (2022-06-23)
+
+## 0.30.4 (2022-06-23)
+
+## 0.30.2 (2022-06-22)
+
+# 0.30.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([6a6be03](https://github.com/biorate/core/commit/6a6be030a1e8923df4b03d518f08618e759d06fa))
+
+## 0.29.1 (2022-06-20)
+
+# 0.29.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([f6e68b3](https://github.com/biorate/core/commit/f6e68b3a2291e7bfa013674db857db7879a26033))
+
+## 0.28.3 (2022-05-07)
+
+# 0.28.0 (2022-05-06)
+
+## 0.27.3 (2022-05-06)
+
+### Bug Fixes
+
+- index.d.ts file added into mongodb, sequelize, schema-registry connectors ([8f142d3](https://github.com/biorate/core/commit/8f142d36e4face9d101e76f3954d565932a4c40f))
+
+# 0.27.0 (2022-05-06)
+
+# 0.26.0 (2022-04-25)
+
+### Bug Fixes
+
+- keyword added ([f5314a9](https://github.com/biorate/core/commit/f5314a93b30fa6f25f1e59749560c9f562d52798))
+
+# 0.25.0 (2022-04-25)
+
+### Features
+
+- **schema-registry:** api fix ([8631389](https://github.com/biorate/core/commit/8631389036e4c0d1f0a9ec0ccab5a0a2800c4dab))
+
+### BREAKING CHANGES
+
+- **schema-registry:** api fix according axios fatch interface change
+
+# 0.24.0 (2022-04-25)
+
+## 0.23.3 (2022-04-14)
+
+### Bug Fixes
+
+- **schema-registry:** validation added ([21876c6](https://github.com/biorate/core/commit/21876c6808e297bc83a8cc695c656f7b5932bba6))
+
+## 0.23.2 (2022-04-11)
+
+### Bug Fixes
+
+- schema-registry interface ([4ce3b25](https://github.com/biorate/core/commit/4ce3b25e4e291f0c15cc6a6b5144ca6a221213d4))
+
+## 0.23.1 (2022-04-11)
+
+### Bug Fixes
+
+- dependencies ([040d321](https://github.com/biorate/core/commit/040d3219799ce7473f34216d35f8b6d48cb31c84))
+
+# 0.23.0 (2022-04-11)
+
+### Bug Fixes
+
+- **schema-registry:** decode / encode logic ([8797cb8](https://github.com/biorate/core/commit/8797cb8259dbd8a0c0ffc7c13655f1df0b3b212b))
+- **schema-registry:** decode / encode logic ([142c998](https://github.com/biorate/core/commit/142c9981bf9824b79d5d443566e7f0a24491bcaa))
+- **schema-registry:** decode / encode logic ([4be6de4](https://github.com/biorate/core/commit/4be6de4ace210010b18dbf016943138a957d0207))
+- **schema-registry:** develop ([69018fb](https://github.com/biorate/core/commit/69018fbe80402c847fef968f6b140001a1ba618a))
+- **schema-registry:** develop ([aec2fda](https://github.com/biorate/core/commit/aec2fda269b9847a1ceca8d49ee51f8eec1d71aa))
+
+### Features
+
+- **axios:** contract fetch changed ([6c0f589](https://github.com/biorate/core/commit/6c0f589211a7c34b56f9f845762bdd64ed6ac650))
+- **schema-registry:** release, module added ([d92b96c](https://github.com/biorate/core/commit/d92b96c337f24f0b58fa2f2aade0ebd779c4c75d))
+
 # [1.163.0](https://github.com/biorate/core/compare/v1.162.0...v1.163.0) (2025-10-27)
 
 **Note:** Version bump only for package @biorate/schema-registry

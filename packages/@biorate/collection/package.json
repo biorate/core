@@ -1,6 +1,6 @@
 {
   "name": "@biorate/collection",
-  "version": "1.120.0",
+  "version": "2.0.0",
   "description": "Collection",
   "main": "dist/index.js",
   "scripts": {

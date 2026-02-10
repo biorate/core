@@ -3,6 +3,228 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-02-10)
+
+### Bug Fixes
+
+- .npmrc ([51785c1](https://github.com/biorate/core/commit/51785c175101225ae3cef838967b401417e68126))
+- root .mocharc .nycrc.json ([236c00d](https://github.com/biorate/core/commit/236c00d3b1db3c4417ab3c07206b812cbcb10000))
+- root .mocharc .nycrc.json ([6e906e9](https://github.com/biorate/core/commit/6e906e962d10360051c97a11df8516784895c3d8))
+
+### Features
+
+- **config:** @{} = ${} template added ([744286f](https://github.com/biorate/core/commit/744286f5728828eb4b230d07c7c9872f442da6be))
+- **config:** @{} = ${} template added ([904fe69](https://github.com/biorate/core/commit/904fe698a4e605e9bf381abcbbab5e4d189c5c8b))
+- update "main" value in package.json ([89de1e3](https://github.com/biorate/core/commit/89de1e3203bcd5123587d046c9277a304bbe4008))
+
+# 1.156.0 (2025-09-18)
+
+# 1.120.0 (2025-04-29)
+
+### Bug Fixes
+
+- reflect-metadata indo peerDependencies ([f18682d](https://github.com/biorate/core/commit/f18682dfa53baa3efcb1a33cffa3695d06a7b24e))
+
+## 1.102.1 (2025-02-28)
+
+# 1.102.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([462d120](https://github.com/biorate/core/commit/462d12068108fc6977906f4e379da6917aca42c3))
+
+# 1.100.0 (2025-02-26)
+
+# 1.54.0 (2024-01-11)
+
+## 1.42.2 (2023-09-07)
+
+### Bug Fixes
+
+- **lifecycled:** regexp bug, invoke call optimization ([81d39b6](https://github.com/biorate/core/commit/81d39b6df2a6aa32633cef678f05e2e0435e7bf0))
+
+## 1.42.1 (2023-09-04)
+
+## 1.30.12 (2023-07-18)
+
+# 1.29.0 (2023-05-05)
+
+### Bug Fixes
+
+- **shutdown-hook:** allSettled startegy ([acc63c9](https://github.com/biorate/core/commit/acc63c9758ea8af95ded947184379b741837d1de))
+
+## 1.28.2 (2023-05-05)
+
+## 1.28.1 (2023-05-05)
+
+# 1.28.0 (2023-05-04)
+
+### Features
+
+- typescript5 migration ([3051757](https://github.com/biorate/core/commit/3051757e45d6895394b655a22066773f0cc30a9a))
+
+## 1.27.1 (2023-04-17)
+
+# 1.27.0 (2023-04-17)
+
+# 1.26.0 (2023-04-14)
+
+### Features
+
+- **shutdown-hook:** add new module ([7a67b35](https://github.com/biorate/core/commit/7a67b359f71ad153c32627c61c8ede4ce58b2d55))
+
+# 1.24.0 (2023-02-01)
+
+## 1.11.2 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([5b83869](https://github.com/biorate/core/commit/5b8386953ce1d63783f380ca8fc36fb324a963b1))
+
+## 1.11.1 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([d48fff0](https://github.com/biorate/core/commit/d48fff0ebc75566b59aff08e17372ac97b595b30))
+
+# 1.11.0 (2022-09-21)
+
+# 1.4.0 (2022-08-15)
+
+## 1.2.2 (2022-08-11)
+
+# 1.0.0 (2022-07-10)
+
+## 0.30.19 (2022-07-10)
+
+## 0.30.7 (2022-06-23)
+
+## 0.30.6 (2022-06-23)
+
+## 0.30.5 (2022-06-23)
+
+## 0.30.4 (2022-06-23)
+
+### Bug Fixes
+
+- **inversion, lifecicled:** strict ([9a6ecc6](https://github.com/biorate/core/commit/9a6ecc6069118adbe1913ff308f19f76b1109c7b))
+
+## 0.30.2 (2022-06-22)
+
+# 0.30.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([6a6be03](https://github.com/biorate/core/commit/6a6be030a1e8923df4b03d518f08618e759d06fa))
+
+## 0.29.1 (2022-06-20)
+
+# 0.29.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([f6e68b3](https://github.com/biorate/core/commit/f6e68b3a2291e7bfa013674db857db7879a26033))
+- **lifecycled:** array to map for initialize and destructor ([cf8aa5a](https://github.com/biorate/core/commit/cf8aa5ad7e2a0eae3f021cd1272e706c2be70768))
+
+# 0.28.0 (2022-05-06)
+
+# 0.27.0 (2022-05-06)
+
+# 0.26.0 (2022-04-25)
+
+# 0.25.0 (2022-04-25)
+
+### Features
+
+- **schema-registry:** api fix ([8631389](https://github.com/biorate/core/commit/8631389036e4c0d1f0a9ec0ccab5a0a2800c4dab))
+
+### BREAKING CHANGES
+
+- **schema-registry:** api fix according axios fatch interface change
+
+# 0.24.0 (2022-04-25)
+
+# 0.23.0 (2022-04-11)
+
+# 0.22.0 (2022-04-08)
+
+# 0.21.0 (2022-04-08)
+
+# 0.20.0 (2022-04-08)
+
+# 0.19.0 (2022-04-07)
+
+# 0.18.0 (2022-02-05)
+
+# 0.17.0 (2022-02-04)
+
+## 0.16.3 (2022-02-01)
+
+### Bug Fixes
+
+- **lifecycled:** "beforeunload" event subscribe fix, on -> addEventListener ([bfd9f01](https://github.com/biorate/core/commit/bfd9f01982ae7de5a3fc31a5c2d7bb3952220d46))
+
+## 0.16.1 (2022-02-01)
+
+### Bug Fixes
+
+- publishConfig added in package.json ([716a064](https://github.com/biorate/core/commit/716a06429e1a4325f50cf94b804f1d70d8a58cf5))
+
+# 0.16.0 (2022-02-01)
+
+## 0.15.2 (2022-01-31)
+
+### Bug Fixes
+
+- **lifecycled:** README.md doc ([8670904](https://github.com/biorate/core/commit/8670904c954ec01a77e20f0a0786fb22b6817771))
+
+## 0.15.1 (2022-01-31)
+
+### Bug Fixes
+
+- **lifecycled:** index.d.ts types fix ([cc6cb96](https://github.com/biorate/core/commit/cc6cb96e8d88a8664820e9e2371d37127562dcc3))
+
+# 0.15.0 (2022-01-31)
+
+### Bug Fixes
+
+- **lifecicled:** init/kill flow fix, callbacks added ([e2a4549](https://github.com/biorate/core/commit/e2a454917711dd185d635e4c6c83c68c99d0ace5))
+- **lifecicled:** object arg in init/kill callbacks added ([0f961b5](https://github.com/biorate/core/commit/0f961b5c8ccc59210b6b8ecec4aafce67a857495))
+- **lifecycled:** "on" decorator added ([aa8aed5](https://github.com/biorate/core/commit/aa8aed584360163d4059a2f93aaee370bc607168))
+- **lifecycled:** catch removed ([ddc728d](https://github.com/biorate/core/commit/ddc728d59cba8f272c25dcb1988faf01788d8d5a))
+
+### Features
+
+- **lifecycled:** undeclared logic fix, "on" decorator added, tests refactoring ([6653805](https://github.com/biorate/core/commit/66538056ad2d7d30470a298f9f52613e08027b3a))
+
+# 0.14.0 (2021-12-31)
+
+# 0.13.0 (2021-12-31)
+
+### Features
+
+- **lifecycled:** decorator to function interface change ([985b920](https://github.com/biorate/core/commit/985b9208ba4907846786b7ac816a05b1a3ce7b71))
+
+## 0.12.3 (2021-12-25)
+
+### Bug Fixes
+
+- **lifecycled:** index.d.ts added ([3e4087c](https://github.com/biorate/core/commit/3e4087ca655edf8a777f8b2db7d71e94d8c218d3))
+
+## 0.12.2 (2021-12-25)
+
+### Bug Fixes
+
+- **all:** homepage and repository in package.json added ([532c5a0](https://github.com/biorate/core/commit/532c5a08ed8cd9c1590134699c074c2021bcbbff))
+
+## 0.12.1 (2021-12-25)
+
+# 0.12.0 (2021-12-25)
+
+### Features
+
+- **lifecycled:** added ([4f0c017](https://github.com/biorate/core/commit/4f0c017d595b5ab5124e1f911a0297adee88d4e9))
+
 # [1.156.0](https://github.com/biorate/core/compare/v1.155.0...v1.156.0) (2025-09-18)
 
 **Note:** Version bump only for package @biorate/lifecycled

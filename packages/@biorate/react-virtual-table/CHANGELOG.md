@@ -3,6 +3,223 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2026-02-10)
+
+### Bug Fixes
+
+- .npmrc ([51785c1](https://github.com/biorate/core/commit/51785c175101225ae3cef838967b401417e68126))
+- root .mocharc .nycrc.json ([6e906e9](https://github.com/biorate/core/commit/6e906e962d10360051c97a11df8516784895c3d8))
+
+### Features
+
+- **config:** @{} = ${} template added ([744286f](https://github.com/biorate/core/commit/744286f5728828eb4b230d07c7c9872f442da6be))
+- update "main" value in package.json ([89de1e3](https://github.com/biorate/core/commit/89de1e3203bcd5123587d046c9277a304bbe4008))
+
+# 1.120.0 (2025-04-29)
+
+## 1.102.1 (2025-02-28)
+
+# 1.102.0 (2025-02-28)
+
+### Features
+
+- migration to pnpm ([462d120](https://github.com/biorate/core/commit/462d12068108fc6977906f4e379da6917aca42c3))
+
+# 1.100.0 (2025-02-26)
+
+# 1.28.0 (2023-05-04)
+
+### Features
+
+- typescript5 migration ([3051757](https://github.com/biorate/core/commit/3051757e45d6895394b655a22066773f0cc30a9a))
+
+## 1.27.2 (2023-04-20)
+
+# 1.24.0 (2023-02-01)
+
+## 1.11.2 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([5b83869](https://github.com/biorate/core/commit/5b8386953ce1d63783f380ca8fc36fb324a963b1))
+
+## 1.11.1 (2022-09-21)
+
+### Bug Fixes
+
+- **axios, kafka:** logic fixes ([d48fff0](https://github.com/biorate/core/commit/d48fff0ebc75566b59aff08e17372ac97b595b30))
+
+# 1.11.0 (2022-09-21)
+
+# 1.4.0 (2022-08-15)
+
+# 1.3.0 (2022-08-14)
+
+## 1.2.2 (2022-08-11)
+
+## 1.2.1 (2022-07-18)
+
+# 1.2.0 (2022-07-10)
+
+# 1.1.0 (2022-07-10)
+
+### Bug Fixes
+
+- react-virtual-table temprorary removed ([ac340e3](https://github.com/biorate/core/commit/ac340e3eec4dc5c6649adf0fddce92ff131f1a93))
+
+### Features
+
+- **collection:** observable restore, interface fix, private members removed ([a4fa9fc](https://github.com/biorate/core/commit/a4fa9fc644edb384afbfbdeb57bdd9724ecc6e20))
+
+# 1.0.0 (2022-07-10)
+
+## 0.30.19 (2022-07-10)
+
+## 0.30.18 (2022-06-24)
+
+## 0.30.7 (2022-06-23)
+
+## 0.30.6 (2022-06-23)
+
+## 0.30.3 (2022-06-22)
+
+## 0.30.2 (2022-06-22)
+
+## 0.30.1 (2022-06-20)
+
+# 0.30.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([6a6be03](https://github.com/biorate/core/commit/6a6be030a1e8923df4b03d518f08618e759d06fa))
+
+## 0.29.1 (2022-06-20)
+
+# 0.29.0 (2022-06-20)
+
+### Bug Fixes
+
+- \*.ts into npmignore ([f6e68b3](https://github.com/biorate/core/commit/f6e68b3a2291e7bfa013674db857db7879a26033))
+
+# 0.28.0 (2022-05-06)
+
+# 0.27.0 (2022-05-06)
+
+# 0.26.0 (2022-04-25)
+
+# 0.25.0 (2022-04-25)
+
+### Features
+
+- **schema-registry:** api fix ([8631389](https://github.com/biorate/core/commit/8631389036e4c0d1f0a9ec0ccab5a0a2800c4dab))
+
+### BREAKING CHANGES
+
+- **schema-registry:** api fix according axios fatch interface change
+
+# 0.24.0 (2022-04-25)
+
+## 0.23.4 (2022-04-19)
+
+### Bug Fixes
+
+- dependency fix ([f496007](https://github.com/biorate/core/commit/f496007a19020a3f92f2d22d39d0edc77f85ff07))
+
+## 0.23.1 (2022-04-11)
+
+### Bug Fixes
+
+- dependencies ([040d321](https://github.com/biorate/core/commit/040d3219799ce7473f34216d35f8b6d48cb31c84))
+
+# 0.23.0 (2022-04-11)
+
+# 0.22.0 (2022-04-08)
+
+# 0.21.0 (2022-04-08)
+
+# 0.20.0 (2022-04-08)
+
+# 0.19.0 (2022-04-07)
+
+# 0.18.0 (2022-02-05)
+
+# 0.17.0 (2022-02-04)
+
+## 0.16.1 (2022-02-01)
+
+### Bug Fixes
+
+- publishConfig added in package.json ([716a064](https://github.com/biorate/core/commit/716a06429e1a4325f50cf94b804f1d70d8a58cf5))
+
+# 0.16.0 (2022-02-01)
+
+# 0.15.0 (2022-01-31)
+
+# 0.14.0 (2021-12-31)
+
+# 0.13.0 (2021-12-31)
+
+## 0.12.2 (2021-12-25)
+
+### Bug Fixes
+
+- **all:** homepage and repository in package.json added ([532c5a0](https://github.com/biorate/core/commit/532c5a08ed8cd9c1590134699c074c2021bcbbff))
+
+## 0.12.1 (2021-12-25)
+
+# 0.12.0 (2021-12-25)
+
+# 0.11.0 (2021-10-16)
+
+# 0.10.0 (2021-09-24)
+
+## 0.9.1 (2021-09-23)
+
+# 0.9.0 (2021-09-23)
+
+### Bug Fixes
+
+- **collection:** build strategy ([40cdf7f](https://github.com/biorate/core/commit/40cdf7f7f62d28a989ce67d94a9125735a0c030d))
+
+## 0.8.4 (2021-09-23)
+
+## 0.8.3 (2021-09-23)
+
+### Bug Fixes
+
+- **react-virtual-table:** demo pug templace title fix ([7d00e26](https://github.com/biorate/core/commit/7d00e26b01a3b8a45e9198f52b91344eb91edf47))
+
+## 0.8.2 (2021-09-07)
+
+### Bug Fixes
+
+- **react-virtual-table:** doc update ([37f37e5](https://github.com/biorate/core/commit/37f37e5bf5687dedb37c117bc84dab81762d733c))
+
+## 0.8.1 (2021-09-07)
+
+### Bug Fixes
+
+- **react-virtual-table:** keywords in package.json ([0e42229](https://github.com/biorate/core/commit/0e4222964f8eed2d77890a30f5c736611999e53b))
+
+# 0.8.0 (2021-09-07)
+
+### Bug Fixes
+
+- pagination selected position ([25fec99](https://github.com/biorate/core/commit/25fec99686e6b8e7cdebcf24d7942979dce55de1))
+- **react-virtual-table:** demo script fiz ([2189a3e](https://github.com/biorate/core/commit/2189a3edfd016e008b45eeaab6718b5604e8f335))
+- **react-virtual-table:** documentation added ([069db96](https://github.com/biorate/core/commit/069db96d6c5693682d0cd1d34a6cd342909e619e))
+- **react-virtual-table:** no-paginator settings added ([08dda52](https://github.com/biorate/core/commit/08dda52d00277869129f109166ae752f28b41d63))
+- **react-virtual-table:** pagination styles fix, range logic ([49586cd](https://github.com/biorate/core/commit/49586cd54aa69dc3626ef30eb768846211643634))
+- **react-virtual-table:** paginator logic added ([154c9d5](https://github.com/biorate/core/commit/154c9d5a4f622990a2fcbdbf5f1bf23a3c131228))
+- **react-virtual-table:** paginator makeup added ([0cc4f4e](https://github.com/biorate/core/commit/0cc4f4e20c4fbbd7b595fccd74f5735fe766416b))
+- **react-virtual-table:** rename module, css fixes ([1ed4603](https://github.com/biorate/core/commit/1ed4603dd6bc6a5220c09246a7de3e2e7aec401f))
+- **react-virtual-table:** render methods added in table props ([fb20010](https://github.com/biorate/core/commit/fb2001084d40f743008e516dd2f37118530f386f))
+- **react-virtual-table:** row hover, refactoring ([8649198](https://github.com/biorate/core/commit/864919844484869b686a02ede2d55b038f224c43))
+
+### Features
+
+- **react-virtual-table:** release ([e8610d3](https://github.com/biorate/core/commit/e8610d320fed93e96204ff401ebba951a33e8d70))
+
 # [1.120.0](https://github.com/biorate/core/compare/v1.119.2...v1.120.0) (2025-04-29)
 
 **Note:** Version bump only for package @biorate/react-virtual-table

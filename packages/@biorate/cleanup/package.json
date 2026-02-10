@@ -1,6 +1,6 @@
 {
   "name": "@biorate/cleanup",
-  "version": "1.169.1",
+  "version": "1.170.0",
   "description": "Cleanup files and directories",
   "main": "dist/index.js",
   "bin": {

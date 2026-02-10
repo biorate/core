@@ -1,6 +1,6 @@
 {
   "name": "@biorate/ioredis",
-  "version": "1.157.0",
+  "version": "1.158.0",
   "description": "IORedis connector",
   "main": "dist/index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader",
-  "version": "1.156.2",
+  "version": "1.157.0",
   "description": "Config loader abstraction",
   "main": "dist/index.js",
   "scripts": {
