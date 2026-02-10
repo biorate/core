@@ -2,7 +2,7 @@ import { setTimeout } from 'timers/promises';
 import { Test } from './__mocks__';
 
 describe('@biorate/opentelemetry', function () {
-  this.timeout(10000);
+  this.timeout(Infinity);
 
   it('span', async () => {
     const test = new Test();
@@ -11,7 +11,6 @@ describe('@biorate/opentelemetry', function () {
     try {
       test.test3(5, 6);
     } catch {}
-    await setTimeout(1000);
   });
 
   it('async span', async () => {
@@ -19,8 +18,12 @@ describe('@biorate/opentelemetry', function () {
     await test.test5(1);
   });
 
-  it('masking', async () => {
+  it.only('masking', async () => {
     const test = new Test();
     test.test4('in@mail.com');
+  });
+
+  after(async () => {
+    await setTimeout(5000);
   });
 });

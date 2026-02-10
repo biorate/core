@@ -3,21 +3,21 @@ import { Masquerade } from '@biorate/masquerade';
 
 export class DataMaskingProcessor extends SimpleSpanProcessor {
   public onEnd(span: Span) {
-    const args = span.attributes.arguments;
-    const result = span.attributes.result;
-    Object.assign(span.attributes, {
-      arguments: typeof args === 'string' ? Masquerade.processString(args) : args,
-      result: typeof result === 'string' ? Masquerade.processString(result) : result,
-    });
-    if (!Masquerade.maskdataEnabled) return void super.onEnd(span);
-    const data = Masquerade.processJSON({
-      arguments: JSON.parse(<string>args),
-      result: JSON.parse(<string>result),
-    });
-    Object.assign(span.attributes, {
-      arguments: JSON.stringify(data.arguments),
-      result: JSON.stringify(data.result),
-    });
+    for (const field in span.attributes)
+      if (typeof span.attributes[field] === 'string')
+        span.attributes[field] = Masquerade.processString(span.attributes[field]);
+    if (Masquerade.maskdataEnabled) {
+      const args: Record<string, unknown> = JSON.parse(<string>span.attributes.arguments);
+      const res: Record<string, unknown> = JSON.parse(<string>span.attributes.result);
+      const json = { ...span.attributes, arguments: args, result: res };
+      const attr = Masquerade.processJSON(json);
+      const attributes = {
+        ...attr,
+        arguments: JSON.stringify(attr.arguments),
+        result: JSON.stringify(attr.result),
+      };
+      Object.assign(span.attributes, attributes);
+    }
     super.onEnd(span);
   }
 }
