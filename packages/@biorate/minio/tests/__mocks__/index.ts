@@ -24,3 +24,5 @@ container.get<IConfig>(Types.Config).merge({
     },
   ],
 });
+
+export const root = container.get<Root>(Root);
