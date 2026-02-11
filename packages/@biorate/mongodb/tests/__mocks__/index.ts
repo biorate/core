@@ -1,5 +1,3 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { MongoDBConnector, IMongoDBConnector, model } from '../../src';
@@ -7,8 +5,6 @@ import { ReturnModelType } from '@typegoose/typegoose';
 import { TestModel } from './models';
 
 export * from './models';
-
-use(jestSnapshotPlugin());
 
 export const dbName = 'test';
 
@@ -34,3 +30,5 @@ container.get<IConfig>(Types.Config).merge({
     },
   ],
 });
+
+export const root = container.get<Root>(Root);
