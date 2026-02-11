@@ -1,8 +1,8 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { root } from './__mocks__';
 
 describe('@biorate/file-config', () => {
-  before(async () => await root.$run());
+  beforeAll(async () => await root.$run());
 
   it('config.json', () => expect(root.config.get('base')).to.be.a('boolean').equal(true));
 

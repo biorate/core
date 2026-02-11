@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@biorate/axios > catch 1`] = `"catch"`;
+
+exports[`@biorate/axios > finally 1`] = `"finally"`;

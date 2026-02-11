@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@biorate/file-config > package.json 1`] = `
+{
+  "author": "llevkin",
+  "description": "Test package.json",
+  "keywords": [],
+  "license": "MIT",
+  "name": "file-config-test",
+  "private": true,
+  "version": "0.0.0",
+}
+`;

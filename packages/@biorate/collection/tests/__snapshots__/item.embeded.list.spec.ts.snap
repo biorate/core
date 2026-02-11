@@ -1,0 +1,105 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Item embeded list > initialize 1`] = `
+Data {
+  "list": List {
+    Symbol(#map): Map {
+      "id|1" => _Item {
+        "id": 1,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+      "id|2" => _Item {
+        "id": 2,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+    },
+    Symbol(#set): Set {
+      _Item {
+        "id": 1,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+      _Item {
+        "id": 2,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+    },
+    Symbol(#processed): null,
+    Symbol(#key): [Function],
+    Symbol(#indexer): [Function],
+    Symbol(#reindex): [Function],
+  },
+  Symbol(#defineClass): [Function],
+  Symbol(#setType): [Function],
+  Symbol(#getType): [Function],
+  Symbol(#setData): [Function],
+  Symbol(#validate): [Function],
+}
+`;
+
+exports[`Item embeded list > initialize 2`] = `
+Data {
+  "list": List {
+    Symbol(#map): Map {
+      "id|3" => _Item {
+        "id": 3,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+      "id|4" => _Item {
+        "id": 4,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+    },
+    Symbol(#set): Set {
+      _Item {
+        "id": 3,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+      _Item {
+        "id": 4,
+        Symbol(#defineClass): [Function],
+        Symbol(#setType): [Function],
+        Symbol(#getType): [Function],
+        Symbol(#setData): [Function],
+        Symbol(#validate): [Function],
+      },
+    },
+    Symbol(#processed): null,
+    Symbol(#key): [Function],
+    Symbol(#indexer): [Function],
+    Symbol(#reindex): [Function],
+  },
+  Symbol(#defineClass): [Function],
+  Symbol(#setType): [Function],
+  Symbol(#getType): [Function],
+  Symbol(#setData): [Function],
+  Symbol(#validate): [Function],
+}
+`;

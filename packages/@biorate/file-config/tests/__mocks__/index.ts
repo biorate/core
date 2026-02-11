@@ -1,10 +1,6 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { Core, injectable, inject, container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { FileConfig } from '../..';
-
-use(jestSnapshotPlugin());
 
 @injectable()
 class Root extends Core() {

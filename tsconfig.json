@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ES2020",
-      "ESNext",
-      "dom"
-    ],
+    "lib": ["ES2020", "ESNext", "dom"],
     "skipLibCheck": true,
     "module": "commonjs",
     "declaration": false,
@@ -13,6 +9,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "target": "ES2020",
     "sourceMap": true,
     "outDir": "./dist",
@@ -20,5 +17,10 @@
     "incremental": true,
     "jsx": "react",
     "paths": {}
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "esModuleInterop": true
+    }
   }
 }

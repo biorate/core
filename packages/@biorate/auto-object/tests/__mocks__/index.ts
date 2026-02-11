@@ -1,6 +1,4 @@
-import { use } from 'chai';
 import { EventEmitter } from 'events';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import {
   IsInt,
   IsObject,
@@ -9,10 +7,8 @@ import {
   IsArray,
   IsOptional,
 } from 'class-validator';
-import { Type, Transform, Expose } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { AutoObject, AutoArray, Getter, PropertiesOnly, Default } from '../../src';
-
-use(jestSnapshotPlugin());
 
 class Geo extends Array<number> {}
 

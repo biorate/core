@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { config, data } from './__mocks__';
 
 describe('@biorate/config', () => {
