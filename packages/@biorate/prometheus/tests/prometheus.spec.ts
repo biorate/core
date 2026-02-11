@@ -1,15 +1,9 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { container } from '@biorate/inversion';
-import { Root } from './__mocks__';
+import { Root, root } from './__mocks__';
 
-describe('Prometheus', function () {
-  let root: Root;
-  this.timeout(3e4);
-
-  before(async () => {
-    root = container.get<Root>(Root);
-    await root.$run();
-  });
+describe('Prometheus', () => {
+  beforeAll(async () => await root.$run());
 
   it('counter', async () => {
     root.counter.inc();

@@ -1,4 +1,4 @@
-import { BaseError } from '../../';
+import { BaseError } from '../../src';
 
 export const message = 'test message ';
 export const msg = 'hello world';

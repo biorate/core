@@ -1,4 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@biorate/redis > delete 1`] = `1`;
+
+exports[`@biorate/redis > get 1`] = `"value"`;
+
+exports[`@biorate/redis > set 1`] = `"OK"`;
 
 exports[`@biorate/redis delete 1`] = `1`;
 

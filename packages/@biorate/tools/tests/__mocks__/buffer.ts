@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { buffer as b } from '../../src';
 
 export function writeValue(length: number, value: number) {

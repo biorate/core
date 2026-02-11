@@ -1,10 +1,8 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { root } from './__mocks__';
 
 describe('@biorate/redis', function () {
-  this.timeout(3e4);
-
-  before(async () => await root.$run());
+  beforeAll(async () => await root.$run());
 
   it('set', async () => {
     expect(await root.connector.current!.set('key', 'value')).toMatchSnapshot();

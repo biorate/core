@@ -1,8 +1,8 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { Scenario1, Scenario2 } from './__mocks__';
 import { Context } from '../src';
 
-describe('@biorate/run-context', function () {
+describe('@biorate/run-context', () => {
   it('Context.run', async () => {
     const ctx = await Context.run([Scenario1, Scenario2], { initial: 'value' });
     expect(ctx.all()).toMatchSnapshot();

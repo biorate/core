@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { path } from '../src';
 import { file } from './__mocks__/path';
 

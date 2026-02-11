@@ -1,57 +1,57 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@biorate/pg cursor 1`] = `null`;
+exports[`@biorate/pg > cursor 1`] = `null`;
 
-exports[`@biorate/pg cursor 2`] = `
-Array [
-  Object {
+exports[`@biorate/pg > cursor 2`] = `
+[
+  {
     "count": 1,
     "text": "test1",
   },
-  Object {
+  {
     "count": 2,
     "text": "test2",
   },
-  Object {
+  {
     "count": 3,
     "text": "test3",
   },
 ]
 `;
 
-exports[`@biorate/pg select rows from table 1`] = `
-Array [
-  Object {
+exports[`@biorate/pg > select rows from table 1`] = `
+[
+  {
     "count": 1,
     "text": "test1",
   },
-  Object {
+  {
     "count": 2,
     "text": "test2",
   },
-  Object {
+  {
     "count": 3,
     "text": "test3",
   },
 ]
 `;
 
-exports[`@biorate/pg stream 1`] = `
-Object {
+exports[`@biorate/pg > stream 1`] = `
+{
   "count": 1,
   "text": "test1",
 }
 `;
 
-exports[`@biorate/pg stream 2`] = `
-Object {
+exports[`@biorate/pg > stream 2`] = `
+{
   "count": 2,
   "text": "test2",
 }
 `;
 
-exports[`@biorate/pg stream 3`] = `
-Object {
+exports[`@biorate/pg > stream 3`] = `
+{
   "count": 3,
   "text": "test3",
 }

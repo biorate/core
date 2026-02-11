@@ -1,5 +1,3 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import {
@@ -14,8 +12,6 @@ import {
   Summary,
   Histogram,
 } from '../../src';
-
-use(jestSnapshotPlugin());
 
 // @ts-ignore
 Core.log = null;
@@ -39,3 +35,5 @@ container.bind(Root).toSelf().inSingletonScope();
     collectDefaultMetrics: false,
   },
 });
+
+export const root = container.get<Root>(Root);

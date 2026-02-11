@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { prop, accessors, conditions } from './__mocks__/define';
 
 describe('define', () => {

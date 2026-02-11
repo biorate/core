@@ -1,5 +1,3 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { Prometheus, IPrometheus } from '@biorate/prometheus';
 import { IConfig, Config } from '@biorate/config';
@@ -10,8 +8,6 @@ import {
   RDKafkaConsumerStreamConnector,
   RDKafkaHighLevelProducerConnector,
 } from '../../src';
-
-use(jestSnapshotPlugin());
 
 export class Root extends Core() {
   @inject(Prometheus) public prometheus: IPrometheus;

@@ -1,7 +1,5 @@
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import {
@@ -11,8 +9,6 @@ import {
 import { TestModel } from './models';
 
 export * from './models';
-
-use(jestSnapshotPlugin());
 
 export const name = 'connection';
 
@@ -40,3 +36,5 @@ container.get<IConfig>(Types.Config).merge({
     },
   ],
 });
+
+export const root = container.get<Root>(Root);

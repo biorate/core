@@ -1,18 +1,14 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { container } from '@biorate/inversion';
-import { Root, TestModel } from './__mocks__';
+import { Root, TestModel, root } from './__mocks__';
 
-describe('@biorate/sequelize', function () {
-  let root: Root;
-  this.timeout(3e4);
-
-  before(async () => {
-    root = container.get<Root>(Root);
+describe('@biorate/sequelize', () => {
+  beforeAll(async () => {
     await root.$run();
     await TestModel.drop();
   });
 
-  after(async () => {
+  afterAll(async () => {
     await TestModel.drop();
   });
 

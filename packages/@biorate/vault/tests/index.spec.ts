@@ -1,15 +1,9 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { container } from '@biorate/inversion';
-import { Root } from './__mocks__';
+import { Root, root } from './__mocks__';
 
-describe('@biorate/vault', function () {
-  let root: Root;
-  this.timeout(3e4);
-
-  before(async () => {
-    root = container.get<Root>(Root);
-    await root.$run();
-  });
+describe('@biorate/vault', () => {
+  beforeAll(async () => await root.$run());
 
   it('write', async () =>
     await root.connector.current!.write('secret/data/test.json', {

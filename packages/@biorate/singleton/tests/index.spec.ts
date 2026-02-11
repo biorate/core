@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { Singleton } from '../src';
 
 describe('Singleton', () => {

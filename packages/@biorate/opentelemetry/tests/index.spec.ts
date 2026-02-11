@@ -1,9 +1,7 @@
 import { setTimeout } from 'timers/promises';
 import { Test } from './__mocks__';
 
-describe('@biorate/opentelemetry', function () {
-  this.timeout(Infinity);
-
+describe('@biorate/opentelemetry', () => {
   it('span', async () => {
     const test = new Test();
     test.test1(1, 2);
@@ -18,12 +16,10 @@ describe('@biorate/opentelemetry', function () {
     await test.test5(1);
   });
 
-  it.only('masking', async () => {
+  it('masking', async () => {
     const test = new Test();
     test.test4('in@mail.com');
   });
 
-  after(async () => {
-    await setTimeout(5000);
-  });
+  afterAll(async () => await setTimeout(5000));
 });

@@ -1,23 +1,23 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@biorate/sequelize create 1`] = `
-Object {
+exports[`@biorate/sequelize > create 1`] = `
+{
   "title": "test",
   "value": 1,
 }
 `;
 
-exports[`@biorate/sequelize find 1`] = `
-Object {
+exports[`@biorate/sequelize > find 1`] = `
+{
   "title": "test",
   "value": 1,
 }
 `;
 
-exports[`@biorate/sequelize query 1`] = `
-Object {
+exports[`@biorate/sequelize > query 1`] = `
+{
   "result": 4,
 }
 `;
 
-exports[`@biorate/sequelize sync 1`] = `[Function]`;
+exports[`@biorate/sequelize > sync 1`] = `[Function]`;

@@ -1,41 +1,41 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`nestjs-tools AllExceptionsFilter 1`] = `[Function]`;
+exports[`nestjs-tools > AllExceptionsFilter 1`] = `[Function]`;
 
-exports[`nestjs-tools AuthBasic 1`] = `[Function]`;
+exports[`nestjs-tools > AuthBasic 1`] = `[Function]`;
 
-exports[`nestjs-tools AuthGuardProvider 1`] = `[Function]`;
+exports[`nestjs-tools > AuthGuardProvider 1`] = `[Function]`;
 
-exports[`nestjs-tools GetLocalesDTO 1`] = `[Function]`;
+exports[`nestjs-tools > GetLocalesDTO 1`] = `[Function]`;
 
-exports[`nestjs-tools LocalesController 1`] = `[Function]`;
+exports[`nestjs-tools > LocalesController 1`] = `[Function]`;
 
-exports[`nestjs-tools MetricsController 1`] = `[Function]`;
+exports[`nestjs-tools > MetricsController 1`] = `[Function]`;
 
-exports[`nestjs-tools PostLocalesDTO 1`] = `[Function]`;
+exports[`nestjs-tools > PostLocalesDTO 1`] = `[Function]`;
 
-exports[`nestjs-tools ProbeController 1`] = `[Function]`;
+exports[`nestjs-tools > ProbeController 1`] = `[Function]`;
 
-exports[`nestjs-tools ProxyPrometheusMiddleware 1`] = `[Function]`;
+exports[`nestjs-tools > ProxyPrometheusMiddleware 1`] = `[Function]`;
 
-exports[`nestjs-tools ROLES_KEY 1`] = `Symbol(RolesKey)`;
+exports[`nestjs-tools > ROLES_KEY 1`] = `Symbol(RolesKey)`;
 
-exports[`nestjs-tools RequestCountMiddleware 1`] = `[Function]`;
+exports[`nestjs-tools > RequestCountMiddleware 1`] = `[Function]`;
 
-exports[`nestjs-tools ResponseTimeMiddleware 1`] = `[Function]`;
+exports[`nestjs-tools > ResponseTimeMiddleware 1`] = `[Function]`;
 
-exports[`nestjs-tools Roles 1`] = `[Function]`;
+exports[`nestjs-tools > Roles 1`] = `[Function]`;
 
-exports[`nestjs-tools RolesGuardProvider 1`] = `[Function]`;
+exports[`nestjs-tools > RolesGuardProvider 1`] = `[Function]`;
 
-exports[`nestjs-tools RoutesInterceptor 1`] = `[Function]`;
+exports[`nestjs-tools > RoutesInterceptor 1`] = `[Function]`;
 
-exports[`nestjs-tools TracingInterceptor 1`] = `[Function]`;
+exports[`nestjs-tools > TracingInterceptor 1`] = `[Function]`;
 
-exports[`nestjs-tools UnsupportedProtocolError 1`] = `[Function]`;
+exports[`nestjs-tools > UnsupportedProtocolError 1`] = `[Function]`;
 
-exports[`nestjs-tools UserRoles 1`] = `
-Object {
+exports[`nestjs-tools > UserRoles 1`] = `
+{
   "1": "Basic",
   "2": "Admin",
   "Admin": 2,
