@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@biorate/batcher > register / add 1`] = `
+[
+  [
+    {
+      "data": "one",
+    },
+    {
+      "metadata": {
+        "test": "one",
+      },
+      "reject": [Function],
+      "resolve": [Function],
+    },
+  ],
+  [
+    {
+      "data": "two",
+    },
+    {
+      "metadata": {
+        "test": "two",
+      },
+      "reject": [Function],
+      "resolve": [Function],
+    },
+  ],
+  [
+    {
+      "data": "three",
+    },
+    {
+      "metadata": {
+        "test": "three",
+      },
+      "reject": [Function],
+      "resolve": [Function],
+    },
+  ],
+]
+`;

@@ -53,6 +53,7 @@ export class Root extends Core(EventEmitter) {
   }
 }
 
+// @ts-ignore
 Core.log = null;
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
