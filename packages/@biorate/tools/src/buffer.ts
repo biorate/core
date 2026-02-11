@@ -1,5 +1,4 @@
 import { UInt29OutOfBoundsError } from './errors';
-
 /**
  * @description Max uInt29 value
  */

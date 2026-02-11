@@ -1,9 +1,4 @@
-import { IKafkaJSAdminConfig, IKafkaJSAdminConnection } from '@biorate/kafkajs';
-
-module.exports = async (
-  connection: IKafkaJSAdminConnection,
-  config: IKafkaJSAdminConfig,
-) => {
+module.exports = async (connection, config) => {
   await connection.deleteTopics({
     topics: ['test'],
   });

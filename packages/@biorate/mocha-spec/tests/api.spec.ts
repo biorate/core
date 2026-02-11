@@ -1,4 +1,4 @@
-import * as nock from 'nock';
+import nock from 'nock';
 import { suite, test, only } from '@biorate/mocha';
 import { IsNumber, IsString, IsBoolean } from 'class-validator';
 import { Spec } from './__mocks__';

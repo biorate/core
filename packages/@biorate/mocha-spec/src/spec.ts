@@ -1,7 +1,7 @@
-import * as supertest from 'supertest';
-import * as nock from 'nock';
-import * as sinon from 'sinon';
-import * as chai from 'chai';
+import supertest from 'supertest';
+import nock from 'nock';
+import sinon from 'sinon';
+import chai from 'chai';
 import type { Test, SuperTest } from 'supertest';
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { api } from './api';

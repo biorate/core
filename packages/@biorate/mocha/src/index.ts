@@ -1,5 +1,5 @@
 // @ts-ignore
-import * as p from 'mocha.parallel';
+import p from 'mocha.parallel';
 import * as core from './core';
 
 function applyTimings(fn: any, settings: any): any {

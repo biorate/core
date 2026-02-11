@@ -10,3 +10,4 @@ export * from './override.parent.events';
 export * from './undeclared.child.events';
 export * from './undeclared.parent.events';
 export * from './regexp.bug';
+export * from './done';

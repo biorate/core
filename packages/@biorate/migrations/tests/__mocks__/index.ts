@@ -1,16 +1,12 @@
-import { use } from 'chai';
 import { unlinkSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { ISchemaRegistryConnector } from '@biorate/schema-registry';
+import { kebabCase } from 'lodash';
 import * as Migrations from '../../src/types';
 import { Root } from '../../src/root';
-import { kebabCase } from 'lodash';
-
-use(jestSnapshotPlugin());
 
 const storage = join(tmpdir(), 'sqlite-test.db');
 
@@ -51,7 +47,9 @@ container
   .to(MockedSchemaRegistry)
   .inSingletonScope();
 
-container.get<Root>(Root).$run().catch(console.error);
+export const root = container.get<Root>(Root);
+
+root.$run().catch(console.error);
 
 container.get<IConfig>(Types.Config).merge({
   Sequelize: [

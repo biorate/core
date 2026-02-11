@@ -1,4 +1,2 @@
-import { IMongoDBConfig, IMongoDBConnection } from '@biorate/mongodb';
-console.log('mongo!!!!!!!!');
-module.exports = async (connection: IMongoDBConnection, config: IMongoDBConfig) =>
+module.exports = async (connection, config) =>
   await connection.collection('test').createIndex({ test: 1 });

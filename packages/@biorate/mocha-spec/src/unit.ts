@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import { path } from '@biorate/tools';
 import { expect } from 'chai';
 import { get, invoke } from 'lodash';

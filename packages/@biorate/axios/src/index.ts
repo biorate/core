@@ -3,7 +3,7 @@ import axios, { AxiosResponse, AxiosInstance } from 'axios';
 import retry from 'axios-retry';
 import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
 // @ts-ignore
-import * as pathToUrl from 'path-to-url';
+import pathToUrl from 'path-to-url';
 import { Singleton } from '@biorate/singleton';
 import { Stubs } from './stubs';
 import { IAxiosFetchOptions, IStubParam } from './interfaces';

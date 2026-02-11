@@ -1,10 +1,8 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { root } from './__mocks__';
 
 describe('@payment/haproxy', function () {
-  this.timeout(6e4);
-
-  before(async () => await root.$run());
+  beforeAll(async () => await root.$run());
 
   it('verify', async () => {
     expect(await root.connector.get().verify()).to.be.a('boolean');

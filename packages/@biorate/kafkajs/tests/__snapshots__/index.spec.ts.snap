@@ -1,0 +1,73 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@biorate/kafkajs > Admin #createPartitions 1`] = `
+{
+  "topics": [
+    {
+      "name": "kafkajs",
+      "partitions": [
+        {
+          "isr": [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": [],
+          "partitionErrorCode": 0,
+          "partitionId": 0,
+          "replicas": [
+            1,
+          ],
+        },
+        {
+          "isr": [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": [],
+          "partitionErrorCode": 0,
+          "partitionId": 2,
+          "replicas": [
+            1,
+          ],
+        },
+        {
+          "isr": [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": [],
+          "partitionErrorCode": 0,
+          "partitionId": 1,
+          "replicas": [
+            1,
+          ],
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`@biorate/kafkajs > Admin #createTopics 1`] = `
+{
+  "topics": [
+    {
+      "name": "kafkajs",
+      "partitions": [
+        {
+          "isr": [
+            1,
+          ],
+          "leader": 1,
+          "offlineReplicas": [],
+          "partitionErrorCode": 0,
+          "partitionId": 0,
+          "replicas": [
+            1,
+          ],
+        },
+      ],
+    },
+  ],
+}
+`;

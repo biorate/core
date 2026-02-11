@@ -1,4 +1,4 @@
-import { Done } from 'mocha';
+import { Done } from './done';
 import { lifecycled, init } from '../../src';
 
 export function initUndeclaredChild(done: Done) {

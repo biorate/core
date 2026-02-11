@@ -1,11 +1,3 @@
-import { IAmqpConfig, IAmqpConnection, ChannelWrapper } from '@biorate/amqp';
-import { IConfig } from '@biorate/config';
-
-module.exports = async (
-  channel: ChannelWrapper,
-  connection: IAmqpConnection,
-  config: IAmqpConfig,
-  globalConfig: IConfig,
-) => {
+module.exports = async (channel, connection, config, globalConfig) => {
   await channel.assertExchange('test-exchange', 'topic');
 };

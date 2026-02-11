@@ -25,6 +25,12 @@
   "workspaces": [
     "packages/*/*"
   ],
+  "resolutions": {
+    "mocha": "11.7.5"
+  },
+  "overrides": {
+    "mocha": "11.7.5"
+  },
   "devDependencies": {
     "@biorate/cleanup": "1.169.1",
     "@istanbuljs/nyc-config-typescript": "1.0.2",

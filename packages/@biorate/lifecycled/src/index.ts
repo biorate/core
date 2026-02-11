@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import 'reflect-metadata';
 import { uniqBy } from 'lodash';
-import { object as o, env } from '@biorate/tools';
+import { object as o } from '@biorate/tools';
 import { ShutdownHook } from '@biorate/shutdown-hook';
 
 enum Lifecircles {
