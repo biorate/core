@@ -1,3 +1,4 @@
+import { EventEmitter } from 'events';
 import { init, injectable, inject, Types, Core, container } from '@biorate/inversion';
 import { Config, IConfig } from '@biorate/config';
 import { ConfigLoader } from '@biorate/config-loader';
@@ -13,10 +14,13 @@ import { IMongoDBConnector, MongoDBConnector } from '@biorate/mongodb';
 import { ClickhouseConnector, IClickhouseConnector } from '@biorate/clickhouse';
 import { AmqpConnector, IAmqpConnector } from '@biorate/amqp';
 import { IKafkaJSAdminConnector, KafkaJSAdminConnector } from '@biorate/kafkajs';
-import { ISchemaRegistryConnector, SchemaRegistryConnector } from '@biorate/schema-registry';
+import {
+  ISchemaRegistryConnector,
+  SchemaRegistryConnector,
+} from '@biorate/schema-registry';
 
 @injectable()
-export class Root extends Core() {
+export class Root extends Core(EventEmitter) {
   @inject(Types.Config) public readonly config: IConfig;
 
   @inject(Types.ConfigLoaderEnv) public readonly configLoaderEnv: ConfigLoader;
@@ -45,11 +49,10 @@ export class Root extends Core() {
   public readonly schemaRegistry: Migrations.SchemaRegistry;
 
   @init() protected async initialize() {
-    process.exit();
+    this.emit('end')
   }
 }
 
-// @ts-ignore
 Core.log = null;
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();

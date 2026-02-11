@@ -1,5 +1,5 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@biorate/i18n en 1`] = `"Hello world!"`;
+exports[`@biorate/i18n > en 1`] = `"Hello world!"`;
 
-exports[`@biorate/i18n ru 1`] = `"Привет мир!"`;
+exports[`@biorate/i18n > ru 1`] = `"Привет мир!"`;

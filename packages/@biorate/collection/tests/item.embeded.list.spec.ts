@@ -1,8 +1,5 @@
-import { expect, use } from 'chai';
+import { expect } from 'vitest';
 import { Data, items1, items2 } from './__mocks__/item.embeded.list';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
-
-use(jestSnapshotPlugin());
 
 describe('Item embeded list', () => {
   it('initialize', () => {

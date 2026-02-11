@@ -1,13 +1,9 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { IVaultConnector } from '@biorate/vault';
 import { ConfigLoader } from '@biorate/config-loader';
 import { VaultConnector } from './vault';
 import { ConfigLoaderVault } from '../../src';
-
-use(jestSnapshotPlugin());
 
 export const paths = {
   config: 'secret/data/config.json',

@@ -1,5 +1,5 @@
-import { Done } from 'mocha';
-import { lifecycled, init, kill } from '../../src';
+import { Done } from './done';
+import { lifecycled, init } from '../../src';
 
 export function initOverrideParent(done: Done) {
   class Uno {

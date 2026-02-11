@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@biorate/file-config package.json 1`] = `
-Object {
+exports[`@biorate/file-config > package.json 1`] = `
+{
   "author": "llevkin",
   "description": "Test package.json",
-  "keywords": Array [],
+  "keywords": [],
   "license": "MIT",
   "name": "file-config-test",
   "private": true,

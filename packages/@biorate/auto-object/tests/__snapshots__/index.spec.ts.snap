@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@biorate/auto-object AutoArray::concat 1`] = `
+exports[`@biorate/auto-object > AutoArray::concat 1`] = `
 PetArray [
   Pet {
     "type": "cat",
@@ -20,9 +20,9 @@ PetArray [
 ]
 `;
 
-exports[`@biorate/auto-object AutoArray::concat 2`] = `"Hello world!"`;
+exports[`@biorate/auto-object > AutoArray::concat 2`] = `"Hello world!"`;
 
-exports[`@biorate/auto-object AutoArray::create 1`] = `
+exports[`@biorate/auto-object > AutoArray::create 1`] = `
 PetArray [
   Pet {
     "type": "cat",
@@ -36,7 +36,7 @@ PetArray [
 ]
 `;
 
-exports[`@biorate/auto-object AutoArray::slice 1`] = `
+exports[`@biorate/auto-object > AutoArray::slice 1`] = `
 PetArray [
   Pet {
     "type": "cat",
@@ -47,9 +47,9 @@ PetArray [
 ]
 `;
 
-exports[`@biorate/auto-object AutoArray::slice 2`] = `"Hello world!"`;
+exports[`@biorate/auto-object > AutoArray::slice 2`] = `"Hello world!"`;
 
-exports[`@biorate/auto-object AutoArray::splice 1`] = `
+exports[`@biorate/auto-object > AutoArray::splice 1`] = `
 PetArray [
   Pet {
     "type": "dog",
@@ -60,14 +60,14 @@ PetArray [
 ]
 `;
 
-exports[`@biorate/auto-object AutoArray::splice 2`] = `"Hello world!"`;
+exports[`@biorate/auto-object > AutoArray::splice 2`] = `"Hello world!"`;
 
-exports[`@biorate/auto-object AutoObject 1`] = `
+exports[`@biorate/auto-object > AutoObject 1`] = `
 User {
   "address": Address {
     "apartment": 74,
     "city": "Moscow",
-    "geo": Geo [
+    "geo": [
       12321,
       32123,
     ],
@@ -80,11 +80,11 @@ User {
 }
 `;
 
-exports[`@biorate/auto-object AutoObject 2`] = `"137186, Moscow, Gogol str. №74"`;
+exports[`@biorate/auto-object > AutoObject 2`] = `"137186, Moscow, Gogol str. №74"`;
 
-exports[`@biorate/auto-object AutoObject.extends 1`] = `
+exports[`@biorate/auto-object > AutoObject.extends 1`] = `
 Event {
-  "_events": Object {},
+  "_events": {},
   "_eventsCount": 0,
   "_maxListeners": undefined,
   "name": "user",
@@ -92,7 +92,7 @@ Event {
     "address": Address {
       "apartment": 74,
       "city": "Moscow",
-      "geo": Geo [
+      "geo": [
         12321,
         32123,
       ],

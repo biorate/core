@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { User, Event, Pet, PetArray } from './__mocks__';
 
 describe('@biorate/auto-object', function () {

@@ -1,5 +1,5 @@
 import { lifecycled, init } from '../../src';
-import { Done } from 'mocha';
+import { Done } from './done';
 
 export function initialize(done: Done) {
   class Uno {

@@ -1,13 +1,9 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { range } from 'lodash';
 import { root, topic } from './__mocks__';
 
 describe('@biorate/kafkajs', function () {
-  this.timeout(Infinity);
-
-  before(async () => {
-    await root.$run();
-  });
+  beforeAll(async () => await root.$run());
 
   it('Admin #createTopics', async () => {
     await root.admin!.current!.createTopics({
@@ -58,13 +54,14 @@ describe('@biorate/kafkajs', function () {
   //   console.log(3);
   // });
 
-  it('Consumer #run', (done) => {
-    let count = 0;
-    root.consumer!.subscribe('consumer', async (messages) => {
-      count += messages.length;
-      if (count === 20000) done();
-    });
-  });
+  it('Consumer #run', () =>
+    new Promise((done) => {
+      let count = 0;
+      root.consumer!.subscribe('consumer', async (messages) => {
+        count += messages.length;
+        if (count === 20000) done(void 0);
+      });
+    }));
 
   it('Admin #deleteTopics', async () => {
     await root.admin!.current!.deleteTopics({ topics: [topic] });

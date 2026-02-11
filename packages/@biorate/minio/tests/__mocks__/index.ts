@@ -1,10 +1,6 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { MinioConnector } from '../../src';
-
-use(jestSnapshotPlugin());
 
 export class Root extends Core() {
   @inject(MinioConnector) public connector: MinioConnector;

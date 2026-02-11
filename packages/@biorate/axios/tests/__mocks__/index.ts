@@ -1,8 +1,8 @@
-import { Axios, IAxiosFetchOptions } from '../../src';
 import { container, Types } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { AxiosResponse } from 'axios';
 import { set, get } from 'lodash';
+import { Axios, IAxiosFetchOptions } from '../../src';
 
 export class Yandex extends Axios {
   public static store: Record<string, any> = {};

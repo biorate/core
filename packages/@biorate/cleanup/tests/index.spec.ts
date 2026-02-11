@@ -1,14 +1,12 @@
 import { mkdir, stat } from 'fs/promises';
 import { statSync } from 'fs';
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { cleanup } from '../src';
 
 describe('@biorate/cleanup', function () {
-  this.timeout(3e4);
-
   const paths = ['./tests/a', './tests/b', './tests/c'];
 
-  before(async () => {
+  beforeAll(async () => {
     for (const path of paths) await mkdir(path);
   });
 
