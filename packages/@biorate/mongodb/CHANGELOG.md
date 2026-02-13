@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.158.0](https://github.com/biorate/core/compare/@biorate/mongodb@1.157.0...@biorate/mongodb@1.158.0) (2026-02-13)
+
+### Features
+
+- vitest-intergation ([e279bf6](https://github.com/biorate/core/commit/e279bf608f398e53f90551f4d20fea94a4a80a7f))
+
 # 1.157.0 (2026-02-10)
 
 ### Bug Fixes

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/biorate/core/compare/@biorate/inversion@2.0.0...@biorate/inversion@2.1.0) (2026-02-13)
+
+### Features
+
+- vitest ([e6eb6cf](https://github.com/biorate/core/commit/e6eb6cfc88b028c191ce41a66b8db1c5878921f6))
+- vitest-intergation ([635a66f](https://github.com/biorate/core/commit/635a66fe3c8e3b79b3103b33d77ec262fc99ffe2))
+- vitest-intergation ([e279bf6](https://github.com/biorate/core/commit/e279bf608f398e53f90551f4d20fea94a4a80a7f))
+
 # 2.0.0 (2026-02-10)
 
 ### Bug Fixes

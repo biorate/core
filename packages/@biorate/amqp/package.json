@@ -1,6 +1,6 @@
 {
   "name": "@biorate/amqp",
-  "version": "1.157.0",
+  "version": "1.158.0",
   "description": "AMQP connector",
   "main": "dist/index.js",
   "scripts": {

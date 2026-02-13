@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader-env",
-  "version": "1.159.0",
+  "version": "1.160.0",
   "description": "Config loader for ENV's config",
   "main": "dist/index.js",
   "scripts": {

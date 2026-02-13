@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/biorate/core/compare/@biorate/prometheus@2.0.0...@biorate/prometheus@2.1.0) (2026-02-13)
+
+### Features
+
+- vitest-intergation ([78368a5](https://github.com/biorate/core/commit/78368a534c0f55685d9b91b046100c98316f30c9))
+
 # 2.0.0 (2026-02-10)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.160.0](https://github.com/biorate/core/compare/@biorate/config-loader-env@1.159.0...@biorate/config-loader-env@1.160.0) (2026-02-13)
+
+### Features
+
+- vitest-intergation ([635a66f](https://github.com/biorate/core/commit/635a66fe3c8e3b79b3103b33d77ec262fc99ffe2))
+- vitest-intergation ([e279bf6](https://github.com/biorate/core/commit/e279bf608f398e53f90551f4d20fea94a4a80a7f))
+
 # 1.159.0 (2026-02-10)
 
 ### Bug Fixes

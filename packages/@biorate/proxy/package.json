@@ -1,6 +1,6 @@
 {
   "name": "@biorate/proxy",
-  "version": "1.157.0",
+  "version": "1.158.0",
   "description": "Proxy connector",
   "main": "dist/index.js",
   "scripts": {

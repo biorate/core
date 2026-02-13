@@ -1,6 +1,6 @@
 {
   "name": "@biorate/inversion",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "IoC core module build on InversifyJS",
   "main": "dist/index.js",
   "scripts": {

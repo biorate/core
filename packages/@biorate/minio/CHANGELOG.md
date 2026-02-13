@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.158.0](https://github.com/biorate/core/compare/@biorate/minio@1.157.0...@biorate/minio@1.158.0) (2026-02-13)
+
+### Features
+
+- vitest-intergation ([b98b9cd](https://github.com/biorate/core/commit/b98b9cd9211569754c81e226f1621b45cb995243))
+- vitest-intergation ([78368a5](https://github.com/biorate/core/commit/78368a534c0f55685d9b91b046100c98316f30c9))
+- vitest-intergation ([e279bf6](https://github.com/biorate/core/commit/e279bf608f398e53f90551f4d20fea94a4a80a7f))
+
 # 1.157.0 (2026-02-10)
 
 ### Bug Fixes

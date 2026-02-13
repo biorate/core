@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mocha-spec",
-  "version": "1.140.0",
+  "version": "1.141.0",
   "description": "Mocha Spec abstract helper class",
   "main": "dist/index.js",
   "scripts": {
