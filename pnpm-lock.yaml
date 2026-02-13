@@ -594,6 +594,9 @@ importers:
 
   packages/@biorate/inversion:
     dependencies:
+      '@biorate/errors':
+        specifier: workspace:*
+        version: link:../errors
       '@biorate/lifecycled':
         specifier: workspace:*
         version: link:../lifecycled

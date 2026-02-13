@@ -21,6 +21,7 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
+    "@biorate/errors": "workspace:*",
     "@biorate/lifecycled": "workspace:*",
     "@biorate/symbolic": "workspace:*",
     "@biorate/tools": "workspace:*",
