@@ -1,5 +1,5 @@
-import { tap, catchError } from 'rxjs';
 import stringify from 'json-stringify-safe';
+import { tap, catchError } from 'rxjs';
 import { trace, Span } from '@biorate/opentelemetry';
 import {
   Injectable,

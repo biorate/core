@@ -1,5 +1,5 @@
 // @ts-ignore
-import * as onHeaders from 'on-headers';
+import onHeaders from 'on-headers';
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
