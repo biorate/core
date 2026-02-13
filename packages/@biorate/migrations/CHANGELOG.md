@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.165.1](https://github.com/biorate/core/compare/@biorate/migrations@1.165.0...@biorate/migrations@1.165.1) (2026-02-13)
+
+### Bug Fixes
+
+- **migrations:** process->exit ([b180af5](https://github.com/biorate/core/commit/b180af5de154f113a3bf6beae1677e5e66a5c72c))
+
 # [1.165.0](https://github.com/biorate/core/compare/@biorate/migrations@1.164.0...@biorate/migrations@1.165.0) (2026-02-13)
 
 ### Features
