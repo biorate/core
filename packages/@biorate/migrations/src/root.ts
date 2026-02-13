@@ -49,7 +49,7 @@ export class Root extends Core(EventEmitter) {
   public readonly schemaRegistry: Migrations.SchemaRegistry;
 
   @init() protected async initialize() {
-    this.emit('end')
+    process.exit(0);
   }
 }
 
@@ -97,4 +97,4 @@ container
   .bind<Migrations.SchemaRegistry>(Migrations.SchemaRegistry)
   .toSelf()
   .inSingletonScope();
-container.bind<Root>(Root).toSelf().inSingletonScope();
+container.bind<Root>(Root).to(Root).inSingletonScope();

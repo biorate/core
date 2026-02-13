@@ -1,12 +1,12 @@
 import { unlinkSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { container, Types } from '@biorate/inversion';
+import { container, Types, init } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { ISchemaRegistryConnector } from '@biorate/schema-registry';
 import { kebabCase } from 'lodash';
 import * as Migrations from '../../src/types';
-import { Root } from '../../src/root';
+import { Root as RootBase } from '../../src/root';
 
 const storage = join(tmpdir(), 'sqlite-test.db');
 
@@ -21,33 +21,37 @@ class MockedSchemaRegistry extends Migrations.SchemaRegistry {
 
   protected async process() {
     await super.process();
-    try {
-      const { deleteSubjects } = container.get<ISchemaRegistryConnector>(
-        Types.SchemaRegistry,
-      ).current!;
-      await Promise.all([
-        deleteSubjects({
-          subject: 'test2.avsc',
-          permanent: false,
-        }),
-        deleteSubjects({
-          subject: 'test.avsc',
-          permanent: false,
-        }),
-      ]);
-    } catch {
-      console.log('catch');
-    }
+    const { deleteSubjects } = container.get<ISchemaRegistryConnector>(
+      Types.SchemaRegistry,
+    ).current!;
+    await Promise.all([
+      deleteSubjects({
+        subject: 'test2.avsc',
+        permanent: false,
+      }),
+      deleteSubjects({
+        subject: 'test.avsc',
+        permanent: false,
+      }),
+    ]);
   }
 }
 
+class Root extends RootBase {
+  @init() protected async initialize() {
+    this.emit('end');
+  }
+}
+
+container.unbind(RootBase);
 container.unbind(Migrations.SchemaRegistry);
+container.bind<RootBase>(RootBase).to(Root).inSingletonScope();
 container
   .bind<Migrations.SchemaRegistry>(Migrations.SchemaRegistry)
   .to(MockedSchemaRegistry)
   .inSingletonScope();
 
-export const root = container.get<Root>(Root);
+export const root = container.get<RootBase>(RootBase);
 
 root.$run().catch(console.error);
 
