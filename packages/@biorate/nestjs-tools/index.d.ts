@@ -96,12 +96,6 @@ declare module '@biorate/nestjs-tools' {
     protected post(param: PostLocalesDTO, body: Record<string, string>): Promise<void>;
   }
 
-  export class MetricsController {
-    protected prometheus: IPrometheus;
-
-    protected metrics(): Promise<string>;
-  }
-
   export class ProbeController {
     protected readiness(): number;
 
@@ -116,11 +110,11 @@ declare module '@biorate/nestjs-tools' {
   }
 
   export class SetLocaleUseCase {
-    public async execute(lang: string, namespace: string): Promise<void>;
+    public execute(lang: string, namespace: string): Promise<void>;
   }
 
   export class GetMetricsUseCase {
-    public async execute(): Promise<string>;
+    public execute(): Promise<string>;
   }
 
   export class ClientRepositoryAdapter implements ClientDrivenPort {
@@ -151,6 +145,7 @@ declare module '@biorate/nestjs-tools' {
     protected metrics(): Promise<void>;
   }
 
+  // @ts-ignore
   export const controllers = { ClientController, MetricsController, ProbeController };
 
   export function corsOriginHandler(

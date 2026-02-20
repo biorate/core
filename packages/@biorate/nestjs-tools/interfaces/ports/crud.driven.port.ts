@@ -27,7 +27,7 @@ export type CrudInsertOneDrivenPort<E> = {
 };
 
 export type CrudInsertManyDrivenPort<E, R = E[]> = {
-  insertOne(items: E[]): Promise<R>;
+  insertMany(items: E[]): Promise<R>;
 };
 
 export type CrudDeleteOneDrivenPort<I, R = boolean> = {
