@@ -28,7 +28,11 @@
     "@biorate/inversion": "workspace:*",
     "@biorate/opentelemetry": "workspace:*",
     "@biorate/prometheus": "workspace:*",
-    "@biorate/tools": "workspace:*"
+    "@biorate/tools": "workspace:*",
+    "json-stringify-safe": "5.0.1"
   },
-  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
+  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d",
+  "devDependencies": {
+    "@types/json-stringify-safe": "5.0.3"
+  }
 }

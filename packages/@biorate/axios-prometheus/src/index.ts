@@ -1,5 +1,6 @@
 // noinspection TypeScriptUnresolvedVariable
 
+import stringify from 'json-stringify-safe';
 import { readFileSync, writeFileSync, statSync, mkdirSync } from 'fs';
 import { path, time as timeTools } from '@biorate/tools';
 import { container, Types } from '@biorate/inversion';
@@ -193,7 +194,7 @@ export abstract class AxiosPrometheus extends Axios {
    * @description Stringify data
    */
   protected stringify(data: unknown) {
-    return typeof data === 'object' ? JSON.stringify(data) : String(data);
+    return typeof data === 'object' ? stringify(data) : String(data);
   }
   /**
    * @description Check need to trace
