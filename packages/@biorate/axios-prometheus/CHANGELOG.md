@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.166.0](https://github.com/biorate/core/compare/@biorate/axios-prometheus@1.165.0...@biorate/axios-prometheus@1.166.0) (2026-02-25)
+
+### Features
+
+- **axios-prometheus:** stringify fix ([2204d7c](https://github.com/biorate/core/commit/2204d7cd069905c3df2cb0124e2e115cdca4f654))
+
 # [1.165.0](https://github.com/biorate/core/compare/@biorate/axios-prometheus@1.164.0...@biorate/axios-prometheus@1.165.0) (2026-02-13)
 
 ### Features
