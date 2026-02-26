@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.167.0](https://github.com/biorate/core/compare/@biorate/nestjs-tools@1.166.2...@biorate/nestjs-tools@1.167.0) (2026-02-26)
+
+### Features
+
+- **nestjs-tools:** crud interfaces refactor ([87cea13](https://github.com/biorate/core/commit/87cea13831ba3caf8f669efee31a1899d43fa0aa))
+
 ## [1.166.2](https://github.com/biorate/core/compare/@biorate/nestjs-tools@1.166.1...@biorate/nestjs-tools@1.166.2) (2026-02-20)
 
 ### Bug Fixes
