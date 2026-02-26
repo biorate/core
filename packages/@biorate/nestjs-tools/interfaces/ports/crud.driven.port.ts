@@ -1,7 +1,3 @@
-export type CrudCreateDrivenPort<E> = {
-  create(data: E): Promise<E>;
-};
-
 export type CrudFindOneDrivenPort<E, I> = {
   findOne(id: I): Promise<E>;
 };
@@ -49,8 +45,7 @@ export type CrudDrivenPort<
   UpdateData = Entity,
   DeleteOneResult = boolean,
   DeleteManyResult = number,
-> = CrudCreateDrivenPort<Entity> &
-  CrudFindOneDrivenPort<Entity, Id> &
+> = CrudFindOneDrivenPort<Entity, Id> &
   CrudFindManyDrivenPort<Entity, FindManyFilter, FindManyresult> &
   CrudUpdateOneDrivenPort<Entity, Id, UpdateData> &
   CrudUpdateManyDrivenPort<Entity, UpdateManyCriteria, UpdateData[]> &
