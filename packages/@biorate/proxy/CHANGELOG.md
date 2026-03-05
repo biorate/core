@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.159.0](https://github.com/biorate/core/compare/@biorate/proxy@1.158.0...@biorate/proxy@1.159.0) (2026-03-05)
+
+### Features
+
+- **proxy:** ProxyConnection export ([ff2226d](https://github.com/biorate/core/commit/ff2226d36201265c39f1f7de5c438b6ab4c3b471))
+
 # [1.158.0](https://github.com/biorate/core/compare/@biorate/proxy@1.157.0...@biorate/proxy@1.158.0) (2026-02-13)
 
 ### Features
