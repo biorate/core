@@ -8,6 +8,7 @@ import { ProxyCantConnectError } from './errors';
 import { ProxyConnection } from './connection';
 import { IProxyConfig, IProxyConnection } from './interfaces';
 
+export * from './connection';
 export * from './errors';
 export * from './interfaces';
 
