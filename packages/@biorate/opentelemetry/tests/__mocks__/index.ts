@@ -2,6 +2,7 @@ import { CardMask, EmailMask, Masquerade, PhoneMask } from '@biorate/masquerade'
 import { trace } from '@opentelemetry/api';
 import { setTimeout } from 'timers/promises';
 
+process.env.OTEL_SERVICE_NAME = 'my-test-service';
 process.env.OTEL_BSP_SCHEDULE_DELAY = '1000';
 process.env.OTEL_BSP_EXPORT_TIMEOUT = '2000';
 process.env.OTEL_LOG_LEVEL = 'warn';
@@ -14,8 +15,16 @@ process.env.OTEL_PROPAGATORS = 'tracecontext,baggage';
 process.env.OTEL_EXPORTER_OTLP_ENDPOINT = 'http://localhost:4317';
 process.env.OTEL_NODE_IP = 'localhost';
 process.env.OTEL_RESOURCE_ATTRIBUTES_NODE_NAME = 'application-nodes';
-process.env.OTEL_RESOURCE_ATTRIBUTES =
-  'k8s.container.name=app,k8s.deployment.name=app,k8s.namespace.name=test,k8s.node.name=application-nodes,k8s.pod.name=app,k8s.replicaset.name=app,service.instance.id=test.app,service.version=develop';
+process.env.OTEL_RESOURCE_ATTRIBUTES = `k8s.cluster.name=test-cluster,
+   k8s.container.name=app,
+   k8s.deployment.name=app,
+   k8s.namespace.name=test,
+   k8s.node.name=application-nodes,
+   k8s.pod.name=app,
+   k8s.replicaset.name=app,service.instance.id=test.app,
+   service.namespace=test,
+   service.version=develop,
+   service.name=my-test-service`;
 process.env.OTEL_POD_IP = 'localhost';
 process.env.OTEL_RESOURCE_ATTRIBUTES_POD_NAME = 'app';
 

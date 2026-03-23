@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["ES2020", "ESNext", "dom"],
+    "types": ["vitest/globals", "node"],
     "skipLibCheck": true,
     "module": "commonjs",
     "declaration": false,
