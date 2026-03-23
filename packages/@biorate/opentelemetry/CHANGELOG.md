@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.166.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@1.165.0...@biorate/opentelemetry@1.166.0) (2026-03-23)
+
+### Bug Fixes
+
+- typescript vitest priority ([7f836ab](https://github.com/biorate/core/commit/7f836ab067a066d4e7e53b64f9382544987fb1e1))
+
+### Features
+
+- **opentelemetry:** deps ([01fe5c2](https://github.com/biorate/core/commit/01fe5c2e94e8d3baf9e29a58758ae9a192f0cdaf))
+
 # [1.165.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@1.164.0...@biorate/opentelemetry@1.165.0) (2026-02-13)
 
 ### Features
