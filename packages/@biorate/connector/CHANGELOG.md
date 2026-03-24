@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/biorate/core/compare/@biorate/connector@2.1.0...@biorate/connector@2.1.1) (2026-03-24)
+
+### Bug Fixes
+
+- **connector:** create in initialize ([46d67ec](https://github.com/biorate/core/commit/46d67ec53e4dfba8ef3fb2c7bf9a697737073739))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/connector@2.0.0...@biorate/connector@2.1.0) (2026-02-13)
 
 ### Features

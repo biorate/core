@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.160.1](https://github.com/biorate/core/compare/@biorate/proxy@1.160.0...@biorate/proxy@1.160.1) (2026-03-24)
+
+**Note:** Version bump only for package @biorate/proxy
+
 # [1.160.0](https://github.com/biorate/core/compare/@biorate/proxy@1.159.0...@biorate/proxy@1.160.0) (2026-03-05)
 
 ### Features

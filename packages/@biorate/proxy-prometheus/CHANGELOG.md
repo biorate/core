@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.158.3](https://github.com/biorate/core/compare/@biorate/proxy-prometheus@1.158.2...@biorate/proxy-prometheus@1.158.3) (2026-03-24)
+
+**Note:** Version bump only for package @biorate/proxy-prometheus
+
 ## [1.158.2](https://github.com/biorate/core/compare/@biorate/proxy-prometheus@1.158.1...@biorate/proxy-prometheus@1.158.2) (2026-03-05)
 
 **Note:** Version bump only for package @biorate/proxy-prometheus
