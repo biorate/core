@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.168.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@1.167.0...@biorate/opentelemetry@1.168.0) (2026-03-30)
+
+### Features
+
+- **opentelemetry:** deepJsonParse ([fa59bd9](https://github.com/biorate/core/commit/fa59bd973bf85082d2ccf5d9e8b1ad0533c7b811))
+
 # [1.167.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@1.166.0...@biorate/opentelemetry@1.167.0) (2026-03-30)
 
 ### Features

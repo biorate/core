@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios-prometheus",
-  "version": "1.166.2",
+  "version": "1.166.3",
   "description": "Axios-prometheus HTTP interface",
   "main": "dist/index.js",
   "scripts": {
