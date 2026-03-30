@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.167.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@1.166.0...@biorate/opentelemetry@1.167.0) (2026-03-30)
+
+### Features
+
+- **opentelemetry:** JSON.parse empty data fix ([a150b20](https://github.com/biorate/core/commit/a150b2032c0c55e4c533ad6ffc8f3e5829308812))
+
 # [1.166.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@1.165.0...@biorate/opentelemetry@1.166.0) (2026-03-23)
 
 ### Bug Fixes
