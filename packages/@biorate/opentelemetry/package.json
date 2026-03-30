@@ -40,9 +40,11 @@
     "@opentelemetry/sdk-metrics": "2.6.0",
     "@opentelemetry/sdk-node": "0.213.0",
     "@opentelemetry/sdk-trace-base": "2.6.0",
-    "json-stringify-safe": "5.0.1"
+    "json-stringify-safe": "5.0.1",
+    "traverse": "0.6.11"
   },
   "devDependencies": {
-    "@types/json-stringify-safe": "5.0.3"
+    "@types/json-stringify-safe": "5.0.3",
+    "@types/traverse": "0.6.37"
   }
 }

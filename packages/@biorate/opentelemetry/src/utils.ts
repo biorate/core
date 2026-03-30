@@ -1,3 +1,5 @@
+import traverse from 'traverse';
+
 export const copyMetadata = (original: any, current: any): void => {
   Reflect.getMetadataKeys(original).forEach((metadataKey) => {
     Reflect.defineMetadata(
@@ -7,3 +9,13 @@ export const copyMetadata = (original: any, current: any): void => {
     );
   });
 };
+
+export function deepJsonParse(data: any) {
+  return traverse(data).map(function (value: any) {
+    if (typeof value === 'string') {
+      try {
+        this.update(JSON.parse(value));
+      } catch {}
+    }
+  });
+}
