@@ -7,8 +7,12 @@ export class DataMaskingProcessor extends SimpleSpanProcessor {
       if (typeof span.attributes[field] === 'string')
         span.attributes[field] = Masquerade.processString(span.attributes[field]);
     if (Masquerade.maskdataEnabled) {
-      const args: Record<string, unknown> = JSON.parse(<string>span.attributes.arguments);
-      const res: Record<string, unknown> = JSON.parse(<string>span.attributes.result);
+      const args: Record<string, unknown> = JSON.parse(
+        <string | undefined>span.attributes.arguments ?? '{}',
+      );
+      const res: Record<string, unknown> = JSON.parse(
+        <string | undefined>span.attributes.result ?? '{}',
+      );
       const json = { ...span.attributes, arguments: args, result: res };
       const attr = Masquerade.processJSON(json);
       const attributes = {
