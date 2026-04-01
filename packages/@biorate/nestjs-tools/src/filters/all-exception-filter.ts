@@ -84,7 +84,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
           exception?.response?.data?.statusCode,
           exception?.response?.data?.error,
           exception?.response?.data?.message,
-        ),
+        ).stack,
       );
     else console.error(exception.stack);
   }
