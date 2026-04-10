@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/biorate/core/compare/@biorate/axios@2.1.1...@biorate/axios@2.1.2) (2026-04-10)
+
+### Bug Fixes
+
+- **axiox:** types ([81acb30](https://github.com/biorate/core/commit/81acb30d8d4ee0300830357618539603fa08b5b5))
+
 ## [2.1.1](https://github.com/biorate/core/compare/@biorate/axios@2.1.0...@biorate/axios@2.1.1) (2026-04-10)
 
 ### Bug Fixes
