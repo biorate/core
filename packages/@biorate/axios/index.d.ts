@@ -7,6 +7,10 @@ declare module '@biorate/axios' {
       options?: AxiosRequestConfig,
     ): AxiosResponse<T, D>;
 
+    protected static _fetch<T = any, D = any>(
+      options?: IAxiosFetchOptions,
+    ): Promise<AxiosResponse<T, D>>;
+
     protected before(params?: IAxiosFetchOptions): Promise<void>;
 
     protected after<T = any, D = any>(
