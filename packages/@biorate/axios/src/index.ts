@@ -1,7 +1,7 @@
 import { omit, pick, merge } from 'lodash';
 import axios, { AxiosResponse, AxiosInstance } from 'axios';
 import retry from 'axios-retry';
-import { IAxiosRetryConfig } from 'axios-retry/dist/esm';
+import type { IAxiosRetryConfig } from 'axios-retry';
 // @ts-ignore
 import pathToUrl from 'path-to-url';
 import { Singleton } from '@biorate/singleton';
