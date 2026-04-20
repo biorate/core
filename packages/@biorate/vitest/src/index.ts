@@ -1,7 +1,7 @@
 export * from './interfaces';
 export * from './symbols';
-export * from './utils';
-export * from './context';
+export { wrapHook } from './utils';
+export { Context } from './context';
 export { Scenario, Step } from './scenario';
 export {
   suite,
@@ -26,5 +26,6 @@ export {
   tags,
   description,
   issue,
+  Vitest,
 } from './vitest';
 export * as allure from 'allure-js-commons';

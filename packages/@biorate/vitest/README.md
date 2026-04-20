@@ -197,6 +197,32 @@ class ParallelTest {
   @test('test 2')
   async test2() {}
 }
+
+@suite('Suite with Timeout', { timeout: 10000 })
+class TimeoutTest {
+  @test('test with suite timeout')
+  async test1() {
+    // suite has 10 second timeout
+  }
+}
+
+@suite('Suite with Retries', { retries: 2 })
+class RetryTest {
+  @test('flaky test')
+  async test1() {
+    // will retry up to 2 times on failure
+  }
+}
+
+@suite('Full Options', { 
+  mode: 'serial', 
+  timeout: 10000, 
+  retries: 2 
+})
+class FullOptionsTest {
+  @test('test')
+  async test() {}
+}
 ```
   @test('test 1')
   async test1() {}
