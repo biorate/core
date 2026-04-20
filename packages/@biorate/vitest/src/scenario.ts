@@ -4,7 +4,6 @@ import { Scenario as ScenarioSymbol } from './symbols';
 
 /**
  * Base scenario class for reusable test steps
- * @extends ScenarioCommon
  */
 export abstract class Scenario extends ScenarioCommon {
   /**

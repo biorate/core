@@ -1,7 +1,8 @@
 /**
- * @description OOP test decorators for Vitest with Allure support
+ * OOP test decorators for Vitest with Allure support
  *
- * ### Features:
+ * @remarks
+ * Features:
  * - Class-based test definition with decorators
  * - Full Allure reporting integration
  * - Scenario pattern for reusable test steps
@@ -126,7 +127,6 @@
  */
 export * from './interfaces';
 export * from './symbols';
-export { wrapHook } from './utils';
 export { Context } from './context';
 export { Scenario, Step } from './scenario';
 export {

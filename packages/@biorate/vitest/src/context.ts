@@ -4,7 +4,6 @@ import { Scenario as ScenarioSymbol } from './symbols';
 
 /**
  * Context manager for running test scenarios with Allure integration
- * @extends ContextCommon
  */
 export class Context extends ContextCommon {
   protected static metaKey = ScenarioSymbol;
