@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.159.0](https://github.com/biorate/core/compare/@biorate/config-loader@1.158.0...@biorate/config-loader@1.159.0) (2026-04-20)
+
+### Features
+
+- **vitest:** release ([81f70e9](https://github.com/biorate/core/commit/81f70e90db450e3a22fc38fb885081e14e10f2c2))
+
 # [1.158.0](https://github.com/biorate/core/compare/@biorate/config-loader@1.157.0...@biorate/config-loader@1.158.0) (2026-02-13)
 
 ### Features

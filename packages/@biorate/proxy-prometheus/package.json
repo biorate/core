@@ -1,6 +1,6 @@
 {
   "name": "@biorate/proxy-prometheus",
-  "version": "1.158.5",
+  "version": "1.159.0",
   "description": "Proxy connector with prometheus metrics",
   "main": "dist/index.js",
   "scripts": {

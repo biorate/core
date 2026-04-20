@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.105.0](https://github.com/biorate/core/compare/@biorate/run-context@1.104.0...@biorate/run-context@1.105.0) (2026-04-20)
+
+### Features
+
+- **vitest:** release ([81f70e9](https://github.com/biorate/core/commit/81f70e90db450e3a22fc38fb885081e14e10f2c2))
+
 # [1.104.0](https://github.com/biorate/core/compare/@biorate/run-context@1.103.0...@biorate/run-context@1.104.0) (2026-02-13)
 
 ### Features

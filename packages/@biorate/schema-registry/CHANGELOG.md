@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/@biorate/schema-registry@2.1.7...@biorate/schema-registry@2.2.0) (2026-04-20)
+
+### Features
+
+- **vitest:** release ([81f70e9](https://github.com/biorate/core/commit/81f70e90db450e3a22fc38fb885081e14e10f2c2))
+
 ## [2.1.7](https://github.com/biorate/core/compare/@biorate/schema-registry@2.1.6...@biorate/schema-registry@2.1.7) (2026-04-10)
 
 **Note:** Version bump only for package @biorate/schema-registry

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.159.0](https://github.com/biorate/core/compare/@biorate/clickhouse@1.158.1...@biorate/clickhouse@1.159.0) (2026-04-20)
+
+### Features
+
+- **vitest:** release ([81f70e9](https://github.com/biorate/core/commit/81f70e90db450e3a22fc38fb885081e14e10f2c2))
+
 ## [1.158.1](https://github.com/biorate/core/compare/@biorate/clickhouse@1.158.0...@biorate/clickhouse@1.158.1) (2026-03-24)
 
 **Note:** Version bump only for package @biorate/clickhouse
