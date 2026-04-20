@@ -1,0 +1,4 @@
+[
+  ["default"],
+  ["allure-vitest", { "outputFolder": "allure-results", "suiteTitle": false }]
+]

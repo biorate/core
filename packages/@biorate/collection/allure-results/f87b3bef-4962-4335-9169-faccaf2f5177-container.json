@@ -1,0 +1,1 @@
+{"uuid":"f87b3bef-4962-4335-9169-faccaf2f5177","children":["37bd75dd-96c9-4977-bbd5-4df6c2e1277f"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"name":"\"before each\" hook for \"initialize\""}],"afters":[],"name":"Item simple props"}

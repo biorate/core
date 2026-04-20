@@ -1,0 +1,35 @@
+{
+  "name": "@biorate/vitest",
+  "version": "1.0.0",
+  "description": "OOP test decorators for vitest with Allure support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx tsc --outDir ./dist",
+    "test": "npx vitest run",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/vitest"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": ["vitest", "oop", "decorators", "allure", "testing"],
+  "author": "llevkin",
+  "license": "MIT",
+  "peerDependencies": {
+    "allure-js-commons": ">=3.2.0",
+    "allure-vitest": ">=3.2.0",
+    "reflect-metadata": ">=0.2.2",
+    "vitest": ">=2.0.0"
+  },
+  "dependencies": {
+    "@biorate/run-context": "workspace:*",
+    "@biorate/symbolic": "workspace:*",
+    "@biorate/tools": "workspace:*"
+  }
+}

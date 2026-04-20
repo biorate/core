@@ -1,0 +1,1 @@
+{"uuid":"f087a7d9-6c67-47b4-a82a-6415bd5f7e84","children":["8261bee0-7b2a-48fd-ae32-dc35d0fb0e07"],"befores":[{"status":"broken","statusDetails":{},"stage":"pending","steps":[],"attachments":[],"parameters":[],"name":"\"before all\" hook for \"verify\""}],"afters":[],"name":"@payment/haproxy"}
