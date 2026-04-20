@@ -43,7 +43,19 @@ type AllureMetadata = Record<string, any[] | any[][]>;
 export class Vitest {
   /**
    * Suite decorator factory
-   * @example @suite('My Suite')
+   * @param name - Suite name (optional, defaults to class name)
+   * @param options - Suite options (timeout, retries, mode)
+   * @returns Class decorator
+   * @example
+   * ```typescript
+   * @suite('My Test Suite')
+   * class MyTest {}
+   * ```
+   * @example
+   * ```typescript
+   * @suite('Parallel Suite', { mode: 'parallel', timeout: 10000, retries: 2 })
+   * class ParallelTest {}
+   * ```
    */
   public readonly suite;
 
