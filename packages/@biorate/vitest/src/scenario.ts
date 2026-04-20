@@ -1,6 +1,6 @@
+import { TestContext } from 'vitest';
 import { Scenario as ScenarioCommon } from '@biorate/run-context';
 import { Scenario as ScenarioSymbol } from './symbols';
-import { TestContext } from 'vitest';
 
 /**
  * Base scenario class for reusable test steps
