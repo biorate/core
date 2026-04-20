@@ -41,7 +41,7 @@ new request is  issued to a redirected url.</p>
 <ul class="tsd-hierarchy">
 <li><span class="target">Request</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20360</li></ul></aside>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21092</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -50,6 +50,7 @@ new request is  issued to a redirected url.</p>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
 <div class="tsd-index-list"><a href="playwright.Request.html#allHeaders" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2048"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)"></path></g></svg><span>all<wbr/>Headers</span></a>
+<a href="playwright.Request.html#existingResponse" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>existing<wbr/>Response</span></a>
 <a href="playwright.Request.html#failure" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>failure</span></a>
 <a href="playwright.Request.html#frame" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>frame</span></a>
 <a href="playwright.Request.html#headerValue" class="tsd-index-link tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>header<wbr/>Value</span></a>
@@ -81,7 +82,22 @@ new request is  issued to a redirected url.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span>[<span class="tsd-kind-index-signature">key</span>: <span class="tsd-signature-type">string</span>]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20364</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21096</li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-external"><a id="existingResponse" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>existing<wbr/>Response</span><a href="#existingResponse" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-external">
+<li class="tsd-signature tsd-anchor-link" id="existingResponse.existingResponse-1"><span class="tsd-kind-call-signature">existing<wbr/>Response</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playwright.Response.html" class="tsd-signature-type tsd-kind-interface">Response</a><a href="#existingResponse.existingResponse-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the <a href="https://playwright.dev/docs/api/class-response">Response</a> object if the response has already been
+received, <code>null</code> otherwise.</p>
+<p>Unlike <a href="https://playwright.dev/docs/api/class-request#request-response">request.response()</a>, this method does not
+wait for the response to arrive. It returns immediately with the response object if the response has been received,
+or <code>null</code> if the response has not been received yet.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="playwright.Response.html" class="tsd-signature-type tsd-kind-interface">Response</a></h4>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
+<ul>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21106</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="failure" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>failure</span><a href="#failure" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -102,7 +118,7 @@ new request is  issued to a redirected url.</p>
 <div class="tsd-comment tsd-typography"></div></li></ul>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20380</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21122</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="frame" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>frame</span><a href="#frame" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -127,7 +143,7 @@ check that.</li>
 <h4 class="tsd-returns-title">Returns <a href="playwright.Frame.html" class="tsd-signature-type tsd-kind-interface">Frame</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20416</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21158</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="headerValue" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>header<wbr/>Value</span><a href="#headerValue" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -145,7 +161,7 @@ check that.</li>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20447</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21189</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="headers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>headers</span><a href="#headers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -162,7 +178,7 @@ headers that include <code>cookie</code> information.</p>
 <h5><span class="tsd-signature-symbol">[</span><span class="tsd-kind-parameter">key</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5></li></ul>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20424</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21166</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="headersArray" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>headers<wbr/>Array</span><a href="#headersArray" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -175,7 +191,7 @@ lower-cased. Headers with multiple entries, such as <code>Set-Cookie</code>, app
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20431</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21173</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="isNavigationRequest" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Navigation<wbr/>Request</span><a href="#isNavigationRequest" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -188,7 +204,7 @@ lower-cased. Headers with multiple entries, such as <code>Set-Cookie</code>, app
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20455</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21197</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="method" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>method</span><a href="#method" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -199,7 +215,7 @@ lower-cased. Headers with multiple entries, such as <code>Set-Cookie</code>, app
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20460</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21202</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="postData" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>post<wbr/>Data</span><a href="#postData" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -210,7 +226,7 @@ lower-cased. Headers with multiple entries, such as <code>Set-Cookie</code>, app
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20465</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21207</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="postDataBuffer" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>post<wbr/>Data<wbr/>Buffer</span><a href="#postDataBuffer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -221,7 +237,7 @@ lower-cased. Headers with multiple entries, such as <code>Set-Cookie</code>, app
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Buffer</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20470</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21212</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="postDataJSON" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>post<wbr/>DataJSON</span><a href="#postDataJSON" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -234,7 +250,7 @@ Otherwise it will be parsed as JSON.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20478</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21220</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="redirectedFrom" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>redirected<wbr/>From</span><a href="#redirectedFrom" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -256,7 +272,7 @@ construct the whole redirect chain by repeatedly calling <code>redirectedFrom()<
 <h4 class="tsd-returns-title">Returns <a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20505</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21247</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="redirectedTo" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>redirected<wbr/>To</span><a href="#redirectedTo" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -272,7 +288,7 @@ construct the whole redirect chain by repeatedly calling <code>redirectedFrom()<
 <h4 class="tsd-returns-title">Returns <a href="playwright.Request.html" class="tsd-signature-type tsd-kind-interface">Request</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20520</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21262</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="resourceType" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>resource<wbr/>Type</span><a href="#resourceType" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -285,7 +301,7 @@ following: <code>document</code>, <code>stylesheet</code>, <code>image</code>, <
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20527</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21269</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="response" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>response</span><a href="#response" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -297,7 +313,7 @@ was not received due to error.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="playwright.Response.html" class="tsd-signature-type tsd-kind-interface">Response</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20533</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21275</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="serviceWorker" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>service<wbr/>Worker</span><a href="#serviceWorker" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -312,7 +328,7 @@ was not received due to error.</p>
 <h4 class="tsd-returns-title">Returns <a href="playwright.Worker.html" class="tsd-signature-type tsd-kind-interface">Worker</a></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20545</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21287</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="sizes" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>sizes</span><a href="#sizes" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -323,7 +339,7 @@ was not received due to error.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">requestBodySize</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">requestHeadersSize</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">responseBodySize</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">responseHeadersSize</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20550</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21292</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="timing" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>timing</span><a href="#timing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -394,7 +410,7 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <div class="tsd-comment tsd-typography"></div></li></ul>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20589</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21331</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-external"><a id="url" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>url</span><a href="#url" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-external">
@@ -405,7 +421,7 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in node_modules/.pnpm/playwright-core@1.56.1/node_modules/playwright-core/types/types.d.ts:20648</li></ul></aside></li></ul></section></section></div>
+<li>Defined in node_modules/.pnpm/playwright-core@1.59.1/node_modules/playwright-core/types/types.d.ts:21390</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -426,6 +442,7 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <div class="tsd-accordion-details">
 <ul>
 <li><a href="#allHeaders" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>all<wbr/>Headers</span></a></li>
+<li><a href="#existingResponse" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>existing<wbr/>Response</span></a></li>
 <li><a href="#failure" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>failure</span></a></li>
 <li><a href="#frame" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>frame</span></a></li>
 <li><a href="#headerValue" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>header<wbr/>Value</span></a></li>
@@ -490,14 +507,13 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <ul class="tsd-nested-navigation">
 <li><a href="../modules/playwright.allure.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>allure</span></a></li>
 <li><a href="../modules/playwright.errors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>errors</span></a></li>
-<li><a href="../classes/playwright.AllureReporter.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Allure<wbr/>Reporter</span></a></li>
-<li><a href="../classes/playwright.Context.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Context</span></a></li>
+<li><a href="../enums/playwright.LabelName.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-8"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-enum)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.45 16V7.24H14.49V8.224H10.518V10.936H14.07V11.908H10.518V15.016H14.49V16H9.45Z" fill="var(--color-text)"></path></g></svg><span>Label<wbr/>Name</span></a></li>
+<li><a href="../classes/playwright.Context.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Context</span></a></li>
 <li><a href="../classes/playwright.PlayWright.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Play<wbr/>Wright</span></a></li>
 <li><a href="../classes/playwright.Scenario.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Scenario</span></a></li>
 <li><a href="playwright.APIRequest.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-256"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)"></path></g></svg><span>APIRequest</span></a></li>
 <li><a href="playwright.APIRequestContext.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>APIRequest<wbr/>Context</span></a></li>
 <li><a href="playwright.APIResponse.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>APIResponse</span></a></li>
-<li><a href="playwright.Accessibility.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Accessibility</span></a></li>
 <li><a href="playwright.Android.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Android</span></a></li>
 <li><a href="playwright.AndroidDevice.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Android<wbr/>Device</span></a></li>
 <li><a href="playwright.AndroidInput.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Android<wbr/>Input</span></a></li>
@@ -519,7 +535,9 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <li><a href="playwright.ConsoleMessage.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Console<wbr/>Message</span></a></li>
 <li><a href="playwright.Cookie.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Cookie</span></a></li>
 <li><a href="playwright.Coverage.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Coverage</span></a></li>
+<li><a href="playwright.Debugger.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Debugger</span></a></li>
 <li><a href="playwright.Dialog.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Dialog</span></a></li>
+<li><a href="playwright.Disposable.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Disposable</span></a></li>
 <li><a href="playwright.Download.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Download</span></a></li>
 <li><a href="playwright.Electron.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Electron</span></a></li>
 <li><a href="playwright.ElectronApplication.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Electron<wbr/>Application</span></a></li>
@@ -552,6 +570,7 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <li><a href="playwright.Request.html" class="current tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Request</span></a></li>
 <li><a href="playwright.Response.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Response</span></a></li>
 <li><a href="playwright.Route.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Route</span></a></li>
+<li><a href="playwright.Screencast.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Screencast</span></a></li>
 <li><a href="playwright.Selectors.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Selectors</span></a></li>
 <li><a href="playwright.TestInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info</span></a></li>
 <li><a href="playwright.TestInfoError.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Test<wbr/>Info<wbr/>Error</span></a></li>
@@ -567,7 +586,8 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <li><a href="playwright.WebSocketRoute.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Web<wbr/>Socket<wbr/>Route</span></a></li>
 <li><a href="playwright.Worker.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Worker</span></a></li>
 <li><a href="playwright.WorkerInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Worker<wbr/>Info</span></a></li>
-<li><a href="../types/playwright.AndroidElementInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Android<wbr/>Element<wbr/>Info</span></a></li>
+<li><a href="../types/playwright.AllureReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Allure<wbr/>Reporter<wbr/>Options</span></a></li>
+<li><a href="../types/playwright.AndroidElementInfo.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Element<wbr/>Info</span></a></li>
 <li><a href="../types/playwright.AndroidKey.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Key</span></a></li>
 <li><a href="../types/playwright.AndroidSelector.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Android<wbr/>Selector</span></a></li>
 <li><a href="../types/playwright.BlobReporterOptions.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Blob<wbr/>Reporter<wbr/>Options</span></a></li>
@@ -595,8 +615,6 @@ given in milliseconds relative to <code>startTime</code>, -1 if not available.</
 <li><a href="../types/playwright.VideoMode.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Video<wbr/>Mode</span></a></li>
 <li><a href="../types/playwright.WorkerFixture.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Worker<wbr/>Fixture</span></a></li>
 <li><a href="../variables/playwright._android.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-32"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-variable)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.106 16L8.85 7.24H9.966L11.454 13.192C11.558 13.608 11.646 13.996 11.718 14.356C11.79 14.708 11.842 14.976 11.874 15.16C11.906 14.976 11.954 14.708 12.018 14.356C12.09 13.996 12.178 13.608 12.282 13.192L13.758 7.24H14.85L12.582 16H11.106Z" fill="var(--color-text)"></path></g></svg><span>_android</span></a></li>
-<li><a href="../variables/playwright._bidiChromium.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>_bidi<wbr/>Chromium</span></a></li>
-<li><a href="../variables/playwright._bidiFirefox.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>_bidi<wbr/>Firefox</span></a></li>
 <li><a href="../variables/playwright._electron.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>_electron</span></a></li>
 <li><a href="../variables/playwright.allureSuite.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>allure<wbr/>Suite</span></a></li>
 <li><a href="../variables/playwright.chromium.html" class="tsd-is-external"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>chromium</span></a></li>

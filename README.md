@@ -53,6 +53,7 @@
 - [auto-object](https://biorate.github.io/core/modules/auto_object.html)
 - [masquerade](https://biorate.github.io/core/modules/masquerade.html)
 - [cleanup](https://biorate.github.io/core/modules/cleanup.html)
+- [vitest](https://biorate.github.io/core/modules/vitest.html)
 
 ### Learn
 
