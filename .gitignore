@@ -53,3 +53,5 @@ coverage
 
 # Package lock
 package-lock.json
+
+.veai
