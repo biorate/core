@@ -176,8 +176,28 @@ class LoginTest {
 ```typescript
 import { suite, test } from '@biorate/vitest';
 
-@suite('Parallel Suite', { mode: 'parallel', timeout: 10000, retries: 2 })
+@suite('Serial Suite', { mode: 'serial' })
+class SerialTest {
+  @test('test 1')
+  async test1() {
+    // tests will run sequentially
+  }
+
+  @test('test 2')
+  async test2() {}
+}
+
+@suite('Parallel Suite', { mode: 'parallel' })
 class ParallelTest {
+  @test('test 1')
+  async test1() {
+    // tests will run in parallel
+  }
+
+  @test('test 2')
+  async test2() {}
+}
+```
   @test('test 1')
   async test1() {}
 

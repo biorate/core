@@ -4,6 +4,9 @@ export default defineConfig({
   test: {
     globals: true,
     setupFiles: ['reflect-metadata'],
-    reporters: ['default'],
+    reporters: [
+      'default',
+      ['allure-vitest/reporter', { resultsDir: 'allure-results', suiteTitle: false }],
+    ],
   },
 });

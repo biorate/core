@@ -166,11 +166,14 @@ export class Vitest {
     if (skip) describeFn = describe.skip;
     else if (only) describeFn = describe.only;
 
-    // Apply mode by calling the appropriate describe function
-    if (mode === 'serial') {
-      describe.sequential(name ?? Class.name, createSuiteBody(this, Class));
-    } else if (mode === 'parallel') {
-      describe.parallel(name ?? Class.name, createSuiteBody(this, Class));
+    // Apply mode - in Vitest 4, use options object
+    const suiteOptionsObj: any = {};
+    if (mode === 'serial') suiteOptionsObj.sequential = true;
+    else if (mode === 'parallel') suiteOptionsObj.parallel = true;
+
+    // Create suite with options
+    if (Object.keys(suiteOptionsObj).length > 0) {
+      describeFn(name ?? Class.name, suiteOptionsObj, createSuiteBody(this, Class));
     } else {
       describeFn(name ?? Class.name, createSuiteBody(this, Class));
     }
