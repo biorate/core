@@ -92,7 +92,7 @@
     "terser-webpack-plugin": "5.1.2",
     "ts-loader": "9.4.2",
     "ts-node": "10.9.2",
-    "typedoc": "0.26.0",
+    "typedoc": "0.25.13",
     "typescript": "5.5.4",
     "util-browserify": "browserify/node-util#v0.12.4",
     "vitest": "4.0.18",
