@@ -1,6 +1,6 @@
 {
   "name": "@biorate/vitest",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "OOP test decorators for vitest with Allure support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
