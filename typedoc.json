@@ -1,0 +1,7 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["packages/@biorate/*/index.ts"],
+  "out": "docs",
+  "skipErrorChecking": true,
+  "highlightLanguages": ["typescript", "javascript", "json", "bash", "shell", "yaml"]
+}
