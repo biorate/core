@@ -1,19 +1,16 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { root, Root } from './__mocks__';
 
-describe('@biorate/proxy', function () {
-  this.timeout(30e3);
+describe('@biorate/proxy', () => {
+  it('connection', async () => await root.$run());
 
-  it('connection', async () => {
-    await root.$run();
-  });
-
-  it('write', (done) => {
-    const socket = Root.connect();
-    socket.write('Hello');
-    socket.on('data', (data) => {
-      expect(data.toString()).toMatchSnapshot();
-      done();
-    });
-  });
+  it('write', () =>
+    new Promise((done) => {
+      const socket = Root.connect();
+      socket.write('Hello');
+      socket.on('data', (data) => {
+        expect(data.toString()).toMatchSnapshot();
+        done();
+      });
+    }));
 });

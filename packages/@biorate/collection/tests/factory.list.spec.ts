@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { Item, list, items } from './__mocks__/factory.list';
 
 describe('Factory list', () => {

@@ -1,16 +1,11 @@
+import { expect } from 'vitest';
 import { container } from '@biorate/inversion';
-import { Root } from './__mocks__';
-import { expect } from 'chai';
+import { Root, root } from './__mocks__';
 
 describe('@biorate/opensearch', function () {
-  let root: Root;
+  beforeAll(async () => await root.$run());
 
-  before(async () => {
-    root = container.get<Root>(Root);
-    await root.$run();
-  });
-
-  after(async () => {
+  afterAll(async () => {
     await root.opensearchConnector.current?.indices.delete({
       index: 'connector_test',
     });

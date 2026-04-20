@@ -1,11 +1,11 @@
 {
   "name": "@biorate/axios-prometheus",
-  "version": "1.163.0",
+  "version": "1.166.5",
   "description": "Axios-prometheus HTTP interface",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
@@ -28,7 +28,11 @@
     "@biorate/inversion": "workspace:*",
     "@biorate/opentelemetry": "workspace:*",
     "@biorate/prometheus": "workspace:*",
-    "@biorate/tools": "workspace:*"
+    "@biorate/tools": "workspace:*",
+    "json-stringify-safe": "5.0.1"
   },
-  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
+  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d",
+  "devDependencies": {
+    "@types/json-stringify-safe": "5.0.3"
+  }
 }

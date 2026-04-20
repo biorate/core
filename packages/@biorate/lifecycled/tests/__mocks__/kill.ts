@@ -1,5 +1,5 @@
 import { lifecycled, kill } from '../../src';
-import { Done } from 'mocha';
+import { Done } from './done';
 
 export function destruct(done: Done) {
   class Uno {

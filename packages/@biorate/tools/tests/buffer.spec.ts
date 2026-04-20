@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { writeValue, readValue, checkLength } from './__mocks__/buffer';
 import { UInt29OutOfBoundsError } from '../src';
 

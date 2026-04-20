@@ -1,9 +1,9 @@
 import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { Client } from 'pg';
-import * as Cursor from 'pg-cursor';
+import Cursor from 'pg-cursor';
 // @ts-ignore pg-query-stream module type bug
-import * as QueryStream from 'pg-query-stream';
+import QueryStream from 'pg-query-stream';
 import { PgCantConnectError } from './errors';
 import { IPgConfig, IPgConnection } from './interfaces';
 

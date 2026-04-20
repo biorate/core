@@ -31,3 +31,5 @@ container.bind(Root).toSelf().inSingletonScope();
 container.get<IConfig>(Types.Config).merge({
   TestConnector: [{ name: 'test-connection' }],
 });
+
+export const root = container.get<Root>(Root);

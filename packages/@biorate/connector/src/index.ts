@@ -129,7 +129,7 @@ export abstract class Connector<C extends IConnectorConfig, T = unknown>
    */
   @init() protected async initialize() {
     for (const config of this.config.get<C[]>(this.namespace, [])) {
-      this.#connections.set(config.name, await this.connect(config));
+      await this.create(config);
       if (!this.#current) this.#current = this.#connections.get(config.name);
     }
   }

@@ -1,15 +1,15 @@
 {
   "name": "@biorate/cleanup",
-  "version": "1.169.1",
+  "version": "1.171.0",
   "description": "Cleanup files and directories",
-  "main": "dist",
+  "main": "dist/index.js",
   "bin": {
     "cleanup": "./bin/cleanup"
   },
   "scripts": {
     "cleanup": "node ./dist/src/cleanup-by-argv.js",
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {

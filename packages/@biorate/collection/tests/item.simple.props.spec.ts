@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { Item, Nested, Binded, data } from './__mocks__/item.simple.props';
 
 describe('Item simple props', () => {

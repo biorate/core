@@ -16,11 +16,6 @@ export class Mongodb extends Migration {
       async (config, connection, paths) =>
         await this.forEachPath(paths, async (file, name) => {
           try {
-            await connection
-              .collection<{ _id: string }>(
-                this.config.get<string>('migrations.tableName', 'migrations'),
-              )
-              .insertOne({ _id: name });
             await (
               require(file) as (
                 connection: IMongoDBConnection,
@@ -28,6 +23,11 @@ export class Mongodb extends Migration {
                 globalConfig: IConfig,
               ) => Promise<void>
             )(connection, config, this.config);
+            await connection
+              .collection<{ _id: string }>(
+                this.config.get<string>('migrations.tableName', 'migrations'),
+              )
+              .insertOne({ _id: name });
             this.log(config.name, name);
           } catch (e) {}
         }),

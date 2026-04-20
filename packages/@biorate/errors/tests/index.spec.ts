@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { TestError, TestNoArgsError, msg, message, meta } from './__mocks__';
 
 describe('Errors', () => {

@@ -1,13 +1,9 @@
-import { use } from 'chai';
 import { Server as HTTPServer } from 'http';
 import { Server as TCPServer, Socket as TCPSocket } from 'net';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { IPrometheus, Prometheus } from '@biorate/prometheus';
 import { ProxyConnector } from '../../src';
-
-use(jestSnapshotPlugin());
 
 const httpPort = 8001;
 const clientPort = 7001;

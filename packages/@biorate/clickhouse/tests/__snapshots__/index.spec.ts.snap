@@ -1,3 +1,5 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@biorate/clickhouse > query 1`] = `1`;
 
 exports[`@biorate/clickhouse query 1`] = `1`;

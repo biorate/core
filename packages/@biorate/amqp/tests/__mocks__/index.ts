@@ -1,10 +1,6 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { AmqpConnector } from '../../src';
-
-use(jestSnapshotPlugin());
 
 export const connectionName = 'amqp';
 export const channelName = 'test';

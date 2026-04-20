@@ -1,11 +1,11 @@
 {
   "name": "@biorate/lifecycled",
-  "version": "1.156.0",
+  "version": "2.1.0",
   "description": "Decorators pack for bring lifecycle control in you application",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "npx tsc --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {

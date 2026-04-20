@@ -1,11 +1,11 @@
 {
   "name": "@biorate/vault",
-  "version": "1.156.2",
+  "version": "1.158.1",
   "description": "Vault connector",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha --exit -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
@@ -28,10 +28,7 @@
     "@biorate/connector": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "node-vault": "^0.10.2"
+    "node-vault": "0.10.9"
   },
-  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
-  "devDependencies": {
-    "@types/request": "^2.48.8"
-  }
+  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
 }

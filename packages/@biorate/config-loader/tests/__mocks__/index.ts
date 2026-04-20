@@ -1,11 +1,7 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { ConfigLoader } from '../../src';
 import { ConfigLoaderTest } from './config-loader';
-
-use(jestSnapshotPlugin());
 
 export const key = 'test';
 export const value = 'Hello world!';

@@ -1,14 +1,14 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { writeFileSync, unlinkSync } from 'fs';
 import { root, tmpFile } from './__mocks__';
 
 describe('@biorate/config-loader-fs', function () {
-  before(async () => {
+  beforeAll(async () => {
     writeFileSync(tmpFile, JSON.stringify({ temp: true }));
     await root.$run();
   });
 
-  after(() => {
+  afterAll(() => {
     unlinkSync(tmpFile);
   });
 
@@ -16,8 +16,8 @@ describe('@biorate/config-loader-fs', function () {
 
   it('package.json', () => expect(root.config.get('package')).toMatchSnapshot());
 
-  it('config.debug.json', () =>
-    expect(root.config.get('debug')).to.be.a('boolean').equal(true));
+  it('config.test.json', () =>
+    expect(root.config.get('test')).to.be.a('boolean').equal(true));
 
   it('config.nested.json', () =>
     expect(root.config.get('nested')).to.be.a('boolean').equal(true));

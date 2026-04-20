@@ -1,4 +1,4 @@
-import * as stringify from 'json-stringify-safe';
+import stringify from 'json-stringify-safe';
 import { trace, SpanStatusCode, Tracer } from '@opentelemetry/api';
 import { OTELUndefinedTracerError } from './errors';
 import { copyMetadata } from './utils';

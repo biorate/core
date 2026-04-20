@@ -1,39 +1,39 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@biorate/mssql select rows from table 1`] = `
-Object {
-  "output": Object {},
-  "recordset": Array [
-    Object {
+exports[`@biorate/mssql > select rows from table 1`] = `
+{
+  "output": {},
+  "recordset": [
+    {
       "count": 1,
       "text": "test1",
     },
-    Object {
+    {
       "count": 2,
       "text": "test2",
     },
-    Object {
+    {
       "count": 3,
       "text": "test3",
     },
   ],
-  "recordsets": Array [
-    Array [
-      Object {
+  "recordsets": [
+    [
+      {
         "count": 1,
         "text": "test1",
       },
-      Object {
+      {
         "count": 2,
         "text": "test2",
       },
-      Object {
+      {
         "count": 3,
         "text": "test3",
       },
     ],
   ],
-  "rowsAffected": Array [
+  "rowsAffected": [
     3,
   ],
 }

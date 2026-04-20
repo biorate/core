@@ -1,18 +1,13 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { container } from '@biorate/inversion';
-import { Root } from './__mocks__';
+import { Root, root } from './__mocks__';
 import * as schema from './test.avsc.json';
 
-describe('@biorate/schema-registry', function () {
-  let root: Root,
-    version: number,
+describe('@biorate/schema-registry', () => {
+  let version: number,
     subject = 'test';
-  this.timeout(3e4);
 
-  before(async () => {
-    root = container.get<Root>(Root);
-    await root.$run();
-  });
+  beforeAll(async () => await root.$run());
 
   it('getPing', async () => {
     const { ping } = root.connector.connection('connection');

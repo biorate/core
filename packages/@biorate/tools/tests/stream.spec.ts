@@ -1,9 +1,6 @@
-import { expect, use } from 'chai';
+import { expect } from 'vitest';
 import { createReadStream } from 'fs';
 import { stream } from '../src';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
-
-use(jestSnapshotPlugin());
 
 describe('stream', () => {
   it('load', async () =>

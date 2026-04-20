@@ -1,5 +1,6 @@
 import { injectable as Injectable, Container, tagged, named } from 'inversify';
 import getDecorators from 'inversify-inject-decorators';
+import { InversionInjectionIsUndefinedError } from './errors';
 import { IMetadata, IService } from '../interfaces';
 import { Metadata } from './labels';
 
@@ -22,19 +23,23 @@ const { lazyInject, lazyInjectNamed, lazyInjectTagged, lazyMultiInject } =
   globalThisLink[Metadata.InversifyContainer];
 
 export function inject(service: IService) {
+  if (!service) throw new InversionInjectionIsUndefinedError();
   return lazyInject(service);
 }
 
 inject.multi = (service: IService) => {
+  if (!service) throw new InversionInjectionIsUndefinedError();
   return lazyMultiInject(service);
 };
 
 inject.named = (service: IService, name: string) => {
+  if (!service) throw new InversionInjectionIsUndefinedError();
   lazyInjectNamed(service, name);
   named(name);
 };
 
 inject.tagged = (service: IService, name: string, value: any) => {
+  if (!service) throw new InversionInjectionIsUndefinedError();
   lazyInjectTagged(service, name, value);
   tagged(name, value);
 };

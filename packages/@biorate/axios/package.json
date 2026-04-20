@@ -1,11 +1,11 @@
 {
   "name": "@biorate/axios",
-  "version": "1.156.2",
+  "version": "2.1.2",
   "description": "Axios OOP static interface",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
@@ -24,11 +24,11 @@
   "license": "MIT",
   "dependencies": {
     "@biorate/singleton": "workspace:*",
-    "axios": "^0.27.2",
-    "axios-retry": "^4.0.0",
-    "http-status": "^2.1.0",
-    "lodash": "^4.17.21",
-    "path-to-url": "^0.1.0"
+    "axios": "1.13.4",
+    "axios-retry": "4.5.0",
+    "http-status": "2.1.0",
+    "lodash": "4.17.23",
+    "path-to-url": "0.1.0"
   },
   "devDependencies": {
     "@biorate/config": "workspace:*",

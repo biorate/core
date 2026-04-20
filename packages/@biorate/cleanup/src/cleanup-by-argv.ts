@@ -1,4 +1,4 @@
-import * as minimist from 'minimist';
+import minimist from 'minimist';
 import { ArgvEmptyListError } from './errors';
 import { cleanup } from './cleanup';
 

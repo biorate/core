@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Item embeded list initialize 1`] = `
+exports[`Item embeded list > initialize 1`] = `
 Data {
   "list": List {
     Symbol(#map): Map {
-      "id|1" => Item {
+      "id|1" => _Item {
         "id": 1,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],
@@ -12,7 +12,7 @@ Data {
         Symbol(#setData): [Function],
         Symbol(#validate): [Function],
       },
-      "id|2" => Item {
+      "id|2" => _Item {
         "id": 2,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],
@@ -22,7 +22,7 @@ Data {
       },
     },
     Symbol(#set): Set {
-      Item {
+      _Item {
         "id": 1,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],
@@ -30,7 +30,7 @@ Data {
         Symbol(#setData): [Function],
         Symbol(#validate): [Function],
       },
-      Item {
+      _Item {
         "id": 2,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],
@@ -52,11 +52,11 @@ Data {
 }
 `;
 
-exports[`Item embeded list initialize 2`] = `
+exports[`Item embeded list > initialize 2`] = `
 Data {
   "list": List {
     Symbol(#map): Map {
-      "id|3" => Item {
+      "id|3" => _Item {
         "id": 3,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],
@@ -64,7 +64,7 @@ Data {
         Symbol(#setData): [Function],
         Symbol(#validate): [Function],
       },
-      "id|4" => Item {
+      "id|4" => _Item {
         "id": 4,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],
@@ -74,7 +74,7 @@ Data {
       },
     },
     Symbol(#set): Set {
-      Item {
+      _Item {
         "id": 3,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],
@@ -82,7 +82,7 @@ Data {
         Symbol(#setData): [Function],
         Symbol(#validate): [Function],
       },
-      Item {
+      _Item {
         "id": 4,
         Symbol(#defineClass): [Function],
         Symbol(#setType): [Function],

@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { config, data } from './__mocks__';
 
 describe('@biorate/config', () => {
@@ -30,6 +30,7 @@ describe('@biorate/config', () => {
   it('template (string)', () => {
     assert.equal(config.get('template.one'), config.get('two.one'));
     assert.equal(config.get('template.two'), 'hello_' + config.get('one'));
+    assert.equal(config.get('template.three'), 'hello_' + config.get('one'));
   });
 
   it('template (link)', () => {

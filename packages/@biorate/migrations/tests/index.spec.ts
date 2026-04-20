@@ -1,10 +1,7 @@
-// import { expect } from 'chai';
+import { setTimeout } from 'timers/promises';
 import { container } from '@biorate/inversion';
-import './__mocks__';
+import { root } from './__mocks__';
 
 describe('@biorate/migrations', function () {
-  this.timeout(1e5);
-  // before(async () => await container.get<Root>(Root).$run().catch(console.error));
-
-  it('test', (done) => {});
+  it('run', async () => new Promise((done) => root.on('end', () => done(void 0))));
 });

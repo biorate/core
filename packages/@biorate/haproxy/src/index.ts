@@ -1,4 +1,4 @@
-import * as HAProxy from 'haproxy';
+import HAProxy from 'haproxy';
 import { timer } from '@biorate/tools';
 import { injectable, kill } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
@@ -152,7 +152,7 @@ export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnecti
         console.debug(`Attempt to connect to Haproxy: [%s]`, config.name);
         await timer.wait(config?.readiness?.delay ?? 1000);
         ++i;
-        if (i > config?.readiness?.retries ?? 1)
+        if (i > (config?.readiness?.retries ?? 1))
           throw new HaproxyConnectionTimeoutError(config.name);
       }
     }

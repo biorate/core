@@ -1,4 +1,4 @@
-import { assert, expect } from 'chai';
+import { assert, expect } from 'vitest';
 import { CommandExecutionError } from '../src';
 import {
   EchoSyncCommand,

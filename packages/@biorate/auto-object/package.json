@@ -1,11 +1,11 @@
 {
   "name": "@biorate/auto-object",
-  "version": "1.138.1",
+  "version": "1.140.0",
   "description": "Auto object",
-  "main": "dist",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
-    "test": "npx nyc --reporter=lcov --reporter=text-summary -- npx mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "class-transformer": "^0.5.1",
+    "class-transformer": "0.5.1",
     "class-validator": "0.14.1",
     "lodash": "4.17.21"
   }

@@ -1,15 +1,13 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { root } from './__mocks__';
 
-describe('@biorate/pg', function () {
-  this.timeout(2e3);
-
-  before(async () => {
+describe('@biorate/pg', () => {
+  beforeAll(async () => {
     await root.$run();
     await root.connector!.current?.query(`DROP TABLE IF EXISTS test;`);
   });
 
-  after(async () => {
+  afterAll(async () => {
     await root.connector!.current?.query(`DROP TABLE IF EXISTS test;`);
   });
 
@@ -31,18 +29,20 @@ describe('@biorate/pg', function () {
       (await root.connector!.current?.query(`SELECT * FROM test;`))!.rows,
     ).toMatchSnapshot());
 
-  it('cursor', (done) => {
-    const cursor = root.connector!.cursor('connection', `SELECT * FROM test;`);
-    cursor.read(3, (err, rows) => {
-      expect(err).toMatchSnapshot();
-      expect(rows).toMatchSnapshot();
-      cursor.close(() => done());
-    });
-  });
+  it('cursor', () =>
+    new Promise((done) => {
+      const cursor = root.connector!.cursor('connection', `SELECT * FROM test;`);
+      cursor.read(3, (err, rows) => {
+        expect(err).toMatchSnapshot();
+        expect(rows).toMatchSnapshot();
+        cursor.close(() => done(void 0));
+      });
+    }));
 
-  it('stream', (done) => {
-    const stream = root.connector!.stream('connection', `SELECT * FROM test;`);
-    stream.on('data', (row) => expect(row).toMatchSnapshot());
-    stream.on('end', () => done());
-  });
+  it('stream', () =>
+    new Promise((done) => {
+      const stream = root.connector!.stream('connection', `SELECT * FROM test;`);
+      stream.on('data', (row) => expect(row).toMatchSnapshot());
+      stream.on('end', () => done(void 0));
+    }));
 });

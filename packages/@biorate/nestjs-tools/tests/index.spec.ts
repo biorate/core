@@ -1,5 +1,4 @@
-import { expect, use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
+import { expect } from 'vitest';
 import {
   AuthBasic,
   Roles,
@@ -20,8 +19,6 @@ import {
   TracingInterceptor,
   ROLES_KEY,
 } from '../src';
-
-use(jestSnapshotPlugin());
 
 describe('nestjs-tools', () => {
   it('AuthBasic', () => expect(AuthBasic).toMatchSnapshot());

@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { Done } from 'mocha';
+import { Done } from './done';
 import { lifecycled, on } from '../../src';
 
 export function undeclaredParentEvents(done: Done) {

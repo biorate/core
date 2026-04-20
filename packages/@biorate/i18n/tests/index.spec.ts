@@ -1,16 +1,10 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { container } from '@biorate/inversion';
-import { Root } from './__mocks__';
+import { Root, root } from './__mocks__';
 import { t } from '../src';
 
-describe('@biorate/i18n', function () {
-  let root: Root;
-  this.timeout(3e4);
-
-  before(async () => {
-    root = container.get<Root>(Root);
-    await root.$run();
-  });
+describe('@biorate/i18n', () => {
+  beforeAll(async () => await root.$run());
 
   it('ru', () => expect(t`Привет мир`).toMatchSnapshot());
 

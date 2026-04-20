@@ -10,7 +10,7 @@ export class Template {
     def?: T,
   ) {
     if (!Config.Template.string) return;
-    let regExp = /\${([^}{]+)+?}/g,
+    let regExp = /[\$@]{([^}{]+)+?}/g,
       res;
     while ((res = regExp.exec(value)))
       if (this.has(res[1]))

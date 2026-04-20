@@ -1,10 +1,6 @@
-import { use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { VaultConnector, IVaultConnector } from '../../src';
-
-use(jestSnapshotPlugin());
 
 export class Root extends Core() {
   @inject(Types.VaultConnector) public connector: IVaultConnector;
@@ -29,3 +25,5 @@ container.get<IConfig>(Types.Config).merge({
     },
   ],
 });
+
+export const root = container.get<Root>(Root);

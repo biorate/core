@@ -1,29 +1,31 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { Yandex } from './__mocks__';
 import { AxiosError } from '../src';
 
-describe('@biorate/axios', function () {
-  this.timeout(3000);
-
+describe('@biorate/axios', () => {
   it('fetch', async () => expect((await Yandex.fetch()).status).to.be.equal(200));
 
-  it('catch', (done) => {
-    class Catch extends Yandex {
-      protected async catch() {
-        done();
+  it('catch', () =>
+    new Promise((done) => {
+      class Catch extends Yandex {
+        protected async catch() {
+          expect('catch').toMatchSnapshot();
+          done(void 0);
+        }
       }
-    }
-    Catch.fetch({ baseURL: 'http://undefined' });
-  });
+      Catch.fetch({ baseURL: 'http://undefined' }).catch(() => {});
+    }));
 
-  it('finally', (done) => {
-    class Finally extends Yandex {
-      protected async finally() {
-        done();
+  it('finally', async () =>
+    new Promise((done) => {
+      class Finally extends Yandex {
+        protected async finally() {
+          expect('finally').toMatchSnapshot();
+          done(void 0);
+        }
       }
-    }
-    Finally.fetch({ baseURL: 'http://undefined' });
-  });
+      Finally.fetch({ baseURL: 'http://undefined' }).catch(() => {});
+    }));
 
   it('mocks', async () => {
     const options = {};
@@ -68,10 +70,10 @@ describe('@biorate/axios', function () {
 
   it('defaults', async () => {
     class Defaults extends Yandex {}
-    Defaults.defaults.headers.common['x-test'] = 1;
+    Defaults.defaults.headers.common['x-test'] = '1';
     const { config } = await Defaults.fetch();
     const headers = <Record<string, unknown>>config.headers;
-    expect(headers['x-test']).to.be.equal(1);
+    expect(headers['x-test']).to.be.equal('1');
   });
 
   it('stubs default', async () => {

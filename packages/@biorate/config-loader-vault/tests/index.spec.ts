@@ -1,10 +1,10 @@
 import { promises as fs } from 'fs';
 import { path } from '@biorate/tools';
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { root, paths, data } from './__mocks__';
 
-describe('@biorate/config-loader-vault', function () {
-  before(async () => await root.$run());
+describe('@biorate/config-loader-vault', () => {
+  beforeAll(async () => await root.$run());
 
   it('merge', () =>
     expect(root.config.get(Object.keys(data.config)[0]))
@@ -32,7 +32,7 @@ describe('@biorate/config-loader-vault', function () {
       .equal(JSON.stringify(data.files));
   });
 
-  after(async () => {
+  afterAll(async () => {
     await fs.rm(path.create(process.cwd(), 'cache'), { recursive: true, force: true });
     await fs.rm(path.create(process.cwd(), 'keys'), { recursive: true, force: true });
   });

@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert } from 'vitest';
 import { listAB, itemsAB, listABBC, ItemAB, ItemABBC } from './__mocks__/factory.multiindex.list';
 
 describe('Factory multiindex list', () => {

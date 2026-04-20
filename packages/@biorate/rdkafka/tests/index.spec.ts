@@ -1,12 +1,11 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { timer } from '@biorate/tools';
 import { Message } from '@confluentinc/kafka-javascript';
 import { root } from './__mocks__';
 
-describe('@biorate/rdkafka', function () {
+describe('@biorate/rdkafka', () => {
   const topic = 'test';
   const timeout = 5000;
-  this.timeout(30000);
 
   async function cleanup() {
     try {
@@ -14,12 +13,12 @@ describe('@biorate/rdkafka', function () {
     } catch {}
   }
 
-  before(async () => {
+  beforeAll(async () => {
     await root.$run();
     await cleanup();
   });
 
-  after(async () => {
+  afterAll(async () => {
     await cleanup();
   });
 

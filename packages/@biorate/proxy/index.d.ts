@@ -1,6 +1,8 @@
 import { Connector } from '@biorate/connector';
 import { IProxyConfig, IProxyConnection } from './src/interfaces';
 
+export { ProxyConnection } from './src';
+
 declare module '@biorate/proxy' {
   export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
     /**

@@ -1,15 +1,13 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import { root } from './__mocks__';
 
-describe('@biorate/mssql', function () {
-  this.timeout(3e4);
-
-  before(async () => {
+describe('@biorate/mssql', () => {
+  beforeAll(async () => {
     await root.$run();
     await root.connector!.current?.query(`DROP TABLE IF EXISTS test;`);
   });
 
-  after(async () => {
+  afterAll(async () => {
     await root.connector!.current?.query(`DROP TABLE IF EXISTS test;`);
   });
 

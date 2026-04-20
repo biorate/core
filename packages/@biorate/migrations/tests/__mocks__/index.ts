@@ -1,19 +1,59 @@
-import { use } from 'chai';
 import { unlinkSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
-import { container, Types } from '@biorate/inversion';
+import { container, Types, init } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import '../../src/default.config';
-
-use(jestSnapshotPlugin());
+import { ISchemaRegistryConnector } from '@biorate/schema-registry';
+import { kebabCase } from 'lodash';
+import * as Migrations from '../../src/types';
+import { Root as RootBase } from '../../src/root';
 
 const storage = join(tmpdir(), 'sqlite-test.db');
 
 try {
   unlinkSync(storage);
 } catch {}
+
+class MockedSchemaRegistry extends Migrations.SchemaRegistry {
+  protected override get type() {
+    return kebabCase(Migrations.SchemaRegistry.name);
+  }
+
+  protected async process() {
+    await super.process();
+    const { deleteSubjects } = container.get<ISchemaRegistryConnector>(
+      Types.SchemaRegistry,
+    ).current!;
+    await Promise.all([
+      deleteSubjects({
+        subject: 'test2.avsc',
+        permanent: false,
+      }),
+      deleteSubjects({
+        subject: 'test.avsc',
+        permanent: false,
+      }),
+    ]);
+  }
+}
+
+class Root extends RootBase {
+  @init() protected async initialize() {
+    this.emit('end');
+  }
+}
+
+container.unbind(RootBase);
+container.unbind(Migrations.SchemaRegistry);
+container.bind<RootBase>(RootBase).to(Root).inSingletonScope();
+container
+  .bind<Migrations.SchemaRegistry>(Migrations.SchemaRegistry)
+  .to(MockedSchemaRegistry)
+  .inSingletonScope();
+
+export const root = container.get<RootBase>(RootBase);
+
+root.$run().catch(console.error);
 
 container.get<IConfig>(Types.Config).merge({
   Sequelize: [

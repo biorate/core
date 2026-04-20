@@ -1,11 +1,8 @@
-import { expect, use } from 'chai';
-import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot';
+import { expect } from 'vitest';
 import { text } from './__mocks__';
 import { Masquerade } from '../src';
 
-use(jestSnapshotPlugin());
-
-describe('@biorate/masquerade', function () {
+describe('@biorate/masquerade', () => {
   it('processJSON', () => {
     expect(
       Masquerade.processJSON({ email: 'test@email.com' }, { emailFields: ['email'] }),
