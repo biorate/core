@@ -8,5 +8,6 @@ export default defineConfig({
       'default',
       ['allure-vitest/reporter', { resultsDir: 'allure-results', suiteTitle: false }],
     ],
+    exclude: ['node_modules', 'dist'],
   },
 });
