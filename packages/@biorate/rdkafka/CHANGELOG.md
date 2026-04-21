@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.170.2](https://github.com/biorate/core/compare/@biorate/rdkafka@1.170.1...@biorate/rdkafka@1.170.2) (2026-04-21)
+
+### Bug Fixes
+
+- **drkafka:** refactor ([bb01e71](https://github.com/biorate/core/commit/bb01e71d4654c9cd9277d788bc5fb3851f557d55))
+
 ## [1.170.1](https://github.com/biorate/core/compare/@biorate/rdkafka@1.170.0...@biorate/rdkafka@1.170.1) (2026-04-21)
 
 ### Bug Fixes
