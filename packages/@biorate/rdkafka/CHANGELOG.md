@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.170.1](https://github.com/biorate/core/compare/@biorate/rdkafka@1.170.0...@biorate/rdkafka@1.170.1) (2026-04-21)
+
+### Bug Fixes
+
+- **axios:** deps ([b028310](https://github.com/biorate/core/commit/b0283100bb9116812f9d5ceb2d447d480e5aea5c))
+
 # [1.170.0](https://github.com/biorate/core/compare/@biorate/rdkafka@1.169.1...@biorate/rdkafka@1.170.0) (2026-04-20)
 
 ### Features
