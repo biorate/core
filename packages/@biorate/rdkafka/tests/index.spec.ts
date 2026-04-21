@@ -49,7 +49,7 @@ describe('@biorate/rdkafka', () => {
     }
   });
 
-  it('produce / consume stream', (done) => {
+  it('produce / consume stream', async () => {
     root.producer!.current!.produce(
       topic,
       null,
@@ -59,9 +59,12 @@ describe('@biorate/rdkafka', () => {
       undefined,
       [{ test: '1' }],
     );
-    root.consumerStream!.current!.subscribe(async (message: Message | Message[]) => {
-      await root.consumerStream!.current!.unsubscribe();
-      done();
+
+    await new Promise<void>((resolve) => {
+      root.consumerStream!.current!.subscribe(async (message: Message | Message[]) => {
+        await root.consumerStream!.current!.unsubscribe();
+        resolve();
+      });
     });
   });
 
