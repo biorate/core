@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@biorate/singleton": "workspace:*",
-    "axios": "1.13.4",
+    "axios": "1.15.1",
     "axios-retry": "4.5.0",
     "http-status": "2.1.0",
     "lodash": "4.17.23",
