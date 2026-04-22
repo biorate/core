@@ -1,5 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`@biorate/auto-object > AutoArray::array args 1`] = `
+PetArray [
+  Pet {
+    "type": "cat",
+  },
+  Pet {
+    "type": "dog",
+  },
+  Pet {
+    "type": "fox",
+  },
+]
+`;
+
+exports[`@biorate/auto-object > AutoArray::array args 2`] = `"Hello world!"`;
+
 exports[`@biorate/auto-object > AutoArray::concat 1`] = `
 PetArray [
   Pet {

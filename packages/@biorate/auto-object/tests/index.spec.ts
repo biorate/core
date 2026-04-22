@@ -65,4 +65,10 @@ describe('@biorate/auto-object', function () {
     expect(result).toMatchSnapshot();
     expect(result.test()).toMatchSnapshot();
   });
+
+  it('AutoArray::array args', () => {
+    const result = new PetArray([{ type: 'cat' }, { type: 'dog' }, { type: 'fox' }]);
+    expect(result).toMatchSnapshot();
+    expect(result.test()).toMatchSnapshot();
+  });
 });

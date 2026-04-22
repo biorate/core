@@ -103,9 +103,9 @@ export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
 
   protected abstract get Class(): new (...args: any[]) => any;
 
-  public constructor(...args: PropertiesOnly<T>[]) {
+  public constructor(...args: PropertiesOnly<T>[] | PropertiesOnly<T>[][]) {
     super();
-    this.push(...args.map(this.#transform));
+    this.push(...flattenDeep(args).map(this.#transform));
   }
 
   public push(...args: PropertiesOnly<T>[]) {
