@@ -41,6 +41,7 @@ export const AutoArrayType =
     const transformFn = (value: any) => {
       if (!value || !Array.isArray(value)) return value;
       const TargetClass = typeFn();
+      if (value instanceof TargetClass) return value;
       return new TargetClass(value);
     };
     Reflect.defineMetadata(
@@ -48,5 +49,7 @@ export const AutoArrayType =
       { ...existingMetadata, [propertyName]: transformFn },
       target,
     );
-    Transform(({ value }) => transformFn(value))(target, propertyName);
+    // Use `obj[propertyName]` to ensure we transform the raw input value.
+    // `class-transformer` can pre-instantiate array subclasses and pass an empty instance as `value`.
+    Transform(({ obj }) => transformFn(obj?.[propertyName]))(target, propertyName);
   };
