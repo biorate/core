@@ -115,6 +115,13 @@ export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
   protected abstract get Class(): new (...args: any[]) => any;
 
   public constructor(...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]) {
+    // Built-in Array methods (map/filter/...) may create instances via
+    // `new this.constructor(length)`. Support that path without transforming.
+    if (args.length === 1 && typeof args[0] === 'number') {
+      super(args[0]);
+      return;
+    }
+
     super();
     super.push(...flattenDeep(args).map(this.#transform));
   }

@@ -1,5 +1,16 @@
 import { expect } from 'vitest';
-import { User, Event, Pet, PetArray, UserPets } from './__mocks__';
+import {
+  User,
+  Event,
+  Pet,
+  PetArray,
+  UserPets,
+  UserPetsComplex,
+  PetWithToysArray,
+  PetWithToys,
+  ToyArray,
+  Toy,
+} from './__mocks__';
 
 describe('@biorate/auto-object', function () {
   it('AutoObject', () => {
@@ -99,5 +110,32 @@ describe('@biorate/auto-object', function () {
     pets.push([{ type: 'dog' }, { type: 'fox' }]);
     expect(pets.length).toBe(3);
     expect(pets.test()).toBe('Hello world!');
+  });
+
+  it('Complex nested structure (AutoObject/AutoArray recursion)', () => {
+    const data = {
+      firstName: 'Vasya',
+      pets: [
+        {
+          type: 'cat',
+          toys: [{ name: 'ball' }, { name: 'mouse' }],
+        },
+        new PetWithToys({
+          type: 'dog',
+          toys: new ToyArray({ name: 'stick' }, { name: 'bone' }),
+        }),
+      ],
+    };
+    const user = new UserPetsComplex(data);
+    expect(user.pets instanceof PetWithToysArray).toBe(true);
+    expect(user.pets[0] instanceof PetWithToys).toBe(true);
+    expect(user.pets[0].toys instanceof ToyArray).toBe(true);
+    expect(user.pets[0].toys.names()).toBe('ball,mouse');
+    expect(user.pets[1].toys.names()).toBe('stick,bone');
+    // also check AutoArray mutations keep shape
+    user.pets[1].toys.push({ name: 'rope' });
+    expect(user.pets[1].toys.names()).toBe('stick,bone,rope');
+
+    expect(user).toMatchSnapshot();
   });
 });

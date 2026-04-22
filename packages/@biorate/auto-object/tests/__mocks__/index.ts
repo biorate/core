@@ -80,6 +80,36 @@ export class Pet extends AutoObject<Pet> {
   public type: string;
 }
 
+export class Toy extends AutoObject<Toy> {
+  @IsString()
+  public name: string;
+}
+
+export class ToyArray extends AutoArray<Toy> {
+  protected get Class() {
+    return Toy;
+  }
+
+  public names() {
+    return this.map((t) => t.name).join(',');
+  }
+}
+
+export class PetWithToys extends AutoObject<PetWithToys> {
+  @IsString()
+  public type: string;
+
+  @IsArray()
+  @AutoArrayType(() => ToyArray)
+  public toys: ToyArray;
+}
+
+export class PetWithToysArray extends AutoArray<PetWithToys> {
+  protected get Class() {
+    return PetWithToys;
+  }
+}
+
 export class PetArray extends AutoArray<Pet> {
   protected get Class() {
     return Pet;
@@ -97,4 +127,13 @@ export class UserPets extends AutoObject<UserPets> {
   @IsArray()
   @AutoArrayType(() => PetArray)
   public pets: PetArray;
+}
+
+export class UserPetsComplex extends AutoObject<UserPetsComplex> {
+  @IsString()
+  public firstName: string;
+
+  @IsArray()
+  @AutoArrayType(() => PetWithToysArray)
+  public pets: PetWithToysArray;
 }

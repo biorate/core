@@ -140,3 +140,36 @@ UserPets {
   ],
 }
 `;
+
+exports[`@biorate/auto-object > Complex nested structure (AutoObject/AutoArray recursion) 1`] = `
+UserPetsComplex {
+  "firstName": "Vasya",
+  "pets": PetWithToysArray [
+    PetWithToys {
+      "toys": ToyArray [
+        Toy {
+          "name": "ball",
+        },
+        Toy {
+          "name": "mouse",
+        },
+      ],
+      "type": "cat",
+    },
+    PetWithToys {
+      "toys": ToyArray [
+        Toy {
+          "name": "stick",
+        },
+        Toy {
+          "name": "bone",
+        },
+        Toy {
+          "name": "rope",
+        },
+      ],
+      "type": "dog",
+    },
+  ],
+}
+`;
