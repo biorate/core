@@ -99,8 +99,8 @@ export abstract class AutoObject<T = Record<string, any>> {
   }
 }
 
-export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
-  #transform = (data: PropertiesOnly<T>) => {
+export abstract class AutoArray<T> extends Array<T> {
+  #transform = (data: PropertiesOnly<T> | T) => {
     if (data instanceof this.Class) return data;
     // Guard against accidentally passing arrays as an element.
     if (Array.isArray(data)) {
@@ -114,23 +114,17 @@ export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
 
   protected abstract get Class(): new (...args: any[]) => any;
 
-  public constructor(...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]) {
-    // Built-in Array methods (map/filter/...) may create instances via
-    // `new this.constructor(length)`. Support that path without transforming.
-    if (args.length === 1 && typeof args[0] === 'number') {
-      super(args[0]);
-      return;
-    }
-
-    super();
-    super.push(...flattenDeep(args).map(this.#transform));
+  public constructor(...args: (PropertiesOnly<T> | T | (PropertiesOnly<T> | T)[])[]) {
+    const isLengthCtor = args.length === 1 && typeof args[0] === 'number';
+    super(isLengthCtor ? (args[0] as number) : 0);
+    if (!isLengthCtor) super.push(...flattenDeep(args).map(this.#transform));
   }
 
-  public push(...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]) {
+  public push(...args: (PropertiesOnly<T> | T | (PropertiesOnly<T> | T)[])[]) {
     return super.push(...flattenDeep(args).map(this.#transform));
   }
 
-  public unshift(...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]) {
+  public unshift(...args: (PropertiesOnly<T> | T | (PropertiesOnly<T> | T)[])[]) {
     return super.unshift(...flattenDeep(args).map(this.#transform));
   }
 
@@ -141,7 +135,7 @@ export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
   public splice(
     start: number,
     deleteCount: number,
-    ...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]
+    ...args: (PropertiesOnly<T> | T | (PropertiesOnly<T> | T)[])[]
   ): this {
     return <typeof this>(
       transaction(() =>
@@ -151,11 +145,18 @@ export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
   }
 
   public concat(
-    ...args: (PropertiesOnly<T> | PropertiesOnly<T>[] | ConcatArray<PropertiesOnly<T>>)[]
+    ...args: (
+      | PropertiesOnly<T>
+      | T
+      | (PropertiesOnly<T> | T)[]
+      | ConcatArray<PropertiesOnly<T> | T>
+    )[]
   ): this {
     return <typeof this>(
       transaction(() =>
-        super.concat((<PropertiesOnly<T>[]>flattenDeep(<any>args)).map(this.#transform)),
+        super.concat(
+          (<(PropertiesOnly<T> | T)[]>flattenDeep(<any>args)).map(this.#transform),
+        ),
       )
     );
   }
