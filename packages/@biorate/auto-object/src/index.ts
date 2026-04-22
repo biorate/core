@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { flattenDeep } from 'lodash';
 import { auto, transaction } from './utils';
 import { PropertiesOnly } from './interfaces';
+import { CommonFactoryTypeError } from './errors';
 
 export * from './decorators';
 export { Getter, Setter, PropertiesOnly } from './interfaces';
@@ -99,34 +100,52 @@ export abstract class AutoObject<T = Record<string, any>> {
 }
 
 export abstract class AutoArray<T> extends Array<PropertiesOnly<T>> {
-  #transform = (data: PropertiesOnly<T>) => new this.Class(data);
+  #transform = (data: PropertiesOnly<T>) => {
+    if (data instanceof this.Class) return data;
+    // Guard against accidentally passing arrays as an element.
+    if (Array.isArray(data)) {
+      throw new CommonFactoryTypeError(
+        this.constructor.name,
+        'AutoArray item must be an object or class instance, received Array',
+      );
+    }
+    return new this.Class(data);
+  };
 
   protected abstract get Class(): new (...args: any[]) => any;
 
-  public constructor(...args: PropertiesOnly<T>[] | PropertiesOnly<T>[][]) {
+  public constructor(...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]) {
     super();
-    this.push(...flattenDeep(args).map(this.#transform));
+    super.push(...flattenDeep(args).map(this.#transform));
   }
 
-  public push(...args: PropertiesOnly<T>[]) {
-    return super.push(...args.map(this.#transform));
+  public push(...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]) {
+    return super.push(...flattenDeep(args).map(this.#transform));
   }
 
-  public unshift(...args: PropertiesOnly<T>[]) {
-    return super.unshift(...args.map(this.#transform));
+  public unshift(...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]) {
+    return super.unshift(...flattenDeep(args).map(this.#transform));
   }
 
   public slice(start: number, deleteCount?: number): this {
     return <typeof this>transaction(() => super.slice(start, deleteCount));
   }
 
-  public splice(start: number, deleteCount: number, ...args: PropertiesOnly<T>[]): this {
+  public splice(
+    start: number,
+    deleteCount: number,
+    ...args: (PropertiesOnly<T> | PropertiesOnly<T>[])[]
+  ): this {
     return <typeof this>(
-      transaction(() => super.splice(start, deleteCount, ...args.map(this.#transform)))
+      transaction(() =>
+        super.splice(start, deleteCount, ...flattenDeep(args).map(this.#transform)),
+      )
     );
   }
 
-  public concat(...args: (PropertiesOnly<T> | ConcatArray<PropertiesOnly<T>>)[]): this {
+  public concat(
+    ...args: (PropertiesOnly<T> | PropertiesOnly<T>[] | ConcatArray<PropertiesOnly<T>>)[]
+  ): this {
     return <typeof this>(
       transaction(() =>
         super.concat((<PropertiesOnly<T>[]>flattenDeep(<any>args)).map(this.#transform)),

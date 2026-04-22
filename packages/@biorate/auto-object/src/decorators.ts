@@ -41,7 +41,7 @@ export const AutoArrayType =
     const transformFn = (value: any) => {
       if (!value || !Array.isArray(value)) return value;
       const TargetClass = typeFn();
-      return new TargetClass(...value);
+      return new TargetClass(value);
     };
     Reflect.defineMetadata(
       metadataKey,

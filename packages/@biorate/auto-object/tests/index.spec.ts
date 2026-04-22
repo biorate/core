@@ -82,4 +82,22 @@ describe('@biorate/auto-object', function () {
     expect(userPets.pets.test()).toBe('Hello world!');
     expect(userPets).toMatchSnapshot();
   });
+
+  it('AutoObject:AutoArray (already AutoArray instance)', () => {
+    const data = {
+      firstName: 'Vasya',
+      pets: [{ type: 'cat' }, { type: 'dog' }],
+    };
+    const userPets = new UserPets(data);
+    expect(userPets.pets instanceof PetArray).toBe(true);
+    expect(userPets.pets.test()).toBe('Hello world!');
+    expect(userPets.pets.length).toBe(2);
+  });
+
+  it('AutoArray supports passing array as args', () => {
+    const pets = new PetArray({ type: 'cat' });
+    pets.push([{ type: 'dog' }, { type: 'fox' }]);
+    expect(pets.length).toBe(3);
+    expect(pets.test()).toBe('Hello world!');
+  });
 });
