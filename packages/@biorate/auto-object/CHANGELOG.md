@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.142.0](https://github.com/biorate/core/compare/@biorate/auto-object@1.141.0...@biorate/auto-object@1.142.0) (2026-04-22)
+
+### Features
+
+- **auto-object:** array args initialization in auto-array ([7358459](https://github.com/biorate/core/commit/7358459b9e2638f773c634d2c8ce06160769bf7b))
+
 # [1.141.0](https://github.com/biorate/core/compare/@biorate/auto-object@1.140.0...@biorate/auto-object@1.141.0) (2026-04-20)
 
 ### Features
