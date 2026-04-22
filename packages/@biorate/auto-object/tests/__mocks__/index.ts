@@ -8,7 +8,14 @@ import {
   IsOptional,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { AutoObject, AutoArray, Getter, PropertiesOnly, Default } from '../../src';
+import {
+  AutoObject,
+  AutoArray,
+  Getter,
+  PropertiesOnly,
+  Default,
+  AutoArrayType,
+} from '../../src';
 
 class Geo extends Array<number> {}
 
@@ -81,4 +88,13 @@ export class PetArray extends AutoArray<Pet> {
   public test() {
     return 'Hello world!';
   }
+}
+
+export class UserPets extends AutoObject<UserPets> {
+  @IsString()
+  public firstName: string;
+
+  @IsArray()
+  @AutoArrayType(() => PetArray)
+  public pets: PetArray;
 }

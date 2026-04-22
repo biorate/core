@@ -1,5 +1,5 @@
 import { expect } from 'vitest';
-import { User, Event, Pet, PetArray } from './__mocks__';
+import { User, Event, Pet, PetArray, UserPets } from './__mocks__';
 
 describe('@biorate/auto-object', function () {
   it('AutoObject', () => {
@@ -70,5 +70,16 @@ describe('@biorate/auto-object', function () {
     const result = new PetArray([{ type: 'cat' }, { type: 'dog' }, { type: 'fox' }]);
     expect(result).toMatchSnapshot();
     expect(result.test()).toMatchSnapshot();
+  });
+
+  it('AutoObject:AutoArray', () => {
+    const data = {
+      firstName: 'Vasya',
+      pets: [{ type: 'cat' }, { type: 'dog' }, { type: 'fox' }],
+    };
+    const userPets = new UserPets(data);
+    expect(userPets.pets instanceof PetArray).toBe(true);
+    expect(userPets.pets.test()).toBe('Hello world!');
+    expect(userPets).toMatchSnapshot();
   });
 });

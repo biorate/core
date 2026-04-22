@@ -27,6 +27,13 @@ export const transaction = <T>(callback: () => T) => {
 export const auto = <T>(ctx: any, data: T) => {
   if (!data) return;
   merge(ctx, plainToInstance(ctx.constructor, data, { enableImplicitConversion: true }));
+  const metadata = Reflect.getMetadata('custom_transforms', ctx) || {};
+  for (const key of Object.keys(metadata)) {
+    const transformFn = metadata[key];
+    if (typeof transformFn === 'function' && ctx[key]) {
+      ctx[key] = transformFn(ctx[key]);
+    }
+  }
   validate(ctx);
   return ctx;
 };

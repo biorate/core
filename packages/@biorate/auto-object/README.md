@@ -64,7 +64,7 @@ console.log(user); // User {
 //     "apartment": 74,
 //     "geo": Array [
 //       12321,
-//       32123,
+//       12323,
 //     ],
 //     "postal": 123321,
 //     "street": "Gogolya",
@@ -73,6 +73,44 @@ console.log(user); // User {
 //   "id": 1,
 //   "lastName": "Pupkin",
 // }
+```
+
+### AutoArray with AutoObject
+
+For proper transformation of AutoArray fields within AutoObject, use the `@AutoArrayType` decorator:
+
+```ts
+class Pet extends AutoObject<Pet> {
+  @IsString()
+  public type: string;
+}
+
+class PetArray extends AutoArray<Pet> {
+  protected get Class() {
+    return Pet;
+  }
+
+  public test() {
+    return 'Hello world!';
+  }
+}
+
+class UserPets extends AutoObject<UserPets> {
+  @IsString()
+  public firstName: string;
+
+  @IsArray()
+  @AutoArrayType(() => PetArray)
+  public pets: PetArray;
+}
+
+const userPets = new UserPets({
+  firstName: 'Vasya',
+  pets: [{ type: 'cat' }, { type: 'dog' }, { type: 'fox' }],
+});
+
+console.log(userPets.pets instanceof PetArray); // true
+console.log(userPets.pets.test()); // 'Hello world!'
 ```
 
 ### Learn

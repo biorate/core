@@ -123,3 +123,20 @@ Event {
   Symbol(kCapture): false,
 }
 `;
+
+exports[`@biorate/auto-object > AutoObject:AutoArray 1`] = `
+UserPets {
+  "firstName": "Vasya",
+  "pets": PetArray [
+    Pet {
+      "type": "cat",
+    },
+    Pet {
+      "type": "dog",
+    },
+    Pet {
+      "type": "fox",
+    },
+  ],
+}
+`;
