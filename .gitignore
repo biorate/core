@@ -4,6 +4,8 @@ dist
 node_modules
 allure-results
 allure-report
+.pnp
+.pnp.js
 
 # NX
 .nx
@@ -55,3 +57,8 @@ coverage
 package-lock.json
 
 .veai
+
+# Misc
+.DS_Store
+
+.env*

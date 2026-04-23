@@ -1,2 +1,8 @@
-/tests
-
+dist/
+node_modules/
+coverage/
+allure-results/
+*.log
+*.spec.ts
+vitest.config.ts
+tsconfig*.json
