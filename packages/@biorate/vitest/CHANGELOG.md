@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/biorate/core/compare/@biorate/vitest@1.2.3...@biorate/vitest@1.3.0) (2026-04-23)
+
+### Features
+
+- **vitest-spec:** release ([0902a5f](https://github.com/biorate/core/commit/0902a5f744c1c9d45d59715d43e89868809dfb03))
+- **vitest:** errors ([370400d](https://github.com/biorate/core/commit/370400da5323b3788f753c48df414430950aefb8))
+- **vitest:** errors ([4fee4d8](https://github.com/biorate/core/commit/4fee4d84e2cc1ec82e594b9ee061b9a477b23f72))
+- **vitest:** lint ([dd207ff](https://github.com/biorate/core/commit/dd207ff369f9524d34cc327b985624dcec5cdfa4))
+- **vitest:** Spec class added ([789588c](https://github.com/biorate/core/commit/789588ce60ce2eef55d2764a503959fde65bec02))
+- **vitest:** Spec class removed ([bf50d47](https://github.com/biorate/core/commit/bf50d479c20252edd922121568860a6e8bf6b971))
+
 ## [1.2.3](https://github.com/biorate/core/compare/@biorate/vitest@1.2.2...@biorate/vitest@1.2.3) (2026-04-20)
 
 ### Bug Fixes
