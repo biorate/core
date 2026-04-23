@@ -1,4 +1,4 @@
-import { TestContext } from 'vitest';
+import type { TestContext } from 'vitest';
 import { Scenario as ScenarioCommon } from '@biorate/run-context';
 import { Scenario as ScenarioSymbol } from './symbols';
 

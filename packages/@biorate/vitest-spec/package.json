@@ -1,0 +1,47 @@
+{
+  "name": "@biorate/vitest-spec",
+  "version": "1.0.0",
+  "description": "Vitest Spec abstract helper class",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "test": "npx vitest run",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/vitest-spec"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "vitest",
+    "spec",
+    "abstract",
+    "helpers"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "peerDependencies": {
+    "class-validator": ">=0.14.1",
+    "vitest": ">=2.0.0"
+  },
+  "dependencies": {
+    "@biorate/errors": "workspace:*",
+    "@biorate/tools": "workspace:*",
+    "lodash": "4.17.21",
+    "nock": "14.0.1",
+    "sinon": "19.0.2",
+    "supertest": "6.1.6"
+  },
+  "devDependencies": {
+    "@types/sinon": "17.0.4",
+    "@types/supertest": "2.0.11",
+    "@biorate/vitest": "workspace:*",
+    "reflect-metadata": "0.2.2"
+  }
+}

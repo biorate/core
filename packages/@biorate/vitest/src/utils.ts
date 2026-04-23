@@ -1,4 +1,4 @@
-import { TestContext } from 'vitest';
+import type { TestContext } from 'vitest';
 
 /**
  * Wrap a hook function with proper context handling

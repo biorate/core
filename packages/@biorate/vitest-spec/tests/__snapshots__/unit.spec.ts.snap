@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@biorate/vitest-spec - unit > all-expects-negative > [args before] doesn't equal in [throw] method 1`] = `[]`;
+
+exports[`@biorate/vitest-spec - unit > all-expects-negative > [context before] doesn't equal in [throw] method 1`] = `
+UnitTests {
+  "dec": 1,
+  "inc": 1,
+}
+`;
+
+exports[`@biorate/vitest-spec - unit > all-expects-positive > [args after] doesn't equal in [increment] method 1`] = `
+[
+  3,
+]
+`;
+
+exports[`@biorate/vitest-spec - unit > all-expects-positive > [args before] doesn't equal in [increment] method 1`] = `
+[
+  3,
+]
+`;
+
+exports[`@biorate/vitest-spec - unit > all-expects-positive > [context after] doesn't equal in [increment] method 1`] = `
+UnitTests {
+  "dec": 1,
+  "inc": 4,
+}
+`;
+
+exports[`@biorate/vitest-spec - unit > all-expects-positive > [context before] doesn't equal in [increment] method 1`] = `
+UnitTests {
+  "dec": 1,
+  "inc": 1,
+}
+`;
+
+exports[`@biorate/vitest-spec - unit > all-expects-positive > [return] doesn't equal in [increment] method 1`] = `4`;
+
+exports[`@biorate/vitest-spec - unit > custom-expects-positive > [args after] doesn't equal in [passthrow] method 1`] = `3`;
+
+exports[`@biorate/vitest-spec - unit > custom-expects-positive > [args after] doesn't equal in [passthrow] method 2`] = `2`;
+
+exports[`@biorate/vitest-spec - unit > custom-expects-positive > [args before] doesn't equal in [passthrow] method 1`] = `
+[
+  3,
+  2,
+]
+`;
+
+exports[`@biorate/vitest-spec - unit > custom-expects-positive > [context after] doesn't equal in [passthrow] method 1`] = `1`;
+
+exports[`@biorate/vitest-spec - unit > custom-expects-positive > [context before] doesn't equal in [passthrow] method 1`] = `1`;
+
+exports[`@biorate/vitest-spec - unit > custom-expects-positive > [return] doesn't equal in [passthrow] method 1`] = `3`;

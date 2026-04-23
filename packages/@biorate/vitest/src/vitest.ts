@@ -1,14 +1,6 @@
 import { object as o } from '@biorate/tools';
 import * as allure from 'allure-js-commons';
-import {
-  TestContext,
-  it,
-  describe,
-  beforeEach,
-  afterEach,
-  beforeAll,
-  afterAll,
-} from 'vitest';
+import type { TestContext } from 'vitest';
 import {
   Test,
   Skip,
@@ -28,6 +20,15 @@ import {
 } from './errors';
 
 export * as allure from 'allure-js-commons';
+
+const {
+  it,
+  describe,
+  beforeEach,
+  afterEach,
+  beforeAll,
+  afterAll,
+} = globalThis as any;
 
 /**
  * Metadata for a test method
@@ -288,7 +289,13 @@ export class Vitest {
         methods.add(name);
 
         const descriptor = Object.getOwnPropertyDescriptor(object, name);
-        const meta = Reflect.getMetadata(Test, descriptor?.value);
+        if (typeof descriptor?.value !== 'function') continue;
+        let meta: any;
+        try {
+          meta = Reflect.getMetadata(Test, descriptor.value);
+        } catch {
+          continue;
+        }
         if (!meta) continue;
 
         this.#registerTestMethod(instance, name, descriptor!.value, meta);
@@ -309,13 +316,21 @@ export class Vitest {
     method: Function,
     meta: TestMetadata,
   ): void {
-    const allureMethods = Reflect.getMetadata(Allure, method);
-    const skip = Reflect.getMetadata(Skip, method);
-    const only = Reflect.getMetadata(Only, method);
-    const todo = Reflect.getMetadata(Todo, method);
-    const timeout = Reflect.getMetadata(Timeout, method);
-    const repeats = Reflect.getMetadata(Repeats, method);
-    const extend = Reflect.getMetadata(Extends, method);
+    const safeGetMetadata = (key: any, target: any) => {
+      try {
+        return Reflect.getMetadata(key, target);
+      } catch {
+        return undefined;
+      }
+    };
+
+    const allureMethods = safeGetMetadata(Allure, method);
+    const skip = safeGetMetadata(Skip, method);
+    const only = safeGetMetadata(Only, method);
+    const todo = safeGetMetadata(Todo, method);
+    const timeout = safeGetMetadata(Timeout, method);
+    const repeats = safeGetMetadata(Repeats, method);
+    const extend = safeGetMetadata(Extends, method);
 
     if (skip && only) {
       throw new VitestBothSkipOnlyError('test');
@@ -416,9 +431,17 @@ export class Vitest {
    * @param options - Suite options (timeout, retries, mode)
    */
   #suite = (name?: string, options?: SuiteOptions) => (Class: new () => any) => {
-    const skip = Reflect.getMetadata(Skip, Class);
-    const only = Reflect.getMetadata(Only, Class);
-    const suiteOptions = Reflect.getMetadata(Suite, Class);
+    const safeGetMetadata = (key: any, target: any) => {
+      try {
+        return Reflect.getMetadata(key, target);
+      } catch {
+        return undefined;
+      }
+    };
+
+    const skip = safeGetMetadata(Skip, Class);
+    const only = safeGetMetadata(Only, Class);
+    const suiteOptions = safeGetMetadata(Suite, Class);
 
     if (skip && only) {
       throw new VitestBothSkipOnlyError('suite');
@@ -512,7 +535,12 @@ export class Vitest {
    * @param append - Whether to append to existing metadata
    */
   #setAllureMethod = (target: any, method: string, args: any[], append = false): void => {
-    let allureOptions: AllureMetadata | undefined = Reflect.getMetadata(Allure, target);
+    let allureOptions: AllureMetadata | undefined;
+    try {
+      allureOptions = Reflect.getMetadata(Allure, target);
+    } catch {
+      allureOptions = undefined;
+    }
 
     if (!allureOptions) allureOptions = {};
 
