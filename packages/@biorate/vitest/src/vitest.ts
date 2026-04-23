@@ -451,30 +451,28 @@ export class Vitest {
    * Test decorator factory
    * @param name - Test name (optional, defaults to method name)
    */
-  #test = (name?: string) =>
+  #test =
+    (name?: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
       Reflect.defineMetadata(Test, { name }, descriptor.value);
 
   /**
    * Skip decorator factory
    */
-  #skip = () =>
-    (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
-      Reflect.defineMetadata(Skip, true, descriptor.value);
+  #skip = () => (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+    Reflect.defineMetadata(Skip, true, descriptor.value);
 
   /**
    * Only decorator factory
    */
-  #only = () =>
-    (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
-      Reflect.defineMetadata(Only, true, descriptor.value);
+  #only = () => (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+    Reflect.defineMetadata(Only, true, descriptor.value);
 
   /**
    * Todo decorator factory
    */
-  #todo = () =>
-    (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
-      Reflect.defineMetadata(Todo, true, descriptor.value);
+  #todo = () => (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+    Reflect.defineMetadata(Todo, true, descriptor.value);
 
   /**
    * Timeout decorator factory
@@ -508,14 +506,8 @@ export class Vitest {
    * @param args - Method arguments
    * @param append - Whether to append to existing metadata
    */
-  #setAllureMethod = (
-    target: any,
-    method: string,
-    args: any[],
-    append = false,
-  ): void => {
-    let allureOptions: AllureMetadata | undefined =
-      Reflect.getMetadata(Allure, target);
+  #setAllureMethod = (target: any, method: string, args: any[], append = false): void => {
+    let allureOptions: AllureMetadata | undefined = Reflect.getMetadata(Allure, target);
 
     if (!allureOptions) allureOptions = {};
 
@@ -598,5 +590,3 @@ export const {
   description,
   issue,
 } = new Vitest();
-
-
