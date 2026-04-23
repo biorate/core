@@ -28,3 +28,7 @@ export {
   Vitest,
 } from './vitest';
 export * as allure from 'allure-js-commons';
+export { Spec } from './spec';
+export { Validator } from './validator';
+export { api, validate, exactly } from './api';
+export * from './errors';

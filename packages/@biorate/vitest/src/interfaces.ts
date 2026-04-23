@@ -1,4 +1,5 @@
 import { TestContext } from 'vitest';
+import type { ValidatorOptions } from 'class-validator';
 
 /**
  * Extended test context with custom properties
@@ -40,4 +41,16 @@ export type AllureMethod = string[] | string[][];
  */
 export interface AllureMetadata {
   [method: string]: AllureMethod;
+}
+
+/**
+ * Validator options for schema validation
+ */
+export interface IValidatorOptions {
+  schema: any;
+  data?: any;
+  field?: string;
+  array?: boolean;
+  validatorOptions?: ValidatorOptions;
+  catch?: (e: Error) => boolean;
 }

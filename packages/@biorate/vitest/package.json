@@ -30,12 +30,21 @@
   "peerDependencies": {
     "allure-js-commons": ">=3.2.0",
     "allure-vitest": ">=3.2.0",
+    "class-validator": ">=0.14.1",
     "reflect-metadata": ">=0.2.2",
-    "vitest": ">=2.0.0"
+    "vitest": ">=2.0.0",
+    "vitest-fetch-mock": ">=0.2.0"
   },
   "dependencies": {
+    "@biorate/errors": "workspace:*",
     "@biorate/run-context": "workspace:*",
     "@biorate/symbolic": "workspace:*",
-    "@biorate/tools": "workspace:*"
+    "@biorate/tools": "workspace:*",
+    "lodash": "^4.17.21",
+    "nock": "14.0.1",
+    "sinon": "19.0.2"
+  },
+  "devDependencies": {
+    "@types/sinon": "17.0.4"
   }
 }
