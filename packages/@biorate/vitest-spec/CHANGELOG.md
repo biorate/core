@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.2.0...@biorate/vitest-spec@1.3.0) (2026-04-23)
+
+### Features
+
+- **vitest-spec:** .npmignore ([d40350c](https://github.com/biorate/core/commit/d40350c87c7d37a31de66e708597dd3c3bb34d86))
+
 # [1.2.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.1.0...@biorate/vitest-spec@1.2.0) (2026-04-23)
 
 ### Features
