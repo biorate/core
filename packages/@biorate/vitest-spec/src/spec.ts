@@ -1,19 +1,33 @@
 import * as nock from 'nock';
 import supertest from 'supertest';
-import * as sinon from 'sinon';
-import { expect } from 'vitest';
+import { expect, vi } from 'vitest';
 import { api } from './api';
 import { Unit } from './unit';
 import { Validator } from './validator';
 import { IUnitOptions, IValidatorOptions } from './interfaces';
 
 export abstract class Spec {
+  static #mocks() {
+    try {
+      return require('sinon');
+    } catch {
+      return vi;
+    }
+  }
+
   public static get nock() {
     return nock;
   }
 
+  /*
+   * @deprecated - use Spec.mocks instead
+   **/
   public static get sinon() {
-    return sinon;
+    return Spec.#mocks();
+  }
+
+  public static get mocks() {
+    return Spec.#mocks();
   }
 
   public static get expect() {
@@ -37,8 +51,15 @@ export abstract class Spec {
     return nock;
   }
 
+  /*
+   * @deprecated - use this.mocks instead
+   **/
   protected get sinon() {
-    return sinon;
+    return Spec.mocks();
+  }
+
+  protected get mocks() {
+    return Spec.mocks();
   }
 
   protected get expect() {
