@@ -21,14 +21,24 @@ import {
 
 export * as allure from 'allure-js-commons';
 
-const {
-  it,
-  describe,
-  beforeEach,
-  afterEach,
-  beforeAll,
-  afterAll,
-} = globalThis as any;
+const { it, describe, beforeEach, afterEach, beforeAll, afterAll } = globalThis as any;
+
+/**
+ * Track which deprecation warnings have been shown
+ */
+const shownDeprecationWarnings = new Set<string>();
+
+/**
+ * Show deprecation warning once per decorator type
+ */
+const showDeprecationWarning = (decorator: string, recommendation: string) => {
+  if (!shownDeprecationWarnings.has(decorator)) {
+    shownDeprecationWarnings.add(decorator);
+    console.warn(
+      `[@biorate/vitest] Deprecated decorator: @${decorator}. ${recommendation}`,
+    );
+  }
+};
 
 /**
  * Metadata for a test method
@@ -226,6 +236,47 @@ export class Vitest {
    */
   public readonly repeats;
 
+  /**
+   * @deprecated Use `repeats` instead. This decorator is for Mocha compatibility.
+   * Retries decorator factory for Mocha migration
+   * @example @retries(3)
+   */
+  public readonly retries;
+
+  /**
+   * @deprecated Use `suite` with `{ mode: 'parallel' }` instead. This decorator is for Mocha compatibility.
+   * Parallel decorator factory for Mocha migration
+   * @example @parallel(true)
+   */
+  public readonly parallel;
+
+  /**
+   * @deprecated Use `timeout` instead. This decorator is for Mocha compatibility.
+   * Slow decorator factory for Mocha migration
+   * @example @slow(1000)
+   */
+  public readonly slow;
+
+  /**
+   * @deprecated Use `skip` instead. This decorator is for Mocha compatibility.
+   * Pending decorator factory for Mocha migration
+   * @example @pending()
+   */
+  public readonly pending;
+
+  /**
+   * @deprecated Use `params` from test context instead. This decorator is for Mocha compatibility.
+   * Params decorator factory for Mocha migration
+   * @example @params([1, 2], [3, 4])
+   */
+  public readonly params;
+
+  /**
+   * @deprecated Context symbol for Mocha compatibility. Use Vitest's test context directly.
+   * Context symbol for Mocha migration
+   */
+  public readonly context;
+
   // Allure decorators
   public readonly label;
   public readonly link;
@@ -244,6 +295,30 @@ export class Vitest {
   public readonly description;
 
   /**
+   * @deprecated Use Allure step API directly. This is for Mocha compatibility.
+   * Step decorator for Mocha migration
+   */
+  public readonly allureStep;
+
+  /**
+   * @deprecated Use Allure attachment API directly. This is for Mocha compatibility.
+   * Attachment decorator for Mocha migration
+   */
+  public readonly attachment;
+
+  /**
+   * @deprecated Use `id` instead. This is for Mocha compatibility.
+   * TestCaseId decorator for Mocha migration
+   */
+  public readonly testCaseId;
+
+  /**
+   * @deprecated Data decorator for Mocha compatibility (parameterized tests)
+   * Use Vitest's native parameterized tests instead.
+   */
+  public readonly data;
+
+  /**
    * Initialize all decorator factories
    */
   public constructor() {
@@ -254,6 +329,16 @@ export class Vitest {
     this.todo = this.#todo;
     this.timeout = this.#timeout;
     this.repeats = this.#repeats;
+    this.retries = this.#retries;
+    this.parallel = this.#parallel;
+    this.slow = this.#slow;
+    this.pending = this.#pending;
+    this.params = this.#params;
+    this.context = Symbol.for('mocha.context');
+    this.allureStep = this.#allureStep;
+    this.attachment = this.#attachment;
+    this.testCaseId = this.#testCaseId;
+    this.data = this.#data;
 
     // Allure decorators using factory pattern
     this.label = this.#createAllureDecorator('label', true);
@@ -313,7 +398,7 @@ export class Vitest {
   #registerTestMethod(
     instance: any,
     name: string,
-    method: Function,
+    method: (...args: any[]) => Promise<void> | void,
     meta: TestMetadata,
   ): void {
     const safeGetMetadata = (key: any, target: any) => {
@@ -528,6 +613,145 @@ export class Vitest {
   };
 
   /**
+   * @deprecated Use `#repeats` instead. Mocha compatibility decorator.
+   * Retries decorator factory for Mocha migration
+   * @param count - Number of retries (must be non-negative)
+   */
+  #retries = (count: number) => {
+    showDeprecationWarning('retries', 'Use @repeats(count, { mode: "series" }) instead.');
+    if (typeof count !== 'number' || count < 0) {
+      throw new VitestRepeatsInvalidError(count);
+    }
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+      Reflect.defineMetadata(Repeats, [count, { mode: 'series' }], descriptor.value);
+  };
+
+  /**
+   * @deprecated Use `#suite` with `{ mode: 'parallel' }` instead. Mocha compatibility decorator.
+   * Parallel decorator factory for Mocha migration
+   * @param enabled - Whether to enable parallel execution
+   */
+  #parallel = (enabled: boolean) => (target: any) => {
+    showDeprecationWarning(
+      'parallel',
+      'Use @suite("name", { mode: "parallel" }) instead.',
+    );
+    if (enabled) {
+      const existing = Reflect.getMetadata(Suite, target) || {};
+      Reflect.defineMetadata(Suite, { ...existing, mode: 'parallel' }, target);
+    }
+  };
+
+  /**
+   * @deprecated Use `#timeout` instead. Mocha compatibility decorator.
+   * Slow decorator factory for Mocha migration
+   * @param ms - Slow threshold in milliseconds
+   */
+  #slow = (ms: number) => {
+    showDeprecationWarning('slow', 'Use @timeout(ms) instead.');
+    if (typeof ms !== 'number' || ms <= 0) {
+      throw new VitestTimeoutInvalidError(ms);
+    }
+    // In Vitest, slow tests are handled differently - we just store the metadata
+    // for potential reporting purposes
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+      Reflect.defineMetadata(Timeout, [ms], descriptor.value);
+  };
+
+  /**
+   * @deprecated Use `#skip` instead. Mocha compatibility decorator.
+   * Pending decorator factory for Mocha migration
+   */
+  #pending = () => {
+    showDeprecationWarning('pending', 'Use @skip() or @todo() instead.');
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+      Reflect.defineMetadata(Todo, true, descriptor.value);
+  };
+
+  /**
+   * @deprecated Params are handled differently in Vitest. Mocha compatibility decorator.
+   * Params decorator factory for Mocha migration
+   * @param paramsList - List of parameter sets
+   */
+  #params = (...paramsList: any[][]) => {
+    showDeprecationWarning('params', "Use Vitest's native parameterized tests instead.");
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+      Reflect.defineMetadata('params', paramsList, descriptor.value);
+  };
+
+  /**
+   * @deprecated Use Allure step API directly. Mocha compatibility decorator.
+   * Step decorator for Mocha migration
+   * @param nameFn - Step name or function
+   */
+  #allureStep = (nameFn: string) => {
+    showDeprecationWarning('allureStep', 'Use allure.step() directly instead.');
+    // For compatibility - just store metadata, don't wrap the function
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+      const original = descriptor.value;
+      if (typeof original === 'function') {
+        // Store step name in metadata for potential future use
+        const existingSteps = Reflect.getMetadata('allureSteps', descriptor.value) || [];
+        existingSteps.push(nameFn);
+        Reflect.defineMetadata('allureSteps', existingSteps, descriptor.value);
+      }
+      return descriptor;
+    };
+  };
+
+  /**
+   * @deprecated Use Allure attachment API directly. Mocha compatibility decorator.
+   * Attachment decorator for Mocha migration
+   * @param name - Attachment name
+   * @param content - Attachment content
+   * @param type - Content type
+   */
+  #attachment = (name: string, content: string | Buffer, type?: string) => {
+    showDeprecationWarning('attachment', 'Use allure.attachment() directly instead.');
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+      // Store attachment metadata for later processing
+      const existingAllure = Reflect.getMetadata(Allure, descriptor.value) || {};
+      if (!existingAllure.attachment) {
+        existingAllure.attachment = [[name, content, type]];
+      } else if (Array.isArray(existingAllure.attachment[0])) {
+        existingAllure.attachment = [...existingAllure.attachment, [name, content, type]];
+      } else {
+        existingAllure.attachment = [existingAllure.attachment, [name, content, type]];
+      }
+      Reflect.defineMetadata(Allure, existingAllure, descriptor.value);
+      return descriptor;
+    };
+  };
+
+  /**
+   * @deprecated Use `#id` instead. Mocha compatibility decorator.
+   * TestCaseId decorator for Mocha migration
+   * @param id - Test case ID
+   */
+  #testCaseId = (id: string) => {
+    showDeprecationWarning('testCaseId', 'Use @id(id) instead.');
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
+      Reflect.defineMetadata('testCaseId', id, descriptor.value);
+  };
+
+  /**
+   * @deprecated Data decorator for Mocha compatibility (parameterized tests).
+   * Use Vitest's native parameterized tests instead.
+   * @param params - Test parameters
+   * @param name - Optional test name
+   */
+  #data = (params: any, name?: string) => {
+    showDeprecationWarning('data', "Use Vitest's native parameterized tests instead.");
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+      // Store data parameters for potential future use
+      const existingData = Reflect.getMetadata('data', descriptor.value) || [];
+      existingData.push({ params, name });
+      Reflect.defineMetadata('data', existingData, descriptor.value);
+      return descriptor;
+    };
+  };
+
+  /**
    * Set Allure metadata method for a test
    * @param target - Method or class target
    * @param method - Allure method name (e.g., 'epic', 'severity')
@@ -607,6 +831,16 @@ export const {
   todo,
   timeout,
   repeats,
+  retries,
+  parallel,
+  slow,
+  pending,
+  params,
+  context,
+  allureStep,
+  attachment,
+  testCaseId,
+  data,
   label,
   link,
   id,
@@ -623,3 +857,36 @@ export const {
   description,
   issue,
 } = new Vitest();
+
+/**
+ * @deprecated Use Allure API directly. For Mocha compatibility.
+ * Decorate Allure instance
+ */
+export const decorate = (allureInstance: any) => {
+  showDeprecationWarning(
+    'decorate',
+    'Use Allure API directly from allure-js-commons instead.',
+  );
+  // In Vitest, Allure is used directly from allure-js-commons
+  // This is a no-op for compatibility
+};
+
+/**
+ * @deprecated Use environment variables or config. For Mocha compatibility.
+ * Assign PMS URL
+ */
+export const assignPmsUrl = (url: string) => {
+  showDeprecationWarning('assignPmsUrl', 'Use environment variables instead.');
+  // Store in environment for compatibility
+  process.env.PMS_URL = url;
+};
+
+/**
+ * @deprecated Use environment variables or config. For Mocha compatibility.
+ * Assign TMS URL
+ */
+export const assignTmsUrl = (url: string) => {
+  showDeprecationWarning('assignTmsUrl', 'Use environment variables instead.');
+  // Store in environment for compatibility
+  process.env.TMS_URL = url;
+};

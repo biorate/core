@@ -232,6 +232,90 @@ class FullOptionsTest {
 }
 ```
 
+## Migration from Mocha
+
+For smooth migration from `@biorate/mocha` to `@biorate/vitest`, we provide deprecated decorators that maintain backward compatibility.
+
+### Deprecated Decorators
+
+The following decorators are available for Mocha compatibility but are **deprecated**. Use the recommended alternatives:
+
+| Deprecated Decorator | Recommended Alternative | Description |
+|---------------------|------------------------|-------------|
+| `@retries(n)` | `@repeats(n, { mode: 'series' })` | Retry failed tests |
+| `@parallel(true)` | `@suite('name', { mode: 'parallel' })` | Enable parallel execution |
+| `@slow(ms)` | `@timeout(ms)` | Mark slow tests |
+| `@pending()` | `@skip()` or `@todo()` | Mark test as pending |
+| `@params(...)` | Use Vitest's native parameterized tests | Parameterized tests |
+| `context` (symbol) | Use Vitest's test context directly | Test context symbol |
+| `@allureStep(name)` | Use `allure.step()` directly | Allure step decorator |
+| `@attachment(name, content, type)` | Use `allure.attachment()` directly | Allure attachment decorator |
+| `@testCaseId(id)` | `@id(id)` | Test case ID decorator |
+| `@data(params, name?)` | Use Vitest's native parameterized tests | Parameterized test data |
+| `decorate(instance)` | Use Allure API directly | Decorate Allure instance |
+| `assignPmsUrl(url)` | Use environment variables | Assign PMS URL |
+| `assignTmsUrl(url)` | Use environment variables | Assign TMS URL |
+
+### Deprecation Warnings
+
+When using deprecated decorators, you will see a warning message in the console **once per decorator type**:
+
+```
+[@biorate/vitest] Deprecated decorator: @retries. Use @repeats(count, { mode: "series" }) instead.
+```
+
+This helps you identify which decorators need to be updated during migration.
+
+### Migration Example
+
+**Before (Mocha):**
+```typescript
+import { suite, parallel, retries, test } from '@biorate/mocha';
+
+@suite
+@parallel(true)
+class MyTest {
+  @retries(2)
+  @test('should work')
+  async myTest() {
+    // test implementation
+  }
+}
+```
+
+**After (Vitest):**
+```typescript
+import { suite, repeats, test } from '@biorate/vitest';
+
+@suite('My Test', { mode: 'parallel', retries: 2 })
+class MyTest {
+  @test('should work')
+  async myTest() {
+    // test implementation
+  }
+}
+```
+
+### Compatibility Mode
+
+You can still use deprecated decorators during migration:
+
+```typescript
+import { suite, parallel, retries, test } from '@biorate/vitest';
+
+@suite('My Test')
+@parallel(true) // deprecated, but works
+class MyTest {
+  @retries(2) // deprecated, but works
+  @test('should work')
+  async myTest() {
+    // test implementation
+  }
+}
+```
+
+> **Note:** Deprecated decorators will be removed in future versions. Please update your code to use the recommended alternatives.
+
 ## API Reference
 
 ### Decorators
