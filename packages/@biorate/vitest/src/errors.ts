@@ -1,11 +1,5 @@
 import { BaseError } from '@biorate/errors';
 
-export class VitestDecoratorError extends BaseError {
-  public constructor(message: string) {
-    super(`[vitest] ${message}`);
-  }
-}
-
 export class VitestBothSkipOnlyError extends BaseError {
   public constructor(target: string) {
     super(
