@@ -34,6 +34,7 @@
     "vitest": ">=2.0.0"
   },
   "dependencies": {
+    "@biorate/errors": "workspace:*",
     "@biorate/run-context": "workspace:*",
     "@biorate/symbolic": "workspace:*",
     "@biorate/tools": "workspace:*"

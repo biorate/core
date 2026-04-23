@@ -1,5 +1,6 @@
 export * from './interfaces';
 export * from './symbols';
+export * from './errors';
 export { Context } from './context';
 export { Scenario, Step } from './scenario';
 export {

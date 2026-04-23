@@ -21,6 +21,11 @@ import {
   Extends,
 } from './symbols';
 import { TestArgs, SuiteOptions, AllureMethod } from './interfaces';
+import {
+  VitestBothSkipOnlyError,
+  VitestTimeoutInvalidError,
+  VitestRepeatsInvalidError,
+} from './errors';
 
 export * as allure from 'allure-js-commons';
 
@@ -313,7 +318,7 @@ export class Vitest {
     const extend = Reflect.getMetadata(Extends, method);
 
     if (skip && only) {
-      throw new Error('Cannot use both @skip() and @only() decorators on the same test');
+      throw new VitestBothSkipOnlyError('test');
     }
 
     let testFn: any = it;
@@ -416,7 +421,7 @@ export class Vitest {
     const suiteOptions = Reflect.getMetadata(Suite, Class);
 
     if (skip && only) {
-      throw new Error('Cannot use both @skip() and @only() decorators on the same suite');
+      throw new VitestBothSkipOnlyError('suite');
     }
 
     const mode = suiteOptions?.mode || options?.mode;
@@ -480,7 +485,7 @@ export class Vitest {
    */
   #timeout = (ms: number) => {
     if (typeof ms !== 'number' || ms <= 0) {
-      throw new Error(`@timeout() requires a positive number, got: ${ms}`);
+      throw new VitestTimeoutInvalidError(ms);
     }
     return (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
       Reflect.defineMetadata(Timeout, [ms], descriptor.value);
@@ -493,7 +498,7 @@ export class Vitest {
    */
   #repeats = (count: number, options?: { mode?: 'series' | 'queue' }) => {
     if (typeof count !== 'number' || count <= 0) {
-      throw new Error(`@repeats() requires a positive number, got: ${count}`);
+      throw new VitestRepeatsInvalidError(count);
     }
     return (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
       Reflect.defineMetadata(Repeats, [count, options], descriptor.value);
