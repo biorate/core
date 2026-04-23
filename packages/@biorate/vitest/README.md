@@ -9,22 +9,11 @@ OOP test decorators for Vitest with Allure support.
 - **Clean Architecture**: Modular design with separation of concerns
 - **TypeScript**: Full type safety
 - **Scenario Pattern**: Support for reusable test scenarios
-- **HTTP Testing**: Built-in support for API testing with Spec class
-- **Validation**: Schema validation with class-validator
-- **Snapshot Testing**: Support for snapshot testing with Vitest
 
 ## Installation
 
 ```bash
 pnpm add -D @biorate/vitest vitest allure-js-commons allure-vitest reflect-metadata
-```
-
-### Optional Dependencies
-
-For HTTP testing and validation:
-
-```bash
-pnpm add -D class-validator vitest-fetch-mock nock sinon
 ```
 
 ## Usage
@@ -241,93 +230,6 @@ class FullOptionsTest {
   @test('test 2')
   async test2() {}
 }
-```
-
-## HTTP Testing with Spec
-
-The `Spec` class provides utilities for HTTP testing:
-
-```typescript
-import { suite, test, Spec } from '@biorate/vitest';
-import 'reflect-metadata';
-
-@suite('API Tests')
-class ApiTest extends Spec {
-  protected get httpServer() {
-    return 'http://localhost:3000';
-  }
-
-  @test('should get user')
-  async shouldGetUser() {
-    const response = await this.api()
-      .get('/users/1')
-      .expect(200);
-    
-    this.exactly(response.body, { id: 1, name: 'John' });
-  }
-
-  @test('should validate response')
-  async shouldValidateResponse() {
-    class UserSchema {
-      id: number;
-      name: string;
-    }
-    
-    const response = await this.api()
-      .get('/users/1')
-      .expect(200);
-    
-    await this.validate({
-      schema: UserSchema,
-      data: response,
-      field: 'body',
-    });
-  }
-}
-```
-
-## Validation
-
-Use the `Validator` for schema validation:
-
-```typescript
-import { Validator } from '@biorate/vitest';
-import { validate } from 'class-validator';
-
-class UserDto {
-  id: number;
-  name: string;
-}
-
-const user = { id: 1, name: 'John' };
-
-await Validator.validate({
-  schema: UserDto,
-  data: user,
-  catch: (err) => {
-    console.error('Validation failed:', err);
-    return true; // suppress error
-  },
-});
-```
-
-## API Helpers
-
-```typescript
-import { api, validate, exactly } from '@biorate/vitest';
-
-// Create API client with logging
-const apiClient = api(
-  fetch,
-  (method, url, data) => console.log(`Request: ${method} ${url}`, data),
-  (status, body) => console.log(`Response: ${status}`, body),
-);
-
-// Validate response
-const validated = await validate(UserSchema)(response);
-
-// Exact match assertion
-exactly(expectedData)(response);
 ```
 
 ## API Reference
