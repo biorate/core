@@ -8,6 +8,9 @@ import {
 } from '@biorate/schema-registry';
 import { Migration } from './migration';
 import { SchemaRegistryWrongFileNameError } from '../errors';
+import { getRequire } from '@biorate/node-tools';
+
+const requireFn = getRequire();
 /**
  * @description Schema registry migration class
  */
@@ -32,7 +35,7 @@ export class SchemaRegistry extends Migration {
         await this.forEachPath(paths, async (file, fullName) => {
           const name = fullName.split('_')?.[1]?.replace('.json', '');
           if (!name) throw new SchemaRegistryWrongFileNameError(fullName);
-          const schema = <Record<string, unknown>>require(file);
+          const schema = <Record<string, unknown>>requireFn(file);
           await connection.putConfig({
             subject: name,
             compatibility: config.compatibility ?? 'FORWARD',

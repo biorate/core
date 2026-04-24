@@ -20,7 +20,7 @@ import {
 } from '@biorate/schema-registry';
 
 @injectable()
-export class Root extends Core(EventEmitter) {
+export class Root extends Core(EventEmitter as unknown as new (...args: any[]) => EventEmitter) {
   @inject(Types.Config) public readonly config: IConfig;
 
   @inject(Types.ConfigLoaderEnv) public readonly configLoaderEnv: ConfigLoader;

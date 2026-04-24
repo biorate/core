@@ -2,6 +2,9 @@ import { IMinioConnector, IMinioConfig, IMinioConnection } from '@biorate/minio'
 import { IConfig } from '@biorate/config';
 import { inject, Types } from '@biorate/inversion';
 import { Migration } from './migration';
+import { getRequire } from '@biorate/node-tools';
+
+const requireFn = getRequire();
 /**
  * @description Minio migration class
  */
@@ -24,7 +27,7 @@ export class Minio extends Migration {
             await connection.getObject(tableName, name);
           } catch (e) {
             await (
-              require(file) as (
+              requireFn(file) as (
                 connection: IMinioConnection,
                 config: IMinioConfig,
                 globalConfig: IConfig,

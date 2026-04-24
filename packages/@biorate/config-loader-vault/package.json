@@ -2,11 +2,14 @@
   "name": "@biorate/config-loader-vault",
   "version": "1.159.0",
   "description": "Config loader for vault config",
-  "main": "dist/index.js",
+  "main": "./dist/cjs/index.js",
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "build": "pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "test": "npx vitest run --coverage",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json && node ../../../scripts/rename-esm-to-mjs.mjs",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json"
   },
   "repository": {
     "type": "git",
@@ -28,5 +31,16 @@
     "@biorate/tools": "workspace:*",
     "@biorate/vault": "workspace:*"
   },
-  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6"
+  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
 }

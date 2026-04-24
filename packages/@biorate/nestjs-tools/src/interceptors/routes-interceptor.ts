@@ -11,7 +11,8 @@ import {
 
 @Injectable()
 export class RoutesInterceptor implements NestInterceptor {
-  public static readonly map = new WeakMap<Request, { path: string }>();
+  // Keep declaration output portable (avoid exporting express' deep generic types).
+  public static readonly map: WeakMap<object, { path: string }> = new WeakMap();
 
   private readonly reflector = new Reflector();
 
@@ -24,7 +25,7 @@ export class RoutesInterceptor implements NestInterceptor {
       PATH_METADATA,
       context.getHandler(),
     );
-    RoutesInterceptor.map.set(context.switchToHttp().getRequest(), {
+    RoutesInterceptor.map.set(context.switchToHttp().getRequest() as unknown as object, {
       path: normalize(
         join(
           '/',

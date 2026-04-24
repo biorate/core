@@ -5,11 +5,13 @@ import { api } from './api';
 import { Unit } from './unit';
 import { Validator } from './validator';
 import { IUnitOptions, IValidatorOptions } from './interfaces';
+import { getRequire } from '@biorate/node-tools';
 
 export abstract class Spec {
   static #mocks() {
+    const requireFn = getRequire();
     try {
-      return require('sinon');
+      return requireFn('sinon');
     } catch {
       return vi;
     }

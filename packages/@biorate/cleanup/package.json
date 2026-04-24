@@ -2,15 +2,18 @@
   "name": "@biorate/cleanup",
   "version": "1.172.0",
   "description": "Cleanup files and directories",
-  "main": "dist/index.js",
+  "main": "./dist/cjs/index.js",
   "bin": {
     "cleanup": "./bin/cleanup"
   },
   "scripts": {
     "cleanup": "node ./dist/src/cleanup-by-argv.js",
-    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "build": "pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "test": "npx vitest run --coverage",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json && node ../../../scripts/rename-esm-to-mjs.mjs",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json"
   },
   "repository": {
     "type": "git",
@@ -31,5 +34,16 @@
   },
   "devDependencies": {
     "@types/minimist": "^1.2.5"
-  }
+  },
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
 }

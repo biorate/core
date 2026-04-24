@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "./dist/types",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationMap": false,
+    "moduleResolution": "node"
+  }
+}

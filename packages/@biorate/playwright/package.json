@@ -2,11 +2,14 @@
   "name": "@biorate/playwright",
   "version": "1.164.2",
   "description": "OOP test decorators for playwright",
-  "main": "dist/index.js",
+  "main": "./dist/cjs/index.js",
   "scripts": {
-    "build": "npx tsc --outDir ./dist",
+    "build": "pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "test": "npx playwright test",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json && node ../../../scripts/rename-esm-to-mjs.mjs",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json"
   },
   "repository": {
     "type": "git",
@@ -32,5 +35,16 @@
     "@biorate/symbolic": "workspace:*",
     "@biorate/tools": "workspace:*"
   },
-  "gitHead": "b9ab225c32dfebaf6dc8a9d750a1421ac62307cd"
+  "gitHead": "b9ab225c32dfebaf6dc8a9d750a1421ac62307cd",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
 }

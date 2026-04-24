@@ -2,11 +2,14 @@
   "name": "@biorate/schema-registry",
   "version": "2.2.1",
   "description": "Schema registry connector",
-  "main": "dist/index.js",
+  "main": "./dist/cjs/index.js",
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "build": "pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "test": "npx vitest run --coverage",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json && node ../../../scripts/rename-esm-to-mjs.mjs",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json"
   },
   "repository": {
     "type": "git",
@@ -33,5 +36,16 @@
     "@biorate/inversion": "workspace:*",
     "avsc": "^5.7.4"
   },
-  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d"
+  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
 }

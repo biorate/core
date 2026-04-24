@@ -2,6 +2,9 @@ import { IMongoDBConfig, IMongoDBConnection, IMongoDBConnector } from '@biorate/
 import { IConfig } from '@biorate/config';
 import { inject, Types } from '@biorate/inversion';
 import { Migration } from './migration';
+import { getRequire } from '@biorate/node-tools';
+
+const requireFn = getRequire();
 /**
  * @description Mongodb migration class
  */
@@ -17,7 +20,7 @@ export class Mongodb extends Migration {
         await this.forEachPath(paths, async (file, name) => {
           try {
             await (
-              require(file) as (
+              requireFn(file) as (
                 connection: IMongoDBConnection,
                 config: IMongoDBConfig,
                 globalConfig: IConfig,

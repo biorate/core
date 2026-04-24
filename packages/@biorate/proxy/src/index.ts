@@ -4,6 +4,7 @@ import { readFileSync } from 'fs';
 import { path } from '@biorate/tools';
 import { init, injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
+import { getRequire } from '@biorate/node-tools';
 import { ProxyCantConnectError } from './errors';
 import { ProxyConnection } from './connection';
 import { IProxyConfig, IProxyConnection } from './interfaces';
@@ -141,7 +142,9 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
     });
     if (!enabled) return;
     port = port ?? 0;
-    const template = readFileSync(path.create(__dirname, '..', 'index.pug'), 'utf-8');
+    const requireFn = getRequire();
+    const templatePath = requireFn.resolve('@biorate/proxy/index.pug');
+    const template = readFileSync(templatePath, 'utf-8');
     const compiled = compile(template);
     const server = createServer((req, res) => {
       res.setHeader('content-type', 'text/html; charset=UTF-8');

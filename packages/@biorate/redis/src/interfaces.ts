@@ -1,7 +1,8 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
-import { RedisClientOptions, createClient } from 'redis';
+import type { RedisClientOptions, RedisClientType } from 'redis';
 
-export type IRedisConnection = ReturnType<typeof createClient>;
+// Keep public types portable across install layouts (avoid exporting redis' module-augmented client type).
+export type IRedisConnection = RedisClientType<any, any, any>;
 
 export interface IRedisConfig extends IConnectorConfig {
   host: string;

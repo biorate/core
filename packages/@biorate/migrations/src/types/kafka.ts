@@ -6,6 +6,9 @@ import {
   IKafkaJSAdminConnection,
 } from '@biorate/kafkajs';
 import { Migration } from './migration';
+import { getRequire } from '@biorate/node-tools';
+
+const requireFn = getRequire();
 /**
  * @description Kafka migration class
  */
@@ -21,7 +24,7 @@ export class Kafka extends Migration {
         await this.forEachPath(paths, async (file, name) => {
           try {
             await (
-              require(file) as (
+              requireFn(file) as (
                 connection: IKafkaJSAdminConnection,
                 config: IKafkaJSAdminConfig,
                 globalConfig: IConfig,

@@ -1,0 +1,41 @@
+{
+  "name": "@biorate/node-tools",
+  "version": "0.1.0",
+  "description": "Node-only helpers for biorate packages",
+  "main": "./dist/cjs/index.js",
+  "scripts": {
+    "build": "pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
+    "test": "npx vitest run --coverage",
+    "prepublishOnly": "pnpm run build",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json && node ../../../scripts/rename-esm-to-mjs.mjs",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/node-tools"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "node",
+    "tools"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}
+

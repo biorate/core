@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import { path } from '@biorate/tools';
 import { expect } from 'chai';
 import { get, invoke } from 'lodash';
+import { getRequire } from '@biorate/node-tools';
 import { IUnitOptions } from './interfaces';
 import { MochaChaiJestSnapshotError } from './errors';
 
@@ -11,6 +12,14 @@ export class Unit {
   private static id = 0;
 
   private static init = false;
+
+  private static readonly requireFn: NodeRequire = getRequire();
+
+  private static async loadArgs(file: string, ext: string) {
+    if (ext === Unit.defaultExt) return JSON.parse(fs.readFileSync(file, 'utf-8'));
+    const mod = Unit.requireFn(file);
+    return (mod as any)?.default ?? mod;
+  }
 
   private static match(
     object: any,
@@ -31,7 +40,7 @@ export class Unit {
     }
   }
 
-  private static args(options: IUnitOptions, testDir: string, argsDir: string) {
+  private static async args(options: IUnitOptions, testDir: string, argsDir: string) {
     if (options.args) return Array.isArray(options.args) ? options.args : [];
     const dir = path.create(process.cwd(), testDir, argsDir);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
@@ -48,12 +57,12 @@ export class Unit {
     if (!fs.existsSync(file)) {
       fs.writeFileSync(
         file,
-        ext === Unit.defaultExt ? '[]' : 'export default [];',
+        ext === Unit.defaultExt ? '[]' : 'module.exports = [];',
         'utf-8',
       );
       Unit.init = true;
     }
-    return ext === Unit.defaultExt ? require(file) : require(file).default;
+    return await Unit.loadArgs(file, ext);
   }
 
   protected argsDir = '__unit-args__';
@@ -63,7 +72,7 @@ export class Unit {
   public async process(options: IUnitOptions) {
     let result: unknown;
     const { context, method, expects } = options;
-    const args = Unit.args(options, this.testDir, this.argsDir);
+    const args = await Unit.args(options, this.testDir, this.argsDir);
     if (Unit.init) return void (Unit.init = false);
     Unit.match(args, true, options, 'args before');
     Unit.match(context, expects?.context, options, 'context before');

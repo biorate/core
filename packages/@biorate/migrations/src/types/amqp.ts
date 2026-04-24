@@ -8,6 +8,9 @@ import {
   CreateChannelOpts,
 } from '@biorate/amqp';
 import { Migration } from './migration';
+import { getRequire } from '@biorate/node-tools';
+
+const requireFn = getRequire();
 /**
  * @description Amqp migration class
  */
@@ -30,7 +33,7 @@ export class Amqp extends Migration {
         await this.forEachPath(paths, async (file, name) => {
           try {
             await (
-              require(file) as (
+              requireFn(file) as (
                 channel: ChannelWrapper,
                 connection: IAmqpConnection,
                 config: IAmqpConfig,
