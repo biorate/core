@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/biorate/core/compare/@biorate/vitest@1.4.0...@biorate/vitest@1.5.0) (2026-05-04)
+
+### Features
+
+- deps ([0c6ffc0](https://github.com/biorate/core/commit/0c6ffc0579b51f59fd17bb330cd6745c5a592c66))
+
 # [1.4.0](https://github.com/biorate/core/compare/@biorate/vitest@1.3.0...@biorate/vitest@1.4.0) (2026-04-23)
 
 ### Features

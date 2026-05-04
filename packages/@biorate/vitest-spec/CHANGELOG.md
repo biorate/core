@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.3.1...@biorate/vitest-spec@1.4.0) (2026-05-04)
+
+### Features
+
+- deps ([0c6ffc0](https://github.com/biorate/core/commit/0c6ffc0579b51f59fd17bb330cd6745c5a592c66))
+
 ## [1.3.1](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.3.0...@biorate/vitest-spec@1.3.1) (2026-04-23)
 
 **Note:** Version bump only for package @biorate/vitest-spec

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader-vault",
-  "version": "1.159.1",
+  "version": "1.159.2",
   "description": "Config loader for vault config",
   "main": "dist/index.js",
   "scripts": {

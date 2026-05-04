@@ -1,6 +1,6 @@
 {
   "name": "@biorate/i18n",
-  "version": "1.159.1",
+  "version": "1.159.2",
   "description": "Internationalization library",
   "main": "dist/index.js",
   "scripts": {
