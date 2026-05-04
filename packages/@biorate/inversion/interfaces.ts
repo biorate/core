@@ -1,12 +1,14 @@
-import { interfaces } from 'inversify';
-
 export interface IMetadata {
   key: symbol;
   value: unknown;
 }
 
+export type Newable<T = any> = new (...args: any[]) => T;
+
+export type AbstractNewable<T = any> = abstract new (...args: any[]) => T;
+
 export type IService =
   | string
   | symbol
-  | interfaces.Newable<any>
-  | interfaces.Abstract<any>;
+  | Newable<any>
+  | AbstractNewable<any>;

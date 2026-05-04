@@ -3,6 +3,10 @@
   "compilerOptions": {
     "strict": true,
     "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "inversify": ["node_modules/inversify/lib/index.d.ts"]
+    }
   },
   "include": ["index.ts", "src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]

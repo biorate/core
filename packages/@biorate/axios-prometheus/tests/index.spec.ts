@@ -1,7 +1,19 @@
 import { expect } from 'chai';
 import { Google, Prometheus } from './__mocks__';
+import nock from 'nock';
 
 describe('@biorate/axios-prometheus', () => {
+  // Avoid real network calls and proxy side-effects in CI/sandbox.
+  delete process.env.HTTP_PROXY;
+  delete process.env.http_proxy;
+  delete process.env.HTTPS_PROXY;
+  delete process.env.https_proxy;
+  delete process.env.ALL_PROXY;
+  delete process.env.all_proxy;
+  process.env.NO_PROXY = '*';
+
+  nock('https://google.com').persist().get('/').reply(200, 'ok');
+
   it('fetch', async () => expect((await Google.fetch()).status).to.be.equal(200));
 
   it('log', async () => {

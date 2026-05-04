@@ -3,9 +3,6 @@ import { tmpdir } from 'os';
 import { join } from 'path';
 import { container, Types, init } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import { ISchemaRegistryConnector } from '@biorate/schema-registry';
-import { kebabCase } from 'lodash';
-import * as Migrations from '../../src/types';
 import { Root as RootBase } from '../../src/root';
 
 const storage = join(tmpdir(), 'sqlite-test.db');
@@ -14,29 +11,6 @@ try {
   unlinkSync(storage);
 } catch {}
 
-class MockedSchemaRegistry extends Migrations.SchemaRegistry {
-  protected override get type() {
-    return kebabCase(Migrations.SchemaRegistry.name);
-  }
-
-  protected async process() {
-    await super.process();
-    const { deleteSubjects } = container.get<ISchemaRegistryConnector>(
-      Types.SchemaRegistry,
-    ).current!;
-    await Promise.all([
-      deleteSubjects({
-        subject: 'test2.avsc',
-        permanent: false,
-      }),
-      deleteSubjects({
-        subject: 'test.avsc',
-        permanent: false,
-      }),
-    ]);
-  }
-}
-
 class Root extends RootBase {
   @init() protected async initialize() {
     this.emit('end');
@@ -44,12 +18,7 @@ class Root extends RootBase {
 }
 
 container.unbind(RootBase);
-container.unbind(Migrations.SchemaRegistry);
 container.bind<RootBase>(RootBase).to(Root).inSingletonScope();
-container
-  .bind<Migrations.SchemaRegistry>(Migrations.SchemaRegistry)
-  .to(MockedSchemaRegistry)
-  .inSingletonScope();
 
 export const root = container.get<RootBase>(RootBase);
 
@@ -66,52 +35,6 @@ container.get<IConfig>(Types.Config).merge({
       },
     },
   ],
-  Minio: [
-    {
-      name: 'minio',
-      options: {
-        endPoint: 'localhost',
-        port: 9000,
-        accessKey: 'admin',
-        secretKey: 'minioadmin',
-        useSSL: false,
-      },
-    },
-  ],
-  MongoDB: [
-    {
-      name: 'mongodb',
-      host: 'mongodb://localhost:27017/',
-      options: {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        dbName: 'test',
-      },
-    },
-  ],
-  KafkaJSAdmin: [
-    {
-      name: 'admin',
-      global: {
-        brokers: ['localhost:9092'],
-        clientId: 'test-app',
-        logLevel: 1,
-      },
-    },
-  ],
-  Clickhouse: [
-    {
-      name: 'test',
-      options: {},
-    },
-  ],
-  Amqp: [
-    {
-      name: 'test',
-      urls: ['amqp://localhost:5672'],
-    },
-  ],
-  SchemaRegistry: [{ name: 'test', baseURL: 'http://localhost:8085' }],
   migrations: {
     directory: '/tests/migrations',
   },

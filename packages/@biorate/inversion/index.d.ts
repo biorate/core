@@ -1,7 +1,16 @@
-import { Container } from 'inversify';
 import { IService } from './interfaces';
 import { IDecorator } from '@biorate/lifecycled';
 export * from './interfaces';
+
+type ServiceId = IService | object;
+
+export interface ContainerLike {
+  get<T = unknown>(serviceIdentifier: ServiceId): T;
+  getAll<T = unknown>(serviceIdentifier: ServiceId): T[];
+  bind<T = unknown>(serviceIdentifier: ServiceId): any;
+  rebind<T = unknown>(serviceIdentifier: ServiceId): any;
+  isBound(serviceIdentifier: ServiceId): boolean;
+}
 
 declare module '@biorate/inversion' {
   export { init, kill, on } from '@biorate/lifecycled';
@@ -24,5 +33,5 @@ declare module '@biorate/inversion' {
 
   export type Types = { [key: string]: symbol };
 
-  export const container: Container;
+  export const container: ContainerLike;
 }
