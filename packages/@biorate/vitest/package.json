@@ -30,7 +30,7 @@
   "peerDependencies": {
     "allure-js-commons": ">=3.2.0",
     "allure-vitest": ">=3.2.0",
-    "reflect-metadata": ">=0.2.2",
+    "reflect-metadata": ">=0.1.13",
     "vitest": ">=2.0.0"
   },
   "dependencies": {

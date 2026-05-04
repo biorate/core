@@ -28,6 +28,7 @@
   "license": "MIT",
   "peerDependencies": {
     "class-validator": ">=0.14.1",
+    "reflect-metadata": ">=0.1.13",
     "vitest": ">=2.0.0"
   },
   "dependencies": {
@@ -42,7 +43,6 @@
   },
   "devDependencies": {
     "@biorate/vitest": "workspace:*",
-    "@types/supertest": "2.0.11",
-    "reflect-metadata": "0.2.2"
+    "@types/supertest": "2.0.11"
   }
 }
