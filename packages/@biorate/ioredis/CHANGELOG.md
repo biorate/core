@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.160.1](https://github.com/biorate/core/compare/@biorate/ioredis@1.160.0...@biorate/ioredis@1.160.1) (2026-05-04)
+
+**Note:** Version bump only for package @biorate/ioredis
+
 # [1.160.0](https://github.com/biorate/core/compare/@biorate/ioredis@1.159.1...@biorate/ioredis@1.160.0) (2026-04-20)
 
 ### Features

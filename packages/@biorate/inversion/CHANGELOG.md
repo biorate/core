@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/biorate/core/compare/@biorate/inversion@2.2.0...@biorate/inversion@2.3.0) (2026-05-04)
+
+### Features
+
+- **inversion:** deps up ([ce45af3](https://github.com/biorate/core/commit/ce45af34eb8bd8d2d490e5583dce6f903dbf5c83))
+
 # [2.2.0](https://github.com/biorate/core/compare/@biorate/inversion@2.1.0...@biorate/inversion@2.2.0) (2026-04-20)
 
 ### Features
