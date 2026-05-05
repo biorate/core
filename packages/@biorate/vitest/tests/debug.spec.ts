@@ -2,7 +2,6 @@ import { expect } from 'vitest';
 import { suite, test } from '../src';
 import 'reflect-metadata';
 
-// Simple test without decorators
 @suite('Simple Test')
 class SimpleTest {
   @test('should work')
