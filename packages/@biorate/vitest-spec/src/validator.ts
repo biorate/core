@@ -1,7 +1,8 @@
-import { get, merge } from 'lodash';
+import get from 'lodash/get.js';
+import merge from 'lodash/merge.js';
 import { validate as val } from 'class-validator';
-import { ValidationError, ValidationSchemaWrongTypeError } from './errors';
-import { IValidatorOptions } from './interfaces';
+import { ValidationError, ValidationSchemaWrongTypeError } from './errors.js';
+import { IValidatorOptions } from './interfaces.js';
 
 export class Validator {
   protected static instance: Validator;

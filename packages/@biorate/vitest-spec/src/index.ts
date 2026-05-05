@@ -1,2 +1,2 @@
-export * from './spec';
-export { exactly, validate } from './api';
+export * from './spec.js';
+export { exactly, validate } from './api.js';

@@ -1,18 +1,21 @@
 import * as nock from 'nock';
 import supertest from 'supertest';
-import { expect, vi } from 'vitest';
 import { createRequire } from 'module';
-import { api } from './api';
-import { Unit } from './unit';
-import { Validator } from './validator';
-import { IUnitOptions, IValidatorOptions } from './interfaces';
+import { api } from './api.js';
+import { Unit } from './unit.js';
+import { Validator } from './validator.js';
+import { IUnitOptions, IValidatorOptions } from './interfaces.js';
+
+const vitest = globalThis as any;
+const getExpect = () => vitest.expect;
+const getVi = () => vitest.vi;
 
 export abstract class Spec {
   static #mocks() {
     try {
       return createRequire(process.cwd() + '/')('sinon');
     } catch {
-      return vi;
+      return getVi();
     }
   }
 
@@ -32,7 +35,7 @@ export abstract class Spec {
   }
 
   public static get expect() {
-    return expect;
+    return getExpect();
   }
 
   protected testDir = 'tests';
@@ -64,7 +67,7 @@ export abstract class Spec {
   }
 
   protected get expect() {
-    return expect;
+    return getExpect();
   }
 
   protected logReq(method: string, url: string, data: string) {}
@@ -88,6 +91,6 @@ export abstract class Spec {
   }
 
   protected exactly(result: any, exp: any, message?: string) {
-    return expect(result, message).toEqual(exp);
+    return getExpect()(result, message).toEqual(exp);
   }
 }

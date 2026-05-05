@@ -1,10 +1,13 @@
 import * as fs from 'fs';
 import { createRequire } from 'module';
 import { path } from '@biorate/tools';
-import { expect } from 'vitest';
-import { get, invoke } from 'lodash';
-import { IUnitOptions } from './interfaces';
-import { VitestSnapshotError } from './errors';
+import get from 'lodash/get.js';
+import invoke from 'lodash/invoke.js';
+import { IUnitOptions } from './interfaces.js';
+import { VitestSnapshotError } from './errors.js';
+
+const vitest = globalThis as any;
+const getExpect = () => vitest.expect;
 
 export class Unit {
   private static defaultExt = 'json';
@@ -25,10 +28,10 @@ export class Unit {
         values.push(get(object, p));
     else if (typeof expects === 'boolean' && expects) values.push(object);
 
-    if (!expect?.({})?.toMatchSnapshot) throw new VitestSnapshotError();
+    if (!getExpect()?.({})?.toMatchSnapshot) throw new VitestSnapshotError();
 
     for (const value of values) {
-      expect(value).toMatchSnapshot(
+      getExpect()(value).toMatchSnapshot(
         `[${type}] doesn't equal in [${options.method}] method`,
       );
     }

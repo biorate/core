@@ -1,9 +1,11 @@
 import type { SuperTest, Test, Response } from 'supertest';
-import { expect } from 'vitest';
-import { IValidatorOptions } from './interfaces';
-import { Validator } from './validator';
+import { IValidatorOptions } from './interfaces.js';
+import { Validator } from './validator.js';
 
 type Ctx = { _qs: Record<string, unknown>; _data: Record<string, unknown> };
+
+const vitest = globalThis as any;
+const getExpect = () => vitest.expect;
 
 const use =
   (log: (method: string, url: string, data: string) => unknown) => (ctx: Test) =>
@@ -44,6 +46,6 @@ export const validate =
 export const exactly =
   <T = Response>(data: any, field = 'body') =>
   (result: any): T => {
-    expect(result[field]).toEqual(data);
+    getExpect()(result[field]).toEqual(data);
     return result;
   };
