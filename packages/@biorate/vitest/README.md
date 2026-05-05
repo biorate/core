@@ -13,7 +13,7 @@ OOP test decorators for Vitest with Allure support.
 ## Installation
 
 ```bash
-pnpm add -D @biorate/vitest vitest allure-js-commons allure-vitest reflect-metadata
+pnpm i -D @biorate/vitest vitest allure-js-commons allure-vitest reflect-metadata
 ```
 
 ## Usage
