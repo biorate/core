@@ -1,6 +1,6 @@
 {
   "name": "@biorate/vitest-spec",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Vitest Spec abstract helper class",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
