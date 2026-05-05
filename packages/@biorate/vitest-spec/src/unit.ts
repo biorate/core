@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { createRequire } from 'module';
 import { path } from '@biorate/tools';
 import { expect } from 'vitest';
 import { get, invoke } from 'lodash';
@@ -55,6 +56,7 @@ export class Unit {
       );
       Unit.init = true;
     }
+    const require = createRequire(process.cwd() + '/');
     return ext === Unit.defaultExt ? require(file) : require(file).default;
   }
 
