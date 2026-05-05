@@ -18,4 +18,3 @@ function writeSubpackageType(subdir, type) {
 
 writeSubpackageType('esm', 'module');
 writeSubpackageType('cjs', 'commonjs');
-
