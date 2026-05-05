@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.165.0](https://github.com/biorate/core/compare/@biorate/playwright@1.164.2...@biorate/playwright@1.165.0) (2026-05-05)
+
+### Features
+
+- **playwright:** runtime ([af2b346](https://github.com/biorate/core/commit/af2b346ffd11fb3d1b48241ad644b1807e5bdc86))
+
 ## [1.164.2](https://github.com/biorate/core/compare/@biorate/playwright@1.164.1...@biorate/playwright@1.164.2) (2026-04-20)
 
 **Note:** Version bump only for package @biorate/playwright
