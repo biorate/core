@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/biorate/core/compare/@biorate/vitest@1.6.0...@biorate/vitest@1.7.0) (2026-05-05)
+
+### Features
+
+- **vitest:** rebuild ([a2a1389](https://github.com/biorate/core/commit/a2a13897010b2e3000795c428cca1b5940dadcac))
+- **vitest:** rebuild ([55b6694](https://github.com/biorate/core/commit/55b6694455f663153238b1b88f0bf6cd0ffd6d83))
+- **vitest:** rebuild ([c18ae88](https://github.com/biorate/core/commit/c18ae88c5397654e4f3b8268bd551bbab7330665))
+
 # [1.6.0](https://github.com/biorate/core/compare/@biorate/vitest@1.5.0...@biorate/vitest@1.6.0) (2026-05-05)
 
 ### Features
