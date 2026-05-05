@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.4.0...@biorate/vitest-spec@1.5.0) (2026-05-05)
+
+### Features
+
+- **vitest:** mocha backward capability ([e06b71d](https://github.com/biorate/core/commit/e06b71d33d085a300dc92d212332a96629db78dc))
+
 # [1.4.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.3.1...@biorate/vitest-spec@1.4.0) (2026-05-04)
 
 ### Features
