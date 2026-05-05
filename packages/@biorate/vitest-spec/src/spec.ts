@@ -1,6 +1,7 @@
 import * as nock from 'nock';
 import supertest from 'supertest';
 import { expect, vi } from 'vitest';
+import { createRequire } from 'module';
 import { api } from './api';
 import { Unit } from './unit';
 import { Validator } from './validator';
@@ -9,7 +10,7 @@ import { IUnitOptions, IValidatorOptions } from './interfaces';
 export abstract class Spec {
   static #mocks() {
     try {
-      return require('sinon');
+      return createRequire(process.cwd() + '/')('sinon');
     } catch {
       return vi;
     }

@@ -1,3 +1,5 @@
+export * from 'allure-js-commons';
+export * as allure from 'allure-js-commons';
 export * from './interfaces';
 export * from './symbols';
 export * from './errors';
@@ -32,6 +34,7 @@ export {
   subSuite,
   owner,
   severity,
+  severity as Severity, // Backward capability
   tag,
   tags,
   description,
@@ -41,4 +44,3 @@ export {
   assignPmsUrl,
   assignTmsUrl,
 } from './vitest';
-export * as allure from 'allure-js-commons';
