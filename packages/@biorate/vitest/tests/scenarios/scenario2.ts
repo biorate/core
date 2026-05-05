@@ -1,18 +1,13 @@
 import { Scenario, Step } from '../../src';
-import { expect } from 'vitest';
 
 export class Scenario2 extends Scenario {
   @Step()
   protected async step1() {
-    console.log('Scenario2.step1 - Navigate to Google');
-    // Simulated step
-    expect(true).toBe(true);
+    this.ctx.set(`${this.step1.name}-${this.constructor.name}`, true);
   }
 
   @Step()
   protected async step2() {
-    console.log('Scenario2.step2 - Verify title');
-    // Simulated verification
-    expect(true).toBe(true);
+    this.ctx.set(`${this.step2.name}-${this.constructor.name}`, true);
   }
 }

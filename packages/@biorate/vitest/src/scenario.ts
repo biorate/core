@@ -20,5 +20,7 @@ export abstract class Scenario extends ScenarioCommon {
  * @param name - Optional step name for Allure reporting
  * @returns Method decorator
  */
-export const Step = (name?: string) => (target: any, context: any) =>
-  Reflect.defineMetadata(ScenarioSymbol, { name }, target);
+export const Step =
+  (name?: string) =>
+  (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) =>
+    Reflect.defineMetadata(ScenarioSymbol, { name }, descriptor.value);

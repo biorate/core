@@ -88,7 +88,14 @@ class BasicTests {
   @epic('Scenarios')
   @test('should run scenarios')
   async testScenarios() {
-    await Context.run([Scenario1, Scenario2], {});
+    const ctx = await Context.run([Scenario1, Scenario2], {});
+    expect(ctx.all()).toEqual({
+      'step0-Scenario1': true,
+      'step1-Scenario1': true,
+      'step2-Scenario1': true,
+      'step1-Scenario2': true,
+      'step2-Scenario2': true,
+    });
   }
 }
 
