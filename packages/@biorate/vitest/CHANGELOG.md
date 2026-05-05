@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/biorate/core/compare/@biorate/vitest@1.7.0...@biorate/vitest@1.8.0) (2026-05-05)
+
+### Features
+
+- **vitest-spec:** conditional exports ([bacb504](https://github.com/biorate/core/commit/bacb504f4a98b659fb26ad8730402851c6974a4b))
+
 # [1.7.0](https://github.com/biorate/core/compare/@biorate/vitest@1.6.0...@biorate/vitest@1.7.0) (2026-05-05)
 
 ### Features

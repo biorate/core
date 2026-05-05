@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.6.1...@biorate/vitest-spec@1.7.0) (2026-05-05)
+
+### Features
+
+- **vitest-spec:** conditional exports ([194a738](https://github.com/biorate/core/commit/194a73805e5f455a4f45944c60a818e06df3e6bf))
+- **vitest-spec:** conditional exports ([e3a75e0](https://github.com/biorate/core/commit/e3a75e089291c64ec06d8f4f98e7fe0236af19b1))
+- **vitest-spec:** conditional exports ([bacb504](https://github.com/biorate/core/commit/bacb504f4a98b659fb26ad8730402851c6974a4b))
+
 ## [1.6.1](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.6.0...@biorate/vitest-spec@1.6.1) (2026-05-05)
 
 **Note:** Version bump only for package @biorate/vitest-spec
