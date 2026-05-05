@@ -29,12 +29,12 @@
   "peerDependencies": {
     "class-validator": ">=0.14.1",
     "reflect-metadata": ">=0.1.13",
-    "vitest": ">=2.0.0"
+    "vitest": ">=2.0.0",
+    "lodash": ">=4.17.21"
   },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "lodash": "4.17.21",
     "nock": "14.0.1",
     "supertest": "6.1.6"
   },
