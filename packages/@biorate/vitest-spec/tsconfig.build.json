@@ -1,5 +1,11 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "incremental": false,
+    "declaration": false,
+    "emitDeclarationOnly": false
+  },
   "include": ["index.ts", "src/**/*"],
   "exclude": ["node_modules", "dist", "tests", "**/*spec.ts"]
 }
