@@ -1,4 +1,4 @@
-export * from 'allure-js-commons';
+export * from 'allure-js-commons';  // Backward capability
 export * as allure from 'allure-js-commons';
 export * from './interfaces';
 export * from './symbols';
