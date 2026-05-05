@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.5.0...@biorate/vitest-spec@1.6.0) (2026-05-05)
+
+### Features
+
+- **vitest-spec:** require removed ([2baa4a5](https://github.com/biorate/core/commit/2baa4a54e0c16a8a263128f1439eb83b0576ae28))
+- **vitest-spec:** require removed ([0584f7f](https://github.com/biorate/core/commit/0584f7f94342dbd2c4e56ba76a96da23c8ddbaa8))
+
 # [1.5.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.4.0...@biorate/vitest-spec@1.5.0) (2026-05-05)
 
 ### Features
