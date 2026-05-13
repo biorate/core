@@ -1,6 +1,6 @@
 import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
-import { connect } from 'mssql';
+import mssql from 'mssql';
 import { MssqlCantConnectError } from './errors';
 import { IMssqlConfig, IMssqlConnection } from './interfaces';
 
@@ -90,7 +90,7 @@ export class MssqlConnector extends Connector<IMssqlConfig, IMssqlConnection> {
   protected async connect(config: IMssqlConfig) {
     let connection: IMssqlConnection;
     try {
-      connection = await connect(config.options);
+      connection = await mssql.connect(config.options);
     } catch (e: unknown) {
       throw new MssqlCantConnectError(<Error>e);
     }

@@ -1,5 +1,5 @@
-import { IConnectorConfig, IConnector } from '@biorate/connector';
-import { config, ConnectionPool } from 'mssql';
+import type { IConnectorConfig, IConnector } from '@biorate/connector';
+import type { config, ConnectionPool } from 'mssql';
 
 export type IMssqlConnection = ConnectionPool;
 
