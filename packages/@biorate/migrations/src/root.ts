@@ -1,10 +1,8 @@
-import { EventEmitter } from 'events';
 import { init, injectable, inject, Types, Core, container } from '@biorate/inversion';
 import { Config, IConfig } from '@biorate/config';
 import { ConfigLoader } from '@biorate/config-loader';
 import { IVaultConnector, VaultConnector } from '@biorate/vault';
 import { IProxyConnector, ProxyConnector } from '@biorate/proxy';
-import * as Migrations from './types';
 import { ConfigLoaderEnv } from '@biorate/config-loader-env';
 import { ConfigLoaderFs } from '@biorate/config-loader-fs';
 import { ConfigLoaderVault } from '@biorate/config-loader-vault';
@@ -18,9 +16,11 @@ import {
   ISchemaRegistryConnector,
   SchemaRegistryConnector,
 } from '@biorate/schema-registry';
+import { EmitterEmitter } from './event-emitter';
+import * as Migrations from './types';
 
 @injectable()
-export class Root extends Core(EventEmitter) {
+export class Root extends Core(EmitterEmitter) {
   @inject(Types.Config) public readonly config: IConfig;
 
   @inject(Types.ConfigLoaderEnv) public readonly configLoaderEnv: ConfigLoader;

@@ -11,7 +11,10 @@ import {
 
 @Injectable()
 export class RoutesInterceptor implements NestInterceptor {
-  public static readonly map = new WeakMap<Request, { path: string }>();
+  public static readonly map: WeakMap<Request, { path: string }> = new WeakMap<
+    Request,
+    { path: string }
+  >();
 
   private readonly reflector = new Reflector();
 
