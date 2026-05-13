@@ -1,9 +1,9 @@
 {
-  "name": "import-test",
+  "name": "@biorate-tools/import-test",
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
-  "description": "Internal smoke test: require() and dynamic import() of workspace @biorate packages (CJS/ESM). Run from repo root: pnpm import-test:cjs | pnpm import-test:esm.",
+  "description": "Internal smoke test: require()/import() of workspace @biorate packages (CJS/ESM). Root: pnpm import-test:cjs | pnpm import-test:esm.",
   "scripts": {
     "test:cjs": "node index.cjs",
     "test:esm": "node --import ./register.mjs index.mjs"
