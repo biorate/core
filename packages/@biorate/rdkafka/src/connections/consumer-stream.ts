@@ -1,12 +1,9 @@
+import { promisify } from 'util';
 import { EventEmitter } from 'events';
-import {
-  KafkaConsumer,
-  ConsumerStream,
-  Message,
-  CODES,
-} from '@confluentinc/kafka-javascript';
 import { timer } from '@biorate/tools';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
+import type { ConsumerStream, Message } from '@confluentinc/kafka-javascript';
+import { CODES, KafkaConsumer } from '../kafka-runtime';
 import { EventsConsumerStream } from '../enums';
 import { RDKafkaConsumerStreamAlreadySubscribedError } from '../errors';
 import { timeDiff } from '../helpers';
@@ -14,7 +11,6 @@ import {
   IRDKafkaConsumerStreamConfig,
   IRDKafkaProducerStreamConnection,
 } from '../interfaces';
-import { promisify } from 'util';
 
 const DEFAULT_BUFFER_SIZE = 100;
 const DEFAULT_CONCURRENCY = 10;

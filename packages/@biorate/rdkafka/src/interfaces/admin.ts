@@ -1,5 +1,9 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
-import { GlobalConfig, IAdminClient, NewTopic } from '@confluentinc/kafka-javascript';
+import type {
+  GlobalConfig,
+  IAdminClient,
+  NewTopic,
+} from '@confluentinc/kafka-javascript';
 
 export type IRDKafkaAdminConfig = IConnectorConfig & {
   global: GlobalConfig;

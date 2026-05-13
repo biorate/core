@@ -1,4 +1,5 @@
-import { Producer, ProducerStream } from '@confluentinc/kafka-javascript';
+import type { ProducerStream } from '@confluentinc/kafka-javascript';
+import { Producer } from '../kafka-runtime';
 import {
   IRDKafkaProducerStreamConnection,
   IRDKafkaProducerStreamConfig,

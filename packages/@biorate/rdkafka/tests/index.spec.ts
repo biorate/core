@@ -1,6 +1,6 @@
 import { expect } from 'vitest';
 import { timer } from '@biorate/tools';
-import { Message } from '@confluentinc/kafka-javascript';
+import type { Message } from '@confluentinc/kafka-javascript';
 import { root } from './__mocks__';
 
 describe('@biorate/rdkafka', () => {

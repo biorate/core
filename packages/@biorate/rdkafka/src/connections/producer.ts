@@ -1,10 +1,10 @@
-import {
+import type {
   KafkaConsumer,
   LibrdKafkaError,
-  Producer,
   TopicPartitionOffset,
   MetadataOptions,
 } from '@confluentinc/kafka-javascript';
+import { Producer } from '../kafka-runtime';
 import { IRDKafkaProducerConnection } from '../interfaces';
 // noinspection JSAnnotator
 /**

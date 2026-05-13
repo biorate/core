@@ -1,5 +1,5 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
-import {
+import type {
   ProducerGlobalConfig,
   ProducerTopicConfig,
   WriteStreamOptions,

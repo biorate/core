@@ -1,5 +1,5 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
-import {
+import type {
   ConsumerGlobalConfig,
   ConsumerTopicConfig,
   KafkaConsumer,

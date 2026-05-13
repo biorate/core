@@ -1,13 +1,13 @@
-import {
+import type {
   KafkaConsumer,
   LibrdKafkaError,
-  HighLevelProducer,
   TopicPartitionOffset,
   MetadataOptions,
   NumberNullUndefined,
   MessageHeader,
 } from '@confluentinc/kafka-javascript';
 import { counter, Counter, histogram, Histogram } from '@biorate/prometheus';
+import { HighLevelProducer } from '../kafka-runtime';
 import { timeDiff } from '../helpers';
 import { IRDKafkaHighLevelProducerConnection } from '../interfaces';
 // noinspection JSAnnotator

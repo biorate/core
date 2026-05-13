@@ -1,5 +1,4 @@
-import {
-  KafkaConsumer,
+import type {
   TopicPartitionOffset,
   LibrdKafkaError,
   MetadataOptions,
@@ -7,6 +6,7 @@ import {
   TopicPartition,
   Message,
 } from '@confluentinc/kafka-javascript';
+import { KafkaConsumer } from '../kafka-runtime';
 import { IRDKafkaConsumerConnection } from '../interfaces';
 // noinspection JSAnnotator
 /**

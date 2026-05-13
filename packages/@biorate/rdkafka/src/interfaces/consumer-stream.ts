@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import { IConnectorConfig, IConnector } from '@biorate/connector';
-import {
+import type {
   ConsumerGlobalConfig,
   ConsumerTopicConfig,
   ReadStreamOptions,
