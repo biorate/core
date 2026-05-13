@@ -29,5 +29,6 @@ module.exports = {
     '@typescript-eslint/adjacent-overload-signatures': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'prefer-const': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
 };

@@ -335,7 +335,7 @@ export abstract class List<I = any, P = { parent?: any }> {
     for (let item of args) {
       this[_processed] = item;
       if (this._Item) {
-        let instance = new this._Item(item, this) as { initialize?: (item: any) => {} };
+        let instance = new this._Item(item, this) as { initialize?: (item: any) => void };
         instance.initialize?.(item);
         item = instance;
       }
