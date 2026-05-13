@@ -1,13 +1,14 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig, mergeConfig } from 'vitest/config';
+import vitestRoot from '../../../vitest.config';
 
-export default defineConfig({
-  test: {
-    globals: true,
-    setupFiles: ['reflect-metadata'],
-    reporters: [
-      'default',
-      ['allure-vitest/reporter', { resultsDir: 'allure-results', suiteTitle: false }],
-    ],
-    exclude: ['node_modules', 'dist'],
-  },
-});
+export default mergeConfig(
+  vitestRoot,
+  defineConfig({
+    test: {
+      reporters: [
+        'default',
+        ['allure-vitest/reporter', { resultsDir: 'allure-results', suiteTitle: false }],
+      ],
+    },
+  }),
+);

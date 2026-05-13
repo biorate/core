@@ -1,7 +1,7 @@
 import { expect } from 'vitest';
 import { root } from './__mocks__';
 
-describe('@payment/haproxy', function () {
+describe('@biorate/haproxy', function () {
   beforeAll(async () => await root.$run());
 
   it('verify', async () => {
