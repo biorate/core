@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "cleanup dist",
     "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
     "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
     "build:types": "npx tsc -p ./tsconfig.build.types.json",
