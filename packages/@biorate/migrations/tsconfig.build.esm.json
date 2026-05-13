@@ -4,6 +4,9 @@
     "module": "ES2020",
     "outDir": "./dist/esm",
     "moduleResolution": "node",
-    "target": "ES2020"
+    "target": "ES2020",
+    "paths": {
+      "@/require": ["src/require-esm.ts"]
+    }
   }
 }

@@ -2,6 +2,9 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "module": "CommonJS",
-    "outDir": "./dist/cjs"
+    "outDir": "./dist/cjs",
+    "paths": {
+      "@/require": ["src/require-cjs.ts"]
+    }
   }
 }

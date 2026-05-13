@@ -1,8 +1,12 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "strict": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@/require": ["src/require-cjs.ts"]
+    }
   },
   "include": ["index.ts", "src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]

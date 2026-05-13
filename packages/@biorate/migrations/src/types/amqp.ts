@@ -7,6 +7,7 @@ import {
   ChannelWrapper,
   CreateChannelOpts,
 } from '@biorate/amqp';
+import { requireCjs } from '@/require';
 import { Migration } from './migration';
 /**
  * @description Amqp migration class
@@ -30,7 +31,7 @@ export class Amqp extends Migration {
         await this.forEachPath(paths, async (file, name) => {
           try {
             await (
-              require(file) as (
+              requireCjs(file) as (
                 channel: ChannelWrapper,
                 connection: IAmqpConnection,
                 config: IAmqpConfig,

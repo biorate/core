@@ -5,6 +5,7 @@ import {
   IKafkaJSAdminConfig,
   IKafkaJSAdminConnection,
 } from '@biorate/kafkajs';
+import { requireCjs } from '@/require';
 import { Migration } from './migration';
 /**
  * @description Kafka migration class
@@ -21,7 +22,7 @@ export class Kafka extends Migration {
         await this.forEachPath(paths, async (file, name) => {
           try {
             await (
-              require(file) as (
+              requireCjs(file) as (
                 connection: IKafkaJSAdminConnection,
                 config: IKafkaJSAdminConfig,
                 globalConfig: IConfig,

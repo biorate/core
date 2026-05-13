@@ -1,6 +1,7 @@
 import { IMongoDBConfig, IMongoDBConnection, IMongoDBConnector } from '@biorate/mongodb';
 import { IConfig } from '@biorate/config';
 import { inject, Types } from '@biorate/inversion';
+import { requireCjs } from '@/require';
 import { Migration } from './migration';
 /**
  * @description Mongodb migration class
@@ -17,7 +18,7 @@ export class Mongodb extends Migration {
         await this.forEachPath(paths, async (file, name) => {
           try {
             await (
-              require(file) as (
+              requireCjs(file) as (
                 connection: IMongoDBConnection,
                 config: IMongoDBConfig,
                 globalConfig: IConfig,

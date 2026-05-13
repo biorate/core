@@ -1,6 +1,7 @@
 import { IMinioConnector, IMinioConfig, IMinioConnection } from '@biorate/minio';
 import { IConfig } from '@biorate/config';
 import { inject, Types } from '@biorate/inversion';
+import { requireCjs } from '@/require';
 import { Migration } from './migration';
 /**
  * @description Minio migration class
@@ -24,7 +25,7 @@ export class Minio extends Migration {
             await connection.getObject(tableName, name);
           } catch (e) {
             await (
-              require(file) as (
+              requireCjs(file) as (
                 connection: IMinioConnection,
                 config: IMinioConfig,
                 globalConfig: IConfig,

@@ -6,6 +6,7 @@ import {
   ISchemaRegistryConnection,
   ICompatibilities,
 } from '@biorate/schema-registry';
+import { requireCjs } from '@/require';
 import { Migration } from './migration';
 import { SchemaRegistryWrongFileNameError } from '../errors';
 /**
@@ -32,7 +33,7 @@ export class SchemaRegistry extends Migration {
         await this.forEachPath(paths, async (file, fullName) => {
           const name = fullName.split('_')?.[1]?.replace('.json', '');
           if (!name) throw new SchemaRegistryWrongFileNameError(fullName);
-          const schema = <Record<string, unknown>>require(file);
+          const schema = <Record<string, unknown>>requireCjs(file);
           await connection.putConfig({
             subject: name,
             compatibility: config.compatibility ?? 'FORWARD',
