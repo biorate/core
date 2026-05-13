@@ -1,5 +1,6 @@
 import { merge } from 'lodash';
-import { JsonMask2Configs, maskJSON2 } from 'maskdata';
+import type { JsonMask2Configs } from 'maskdata';
+import MaskData from 'maskdata';
 import { Types, injectable, inject, init } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { CommonMask } from './common-mask';
@@ -65,7 +66,7 @@ export class Masquerade {
   public static processJSON<T extends object>(data: T, options?: JsonMask2Configs) {
     const opts = options ?? Masquerade.config?.maskJSON2;
     if (!opts) return data;
-    return maskJSON2(data, opts);
+    return MaskData.maskJSON2(data, opts);
   }
 
   public static processString(text: string, options?: IMaskOptions) {
