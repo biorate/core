@@ -6,6 +6,7 @@ allure-results
 allure-report
 .pnp
 .pnp.js
+.pnpm-store
 
 # NX
 .nx
