@@ -2,7 +2,8 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "module": "ES2020",
-    "outDir": "./dist/esm"
+    "outDir": "./dist/esm",
+    "moduleResolution": "node",
+    "target": "ES2020"
   }
 }
-
