@@ -20,8 +20,8 @@
   ],
   "scripts": {
     "clean": "cleanup dist",
-    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
-    "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json && npx tsc-alias -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json && npx tsc-alias -p ./tsconfig.build.esm.json",
     "build:types": "npx tsc -p ./tsconfig.build.types.json",
     "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
