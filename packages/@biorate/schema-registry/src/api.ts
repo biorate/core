@@ -1,7 +1,11 @@
 import { AxiosPrometheus, AxiosInstance } from '@biorate/axios-prometheus';
-import { Type } from 'avsc';
+import avsc from 'avsc';
+import type { Type } from 'avsc';
 import { ICompatibilities, ISchemaRegistryConfig } from './interfaces';
 import { SchemaRegistryAvroSchemaParseError } from './errors';
+
+/** `avsc` is CJS `module.exports`; Node ESM has no static `import { Type }`. */
+const AvroType = avsc.Type;
 
 export const create = (config: ISchemaRegistryConfig) => {
   const cache = new Map<number, Type>();
@@ -177,7 +181,7 @@ export const create = (config: ISchemaRegistryConfig) => {
     const errors: string[] = [];
     const response = await GetSubjectsByVersion.fetch({ subject, version });
     const header = Buffer.alloc(5);
-    const schema = Type.forSchema(JSON.parse(response.data.schema));
+    const schema = AvroType.forSchema(JSON.parse(response.data.schema));
     schema.isValid(data, {
       errorHook: (path: string[], value: unknown) => {
         errors.push(`${path.join('.')}: ${value} (${typeof value})`);
@@ -193,10 +197,10 @@ export const create = (config: ISchemaRegistryConfig) => {
     let data: Type | undefined = cache.get(id);
     if (!data) {
       const response = await GetSchemasById.fetch(id);
-      data = Type.forSchema(JSON.parse(response.data.schema));
+      data = AvroType.forSchema(JSON.parse(response.data.schema));
       cache.set(id, data);
     }
-    const schema = Type.forSchema(data);
+    const schema = AvroType.forSchema(data);
     return schema.fromBuffer(buffer.slice(5));
   }
 
