@@ -8,6 +8,7 @@
       "changelog": true,
       "message": "chore: %s",
       "ignoreChanges": [
+        "**/.tools/**",
         "**/tests/**",
         "**/*.test.ts",
         "**/*.spec.ts",

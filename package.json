@@ -13,7 +13,9 @@
     "postdoc": "npm run demo",
     "publish": "npx lerna publish from-package",
     "cleanup:node_modules": "cleanup **/node_modules",
-    "cleanup:all": "pnpm run cleanup:node_modules './packages/**/{dist,.nyc_output,coverage,allure-results}'"
+    "cleanup:all": "pnpm run cleanup:node_modules './packages/**/{dist,.nyc_output,coverage,allure-results}'",
+    "import-test:cjs": "pnpm --filter import-test run test:cjs",
+    "import-test:esm": "pnpm --filter import-test run test:esm"
   },
   "engines": {
     "pnpm": ">=10",
@@ -23,7 +25,8 @@
   "author": "llevkin",
   "license": "MIT",
   "workspaces": [
-    "packages/*/*"
+    "packages/*/*",
+    ".tools/*"
   ],
   "overrides": {
     "mocha": "11.7.5"
