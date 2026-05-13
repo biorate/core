@@ -1,0 +1,9 @@
+dist/
+node_modules/
+coverage/
+.nyc_output/
+allure-results/
+*.min.js
+*.bundle.js
+pnpm-lock.yaml
+package-lock.json

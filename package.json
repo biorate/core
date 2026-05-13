@@ -14,6 +14,8 @@
     "publish": "npx lerna publish from-package",
     "lint": "npx lerna run lint",
     "lint:fix": "npx lerna run lint:fix",
+    "format": "npx lerna run format",
+    "format:fix": "npx lerna run format:fix",
     "cleanup:node_modules": "npx cleanup **/node_modules",
     "cleanup:all": "pnpm run cleanup:node_modules './packages/**/{dist,.nyc_output,coverage,allure-results}'",
     "import-test:cjs": "pnpm --filter @biorate-tools/import-test run test:cjs",

@@ -26,7 +26,9 @@
     "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
     "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module",
+    "format": "prettier --check src",
     "lint": "eslint src --ext .ts",
+    "format:fix": "prettier --write src",
     "lint:fix": "eslint src --ext .ts --fix",
     "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
