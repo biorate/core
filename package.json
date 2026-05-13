@@ -12,7 +12,7 @@
     "doc": "npx typedoc --skipErrorChecking packages/@biorate/*/index.ts",
     "postdoc": "npm run demo",
     "publish": "npx lerna publish from-package",
-    "cleanup:node_modules": "cleanup **/node_modules",
+    "cleanup:node_modules": "npx cleanup **/node_modules",
     "cleanup:all": "pnpm run cleanup:node_modules './packages/**/{dist,.nyc_output,coverage,allure-results}'",
     "import-test:cjs": "pnpm --filter import-test run test:cjs",
     "import-test:esm": "pnpm --filter import-test run test:esm"
