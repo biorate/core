@@ -64,7 +64,7 @@ export class RedisConnector extends Connector<IRedisConfig, IRedisConnection> {
   /**
    * @description Create connection
    */
-  protected async connect(config: IRedisConfig) {
+  protected async connect(config: IRedisConfig): Promise<IRedisConnection> {
     let connection: IRedisConnection;
     try {
       connection = createClient(config.options);

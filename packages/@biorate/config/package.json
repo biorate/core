@@ -2,9 +2,30 @@
   "name": "@biorate/config",
   "version": "2.2.2",
   "description": "Application configurator",
-  "main": "dist/index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.build.json --outDir ./dist",
+    "clean": "cleanup dist",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
+    "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
+    "postbuild:esm": "node ../../../.scripts/write-package-type.js dist/esm module",
     "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
@@ -20,13 +41,13 @@
   "keywords": [],
   "author": "llevkin",
   "license": "MIT",
+  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
     "lodash": "^4.17.21",
     "traverse": "^0.6.6"
   },
-  "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
   "devDependencies": {
     "@types/traverse": "^0.6.32"
   }

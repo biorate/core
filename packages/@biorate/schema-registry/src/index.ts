@@ -86,7 +86,9 @@ export class SchemaRegistryConnector extends Connector<
   /**
    * @description Create connection
    */
-  protected async connect(config: ISchemaRegistryConfig) {
+  protected async connect(
+    config: ISchemaRegistryConfig,
+  ): Promise<ISchemaRegistryConnection> {
     const connection = create(config);
     try {
       await connection.ping();
