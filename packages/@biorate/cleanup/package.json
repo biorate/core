@@ -30,6 +30,8 @@
     "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
     "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module",
     "cleanup": "node ./dist/src/cleanup-by-argv.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
     "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },

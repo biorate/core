@@ -1,0 +1,12 @@
+dist/
+node_modules/
+**/*.test.ts
+**/*.spec.ts
+**/__mocks__/
+**/__snapshots__/
+coverage/
+.nyc_output/
+allure-results/
+*.js
+*.json
+*.d.ts

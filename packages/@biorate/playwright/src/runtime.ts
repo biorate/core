@@ -13,8 +13,10 @@ setGlobalTestRuntime({
   displayName: (_value: string) => Promise.resolve(),
   epic: (value: string) => pwAllure.epic(value),
   feature: (value: string) => pwAllure.feature(value),
-  globalAttachment: (_name: string, _content: Buffer | string, _options: any) => Promise.resolve(),
-  globalAttachmentFromPath: (_name: string, _path: string, _options: any) => Promise.resolve(),
+  globalAttachment: (_name: string, _content: Buffer | string, _options: any) =>
+    Promise.resolve(),
+  globalAttachmentFromPath: (_name: string, _path: string, _options: any) =>
+    Promise.resolve(),
   globalError: (_details: any) => Promise.resolve(),
   historyId: (_value: string) => Promise.resolve(),
   labels: (...values: any[]) => {
@@ -28,7 +30,8 @@ setGlobalTestRuntime({
   logStep: (name: string) => pwAllure.logStep(name),
   owner: (value: string) => pwAllure.owner(value),
   parentSuite: (value: string) => pwAllure.parentSuite(value),
-  parameter: (name: string, value: any, options?: any) => pwAllure.parameter(name, value, options),
+  parameter: (name: string, value: any, options?: any) =>
+    pwAllure.parameter(name, value, options),
   severity: (value: string) => pwAllure.severity(value),
   step: <T>(name: string, body: () => Promise<T>) => pwAllure.step(name, body),
   stepDisplayName: (_name: string) => Promise.resolve(),

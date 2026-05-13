@@ -14,7 +14,10 @@ export class ObservableItem<P = { parent?: any }> extends Item<P> {
   /**
    * @description Make structure - observable, catch error if it already observable
    */
-  [_observe] = (object: Record<string, any>, callback: (data: Record<string, any>) => void) => {
+  [_observe] = (
+    object: Record<string, any>,
+    callback: (data: Record<string, any>) => void,
+  ) => {
     try {
       observe(object, callback);
     } catch {}
@@ -26,7 +29,9 @@ export class ObservableItem<P = { parent?: any }> extends Item<P> {
     Ctor: { new (...args: any[]): any },
   ) {
     super[Props.defineMapOrSet](field, items, Ctor);
-    this[_observe](this[field], (data: Record<string, any>) => this[Props.OnObserve](data, { name: field }));
+    this[_observe](this[field], (data: Record<string, any>) =>
+      this[Props.OnObserve](data, { name: field }),
+    );
   }
 
   /**

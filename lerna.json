@@ -7,7 +7,7 @@
       "conventionalCommits": true,
       "changelog": true,
       "message": "chore: %s",
-      "ignore": "@biorate-tools/*",
+      "ignore": ["@biorate-tools/import-test"],
       "ignoreChanges": [
         "**/.tools/**",
         "**/tests/**",
@@ -29,6 +29,9 @@
         "**/.reporters.json",
         "**/tsconfig.tsbuildinfo"
       ]
+    },
+    "publish": {
+      "ignore": ["@biorate-tools/import-test"]
     }
   },
   "npmClient": "pnpm"

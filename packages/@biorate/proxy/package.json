@@ -26,6 +26,8 @@
     "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs && node ../../../.scripts/copy-assets.js dist/cjs *.pug",
     "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module && node ../../../.scripts/copy-assets.js dist/esm *.pug",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
     "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },

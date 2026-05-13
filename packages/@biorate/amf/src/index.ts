@@ -45,7 +45,7 @@ function writeValue(data: any) {
   if (data === false) return writeByte(2);
   if (data === true) return writeByte(3);
 
-  var type = typeof data;
+  let type = typeof data;
 
   if (type === 'number') {
     if (data >= 0 && data < 0x10000000 && data % 1 === 0) writeInt(data);
