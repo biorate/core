@@ -24,8 +24,8 @@
     "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
     "build:types": "npx tsc -p ./tsconfig.build.types.json",
     "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
-    "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
-    "postbuild:esm": "node ../../../.scripts/write-package-type.js dist/esm module",
+    "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs && node ../../../.scripts/copy-assets.js dist/cjs *.pug",
+    "postbuild:esm": "node ../../../.scripts/write-package-type.js dist/esm module && node ../../../.scripts/copy-assets.js dist/esm *.pug",
     "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
