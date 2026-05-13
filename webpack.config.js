@@ -6,6 +6,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const production = argv.mode === 'production';
 
 module.exports = {
+  devtool: production ? false : 'eval-cheap-module-source-map',
   output: {
     filename: 'index.js',
     libraryTarget: 'umd',
@@ -34,6 +35,11 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'ts-loader',
+          options: {
+            compilerOptions: {
+              sourceMap: !production,
+            },
+          },
         },
       },
       {
