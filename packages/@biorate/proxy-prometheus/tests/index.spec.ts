@@ -10,7 +10,7 @@ describe('@biorate/proxy', function () {
       socket.write('Hello');
       socket.on('data', (data) => {
         expect(data.toString()).toMatchSnapshot();
-        done();
+        done(null);
       });
     }));
 
