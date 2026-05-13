@@ -1,12 +1,20 @@
+import { unwrapCjsDefaultExport } from '@biorate/tools';
 import { injectable as Injectable, Container, tagged, named } from 'inversify';
-import getDecorators from 'inversify-inject-decorators';
+import getDecoratorsImport from 'inversify-inject-decorators';
 import { InversionInjectionIsUndefinedError } from './errors';
 import { IMetadata, IService } from '../interfaces';
 import { Metadata } from './labels';
 
+type GetDecoratorsFn = typeof import('inversify-inject-decorators').default;
+
+const getDecorators = unwrapCjsDefaultExport<GetDecoratorsFn>(
+  getDecoratorsImport,
+  'inversify-inject-decorators',
+);
+
 const globalThisLink = globalThis as unknown as Record<
   symbol,
-  { container: Container } & ReturnType<typeof getDecorators>
+  { container: Container } & ReturnType<GetDecoratorsFn>
 >;
 
 if (!globalThisLink[Metadata.InversifyContainer]) {

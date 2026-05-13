@@ -2,6 +2,12 @@ import { IDefine } from './interfaces';
 import { globalThis, isServer } from './src/env';
 
 declare module '@biorate/tools' {
+  export function unwrapCjsDefaultExport<T>(
+    mod: unknown,
+    moduleLabel?: string,
+    maxDepth?: number,
+  ): T;
+
   export namespace buffer {
     export const MAX_UINT29: number;
 
