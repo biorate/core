@@ -29,6 +29,17 @@ module.exports = {
     '@typescript-eslint/adjacent-overload-signatures': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'prefer-const': 'off',
-    '@typescript-eslint/no-unused-vars': 'warn',
+    // Base rule mis-reports TypeScript; use extension rule only (see typescript-eslint docs).
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
   },
 };

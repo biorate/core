@@ -61,7 +61,7 @@ export function Core<T extends new (...any: any[]) => any>(Class?: T) {
 
   @injectable()
   class Core extends Class {
-    public async $run(root = this, parent = null) {
+    public async $run(root = this, _parent = null) {
       const start = Date.now();
       await lifecycled(
         root ? root : this,
