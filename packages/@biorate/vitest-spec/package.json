@@ -20,10 +20,10 @@
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
-    "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json && node -e \"require('fs').writeFileSync('./dist/cjs/package.json', '{\\\"type\\\":\\\"commonjs\\\"}\\n')\"",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json && node -e \"require('fs').writeFileSync('./dist/esm/package.json', '{\\\"type\\\":\\\"module\\\"}\\n')\"",
     "build:types": "npx tsc -p ./tsconfig.build.types.json",
-    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types && node ./scripts/write-subpackages.js",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
     "test": "npx vitest run",
     "prepublishOnly": "pnpm run build"
   },
