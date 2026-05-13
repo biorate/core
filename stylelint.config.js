@@ -1,10 +1,7 @@
 module.exports = {
   fix: true,
-  extends: [
-    'cashoff_stylelint-config-rational-order',
-    'stylelint-config-recommended',
-    'stylelint-config-prettier',
-  ],
+  extends: ['stylelint-config-recommended', 'stylelint-config-rational-order'],
+  customSyntax: 'postcss-less',
   rules: {
     'no-empty-source': null,
     'selector-type-no-unknown': null,
@@ -12,14 +9,16 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['define-mixin', 'mixin', 'include'],
+        ignoreAtRules: ['define-mixin', 'mixin', 'include', 'import', 'theme', 'apply'],
       },
     ],
     'media-feature-name-no-unknown': [
       true,
-      { ignoreMediaFeatureNames: 'min--moz-device-pixel-ratio' },
+      { ignoreMediaFeatureNames: ['min--moz-device-pixel-ratio'] },
     ],
+    'property-no-unknown': null,
+    'unit-no-unknown': null,
+    'declaration-property-value-no-unknown': null,
   },
-
-  ignoreFiles: ['public/*.*', 'build/*.*', 'dist/*.*'],
+  ignoreFiles: ['dist/**/*', 'node_modules/**/*'],
 };

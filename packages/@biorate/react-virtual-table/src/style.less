@@ -5,23 +5,23 @@
 @pagination-hover-color: #1890ff;
 
 @{classname} {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.65);
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 
   &__header,
   &__footer {
+    z-index: 1;
     width: 100%;
     background: #fafafa;
-    z-index: 1;
 
     > @{classname}__row {
       > @{classname}__left,
@@ -47,9 +47,9 @@
   &__left {
     position: absolute;
     left: 0;
+    z-index: 1;
     display: flex;
     background: #fff;
-    z-index: 1;
 
     &.hover {
       background: #e6f7ff;
@@ -59,9 +59,9 @@
   &__right {
     position: absolute;
     right: 0;
+    z-index: 1;
     display: flex;
     background: #fff;
-    z-index: 1;
 
     &.hover {
       background: #e6f7ff;
@@ -78,15 +78,15 @@
 
   &__row {
     display: flex;
-    border-style: solid;
     border-color: @border-color;
+    border-style: solid;
   }
 
   &__col {
-    border-style: solid;
-    border-color: @border-color;
-    text-align: center;
     line-height: 40px;
+    text-align: center;
+    border-color: @border-color;
+    border-style: solid;
   }
 
   &__pagination {
@@ -94,33 +94,33 @@
   }
 
   &__pagination-ul {
+    float: right;
     //user-select: none;
     margin: 5px 0;
     padding: 0;
-    float: right;
   }
 
   &__pagination-li {
-    user-select: none;
     display: inline-block;
-    padding: 5px 10px;
     margin: 0 2px;
-    cursor: pointer;
+    padding: 5px 10px;
     text-align: center;
+    cursor: pointer;
+    user-select: none;
     //min-width: 15px;
 
     &.border {
       border: 1px solid @border-color;
 
       &:hover {
-        border: 1px solid @pagination-hover-color;
         color: @pagination-hover-color;
+        border: 1px solid @pagination-hover-color;
       }
     }
 
     &.selected {
-      border: 1px solid @pagination-hover-color;
       color: @pagination-hover-color;
+      border: 1px solid @pagination-hover-color;
       cursor: default;
     }
 
@@ -129,8 +129,8 @@
       cursor: not-allowed;
 
       &:hover {
-        border: 1px solid @border-color;
         color: gray;
+        border: 1px solid @border-color;
       }
     }
   }

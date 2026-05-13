@@ -26,6 +26,8 @@
     "format:fix": "prettier --write src",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "stylelint": "stylelint \"src/**/*.less\" \"src/**/*.css\"",
+    "stylelint:fix": "stylelint \"src/**/*.less\" \"src/**/*.css\" --fix",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
