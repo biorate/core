@@ -1,6 +1,6 @@
 {
   "name": "@biorate/bit-array",
-  "version": "1.105.0",
+  "version": "2.0.0",
   "description": "Bit array class",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

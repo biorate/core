@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/biorate/core/compare/@biorate/nestjs-tools@1.169.3...@biorate/nestjs-tools@2.0.0) (2026-05-14)
+
+### Bug Fixes
+
+- lint ([f5e1ccd](https://github.com/biorate/core/commit/f5e1ccdcbf5a64a15de901c3e0077ff23643c4b5))
+
+- feat!: ESLint added with auto-fix for all packages ([d17b810](https://github.com/biorate/core/commit/d17b81046ef6b4be217b01ef059a5a828e590fac))
+
+### Features
+
+- esm/cjs build ([9119647](https://github.com/biorate/core/commit/9119647796041c2030cbc3c8edb612159d364825))
+- esm/cjs build ([4072a50](https://github.com/biorate/core/commit/4072a50de28e322b94b979716080bfad00e8f76d))
+- esm/cjs build ([7f72276](https://github.com/biorate/core/commit/7f72276f7a69b3632a6a8ad8ff9becc976295a54))
+- esm/cjs build ([5cbf41b](https://github.com/biorate/core/commit/5cbf41b6861669dfac9a167b050aa14a35866e40))
+- esm/cjs build ([9e020ee](https://github.com/biorate/core/commit/9e020ee5cd52c107308bcb48d1b48f90dd5437d6))
+- prettier format added ([c8a9562](https://github.com/biorate/core/commit/c8a9562fc853347807b3a8b60cfe993627f000d0))
+
+### BREAKING CHANGES
+
+- Added ESLint configuration and scripts to all packages. The module export format changed and tarballs optimized.
+
+* Added .eslintignore to exclude dist/, node_modules/, test files
+* Added lint and lint:fix scripts to all 54 packages
+* Added lint and lint:fix commands to root package.json
+* Fixed auto-fixable ESLint issues across all packages
+* Updated lerna.json for lint workflow
+
 ## [1.169.3](https://github.com/biorate/core/compare/@biorate/nestjs-tools@1.169.2...@biorate/nestjs-tools@1.169.3) (2026-05-04)
 
 **Note:** Version bump only for package @biorate/nestjs-tools

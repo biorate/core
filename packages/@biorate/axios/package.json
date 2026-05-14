@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios",
-  "version": "2.2.3",
+  "version": "3.0.0",
   "description": "Axios OOP static interface",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/symbolic",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Symbols factory",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

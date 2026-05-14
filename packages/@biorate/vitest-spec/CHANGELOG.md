@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.7.1...@biorate/vitest-spec@2.0.0) (2026-05-14)
+
+### Bug Fixes
+
+- **vitest-spec:** build scripts fix ([8e5c02f](https://github.com/biorate/core/commit/8e5c02fea5d8471d41583afc25ecf2ab8cf39abd))
+- **vitest-spec:** build scripts fix ([851fd5e](https://github.com/biorate/core/commit/851fd5e7993bb2147f5d52af7d9d78ffe8b30f6f))
+- **vitest-spec:** build scripts fix ([9288bde](https://github.com/biorate/core/commit/9288bdea39bc36adc5a8b281f3e836ceb29aaba7))
+
+- feat!: ESLint added with auto-fix for all packages ([d17b810](https://github.com/biorate/core/commit/d17b81046ef6b4be217b01ef059a5a828e590fac))
+
+### Features
+
+- esm/cjs build ([8d6ba60](https://github.com/biorate/core/commit/8d6ba6036f044928cc369afc86b0d3b365896828))
+- esm/cjs build ([9119647](https://github.com/biorate/core/commit/9119647796041c2030cbc3c8edb612159d364825))
+- esm/cjs build ([4072a50](https://github.com/biorate/core/commit/4072a50de28e322b94b979716080bfad00e8f76d))
+- prettier format added ([c8a9562](https://github.com/biorate/core/commit/c8a9562fc853347807b3a8b60cfe993627f000d0))
+
+### BREAKING CHANGES
+
+- Added ESLint configuration and scripts to all packages. The module export format changed and tarballs optimized.
+
+* Added .eslintignore to exclude dist/, node_modules/, test files
+* Added lint and lint:fix scripts to all 54 packages
+* Added lint and lint:fix commands to root package.json
+* Fixed auto-fixable ESLint issues across all packages
+* Updated lerna.json for lint workflow
+
 ## [1.7.1](https://github.com/biorate/core/compare/@biorate/vitest-spec@1.7.0...@biorate/vitest-spec@1.7.1) (2026-05-05)
 
 **Note:** Version bump only for package @biorate/vitest-spec

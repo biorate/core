@@ -1,6 +1,6 @@
 {
   "name": "@biorate/connector",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "Connector interface",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

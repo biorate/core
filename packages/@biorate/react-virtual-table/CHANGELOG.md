@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/biorate/core/compare/@biorate/react-virtual-table@2.0.2...@biorate/react-virtual-table@3.0.0) (2026-05-14)
+
+- feat!: ESLint added with auto-fix for all packages ([d17b810](https://github.com/biorate/core/commit/d17b81046ef6b4be217b01ef059a5a828e590fac))
+
+### Features
+
+- AGENTS.md ([100f905](https://github.com/biorate/core/commit/100f9053f50dcda60cccfc629fcfecbf092442a0))
+- prettier format added ([c8a9562](https://github.com/biorate/core/commit/c8a9562fc853347807b3a8b60cfe993627f000d0))
+- stylelint format added ([492bcfc](https://github.com/biorate/core/commit/492bcfc63e98088637f93b62a288d2fbdf9c3689))
+
+### BREAKING CHANGES
+
+- Added ESLint configuration and scripts to all packages. The module export format changed and tarballs optimized.
+
+* Added .eslintignore to exclude dist/, node_modules/, test files
+* Added lint and lint:fix scripts to all 54 packages
+* Added lint and lint:fix commands to root package.json
+* Fixed auto-fixable ESLint issues across all packages
+* Updated lerna.json for lint workflow
+
 ## [2.0.2](https://github.com/biorate/core/compare/@biorate/react-virtual-table@2.0.1...@biorate/react-virtual-table@2.0.2) (2026-04-20)
 
 **Note:** Version bump only for package @biorate/react-virtual-table

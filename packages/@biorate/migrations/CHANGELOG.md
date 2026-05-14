@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/biorate/core/compare/@biorate/migrations@1.165.14...@biorate/migrations@2.0.0) (2026-05-14)
+
+- feat!: ESLint added with auto-fix for all packages ([d17b810](https://github.com/biorate/core/commit/d17b81046ef6b4be217b01ef059a5a828e590fac))
+
+### Features
+
+- esm/cjs build ([8d6ba60](https://github.com/biorate/core/commit/8d6ba6036f044928cc369afc86b0d3b365896828))
+- esm/cjs build ([d760df7](https://github.com/biorate/core/commit/d760df756ad80b2d780a315c661481769b328f51))
+- esm/cjs build ([5acb76e](https://github.com/biorate/core/commit/5acb76ee1fd906d234c8ffbc9fd94f0864145c66))
+- esm/cjs build ([941b5ec](https://github.com/biorate/core/commit/941b5ecb4aa4c1197e39f4136a93eb2f31327a04))
+- esm/cjs build ([9119647](https://github.com/biorate/core/commit/9119647796041c2030cbc3c8edb612159d364825))
+- esm/cjs build ([4072a50](https://github.com/biorate/core/commit/4072a50de28e322b94b979716080bfad00e8f76d))
+- esm/cjs build ([7f72276](https://github.com/biorate/core/commit/7f72276f7a69b3632a6a8ad8ff9becc976295a54))
+- esm/cjs build ([9e020ee](https://github.com/biorate/core/commit/9e020ee5cd52c107308bcb48d1b48f90dd5437d6))
+- prettier format added ([c8a9562](https://github.com/biorate/core/commit/c8a9562fc853347807b3a8b60cfe993627f000d0))
+
+### BREAKING CHANGES
+
+- Added ESLint configuration and scripts to all packages. The module export format changed and tarballs optimized.
+
+* Added .eslintignore to exclude dist/, node_modules/, test files
+* Added lint and lint:fix scripts to all 54 packages
+* Added lint and lint:fix commands to root package.json
+* Fixed auto-fixable ESLint issues across all packages
+* Updated lerna.json for lint workflow
+
 ## [1.165.14](https://github.com/biorate/core/compare/@biorate/migrations@1.165.13...@biorate/migrations@1.165.14) (2026-05-04)
 
 **Note:** Version bump only for package @biorate/migrations
