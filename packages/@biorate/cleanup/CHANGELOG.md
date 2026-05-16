@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/biorate/core/compare/@biorate/cleanup@2.0.0...@biorate/cleanup@2.1.0) (2026-05-16)
+
+### Features
+
+- **cleanup:** bin fixed ([7e8fe24](https://github.com/biorate/core/commit/7e8fe245c23360a7f32f9afdbb84d10a72d21354))
+
 # [2.0.0](https://github.com/biorate/core/compare/@biorate/cleanup@1.172.0...@biorate/cleanup@2.0.0) (2026-05-14)
 
 - feat!: ESLint added with auto-fix for all packages ([d17b810](https://github.com/biorate/core/commit/d17b81046ef6b4be217b01ef059a5a828e590fac))

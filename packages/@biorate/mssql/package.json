@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mssql",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Mssql raw connector",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

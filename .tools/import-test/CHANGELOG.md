@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/biorate/core/compare/@biorate-tools/import-test@1.0.0...@biorate-tools/import-test@1.0.1) (2026-05-16)
+
+**Note:** Version bump only for package @biorate-tools/import-test
+
 # 1.0.0 (2026-05-14)
 
 - feat!: export format changed and tarballs optimized ([5c70602](https://github.com/biorate/core/commit/5c706025fa9dadf40e73513b4aeb27d6b62e3ba5))
