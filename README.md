@@ -54,6 +54,7 @@
 - [masquerade](https://biorate.github.io/core/modules/masquerade.html)
 - [cleanup](https://biorate.github.io/core/modules/cleanup.html)
 - [vitest](https://biorate.github.io/core/modules/vitest.html)
+- [vitest-spec](https://biorate.github.io/core/modules/vitest_spec.html)
 
 ### Learn
 

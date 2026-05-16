@@ -4,9 +4,22 @@ import { validate as val } from 'class-validator';
 import { ValidationError, ValidationSchemaWrongTypeError } from './errors.js';
 import { IValidatorOptions } from './interfaces.js';
 
+/**
+ * @description
+ * Validates data against class-validator schemas or custom validator functions.
+ *
+ * Supports two modes:
+ * - **Schema mode**: accepts a class constructor decorated with class-validator decorators.
+ * - **Function mode**: accepts a predicate `(data) => boolean`.
+ *
+ * Used internally by the `Spec.validate()` method and the standalone `validate()` helper.
+ */
 export class Validator {
   protected static instance: Validator;
 
+  /**
+   * @description Validate data using a shared singleton instance.
+   */
   public static validate(options: IValidatorOptions) {
     if (!this.instance) this.instance = new this();
     return this.instance.validate(options);
@@ -14,6 +27,11 @@ export class Validator {
 
   protected constructor() {}
 
+  /**
+   * @description
+   * Run validation. Automatically detects whether the schema is a class (constructor)
+   * or a plain function and dispatches accordingly.
+   */
   public validate(options: IValidatorOptions) {
     const type = typeof options.schema;
     if (type !== 'function') throw new ValidationSchemaWrongTypeError(type);
@@ -24,6 +42,9 @@ export class Validator {
       : this.validateByFunction(data, options);
   }
 
+  /**
+   * @description Validate data using a class-validator decorated class.
+   */
   protected async validateBySchema(data: any, options: IValidatorOptions) {
     const schemas: any[] = [];
     if (!options.array) schemas.push(merge(new options.schema(), data));
@@ -40,6 +61,9 @@ export class Validator {
     return options.data;
   }
 
+  /**
+   * @description Validate data using a predicate function.
+   */
   protected async validateByFunction(data: any, options: IValidatorOptions) {
     const results: any[] = [];
     if (!options.array) results.push([options.schema(data), data]);

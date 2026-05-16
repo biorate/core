@@ -1,5 +1,8 @@
 import type { ValidatorOptions } from 'class-validator';
 
+/**
+ * @description Options for unit-testing a method on a context object with snapshot support.
+ */
 export type IUnitOptions = {
   context: any;
   method: string;
@@ -14,6 +17,9 @@ export type IUnitOptions = {
   catch?: (e: Error) => boolean;
 };
 
+/**
+ * @description Options for data validation using class-validator schemas or validator functions.
+ */
 export type IValidatorOptions = {
   schema: any;
   data?: any;

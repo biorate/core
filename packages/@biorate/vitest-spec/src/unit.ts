@@ -9,6 +9,15 @@ import { VitestSnapshotError } from './errors.js';
 const vitest = globalThis as any;
 const getExpect = () => vitest.expect;
 
+/**
+ * @description
+ * Helper class for automated unit-testing of isolated method calls with
+ * argument file storage, snapshot matching, and error handling.
+ *
+ * Reads method arguments from the filesystem (JSON or TS) on first run,
+ * then executes the method and runs snapshot assertions on args, return value,
+ * and context state.
+ */
 export class Unit {
   private static defaultExt = 'json';
 
@@ -67,6 +76,11 @@ export class Unit {
 
   public constructor(protected testDir: string) {}
 
+  /**
+   * @description
+   * Run the unit test for the given options: load arguments, execute the method,
+   * and run snapshot matches on args, context, and return value.
+   */
   public async process(options: IUnitOptions) {
     let result: unknown;
     const { context, method, expects } = options;
