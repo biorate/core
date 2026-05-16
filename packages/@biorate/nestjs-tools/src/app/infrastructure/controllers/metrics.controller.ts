@@ -2,6 +2,9 @@ import { Controller, Get, Header } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetMetricsUseCase } from '../../application';
 
+/**
+ * @description Prometheus metrics endpoint controller.
+ */
 @ApiTags('Metrics')
 @Controller('metrics')
 export class MetricsController {

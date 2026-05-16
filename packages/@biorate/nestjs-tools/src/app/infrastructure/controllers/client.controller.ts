@@ -3,6 +3,9 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetLocaleUseCase, SetLocaleUseCase } from '../../application';
 import { GetLocalesDTO, PostLocalesDTO } from './dto';
 
+/**
+ * @description Client locale management controller.
+ */
 @ApiTags('Client')
 @Controller('client')
 export class ClientController {

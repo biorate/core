@@ -10,6 +10,16 @@ import { time } from '@biorate/tools';
 import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 
+/**
+ * @description
+ * Middleware that creates an HTTP proxy with Prometheus metrics (counters and histograms)
+ * for proxied requests. Tracks method, URI, and status code per request.
+ *
+ * @example
+ * ```ts
+ * consumer.apply(ProxyPrometheusMiddleware.create({ target: 'http://upstream' }));
+ * ```
+ */
 @Injectable()
 export class ProxyPrometheusMiddleware {
   @inject(Types.Config) private config: IConfig;

@@ -5,6 +5,7 @@ import { merge } from 'lodash';
 
 let validateEnabled = true;
 
+/** @description Validates an object using class-validator synchronously. Throws CommonFactoryValidationError if constraints are violated. */
 export const validate = (object: any) => {
   if (!validateEnabled) return;
   const validations = validateSync(object);
@@ -15,6 +16,7 @@ export const validate = (object: any) => {
     throw new CommonFactoryValidationError(object.constructor.name, errors);
 };
 
+/** @description Executes a callback with validation temporarily disabled. Re-enables validation after completion. */
 export const transaction = <T>(callback: () => T) => {
   try {
     validateEnabled = false;
@@ -24,6 +26,7 @@ export const transaction = <T>(callback: () => T) => {
   }
 };
 
+/** @description Merges plain data into a class instance using class-transformer, applies custom transforms, and validates the result. */
 export const auto = <T>(ctx: any, data: T) => {
   if (!data) return;
   merge(ctx, plainToInstance(ctx.constructor, data, { enableImplicitConversion: true }));

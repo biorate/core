@@ -2,6 +2,18 @@ import { container, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { CorsBadOriginError } from './errors';
 
+/**
+ * @description
+ * CORS origin validation handler. In non-debug environments, the origin must match
+ * the `ALLOWED_ORIGIN` config regexp (defaults to the package name without `-server`).
+ *
+ * @example
+ * ```ts
+ * import { corsOriginHandler } from '@biorate/nestjs-tools';
+ *
+ * app.enableCors({ origin: corsOriginHandler });
+ * ```
+ */
 export function corsOriginHandler(
   origin: string,
   callback: (error: null | Error, origin: string) => void,

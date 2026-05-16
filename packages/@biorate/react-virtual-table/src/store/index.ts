@@ -4,6 +4,11 @@ import { Bounds } from './bounds';
 import { Cols } from './cols';
 import { Pagination } from './pagination';
 
+/**
+ * @description
+ * Root MobX store for the virtual table. Manages column definitions, rows, scroll position,
+ * pagination, and computed layout values (gap, visible rows, scroll indicators).
+ */
 export class Store extends Base implements IReactVirtualTable.Store {
   @embed(Bounds) public bounds: Bounds = null;
   @embed(Cols) public cols: Cols = null;

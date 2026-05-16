@@ -1,5 +1,6 @@
 import { requireCjs } from '@/require';
 
+/** @description Migrations runner and type definitions. */
 export * from './root';
 export * from './types/migration';
 export * from './types';

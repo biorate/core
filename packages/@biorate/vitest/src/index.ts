@@ -1,3 +1,4 @@
+/** @description Barrel module re-exporting vitest and allure integration */
 export * from 'allure-js-commons'; // Backward capability
 export * as allure from 'allure-js-commons';
 export * from './interfaces';

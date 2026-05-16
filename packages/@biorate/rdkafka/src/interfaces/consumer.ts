@@ -10,12 +10,17 @@ import type {
   Message,
 } from '@confluentinc/kafka-javascript';
 
+/**
+ * @description Configuration for the RDKafka consumer.
+ */
 export type IRDKafkaConsumerConfig = IConnectorConfig & {
   global: ConsumerGlobalConfig;
   topic: ConsumerTopicConfig;
 };
 
-// noinspection JSAnnotator
+/**
+ * @description Consumer connection interface with promisified methods.
+ */
 export interface IRDKafkaConsumerConnection extends KafkaConsumer {
   consumePromise(number: number): Promise<Message[]>;
   connectPromise(metadataOptions?: MetadataOptions): Promise<this>;
@@ -27,6 +32,9 @@ export interface IRDKafkaConsumerConnection extends KafkaConsumer {
   ): Promise<void>;
 }
 
+/**
+ * @description Consumer connector type.
+ */
 export type IRDKafkaConsumerConnector = IConnector<
   IRDKafkaConsumerConfig,
   IRDKafkaConsumerConnection

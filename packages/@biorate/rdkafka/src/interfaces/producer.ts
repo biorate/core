@@ -8,13 +8,18 @@ import type {
   ProducerGlobalConfig,
 } from '@confluentinc/kafka-javascript';
 
+/**
+ * @description Configuration for the RDKafka producer.
+ */
 export type IRDKafkaProducerConfig = IConnectorConfig & {
   global: ProducerGlobalConfig;
   topic?: ProducerTopicConfig;
   pollInterval?: number;
 };
 
-// noinspection JSAnnotator
+/**
+ * @description Producer connection interface with promisified methods.
+ */
 export interface IRDKafkaProducerConnection extends Producer {
   connectPromise(metadataOptions?: MetadataOptions): Promise<this>;
   initTransactionsPromise(timeout?: number): Promise<void>;
@@ -28,6 +33,9 @@ export interface IRDKafkaProducerConnection extends Producer {
   ): Promise<void>;
 }
 
+/**
+ * @description Producer connector type.
+ */
 export type IRDKafkaProducerConnector = IConnector<
   IRDKafkaProducerConfig,
   IRDKafkaProducerConnection

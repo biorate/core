@@ -1,6 +1,9 @@
 import { CommonMask } from './common-mask';
 import type { IPhoneMaskOptions } from '../interfaces';
 
+/**
+ * @description Masks phone numbers in text, preserving the last N digits (configurable).
+ */
 export class PhoneMask extends CommonMask {
   protected options?: IPhoneMaskOptions;
 

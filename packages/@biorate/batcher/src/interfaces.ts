@@ -1,11 +1,14 @@
+/** @description Task metadata type. */
 export type IMetadata = Record<string | symbol, unknown>;
 
+/** @description Task representation. */
 export type ITask<M = IMetadata> = {
   resolve: (value?: unknown) => void;
   reject: (reason?: unknown) => void;
   metadata?: M;
 };
 
+/** @description Batcher interface for grouping tasks. */
 export interface IBatcher<O = unknown, M = IMetadata> {
   register(callback: (tasks: [O, ITask<M>][]) => void | Promise<void>): void;
 

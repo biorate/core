@@ -1,3 +1,9 @@
+/**
+ * Allure decorators core module.
+ * Provides step, attachment, issue, feature, story, severity, tag, owner,
+ * epic, description, label decorators and runtime utilities (decorate, assignTmsUrl, assignPmsUrl).
+ */
+
 import { Allure, ContentType, Severity } from 'allure-js-commons';
 import { processDescriptor } from './descriptor';
 

@@ -2,6 +2,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Types } from '@biorate/inversion';
 import { ClientDrivenPort } from '../../ports';
 
+/**
+ * @description Use case for retrieving locale data.
+ */
 @Injectable()
 export class GetLocaleUseCase {
   @Inject(Types.ClientDrivenPort)

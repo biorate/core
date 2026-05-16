@@ -4,6 +4,9 @@ import { Injectable } from '@nestjs/common';
 import { path } from '@biorate/tools';
 import { ClientDrivenPort } from '../../application';
 
+/**
+ * @description Adapter that reads and writes locale JSON files from the filesystem.
+ */
 @Injectable()
 export class ClientRepositoryAdapter implements ClientDrivenPort {
   public getLang(lang: string, namespace: string) {

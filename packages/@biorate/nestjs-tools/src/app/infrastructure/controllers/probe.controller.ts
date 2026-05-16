@@ -1,6 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+/**
+ * @description Health check probe controller for Kubernetes readiness and healthz probes.
+ */
 @ApiTags('Probe')
 @Controller('probe')
 export class ProbeController {

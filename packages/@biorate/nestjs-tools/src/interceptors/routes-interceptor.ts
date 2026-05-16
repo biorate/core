@@ -9,6 +9,11 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 
+/**
+ * @description
+ * Interceptor that resolves the full route path from controller and handler metadata.
+ * Stores the resolved path in a WeakMap keyed by the request object, for use by middlewares.
+ */
 @Injectable()
 export class RoutesInterceptor implements NestInterceptor {
   public static readonly map: WeakMap<Request, { path: string }> = new WeakMap<

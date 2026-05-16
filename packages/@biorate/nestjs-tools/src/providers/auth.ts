@@ -7,6 +7,11 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 
+/**
+ * @description
+ * Guard that validates HTTP Basic Authentication against `app.auth.basic` config.
+ * The config should be a map of `username -> password`. If no config is set, access is granted.
+ */
 @Injectable()
 export class AuthGuardProvider implements CanActivate {
   @inject(Types.Config) private config: IConfig;

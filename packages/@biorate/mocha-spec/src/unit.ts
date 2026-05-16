@@ -5,6 +5,11 @@ import { get, invoke } from 'lodash';
 import { IUnitOptions } from './interfaces';
 import { MochaChaiJestSnapshotError } from './errors';
 
+/**
+ * @description
+ * Helper class for automated unit-testing of isolated method calls with
+ * argument file storage, snapshot matching, and error handling.
+ */
 export class Unit {
   private static defaultExt = 'json';
 
@@ -60,6 +65,11 @@ export class Unit {
 
   public constructor(protected testDir: string) {}
 
+  /**
+   * @description
+   * Run the unit test for the given options: load arguments, execute the method,
+   * and run snapshot matches on args, context, and return value.
+   */
   public async process(options: IUnitOptions) {
     let result: unknown;
     const { context, method, expects } = options;

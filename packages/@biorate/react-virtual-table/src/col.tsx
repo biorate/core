@@ -4,6 +4,9 @@ import { Store } from './store';
 import { Component } from './component';
 import { IReactVirtualTable } from '../interfaces';
 
+/**
+ * @description Renders a single column cell with proper border and width.
+ */
 @observer
 export class Col extends Component {
   public props: {

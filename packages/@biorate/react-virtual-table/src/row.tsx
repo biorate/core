@@ -5,6 +5,10 @@ import { Store } from './store';
 import { Component } from './component';
 import { Col } from './col';
 
+/**
+ * @description Renders a single row with left, center, and right column sections.
+ * Supports fixed columns on the left/right with shadow indicators.
+ */
 @observer
 export class Row extends Component {
   #transform = (x = 0, y = 0) => {

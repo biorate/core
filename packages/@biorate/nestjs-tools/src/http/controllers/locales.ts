@@ -5,6 +5,10 @@ import { promises as fs, readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { merge } from 'lodash';
 import { GetLocalesDTO, PostLocalesDTO } from '../dto';
 
+/**
+ * @description Deprecated locales controller. Use domain controller instead.
+ * @deprecated Use domain controller instead [@biorate/nestjs-tools >= v1.121.0]
+ */
 @ApiTags('Locales')
 @Controller('locales')
 export class LocalesController {

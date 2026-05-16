@@ -1,6 +1,9 @@
 import { Base, embed, observable, action, computed } from './base';
 import { IReactVirtualTable } from '../../interfaces';
 
+/**
+ * @description Store for column definitions. Splits columns into left-fixed, center, and right-fixed groups.
+ */
 export class Cols extends Base<IReactVirtualTable.Store> {
   @observable() @embed(Cols.Array) public _center: IReactVirtualTable.Columns = [];
   @observable() @embed(Cols.Array) public left: IReactVirtualTable.Columns = [];

@@ -1,5 +1,6 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
 
+/** @description HAProxy connection interface with methods for lifecycle, configuration, and status management. */
 export type IHaproxyConnection = {
   start(): Promise<boolean>;
   stop(all?: boolean): Promise<boolean>;
@@ -23,6 +24,7 @@ export type IHaproxyConnection = {
   stat(...args: string[]): Promise<Record<string, string>[]>;
 };
 
+/** @description Configuration interface for HAProxy connector. */
 export interface IHaproxyConfig extends IConnectorConfig {
   config: {
     [key: string]:
@@ -39,4 +41,5 @@ export interface IHaproxyConfig extends IConnectorConfig {
   debug?: boolean;
 }
 
+/** @description HAProxy connector type. */
 export type IHaproxyConnector = IConnector<IHaproxyConfig, IHaproxyConnection>;

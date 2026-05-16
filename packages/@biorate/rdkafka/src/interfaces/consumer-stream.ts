@@ -8,6 +8,9 @@ import type {
   ConsumerStream,
 } from '@confluentinc/kafka-javascript';
 
+/**
+ * @description Configuration for the RDKafka consumer stream.
+ */
 export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
   global: ConsumerGlobalConfig;
   topic: ConsumerTopicConfig;
@@ -18,14 +21,18 @@ export type IRDKafkaConsumerStreamConfig = IConnectorConfig & {
   delay?: number;
 };
 
+/**
+ * @description Consumer stream connection interface.
+ */
 export interface IRDKafkaConsumerStreamConnection extends EventEmitter {
   stream: ConsumerStream;
-
   subscribe(handler: (message: Message | Message[]) => Promise<void> | void): void;
-
   unsubscribe(): Promise<void>;
 }
 
+/**
+ * @description Consumer stream connector type.
+ */
 export type IRDKafkaConsumerStreamConnector = IConnector<
   IRDKafkaConsumerStreamConfig,
   IRDKafkaConsumerStreamConnection

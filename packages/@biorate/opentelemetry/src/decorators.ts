@@ -5,12 +5,14 @@ import { copyMetadata } from './utils';
 
 const key = Symbol('tracer');
 
+/** @description Class decorator that assigns an OpenTelemetry tracer to a class via metadata. */
 export const scope = (version?: string, name?: string) => (Class: any) => {
   const tracer = trace.getTracer(name ?? Class.name, version);
   Reflect.defineMetadata(key, tracer, Class);
   return Class;
 };
 
+/** @description Method decorator that wraps a method in an OpenTelemetry span with attributes for class, method, arguments, and result. */
 export const span =
   (props?: { name?: string; spanKind?: string }) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {

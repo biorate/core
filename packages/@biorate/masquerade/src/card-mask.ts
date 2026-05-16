@@ -1,6 +1,9 @@
 import { CommonMask } from './common-mask';
 import type { ICardMaskOptions } from '../interfaces';
 
+/**
+ * @description Masks bank card numbers in text, preserving first N and last M digits.
+ */
 export class CardMask extends CommonMask {
   protected options?: ICardMaskOptions;
 

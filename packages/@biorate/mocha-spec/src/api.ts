@@ -18,6 +18,10 @@ const use =
 const response = (log: (status: number, body: string) => unknown) => (res: Response) =>
   log(res.status, res.text);
 
+/**
+ * @description
+ * Proxies a supertest instance to inject request/response logging via `logReq` and `logRes` callbacks.
+ */
 export const api = (
   request: SuperTest<Test>,
   logReq: (method: string, url: string, data: string) => unknown,
@@ -34,11 +38,33 @@ export const api = (
     },
   });
 
+/**
+ * @description
+ * Creates a validation middleware that validates response data against a class-validator schema
+ * or a custom validation function.
+ *
+ * @example
+ * ```ts
+ * const res = await request.get('/users');
+ * validate(UsersResponse)(res);
+ * ```
+ */
 export const validate =
   <T = Response>(schema: any, options?: Omit<IValidatorOptions, 'data' | 'schema'>) =>
   (data: any): Promise<T> =>
     Validator.validate({ data, schema, field: 'body', ...options });
 
+/**
+ * @description
+ * Creates a middleware that asserts a specific field of the response matches the expected data
+ * (deep equality via chai).
+ *
+ * @example
+ * ```ts
+ * const res = await request.get('/users');
+ * exactly({ id: 1, name: 'Alice' })(res);
+ * ```
+ */
 export const exactly =
   <T = Response>(data: any, field = 'body') =>
   (result: any): T => {

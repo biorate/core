@@ -19,6 +19,7 @@ import {
 import { EmitterEmitter } from './event-emitter';
 import * as Migrations from './types';
 
+/** @description Root migration class that bootstraps all infrastructure connectors and initialises the migration pipeline. */
 @injectable()
 export class Root extends Core(EmitterEmitter) {
   @inject(Types.Config) public readonly config: IConfig;

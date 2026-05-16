@@ -1,3 +1,9 @@
+/**
+ * Processes a property descriptor for an Allure decorator.
+ * Wraps the original method with allure lifecycle calls and copies
+ * original method properties through an optional filter.
+ */
+
 export const processDescriptor = <T>(
   parameterFn: string | ((arg: T) => string),
   reporterFn: (arg: string) => void,

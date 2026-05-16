@@ -3,6 +3,9 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { Component } from './component';
 
+/**
+ * @description Renders the pagination controls (first, prev, page buttons, next, last).
+ */
 @observer
 export class Pagination extends Component {
   public render() {

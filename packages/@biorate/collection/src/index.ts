@@ -1,3 +1,6 @@
+/**
+ * @description Collection barrel file.
+ */
 export * from './list';
 export * from './item';
 export * from './observable.list';

@@ -2,6 +2,11 @@ import { allure as pwAllure } from 'allure-playwright';
 // @ts-ignore
 import { setGlobalTestRuntime } from 'allure-js-commons/sdk/runtime';
 
+/**
+ * @description
+ * Sets up the global Allure runtime for Playwright so that `allure-js-commons` API
+ * works correctly inside the Playwright test runner.
+ */
 setGlobalTestRuntime({
   attachment: (name: string, content: Buffer | string, options: any) =>
     pwAllure.attachment(name, content, options),

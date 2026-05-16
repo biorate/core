@@ -5,6 +5,10 @@ import { Store } from './store';
 import { IReactVirtualTable } from '../interfaces';
 import { Row } from './row';
 
+/**
+ * @description Renders the scrollable table body with virtualized rows.
+ * Only the visible rows (based on scroll position) are rendered.
+ */
 @observer
 export class Content extends Component {
   public props: {

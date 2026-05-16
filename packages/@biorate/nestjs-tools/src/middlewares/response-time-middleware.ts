@@ -8,6 +8,11 @@ import { Request, Response, NextFunction } from 'express';
 import { time } from '@biorate/tools';
 import { RoutesInterceptor } from '../interceptors';
 
+/**
+ * @description
+ * Middleware that measures HTTP response times and exposes them as a Prometheus histogram.
+ * Also sets the `x-response-time` response header.
+ */
 @Injectable()
 export class ResponseTimeMiddleware implements NestMiddleware {
   @inject(Types.Config) private config: IConfig;

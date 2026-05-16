@@ -1,3 +1,4 @@
+/** @description Enumeration of shutdown hook trigger reasons */
 export enum Reasons {
   UNCAUGHT_EXCEPTION = 'UNCAUGHT_EXCEPTION',
   UNHANDLED_REJECTION = 'UNHANDLED_REJECTION',
@@ -7,4 +8,5 @@ export enum Reasons {
   SIGTERM = 'SIGTERM',
 }
 
+/** @description Shutdown hook callback function type */
 export type IHook = (reason?: Reasons) => unknown | Promise<unknown>;

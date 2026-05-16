@@ -25,11 +25,13 @@ if (!globalThisLink[Metadata.InversifyContainer]) {
   };
 } else console.warn(`Warning! Multi version packages [@biorate/inversion] included!`);
 
+/** @description Global InversifyJS DI container (singleton). */
 export const container = globalThisLink[Metadata.InversifyContainer].container;
 
 const { lazyInject, lazyInjectNamed, lazyInjectTagged, lazyMultiInject } =
   globalThisLink[Metadata.InversifyContainer];
 
+/** @description Lazy-inject a service. Throws if service is undefined. */
 export function inject(service: IService) {
   if (!service) throw new InversionInjectionIsUndefinedError();
   return lazyInject(service);
@@ -52,6 +54,7 @@ inject.tagged = (service: IService, name: string, value: any) => {
   tagged(name, value);
 };
 
+/** @description Decorator factory that marks a class as injectable and stores metadata. */
 export function injectable() {
   return (constructor: Record<any, any>) => {
     Reflect.defineMetadata(Metadata.Module, true, constructor);
@@ -59,6 +62,7 @@ export function injectable() {
   };
 }
 
+/** @description Add arbitrary metadata to a constructor. */
 export function addMetadata(
   key: string | symbol,
   value: any,

@@ -1,3 +1,4 @@
+/** @description Default configuration for migrations. */
 import { container } from '@biorate/inversion';
 import { Root } from './root';
 

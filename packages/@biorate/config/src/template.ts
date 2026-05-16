@@ -2,7 +2,13 @@ import { Config } from './config';
 import { RegExpExt } from './reg-exp-ext';
 import { IResult } from '../interfaces';
 
+/**
+ * @description Template utilities for resolving config value patterns (string, link, regexp, function, empty)
+ * */
 export class Template {
+  /**
+   * @description Resolves @{...} and ${...} template placeholders in strings using config values
+   * */
   public static string<T = unknown>(
     this: Config,
     value: string,
@@ -20,6 +26,9 @@ export class Template {
         );
   }
 
+  /**
+   * @description Resolves #{...} link patterns — replaces value entirely by the linked config path
+   * */
   public static link<T = unknown>(this: Config, value: string, result: IResult, def?: T) {
     if (!Config.Template.link) return;
     let regExp = /^#{([^}{]+)+?}$/g;
@@ -27,6 +36,9 @@ export class Template {
     if (match) result.value = this.get<T>(match, def);
   }
 
+  /**
+   * @description Resolves R{/pattern/flags} patterns — deserializes RegExpExt from config string
+   * */
   public static regexp<T = unknown>(
     this: Config,
     value: string,
@@ -39,6 +51,9 @@ export class Template {
     if (match?.[1]) result.value = new RegExpExt(match?.[1], match?.[2] ?? '');
   }
 
+  /**
+   * @description Resolves F{args => body} patterns — creates a function from config string
+   * */
   public static function<T = unknown>(
     this: Config,
     value: string,
@@ -54,6 +69,9 @@ export class Template {
       );
   }
 
+  /**
+   * @description Resolves !{type} patterns — returns empty values (object, array, void, null, string)
+   * */
   public static empty<T = unknown>(
     this: Config,
     value: string,

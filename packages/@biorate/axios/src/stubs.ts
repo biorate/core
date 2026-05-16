@@ -4,6 +4,7 @@ import { Axios, IStubParam } from './index';
 import { Options } from './options';
 import { FakeResponse } from './fake-response';
 
+/** @description Manages stubbing of the Axios.fetch method for testing. */
 export class Stubs {
   static #cache = new WeakMap<typeof Axios, Stubs>();
 
@@ -22,6 +23,7 @@ export class Stubs {
     );
   };
 
+  /** @description Returns the Stubs singleton for the given Axios class. */
   public static get(Class: typeof Axios) {
     if (!this.#cache.has(Class)) this.#cache.set(Class, new this(Class));
     return this.#cache.get(Class)!;
@@ -33,6 +35,10 @@ export class Stubs {
 
   protected constructor(protected Class: typeof Axios) {}
 
+  /**
+   * @description Replaces Axios.fetch with a stub that returns a FakeResponse.
+   * @param persist - if true, the stub persists across calls; otherwise auto-unstubs after one call.
+   */
   public stub(
     instance: Axios & {
       validateStatus?: (status: number) => boolean;
@@ -60,6 +66,7 @@ export class Stubs {
     };
   }
 
+  /** @description Restores the original Axios.fetch method. */
   public unstub() {
     if (!this.fetch.has(this.Class)) return;
     this.Class.fetch = this.fetch.get(this.Class)!;

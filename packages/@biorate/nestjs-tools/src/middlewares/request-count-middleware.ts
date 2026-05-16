@@ -7,6 +7,11 @@ import { IConfig } from '@biorate/config';
 import { Request, Response, NextFunction } from 'express';
 import { RoutesInterceptor } from '../interceptors';
 
+/**
+ * @description
+ * Middleware that counts HTTP requests by method, route, and status code via Prometheus counter.
+ * Uses the resolved route path from {@link RoutesInterceptor}.
+ */
 @Injectable()
 export class RequestCountMiddleware implements NestMiddleware {
   @inject(Types.Config) private config: IConfig;

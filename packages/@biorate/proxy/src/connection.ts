@@ -6,6 +6,7 @@ import { ProxyConnectionTimeoutError } from './errors';
 import { Ping } from './ping';
 import { IProxyConfig, IClientOption } from './interfaces';
 
+/** @description Manages TCP proxy connections — listens on a local port and forwards traffic to a selected upstream client. */
 export class ProxyConnection {
   public static async create(config: IProxyConfig) {
     const proxy = new this(config);

@@ -1,6 +1,10 @@
 import { Controller, Get, Header } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+/**
+ * @description Deprecated probe controller. Use domain controller instead.
+ * @deprecated Use domain controller instead [@biorate/nestjs-tools >= v1.121.0]
+ */
 @ApiTags('Probe')
 @Controller('probe')
 export class ProbeController {

@@ -1,3 +1,4 @@
+/** @description Barrel module re-exporting tools: errors, import, env, path, object, define, timer, events, buffer, stream, time */
 export * from './errors';
 export * from './import';
 export * as env from './env';

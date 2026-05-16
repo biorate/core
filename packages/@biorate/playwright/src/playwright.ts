@@ -17,6 +17,41 @@ export * from 'playwright';
 export * from '@playwright/test';
 export * as allure from 'allure-js-commons';
 
+/**
+ * @description
+ * Main class that provides OOP decorators for Playwright tests with Allure integration.
+ *
+ * Exposes the following decorators:
+ * - `@suite(name?)` — define a test suite
+ * - `@test(name?)` — define a test method
+ * - `@skip()` — skip a test/suite
+ * - `@only()` — run only this test/suite
+ * - `@slow(...opts)` — mark test as slow
+ * - `@extend(params)` — extend test fixtures
+ * - Allure annotations: `@label`, `@link`, `@id`, `@epic`, `@feature`, `@story`,
+ *   `@allureSuite`, `@parentSuite`, `@subSuite`, `@owner`, `@severity`, `@tag`,
+ *   `@tags`, `@issue`, `@description`
+ *
+ * A singleton instance is created at module level and its decorators are exported directly.
+ *
+ * @example
+ * ```ts
+ * import { suite, test, epic, feature, severity } from '@biorate/playwright';
+ * import { Severity } from 'allure-js-commons';
+ *
+ * @suite('Login')
+ * class LoginTest {
+ *   @epic('Auth')
+ *   @feature('Login')
+ *   @severity(Severity.CRITICAL)
+ *   @test('should login')
+ *   async shouldLogin({ page }: TestArgs) {
+ *     await page.goto('/login');
+ *     // ...
+ *   }
+ * }
+ * ```
+ */
 export class PlayWright {
   public readonly suite;
 
@@ -85,6 +120,9 @@ export class PlayWright {
     this.description = this.#description;
   }
 
+  /**
+   * @description Walk the prototype chain of an instance and register test methods.
+   */
   protected walkProto(instance: any) {
     const methods = new Set();
     this.before(instance);
@@ -142,6 +180,9 @@ export class PlayWright {
     });
   }
 
+  /**
+   * @description Decorator that defines a test suite.
+   */
   #suite = (name?: string) => (Class: any) => {
     const self = this;
     const skip = Reflect.getMetadata(Skip, Class);
@@ -180,136 +221,178 @@ export class PlayWright {
     Reflect.defineMetadata(Allure, allureOptions, target);
   };
 
+  /**
+   * @description Decorator to extend test fixtures with custom values.
+   */
   #extend =
     (params: Record<string, any>) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
       Reflect.defineMetadata(Extends, params, target);
 
+  /**
+   * @description Decorator that marks a method as a test.
+   */
   #test =
     (name?: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
       Reflect.defineMetadata(Test, { name }, target);
 
+  /**
+   * @description Decorator that skips a test or suite.
+   */
   #skip =
     () =>
     (target: any, ...args: any[]) => {
       Reflect.defineMetadata(Skip, true, target);
     };
 
+  /**
+   * @description Decorator that runs only this test or suite.
+   */
   #only =
     () =>
     (target: any, ...args: any[]) =>
       Reflect.defineMetadata(Only, true, target);
 
+  /**
+   * @description Decorator that marks a test as slow.
+   */
   #slow =
     (...opts: any[]) =>
     (target: any, ...args: any[]) =>
       Reflect.defineMetadata(Slow, opts, target);
 
+  /** @description Allure label annotation. */
   #label =
     (name: string, value: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'label', [name, value], true);
     };
 
+  /** @description Allure link annotation. */
   #link =
     (url: string, name: string, type?: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'link', type ? [url, name, type] : [url, name]);
     };
 
+  /** @description Allure test id annotation. */
   #id =
     (id: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'id', [id]);
     };
 
+  /** @description Allure epic annotation. */
   #epic =
     (epic: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'epic', [epic]);
     };
 
+  /** @description Allure feature annotation. */
   #feature =
     (epic: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'feature', [epic]);
     };
 
+  /** @description Allure story annotation. */
   #story =
     (story: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'story', [story]);
     };
 
+  /** @description Allure suite annotation. */
   #allureSuite =
     (name: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'suite', [name]);
     };
 
+  /** @description Allure parent suite annotation. */
   #parentSuite =
     (name: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'parentSuite', [name]);
     };
 
+  /** @description Allure sub suite annotation. */
   #subSuite =
     (name: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'subSuite', [name]);
     };
 
+  /** @description Allure owner annotation. */
   #owner =
     (name: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'owner', [name]);
     };
 
+  /** @description Allure severity annotation. */
   #severity =
     (severity: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'severity', [severity]);
     };
 
+  /** @description Allure tag annotation. */
   #tag =
     (tag: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'tag', [tag]);
     };
 
+  /** @description Allure tags annotation (multiple). */
   #tags =
     (...tags: string[]) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'tags', tags);
     };
 
+  /** @description Allure issue annotation. */
   #issue =
     (name: string, url?: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'issue', url ? [name, url] : [name]);
     };
 
+  /** @description Allure description annotation. */
   #description =
     (value: string) =>
     (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       this.#setAllureMethod(target, 'description', [value]);
     };
 
+  /**
+   * @description Register `beforeEach` hook from instance method.
+   */
   protected before(instance: any) {
     if (this.before.name in instance)
       t.beforeEach(wrapEach(instance[this.before.name].bind(instance)));
   }
 
+  /**
+   * @description Register `afterEach` hook from instance method.
+   */
   protected after(instance: any) {
     if (this.after.name in instance)
       t.afterEach(wrapEach(instance[this.after.name].bind(instance)));
   }
 
+  /**
+   * @description Register `beforeAll` hook from static class method.
+   */
   protected beforeAll(Class: any) {
     if (Class.before) t.beforeAll(wrapAll(Class.before.bind(Class)));
   }
 
+  /**
+   * @description Register `afterAll` hook from static class method.
+   */
   protected afterAll(Class: any) {
     if (Class.before) t.beforeAll(wrapAll(Class.after.bind(Class)));
   }

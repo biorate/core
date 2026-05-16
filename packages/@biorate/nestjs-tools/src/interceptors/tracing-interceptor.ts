@@ -10,6 +10,12 @@ import {
 import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 
+/**
+ * @description
+ * Interceptor that adds OpenTelemetry span attributes for incoming HTTP requests.
+ * Captures URL, body, headers, method, params, query, and response data.
+ * Supports exclusion of certain URLs via config.
+ */
 @Injectable()
 export class TracingInterceptor implements NestInterceptor {
   @inject(Types.Config) protected readonly config: IConfig;

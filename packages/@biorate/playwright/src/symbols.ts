@@ -1,5 +1,8 @@
 import { create } from '@biorate/symbolic';
 
+/**
+ * @description Reflection metadata keys used by the decorators.
+ */
 const Symbols = create('PlayWright');
 
 export const Test = Symbols.Test;

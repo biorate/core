@@ -10,13 +10,18 @@ import type {
   MessageHeader,
 } from '@confluentinc/kafka-javascript';
 
+/**
+ * @description Configuration for the RDKafka high-level producer.
+ */
 export type IRDKafkaHighLevelProducerConfig = IConnectorConfig & {
   global: ProducerGlobalConfig;
   topic?: ProducerTopicConfig;
   pollInterval?: number;
 };
 
-// noinspection JSAnnotator
+/**
+ * @description High-level producer connection interface with promisified methods.
+ */
 export interface IRDKafkaHighLevelProducerConnection extends HighLevelProducer {
   producePromise(
     topic: string,
@@ -38,6 +43,9 @@ export interface IRDKafkaHighLevelProducerConnection extends HighLevelProducer {
   ): Promise<void>;
 }
 
+/**
+ * @description High-level producer connector type.
+ */
 export type IRDKafkaHighLevelProducerConnector = IConnector<
   IRDKafkaHighLevelProducerConfig,
   IRDKafkaHighLevelProducerConnection

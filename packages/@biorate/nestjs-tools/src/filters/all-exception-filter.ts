@@ -11,6 +11,16 @@ import {
 } from '@nestjs/common';
 import { AxiosRequestError, UnsupportedProtocolError } from '../errors';
 
+/**
+ * @description
+ * Global exception filter that catches all exceptions and returns a structured JSON response
+ * with status, code, hint, path, and meta fields. Supports HTTP, WebSocket, and RPC transports.
+ *
+ * @example
+ * ```ts
+ * app.useGlobalFilters(new AllExceptionsFilter());
+ * ```
+ */
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   public catch(exception: Error, host: ArgumentsHost) {
@@ -46,7 +56,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const status = meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
     this.log(exception);
     socket.send(
-      //TODO: add serializers factory
       JSON.stringify({
         event: 'error',
         data: {

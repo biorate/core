@@ -5,6 +5,9 @@ import { Row } from './row';
 import { Store } from './store';
 import { IReactVirtualTable } from '../interfaces';
 
+/**
+ * @description Renders the table footer row.
+ */
 @observer
 export class Footer extends Component {
   public props: {

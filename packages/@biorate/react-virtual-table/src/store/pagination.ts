@@ -1,6 +1,9 @@
 import { Base, observable, computed } from './base';
 import { IReactVirtualTable } from '../../interfaces';
 
+/**
+ * @description Store for pagination state and computed properties (page, total, pages, from, to).
+ */
 export class Pagination
   extends Base<IReactVirtualTable.Store>
   implements IReactVirtualTable.Pagination

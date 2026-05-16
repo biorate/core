@@ -6,9 +6,11 @@ import {
   // Summary as PrometheusSummary,
 } from 'prom-client';
 
+/** @description Prometheus registry wrapper interface. */
 export interface IPrometheus {
   readonly registry: Registry;
 }
+/** @description Default metric settings interface for Prometheus metrics. */
 export interface IdefaultSettings {
   name: string;
   override?: boolean;
