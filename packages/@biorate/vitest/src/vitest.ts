@@ -12,7 +12,7 @@ import {
   Repeats,
   Extends,
 } from './symbols';
-import { TestArgs, SuiteOptions, AllureMethod } from './interfaces';
+import { SuiteOptions } from './interfaces';
 import {
   VitestBothSkipOnlyError,
   VitestTimeoutInvalidError,
@@ -352,7 +352,7 @@ export class Vitest {
     this.subSuite = this.#createAllureDecorator('subSuite');
     this.owner = this.#createAllureDecorator('owner');
     this.severity = this.#createAllureDecorator('severity');
-    this.tag = this.#createAllureDecorator('tag');
+    this.tag = this.#createAllureDecorator('tag', true);
     this.tags = this.#createAllureDecorator('tags');
     this.issue = this.#createIssueDecorator();
     this.description = this.#createAllureDecorator('description');
@@ -409,7 +409,9 @@ export class Vitest {
       }
     };
 
-    const allureMethods = safeGetMetadata(Allure, method);
+    const methodAllureMethods = safeGetMetadata(Allure, method);
+    const classAllureMethods = safeGetMetadata(Allure, instance);
+    const allureMethods = { ...classAllureMethods, ...methodAllureMethods };
     const skip = safeGetMetadata(Skip, method);
     const only = safeGetMetadata(Only, method);
     const todo = safeGetMetadata(Todo, method);
@@ -481,8 +483,13 @@ export class Vitest {
    */
   #createAllureDecorator(methodName: string, append = false) {
     return (...args: string[]) =>
-      (target: any, propertyKey: string, descriptor: PropertyDescriptor) =>
-        this.#setAllureMethod(target, methodName, args, append);
+      (target: any, propertyKey?: string, descriptor?: PropertyDescriptor) => {
+        if (descriptor) {
+          this.#setAllureMethod(descriptor.value, methodName, args, append);
+        } else {
+          this.#setAllureMethod(target.prototype, methodName, args, append);
+        }
+      };
   }
 
   /**
@@ -490,11 +497,15 @@ export class Vitest {
    */
   #createLinkDecorator() {
     return (url: string, name?: string, type?: string) =>
-      (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+      (target: any, propertyKey?: string, descriptor?: PropertyDescriptor) => {
         const args: string[] = [url];
         if (name) args.push(name);
         if (type) args.push(type);
-        this.#setAllureMethod(target, 'link', args);
+        if (descriptor) {
+          this.#setAllureMethod(descriptor.value, 'link', args);
+        } else {
+          this.#setAllureMethod(target.prototype, 'link', args);
+        }
       };
   }
 
@@ -503,10 +514,14 @@ export class Vitest {
    */
   #createIssueDecorator() {
     return (name: string, url?: string) =>
-      (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+      (target: any, propertyKey?: string, descriptor?: PropertyDescriptor) => {
         const args: string[] = [name];
         if (url) args.push(url);
-        this.#setAllureMethod(target, 'issue', args);
+        if (descriptor) {
+          this.#setAllureMethod(descriptor.value, 'issue', args);
+        } else {
+          this.#setAllureMethod(target.prototype, 'issue', args);
+        }
       };
   }
 
@@ -872,21 +887,15 @@ export const decorate = (allureInstance: any) => {
 };
 
 /**
- * @deprecated Use environment variables or config. For Mocha compatibility.
  * Assign PMS URL
  */
 export const assignPmsUrl = (url: string) => {
-  showDeprecationWarning('assignPmsUrl', 'Use environment variables instead.');
-  // Store in environment for compatibility
   process.env.PMS_URL = url;
 };
 
 /**
- * @deprecated Use environment variables or config. For Mocha compatibility.
  * Assign TMS URL
  */
 export const assignTmsUrl = (url: string) => {
-  showDeprecationWarning('assignTmsUrl', 'Use environment variables instead.');
-  // Store in environment for compatibility
   process.env.TMS_URL = url;
 };
