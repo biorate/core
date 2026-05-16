@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/biorate/core/compare/@biorate/vitest@2.0.1...@biorate/vitest@2.1.0) (2026-05-16)
+
+### Features
+
+- **vitest:** decorators fix ([e6b783e](https://github.com/biorate/core/commit/e6b783e72d4a1d4a5070fcf8ca92394129cab666))
+
 ## [2.0.1](https://github.com/biorate/core/compare/@biorate/vitest@2.0.0...@biorate/vitest@2.0.1) (2026-05-16)
 
 **Note:** Version bump only for package @biorate/vitest
