@@ -1,3 +1,8 @@
 #!/usr/bin/env node
 
-require('../dist/src/cleanup-by-argv.js');
+try {
+  require('../dist/cjs/src/cleanup-by-argv.js');
+} catch {
+  import('../dist/esm/src/cleanup-by-argv.js');
+}
+
