@@ -1,5 +1,5 @@
 import { expect } from 'vitest';
-import { range } from 'lodash';
+import { range } from 'lodash-es';
 import { root, topic } from './__mocks__';
 
 describe('@biorate/kafkajs', function () {

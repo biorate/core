@@ -1,7 +1,7 @@
 import { container, Types } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { AxiosResponse } from 'axios';
-import { set, get } from 'lodash';
+import { set, get } from 'lodash-es';
 import { Axios, IAxiosFetchOptions } from '../../src';
 
 export class Yandex extends Axios {

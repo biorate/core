@@ -2,7 +2,7 @@ import { Controller, Get, Post, Param, Body, Header } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { path } from '@biorate/tools';
 import { promises as fs, readFileSync, writeFileSync, mkdirSync } from 'fs';
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 import { GetLocalesDTO, PostLocalesDTO } from '../dto';
 
 /**

@@ -1,4 +1,4 @@
-import { compact } from 'lodash';
+import { compact } from 'lodash-es';
 import { BaseError } from '@biorate/errors';
 
 /**

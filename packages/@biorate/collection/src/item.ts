@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 import { define } from '@biorate/tools';
 import { DateTime } from 'luxon';
-import { isObject } from 'lodash';
+import { isObject } from 'lodash-es';
 import { Props, Types } from './symbols';
 import { action } from './decorators';
 

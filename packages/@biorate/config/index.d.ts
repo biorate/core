@@ -1,4 +1,4 @@
-import { PropertyPath } from 'lodash';
+import { PropertyPath } from 'lodash-es';
 import { BaseError } from '@biorate/errors';
 import { IConfig as IConfigType } from './interfaces';
 

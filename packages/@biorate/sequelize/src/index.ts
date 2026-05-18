@@ -2,7 +2,7 @@ import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { Sequelize } from 'sequelize-typescript';
 import { QueryTypes, QueryOptions, QueryOptionsWithType } from 'sequelize';
-import { omit } from 'lodash';
+import { omit } from 'lodash-es';
 import { SequelizeCantConnectError, UndefinedConnectionError } from './errors';
 import { ISequelizeConfig, ISequelizeConnection, IModels } from './interfaces';
 

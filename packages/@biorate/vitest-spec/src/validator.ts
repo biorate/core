@@ -1,8 +1,7 @@
-import get from 'lodash/get.js';
-import merge from 'lodash/merge.js';
+import { get, merge } from 'lodash-es';
 import { validate as val } from 'class-validator';
-import { ValidationError, ValidationSchemaWrongTypeError } from './errors.js';
-import { IValidatorOptions } from './interfaces.js';
+import { ValidationError, ValidationSchemaWrongTypeError } from './errors';
+import { IValidatorOptions } from './interfaces';
 
 /**
  * @description

@@ -32,9 +32,9 @@ importers:
       '@types/http-proxy':
         specifier: 1.17.16
         version: 1.17.16
-      '@types/lodash':
-        specifier: 4.14.173
-        version: 4.14.173
+      '@types/lodash-es':
+        specifier: 4.17.12
+        version: 4.17.12
       '@types/mocha':
         specifier: 10.0.10
         version: 10.0.10
@@ -122,7 +122,7 @@ importers:
       less-loader:
         specifier: 9.0.0
         version: 9.0.0(less@4.1.1)(webpack@5.105.0)
-      lodash:
+      lodash-es:
         specifier: 4.17.23
         version: 4.17.23
       mini-css-extract-plugin:
@@ -468,7 +468,7 @@ importers:
       class-validator:
         specifier: 0.14.1
         version: 0.14.1
-      lodash:
+      lodash-es:
         specifier: 4.17.21
         version: 4.17.21
       reflect-metadata:
@@ -489,7 +489,7 @@ importers:
       http-status:
         specifier: 2.1.0
         version: 2.1.0
-      lodash:
+      lodash-es:
         specifier: 4.17.23
         version: 4.17.23
       path-to-url:
@@ -581,7 +581,7 @@ importers:
       '@clickhouse/client':
         specifier: 1.11.1
         version: 1.11.1
-      lodash:
+      lodash-es:
         specifier: 4.17.21
         version: 4.17.21
 
@@ -596,9 +596,9 @@ importers:
       '@biorate/tools':
         specifier: workspace:*
         version: link:../tools
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
-        version: 4.17.23
+        version: 4.18.1
       luxon:
         specifier: ^1.27.0
         version: 1.28.1
@@ -609,9 +609,9 @@ importers:
         specifier: '>=0.1.13'
         version: 0.1.13
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.14.169
-        version: 4.14.173
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/luxon':
         specifier: ^1.26.5
         version: 1.27.1
@@ -630,7 +630,7 @@ importers:
       '@biorate/tools':
         specifier: workspace:*
         version: link:../tools
-      lodash:
+      lodash-es:
         specifier: 4.17.21
         version: 4.17.21
 
@@ -642,9 +642,9 @@ importers:
       '@biorate/inversion':
         specifier: workspace:*
         version: link:../inversion
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
-        version: 4.17.23
+        version: 4.18.1
       traverse:
         specifier: ^0.6.6
         version: 0.6.11
@@ -883,9 +883,9 @@ importers:
       '@biorate/tools':
         specifier: workspace:*
         version: link:../tools
-      lodash:
+      lodash-es:
         specifier: '>=4.17.21'
-        version: 4.17.23
+        version: 4.18.1
       maskdata:
         specifier: 1.3.3
         version: 1.3.3
@@ -1128,9 +1128,9 @@ importers:
       json-stringify-safe:
         specifier: 5.0.1
         version: 5.0.1
-      lodash:
+      lodash-es:
         specifier: '>=4.17.21'
-        version: 4.17.23
+        version: 4.18.1
       on-headers:
         specifier: 1.0.2
         version: 1.0.2
@@ -1554,9 +1554,9 @@ importers:
       class-validator:
         specifier: '>=0.14.1'
         version: 0.14.1
-      lodash:
+      lodash-es:
         specifier: '>=4.17.21'
-        version: 4.17.23
+        version: 4.18.1
       nock:
         specifier: 14.0.1
         version: 14.0.1
@@ -3796,6 +3796,9 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+
+  '@types/lodash-es@4.17.12':
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
   '@types/lodash@4.14.173':
     resolution: {integrity: sha512-vv0CAYoaEjCw/mLy96GBTnRoZrSxkGE0BKzKimdR8P3OzrNYNvBgtW7p055A+E8C31vXNUhWKoFCbhq7gbyhFg==}
@@ -7445,6 +7448,12 @@ packages:
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
+
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+
+  lodash-es@4.17.23:
+    resolution: {integrity: sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==}
 
   lodash-es@4.18.1:
     resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
@@ -13726,6 +13735,10 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
+  '@types/lodash-es@4.17.12':
+    dependencies:
+      '@types/lodash': 4.14.173
+
   '@types/lodash@4.14.173': {}
 
   '@types/luxon@1.27.1': {}
@@ -17998,6 +18011,10 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
+
+  lodash-es@4.17.21: {}
+
+  lodash-es@4.17.23: {}
 
   lodash-es@4.18.1: {}
 

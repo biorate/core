@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import 'reflect-metadata';
-import { uniqBy } from 'lodash';
+import { uniqBy } from 'lodash-es';
 import { object as o } from '@biorate/tools';
 import { ShutdownHook } from '@biorate/shutdown-hook';
 

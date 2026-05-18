@@ -1,4 +1,4 @@
-import { chunk, omit } from 'lodash';
+import { chunk, omit } from 'lodash-es';
 import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { Kafka, Batch, KafkaMessage } from 'kafkajs';

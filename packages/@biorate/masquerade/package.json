@@ -46,7 +46,7 @@
   "author": "llevkin",
   "license": "MIT",
   "peerDependencies": {
-    "lodash": ">=4.17.21"
+    "lodash-es": ">=4.17.21"
   },
   "dependencies": {
     "@biorate/config": "workspace:*",

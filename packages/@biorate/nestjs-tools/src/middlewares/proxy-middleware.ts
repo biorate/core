@@ -1,6 +1,6 @@
 import http from 'http';
 import type { ServerOptions } from 'http-proxy';
-import { pick, omit } from 'lodash';
+import { pick, omit } from 'lodash-es';
 import { Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { Options, RequestHandler } from 'http-proxy-middleware/dist/types';

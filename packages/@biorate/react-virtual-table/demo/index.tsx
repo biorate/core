@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { range, random } from 'lodash';
+import { range, random } from 'lodash-es';
 import { Table } from '../src';
 let j = 0;
 

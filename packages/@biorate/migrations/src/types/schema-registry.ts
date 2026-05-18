@@ -1,4 +1,4 @@
-import { kebabCase } from 'lodash';
+import { kebabCase } from 'lodash-es';
 import { inject, Types } from '@biorate/inversion';
 import {
   ISchemaRegistryConnector,

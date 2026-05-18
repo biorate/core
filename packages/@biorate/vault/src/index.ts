@@ -2,7 +2,7 @@ import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { client } from 'node-vault';
 import Client from 'node-vault';
-import { pick, get } from 'lodash';
+import { pick, get } from 'lodash-es';
 import { VaultCantConnectError } from './errors';
 import { IVaultConfig, IVaultConnection } from './interfaces';
 

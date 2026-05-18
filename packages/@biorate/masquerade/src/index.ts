@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 import type { JsonMask2Configs } from 'maskdata';
 import MaskData from 'maskdata';
 import { Types, injectable, inject, init } from '@biorate/inversion';

@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import { createRequire } from 'module';
 import { path } from '@biorate/tools';
-import get from 'lodash/get.js';
-import invoke from 'lodash/invoke.js';
-import { IUnitOptions } from './interfaces.js';
-import { VitestSnapshotError } from './errors.js';
+import { get, invoke } from 'lodash-es';
+import { IUnitOptions } from './interfaces';
+import { VitestSnapshotError } from './errors';
 
 const vitest = globalThis as any;
 const getExpect = () => vitest.expect;

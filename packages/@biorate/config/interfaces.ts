@@ -1,4 +1,4 @@
-import { PropertyPath } from 'lodash';
+import { PropertyPath } from 'lodash-es';
 
 export interface IConfig {
   get<T = unknown>(path: PropertyPath, def?: T): T;

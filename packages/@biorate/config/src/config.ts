@@ -1,5 +1,5 @@
 import { injectable } from '@biorate/inversion';
-import { merge, get, has, set, PropertyPath } from 'lodash';
+import { merge, get, has, set, PropertyPath } from 'lodash-es';
 import traverse from 'traverse';
 import { Template } from './template';
 import { UndefinedConfigPathError } from './errors';

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { flattenDeep } from 'lodash';
+import { flattenDeep } from 'lodash-es';
 import { auto, transaction } from './utils';
 import { PropertiesOnly } from './interfaces';
 import { CommonFactoryTypeError } from './errors';

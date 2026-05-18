@@ -1,5 +1,5 @@
 import { ExecSyncOptions, ExecOptions, execSync, exec } from 'child_process';
-import { template, omit } from 'lodash';
+import { template, omit } from 'lodash-es';
 import { time } from '@biorate/tools';
 import { Singleton } from '@biorate/singleton';
 import { Config } from './config';

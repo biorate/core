@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 import { mkdirSync, writeFileSync, readFileSync } from 'fs';
 import { Injectable } from '@nestjs/common';
 import { path } from '@biorate/tools';

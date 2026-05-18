@@ -1,4 +1,4 @@
-import { omit, pick, merge } from 'lodash';
+import { omit, pick, merge } from 'lodash-es';
 import axios, { AxiosResponse, AxiosInstance } from 'axios';
 import retry from 'axios-retry';
 import type { IAxiosRetryConfig } from 'axios-retry';

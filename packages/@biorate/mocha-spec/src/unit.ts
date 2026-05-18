@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { path } from '@biorate/tools';
 import { expect } from 'chai';
-import { get, invoke } from 'lodash';
+import { get, invoke } from 'lodash-es';
 import { IUnitOptions } from './interfaces';
 import { MochaChaiJestSnapshotError } from './errors';
 

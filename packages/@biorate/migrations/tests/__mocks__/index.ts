@@ -4,7 +4,7 @@ import { join } from 'path';
 import { container, Types, init } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { ISchemaRegistryConnector } from '@biorate/schema-registry';
-import { kebabCase } from 'lodash';
+import { kebabCase } from 'lodash-es';
 import * as Migrations from '../../src/types';
 import { Root as RootBase } from '../../src/root';
 

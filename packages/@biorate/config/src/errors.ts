@@ -1,5 +1,5 @@
 import { BaseError } from '@biorate/errors';
-import { PropertyPath } from 'lodash';
+import { PropertyPath } from 'lodash-es';
 
 /**
  * @description Thrown when a config path is accessed but does not exist and no default value is provided

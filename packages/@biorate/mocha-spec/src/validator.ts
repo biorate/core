@@ -1,4 +1,4 @@
-import { get, merge } from 'lodash';
+import { get, merge } from 'lodash-es';
 import { validate as val } from 'class-validator';
 import { ValidationError, ValidationSchemaWrongTypeError } from './errors';
 import { IValidatorOptions } from './interfaces';

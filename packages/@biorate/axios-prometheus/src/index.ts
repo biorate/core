@@ -8,7 +8,7 @@ import { IConfig } from '@biorate/config';
 import { Axios, AxiosError, AxiosResponse, IAxiosFetchOptions } from '@biorate/axios';
 import { counter, Counter, Histogram, Prometheus } from '@biorate/prometheus';
 import { trace, Span } from '@biorate/opentelemetry';
-import { get, set, pick } from 'lodash';
+import { get, set, pick } from 'lodash-es';
 
 export * from '@biorate/axios';
 /**
