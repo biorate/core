@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/biorate/core/compare/@biorate/migrations@2.0.1...@biorate/migrations@2.1.0) (2026-05-18)
+
+### Features
+
+- lodash -> lodash-es migration ([8dcf797](https://github.com/biorate/core/commit/8dcf797dea695410ee0e4435ce50af919a87cb90))
+
 ## [2.0.1](https://github.com/biorate/core/compare/@biorate/migrations@2.0.0...@biorate/migrations@2.0.1) (2026-05-16)
 
 **Note:** Version bump only for package @biorate/migrations
