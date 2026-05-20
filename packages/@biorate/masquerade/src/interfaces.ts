@@ -1,5 +1,5 @@
 import type { JsonMask2Configs } from 'maskdata';
-import { CommonMask } from './src/common-mask';
+import { CommonMask } from './common-mask';
 
 export type IMasqueradeConfig = {
   EmailMask?: IEmailMaskOptions;

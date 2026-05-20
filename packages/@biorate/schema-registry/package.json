@@ -50,13 +50,13 @@
   ],
   "author": "llevkin",
   "license": "MIT",
-  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d",
+  "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a",
   "dependencies": {
-    "@biorate/axios-prometheus": "workspace:*",
-    "@biorate/config": "workspace:*",
-    "@biorate/connector": "workspace:*",
-    "@biorate/errors": "workspace:*",
-    "@biorate/inversion": "workspace:*",
+    "@biorate/axios-prometheus": "2.1.1",
+    "@biorate/config": "3.1.0",
+    "@biorate/connector": "3.0.2",
+    "@biorate/errors": "3.0.0",
+    "@biorate/inversion": "3.0.2",
     "avsc": "^5.7.4"
   }
 }

@@ -47,14 +47,14 @@
   ],
   "author": "llevkin",
   "license": "MIT",
-  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d",
+  "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a",
   "dependencies": {
-    "@biorate/axios": "workspace:*",
-    "@biorate/config": "workspace:*",
-    "@biorate/inversion": "workspace:*",
-    "@biorate/opentelemetry": "workspace:*",
-    "@biorate/prometheus": "workspace:*",
-    "@biorate/tools": "workspace:*",
+    "@biorate/axios": "3.1.0",
+    "@biorate/config": "3.1.0",
+    "@biorate/inversion": "3.0.2",
+    "@biorate/opentelemetry": "2.0.3",
+    "@biorate/prometheus": "3.0.2",
+    "@biorate/tools": "3.0.1",
     "json-stringify-safe": "5.0.1"
   },
   "devDependencies": {

@@ -49,8 +49,8 @@
     "reflect-metadata": ">=0.1.13"
   },
   "dependencies": {
-    "@biorate/errors": "workspace:*",
-    "@biorate/masquerade": "workspace:*",
+    "@biorate/errors": "3.0.0",
+    "@biorate/masquerade": "2.1.1",
     "@opentelemetry/api": "1.9.0",
     "@opentelemetry/auto-instrumentations-node": "0.71.0",
     "@opentelemetry/exporter-metrics-otlp-grpc": "0.213.0",
@@ -71,5 +71,6 @@
   "devDependencies": {
     "@types/json-stringify-safe": "5.0.3",
     "@types/traverse": "0.6.37"
-  }
+  },
+  "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a"
 }
