@@ -506,22 +506,22 @@ importers:
   packages/@biorate/axios-prometheus:
     dependencies:
       '@biorate/axios':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../axios
       '@biorate/config':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../config
       '@biorate/inversion':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: workspace:*
+        specifier: 2.0.3
         version: link:../opentelemetry
       '@biorate/prometheus':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../prometheus
       '@biorate/tools':
-        specifier: workspace:*
+        specifier: 3.0.1
         version: link:../tools
       json-stringify-safe:
         specifier: 5.0.1
@@ -875,13 +875,13 @@ importers:
   packages/@biorate/masquerade:
     dependencies:
       '@biorate/config':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../config
       '@biorate/inversion':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../inversion
       '@biorate/tools':
-        specifier: workspace:*
+        specifier: 3.0.1
         version: link:../tools
       lodash-es:
         specifier: '>=4.17.21'
@@ -893,58 +893,58 @@ importers:
   packages/@biorate/migrations:
     dependencies:
       '@biorate/amqp':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../amqp
       '@biorate/clickhouse':
-        specifier: workspace:*
+        specifier: 2.1.0
         version: link:../clickhouse
       '@biorate/config':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../config
       '@biorate/config-loader':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../config-loader
       '@biorate/config-loader-env':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../config-loader-env
       '@biorate/config-loader-fs':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../config-loader-fs
       '@biorate/config-loader-vault':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../config-loader-vault
       '@biorate/connector':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../connector
       '@biorate/errors':
-        specifier: workspace:*
+        specifier: 3.0.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../inversion
       '@biorate/kafkajs':
-        specifier: workspace:*
+        specifier: 2.1.0
         version: link:../kafkajs
       '@biorate/minio':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../minio
       '@biorate/mongodb':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../mongodb
       '@biorate/proxy':
-        specifier: workspace:*
+        specifier: 2.0.2
         version: link:../proxy
       '@biorate/schema-registry':
-        specifier: workspace:*
+        specifier: 3.0.3
         version: link:../schema-registry
       '@biorate/sequelize':
-        specifier: workspace:*
+        specifier: 2.1.0
         version: link:../sequelize
       '@biorate/tools':
-        specifier: workspace:*
+        specifier: 3.0.1
         version: link:../tools
       '@biorate/vault':
-        specifier: workspace:*
+        specifier: 2.1.0
         version: link:../vault
 
   packages/@biorate/minio:
@@ -1084,25 +1084,25 @@ importers:
   packages/@biorate/nestjs-tools:
     dependencies:
       '@biorate/axios':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../axios
       '@biorate/config':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../config
       '@biorate/errors':
-        specifier: workspace:*
+        specifier: 3.0.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: workspace:*
+        specifier: 2.0.3
         version: link:../opentelemetry
       '@biorate/prometheus':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../prometheus
       '@biorate/tools':
-        specifier: workspace:*
+        specifier: 3.0.1
         version: link:../tools
       '@nestjs/common':
         specifier: '>=10.4.15'
@@ -1167,10 +1167,10 @@ importers:
   packages/@biorate/opentelemetry:
     dependencies:
       '@biorate/errors':
-        specifier: workspace:*
+        specifier: 3.0.0
         version: link:../errors
       '@biorate/masquerade':
-        specifier: workspace:*
+        specifier: 2.1.1
         version: link:../masquerade
       '@opentelemetry/api':
         specifier: 1.9.0
@@ -1435,19 +1435,19 @@ importers:
   packages/@biorate/schema-registry:
     dependencies:
       '@biorate/axios-prometheus':
-        specifier: workspace:*
+        specifier: 2.1.1
         version: link:../axios-prometheus
       '@biorate/config':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../config
       '@biorate/connector':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../connector
       '@biorate/errors':
-        specifier: workspace:*
+        specifier: 3.0.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../inversion
       avsc:
         specifier: ^5.7.4
@@ -2533,6 +2533,7 @@ packages:
   '@lerna/create@9.0.3':
     resolution: {integrity: sha512-hUTEWrR8zH+/Z3bp/R1aLm6DW8vB/BB7KH7Yeg4fMfrvSwxegiLVW9uJFAzWkK4mzEagmj/Dti85Yg9MN13t0g==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: This package is an implementation detail of Lerna and is no longer published separately.
 
   '@lukeed/csprng@1.1.0':
     resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
@@ -10554,6 +10555,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   v8-compile-cache-lib@3.0.1:
