@@ -1,5 +1,5 @@
 import { CommonMask } from './common-mask';
-import type { IEmailMaskOptions } from '../interfaces';
+import type { IEmailMaskOptions } from './interfaces';
 
 /**
  * @description Masks email addresses in text, preserving configurable start and end characters of the local part and domain.

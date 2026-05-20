@@ -4,12 +4,13 @@ import MaskData from 'maskdata';
 import { Types, injectable, inject, init } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
 import { CommonMask } from './common-mask';
-import { MaskConstructor, IMaskOptions, IMasqueradeConfig } from '../interfaces';
+import { MaskConstructor, IMaskOptions, IMasqueradeConfig } from './interfaces';
 
 export * from './common-mask';
 export * from './email-mask';
 export * from './phone-mask';
 export * from './card-mask';
+export * from './interfaces';
 /**
  * @description
  * Masquerade provides functionality to redact sensitive info

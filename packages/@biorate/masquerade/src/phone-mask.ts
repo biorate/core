@@ -1,5 +1,5 @@
 import { CommonMask } from './common-mask';
-import type { IPhoneMaskOptions } from '../interfaces';
+import type { IPhoneMaskOptions } from './interfaces';
 
 /**
  * @description Masks phone numbers in text, preserving the last N digits (configurable).

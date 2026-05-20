@@ -1,6 +1,6 @@
 import { inject, Types } from '@biorate/inversion';
 import { IConfig } from '@biorate/config';
-import type { IMask, IMaskOptions } from '../interfaces';
+import type { IMask, IMaskOptions } from './interfaces';
 
 /**
  * @description Abstract base class for text masking implementations. Provides configurable mask character and enable/disable control.
