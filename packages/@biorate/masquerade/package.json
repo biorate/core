@@ -1,6 +1,6 @@
 {
   "name": "@biorate/masquerade",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Masquerade provides functionality to redact sensitive info",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

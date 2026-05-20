@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/biorate/core/compare/@biorate/opentelemetry@2.0.3...@biorate/opentelemetry@2.0.4) (2026-05-20)
+
+### Bug Fixes
+
+- **masquarade:** interfaces ([a6ec537](https://github.com/biorate/core/commit/a6ec5375fb088139f7403b5c625b335c1f634d4e))
+
 ## [2.0.3](https://github.com/biorate/core/compare/@biorate/opentelemetry@2.0.2...@biorate/opentelemetry@2.0.3) (2026-05-20)
 
 **Note:** Version bump only for package @biorate/opentelemetry

@@ -515,7 +515,7 @@ importers:
         specifier: 3.0.2
         version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: 2.0.3
+        specifier: ^2.0.4
         version: link:../opentelemetry
       '@biorate/prometheus':
         specifier: 3.0.2
@@ -935,7 +935,7 @@ importers:
         specifier: 2.0.2
         version: link:../proxy
       '@biorate/schema-registry':
-        specifier: 3.0.3
+        specifier: ^3.0.4
         version: link:../schema-registry
       '@biorate/sequelize':
         specifier: 2.1.0
@@ -1096,7 +1096,7 @@ importers:
         specifier: 3.0.2
         version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: 2.0.3
+        specifier: ^2.0.4
         version: link:../opentelemetry
       '@biorate/prometheus':
         specifier: 3.0.2
@@ -1170,7 +1170,7 @@ importers:
         specifier: 3.0.0
         version: link:../errors
       '@biorate/masquerade':
-        specifier: 2.1.1
+        specifier: ^2.1.2
         version: link:../masquerade
       '@opentelemetry/api':
         specifier: 1.9.0
@@ -1435,7 +1435,7 @@ importers:
   packages/@biorate/schema-registry:
     dependencies:
       '@biorate/axios-prometheus':
-        specifier: 2.1.1
+        specifier: ^2.1.2
         version: link:../axios-prometheus
       '@biorate/config':
         specifier: 3.1.0
