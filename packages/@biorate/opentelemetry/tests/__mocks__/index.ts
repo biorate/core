@@ -1,13 +1,13 @@
-import './env';
-import { CardMask, EmailMask, Masquerade, PhoneMask } from '@biorate/masquerade';
+import '../setup';
 import { trace } from '@opentelemetry/api';
 import { setTimeout } from 'timers/promises';
-
+import './env';
 import { scope, span } from '../../src';
+import { CardMask, EmailMask, Masquerade, PhoneMask } from '@biorate/masquerade';
 
 Masquerade.configure({
   maskJSON2: {
-    emailFields: ['result.email', 'arguments.*'],
+    emailFields: ['result.email', 'arguments.email'],
     passwordFields: ['password'],
   },
 });
@@ -45,5 +45,46 @@ export class Test {
   public async test5(a: number) {
     await setTimeout(10);
     return 1;
+  }
+
+  @span({ name: 'noRequest', options: { captureRequest: false } })
+  public testOptionsNoRequest(secret: string, data: any) {
+    return { received: true, secret: 'password123', data };
+  }
+
+  @span({ name: 'noResponse', options: { captureResponse: false } })
+  public testNoResult(a: number) {
+    return { secret: 'password123', data: a };
+  }
+
+  @span({
+    name: 'httpHandler',
+    options: { captureBody: false, captureQuery: true, captureHeaders: true },
+  })
+  public testHttpHandler(req: { body: any; query: any; headers: any }) {
+    return { statusCode: 200, headers: { 'content-type': 'application/json' } };
+  }
+
+  @span({
+    name: 'noRequestNoResponse',
+    options: { captureRequest: false, captureResponse: false },
+  })
+  public testBinaryFile(file: Buffer) {
+    return Buffer.from('pdf-content');
+  }
+
+  @span({
+    name: 'responseHandler',
+    options: {
+      captureResponseBody: false,
+      captureResponseHeaders: true,
+      captureResponseStatusCode: true,
+    },
+  })
+  public testResponseHandler() {
+    return {
+      headers: { 'content-type': 'application/json' },
+      statusCode: 200,
+    };
   }
 }

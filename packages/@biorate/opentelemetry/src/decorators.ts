@@ -40,7 +40,7 @@ export const span =
             span.setAttribute('class', target.constructor.name);
             span.setAttribute('method', propertyKey);
             span.setAttribute('SpanKind', props?.spanKind ?? 'SERVER');
-            setArgumentsWithOptions(span, props?.options, args);
+            setArgumentsWithOptions(span, props?.options, ...args);
             const result = method.apply(this, args);
             if (result instanceof Promise)
               return result
@@ -54,8 +54,10 @@ export const span =
                   throw e;
                 })
                 .finally(() => span.end());
-            else span.setAttribute('result', stringify(result));
-            span.end();
+            else {
+              setResultWithOptions(span, result, props?.options);
+              span.end();
+            }
             return result;
           } catch (e) {
             span.recordException(<Error>e);
