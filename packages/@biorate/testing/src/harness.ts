@@ -1,19 +1,27 @@
 import { Config, IConfig } from '@biorate/config';
 import { Types } from '@biorate/inversion';
-import { ConnectorBinder, resolveBinders } from './binders';
+import { bindConnectors } from './binders';
 import { ConnectorKind, getProfileConfig } from './endpoints';
 import { resolveTestProfile, TestProfile } from './profiles';
 import { BindingRegistry } from './registry';
 
-export interface ITestHarnessOptions<TRoot extends { $run(): Promise<void> }> {
-  root: new (...args: never[]) => TRoot;
+/** @description Runtime contract satisfied by `Core()` roots in tests. */
+export type TestRootInstance = {
+  $run(): Promise<void>;
+};
+
+export type TestRootCtor = new (...args: never[]) => object;
+
+export type TestRootFromCtor<TRootCtor extends TestRootCtor> = InstanceType<TRootCtor> &
+  TestRootInstance;
+
+export interface ITestHarnessOptions<TRootCtor extends TestRootCtor = TestRootCtor> {
+  root: TRootCtor;
   profile?: TestProfile | string;
   connectors?: ConnectorKind[];
-  /** Binder functions from `@biorate/<connector>/testing` (e.g. `bindPg`). */
-  binders?: ConnectorBinder[];
 }
 
-export interface ITestHarness<TRoot extends { $run(): Promise<void> }> {
+export interface ITestHarness<TRoot extends TestRootInstance = TestRootInstance> {
   readonly registry: BindingRegistry;
   readonly profile: TestProfile;
   readonly root: TRoot;
@@ -22,31 +30,30 @@ export interface ITestHarness<TRoot extends { $run(): Promise<void> }> {
 }
 
 /** @description Creates an isolated DI harness for connector component tests. */
-export function createTestHarness<TRoot extends { $run(): Promise<void> }>(
-  options: ITestHarnessOptions<TRoot>,
-): ITestHarness<TRoot> {
+export function createTestHarness<TRootCtor extends TestRootCtor>(
+  options: ITestHarnessOptions<TRootCtor>,
+): ITestHarness<TestRootFromCtor<TRootCtor>> {
   const profile = resolveTestProfile(options.profile);
   const connectors = options.connectors ?? [];
-  const binders = resolveBinders(connectors, options.binders ?? []);
   const registry = new BindingRegistry();
 
   registry.bind(Types.Config, Config);
-  for (const bind of binders) bind(registry, profile);
+  bindConnectors(registry, profile, connectors);
   registry.bind(options.root, options.root);
 
   const config = registry.container.get<IConfig>(Types.Config);
   config.merge(getProfileConfig(connectors, profile));
 
-  let rootInstance: TRoot | undefined;
+  let rootInstance: TestRootFromCtor<TRootCtor> | undefined;
 
   return {
     registry,
     profile,
-    get root(): TRoot {
+    get root(): TestRootFromCtor<TRootCtor> {
       if (!rootInstance) {
         rootInstance = registry.container.get(options.root);
       }
-      return rootInstance as TRoot;
+      return rootInstance as TestRootFromCtor<TRootCtor>;
     },
     async run() {
       await this.root.$run();

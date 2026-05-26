@@ -1,9 +1,7 @@
 import { expect } from 'vitest';
 import { Core, inject } from '@biorate/inversion';
 import { PgConnector, IPgConnector } from '@biorate/pg';
-import { bindPg } from '@biorate/pg/testing';
-import { createTestHarness, dockerEndpoints, getProfileConfig, resolveTestProfile } from '../src';
-import { setupBiorateTest } from '../src';
+import { createTestHarness, dockerEndpoints, getProfileConfig, resolveTestProfile, setupBiorateTest } from '../src';
 
 class PgRoot extends Core() {
   @inject(PgConnector) public connector!: IPgConnector;
@@ -26,7 +24,6 @@ describe('@biorate/testing harness', () => {
       root: PgRoot,
       profile: 'memory',
       connectors: ['pg'],
-      binders: [bindPg],
     });
 
     setupBiorateTest(harness);

@@ -17,22 +17,20 @@ export class BindingRegistry implements ITestBindingRegistry {
     return this.#container;
   }
 
-  public bind<T>(
-    service: interfaces.ServiceIdentifier<T>,
-    implementation: interfaces.Newable<T>,
-  ) {
-    if (this.#container.isBound(service)) this.#container.unbind(service);
-    this.#container.bind(service).to(implementation).inSingletonScope();
-    this.#bound.add(service);
+  public bind(service: unknown, implementation: unknown) {
+    const id = service as interfaces.ServiceIdentifier<unknown>;
+    const impl = implementation as interfaces.Newable<unknown>;
+    if (this.#container.isBound(id)) this.#container.unbind(id);
+    this.#container.bind(id).to(impl).inSingletonScope();
+    this.#bound.add(id);
   }
 
-  public rebind<T>(
-    service: interfaces.ServiceIdentifier<T>,
-    implementation: interfaces.Newable<T>,
-  ) {
-    if (this.#container.isBound(service)) this.#container.unbind(service);
-    this.#container.bind(service).to(implementation).inSingletonScope();
-    this.#bound.add(service);
+  public rebind(service: unknown, implementation: unknown) {
+    const id = service as interfaces.ServiceIdentifier<unknown>;
+    const impl = implementation as interfaces.Newable<unknown>;
+    if (this.#container.isBound(id)) this.#container.unbind(id);
+    this.#container.bind(id).to(impl).inSingletonScope();
+    this.#bound.add(id);
   }
 
   public dispose() {

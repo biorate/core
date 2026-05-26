@@ -1,7 +1,7 @@
 {
   "name": "@biorate/testing",
   "version": "1.0.0",
-  "description": "Test harness and connector profiles for Biorate applications",
+  "description": "Test harness, connector profiles and in-memory mocks for Biorate applications",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -17,6 +17,66 @@
       "import": "./dist/esm/vitest.js",
       "require": "./dist/cjs/vitest.js",
       "default": "./dist/cjs/vitest.js"
+    },
+    "./memory/pg": {
+      "types": "./dist/types/src/memory/pg/index.d.ts",
+      "import": "./dist/esm/src/memory/pg/index.js",
+      "require": "./dist/cjs/src/memory/pg/index.js",
+      "default": "./dist/cjs/src/memory/pg/index.js"
+    },
+    "./memory/redis": {
+      "types": "./dist/types/src/memory/redis/index.d.ts",
+      "import": "./dist/esm/src/memory/redis/index.js",
+      "require": "./dist/cjs/src/memory/redis/index.js",
+      "default": "./dist/cjs/src/memory/redis/index.js"
+    },
+    "./memory/kafkajs": {
+      "types": "./dist/types/src/memory/kafkajs/index.d.ts",
+      "import": "./dist/esm/src/memory/kafkajs/index.js",
+      "require": "./dist/cjs/src/memory/kafkajs/index.js",
+      "default": "./dist/cjs/src/memory/kafkajs/index.js"
+    },
+    "./memory/amqp": {
+      "types": "./dist/types/src/memory/amqp/index.d.ts",
+      "import": "./dist/esm/src/memory/amqp/index.js",
+      "require": "./dist/cjs/src/memory/amqp/index.js",
+      "default": "./dist/cjs/src/memory/amqp/index.js"
+    },
+    "./memory/ioredis": {
+      "types": "./dist/types/src/memory/ioredis/index.d.ts",
+      "import": "./dist/esm/src/memory/ioredis/index.js",
+      "require": "./dist/cjs/src/memory/ioredis/index.js",
+      "default": "./dist/cjs/src/memory/ioredis/index.js"
+    },
+    "./memory/mssql": {
+      "types": "./dist/types/src/memory/mssql/index.d.ts",
+      "import": "./dist/esm/src/memory/mssql/index.js",
+      "require": "./dist/cjs/src/memory/mssql/index.js",
+      "default": "./dist/cjs/src/memory/mssql/index.js"
+    },
+    "./memory/clickhouse": {
+      "types": "./dist/types/src/memory/clickhouse/index.d.ts",
+      "import": "./dist/esm/src/memory/clickhouse/index.js",
+      "require": "./dist/cjs/src/memory/clickhouse/index.js",
+      "default": "./dist/cjs/src/memory/clickhouse/index.js"
+    },
+    "./memory/minio": {
+      "types": "./dist/types/src/memory/minio/index.d.ts",
+      "import": "./dist/esm/src/memory/minio/index.js",
+      "require": "./dist/cjs/src/memory/minio/index.js",
+      "default": "./dist/cjs/src/memory/minio/index.js"
+    },
+    "./memory/vault": {
+      "types": "./dist/types/src/memory/vault/index.d.ts",
+      "import": "./dist/esm/src/memory/vault/index.js",
+      "require": "./dist/cjs/src/memory/vault/index.js",
+      "default": "./dist/cjs/src/memory/vault/index.js"
+    },
+    "./memory/opensearch": {
+      "types": "./dist/types/src/memory/opensearch/index.d.ts",
+      "import": "./dist/esm/src/memory/opensearch/index.js",
+      "require": "./dist/cjs/src/memory/opensearch/index.js",
+      "default": "./dist/cjs/src/memory/opensearch/index.js"
     }
   },
   "files": [
@@ -57,10 +117,23 @@
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
+    "@biorate/amqp": "workspace:*",
+    "@biorate/clickhouse": "workspace:*",
     "@biorate/config": "workspace:*",
     "@biorate/connector": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
+    "@biorate/ioredis": "workspace:*",
+    "@biorate/kafkajs": "workspace:*",
+    "@biorate/minio": "workspace:*",
+    "@biorate/mongodb": "workspace:*",
+    "@biorate/mssql": "workspace:*",
+    "@biorate/opensearch": "workspace:*",
+    "@biorate/pg": "workspace:*",
+    "@biorate/rdkafka": "workspace:*",
+    "@biorate/redis": "workspace:*",
+    "@biorate/sequelize": "workspace:*",
+    "@biorate/vault": "workspace:*",
     "inversify": "5.1.1"
   },
   "peerDependencies": {
@@ -72,7 +145,10 @@
     }
   },
   "devDependencies": {
-    "@biorate/pg": "workspace:*",
+    "@types/amqplib": "0.10.5",
+    "amqp-connection-manager": "4.1.14",
+    "amqplib": "0.10.3",
+    "kafkajs": "^2.2.3",
     "vitest": "^4.0.18"
   }
 }
