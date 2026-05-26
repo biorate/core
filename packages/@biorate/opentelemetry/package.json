@@ -70,7 +70,8 @@
   },
   "devDependencies": {
     "@types/json-stringify-safe": "5.0.3",
-    "@types/traverse": "0.6.37"
+    "@types/traverse": "0.6.37",
+    "vitest": "4.0.18"
   },
   "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a"
 }
