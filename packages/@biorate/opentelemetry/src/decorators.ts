@@ -28,7 +28,7 @@ export const scope = (version?: string, name?: string) => (Class: any) => {
 
 /** @description Method decorator that wraps a method in an OpenTelemetry span with attributes for class, method, arguments, and result. */
 export const span =
-  (props?: { name?: string; spanKind?: string }, options?: SpanOptions) =>
+  (props?: { name?: string; spanKind?: string; options?: SpanOptions }) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const obj = {
@@ -40,12 +40,12 @@ export const span =
             span.setAttribute('class', target.constructor.name);
             span.setAttribute('method', propertyKey);
             span.setAttribute('SpanKind', props?.spanKind ?? 'SERVER');
-            setArgumentsWithOptions(span, options, args);
+            setArgumentsWithOptions(span, props?.options, args);
             const result = method.apply(this, args);
             if (result instanceof Promise)
               return result
                 .then((result: unknown) => {
-                  setResultWithOptions(span, result, options);
+                  setResultWithOptions(span, result, props?.options);
                   return result;
                 })
                 .catch((e: unknown) => {
