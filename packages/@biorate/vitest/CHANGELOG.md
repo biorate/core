@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/biorate/core/compare/@biorate/vitest@2.1.0...@biorate/vitest@2.1.1) (2026-05-26)
+
+### Bug Fixes
+
+- **vitest:** allure-context fix ([ace5066](https://github.com/biorate/core/commit/ace5066ff87affe2b27e6fdf44c86644e6ec4048))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/vitest@2.0.1...@biorate/vitest@2.1.0) (2026-05-16)
 
 ### Features

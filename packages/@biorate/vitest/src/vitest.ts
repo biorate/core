@@ -437,7 +437,6 @@ export class Vitest {
 
     const testFunction = async (context: TestContext & Record<string, any>) => {
       try {
-        await this.#applyAllureMetadata(allureMethods);
         await method.call(instance, {
           ...context,
           ...extend,
@@ -451,10 +450,15 @@ export class Vitest {
       }
     };
 
+    const wrappedTestFunction = async (context: TestContext & Record<string, any>) => {
+      await this.#applyAllureMetadata(allureMethods);
+      await testFunction(context);
+    };
+
     if (Object.keys(testOptions).length > 0) {
-      testFn(meta.name ?? name, testOptions, testFunction);
+      testFn(meta.name ?? name, testOptions, wrappedTestFunction);
     } else {
-      testFn(meta.name ?? name, testFunction);
+      testFn(meta.name ?? name, wrappedTestFunction);
     }
   }
 

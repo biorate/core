@@ -5,6 +5,7 @@ export default mergeConfig(
   vitestRoot,
   defineConfig({
     test: {
+      setupFiles: ['allure-vitest/setup'],
       reporters: [
         'default',
         ['allure-vitest/reporter', { resultsDir: 'allure-results', suiteTitle: false }],
