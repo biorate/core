@@ -1,5 +1,6 @@
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
+import { getProfileConfig } from '@biorate/testing';
 import {
   KafkaJSAdminConnector,
   KafkaJSProducerConnector,
@@ -26,12 +27,10 @@ container
   .inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
+const kafkaConfig = getProfileConfig(['kafka'], 'docker') as Record<string, unknown>;
+
 container.get<IConfig>(Types.Config).merge({
-  KafkaJSGlobal: {
-    brokers: ['localhost:9092'],
-    clientId: 'test-app',
-    logLevel: 1,
-  },
+  ...kafkaConfig,
   KafkaJSAdmin: [
     {
       name: 'admin',

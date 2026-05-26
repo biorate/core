@@ -11,6 +11,12 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "default": "./dist/cjs/index.js"
+    },
+    "./testing": {
+      "types": "./dist/types/src/testing/index.d.ts",
+      "import": "./dist/esm/src/testing/index.js",
+      "require": "./dist/cjs/src/testing/index.js",
+      "default": "./dist/cjs/src/testing/index.js"
     }
   },
   "files": [
@@ -58,6 +64,7 @@
     "amqplib": "0.10.3"
   },
   "devDependencies": {
+    "@biorate/testing": "workspace:*",
     "@types/amqplib": "0.10.5"
   }
 }

@@ -11,6 +11,12 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "default": "./dist/cjs/index.js"
+    },
+    "./testing": {
+      "types": "./dist/types/src/testing/index.d.ts",
+      "import": "./dist/esm/src/testing/index.js",
+      "require": "./dist/cjs/src/testing/index.js",
+      "default": "./dist/cjs/src/testing/index.js"
     }
   },
   "files": [
@@ -62,6 +68,7 @@
     "pg-query-stream": "^4.2.4"
   },
   "devDependencies": {
+    "@biorate/testing": "workspace:*",
     "@types/pg": "^8.6.5",
     "@types/pg-cursor": "^2.7.0"
   }

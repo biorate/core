@@ -11,6 +11,12 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "default": "./dist/cjs/index.js"
+    },
+    "./testing": {
+      "types": "./dist/types/src/testing/index.d.ts",
+      "import": "./dist/esm/src/testing/index.js",
+      "require": "./dist/cjs/src/testing/index.js",
+      "default": "./dist/cjs/src/testing/index.js"
     }
   },
   "files": [
@@ -58,5 +64,8 @@
     "@biorate/prometheus": "workspace:*",
     "@biorate/tools": "workspace:*",
     "kafkajs": "^2.2.3"
+  },
+  "devDependencies": {
+    "@biorate/testing": "workspace:*"
   }
 }
