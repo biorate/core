@@ -1,7 +1,7 @@
 import { expect } from 'vitest';
 import { Core, inject } from '@biorate/inversion';
-import { KafkaJSProducerConnector } from '../src';
-import { bindKafka, MemoryKafkaBus } from '../src/testing';
+import { KafkaJSProducerConnector } from '@biorate/kafkajs';
+import { MemoryKafkaBus } from '@biorate/testing/memory/kafkajs';
 import { createTestHarness, setupBiorateTest } from '@biorate/testing';
 
 class Root extends Core() {
@@ -12,7 +12,6 @@ const harness = createTestHarness({
   root: Root,
   profile: 'memory',
   connectors: ['kafka'],
-  binders: [bindKafka],
 });
 
 setupBiorateTest(harness);

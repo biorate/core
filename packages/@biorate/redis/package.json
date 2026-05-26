@@ -11,12 +11,6 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "default": "./dist/cjs/index.js"
-    },
-    "./testing": {
-      "types": "./dist/types/src/testing/index.d.ts",
-      "import": "./dist/esm/src/testing/index.js",
-      "require": "./dist/cjs/src/testing/index.js",
-      "default": "./dist/cjs/src/testing/index.js"
     }
   },
   "files": [
@@ -54,9 +48,6 @@
   ],
   "author": "llevkin",
   "license": "MIT",
-  "devDependencies": {
-    "@biorate/testing": "workspace:*"
-  },
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
   "dependencies": {
     "@biorate/config": "workspace:*",

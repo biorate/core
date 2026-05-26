@@ -1,7 +1,6 @@
 import { expect } from 'vitest';
 import { Core, inject } from '@biorate/inversion';
-import { RedisConnector } from '../src';
-import { bindRedis } from '../src/testing';
+import { RedisConnector } from '@biorate/redis';
 import { createTestHarness, setupBiorateTest } from '@biorate/testing';
 
 class Root extends Core() {
@@ -12,7 +11,6 @@ const harness = createTestHarness({
   root: Root,
   profile: 'memory',
   connectors: ['redis'],
-  binders: [bindRedis],
 });
 
 setupBiorateTest(harness);

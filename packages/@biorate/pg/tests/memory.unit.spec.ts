@@ -1,7 +1,6 @@
 import { expect } from 'vitest';
 import { Core, inject } from '@biorate/inversion';
-import { PgConnector, IPgConnector } from '../src';
-import { bindPg } from '../src/testing';
+import { PgConnector, IPgConnector } from '@biorate/pg';
 import { createTestHarness, setupBiorateTest } from '@biorate/testing';
 
 class Root extends Core() {
@@ -12,7 +11,6 @@ const harness = createTestHarness({
   root: Root,
   profile: 'memory',
   connectors: ['pg'],
-  binders: [bindPg],
 });
 
 setupBiorateTest(harness);
