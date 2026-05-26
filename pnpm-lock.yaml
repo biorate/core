@@ -444,6 +444,9 @@ importers:
         specifier: 0.10.3
         version: 0.10.3
     devDependencies:
+      '@biorate/testing':
+        specifier: workspace:*
+        version: link:../testing
       '@types/amqplib':
         specifier: 0.10.5
         version: 0.10.5
@@ -856,6 +859,10 @@ importers:
       kafkajs:
         specifier: ^2.2.3
         version: 2.2.4
+    devDependencies:
+      '@biorate/testing':
+        specifier: workspace:*
+        version: link:../testing
 
   packages/@biorate/lifecycled:
     dependencies:
@@ -1258,6 +1265,9 @@ importers:
         specifier: ^4.2.4
         version: 4.14.0(pg@8.20.0)
     devDependencies:
+      '@biorate/testing':
+        specifier: workspace:*
+        version: link:../testing
       '@types/pg':
         specifier: ^8.6.5
         version: 8.20.0
@@ -1413,6 +1423,9 @@ importers:
         specifier: workspace:*
         version: link:../tools
     devDependencies:
+      '@biorate/testing':
+        specifier: workspace:*
+        version: link:../testing
       redis:
         specifier: '>=4.4.0'
         version: 4.4.0
@@ -1491,6 +1504,79 @@ importers:
   packages/@biorate/singleton: {}
 
   packages/@biorate/symbolic: {}
+
+  packages/@biorate/testing:
+    dependencies:
+      '@biorate/amqp':
+        specifier: workspace:*
+        version: link:../amqp
+      '@biorate/clickhouse':
+        specifier: workspace:*
+        version: link:../clickhouse
+      '@biorate/config':
+        specifier: workspace:*
+        version: link:../config
+      '@biorate/connector':
+        specifier: workspace:*
+        version: link:../connector
+      '@biorate/errors':
+        specifier: workspace:*
+        version: link:../errors
+      '@biorate/inversion':
+        specifier: workspace:*
+        version: link:../inversion
+      '@biorate/ioredis':
+        specifier: workspace:*
+        version: link:../ioredis
+      '@biorate/kafkajs':
+        specifier: workspace:*
+        version: link:../kafkajs
+      '@biorate/minio':
+        specifier: workspace:*
+        version: link:../minio
+      '@biorate/mongodb':
+        specifier: workspace:*
+        version: link:../mongodb
+      '@biorate/mssql':
+        specifier: workspace:*
+        version: link:../mssql
+      '@biorate/opensearch':
+        specifier: workspace:*
+        version: link:../opensearch
+      '@biorate/pg':
+        specifier: workspace:*
+        version: link:../pg
+      '@biorate/rdkafka':
+        specifier: workspace:*
+        version: link:../rdkafka
+      '@biorate/redis':
+        specifier: workspace:*
+        version: link:../redis
+      '@biorate/sequelize':
+        specifier: workspace:*
+        version: link:../sequelize
+      '@biorate/vault':
+        specifier: workspace:*
+        version: link:../vault
+      inversify:
+        specifier: 5.1.1
+        version: 5.1.1
+    devDependencies:
+      '@types/amqplib':
+        specifier: 0.10.5
+        version: 0.10.5
+      amqp-connection-manager:
+        specifier: 4.1.14
+        version: 4.1.14(amqplib@0.10.3)
+      amqplib:
+        specifier: 0.10.3
+        version: 0.10.3
+      kafkajs:
+        specifier: ^2.2.3
+        version: 2.2.4
+      vitest:
+        specifier: ^4.0.18
+        version: 4.0.18(@opentelemetry/api@1.9.0)(@types/node@24.10.12)(less@4.1.1)(terser@5.46.1)(yaml@2.8.3)
 
   packages/@biorate/tools:
     dependencies:

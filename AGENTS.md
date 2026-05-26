@@ -75,6 +75,15 @@
 - **TypeScript:** базовый корневой `tsconfig.json` и локальные конфиги пакетов; в пакетах обычно `strict: true` (входит `noImplicitAny`, `strictNullChecks` и др. подфлаги `strict`). Включение дополнительных опций (например `exactOptionalPropertyTypes`) — только осознанно и с проходом по типам во всём монорепо.
 - **Тесты:** по репозиторию преобладает **Vitest**; корневой `vitest.config.ts` задаёт общие дефолты, пакеты при необходимости расширяют конфиг локально.
 
+## Тестирование connector’ов (БД, очереди)
+
+- **`@biorate/testing`** — harness (`createTestHarness`), профили `memory` | `docker`, in-memory моки (`src/memory/*`), binders, пресеты хостов из `docker-compose.yml` (`dockerEndpoints`, `getProfileConfig`). Переключение: `BIORATE_TEST_PROFILE`.
+- **Connector kinds:** `pg`, `redis`, `ioredis`, `kafka`, `rdkafka`, `amqp`, `mongodb`, `mssql`, `clickhouse`, `minio`, `vault`, `opensearch`, `sequelize`. Memory-моки: pg, redis, ioredis, kafka, amqp, mssql, clickhouse, minio, vault, opensearch; `sequelize` — sqlite через config; `mongodb`, `rdkafka` — только docker-профиль.
+- **Subpath exports:** `@biorate/testing/memory/*` — прямой доступ к memory-реализациям при необходимости.
+- **Vitest projects** (корневой `vitest.config.ts`): `*.unit.spec.ts` → профиль `memory`, без Docker; остальные `*.spec.ts` → `docker`, нужен `docker compose up`.
+- В прикладных и пакетных тестах **не дублировать** localhost/credentials — использовать `getProfileConfig()` / `dockerEndpoints` из `@biorate/testing`.
+- Bootstrap DI: `createTestHarness({ connectors: ['pg'] })` + `setupBiorateTest`; отдельный массив `binders` не нужен. Каталоги `tests/__mocks__` — legacy bootstrap для integration.
+
 Язык ответов ассистенту: **русский**. Код и идентификаторы: **английский**; комментарии — только для нетривиальной логики.
 
 ## Ошибки и исключения (единый формат)
