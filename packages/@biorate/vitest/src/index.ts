@@ -24,6 +24,7 @@ export {
   attachment,
   testCaseId,
   data,
+  onlyIfEnv,
   label,
   link,
   id,

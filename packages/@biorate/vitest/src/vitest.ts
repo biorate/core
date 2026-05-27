@@ -11,12 +11,14 @@ import {
   Timeout,
   Repeats,
   Extends,
+  OnlyIfEnv,
 } from './symbols';
 import { SuiteOptions } from './interfaces';
 import {
   VitestBothSkipOnlyError,
   VitestTimeoutInvalidError,
   VitestRepeatsInvalidError,
+  VitestEnvInvalidError,
 } from './errors';
 
 export * as allure from 'allure-js-commons';
@@ -319,6 +321,12 @@ export class Vitest {
   public readonly data;
 
   /**
+   * OnlyIfEnv decorator factory - run test only if env variable matches
+   * @example @onlyIfEnv('CI', 'true')
+   */
+  public readonly onlyIfEnv;
+
+  /**
    * Initialize all decorator factories
    */
   public constructor() {
@@ -335,6 +343,7 @@ export class Vitest {
     this.pending = this.#pending;
     this.params = this.#params;
     this.context = Symbol.for('mocha.context');
+    this.onlyIfEnv = this.#onlyIfEnv;
     this.allureStep = this.#allureStep;
     this.attachment = this.#attachment;
     this.testCaseId = this.#testCaseId;
@@ -418,6 +427,7 @@ export class Vitest {
     const timeout = safeGetMetadata(Timeout, method);
     const repeats = safeGetMetadata(Repeats, method);
     const extend = safeGetMetadata(Extends, method);
+    let onlyIfEnv = safeGetMetadata(OnlyIfEnv, method);
 
     if (skip && only) {
       throw new VitestBothSkipOnlyError('test');
@@ -427,6 +437,16 @@ export class Vitest {
     if (skip) testFn = it.skip;
     else if (only) testFn = it.only;
     else if (todo) testFn = it.todo;
+    else if (onlyIfEnv) {
+      if (!Array.isArray(onlyIfEnv)) onlyIfEnv = [onlyIfEnv];
+      const envList = Array.isArray(onlyIfEnv[0]) ? onlyIfEnv : [onlyIfEnv];
+      const shouldSkip = envList.some(([varName, expectedValue]: [string, string]) => {
+        return process.env[varName] !== expectedValue;
+      });
+      if (shouldSkip) {
+        testFn = it.skip;
+      }
+    }
 
     const testOptions: any = {};
     if (timeout) testOptions.timeout = timeout[0];
@@ -546,6 +566,7 @@ export class Vitest {
     const skip = safeGetMetadata(Skip, Class);
     const only = safeGetMetadata(Only, Class);
     const suiteOptions = safeGetMetadata(Suite, Class);
+    let onlyIfEnv = safeGetMetadata(OnlyIfEnv, Class);
 
     if (skip && only) {
       throw new VitestBothSkipOnlyError('suite');
@@ -558,6 +579,16 @@ export class Vitest {
 
     if (skip) describeFn = describe.skip;
     else if (only) describeFn = describe.only;
+    else if (onlyIfEnv) {
+      if (!Array.isArray(onlyIfEnv)) onlyIfEnv = [onlyIfEnv];
+      const envList = Array.isArray(onlyIfEnv[0]) ? onlyIfEnv : [onlyIfEnv];
+      const shouldSkip = envList.some(([varName, expectedValue]: [string, string]) => {
+        return process.env[varName] !== expectedValue;
+      });
+      if (shouldSkip) {
+        describeFn = describe.skip;
+      }
+    }
 
     const suiteOptionsObj: any = {};
     if (mode === 'serial') suiteOptionsObj.sequential = true;
@@ -771,6 +802,38 @@ export class Vitest {
   };
 
   /**
+   * OnlyIfEnv decorator factory - run test only if env variable matches
+   * @param variableName - Environment variable name
+   * @param expectedValue - Expected value
+   */
+  #onlyIfEnv = (variableName: string, expectedValue: string) => {
+    if (!variableName || !expectedValue) {
+      throw new VitestEnvInvalidError(variableName, expectedValue);
+    }
+    return (target: any, propertyKey?: string, descriptor?: PropertyDescriptor) => {
+      const envData = [variableName, expectedValue];
+      if (descriptor) {
+        const existing = Reflect.getMetadata(OnlyIfEnv, descriptor.value) || [];
+        const updated = Array.isArray(existing[0])
+          ? [...existing, envData]
+          : existing.length
+          ? [existing, envData]
+          : [envData];
+        Reflect.defineMetadata(OnlyIfEnv, updated, descriptor.value);
+        return descriptor;
+      } else {
+        const existing = Reflect.getMetadata(OnlyIfEnv, target) || [];
+        const updated = Array.isArray(existing[0])
+          ? [...existing, envData]
+          : existing.length
+          ? [existing, envData]
+          : [envData];
+        Reflect.defineMetadata(OnlyIfEnv, updated, target);
+      }
+    };
+  };
+
+  /**
    * Set Allure metadata method for a test
    * @param target - Method or class target
    * @param method - Allure method name (e.g., 'epic', 'severity')
@@ -860,6 +923,7 @@ export const {
   attachment,
   testCaseId,
   data,
+  onlyIfEnv,
   label,
   link,
   id,

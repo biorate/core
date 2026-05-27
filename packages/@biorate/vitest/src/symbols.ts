@@ -55,3 +55,8 @@ export const Repeats = Symbols.Repeats;
  * Extend context metadata key
  */
 export const Extends = Symbols.Extends;
+
+/**
+ * OnlyIfEnv decorator metadata key
+ */
+export const OnlyIfEnv = Symbols.OnlyIfEnv;
