@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/biorate/core/compare/@biorate/vitest@2.2.0...@biorate/vitest@2.3.0) (2026-05-27)
+
+### Features
+
+- **vitest:** [@only](https://github.com/only)IfEnv ([754932a](https://github.com/biorate/core/commit/754932a3f6f2faae875e3c17aba7a69912b117cf))
+
 # [2.2.0](https://github.com/biorate/core/compare/@biorate/vitest@2.1.1...@biorate/vitest@2.2.0) (2026-05-27)
 
 ### Features
