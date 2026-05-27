@@ -663,6 +663,36 @@ export class Vitest {
   };
 
   /**
+   * OnlyIfEnv decorator factory - run test only if env variable matches
+   * @param variableName - Environment variable name
+   * @param expectedValue - Expected value
+   */
+  #onlyIfEnv = (variableName: string, expectedValue: string) => {
+    if (!variableName || !expectedValue)
+      throw new VitestEnvInvalidError(variableName, expectedValue);
+    return (target: any, propertyKey?: string, descriptor?: PropertyDescriptor) => {
+      const envData = [variableName, expectedValue];
+      if (descriptor) {
+        const existing = Reflect.getMetadata(OnlyIfEnv, descriptor.value) || [];
+        const updated = Array.isArray(existing[0])
+          ? [...existing, envData]
+          : existing.length
+          ? [existing, envData]
+          : [envData];
+        Reflect.defineMetadata(OnlyIfEnv, updated, descriptor.value);
+      } else {
+        const existing = Reflect.getMetadata(OnlyIfEnv, target) || [];
+        const updated = Array.isArray(existing[0])
+          ? [...existing, envData]
+          : existing.length
+          ? [existing, envData]
+          : [envData];
+        Reflect.defineMetadata(OnlyIfEnv, updated, target);
+      }
+    };
+  };
+
+  /**
    * @deprecated Use `#repeats` instead. Mocha compatibility decorator.
    * Retries decorator factory for Mocha migration
    * @param count - Number of retries (must be non-negative)
@@ -798,38 +828,6 @@ export class Vitest {
       existingData.push({ params, name });
       Reflect.defineMetadata('data', existingData, descriptor.value);
       return descriptor;
-    };
-  };
-
-  /**
-   * OnlyIfEnv decorator factory - run test only if env variable matches
-   * @param variableName - Environment variable name
-   * @param expectedValue - Expected value
-   */
-  #onlyIfEnv = (variableName: string, expectedValue: string) => {
-    if (!variableName || !expectedValue) {
-      throw new VitestEnvInvalidError(variableName, expectedValue);
-    }
-    return (target: any, propertyKey?: string, descriptor?: PropertyDescriptor) => {
-      const envData = [variableName, expectedValue];
-      if (descriptor) {
-        const existing = Reflect.getMetadata(OnlyIfEnv, descriptor.value) || [];
-        const updated = Array.isArray(existing[0])
-          ? [...existing, envData]
-          : existing.length
-          ? [existing, envData]
-          : [envData];
-        Reflect.defineMetadata(OnlyIfEnv, updated, descriptor.value);
-        return descriptor;
-      } else {
-        const existing = Reflect.getMetadata(OnlyIfEnv, target) || [];
-        const updated = Array.isArray(existing[0])
-          ? [...existing, envData]
-          : existing.length
-          ? [existing, envData]
-          : [envData];
-        Reflect.defineMetadata(OnlyIfEnv, updated, target);
-      }
     };
   };
 
