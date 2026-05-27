@@ -33,7 +33,7 @@ export class MockSequelizeConnection extends MockConnection<SequelizeCall> {
   /**
    * @description Defined models
    */
-  readonly #models: Map<string, MockModel> = new Map();
+  readonly #models: Map<string, MockModel<any>> = new Map();
   /**
    * @description Default query response
    */
@@ -76,13 +76,13 @@ export class MockSequelizeConnection extends MockConnection<SequelizeCall> {
   /**
    * @description Define mock model
    */
-  define<T extends MockModel>(modelName: string, attributes?: any): MockModel {
+  define<T = any>(modelName: string, attributes?: any): MockModel<T> {
     this.trackCall('define', modelName, attributes);
     
     if (!this.#models.has(modelName)) {
-      this.#models.set(modelName, new MockModel());
+      this.#models.set(modelName, new MockModel<T>());
     }
-    return this.#models.get(modelName)!;
+    return this.#models.get(modelName) as MockModel<T>;
   }
 
   /**

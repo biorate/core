@@ -21,7 +21,7 @@ import { ResponseBuilder } from '../base/response-builder';
  * const created = await mockModel.create({ name: 'new' });
  * ```
  */
-export class MockModel<T extends Model = Model> {
+export class MockModel<T = any> {
   /**
    * @description FindAll response builder
    */

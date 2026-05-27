@@ -6,6 +6,9 @@ import {
   setupMockSequelize,
   useMockSequelize,
 } from '../../src/sequelize/factories';
+import type { MockSequelizeConnection } from '../../src/sequelize/mock-sequelize-connection';
+import type { MockModel } from '../../src/sequelize/mock-model';
+import type { MockSequelizeConnector } from '../../src/sequelize/mock-sequelize-connector';
 
 describe('createMockSequelize', () => {
   beforeEach(() => {
@@ -82,7 +85,7 @@ describe('setupMockSequelize', () => {
   it('should apply async setup', async () => {
     await setupMockSequelize(async (connector) => {
       const connection = connector.getMockConnection();
-      const mockModel = connection.define('User');
+      const mockModel: MockModel = connection.define('User');
       mockModel.setFindAllResponse([{ id: 1, name: 'Alice' }]);
     });
 
@@ -139,15 +142,15 @@ describe('useMockSequelize', () => {
 describe('DI integration example', () => {
   @injectable()
   class MyService {
-    private connector: ISequelizeConnector;
-    
+    private connector: MockSequelizeConnector;
+
     constructor() {
-      this.connector = container.get<ISequelizeConnector>(Types.Sequelize);
+      this.connector = container.get<MockSequelizeConnector>(Types.Sequelize);
     }
 
     async getUsers() {
-      const connection = this.connector.get();
-      const mockModel = connection.define('User');
+      const connection = this.connector.getMockConnection();
+      const mockModel: MockModel = connection.define('User', {});
       mockModel.setFindAllResponse([{ id: 1, name: 'Alice' }]);
       return mockModel.findAll();
     }

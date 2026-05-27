@@ -1,6 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { MockSequelizeConnector } from '../../src/sequelize/mock-sequelize-connector';
 
+interface TestModel {
+  id: number;
+  name?: string;
+  product?: string;
+}
+
 describe('MockSequelizeConnector', () => {
   let connector: MockSequelizeConnector;
 
@@ -15,7 +21,7 @@ describe('MockSequelizeConnector', () => {
 
   it('should set query response', async () => {
     const connection = connector.getMockConnection();
-    connection.setQueryResponse([{ id: 1, name: 'test' }]);
+    connection.setQueryResponse<TestModel>([{ id: 1, name: 'test' }]);
 
     const [data] = await connection.query('SELECT * FROM table');
     expect(data).toEqual([{ id: 1, name: 'test' }]);
@@ -23,7 +29,7 @@ describe('MockSequelizeConnector', () => {
 
   it('should define mock model', () => {
     const connection = connector.getMockConnection();
-    const mockModel = connection.define('User');
+    const mockModel = connection.define<TestModel>('User');
 
     expect(mockModel).toBeDefined();
   });
@@ -104,10 +110,10 @@ describe('MockSequelizeConnector', () => {
     const connection = connector.getMockConnection();
     connection
       .whenQuery((sql) => sql.includes('users'))
-      .thenReturn([[{ id: 1, name: 'Alice' }], {}]);
+      .thenReturn([[{ id: 1, name: 'Alice' }] as unknown as TestModel[], {}]);
     connection
       .whenQuery((sql) => sql.includes('orders'))
-      .thenReturn([[{ id: 2, product: 'Item' }], {}]);
+      .thenReturn([[{ id: 2, product: 'Item' }] as unknown as TestModel[], {}]);
 
     const [usersData] = await connection.query('SELECT * FROM users');
     const [ordersData] = await connection.query('SELECT * FROM orders');
