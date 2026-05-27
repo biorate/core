@@ -1,0 +1,83 @@
+{
+  "name": "@biorate/mocks",
+  "version": "1.0.0",
+  "description": "Universal mocking utilities for @biorate connectors",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
+    },
+    "./clickhouse": {
+      "types": "./dist/types/clickhouse/index.d.ts",
+      "import": "./dist/esm/clickhouse/index.js",
+      "require": "./dist/cjs/clickhouse/index.js",
+      "default": "./dist/cjs/clickhouse/index.js"
+    },
+    "./sequelize": {
+      "types": "./dist/types/sequelize/index.d.ts",
+      "import": "./dist/esm/sequelize/index.js",
+      "require": "./dist/cjs/sequelize/index.js",
+      "default": "./dist/cjs/sequelize/index.js"
+    }
+  },
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "cleanup dist",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
+    "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
+    "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module",
+    "format": "prettier --check src",
+    "lint": "eslint src --ext .ts",
+    "format:fix": "prettier --write src",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "npx vitest run",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/mocks"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "mock",
+    "test",
+    "vitest",
+    "connector"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "peerDependencies": {
+    "vitest": ">=1.0.0"
+  },
+  "dependencies": {
+    "@biorate/config": "workspace:*",
+    "@biorate/connector": "workspace:*",
+    "@biorate/clickhouse": "workspace:*",
+    "@biorate/inversion": "workspace:*",
+    "@biorate/sequelize": "workspace:*",
+    "@biorate/tools": "workspace:*",
+    "lodash-es": "4.17.21"
+  },
+  "devDependencies": {
+    "@clickhouse/client": "1.11.1",
+    "sequelize": "6.37.8",
+    "sequelize-typescript": "2.1.6",
+    "vitest": "3.0.5"
+  }
+}
