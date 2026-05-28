@@ -15,7 +15,8 @@ describe('@biorate/connector-mocks - Clickhouse helpers', () => {
   let testSnapshotsDir: string;
 
   beforeEach(() => {
-    testSnapshotsDir = path.join(process.cwd(), 'test-temp-clickhouse-snapshots');
+    // Use absolute path to avoid issues with process.cwd() changing
+    testSnapshotsDir = path.resolve(__dirname, 'test-temp-clickhouse-snapshots');
     snapshotStore = new MemorySnapshotStore();
   });
 

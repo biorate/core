@@ -159,10 +159,10 @@ export class FileSnapshotStore implements SnapshotStore {
     const currentTestPath = state?.currentTestPath ?? state?.testPath;
 
     if (currentTestPath) {
-      // Use relative path from process.cwd() for consistency
-      const relativeTestPath = path.relative(process.cwd(), currentTestPath);
-      const testDir = path.dirname(relativeTestPath);
-      const snapshotsDir = path.join(testDir, this.options.snapshotsDir);
+      // If snapshotsDir is absolute, use it directly; otherwise, resolve relative to test file
+      const snapshotsDir = path.isAbsolute(this.options.snapshotsDir)
+        ? this.options.snapshotsDir
+        : path.join(path.dirname(currentTestPath), this.options.snapshotsDir);
       const testFileName = path.basename(currentTestPath, path.extname(currentTestPath));
       return path.join(snapshotsDir, `${testFileName}${this.options.fileExtension}`);
     }

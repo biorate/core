@@ -8,7 +8,8 @@ describe('@biorate/connector-mocks - FileSnapshotStore', () => {
   let testSnapshotsDir: string;
 
   beforeEach(() => {
-    testSnapshotsDir = path.join(process.cwd(), 'test-temp-snapshots');
+    // Use absolute path to avoid issues with process.cwd() changing
+    testSnapshotsDir = path.resolve(__dirname, 'test-temp-snapshots');
     store = new FileSnapshotStore({
       snapshotsDir: testSnapshotsDir,
       fileExtension: '.test.json',
