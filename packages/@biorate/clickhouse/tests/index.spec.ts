@@ -1,9 +1,19 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { Unimock } from '@biorate/unimock';
-import { root } from './__mocks__';
+import { getTestRoot } from './__mocks__';
+import type { Root } from './__mocks__';
 
 describe('@biorate/clickhouse', function () {
-  beforeAll(async () => await root.$run());
+  let root: Root;
+
+  beforeAll(() => {
+    process.env.UNIMOCK = '1';
+  });
+
+  beforeAll(async () => {
+    root = getTestRoot();
+    await root.$run();
+  });
 
   afterAll(() => {
     Unimock.flush();

@@ -1,9 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { existsSync, mkdirSync, readFileSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, rmSync } from 'fs';
 import { join } from 'path';
-import { Mockable, Unimock, flushAllSnapshots } from '../src';
+import { DEFAULT_SNAPSHOT_DIR, Mockable, Unimock } from '../src';
 
-const SNAPSHOT_DIR = join(__dirname, '__snapshots__');
+const SNAPSHOT_DIR = join(process.cwd(), DEFAULT_SNAPSHOT_DIR);
 
 class CounterService {
   public calls = 0;
@@ -20,7 +20,7 @@ class CounterService {
   }
 }
 
-@Mockable({ snapshotDir: SNAPSHOT_DIR })
+@Mockable()
 class MockedCounter extends CounterService {}
 
 describe('@biorate/unimock', () => {
@@ -54,6 +54,27 @@ describe('@biorate/unimock', () => {
     expect(replay.inner().transform('x')).toBe('ok:x');
   });
 
+  it('runs initialize on real target when class uses private fields', async () => {
+    class PrivateConnector {
+      #ready = false;
+
+      public async initialize() {
+        this.#ready = true;
+      }
+
+      public isReady() {
+        return this.#ready;
+      }
+    }
+
+    @Mockable()
+    class MockedPrivate extends PrivateConnector {}
+
+    const instance = new MockedPrivate();
+    await instance.initialize();
+    expect(instance.isReady()).toBe(true);
+  });
+
   it('skips initialize in replay mode', async () => {
     class InfraBase {
       public connected = false;
@@ -67,7 +88,7 @@ describe('@biorate/unimock', () => {
       }
     }
 
-    @Mockable({ snapshotDir: SNAPSHOT_DIR })
+    @Mockable()
     class MockedInfra extends InfraBase {}
 
     const infraSnapshot = join(SNAPSHOT_DIR, 'MockedInfra.unimock.json');
@@ -78,6 +99,7 @@ describe('@biorate/unimock', () => {
     expect(recorder.connected).toBe(true);
     expect(recorder.ping()).toBe('pong');
     Unimock.flush();
+    expect(existsSync(infraSnapshot)).toBe(true);
 
     const player = new MockedInfra();
     await player.initialize();

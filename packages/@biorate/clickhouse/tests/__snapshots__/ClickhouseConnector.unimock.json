@@ -24,14 +24,8 @@
     "ref-2|json|28y": {
       "args": [],
       "result": {
-        "kind": "primitive",
-        "value": {
-          "data": [
-            {
-              "result": 1
-            }
-          ]
-        }
+        "kind": "ref",
+        "ref": "ref-3"
       }
     }
   }

@@ -1,5 +1,9 @@
+import { join } from 'path';
 import { UnimockMode } from './interfaces';
-import { existsSync } from 'fs';
+import { isReplayableSnapshotFile } from './snapshot-path';
+
+/** @description Default snapshot directory relative to `process.cwd()`. */
+export const DEFAULT_SNAPSHOT_DIR = join('tests', '__snapshots__');
 
 /** @description Whether unimock proxy is active (`UNIMOCK` is not `0` / `false`). */
 export function isUnimockEnabled(): boolean {
@@ -22,14 +26,14 @@ export function resolveSnapshotDir(override?: string): string {
     override ??
     process.env.UNIMOCK_SNAPSHOT_DIR ??
     process.env.UNIMOCK_SNAPSHOTS_DIR ??
-    '__snapshots__'
+    DEFAULT_SNAPSHOT_DIR
   );
 }
 
 /** @description Resolve record / replay / live from env and snapshot file. */
-export function resolveMode(snapshotPath: string): UnimockMode {
+export function resolveMode(snapshotPath: string, className?: string): UnimockMode {
   if (isUnimockLive()) return 'live';
   if (isUnimockUpdate()) return 'record';
-  if (existsSync(snapshotPath)) return 'replay';
+  if (isReplayableSnapshotFile(snapshotPath, className)) return 'replay';
   return 'record';
 }

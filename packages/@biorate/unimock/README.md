@@ -12,20 +12,28 @@ import { ClickhouseConnector as BaseClickhouseConnector } from '@biorate/clickho
 class ClickhouseConnector extends BaseClickhouseConnector {}
 ```
 
-Snapshots are stored in `__snapshots__/<ClassName>.unimock.json` (relative to `process.cwd()`).
+Snapshots default to `tests/__snapshots__/<ClassName>.unimock.json` under `process.cwd()` (package root when you run `pnpm test`).
+
+Initialize the DI root **after** setting env (see clickhouse `tests/__mocks__/index.ts` → `getTestRoot()`).
 
 ## Environment
 
 | Variable | Description |
 | -------- | ----------- |
 | `UNIMOCK=0` | Disable proxy |
-| `UNIMOCK_UPDATE=1` | Re-record snapshot |
+| `UNIMOCK_UPDATE=1` | Re-record snapshot (overwrite existing file) |
 | `UNIMOCK_LIVE=1` | Always call real implementation |
-| `UNIMOCK_SNAPSHOT_DIR` | Override snapshot directory (default: `__snapshots__`) |
+| `UNIMOCK_SNAPSHOT_DIR` | Override snapshot directory (default: `tests/__snapshots__`) |
 
-Call `Unimock.flush()` after tests to persist snapshots.
+Call `Unimock.flush()` after tests to persist recorded snapshots.
 
-## Serializers
+Replay runs only when the snapshot file exists and `calls` is non-empty.
 
-Built-in `defaultSerializers` handle opaque SDK handles (clients, cursors with `.json()` / `.query()`).
-Override or extend via `@Mockable({ serializers: [...] })`.
+## Record a new snapshot
+
+```bash
+# needs live ClickHouse
+UNIMOCK=1 UNIMOCK_UPDATE=1 pnpm --filter @biorate/clickhouse test
+```
+
+Commit `tests/__snapshots__/*.unimock.json`. CI runs in replay mode without infrastructure.

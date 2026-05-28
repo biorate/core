@@ -31,8 +31,10 @@ export interface ISerializer {
 export interface MockableOptions {
   /** Absolute or relative path to snapshot file (default: `__snapshots__/<ClassName>.unimock.json`). */
   snapshot?: string;
-  /** Directory for default snapshot path. */
+  /** Directory for default snapshot path (relative to `snapshotBaseDir` or `cwd`). */
   snapshotDir?: string;
+  /** Base directory for `snapshotDir` (use {@link snapshotDirFromImportMeta}). */
+  snapshotBaseDir?: string;
   serializers?: ISerializer[];
 }
 

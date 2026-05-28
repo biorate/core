@@ -5,6 +5,12 @@ import { deserializeValue, makeCallKey } from './serialize';
 
 const INFRA_METHODS = new Set(['initialize', 'create', 'connect']);
 const replayStubs = new WeakSet<object>();
+const proxyTargets = new WeakMap<object, object>();
+
+/** @description Real instance behind a {@link createMockProxy} wrapper. */
+export function unwrapMockTarget<T extends object>(value: T): T {
+  return (proxyTargets.get(value) as T | undefined) ?? value;
+}
 
 export function createMockProxy<T extends object>(
   target: T,
@@ -29,22 +35,16 @@ export function createMockProxy<T extends object>(
 
       if (store.isReplay && replayStubs.has(trapTarget) && typeof prop === 'string') {
         return (...args: unknown[]) =>
-          invokeMethod(
-            trapTarget,
-            prop,
-            () => undefined,
-            args,
-            store,
-            options,
-            nodeId,
-          );
+          invokeMethod(trapTarget, prop, () => undefined, args, store, options, nodeId);
       }
 
       return value;
     },
   };
 
-  return new Proxy(target, handler);
+  const proxy = new Proxy(target, handler);
+  proxyTargets.set(proxy, target);
+  return proxy;
 }
 
 function invokeMethod(

@@ -23,4 +23,7 @@ container.get<IConfig>(Types.Config).merge({
   ],
 });
 
-export const root = <Root>container.get<Root>(Root);
+/** @description Lazy DI root — call after `UNIMOCK` / `UNIMOCK_UPDATE` env is set. */
+export function getTestRoot(): Root {
+  return container.get<Root>(Root);
+}

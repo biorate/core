@@ -1,5 +1,5 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { dirname, isAbsolute, resolve } from 'path';
+import { dirname } from 'path';
 import {
   ISerializer,
   MockableOptions,
@@ -8,11 +8,13 @@ import {
   SnapshotResult,
   UnimockMode,
 } from './interfaces';
-import { isUnimockUpdate, resolveMode, resolveSnapshotDir } from './env';
+import { isUnimockUpdate, resolveMode } from './env';
 import { defaultSerializers } from './default-serializers';
+import { resolveSnapshotFilePath } from './snapshot-path';
 import { deserializeValue, serializeValue } from './serialize';
 
 const stores = new Set<SnapshotStore>();
+const storeCache = new Map<string, SnapshotStore>();
 
 let globalSnapshotDir: string | undefined;
 
@@ -28,10 +30,7 @@ export class SnapshotStore {
   protected refCounter = 0;
   protected data: SnapshotFile;
 
-  public constructor(
-    public readonly className: string,
-    options?: MockableOptions,
-  ) {
+  public constructor(public readonly className: string, options?: MockableOptions) {
     this.serializers = [...defaultSerializers, ...(options?.serializers ?? [])];
     this.snapshotPath = SnapshotStore.resolvePath(className, options);
     this.data = this.load();
@@ -39,17 +38,11 @@ export class SnapshotStore {
   }
 
   public get mode(): UnimockMode {
-    return resolveMode(this.snapshotPath);
+    return resolveMode(this.snapshotPath, this.className);
   }
 
   public static resolvePath(className: string, options?: MockableOptions): string {
-    if (options?.snapshot) {
-      return isAbsolute(options.snapshot)
-        ? options.snapshot
-        : resolve(process.cwd(), options.snapshot);
-    }
-    const dir = resolveSnapshotDir(options?.snapshotDir ?? globalSnapshotDir);
-    return resolve(process.cwd(), dir, `${className}.unimock.json`);
+    return resolveSnapshotFilePath(className, options, globalSnapshotDir);
   }
 
   public get isReplay(): boolean {
@@ -73,12 +66,7 @@ export class SnapshotStore {
     return `ref-${this.refCounter}`;
   }
 
-  public record(
-    callKey: string,
-    args: unknown[],
-    result: unknown,
-    refId?: string,
-  ): void {
+  public record(callKey: string, args: unknown[], result: unknown, refId?: string): void {
     if (!this.shouldPersist()) return;
     this.data.calls[callKey] = {
       args: args.map((arg) => serializeValue(arg, this.serializers)),
@@ -99,7 +87,7 @@ export class SnapshotStore {
   }
 
   public flush(): void {
-    if (!this.dirty || !this.shouldPersist()) return;
+    if (!this.dirty || !Object.keys(this.data.calls).length) return;
     mkdirSync(dirname(this.snapshotPath), { recursive: true });
     writeFileSync(this.snapshotPath, `${JSON.stringify(this.data, null, 2)}\n`, 'utf-8');
     this.dirty = false;
@@ -127,8 +115,17 @@ export function flushAllSnapshots(): void {
   for (const store of stores) store.flush();
 }
 
-export function getSnapshotStore(className: string, options?: MockableOptions): SnapshotStore {
-  return new SnapshotStore(className, options);
+export function getSnapshotStore(
+  className: string,
+  options?: MockableOptions,
+): SnapshotStore {
+  const path = SnapshotStore.resolvePath(className, options);
+  let store = storeCache.get(path);
+  if (!store) {
+    store = new SnapshotStore(className, options);
+    storeCache.set(path, store);
+  }
+  return store;
 }
 
 process.on('beforeExit', () => flushAllSnapshots());

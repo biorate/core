@@ -2,12 +2,12 @@ import { injectable } from '@biorate/inversion';
 import { init } from '@biorate/lifecycled';
 import { Constructor, MockableOptions } from './interfaces';
 import { isUnimockEnabled } from './env';
-import { createMockProxy } from './proxy';
+import { createMockProxy, unwrapMockTarget } from './proxy';
 import { getSnapshotStore } from './snapshot-store';
 
 /**
  * @description Class decorator: wraps instances in a recording/replay proxy.
- * One snapshot file per class (see `UNIMOCK_SNAPSHOT_DIR` / `MockableOptions.snapshot`).
+ * One snapshot file per class under `tests/__snapshots__` (see `UNIMOCK_SNAPSHOT_DIR`).
  *
  * @example
  * ```ts
@@ -33,7 +33,7 @@ export function Mockable(options?: MockableOptions) {
         const baseProto = Reflect.getPrototypeOf(Mocked.prototype) as {
           initialize: (this: unknown) => Promise<void>;
         };
-        return baseProto.initialize.call(this);
+        return baseProto.initialize.call(unwrapMockTarget(this));
       }
     };
 

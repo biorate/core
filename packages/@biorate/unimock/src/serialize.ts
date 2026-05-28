@@ -44,10 +44,9 @@ export function serializeValue(value: unknown, serializers: ISerializer[]): unkn
   try {
     return JSON.parse(stableStringify(value));
   } catch (e: unknown) {
-    throw new UnimockSerializeError(
-      e instanceof Error ? e.message : 'unknown',
-      { valueType: typeof value },
-    );
+    throw new UnimockSerializeError(e instanceof Error ? e.message : 'unknown', {
+      valueType: typeof value,
+    });
   }
 }
 
