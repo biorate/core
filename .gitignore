@@ -58,6 +58,7 @@ coverage
 package-lock.json
 
 .veai
+.claude
 
 # Misc
 .DS_Store
