@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { existsSync, mkdirSync, rmSync } from 'fs';
 import { join } from 'path';
-import { DEFAULT_SNAPSHOT_DIR, Mockable, Unimock } from '../src';
+import { DEFAULT_SNAPSHOT_DIR, Mockable, Unimock, unwrapMockTarget } from '../src';
 
 const SNAPSHOT_DIR = join(process.cwd(), DEFAULT_SNAPSHOT_DIR);
 
@@ -32,7 +32,7 @@ describe('@biorate/unimock', () => {
 
   beforeAll(() => {
     mkdirSync(SNAPSHOT_DIR, { recursive: true });
-    process.env.UNIMOCK = '1';
+    process.env.UNIMOCK = 'auto';
   });
 
   afterAll(() => {
@@ -42,14 +42,23 @@ describe('@biorate/unimock', () => {
     delete process.env.UNIMOCK_LIVE;
   });
 
-  it('records and replays method calls', async () => {
-    rmSync(snapshotPath, { force: true });
-    delete process.env.UNIMOCK_LIVE;
+  it('does not wrap instances when UNIMOCK is off', () => {
+    delete process.env.UNIMOCK;
+    const instance = new MockedCounter();
+    expect(unwrapMockTarget(instance)).toBe(instance);
+    expect(instance.add(1, 2)).toBe(3);
+    expect(instance.calls).toBe(1);
+    process.env.UNIMOCK = 'auto';
+  });
 
-    const live = new MockedCounter();
-    expect(live.add(2, 3)).toBe(5);
-    expect(live.inner().transform('x')).toBe('ok:x');
-    expect(live.calls).toBe(1);
+  it('records and replays method calls', async () => {
+    process.env.UNIMOCK = 'auto';
+    rmSync(snapshotPath, { force: true });
+
+    const recorder = new MockedCounter();
+    expect(recorder.add(2, 3)).toBe(5);
+    expect(recorder.inner().transform('x')).toBe('ok:x');
+    expect(recorder.calls).toBe(1);
     Unimock.flush();
     expect(existsSync(snapshotPath)).toBe(true);
 
@@ -59,6 +68,7 @@ describe('@biorate/unimock', () => {
   });
 
   it('records SDK client chains without serializing opaque handles', async () => {
+    process.env.UNIMOCK = 'auto';
     const sdkSnapshot = join(SNAPSHOT_DIR, 'MockedSdkClient.unimock.json');
     rmSync(sdkSnapshot, { force: true });
 
@@ -79,8 +89,8 @@ describe('@biorate/unimock', () => {
     @Mockable()
     class MockedSdkClient extends SdkClient {}
 
-    const live = new MockedSdkClient();
-    const cursor = live.query();
+    const recorder = new MockedSdkClient();
+    const cursor = recorder.query();
     const { data } = await cursor.json();
     expect(data[0].result).toBe(1);
     Unimock.flush();
@@ -93,14 +103,15 @@ describe('@biorate/unimock', () => {
   });
 
   it('replays property access on object refs', () => {
+    process.env.UNIMOCK = 'auto';
     const payloadSnapshot = join(SNAPSHOT_DIR, 'MockedPayload.unimock.json');
     rmSync(payloadSnapshot, { force: true });
 
     @Mockable()
     class MockedPayload extends CounterService {}
 
-    const live = new MockedPayload();
-    const { data: recorded } = live.payload();
+    const recorder = new MockedPayload();
+    const { data: recorded } = recorder.payload();
     expect(recorded[0].value).toBe(42);
     Unimock.flush();
 
@@ -110,6 +121,8 @@ describe('@biorate/unimock', () => {
   });
 
   it('runs initialize on real target when class uses private fields', async () => {
+    process.env.UNIMOCK = 'auto';
+
     class PrivateConnector {
       #ready = false;
 
@@ -131,6 +144,8 @@ describe('@biorate/unimock', () => {
   });
 
   it('skips initialize in replay mode', async () => {
+    process.env.UNIMOCK = 'auto';
+
     class InfraBase {
       public connected = false;
 

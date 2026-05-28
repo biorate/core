@@ -4,11 +4,11 @@ export { configureUnimock, flushAllSnapshots, getSnapshotStore } from './snapsho
 export {
   DEFAULT_SNAPSHOT_DIR,
   isUnimockEnabled,
-  isUnimockLive,
-  isUnimockUpdate,
+  parseUnimockEnv,
   resolveMode,
   resolveSnapshotDir,
 } from './env';
+export type { UnimockEnv } from './env';
 export * from './errors';
 export * from './interfaces';
 export { defaultSerializers, opaqueHandleSerializer } from './default-serializers';

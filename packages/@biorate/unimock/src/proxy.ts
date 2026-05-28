@@ -70,10 +70,6 @@ function invokeMethod(
     return materializeResult(store, options, entry.result);
   }
 
-  if (store.mode === 'live' && !store.shouldPersist()) {
-    return runMethod(target, fn, args);
-  }
-
   return runMethod(target, fn, args, (raw) =>
     wrapResult(raw, store, options, nodeId, callKey, args),
   );

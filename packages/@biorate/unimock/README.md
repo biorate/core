@@ -18,22 +18,43 @@ Initialize the DI root **after** setting env (see clickhouse `tests/__mocks__/in
 
 ## Environment
 
+| `UNIMOCK` | Proxy | Behaviour |
+| --------- | ----- | --------- |
+| *(unset)* / `off` / `0` / `false` | off | `@Mockable` is a no-op — real class, no snapshots |
+| `record` / `update` | on | Call real implementation and persist snapshots on flush |
+| `replay` | on | Return recorded responses; miss → `UnimockReplayMissError` |
+| `auto` / `1` / `true` | on | Replay when snapshot file has calls; otherwise record |
+
 | Variable | Description |
 | -------- | ----------- |
-| `UNIMOCK=0` | Disable proxy |
-| `UNIMOCK_UPDATE=1` | Re-record snapshot (overwrite existing file) |
-| `UNIMOCK_LIVE=1` | Always call real implementation |
 | `UNIMOCK_SNAPSHOT_DIR` | Override snapshot directory (default: `tests/__snapshots__`) |
 
-Call `Unimock.flush()` after tests to persist recorded snapshots.
+Deprecated (shim + one-time warning): `UNIMOCK_UPDATE=1` → `record`, `UNIMOCK_LIVE=1` → `off`.
 
-Replay runs only when the snapshot file exists and `calls` is non-empty.
+Call `Unimock.flush()` after tests to persist recorded snapshots (or use `@biorate/unimock/vitest/setup`).
 
-## Record a new snapshot
+## Scripts
 
 ```bash
-# needs live ClickHouse
-UNIMOCK=1 UNIMOCK_UPDATE=1 pnpm --filter @biorate/clickhouse test
+# CI — replay committed snapshots, no live infrastructure
+UNIMOCK=replay pnpm --filter @biorate/clickhouse test
+
+# Re-record snapshots (needs live ClickHouse)
+UNIMOCK=record pnpm --filter @biorate/clickhouse test
+
+# E2E / integration without mocks
+pnpm --filter @biorate/clickhouse test:integration
 ```
 
-Commit `tests/__snapshots__/*.unimock.json`. CI runs in replay mode without infrastructure.
+## Vitest
+
+```ts
+// vitest.config.ts
+export default defineConfig({
+  test: {
+    setupFiles: ['@biorate/unimock/vitest/setup'],
+  },
+});
+```
+
+Commit `tests/__snapshots__/*.unimock.json`. CI runs with `UNIMOCK=replay` without infrastructure.

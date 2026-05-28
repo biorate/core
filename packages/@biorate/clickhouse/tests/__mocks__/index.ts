@@ -23,7 +23,7 @@ container.get<IConfig>(Types.Config).merge({
   ],
 });
 
-/** @description Lazy DI root — call after `UNIMOCK` / `UNIMOCK_UPDATE` env is set. */
+/** @description Lazy DI root — set `UNIMOCK` (e.g. `replay` / `record`) before calling. */
 export function getTestRoot(): Root {
   return container.get<Root>(Root);
 }

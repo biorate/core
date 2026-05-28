@@ -8,7 +8,7 @@ import {
   SnapshotResult,
   UnimockMode,
 } from './interfaces';
-import { isUnimockUpdate, resolveMode } from './env';
+import { resolveMode } from './env';
 import { defaultSerializers } from './default-serializers';
 import { resolveSnapshotFilePath } from './snapshot-path';
 import { deserializeValue, serializeValue } from './serialize';
@@ -50,7 +50,7 @@ export class SnapshotStore {
   }
 
   public shouldPersist(): boolean {
-    return this.mode === 'record' || (this.mode === 'live' && isUnimockUpdate());
+    return this.mode === 'record';
   }
 
   public has(callKey: string): boolean {

@@ -11,6 +11,18 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "default": "./dist/cjs/index.js"
+    },
+    "./vitest/setup": {
+      "types": "./dist/types/src/vitest/setup.d.ts",
+      "import": "./dist/esm/src/vitest/setup.js",
+      "require": "./dist/cjs/src/vitest/setup.js",
+      "default": "./dist/cjs/src/vitest/setup.js"
+    },
+    "./vitest": {
+      "types": "./dist/types/src/vitest/index.d.ts",
+      "import": "./dist/esm/src/vitest/index.js",
+      "require": "./dist/cjs/src/vitest/index.js",
+      "default": "./dist/cjs/src/vitest/index.js"
     }
   },
   "files": [

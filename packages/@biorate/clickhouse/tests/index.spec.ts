@@ -6,10 +6,6 @@ import type { Root } from './__mocks__';
 describe('@biorate/clickhouse', function () {
   let root: Root;
 
-  beforeAll(() => {
-    process.env.UNIMOCK = '1';
-  });
-
   beforeAll(async () => {
     root = getTestRoot();
     await root.$run();

@@ -30,7 +30,7 @@
     "lint": "eslint src --ext .ts",
     "format:fix": "prettier --write src",
     "lint:fix": "eslint src --ext .ts --fix",
-    "test": "UNIMOCK=0 UNIMOCK_UPDATE=0 npx vitest run --coverage",
+    "test": "npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {

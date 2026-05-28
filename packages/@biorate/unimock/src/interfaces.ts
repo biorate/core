@@ -20,7 +20,7 @@ export interface SnapshotFile {
 }
 
 /** @description Runtime mode resolved from env and snapshot presence. */
-export type UnimockMode = 'record' | 'replay' | 'live';
+export type UnimockMode = 'record' | 'replay';
 
 /** @description Custom pack/unpack for values JSON cannot represent. */
 export interface ISerializer {
