@@ -17,7 +17,8 @@ export interface ConnectorLike {
  * @description
  * Factory function to create a mockable wrapper for any connector instance.
  *
- * Use this when you cannot or don't want to use the @Mockable() decorator.
+ * Use this when you need more control over mocking behavior or want to
+ * configure options at runtime instead of using the @Mockable() decorator.
  * Works with existing connector classes without modification.
  *
  * @example
@@ -73,8 +74,7 @@ export function createMockable<T extends ConnectorLike>(
       }
 
       if (prop === 'current') {
-        const connection = value;
-        return createDeepProxy(connection, `${namespace}.current`);
+        return createDeepProxy(value, `${namespace}.current`);
       }
 
       return value;

@@ -1,22 +1,20 @@
-import { VitestSnapshotStore, SnapshotStore } from './snapshot-store';
+import { FileSnapshotStore, SnapshotStore } from './snapshot-store';
 import { MissingSnapshotError } from './errors';
+import { MockableOptions } from './interfaces';
+import { detectMode } from './factory';
 
 /**
  * @description
  * Decorator for automatic connector mocking with snapshot-based testing.
- *
- * @deprecated Use `createMockable()` or `mockClickhouse()` factories instead.
- * The decorator has limitations with TypeScript private fields and may not work
- * correctly with all connector implementations.
  *
  * When applied to a connector class, automatically intercepts all method calls
  * on connection objects (returned by get(), current, connection()) and:
  * - In 'record' mode: executes real methods and saves snapshots
  * - In 'replay' mode: returns data from snapshots without real DB calls
  *
- * Mode is auto-detected from CONNECTOR_MOCK_MODE environment variable:
- * - 'replay' → mock mode (no DB needed)
- * - anything else → record mode (real DB)
+ * Mode is auto-detected from environment variables (in order):
+ * CONNECTOR_MOCK_MODE → VITEST_MOCK_MODE → TEST_MOCK_MODE → MOCK_MODE
+ * Falls back to 'record' mode if none are set.
  *
  * @example
  * ```typescript
@@ -26,70 +24,36 @@ import { MissingSnapshotError } from './errors';
  * class ClickhouseConnector extends Connector<...> { ... }
  * ```
  *
- * @recommended
+ * @example
  * ```typescript
- * import { mockClickhouse } from '@biorate/connector-mocks';
- *
- * // Recommended approach using factory
- * const connector = mockClickhouse(ClickhouseConnector);
+ * // With custom options
+ * @Mockable({
+ *   namespace: 'MyConnector',
+ *   debug: true
+ * })
+ * class MyConnector { ... }
  * ```
  */
-export function Mockable() {
+export function Mockable(options: MockableOptions = {}) {
   return function <T extends { new (...args: any[]): any }>(target: T) {
     return class MockableConnector extends target {
-      #mode: 'record' | 'replay';
+      #mode: 'record' | 'replay' | 'passthrough';
       #snapshotStore: SnapshotStore;
       #proxyCache = new WeakMap<object, any>();
       #namespace: string;
+      #debug: boolean;
+      #transformArgs?: (args: any[], methodName: string) => any[];
+      #transformResult?: (result: any, methodName: string) => any;
 
       constructor(...args: any[]) {
         super(...args);
-        this.#mode = this.#detectMode();
-        this.#snapshotStore = new VitestSnapshotStore();
-        this.#namespace = (this as any).namespace ?? target.name;
-      }
-
-      #detectMode(): 'record' | 'replay' {
-        const envMode = process.env.CONNECTOR_MOCK_MODE;
-        return envMode === 'replay' ? 'replay' : 'record';
-      }
-
-      get(): any {
-        // Call parent method via prototype chain
-        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
-        const parentGet =
-          parentDescriptor.get || Object.getPrototypeOf(parentDescriptor).get;
-        const connection = parentGet
-          ? parentGet.call(this)
-          : (this as any).connections.values().next().value;
-        return this.#mode === 'replay'
-          ? this.#createProxy(connection, `${this.#namespace}.get`)
-          : connection;
-      }
-
-      get current(): any {
-        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
-        const parentCurrent = Object.getOwnPropertyDescriptor(
-          parentDescriptor,
-          'current',
-        );
-        const connection = parentCurrent?.get
-          ? parentCurrent.get.call(this)
-          : (this as any).current;
-        return this.#mode === 'replay'
-          ? this.#createProxy(connection, `${this.#namespace}.current`)
-          : connection;
-      }
-
-      connection(name?: string): any {
-        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
-        const parentConnection = parentDescriptor.connection;
-        const conn = parentConnection
-          ? parentConnection.call(this, name)
-          : (this as any).connections.get(name);
-        return this.#mode === 'replay'
-          ? this.#createProxy(conn, `${this.#namespace}.connection(${name ?? 'default'})`)
-          : conn;
+        const modeResult = detectMode(options.mode);
+        this.#mode = modeResult.mode;
+        this.#snapshotStore = options.snapshotStore ?? new FileSnapshotStore();
+        this.#namespace = options.namespace ?? (this as any).namespace ?? target.name;
+        this.#debug = options.debug ?? false;
+        this.#transformArgs = options.transformArgs;
+        this.#transformResult = options.transformResult;
       }
 
       #createProxy(target: any, path: string): any {
@@ -122,21 +86,89 @@ export function Mockable() {
         return proxy;
       }
 
+      #wrapConnection(connection: any, basePath: string): any {
+        if (this.#mode === 'replay') {
+          return this.#createProxy(connection, basePath);
+        }
+        return connection;
+      }
+
+      get(): any {
+        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
+        const parentGet =
+          parentDescriptor.get || Object.getPrototypeOf(parentDescriptor).get;
+        const connection = parentGet
+          ? parentGet.call(this)
+          : (this as any).connections?.values().next().value;
+        return this.#wrapConnection(connection, `${this.#namespace}.get`);
+      }
+
+      get current(): any {
+        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
+        const parentCurrent = Object.getOwnPropertyDescriptor(
+          parentDescriptor,
+          'current',
+        );
+        const connection = parentCurrent?.get
+          ? parentCurrent.get.call(this)
+          : (this as any).current;
+        return this.#wrapConnection(connection, `${this.#namespace}.current`);
+      }
+
+      connection(name?: string): any {
+        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
+        const parentConnection = parentDescriptor.connection;
+        const conn = parentConnection
+          ? parentConnection.call(this, name)
+          : (this as any).connections?.get(name);
+        return this.#wrapConnection(
+          conn,
+          `${this.#namespace}.connection(${name ?? 'default'})`,
+        );
+      }
+
       async #intercept(
         methodPath: string,
         original: (...args: any[]) => Promise<any>,
         args: any[],
       ) {
+        const fullPath = methodPath;
+        const methodName = methodPath.split('.').pop() || '';
+
+        // Apply transform functions if provided
+        let transformedArgs = this.#transformArgs
+          ? this.#transformArgs(args, methodName)
+          : args;
+
+        if (this.#mode === 'passthrough') {
+          return original(...args);
+        }
+
         if (this.#mode === 'record') {
-          const result = await original(...args);
-          await this.#snapshotStore.save(methodPath, { args, result });
-          return result;
-        } else {
-          const snapshot = await this.#snapshotStore.load(methodPath);
-          if (!snapshot) {
-            throw new MissingSnapshotError(methodPath);
+          const result = await original(...transformedArgs);
+          const transformedResult = this.#transformResult
+            ? this.#transformResult(result, methodName)
+            : result;
+
+          if (this.#debug) {
+            console.log(`[connector-mocks] Recording: ${fullPath}`);
           }
-          return snapshot.result;
+
+          await this.#snapshotStore.save(fullPath, {
+            args: transformedArgs,
+            result: transformedResult,
+            timestamp: new Date().toISOString(),
+          });
+          return transformedResult;
+        } else {
+          // replay mode
+          const snapshot = await this.#snapshotStore.load(fullPath);
+          if (!snapshot) {
+            throw new MissingSnapshotError(fullPath);
+          }
+          return this.#transformResult
+            ? this.#transformResult(snapshot.result, methodName)
+            : snapshot.result;
         }
       }
     };
