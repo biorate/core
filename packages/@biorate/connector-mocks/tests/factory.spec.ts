@@ -99,7 +99,8 @@ describe('@biorate/connector-mocks - createMockable with transforms', () => {
     const mockableConn = createMockable(connector, {
       mode: 'record',
       snapshotStore,
-      transformArgs: (args) => args.map((a) => (typeof a === 'string' ? a.toUpperCase() : a)),
+      transformArgs: (args) =>
+        args.map((a) => (typeof a === 'string' ? a.toUpperCase() : a)),
     });
 
     const connection = mockableConn.get();
@@ -116,14 +117,15 @@ describe('@biorate/connector-mocks - createMockable with transforms', () => {
     const mockableConn = createMockable(connector, {
       mode: 'record',
       snapshotStore,
-      transformResult: (result) => ({
-        ...result,
-        _transformed: true,
-      }),
+      transformResult: (result) =>
+        <unknown>{
+          ...result,
+          _transformed: true,
+        },
     });
 
     const connection = mockableConn.get();
-    const result = await connection.query('SELECT 1');
+    const result = (await connection.query('SELECT 1')) as any;
 
     // The transformResult wraps the result with _transformed flag
     expect(result._transformed).toBe(true);
@@ -131,7 +133,7 @@ describe('@biorate/connector-mocks - createMockable with transforms', () => {
 
     // Check snapshot has transformed result
     const snapshot = await snapshotStore.load('TestConnector.get.query');
-    expect(snapshot?.result._transformed).toBe(true);
+    expect((snapshot?.result as any)._transformed).toBe(true);
   });
 
   it('should apply both transformArgs and transformResult', async () => {
