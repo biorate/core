@@ -1,7 +1,7 @@
 {
-  "name": "@biorate/clickhouse",
-  "version": "2.1.0",
-  "description": "Clickhouse connector",
+  "name": "@biorate/unimock",
+  "version": "1.0.0",
+  "description": "Snapshot-based proxy mocking for connectors and services",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -36,29 +36,23 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biorate/core.git",
-    "directory": "packages/@biorate/clickhouse"
+    "directory": "packages/@biorate/unimock"
   },
   "publishConfig": {
     "access": "public"
   },
   "homepage": "https://biorate.github.io/core",
   "keywords": [
-    "clickhouse",
+    "mock",
+    "snapshot",
+    "e2e",
     "connector"
   ],
   "author": "llevkin",
   "license": "MIT",
   "dependencies": {
-    "@biorate/config": "workspace:*",
-    "@biorate/connector": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "@biorate/tools": "workspace:*",
-    "@clickhouse/client": "1.11.1",
-    "lodash-es": "4.17.21"
-  },
-  "devDependencies": {
-    "@biorate/unimock": "workspace:*",
-    "@biorate/unimock-clickhouse": "workspace:*"
+    "@biorate/lifecycled": "workspace:*"
   }
 }

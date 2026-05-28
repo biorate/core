@@ -584,6 +584,13 @@ importers:
       lodash-es:
         specifier: 4.17.21
         version: 4.17.21
+    devDependencies:
+      '@biorate/unimock':
+        specifier: workspace:*
+        version: link:../unimock
+      '@biorate/unimock-clickhouse':
+        specifier: workspace:*
+        version: link:../unimock-clickhouse
 
   packages/@biorate/collection:
     dependencies:
@@ -1497,6 +1504,27 @@ importers:
       '@biorate/errors':
         specifier: workspace:*
         version: link:../errors
+
+  packages/@biorate/unimock:
+    dependencies:
+      '@biorate/errors':
+        specifier: workspace:*
+        version: link:../errors
+      '@biorate/inversion':
+        specifier: workspace:*
+        version: link:../inversion
+      '@biorate/lifecycled':
+        specifier: workspace:*
+        version: link:../lifecycled
+
+  packages/@biorate/unimock-clickhouse:
+    dependencies:
+      '@biorate/unimock':
+        specifier: workspace:*
+        version: link:../unimock
+      '@clickhouse/client':
+        specifier: 1.11.1
+        version: 1.11.1
 
   packages/@biorate/vault:
     dependencies:

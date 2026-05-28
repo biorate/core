@@ -1,6 +1,11 @@
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { ClickhouseConnector } from '../../src';
+import { Mockable } from '@biorate/unimock';
+import { clickhouseSerializers } from '@biorate/unimock-clickhouse';
+import { ClickhouseConnector as BaseClickhouseConnector } from '../../src';
+
+@Mockable({ serializers: clickhouseSerializers, snapshotDir: 'tests/__snapshots__' })
+class ClickhouseConnector extends BaseClickhouseConnector {}
 
 export class Root extends Core() {
   @inject(ClickhouseConnector) public connector: ClickhouseConnector;

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "className": "ClickhouseConnector",
+  "calls": {
+    "root|get|28y": {
+      "args": [],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-1"
+      }
+    },
+    "ref-1|query|91svcw": {
+      "args": [
+        {
+          "format": "JSON",
+          "query": "SELECT 1 AS result;"
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-2"
+      }
+    },
+    "ref-2|json|28y": {
+      "args": [],
+      "result": {
+        "kind": "primitive",
+        "value": {
+          "data": [
+            {
+              "result": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}
