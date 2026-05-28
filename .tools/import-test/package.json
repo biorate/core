@@ -60,6 +60,7 @@
     "@biorate/singleton": "workspace:*",
     "@biorate/symbolic": "workspace:*",
     "@biorate/tools": "workspace:*",
+    "@biorate/unimock": "workspace:*",
     "@biorate/vault": "workspace:*",
     "@biorate/vitest": "workspace:*",
     "@biorate/vitest-spec": "workspace:*",
