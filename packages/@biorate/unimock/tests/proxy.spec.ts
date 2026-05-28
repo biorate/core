@@ -18,6 +18,10 @@ class CounterService {
       transform: (value: string) => `ok:${value}`,
     };
   }
+
+  public payload() {
+    return { data: [{ value: 42 }] };
+  }
 }
 
 @Mockable()
@@ -52,6 +56,57 @@ describe('@biorate/unimock', () => {
     const replay = new MockedCounter();
     expect(replay.add(2, 3)).toBe(5);
     expect(replay.inner().transform('x')).toBe('ok:x');
+  });
+
+  it('records SDK client chains without serializing opaque handles', async () => {
+    const sdkSnapshot = join(SNAPSHOT_DIR, 'MockedSdkClient.unimock.json');
+    rmSync(sdkSnapshot, { force: true });
+
+    class SdkClient {
+      public readonly slotA = 1;
+      public readonly slotB = 2;
+      public readonly slotC = 3;
+      public readonly slotD = 4;
+
+      public query() {
+        return {
+          json: async () => ({ data: [{ result: 1 }] }),
+          stream: async () => undefined,
+        };
+      }
+    }
+
+    @Mockable()
+    class MockedSdkClient extends SdkClient {}
+
+    const live = new MockedSdkClient();
+    const cursor = live.query();
+    const { data } = await cursor.json();
+    expect(data[0].result).toBe(1);
+    Unimock.flush();
+    expect(existsSync(sdkSnapshot)).toBe(true);
+
+    const replay = new MockedSdkClient();
+    const replayCursor = replay.query();
+    const { data: replayData } = await replayCursor.json();
+    expect(replayData[0].result).toBe(1);
+  });
+
+  it('replays property access on object refs', () => {
+    const payloadSnapshot = join(SNAPSHOT_DIR, 'MockedPayload.unimock.json');
+    rmSync(payloadSnapshot, { force: true });
+
+    @Mockable()
+    class MockedPayload extends CounterService {}
+
+    const live = new MockedPayload();
+    const { data: recorded } = live.payload();
+    expect(recorded[0].value).toBe(42);
+    Unimock.flush();
+
+    const replay = new MockedPayload();
+    const { data: replayed } = replay.payload();
+    expect(replayed[0].value).toBe(42);
   });
 
   it('runs initialize on real target when class uses private fields', async () => {

@@ -15,6 +15,8 @@ export interface SnapshotFile {
   version: 1;
   className: string;
   calls: Record<string, SnapshotCallEntry>;
+  /** Serialized property bag for object refs returned from recorded calls. */
+  refs?: Record<string, unknown>;
 }
 
 /** @description Runtime mode resolved from env and snapshot presence. */

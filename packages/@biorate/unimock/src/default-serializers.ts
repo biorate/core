@@ -18,7 +18,7 @@ export const opaqueHandleSerializer: ISerializer = {
     if (typeof record.json === 'function' || typeof record.stream === 'function') {
       return true;
     }
-    if (typeof record.query === 'function' && ownKeys.length <= 3) return true;
+    if (typeof record.query === 'function') return true;
     return false;
   },
   pack() {

@@ -33,7 +33,12 @@ export function createMockProxy<T extends object>(
           invokeMethod(trapTarget, String(prop), method, args, store, options, nodeId);
       }
 
-      if (store.isReplay && replayStubs.has(trapTarget) && typeof prop === 'string') {
+      if (
+        store.isReplay &&
+        replayStubs.has(trapTarget) &&
+        typeof prop === 'string' &&
+        value === undefined
+      ) {
         return (...args: unknown[]) =>
           invokeMethod(trapTarget, prop, () => undefined, args, store, options, nodeId);
       }
@@ -99,6 +104,7 @@ function wrapResult(
   let refId: string | undefined;
   if (raw !== null && typeof raw === 'object' && typeof raw !== 'function') {
     refId = store.allocateRef();
+    store.recordRef(refId, raw);
   }
   store.record(callKey, args, raw, refId);
   if (refId) return createMockProxy(raw as object, store, options, refId);
@@ -117,6 +123,12 @@ function materializeResult(
       return deserializeValue(result.value, store.serializers);
     case 'ref': {
       const stub = Object.create(null) as object;
+      const state = store.getRef(result.ref);
+      if (state && typeof state === 'object' && !Array.isArray(state)) {
+        Object.assign(stub, state);
+      } else if (state !== undefined) {
+        return state;
+      }
       replayStubs.add(stub);
       return createMockProxy(stub, store, options, result.ref);
     }

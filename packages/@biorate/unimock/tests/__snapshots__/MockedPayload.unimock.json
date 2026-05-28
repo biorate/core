@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "className": "MockedPayload",
+  "calls": {
+    "root|payload|28y": {
+      "args": [],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-1"
+      }
+    }
+  },
+  "refs": {
+    "ref-1": {
+      "data": [
+        {
+          "value": 42
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "className": "MockedSdkClient",
+  "calls": {
+    "root|query|28y": {
+      "args": [],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-1"
+      }
+    },
+    "ref-1|json|28y": {
+      "args": [],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-2"
+      }
+    }
+  },
+  "refs": {
+    "ref-2": {
+      "data": [
+        {
+          "result": 1
+        }
+      ]
+    }
+  }
+}

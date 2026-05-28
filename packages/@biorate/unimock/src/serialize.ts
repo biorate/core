@@ -5,18 +5,20 @@ export function stableStringify(value: unknown): string {
   return JSON.stringify(sortValue(value));
 }
 
-function sortValue(value: unknown): unknown {
+function sortValue(value: unknown, seen = new WeakSet<object>()): unknown {
   if (value === null) return value;
   if (typeof value === 'bigint') return { __type: 'bigint', value: `${value}` };
   if (typeof value !== 'object') return value;
-  if (Array.isArray(value)) return value.map(sortValue);
+  if (seen.has(value)) return { __type: 'Circular' };
+  seen.add(value);
+  if (Array.isArray(value)) return value.map((item) => sortValue(item, seen));
   if (value instanceof Date) return { __type: 'Date', value: value.toISOString() };
   if (typeof Buffer !== 'undefined' && Buffer.isBuffer(value)) {
     return { __type: 'Buffer', value: value.toString('base64') };
   }
   const sorted: Record<string, unknown> = {};
   for (const key of Object.keys(value as object).sort()) {
-    sorted[key] = sortValue((value as Record<string, unknown>)[key]);
+    sorted[key] = sortValue((value as Record<string, unknown>)[key], seen);
   }
   return sorted;
 }

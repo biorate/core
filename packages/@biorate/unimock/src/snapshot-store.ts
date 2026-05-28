@@ -75,6 +75,24 @@ export class SnapshotStore {
     this.dirty = true;
   }
 
+  public recordRef(refId: string, value: object): void {
+    if (!this.shouldPersist()) return;
+    if (this.serializers.some((serializer) => serializer.test(value))) return;
+    try {
+      if (!this.data.refs) this.data.refs = {};
+      this.data.refs[refId] = serializeValue(value, this.serializers);
+      this.dirty = true;
+    } catch {
+      // SDK / cyclic object — replay uses recorded method calls only
+    }
+  }
+
+  public getRef(refId: string): unknown | undefined {
+    const packed = this.data.refs?.[refId];
+    if (packed === undefined) return undefined;
+    return deserializeValue(packed, this.serializers);
+  }
+
   public packResult(result: unknown, refId?: string): SnapshotResult {
     if (result === undefined) return { kind: 'void' };
     if (result === null || typeof result !== 'object' || typeof result === 'function') {
@@ -99,7 +117,12 @@ export class SnapshotStore {
       const parsed = JSON.parse(raw) as SnapshotFile;
       if (parsed.version === 1 && parsed.className === this.className) {
         if (this.shouldPersist()) {
-          return { version: 1, className: this.className, calls: { ...parsed.calls } };
+          return {
+            version: 1,
+            className: this.className,
+            calls: { ...parsed.calls },
+            refs: parsed.refs ? { ...parsed.refs } : undefined,
+          };
         }
         return parsed;
       }
