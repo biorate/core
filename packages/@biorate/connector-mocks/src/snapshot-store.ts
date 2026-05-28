@@ -223,7 +223,7 @@ export class FileSnapshotStore implements SnapshotStore {
       }
 
       const obj = Object.fromEntries(entries);
-      const content = JSON.stringify(obj, null, this.options.indent);
+      const content = JSON.stringify(obj, null, this.options.indent) + '\n';
 
       fs.writeFileSync(filePath, content, 'utf-8');
     } catch (error) {
@@ -235,15 +235,19 @@ export class FileSnapshotStore implements SnapshotStore {
   }
 
   async save(key: string, data: SnapshotData): Promise<void> {
-    // Add timestamp if not present
-    if (!data.timestamp) {
+    // Preserve existing timestamp if snapshot already exists
+    const filePath = this.getSnapshotFilePath();
+    const fileData = await this.loadFileToCache(filePath);
+    const existing = fileData.get(key);
+
+    if (existing?.timestamp) {
+      data.timestamp = existing.timestamp;
+    } else if (!data.timestamp) {
       data.timestamp = new Date().toISOString();
     }
 
     // Update caches
     this.cache.set(key, data);
-    const filePath = this.getSnapshotFilePath();
-    const fileData = await this.loadFileToCache(filePath);
     fileData.set(key, data);
     await this.saveCacheToFile(filePath, fileData);
   }
