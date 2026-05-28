@@ -1,0 +1,69 @@
+{
+  "name": "@biorate/connector-mocks",
+  "version": "0.1.0",
+  "description": "Connector mocking library with snapshot-based testing",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "cleanup dist",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
+    "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
+    "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module",
+    "format": "prettier --check src",
+    "lint": "eslint src --ext .ts",
+    "format:fix": "prettier --write src",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "npx vitest run --coverage",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/connector-mocks"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "mock",
+    "connector",
+    "testing",
+    "snapshot"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/connector": "workspace:*",
+    "@biorate/errors": "workspace:*",
+    "@biorate/tools": "workspace:*"
+  },
+  "devDependencies": {
+    "@biorate/inversion": "workspace:*"
+  },
+  "peerDependencies": {
+    "vitest": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vitest": {
+      "optional": true
+    }
+  }
+}

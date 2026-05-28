@@ -1,0 +1,50 @@
+{
+  "ClickhouseConnector.get": {
+    "args": [
+      "SELECT 1"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT 1"
+      }
+    ],
+    "timestamp": "2026-05-28T11:31:54.316Z"
+  },
+  "ClickhouseConnector.get.query": {
+    "args": [
+      "SELECT 1"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT 1"
+      }
+    ],
+    "timestamp": "2026-05-28T11:39:12.259Z"
+  },
+  "CustomClickhouse.get": {
+    "args": [
+      "SELECT version()"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT version()"
+      }
+    ],
+    "timestamp": "2026-05-28T11:25:04.739Z"
+  },
+  "MockClickhouseConnector.get.query": {
+    "args": [
+      "SELECT 1"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT 1"
+      }
+    ],
+    "timestamp": "2026-05-28T11:59:58.587Z"
+  }
+}
