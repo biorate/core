@@ -38,7 +38,7 @@ export class MockConnection {
  * @description Mock connector for testing (standalone, no base class dependencies)
  */
 export class TestConnector {
-  public readonly namespace = 'TestConnector';
+  public namespace: string = 'TestConnector';
   private connectionsMap = new Map<string, MockConnection>();
   private currentConnection: MockConnection | undefined;
 

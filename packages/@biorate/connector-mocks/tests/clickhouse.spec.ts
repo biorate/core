@@ -6,8 +6,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 // Mock ClickhouseConnector for testing (since we can't import real one in tests)
+// Note: namespace is passed via options to mockClickhouse* functions instead of overriding
 class MockClickhouseConnector extends TestConnector {
-  protected namespace = 'MockClickhouseConnector';
+  public override readonly namespace = 'MockClickhouseConnector';
 }
 
 describe('@biorate/connector-mocks - Clickhouse helpers', () => {
