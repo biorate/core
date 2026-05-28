@@ -50,14 +50,6 @@
   ],
   "author": "llevkin",
   "license": "MIT",
-  "dependencies": {
-    "@biorate/connector": "workspace:*",
-    "@biorate/errors": "workspace:*",
-    "@biorate/tools": "workspace:*"
-  },
-  "devDependencies": {
-    "@biorate/inversion": "workspace:*"
-  },
   "peerDependencies": {
     "vitest": ">=4.0.0"
   },
