@@ -1,6 +1,10 @@
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { ClickhouseConnector } from '../../src';
+import { Mockable } from '@biorate/connector-mocks';
+import { ClickhouseConnector as Base } from '../../src';
+
+@Mockable()
+class ClickhouseConnector extends Base {}
 
 export class Root extends Core() {
   @inject(ClickhouseConnector) public connector: ClickhouseConnector;

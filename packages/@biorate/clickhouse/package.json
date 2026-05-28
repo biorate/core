@@ -51,6 +51,7 @@
   "dependencies": {
     "@biorate/config": "workspace:*",
     "@biorate/connector": "workspace:*",
+    "@biorate/connector-mocks": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
     "@biorate/tools": "workspace:*",
