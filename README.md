@@ -55,6 +55,7 @@
 - [cleanup](https://biorate.github.io/core/modules/cleanup.html)
 - [vitest](https://biorate.github.io/core/modules/vitest.html)
 - [vitest-spec](https://biorate.github.io/core/modules/vitest_spec.html)
+- [unimock](https://biorate.github.io/core/modules/unimock.html)
 
 ### Learn
 
