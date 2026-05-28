@@ -9,6 +9,7 @@ import {
   UnimockMode,
 } from './interfaces';
 import { isUnimockUpdate, resolveMode, resolveSnapshotDir } from './env';
+import { defaultSerializers } from './default-serializers';
 import { deserializeValue, serializeValue } from './serialize';
 
 const stores = new Set<SnapshotStore>();
@@ -31,7 +32,7 @@ export class SnapshotStore {
     public readonly className: string,
     options?: MockableOptions,
   ) {
-    this.serializers = options?.serializers ?? [];
+    this.serializers = [...defaultSerializers, ...(options?.serializers ?? [])];
     this.snapshotPath = SnapshotStore.resolvePath(className, options);
     this.data = this.load();
     stores.add(this);

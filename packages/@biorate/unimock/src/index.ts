@@ -12,6 +12,7 @@ export {
 } from './env';
 export * from './errors';
 export * from './interfaces';
+export { defaultSerializers, opaqueHandleSerializer } from './default-serializers';
 
 import { configureUnimock, flushAllSnapshots } from './snapshot-store';
 

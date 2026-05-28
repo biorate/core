@@ -58,7 +58,6 @@
     "lodash-es": "4.17.21"
   },
   "devDependencies": {
-    "@biorate/unimock": "workspace:*",
-    "@biorate/unimock-clickhouse": "workspace:*"
+    "@biorate/unimock": "workspace:*"
   }
 }

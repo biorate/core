@@ -588,9 +588,6 @@ importers:
       '@biorate/unimock':
         specifier: workspace:*
         version: link:../unimock
-      '@biorate/unimock-clickhouse':
-        specifier: workspace:*
-        version: link:../unimock-clickhouse
 
   packages/@biorate/collection:
     dependencies:
@@ -1516,15 +1513,6 @@ importers:
       '@biorate/lifecycled':
         specifier: workspace:*
         version: link:../lifecycled
-
-  packages/@biorate/unimock-clickhouse:
-    dependencies:
-      '@biorate/unimock':
-        specifier: workspace:*
-        version: link:../unimock
-      '@clickhouse/client':
-        specifier: 1.11.1
-        version: 1.11.1
 
   packages/@biorate/vault:
     dependencies:
