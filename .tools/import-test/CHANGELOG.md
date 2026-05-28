@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/biorate/core/compare/@biorate-tools/import-test@1.0.8...@biorate-tools/import-test@1.1.0) (2026-05-28)
+
+### Features
+
+- **unimock:** release ([fc37bed](https://github.com/biorate/core/commit/fc37bed3688daedb75d17c3fb927f857cc00da1e))
+
 ## [1.0.8](https://github.com/biorate/core/compare/@biorate-tools/import-test@1.0.7...@biorate-tools/import-test@1.0.8) (2026-05-27)
 
 **Note:** Version bump only for package @biorate-tools/import-test
