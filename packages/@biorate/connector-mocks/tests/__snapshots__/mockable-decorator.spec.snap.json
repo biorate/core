@@ -1,0 +1,50 @@
+{
+  "CustomDecorated.connection(default).query": {
+    "args": [
+      "SELECT 1"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT 1"
+      }
+    ],
+    "timestamp": "2026-05-28T14:15:08.690Z"
+  },
+  "CustomDecorated.get.query": {
+    "args": [
+      "SELECT 1"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT 1"
+      }
+    ],
+    "timestamp": "2026-05-28T14:15:08.694Z"
+  },
+  "DecoratedConnector.connection(default).query": {
+    "args": [
+      "SELECT 1"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT 1"
+      }
+    ],
+    "timestamp": "2026-05-28T14:15:08.673Z"
+  },
+  "DecoratedConnector.get.query": {
+    "args": [
+      "SELECT 1"
+    ],
+    "result": [
+      {
+        "result": 1,
+        "sql": "SELECT 1"
+      }
+    ],
+    "timestamp": "2026-05-28T14:15:08.674Z"
+  }
+}

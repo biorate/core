@@ -37,8 +37,8 @@ import { detectMode } from './factory';
 export function Mockable(options: MockableOptions = {}) {
   return function <T extends { new (...args: any[]): any }>(target: T) {
     return class MockableConnector extends target {
-      #mode: 'record' | 'replay' | 'passthrough';
-      #snapshotStore: SnapshotStore;
+      protected mode: 'record' | 'replay' | 'passthrough';
+      protected snapshotStore: SnapshotStore;
       #proxyCache = new WeakMap<object, any>();
       #namespace: string;
       #debug: boolean;
@@ -48,8 +48,10 @@ export function Mockable(options: MockableOptions = {}) {
       constructor(...args: any[]) {
         super(...args);
         const modeResult = detectMode(options.mode);
-        this.#mode = modeResult.mode;
-        this.#snapshotStore = options.snapshotStore ?? new FileSnapshotStore();
+        this.mode = modeResult.mode;
+        // Access snapshotStore via property access to trigger getters
+        const store = options.snapshotStore;
+        this.snapshotStore = store ?? new FileSnapshotStore();
         this.#namespace = options.namespace ?? (this as any).namespace ?? target.name;
         this.#debug = options.debug ?? false;
         this.#transformArgs = options.transformArgs;
@@ -87,16 +89,16 @@ export function Mockable(options: MockableOptions = {}) {
       }
 
       #wrapConnection(connection: any, basePath: string): any {
-        if (this.#mode === 'replay') {
-          return this.#createProxy(connection, basePath);
+        if (this.mode === 'passthrough') {
+          return connection;
         }
-        return connection;
+        return this.#createProxy(connection, basePath);
       }
 
       get(): any {
-        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
-        const parentGet =
-          parentDescriptor.get || Object.getPrototypeOf(parentDescriptor).get;
+        // Get the prototype of the decorated class (target's prototype)
+        const decoratedProto = Object.getPrototypeOf(Object.getPrototypeOf(this));
+        const parentGet = decoratedProto.get;
         const connection = parentGet
           ? parentGet.call(this)
           : (this as any).connections?.values().next().value;
@@ -104,20 +106,22 @@ export function Mockable(options: MockableOptions = {}) {
       }
 
       get current(): any {
-        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
-        const parentCurrent = Object.getOwnPropertyDescriptor(
-          parentDescriptor,
-          'current',
-        );
-        const connection = parentCurrent?.get
-          ? parentCurrent.get.call(this)
+        // Get the prototype chain: this -> MockableConnector -> decorated class (target) -> TestConnector
+        const thisProto = Object.getPrototypeOf(this);
+        const mockableProto = Object.getPrototypeOf(thisProto);
+        const targetProto = Object.getPrototypeOf(mockableProto);
+
+        // Get the 'current' descriptor from the target class (TestConnector)
+        const currentDesc = Object.getOwnPropertyDescriptor(targetProto, 'current');
+        const connection = currentDesc?.get
+          ? currentDesc.get.call(this)
           : (this as any).current;
         return this.#wrapConnection(connection, `${this.#namespace}.current`);
       }
 
       connection(name?: string): any {
-        const parentDescriptor = Object.getPrototypeOf(Object.getPrototypeOf(this));
-        const parentConnection = parentDescriptor.connection;
+        const decoratedProto = Object.getPrototypeOf(Object.getPrototypeOf(this));
+        const parentConnection = decoratedProto.connection;
         const conn = parentConnection
           ? parentConnection.call(this, name)
           : (this as any).connections?.get(name);
@@ -140,11 +144,11 @@ export function Mockable(options: MockableOptions = {}) {
           ? this.#transformArgs(args, methodName)
           : args;
 
-        if (this.#mode === 'passthrough') {
+        if (this.mode === 'passthrough') {
           return original(...args);
         }
 
-        if (this.#mode === 'record') {
+        if (this.mode === 'record') {
           const result = await original(...transformedArgs);
           const transformedResult = this.#transformResult
             ? this.#transformResult(result, methodName)
@@ -154,7 +158,7 @@ export function Mockable(options: MockableOptions = {}) {
             console.log(`[connector-mocks] Recording: ${fullPath}`);
           }
 
-          await this.#snapshotStore.save(fullPath, {
+          await this.snapshotStore.save(fullPath, {
             args: transformedArgs,
             result: transformedResult,
             timestamp: new Date().toISOString(),
@@ -162,7 +166,7 @@ export function Mockable(options: MockableOptions = {}) {
           return transformedResult;
         } else {
           // replay mode
-          const snapshot = await this.#snapshotStore.load(fullPath);
+          const snapshot = await this.snapshotStore.load(fullPath);
           if (!snapshot) {
             throw new MissingSnapshotError(fullPath);
           }
