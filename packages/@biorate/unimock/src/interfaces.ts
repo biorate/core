@@ -38,6 +38,8 @@ export interface MockableOptions {
   /** Base directory for `snapshotDir` (use {@link snapshotDirFromImportMeta}). */
   snapshotBaseDir?: string;
   serializers?: ISerializer[];
+  /** Automatically mock nested objects returned from methods (default: true) */
+  autoMockNested?: boolean;
 }
 
 /** @description Global unimock settings. */

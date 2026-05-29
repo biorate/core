@@ -1,13 +1,29 @@
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { Prometheus, IPrometheus } from '@biorate/prometheus';
 import { IConfig, Config } from '@biorate/config';
+import { Mockable } from '@biorate/unimock';
 import {
-  RDKafkaAdminConnector,
-  RDKafkaProducerConnector,
-  RDKafkaConsumerConnector,
-  RDKafkaConsumerStreamConnector,
-  RDKafkaHighLevelProducerConnector,
+  RDKafkaAdminConnector as RDKafkaAdminConnectorBase,
+  RDKafkaProducerConnector as RDKafkaProducerConnectorBase,
+  RDKafkaConsumerConnector as RDKafkaConsumerConnectorBase,
+  RDKafkaConsumerStreamConnector as RDKafkaConsumerStreamConnectorBase,
+  RDKafkaHighLevelProducerConnector as RDKafkaHighLevelProducerConnectorBase,
 } from '../../src';
+
+@Mockable()
+class RDKafkaAdminConnector extends RDKafkaAdminConnectorBase {}
+
+@Mockable()
+class RDKafkaProducerConnector extends RDKafkaProducerConnectorBase {}
+
+@Mockable()
+class RDKafkaConsumerConnector extends RDKafkaConsumerConnectorBase {}
+
+@Mockable()
+class RDKafkaConsumerStreamConnector extends RDKafkaConsumerStreamConnectorBase {}
+
+@Mockable()
+class RDKafkaHighLevelProducerConnector extends RDKafkaHighLevelProducerConnectorBase {}
 
 export class Root extends Core() {
   @inject(Prometheus) public prometheus: IPrometheus;

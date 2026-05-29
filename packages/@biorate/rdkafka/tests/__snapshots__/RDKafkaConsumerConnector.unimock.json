@@ -1,0 +1,8539 @@
+{
+  "version": 1,
+  "className": "RDKafkaConsumerConnector",
+  "calls": {
+    "root|current|subscribe|fhc32": {
+      "args": [
+        [
+          "test"
+        ]
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-2"
+      }
+    },
+    "root|current|consumePromise|1wpz": {
+      "args": [
+        1
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-13"
+      }
+    },
+    "root|current|commitMessageSync|z5s1mt": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 0,
+          "size": 12,
+          "timestamp": 1780042100195,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-142"
+      }
+    },
+    "root|current|unsubscribe|28y": {
+      "args": [],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-18"
+      }
+    },
+    "root|current|commitMessageSync|enwgq7": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 0,
+          "size": 12,
+          "timestamp": 1780042154787,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    },
+    "root|current|commitMessageSync|ej80mq": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 1,
+          "size": 12,
+          "timestamp": 1780042166973,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-127"
+      }
+    },
+    "root|current|commitMessageSync|2hzomu": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 0,
+          "size": 12,
+          "timestamp": 1780042212026,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    },
+    "root|current|commitMessageSync|9bwg6f": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 2,
+          "size": 12,
+          "timestamp": 1780042223340,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    },
+    "root|current|commitMessageSync|8wyjv3": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 0,
+          "size": 12,
+          "timestamp": 1780042258847,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    },
+    "root|current|commitMessageSync|jumreh": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 1,
+          "size": 12,
+          "timestamp": 1780042290415,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    },
+    "root|current|commitMessageSync|gvz2d7": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 1,
+          "size": 12,
+          "timestamp": 1780042319183,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    },
+    "root|current|commitMessageSync|ilt568": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 1,
+          "size": 12,
+          "timestamp": 1780042355526,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    },
+    "root|current|commitMessageSync|kdxznx": {
+      "args": [
+        {
+          "key": null,
+          "leaderEpoch": 0,
+          "offset": 0,
+          "partition": 2,
+          "size": 12,
+          "timestamp": 1780042467238,
+          "topic": "test",
+          "value": {
+            "__type": "Buffer",
+            "value": "aGVsbG8gd29ybGQh"
+          }
+        }
+      ],
+      "result": {
+        "kind": "ref",
+        "ref": "ref-16"
+      }
+    }
+  },
+  "refs": {
+    "ref-1": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042467074
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-2": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042467074
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-3": [],
+    "ref-5": [],
+    "ref-6": [],
+    "ref-8": [],
+    "ref-9": [],
+    "ref-11": [],
+    "ref-12": [
+      {
+        "key": null,
+        "leaderEpoch": 0,
+        "offset": 0,
+        "partition": 2,
+        "size": 12,
+        "timestamp": 1780042467238,
+        "topic": "test",
+        "value": {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      }
+    ],
+    "ref-14": [
+      {
+        "key": null,
+        "leaderEpoch": 0,
+        "offset": 0,
+        "partition": 2,
+        "size": 12,
+        "timestamp": 1780042467238,
+        "topic": "test",
+        "value": {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      }
+    ],
+    "ref-15": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042467074
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-17": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042467074
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-18": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042467074
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-20": [],
+    "ref-21": [],
+    "ref-23": [],
+    "ref-24": [],
+    "ref-26": [],
+    "ref-27": [],
+    "ref-29": [],
+    "ref-30": [],
+    "ref-32": [],
+    "ref-33": [],
+    "ref-35": [],
+    "ref-36": [],
+    "ref-38": [],
+    "ref-39": [],
+    "ref-41": [],
+    "ref-42": [],
+    "ref-44": [],
+    "ref-45": [],
+    "ref-47": [],
+    "ref-48": [],
+    "ref-50": [],
+    "ref-51": [],
+    "ref-53": [],
+    "ref-54": [],
+    "ref-56": [],
+    "ref-57": [],
+    "ref-59": [],
+    "ref-60": [],
+    "ref-62": [],
+    "ref-63": [],
+    "ref-65": [],
+    "ref-66": [],
+    "ref-68": [],
+    "ref-69": [],
+    "ref-71": [],
+    "ref-72": [],
+    "ref-74": [],
+    "ref-75": [],
+    "ref-77": [],
+    "ref-78": [],
+    "ref-80": [],
+    "ref-81": [],
+    "ref-83": [],
+    "ref-84": [],
+    "ref-86": [],
+    "ref-87": [],
+    "ref-89": [],
+    "ref-90": [],
+    "ref-92": [],
+    "ref-93": [],
+    "ref-95": [],
+    "ref-96": [],
+    "ref-98": [],
+    "ref-99": [],
+    "ref-101": [],
+    "ref-102": [],
+    "ref-104": [],
+    "ref-105": [],
+    "ref-107": [],
+    "ref-108": [],
+    "ref-110": [],
+    "ref-111": [],
+    "ref-113": [],
+    "ref-114": [],
+    "ref-116": [],
+    "ref-117": [],
+    "ref-119": [],
+    "ref-120": [],
+    "ref-122": [],
+    "ref-123": [
+      {
+        "key": null,
+        "leaderEpoch": 0,
+        "offset": 0,
+        "partition": 1,
+        "size": 12,
+        "timestamp": 1780042166973,
+        "topic": "test",
+        "value": {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      }
+    ],
+    "ref-125": [
+      {
+        "key": null,
+        "leaderEpoch": 0,
+        "offset": 0,
+        "partition": 1,
+        "size": 12,
+        "timestamp": 1780042166973,
+        "topic": "test",
+        "value": {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      }
+    ],
+    "ref-126": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042166820
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-128": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042166820
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-129": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042166820
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-131": [],
+    "ref-132": [],
+    "ref-134": [],
+    "ref-135": [],
+    "ref-137": [],
+    "ref-138": [
+      {
+        "key": null,
+        "leaderEpoch": 0,
+        "offset": 0,
+        "partition": 0,
+        "size": 12,
+        "timestamp": 1780042100195,
+        "topic": "test",
+        "value": {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      }
+    ],
+    "ref-140": [
+      {
+        "key": null,
+        "leaderEpoch": 0,
+        "offset": 0,
+        "partition": 0,
+        "size": 12,
+        "timestamp": 1780042100195,
+        "topic": "test",
+        "value": {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      }
+    ],
+    "ref-141": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042100058
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-142": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042100058
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-143": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042100058
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-144": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042100058
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-16": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042467074
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-127": {
+      "_cb_configs": {
+        "event": {},
+        "global": {},
+        "topic": {}
+      },
+      "_client": {},
+      "_consumeIsTimeoutOnlyForFirstMessage": false,
+      "_consumeLoopTimeoutDelay": 500,
+      "_consumeTimeout": 1000,
+      "_events": {},
+      "_eventsCount": 3,
+      "_isConnected": true,
+      "_isConnecting": false,
+      "_metadata": {
+        "brokers": [
+          {
+            "host": "localhost",
+            "id": 1,
+            "port": 9092
+          }
+        ],
+        "orig_broker_id": 1,
+        "orig_broker_name": "localhost:9092/1",
+        "topics": [
+          {
+            "name": "__confluent.support.metrics",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_schemas",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "__consumer_offsets",
+            "partitions": [
+              {
+                "id": 0,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 1,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 2,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 3,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 4,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 5,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 6,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 7,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 8,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 9,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 10,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 11,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 12,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 13,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 14,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 15,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 16,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 17,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 18,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 19,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 20,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 21,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 22,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 23,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 24,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 25,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 26,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 27,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 28,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 29,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 30,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 31,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 32,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 33,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 34,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 35,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 36,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 37,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 38,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 39,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 40,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 41,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 42,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 43,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 44,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 45,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 46,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 47,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 48,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              },
+              {
+                "id": 49,
+                "isrs": [
+                  1
+                ],
+                "leader": 1,
+                "replicas": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCounter": 0,
+      "globalConfig": {
+        "allow.auto.create.topics": false,
+        "group.id": "kafka",
+        "metadata.broker.list": "localhost:9092",
+        "queue.buffering.max.ms": 5,
+        "socket.keepalive.enable": true
+      },
+      "metrics": {
+        "connectionOpened": 1780042166820
+      },
+      "name": "rdkafka#consumer-3",
+      "topicConfig": {
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": false
+      }
+    },
+    "ref-4": [],
+    "ref-7": [],
+    "ref-10": [],
+    "ref-13": [
+      {
+        "key": null,
+        "leaderEpoch": 0,
+        "offset": 0,
+        "partition": 2,
+        "size": 12,
+        "timestamp": 1780042467238,
+        "topic": "test",
+        "value": {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      }
+    ]
+  }
+}

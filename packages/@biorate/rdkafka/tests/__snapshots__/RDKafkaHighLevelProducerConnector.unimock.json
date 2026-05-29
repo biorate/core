@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "className": "RDKafkaHighLevelProducerConnector",
+  "calls": {
+    "root|current|producePromise|aaha6w": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042145842
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 1
+      }
+    },
+    "root|current|producePromise|9ruvay": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042158428
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 1
+      }
+    },
+    "root|current|producePromise|2ipl90": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042207122
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 2
+      }
+    },
+    "root|current|producePromise|2yqx4g": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042215673
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 1
+      }
+    },
+    "root|current|producePromise|3gb2z3": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042226487
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 0
+      }
+    },
+    "root|current|producePromise|5aaery": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042262491
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 1
+      }
+    },
+    "root|current|producePromise|6qg7l4": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042294045
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 0
+      }
+    },
+    "root|current|producePromise|i2kn1g": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042322836
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 0
+      }
+    },
+    "root|current|producePromise|jyoobv": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042362484
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 0
+      }
+    },
+    "root|current|producePromise|z5all1": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        null,
+        1780042474822
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": 1
+      }
+    }
+  }
+}

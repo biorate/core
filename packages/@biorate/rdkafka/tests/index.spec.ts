@@ -1,5 +1,6 @@
 import { expect } from 'vitest';
 import { timer } from '@biorate/tools';
+import { Unimock } from '@biorate/unimock';
 import type { Message } from '@confluentinc/kafka-javascript';
 import { root } from './__mocks__';
 
@@ -19,6 +20,7 @@ describe('@biorate/rdkafka', () => {
   });
 
   afterAll(async () => {
+    Unimock.flush();
     await cleanup();
   });
 

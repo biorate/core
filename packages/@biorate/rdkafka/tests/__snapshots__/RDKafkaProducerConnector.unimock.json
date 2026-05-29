@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "className": "RDKafkaProducerConnector",
+  "calls": {
+    "root|current|produce|ab6hef": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        }
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|edaqiw": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042145824,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|wyxe2f": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042158409,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|gbyjrg": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042207096,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|dap7wd": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042215647,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|i3kcsc": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042226464,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|7cjszj": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042262470,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|qyiz27": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042294031,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|o8fwu2": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042322812,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|34duk8": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042359142,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    },
+    "root|current|produce|jofjjb": {
+      "args": [
+        "test",
+        null,
+        {
+          "__type": "Buffer",
+          "value": "aGVsbG8gd29ybGQh"
+        },
+        {
+          "__type": "Buffer",
+          "value": "a2V5"
+        },
+        1780042470367,
+        {
+          "__type": "undefined"
+        },
+        [
+          {
+            "test": "1"
+          }
+        ]
+      ],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    }
+  }
+}

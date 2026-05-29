@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "className": "RDKafkaConsumerStreamConnector",
+  "calls": {
+    "root|current|unsubscribe|28y": {
+      "args": [],
+      "result": {
+        "kind": "void"
+      }
+    }
+  }
+}

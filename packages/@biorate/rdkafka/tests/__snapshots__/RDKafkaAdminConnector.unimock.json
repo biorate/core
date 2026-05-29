@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "className": "RDKafkaAdminConnector",
+  "calls": {
+    "root|current|createTopic|nhn5iw": {
+      "args": [
+        {
+          "num_partitions": 1,
+          "replication_factor": 1,
+          "topic": "test"
+        },
+        2500
+      ],
+      "result": {
+        "kind": "void"
+      }
+    },
+    "root|current|createPartitions|192nz2": {
+      "args": [
+        "test",
+        3,
+        2500
+      ],
+      "result": {
+        "kind": "void"
+      }
+    }
+  }
+}

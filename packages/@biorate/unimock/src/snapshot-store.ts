@@ -68,11 +68,15 @@ export class SnapshotStore {
 
   public record(callKey: string, args: unknown[], result: unknown, refId?: string): void {
     if (!this.shouldPersist()) return;
-    this.data.calls[callKey] = {
-      args: args.map((arg) => serializeValue(arg, this.serializers)),
-      result: this.packResult(result, refId),
-    };
-    this.dirty = true;
+    try {
+      this.data.calls[callKey] = {
+        args: args.map((arg) => serializeValue(arg, this.serializers)),
+        result: this.packResult(result, refId),
+      };
+      this.dirty = true;
+    } catch {
+      // Serialization error — skip recording this call
+    }
   }
 
   public recordRef(refId: string, value: object): void {
@@ -83,7 +87,7 @@ export class SnapshotStore {
       this.data.refs[refId] = serializeValue(value, this.serializers);
       this.dirty = true;
     } catch {
-      // SDK / cyclic object — replay uses recorded method calls only
+      // SDK / cyclic object / undefined values — replay uses recorded method calls only
     }
   }
 

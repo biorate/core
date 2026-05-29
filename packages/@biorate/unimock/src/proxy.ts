@@ -6,10 +6,59 @@ import { deserializeValue, makeCallKey } from './serialize';
 const INFRA_METHODS = new Set(['initialize', 'create', 'connect']);
 const replayStubs = new WeakSet<object>();
 const proxyTargets = new WeakMap<object, object>();
+const autoMockedObjects = new WeakMap<object, object>();
 
 /** @description Real instance behind a {@link createMockProxy} wrapper. */
 export function unwrapMockTarget<T extends object>(value: T): T {
   return (proxyTargets.get(value) as T | undefined) ?? value;
+}
+
+function hasMethods(value: unknown): boolean {
+  if (!value || typeof value !== 'object') return false;
+  const proto = Object.getPrototypeOf(value);
+  if (proto === Object.prototype || proto === null) return false;
+  const methods = Object.getOwnPropertyNames(proto).filter(
+    (p) => p !== 'constructor' && typeof (value as Record<string, unknown>)[p] === 'function',
+  );
+  return methods.length > 0;
+}
+
+function wrapWithAutoMock<T extends object>(
+  obj: T,
+  store: SnapshotStore,
+  options: MockableOptions | undefined,
+  nodeId: string,
+): T {
+  const existing = autoMockedObjects.get(obj);
+  if (existing) return existing as T;
+
+  const handler: ProxyHandler<T> = {
+    get(target, prop, receiver) {
+      if (prop === 'then') return undefined;
+      if (typeof prop === 'symbol') {
+        return Reflect.get(target, prop, receiver);
+      }
+
+      const value = Reflect.get(target, prop, receiver);
+
+      if (typeof value === 'function') {
+        const method = value as (...args: unknown[]) => unknown;
+        return (...args: unknown[]) =>
+          invokeMethod(target, String(prop), method, args, store, options, nodeId);
+      }
+
+      if (options?.autoMockNested !== false && typeof value === 'object' && value !== null && hasMethods(value)) {
+        const nestedProxy = createMockProxy(value as object, store, options, `${nodeId}|${String(prop)}`);
+        return wrapWithAutoMock(nestedProxy, store, options, `${nodeId}|${String(prop)}`);
+      }
+
+      return value;
+    },
+  };
+
+  const proxy = new Proxy(obj, handler);
+  autoMockedObjects.set(obj, proxy);
+  return proxy;
 }
 
 export function createMockProxy<T extends object>(
@@ -41,6 +90,11 @@ export function createMockProxy<T extends object>(
       ) {
         return (...args: unknown[]) =>
           invokeMethod(trapTarget, prop, () => undefined, args, store, options, nodeId);
+      }
+
+      if (options?.autoMockNested !== false && typeof value === 'object' && value !== null && hasMethods(value)) {
+        const nestedProxy = createMockProxy(value as object, store, options, `${nodeId}|${String(prop)}`);
+        return wrapWithAutoMock(nestedProxy, store, options, `${nodeId}|${String(prop)}`);
       }
 
       return value;
