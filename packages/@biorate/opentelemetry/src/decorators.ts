@@ -2,22 +2,15 @@ import stringify from 'json-stringify-safe';
 import { trace, SpanStatusCode, Tracer, Span } from '@opentelemetry/api';
 import { OTELUndefinedTracerError } from './errors';
 import { copyMetadata } from './utils';
+import { SpanOptions } from './types';
+import {
+  checkDetailedRequestFlags,
+  checkDetailedResponseFlags,
+  getRequestInfo,
+  getResponseInfo,
+} from './helpers';
 
 const key = Symbol('tracer');
-
-type SpanOptions = {
-  captureRequest?: boolean; // общий флаг для всех аргументов
-  captureBody?: boolean;
-  captureHeaders?: boolean;
-  captureQuery?: boolean;
-  captureParams?: boolean;
-  captureCookies?: boolean;
-
-  captureResponse?: boolean; // общий флаг для всего результата
-  captureResponseBody?: boolean;
-  captureResponseHeaders?: boolean;
-  captureResponseStatusCode?: boolean;
-};
 
 /** @description Class decorator that assigns an OpenTelemetry tracer to a class via metadata. */
 export const scope = (version?: string, name?: string) => (Class: any) => {
@@ -74,57 +67,22 @@ export const span =
 
 const setArgumentsWithOptions = (span: Span, options?: SpanOptions, ...args: any[]) => {
   const shouldCaptureRequest = options?.captureRequest !== false;
-  const hasDetailedRequestFlags =
-    options?.captureBody !== undefined ||
-    options?.captureHeaders !== undefined ||
-    options?.captureQuery !== undefined ||
-    options?.captureParams !== undefined ||
-    options?.captureCookies !== undefined;
+  const hasDetailedRequestFlags = checkDetailedRequestFlags(options);
 
   if (shouldCaptureRequest && !hasDetailedRequestFlags) {
     span.setAttribute('arguments', stringify(args));
   } else if (hasDetailedRequestFlags) {
-    const capturedArgs: Record<string, unknown> = {};
-
-    for (const arg of args) {
-      if (options?.captureBody !== false && arg?.body) capturedArgs.body = arg.body;
-      if (options?.captureHeaders !== false && arg?.headers)
-        capturedArgs.headers = arg.headers;
-      if (options?.captureQuery !== false && arg?.query) capturedArgs.query = arg.query;
-      if (options?.captureParams !== false && arg?.params)
-        capturedArgs.params = arg.params;
-      if (options?.captureCookies !== false && arg?.cookies)
-        capturedArgs.cookies = arg.cookies;
-
-      if (!arg?.body && !arg?.headers && !arg?.query) capturedArgs.other = arg;
-    }
-
-    span.setAttribute('arguments', stringify(capturedArgs));
+    span.setAttribute('arguments', stringify(getRequestInfo(args, options)));
   }
 };
 
 const setResultWithOptions = (span: Span, result: any, options?: SpanOptions) => {
   const shouldCaptureResponse = options?.captureResponse !== false;
-  const hasDetailedResultFlags =
-    options?.captureResponseBody !== undefined ||
-    options?.captureResponseHeaders !== undefined ||
-    options?.captureResponseStatusCode !== undefined;
+  const hasDetailedResultFlags = checkDetailedResponseFlags(options);
 
   if (shouldCaptureResponse && !hasDetailedResultFlags) {
     span.setAttribute('result', stringify(result));
   } else if (hasDetailedResultFlags) {
-    const capturedResult: Record<string, unknown> = {};
-
-    if (options?.captureResponseBody !== false && result?.body)
-      capturedResult.body = result.body;
-    if (options?.captureResponseHeaders !== false && result?.headers)
-      capturedResult.headers = result.headers;
-    if (options?.captureResponseStatusCode !== false && result?.statusCode)
-      capturedResult.statusCode = result.statusCode;
-
-    if (!result?.body && !result?.headers && !result?.statusCode)
-      capturedResult.data = result;
-
-    span.setAttribute('result', stringify(capturedResult));
+    span.setAttribute('result', stringify(getResponseInfo(result, options)));
   }
 };
