@@ -109,9 +109,7 @@ export class RDKafkaConsumerStreamConnection
   }
 
   #onData(message: Message) {
-    if (this.pool.length >= this.buffer) {
-      this.stream.pause();
-    }
+    if (this.pool.length >= this.buffer) this.stream.pause();
     this.pool.push(message);
   }
 
