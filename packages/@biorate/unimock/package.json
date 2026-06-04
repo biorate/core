@@ -1,0 +1,70 @@
+{
+  "name": "@biorate/unimock",
+  "version": "1.1.0",
+  "description": "Snapshot-based proxy mocking for connectors and services",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
+    },
+    "./vitest/setup": {
+      "types": "./dist/types/src/vitest/setup.d.ts",
+      "import": "./dist/esm/src/vitest/setup.js",
+      "require": "./dist/cjs/src/vitest/setup.js",
+      "default": "./dist/cjs/src/vitest/setup.js"
+    },
+    "./vitest": {
+      "types": "./dist/types/src/vitest/index.d.ts",
+      "import": "./dist/esm/src/vitest/index.js",
+      "require": "./dist/cjs/src/vitest/index.js",
+      "default": "./dist/cjs/src/vitest/index.js"
+    }
+  },
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "cleanup dist",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
+    "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs",
+    "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module",
+    "format": "prettier --check src",
+    "lint": "eslint src --ext .ts",
+    "format:fix": "prettier --write src",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "npx vitest run --coverage",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/unimock"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "keywords": [
+    "mock",
+    "snapshot",
+    "e2e",
+    "connector"
+  ],
+  "author": "llevkin",
+  "license": "MIT",
+  "dependencies": {
+    "@biorate/errors": "workspace:*",
+    "@biorate/inversion": "workspace:*",
+    "@biorate/lifecycled": "workspace:*"
+  }
+}

@@ -401,6 +401,9 @@ importers:
       '@biorate/tools':
         specifier: workspace:*
         version: link:../../packages/@biorate/tools
+      '@biorate/unimock':
+        specifier: workspace:*
+        version: link:../../packages/@biorate/unimock
       '@biorate/vault':
         specifier: workspace:*
         version: link:../../packages/@biorate/vault
@@ -584,6 +587,10 @@ importers:
       lodash-es:
         specifier: 4.17.21
         version: 4.17.21
+    devDependencies:
+      '@biorate/unimock':
+        specifier: workspace:*
+        version: link:../unimock
 
   packages/@biorate/collection:
     dependencies:
@@ -896,7 +903,7 @@ importers:
         specifier: 2.0.2
         version: link:../amqp
       '@biorate/clickhouse':
-        specifier: 2.1.0
+        specifier: ^2.2.0
         version: link:../clickhouse
       '@biorate/config':
         specifier: 3.1.0
@@ -1500,6 +1507,18 @@ importers:
       '@biorate/errors':
         specifier: workspace:*
         version: link:../errors
+
+  packages/@biorate/unimock:
+    dependencies:
+      '@biorate/errors':
+        specifier: workspace:*
+        version: link:../errors
+      '@biorate/inversion':
+        specifier: workspace:*
+        version: link:../inversion
+      '@biorate/lifecycled':
+        specifier: workspace:*
+        version: link:../lifecycled
 
   packages/@biorate/vault:
     dependencies:

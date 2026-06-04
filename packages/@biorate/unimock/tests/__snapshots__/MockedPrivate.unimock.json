@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "className": "MockedPrivate",
+  "calls": {
+    "root|initialize|28y": {
+      "args": [],
+      "result": {
+        "kind": "void"
+      }
+    },
+    "root|isReady|28y": {
+      "args": [],
+      "result": {
+        "kind": "primitive",
+        "value": true
+      }
+    }
+  }
+}

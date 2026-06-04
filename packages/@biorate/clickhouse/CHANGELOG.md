@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/@biorate/clickhouse@2.1.0...@biorate/clickhouse@2.2.0) (2026-05-28)
+
+### Features
+
+- **unimock:** release ([aaad30d](https://github.com/biorate/core/commit/aaad30d0bde2ee8d0ea290cef75989eaacbe890c))
+- **unimock:** release ([48de970](https://github.com/biorate/core/commit/48de970084a5f82c379d6adba88266705b69f9ac))
+- **unimock:** release ([48ea991](https://github.com/biorate/core/commit/48ea991fddc564cf35e07129f9ced91c0f76e512))
+- **unimock:** release ([a6e55f9](https://github.com/biorate/core/commit/a6e55f929602534618f7fdc67c446d7c7855136b))
+- **unimock:** release ([970b116](https://github.com/biorate/core/commit/970b11659fa4f4603aded41447f7abf4233c6ca5))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/clickhouse@2.0.1...@biorate/clickhouse@2.1.0) (2026-05-18)
 
 ### Features

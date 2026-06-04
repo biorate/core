@@ -22,3 +22,12 @@ export class VitestRepeatsInvalidError extends BaseError {
     super(`[vitest] @repeats() requires a positive number, got: ${count}`);
   }
 }
+
+/** @description Error thrown when @onlyIfEnv() receives invalid parameters */
+export class VitestEnvInvalidError extends BaseError {
+  public constructor(variableName: string, expectedValue: string) {
+    super(
+      `[vitest] @onlyIfEnv() requires non-empty variable name and value, got: variable="${variableName}", value="${expectedValue}"`,
+    );
+  }
+}

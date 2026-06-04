@@ -51,6 +51,7 @@ const pkgs = [
   "@biorate/singleton",
   "@biorate/symbolic",
   "@biorate/tools",
+  "@biorate/unimock",
   "@biorate/vault",
   "@biorate/vitest",
   "@biorate/vitest-spec"

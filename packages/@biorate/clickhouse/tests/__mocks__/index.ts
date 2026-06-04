@@ -1,6 +1,10 @@
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { ClickhouseConnector } from '../../src';
+import { Mockable } from '@biorate/unimock';
+import { ClickhouseConnector as BaseClickhouseConnector } from '../../src';
+
+@Mockable()
+class ClickhouseConnector extends BaseClickhouseConnector {}
 
 export class Root extends Core() {
   @inject(ClickhouseConnector) public connector: ClickhouseConnector;
@@ -19,4 +23,7 @@ container.get<IConfig>(Types.Config).merge({
   ],
 });
 
-export const root = <Root>container.get<Root>(Root);
+/** @description Lazy DI root — set `UNIMOCK` (e.g. `replay` / `record`) before calling. */
+export function getTestRoot(): Root {
+  return container.get<Root>(Root);
+}

@@ -136,6 +136,60 @@ class EdgeCasesTest {
 }
 ```
 
+### Environment Variable Conditionals
+
+Run tests only when specific environment variables match expected values:
+
+```typescript
+import { suite, test, onlyIfEnv } from '@biorate/vitest';
+
+// Suite-level env check - all tests in suite run only if CI=true
+@suite('CI Tests')
+@onlyIfEnv('CI', 'true')
+class CITests {
+  @test('should run in CI')
+  async shouldRunInCI() {
+    // runs only when CI=true
+  }
+}
+
+// Method-level env check
+@suite('Conditional Tests')
+class ConditionalTests {
+  @test('run with specific env')
+  @onlyIfEnv('RUN_SLOW_TESTS', 'true')
+  async slowTest() {
+    // runs only when RUN_SLOW_TESTS=true
+  }
+
+  // Multiple env conditions - all must match
+  @test('run with multiple env conditions')
+  @onlyIfEnv('CI', 'true')
+  @onlyIfEnv('ENABLE_E2E', 'true')
+  async e2eTest() {
+    // runs only when BOTH CI=true AND ENABLE_E2E=true
+  }
+}
+
+// Skip tests when env doesn't match
+@suite('Non-CI Tests')
+@onlyIfEnv('CI', 'false')
+class NonCITests {
+  @test('local only test')
+  async localTest() {
+    // runs only when CI is not 'true' (e.g., local development)
+  }
+}
+```
+
+**Important:** When using `@onlyIfEnv` with `@suite`, place `@suite` first (further from the class), then `@onlyIfEnv`:
+
+```typescript
+@suite('My Suite')  // First
+@onlyIfEnv('MY_VAR', 'value')  // Second
+class MyTest {}
+```
+
 ### Scenario Pattern
 
 ```typescript
@@ -330,6 +384,7 @@ class MyTest {
 - `@todo()` - Mark as TODO
 - `@timeout(ms)` - Set timeout
 - `@repeats(count, options)` - Repeat test
+- `@onlyIfEnv(variableName, expectedValue)` - Run test/suite only if environment variable matches
 
 #### Allure
 - `@epic(name)` - Set epic
