@@ -116,9 +116,8 @@ export class RDKafkaConsumerStreamConnection
   }
 
   #checkResume() {
-    if (!this.stopped && this.pool.length < this.buffer && !this.stream.isPaused()) {
+    if (!this.stopped && this.pool.length < this.buffer && this.stream.isPaused())
       this.stream.resume();
-    }
   }
 
   public async unsubscribe() {
