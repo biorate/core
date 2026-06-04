@@ -1360,22 +1360,22 @@ importers:
   packages/@biorate/rdkafka:
     dependencies:
       '@biorate/config':
-        specifier: workspace:*
+        specifier: 3.1.0
         version: link:../config
       '@biorate/connector':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../connector
       '@biorate/errors':
-        specifier: workspace:*
+        specifier: 3.0.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../inversion
       '@biorate/prometheus':
-        specifier: workspace:*
+        specifier: 3.0.2
         version: link:../prometheus
       '@biorate/tools':
-        specifier: workspace:*
+        specifier: 3.0.1
         version: link:../tools
       '@confluentinc/kafka-javascript':
         specifier: '>=1.9.0'

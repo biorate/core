@@ -1,6 +1,6 @@
 {
   "name": "@biorate/rdkafka",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Rdkafka connector",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

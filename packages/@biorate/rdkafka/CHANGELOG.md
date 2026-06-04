@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/@biorate/rdkafka@2.1.0...@biorate/rdkafka@2.2.0) (2026-06-04)
+
+### Features
+
+- **rdkafka:** #checkResume() fix! ([e95f011](https://github.com/biorate/core/commit/e95f011a4e39f49ad21a8a3516fd725c9d15d777))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/rdkafka@2.0.2...@biorate/rdkafka@2.1.0) (2026-06-04)
 
 ### Features
