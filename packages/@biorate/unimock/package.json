@@ -65,6 +65,11 @@
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "@biorate/lifecycled": "workspace:*"
+    "@biorate/lifecycled": "workspace:*",
+    "inversify": "^6.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.0"
   }
 }
