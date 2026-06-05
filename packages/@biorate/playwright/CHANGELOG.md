@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/@biorate/playwright@2.1.0...@biorate/playwright@2.2.0) (2026-06-05)
+
+### Features
+
+- **playwright:** cjs module fix ([16bde4e](https://github.com/biorate/core/commit/16bde4e0de034c4f704168eaf9f00efa1d7150ce))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/playwright@2.0.1...@biorate/playwright@2.1.0) (2026-06-05)
 
 ### Bug Fixes
