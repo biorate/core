@@ -3,16 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.2](https://github.com/biorate/core/compare/@biorate/playwright@2.0.1...@biorate/playwright@2.0.2) (2026-06-05)
-
+# [2.1.0](https://github.com/biorate/core/compare/@biorate/playwright@2.0.1...@biorate/playwright@2.1.0) (2026-06-05)
 
 ### Bug Fixes
 
-* **playwright:** исправить бесконечную рекурсию в runtime.ts ([2aa981f](https://github.com/biorate/core/commit/2aa981f64bb7f244e5bed922df1f375a8ea1cabf))
+- rollup ([f1b7aa0](https://github.com/biorate/core/commit/f1b7aa0680341a6bd52d654c356ac6dd41355205))
 
+### Features
 
+- ts-config ([5ba5069](https://github.com/biorate/core/commit/5ba50690629c86a42dddbd9a221f0aa51458516e))
+- ts-config ([c85cd74](https://github.com/biorate/core/commit/c85cd74889e5145b1f6eedbe10219514a3e38f17))
 
+## [2.0.2](https://github.com/biorate/core/compare/@biorate/playwright@2.0.1...@biorate/playwright@2.0.2) (2026-06-05)
 
+### Bug Fixes
+
+- **playwright:** исправить бесконечную рекурсию в runtime.ts ([2aa981f](https://github.com/biorate/core/commit/2aa981f64bb7f244e5bed922df1f375a8ea1cabf))
 
 ## [2.0.1](https://github.com/biorate/core/compare/@biorate/playwright@2.0.0...@biorate/playwright@2.0.1) (2026-05-16)
 
