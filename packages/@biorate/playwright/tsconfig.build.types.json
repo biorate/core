@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
+    "module": "Node16",
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationMap": false,
