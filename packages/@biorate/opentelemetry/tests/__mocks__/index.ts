@@ -47,19 +47,19 @@ export class Test {
     return 1;
   }
 
-  @span({ name: 'noRequest', exclude: ['secret', 'data'] })
+  @span({ name: 'noRequest', exclude: { request: ['secret', 'data'] } })
   public testOptionsNoRequest(secret: string, data: any) {
     return { received: true, secret: 'password123', data };
   }
 
-  @span({ name: 'noResponse', exclude: ['secret', 'data'] })
+  @span({ name: 'noResponse', exclude: { response: ['secret', 'data'] } })
   public testNoResult(a: number) {
     return { secret: 'password123', data: a };
   }
 
   @span({
     name: 'httpHandler',
-    exclude: ['body'],
+    exclude: { request: ['body'] },
   })
   public testHttpHandler(req: { body: any; query: any; headers: any }) {
     return { statusCode: 200, headers: { 'content-type': 'application/json' } };
@@ -67,7 +67,7 @@ export class Test {
 
   @span({
     name: 'noRequestNoResponse',
-    exclude: ['file'],
+    exclude: { request: ['file'], response: [] },
   })
   public testBinaryFile(file: Buffer) {
     return Buffer.from('pdf-content');
@@ -75,7 +75,7 @@ export class Test {
 
   @span({
     name: 'responseHandler',
-    exclude: ['body'],
+    exclude: { response: ['body'] },
   })
   public testResponseHandler() {
     return {

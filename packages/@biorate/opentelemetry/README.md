@@ -31,9 +31,21 @@ export class Test {
 
   // Исключение полей из записи в трейсинг
   // Поддерживаются следующие поля: headers, query, params, body,
-  @span({ exclude: ['headers', 'query'] })
+  @span({ exclude: { request: ['headers', 'query'], response: ['body'] } })
   public requestHandler(req: { headers: any; query: any; body: any }) {
-    return { body: req.body };
+    return { body: req.body, statusCode: 200 };
+  }
+
+  // Исключение только из запроса
+  @span({ exclude: { request: ['headers'] } })
+  public withRequestExclude(req: { headers: any; body: any }) {
+    return { data: req.body };
+  }
+
+  // Исключение только из ответа
+  @span({ exclude: { response: ['secret'] } })
+  public withResponseExclude() {
+    return { secret: 'password', data: 'public' };
   }
 }
 

@@ -2,6 +2,7 @@ import { SpanStatusCode, trace, Tracer } from '@opentelemetry/api';
 import stringify from 'json-stringify-safe';
 import { OTELUndefinedTracerError } from './errors';
 import { getRequestInfo, getResponseInfo } from './helpers';
+import { ExcludeOptions } from './types';
 import { copyMetadata } from './utils';
 
 const key = Symbol('tracer');
@@ -15,7 +16,7 @@ export const scope = (version?: string, name?: string) => (Class: any) => {
 
 /** @description Method decorator that wraps a method in an OpenTelemetry span with attributes for class, method, arguments, and result. */
 export const span =
-  (props?: { name?: string; spanKind?: string; exclude?: string[] }) =>
+  (props?: { name?: string; spanKind?: string; exclude?: ExcludeOptions }) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const obj = {
@@ -29,7 +30,7 @@ export const span =
             span.setAttribute('SpanKind', props?.spanKind ?? 'SERVER');
             span.setAttribute(
               'arguments',
-              stringify(getRequestInfo(args, props?.exclude)),
+              stringify(getRequestInfo(args, props?.exclude?.request)),
             );
             const result = method.apply(this, args);
             if (result instanceof Promise)
@@ -37,7 +38,7 @@ export const span =
                 .then((result: unknown) => {
                   span.setAttribute(
                     'result',
-                    stringify(getResponseInfo(result, props?.exclude)),
+                    stringify(getResponseInfo(result, props?.exclude?.response)),
                   );
                   return result;
                 })
@@ -50,7 +51,7 @@ export const span =
             else {
               span.setAttribute(
                 'result',
-                stringify(getResponseInfo(result, props?.exclude)),
+                stringify(getResponseInfo(result, props?.exclude?.response)),
               );
               span.end();
             }
