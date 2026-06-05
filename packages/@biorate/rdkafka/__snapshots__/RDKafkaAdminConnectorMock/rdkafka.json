@@ -1,0 +1,52 @@
+{
+  "chains": {
+    "011ceecb-a2e9-4de7-970b-31581e1658fa": [
+      {
+        "method": "create",
+        "args": [
+          {
+            "name": "admin",
+            "global": {
+              "metadata.broker.list": "localhost:9092",
+              "group.id": "kafka",
+              "socket.keepalive.enable": true,
+              "queue.buffering.max.ms": 5,
+              "allow.auto.create.topics": false
+            }
+          }
+        ],
+        "result": {
+          "origin": {
+            "_events": {},
+            "_eventsCount": 3,
+            "_client": {},
+            "_cb_configs": {
+              "global": {},
+              "topic": {},
+              "event": {}
+            },
+            "metrics": {
+              "connectionOpened": 1780652331234
+            },
+            "_isConnected": true,
+            "errorCounter": 0,
+            "_metadata": {},
+            "_hasUnderlyingClient": false,
+            "globalConfig": {
+              "metadata.broker.list": "localhost:9092",
+              "group.id": "kafka",
+              "socket.keepalive.enable": true,
+              "queue.buffering.max.ms": 5,
+              "allow.auto.create.topics": false
+            },
+            "name": "rdkafka#producer-1"
+          }
+        },
+        "chainId": "011ceecb-a2e9-4de7-970b-31581e1658fa",
+        "timestamp": 1780652331235
+      }
+    ]
+  },
+  "createdAt": 1780652331235,
+  "updatedAt": 1780652331235
+}
