@@ -23,14 +23,23 @@ import { scope, span } from '@biorate/opentelemetry';
 
 @scope('v2')
 export class Test {
+  // Базовое использование - все аргументы и результат записываются
   @span()
   public test(a: number, b: number) {
     return { a, b };
+  }
+
+  // Исключение полей из записи в трейсинг
+  // Поддерживаются следующие поля: headers, query, params, body,
+  @span({ exclude: ['headers', 'query'] })
+  public requestHandler(req: { headers: any; query: any; body: any }) {
+    return { body: req.body };
   }
 }
 
 const test = new Test();
 test.test(1, 2);
+test.requestHandler({ headers: {}, query: {}, body: 'data' });
 ```
 
 ### Learn

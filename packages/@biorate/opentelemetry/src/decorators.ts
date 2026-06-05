@@ -1,14 +1,8 @@
+import { SpanStatusCode, trace, Tracer } from '@opentelemetry/api';
 import stringify from 'json-stringify-safe';
-import { trace, SpanStatusCode, Tracer, Span } from '@opentelemetry/api';
 import { OTELUndefinedTracerError } from './errors';
+import { getRequestInfo, getResponseInfo } from './helpers';
 import { copyMetadata } from './utils';
-import { SpanOptions } from './types';
-import {
-  checkDetailedRequestFlags,
-  checkDetailedResponseFlags,
-  getRequestInfo,
-  getResponseInfo,
-} from './helpers';
 
 const key = Symbol('tracer');
 
@@ -21,7 +15,7 @@ export const scope = (version?: string, name?: string) => (Class: any) => {
 
 /** @description Method decorator that wraps a method in an OpenTelemetry span with attributes for class, method, arguments, and result. */
 export const span =
-  (props?: { name?: string; spanKind?: string; options?: SpanOptions }) =>
+  (props?: { name?: string; spanKind?: string; exclude?: string[] }) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const obj = {
@@ -33,12 +27,18 @@ export const span =
             span.setAttribute('class', target.constructor.name);
             span.setAttribute('method', propertyKey);
             span.setAttribute('SpanKind', props?.spanKind ?? 'SERVER');
-            setArgumentsWithOptions(span, props?.options, ...args);
+            span.setAttribute(
+              'arguments',
+              stringify(getRequestInfo(args, props?.exclude)),
+            );
             const result = method.apply(this, args);
             if (result instanceof Promise)
               return result
                 .then((result: unknown) => {
-                  setResultWithOptions(span, result, props?.options);
+                  span.setAttribute(
+                    'result',
+                    stringify(getResponseInfo(result, props?.exclude)),
+                  );
                   return result;
                 })
                 .catch((e: unknown) => {
@@ -48,7 +48,10 @@ export const span =
                 })
                 .finally(() => span.end());
             else {
-              setResultWithOptions(span, result, props?.options);
+              span.setAttribute(
+                'result',
+                stringify(getResponseInfo(result, props?.exclude)),
+              );
               span.end();
             }
             return result;
@@ -64,25 +67,3 @@ export const span =
     descriptor.value = obj[propertyKey];
     copyMetadata(method, descriptor.value);
   };
-
-const setArgumentsWithOptions = (span: Span, options?: SpanOptions, ...args: any[]) => {
-  const shouldCaptureRequest = options?.captureRequest !== false;
-  const hasDetailedRequestFlags = checkDetailedRequestFlags(options);
-
-  if (shouldCaptureRequest && !hasDetailedRequestFlags) {
-    span.setAttribute('arguments', stringify(args));
-  } else if (hasDetailedRequestFlags) {
-    span.setAttribute('arguments', stringify(getRequestInfo(args, options)));
-  }
-};
-
-const setResultWithOptions = (span: Span, result: any, options?: SpanOptions) => {
-  const shouldCaptureResponse = options?.captureResponse !== false;
-  const hasDetailedResultFlags = checkDetailedResponseFlags(options);
-
-  if (shouldCaptureResponse && !hasDetailedResultFlags) {
-    span.setAttribute('result', stringify(result));
-  } else if (hasDetailedResultFlags) {
-    span.setAttribute('result', stringify(getResponseInfo(result, options)));
-  }
-};
