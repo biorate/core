@@ -14,7 +14,7 @@ setGlobalTestRuntime({
     // allure-playwright@2.x не прокидывает "fromPath" в helpers, используем no-op
     Promise.resolve(),
   description: (value: string) => pwAllure.description(value),
-  descriptionHtml: (value: string) => pwAllure.description(value),
+  descriptionHtml: (value: string) => pwAllure.descriptionHtml(value),
   displayName: (_value: string) => Promise.resolve(),
   epic: (value: string) => pwAllure.epic(value),
   feature: (value: string) => pwAllure.feature(value),
@@ -24,23 +24,14 @@ setGlobalTestRuntime({
     Promise.resolve(),
   globalError: (_details: any) => Promise.resolve(),
   historyId: (_value: string) => Promise.resolve(),
-  labels: (...values: any[]) => {
-    pwAllure.labels(...values);
-    return Promise.resolve();
-  },
-  links: (...values: any[]) => {
-    pwAllure.links(...values);
-    return Promise.resolve();
-  },
-  logStep: (name: string) => pwAllure.logStep(name),
+  labels: (...values: any[]) => pwAllure.labels(...values),
+  links: (...values: any[]) => pwAllure.links(...values),
   owner: (value: string) => pwAllure.owner(value),
   parentSuite: (value: string) => pwAllure.parentSuite(value),
   parameter: (name: string, value: any, options?: any) =>
     pwAllure.parameter(name, value, options),
   severity: (value: string) => pwAllure.severity(value),
-  step: <T>(name: string, body: () => Promise<T>) => pwAllure.step(name, body),
-  stepDisplayName: (_name: string) => Promise.resolve(),
-  stepParameter: (_name: string, _value: any, _mode?: any) => Promise.resolve(),
+  step: (name: string, body: () => Promise<void>) => pwAllure.step(name, body),
   story: (value: string) => pwAllure.story(value),
   subSuite: (value: string) => pwAllure.subSuite(value),
   suite: (value: string) => pwAllure.suite(value),

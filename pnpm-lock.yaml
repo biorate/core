@@ -58,10 +58,10 @@ importers:
         version: 4.0.18(vitest@4.0.18(@opentelemetry/api@1.9.0)(@types/node@24.10.12)(less@4.1.1)(terser@5.46.1)(yaml@2.8.3))
       allure-js-commons:
         specifier: 3.2.0
-        version: 3.2.0(allure-playwright@2.10.0)
+        version: 3.2.0(allure-playwright@3.2.0(@playwright/test@1.59.1))
       allure-playwright:
-        specifier: 2.10.0
-        version: 2.10.0
+        specifier: 3.2.0
+        version: 3.2.0(@playwright/test@1.59.1)
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1288,10 +1288,10 @@ importers:
         version: 1.59.1
       allure-js-commons:
         specifier: '>=3.2.0'
-        version: 3.2.0(allure-playwright@2.10.0)
+        version: 3.2.0(allure-playwright@3.2.0(@playwright/test@1.59.1))
       allure-playwright:
-        specifier: '>=2.10.0'
-        version: 2.10.0
+        specifier: '>=3.2.0'
+        version: 3.2.0(@playwright/test@1.59.1)
       playwright:
         specifier: '>=1.44.0'
         version: 1.59.1
@@ -1551,10 +1551,10 @@ importers:
         version: link:../tools
       allure-js-commons:
         specifier: '>=3.2.0'
-        version: 3.2.0(allure-playwright@2.10.0)
+        version: 3.2.0(allure-playwright@3.2.0(@playwright/test@1.59.1))
       allure-vitest:
         specifier: '>=3.2.0'
-        version: 3.7.1(@vitest/runner@4.0.18)(allure-playwright@2.10.0)(vitest@4.0.18(@opentelemetry/api@1.9.0)(@types/node@24.10.12)(less@4.1.1)(terser@5.46.1)(yaml@2.8.3))
+        version: 3.7.1(@vitest/runner@4.0.18)(allure-playwright@3.2.0(@playwright/test@1.59.1))(vitest@4.0.18(@opentelemetry/api@1.9.0)(@types/node@24.10.12)(less@4.1.1)(terser@5.46.1)(yaml@2.8.3))
       reflect-metadata:
         specifier: '>=0.1.13'
         version: 0.2.2
@@ -4307,8 +4307,10 @@ packages:
     peerDependencies:
       mocha: '>=6.2.x'
 
-  allure-playwright@2.10.0:
-    resolution: {integrity: sha512-zDljPJ/Fnyd2fn7msChtZebwkSVmAGLe/oWK7okGi0Ed+iHZ0E5Vwe5Z5MtUdfLjnT/OkOduwmS7R/DHeTXFSA==}
+  allure-playwright@3.2.0:
+    resolution: {integrity: sha512-E9YNqFBXrycMaOs4x5/Tsdl4xN8Ss0yw8XnwcVUzezR3cjlPb5gUdR81G/zQsi+I3mb+UQMS21yORHKTI9W2fw==}
+    peerDependencies:
+      '@playwright/test': '>=1.36.0'
 
   allure-vitest@3.7.1:
     resolution: {integrity: sha512-RgxxIjTEDHEPqEShPxLrxC4A3E5GGSjHgEtNh0aW7WJ09OW+j+OYq8xad0lYTDM97Nb5o414cwMNcjBrN7bKqA==}
@@ -14310,31 +14312,32 @@ snapshots:
     dependencies:
       properties: 1.2.1
 
-  allure-js-commons@3.2.0(allure-playwright@2.10.0):
+  allure-js-commons@3.2.0(allure-playwright@3.2.0(@playwright/test@1.59.1)):
     dependencies:
       md5: 2.3.0
     optionalDependencies:
-      allure-playwright: 2.10.0
+      allure-playwright: 3.2.0(@playwright/test@1.59.1)
 
-  allure-js-commons@3.7.1(allure-playwright@2.10.0):
+  allure-js-commons@3.7.1(allure-playwright@3.2.0(@playwright/test@1.59.1)):
     dependencies:
       md5: 2.3.0
     optionalDependencies:
-      allure-playwright: 2.10.0
+      allure-playwright: 3.2.0(@playwright/test@1.59.1)
 
   allure-mocha@2.10.0(mocha@11.7.5):
     dependencies:
       allure-js-commons: 2.10.0
       mocha: 11.7.5
 
-  allure-playwright@2.10.0:
+  allure-playwright@3.2.0(@playwright/test@1.59.1):
     dependencies:
-      allure-js-commons: 2.10.0
+      '@playwright/test': 1.59.1
+      allure-js-commons: 3.2.0(allure-playwright@3.2.0(@playwright/test@1.59.1))
 
-  allure-vitest@3.7.1(@vitest/runner@4.0.18)(allure-playwright@2.10.0)(vitest@4.0.18(@opentelemetry/api@1.9.0)(@types/node@24.10.12)(less@4.1.1)(terser@5.46.1)(yaml@2.8.3)):
+  allure-vitest@3.7.1(@vitest/runner@4.0.18)(allure-playwright@3.2.0(@playwright/test@1.59.1))(vitest@4.0.18(@opentelemetry/api@1.9.0)(@types/node@24.10.12)(less@4.1.1)(terser@5.46.1)(yaml@2.8.3)):
     dependencies:
       '@vitest/runner': 4.0.18
-      allure-js-commons: 3.7.1(allure-playwright@2.10.0)
+      allure-js-commons: 3.7.1(allure-playwright@3.2.0(@playwright/test@1.59.1))
       vitest: 4.0.18(@opentelemetry/api@1.9.0)(@types/node@24.10.12)(less@4.1.1)(terser@5.46.1)(yaml@2.8.3)
     transitivePeerDependencies:
       - allure-playwright
