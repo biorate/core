@@ -1,6 +1,6 @@
 {
   "name": "@biorate/rdkafka",
-  "version": "2.0.2",
+  "version": "2.2.0",
   "description": "Rdkafka connector",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -49,16 +49,16 @@
   ],
   "author": "llevkin",
   "license": "MIT",
-  "gitHead": "bbe8f224bd98940a0cd27d33e01f977180c1d76d",
+  "gitHead": "ebec6feb647aa40f43da5dc05149c1e8fe6c8473",
   "peerDependencies": {
     "@confluentinc/kafka-javascript": ">=1.9.0"
   },
   "dependencies": {
-    "@biorate/config": "workspace:*",
-    "@biorate/connector": "workspace:*",
-    "@biorate/errors": "workspace:*",
-    "@biorate/inversion": "workspace:*",
-    "@biorate/prometheus": "workspace:*",
-    "@biorate/tools": "workspace:*"
+    "@biorate/config": "3.1.0",
+    "@biorate/connector": "3.0.2",
+    "@biorate/errors": "3.0.0",
+    "@biorate/inversion": "3.0.2",
+    "@biorate/prometheus": "3.0.2",
+    "@biorate/tools": "3.0.1"
   }
 }

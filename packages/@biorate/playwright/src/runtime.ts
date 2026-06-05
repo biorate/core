@@ -1,48 +1,92 @@
-import { allure as pwAllure } from 'allure-playwright';
-// @ts-ignore
-import { setGlobalTestRuntime } from 'allure-js-commons/sdk/runtime';
+import { test } from '@playwright/test';
+import type { Label, Link } from 'allure-js-commons';
+import {
+  MessageHolderTestRuntime,
+  setGlobalTestRuntime,
+} from 'allure-js-commons/sdk/runtime';
 
-/**
- * @description
- * Sets up the global Allure runtime for Playwright so that `allure-js-commons` API
- * works correctly inside the Playwright test runner.
- */
-setGlobalTestRuntime({
-  attachment: (name: string, content: Buffer | string, options: any) =>
-    pwAllure.attachment(name, content, options),
-  attachmentFromPath: (name: string, path: string, options: any) =>
-    // allure-playwright@2.x не прокидывает "fromPath" в helpers, используем no-op
-    Promise.resolve(),
-  description: (value: string) => pwAllure.description(value),
-  descriptionHtml: (value: string) => pwAllure.description(value),
-  displayName: (_value: string) => Promise.resolve(),
-  epic: (value: string) => pwAllure.epic(value),
-  feature: (value: string) => pwAllure.feature(value),
-  globalAttachment: (_name: string, _content: Buffer | string, _options: any) =>
-    Promise.resolve(),
-  globalAttachmentFromPath: (_name: string, _path: string, _options: any) =>
-    Promise.resolve(),
-  globalError: (_details: any) => Promise.resolve(),
-  historyId: (_value: string) => Promise.resolve(),
-  labels: (...values: any[]) => {
-    pwAllure.labels(...values);
-    return Promise.resolve();
-  },
-  links: (...values: any[]) => {
-    pwAllure.links(...values);
-    return Promise.resolve();
-  },
-  logStep: (name: string) => pwAllure.logStep(name),
-  owner: (value: string) => pwAllure.owner(value),
-  parentSuite: (value: string) => pwAllure.parentSuite(value),
-  parameter: (name: string, value: any, options?: any) =>
-    pwAllure.parameter(name, value, options),
-  severity: (value: string) => pwAllure.severity(value),
-  step: <T>(name: string, body: () => Promise<T>) => pwAllure.step(name, body),
-  stepDisplayName: (_name: string) => Promise.resolve(),
-  stepParameter: (_name: string, _value: any, _mode?: any) => Promise.resolve(),
-  story: (value: string) => pwAllure.story(value),
-  subSuite: (value: string) => pwAllure.subSuite(value),
-  suite: (value: string) => pwAllure.suite(value),
-  testCaseId: (_value: string) => Promise.resolve(),
-} as any);
+class BioratePlaywrightRuntime extends MessageHolderTestRuntime {
+  async attachment(name: string, content: Buffer | string, options: any) {
+    await test.info().attach(name, {
+      body: content,
+      contentType: options.contentType,
+    });
+  }
+
+  async attachmentFromPath(name: string, path: string, options: any) {
+    await test.info().attach(name, {
+      path,
+      contentType: options.contentType,
+    });
+  }
+
+  async epic(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'epic', value }] },
+    });
+  }
+
+  async feature(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'feature', value }] },
+    });
+  }
+
+  async owner(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'owner', value }] },
+    });
+  }
+
+  async parentSuite(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'parentSuite', value }] },
+    });
+  }
+
+  async severity(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'severity', value }] },
+    });
+  }
+
+  async story(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'story', value }] },
+    });
+  }
+
+  async subSuite(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'subSuite', value }] },
+    });
+  }
+
+  async suite(value: string) {
+    await this.sendMessage({
+      type: 'metadata',
+      data: { labels: [{ name: 'suite', value }] },
+    });
+  }
+
+  async step<T = void>(name: string, body: () => T | PromiseLike<T>): Promise<T> {
+    return test.step(name, () => body() as Promise<T>);
+  }
+
+  labels(...labels: Label[]) {
+    return super.labels(...labels);
+  }
+
+  links(...links: Link[]) {
+    return super.links(...links);
+  }
+}
+
+setGlobalTestRuntime(new BioratePlaywrightRuntime());
