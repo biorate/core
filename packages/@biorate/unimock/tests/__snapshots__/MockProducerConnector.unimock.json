@@ -268,50 +268,6 @@
         "v": true
       }
     },
-    "conn:obj_13:produce:880e8d4b": {
-      "args": [
-        {
-          "t": "string",
-          "v": "unimock-rdkafka-test"
-        },
-        {
-          "t": "null"
-        },
-        {
-          "t": "buffer",
-          "v": "aGVsbG8gcmRLYWZrYSE="
-        },
-        {
-          "t": "null"
-        }
-      ],
-      "result": {
-        "t": "boolean",
-        "v": true
-      }
-    },
-    "conn:obj_14:produce:880e8d4b": {
-      "args": [
-        {
-          "t": "string",
-          "v": "unimock-rdkafka-test"
-        },
-        {
-          "t": "null"
-        },
-        {
-          "t": "buffer",
-          "v": "aGVsbG8gcmRLYWZrYSE="
-        },
-        {
-          "t": "null"
-        }
-      ],
-      "result": {
-        "t": "boolean",
-        "v": true
-      }
-    },
     "conn:obj_11:produce:880e8d4b": {
       "args": [
         {

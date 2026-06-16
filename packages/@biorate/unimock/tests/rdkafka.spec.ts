@@ -3,7 +3,7 @@ import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { timer } from '@biorate/tools';
 import { AdminClient } from '@confluentinc/kafka-javascript';
-import { SnapshotStore, flushAllSnapshots } from '../src';
+import { SnapshotStore, flushAllSnapshots, MODE_REPLAY, MODE_RECORD } from '../src';
 import {
   MockAdminConnector,
   MockProducerConnector,
@@ -48,26 +48,23 @@ beforeAll(async () => {
       },
     ],
   });
-  const clean = AdminClient.create({ 'metadata.broker.list': 'localhost:9092' });
-  await new Promise<void>((resolve) => {
-    clean.deleteTopic(topic, timeout, () => resolve());
-    setTimeout(() => resolve(), 2000);
-  });
-  clean.disconnect();
+  if (SnapshotStore.mode !== MODE_REPLAY) {
+    const clean = AdminClient.create({ 'metadata.broker.list': 'localhost:9092' });
+    await new Promise<void>((resolve) => {
+      clean.deleteTopic(topic, timeout, () => resolve());
+      setTimeout(() => resolve(), 2000);
+    });
+    clean.disconnect();
+  }
 });
 
 afterAll(() => {
-  [MockAdminConnector, MockProducerConnector, MockConsumerConnector].forEach((c) => {
-    try {
-      if (container.isBound(c)) container.unbind(c);
-    } catch {}
-  });
+  for (const c of [MockAdminConnector, MockProducerConnector, MockConsumerConnector])
+    if (container.isBound(c)) container.unbind(c);
 });
 
 describe('@biorate/rdkafka', () => {
-  it('record', async () => {
-    SnapshotStore.setMode('record');
-
+  it('rdkafka admin / producer / consumer', async () => {
     container.bind(MockAdminConnector).toSelf().inSingletonScope();
     container.bind(MockProducerConnector).toSelf().inSingletonScope();
     container.bind(MockConsumerConnector).toSelf().inSingletonScope();
@@ -86,20 +83,23 @@ describe('@biorate/rdkafka', () => {
     const producer = root.producer.get();
     const consumer = root.consumer.get();
 
-    try {
-      await admin.deleteTopic(topic, timeout / 2);
-    } catch {}
+    // create topic and produce message when not replaying
+    if (SnapshotStore.mode !== MODE_REPLAY) {
+      try {
+        await admin.deleteTopic(topic, timeout / 2);
+      } catch {}
 
-    await admin.createTopic(
-      {
-        topic,
-        num_partitions: 1,
-        replication_factor: 1,
-      },
-      timeout / 2,
-    );
+      await admin.createTopic(
+        {
+          topic,
+          num_partitions: 1,
+          replication_factor: 1,
+        },
+        timeout / 2,
+      );
 
-    producer.produce(topic, null, Buffer.from('hello rdKafka!'), null);
+      producer.produce(topic, null, Buffer.from('hello rdKafka!'), null);
+    }
 
     consumer.subscribe([topic]);
 
@@ -109,39 +109,15 @@ describe('@biorate/rdkafka', () => {
       messages = await consumer.consumePromise(1);
       if (messages.length) break;
     }
-    consumer.commitMessageSync(messages[0]);
+
+    if (SnapshotStore.mode !== MODE_REPLAY) {
+      consumer.commitMessageSync(messages[0]);
+    }
     consumer.unsubscribe();
 
     expect(messages[0].value?.toString()).toBe('hello rdKafka!');
 
-    flushAllSnapshots();
+    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
     container.unbind(Root);
-  });
-
-  it('replay', async () => {
-    SnapshotStore.setMode('replay');
-
-    [MockAdminConnector, MockProducerConnector, MockConsumerConnector].forEach((c) => {
-      try {
-        if (container.isBound(c)) container.unbind(c);
-      } catch {}
-    });
-
-    container.bind(MockAdminConnector).toSelf().inSingletonScope();
-    container.bind(MockProducerConnector).toSelf().inSingletonScope();
-    container.bind(MockConsumerConnector).toSelf().inSingletonScope();
-
-    class Root extends Core() {
-      @inject(MockAdminConnector) public admin: MockAdminConnector;
-      @inject(MockProducerConnector) public producer: MockProducerConnector;
-      @inject(MockConsumerConnector) public consumer: MockConsumerConnector;
-    }
-    container.bind(Root).toSelf().inSingletonScope();
-
-    const root = container.get<Root>(Root);
-    await root.$run();
-
-    const messages = await root.consumer.get().consumePromise(1);
-    expect(messages[0].value?.toString()).toBe('hello rdKafka!');
   });
 });

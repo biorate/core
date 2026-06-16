@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots } from '../src';
+import { SnapshotStore, flushAllSnapshots, MODE_RECORD } from '../src';
 import { IORedisConnector } from './__mocks__/ioredis';
 
 beforeAll(() => {
@@ -10,19 +10,11 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  [IORedisConnector].forEach((c) => {
-    try {
-      if (container.isBound(c)) container.unbind(c);
-    } catch {
-      /* ok */
-    }
-  });
+  for (const c of [IORedisConnector]) if (container.isBound(c)) container.unbind(c);
 });
 
 describe('@biorate/ioredis', () => {
-  it('record', async () => {
-    SnapshotStore.setMode('record');
-
+  it('ioredis connector', async () => {
     container.get<IConfig>(Types.Config).merge({
       IORedis: [
         {
@@ -42,29 +34,12 @@ describe('@biorate/ioredis', () => {
     const root = container.get<Root>(Root);
     await root.$run();
 
-    await root.connector.current!.set('unimock:key', 'unimock-value');
-    const value = await root.connector.current!.get('unimock:key');
+    const conn = root.connector.current!;
+    await conn.set('unimock:key', 'unimock-value');
+    const value = await conn.get('unimock:key');
     expect(value).toBe('unimock-value');
 
-    flushAllSnapshots();
+    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
     container.unbind(Root);
-  });
-
-  it('replay', async () => {
-    SnapshotStore.setMode('replay');
-
-    if (container.isBound(IORedisConnector)) container.unbind(IORedisConnector);
-    container.bind(IORedisConnector).toSelf().inSingletonScope();
-
-    class Root extends Core() {
-      @inject(IORedisConnector) public connector: IORedisConnector;
-    }
-    container.bind(Root).toSelf().inSingletonScope();
-
-    const root = container.get<Root>(Root);
-    await root.$run();
-
-    const value = await root.connector.current!.get('unimock:key');
-    expect(value).toBe('unimock-value');
   });
 });

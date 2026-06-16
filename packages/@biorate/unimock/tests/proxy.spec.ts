@@ -3,32 +3,34 @@ import { Server as HTTPServer } from 'http';
 import { Server as TCPServer } from 'net';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots } from '../src';
+import { SnapshotStore, flushAllSnapshots, MODE_REPLAY, MODE_RECORD } from '../src';
 import { ProxyConnector } from './__mocks__/proxy';
 
 const httpPort = 18101;
 const clientPort = 17101;
 const serverPort = 17102;
 
-let http: HTTPServer;
-let tcp: TCPServer;
+let http: HTTPServer | undefined;
+let tcp: TCPServer | undefined;
 
 beforeAll(() => {
   if (!container.isBound(Types.Config))
     container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
 
-  http = new HTTPServer();
-  http.listen(httpPort);
-  http.on('request', (req, res) => {
-    res.writeHead(200);
-    res.end('1');
-  });
+  if (SnapshotStore.mode !== MODE_REPLAY) {
+    http = new HTTPServer();
+    http.listen(httpPort);
+    http.on('request', (req, res) => {
+      res.writeHead(200);
+      res.end('1');
+    });
 
-  tcp = new TCPServer();
-  tcp.listen(clientPort);
-  tcp.on('connection', (socket) =>
-    socket.on('data', (data) => socket.write(`${data} world!`)),
-  );
+    tcp = new TCPServer();
+    tcp.listen(clientPort);
+    tcp.on('connection', (socket) =>
+      socket.on('data', (data) => socket.write(`${data} world!`)),
+    );
+  }
 
   container.get<IConfig>(Types.Config).merge({
     Proxy: [
@@ -66,9 +68,7 @@ afterAll(() => {
 });
 
 describe('@biorate/proxy', () => {
-  it('record', async () => {
-    SnapshotStore.setMode('record');
-
+  it('proxy connector', async () => {
     container.bind(ProxyConnector).toSelf().inSingletonScope();
 
     class Root extends Core() {
@@ -82,25 +82,7 @@ describe('@biorate/proxy', () => {
     const conn = root.connector.get();
     expect(conn).toBeDefined();
 
-    flushAllSnapshots();
+    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
     container.unbind(Root);
-  });
-
-  it('replay', async () => {
-    SnapshotStore.setMode('replay');
-
-    if (container.isBound(ProxyConnector)) container.unbind(ProxyConnector);
-    container.bind(ProxyConnector).toSelf().inSingletonScope();
-
-    class Root extends Core() {
-      @inject(ProxyConnector) public connector: ProxyConnector;
-    }
-    container.bind(Root).toSelf().inSingletonScope();
-
-    const root = container.get<Root>(Root);
-    await root.$run();
-
-    const conn = root.connector.get();
-    expect(conn).toBeDefined();
   });
 });

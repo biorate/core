@@ -148,7 +148,7 @@
       "args": [],
       "result": {
         "t": "ref",
-        "v": "obj_4"
+        "v": "obj_3"
       }
     },
     "conn:obj_1:set:9fa72e66": {
@@ -196,6 +196,18 @@
       }
     },
     "conn:obj_4:get:9f7e8c5a": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock:key"
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "unimock-value"
+      }
+    },
+    "conn:obj_3:get:9f7e8c5a": {
       "args": [
         {
           "t": "string",

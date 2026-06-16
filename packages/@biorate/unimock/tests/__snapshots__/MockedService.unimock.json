@@ -34,13 +34,6 @@
           }
         ]
       }
-    },
-    "value:": {
-      "args": [],
-      "result": {
-        "t": "string",
-        "v": "real-value"
-      }
     }
   }
 }

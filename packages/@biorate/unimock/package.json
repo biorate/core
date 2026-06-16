@@ -42,7 +42,9 @@
     "lint": "eslint src --ext .ts",
     "format:fix": "prettier --write src",
     "lint:fix": "eslint src --ext .ts --fix",
-    "test": "npx vitest run --coverage",
+    "test": "pnpm run test:replay",
+    "test:replay": "UNIMOCK=replay npx vitest run --coverage",
+    "test:record": "UNIMOCK=record npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {

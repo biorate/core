@@ -1,3 +1,8 @@
+export {
+  MODE_RECORD,
+  MODE_REPLAY,
+  MODE_OFF,
+} from './constants';
 export { Mockable } from './mockable';
 export { UnimockReplayMissError, UnimockSerializeError } from './errors';
 export { parseUnimockMode, resolveSnapshotDir } from './env';

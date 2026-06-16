@@ -2,7 +2,7 @@ import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { ISequelizeConnector } from '@biorate/sequelize';
-import { SnapshotStore, flushAllSnapshots } from '../src';
+import { SnapshotStore, flushAllSnapshots, MODE_RECORD } from '../src';
 import {
   PG,
   DDL,
@@ -30,9 +30,7 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
     });
   });
 
-  it('record', async () => {
-    SnapshotStore.setMode('record');
-
+  it('sequelize connector', async () => {
     container.get<IConfig>(Types.Config).merge({
       Sequelize: [
         {
@@ -64,34 +62,8 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
     expect(rows[0].title).toBe('test');
     expect(rows[0].value).toBe(42);
 
-    flushAllSnapshots();
+    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
     container.unbind(Root);
-  });
-
-  it('replay', async () => {
-    SnapshotStore.setMode('replay');
-
-    if (container.isBound(SequelizeConnector)) container.unbind(SequelizeConnector);
-    container.bind(SequelizeConnector).toSelf().inSingletonScope();
-
-    class Root extends Core() {
-      @inject(SequelizeConnector) public connector: ISequelizeConnector;
-    }
-    container.bind(Root).toSelf().inSingletonScope();
-
-    const root = container.get<Root>(Root);
-    await root.$run();
-
-    const simple = await root.connector.query<{ result: number }>('SELECT 1 AS result');
-    expect(simple[0].result).toBe(1);
-
-    await root.connector.query(DDL);
-    await root.connector.query(DML);
-    const rows = await root.connector.query<{ id: number; title: string; value: number }>(
-      SELECT,
-    );
-    expect(rows[0].title).toBe('test');
-    expect(rows[0].value).toBe(42);
   });
 });
 
@@ -102,18 +74,10 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
   });
 
   afterAll(() => {
-    [ModelMockConnector].forEach((c) => {
-      try {
-        if (container.isBound(c)) container.unbind(c);
-      } catch {
-        /* ok */
-      }
-    });
+    for (const c of [ModelMockConnector]) if (container.isBound(c)) container.unbind(c);
   });
 
-  it('record', async () => {
-    SnapshotStore.setMode('record');
-
+  it('model mock connector', async () => {
     container.get<IConfig>(Types.Config).merge({
       SequelizeModel: [
         {
@@ -139,7 +103,7 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
     await TestModel.sync();
     await TestModel.create({ id: 10, title: 'via-mockable-model', value: 777 });
     const found = await TestModel.findOne({ where: { id: 10 } });
-    expect(found?.toJSON()).toMatchObject({
+    expect(found).toMatchObject({
       id: 10,
       title: 'via-mockable-model',
       value: 777,
@@ -150,32 +114,7 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
     );
     expect(rows[0].title).toBe('via-mockable-model');
 
-    flushAllSnapshots();
+    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
     container.unbind(Root);
-  });
-
-  it('replay', async () => {
-    SnapshotStore.setMode('replay');
-
-    if (container.isBound(ModelMockConnector)) container.unbind(ModelMockConnector);
-    container.bind(ModelMockConnector).toSelf().inSingletonScope();
-
-    class Root extends Core() {
-      @inject(ModelMockConnector) public connector: ISequelizeConnector;
-    }
-    container.bind(Root).toSelf().inSingletonScope();
-
-    const root = container.get<Root>(Root);
-    await root.$run();
-
-    root.connector.use('modelConn');
-
-    const found = await TestModel.findOne({ where: { id: 10 } });
-    expect(found).toMatchObject({ id: 10, title: 'via-mockable-model', value: 777 });
-
-    const rows = await root.connector.query<{ id: number; title: string; value: number }>(
-      SELECT_MODEL,
-    );
-    expect(rows[0].title).toBe('via-mockable-model');
   });
 });
