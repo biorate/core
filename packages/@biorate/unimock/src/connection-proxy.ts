@@ -108,9 +108,8 @@ function hasMethods(value: unknown): value is object {
   if (Buffer.isBuffer(value)) return false;
   if (value instanceof Error) return false;
   if (Object.getPrototypeOf(value) !== Object.prototype) return true;
-  for (const key of Object.keys(value)) {
-    if (typeof (value as Record<string, unknown>)[key] === 'function') return true;
-  }
+  for (const key of Object.keys(value))
+    if (typeof (<Record<string, unknown>>value)[key] === 'function') return true;
   return false;
 }
 
