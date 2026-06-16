@@ -77,6 +77,7 @@
     "@biorate/proxy-prometheus": "workspace:*",
     "@biorate/rdkafka": "workspace:*",
     "@biorate/redis": "workspace:*",
+    "@biorate/schema-registry": "workspace:*",
     "@biorate/sequelize": "workspace:*",
     "@biorate/tools": "workspace:*",
     "@confluentinc/kafka-javascript": "latest",

@@ -184,7 +184,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
       sinon:
         specifier: 21.0.1
         version: 21.0.1
@@ -1479,7 +1479,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
     devDependencies:
       sqlite3:
         specifier: 5.0.7
@@ -1553,6 +1553,9 @@ importers:
       '@biorate/redis':
         specifier: workspace:*
         version: link:../redis
+      '@biorate/schema-registry':
+        specifier: workspace:*
+        version: link:../schema-registry
       '@biorate/sequelize':
         specifier: workspace:*
         version: link:../sequelize
@@ -20554,7 +20557,7 @@ snapshots:
 
   sequelize-pool@7.1.0: {}
 
-  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3):
+  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13))):
     dependencies:
       '@types/node': 24.10.12
       '@types/validator': 13.15.10

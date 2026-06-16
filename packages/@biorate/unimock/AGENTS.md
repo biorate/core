@@ -40,6 +40,7 @@
 | `tests/unimock.spec.ts` | 24 unit-теста для ядра |
 | `tests/clickhouse.spec.ts` | 2 интеграционных теста с реальным Clickhouse (record + replay) |
 | `tests/rdkafka.spec.ts` | 2 интеграционных теста с реальным Kafka (record + replay) |
+| `tests/schema-registry.spec.ts` | 2 интеграционных теста с Schema Registry (record + replay) |
 
 ## Поток данных (sequence)
 
@@ -182,6 +183,7 @@ curl http://localhost:8123/ping  # → Ok.
 - `@biorate/config: "workspace:*"`
 - `@biorate/prometheus: "workspace:*"` — требуется barrel-импортом `@biorate/rdkafka` (decorators)
 - `@biorate/rdkafka: "workspace:*"`
+- `@biorate/schema-registry: "workspace:*"`
 - `@biorate/tools: "workspace:*"`
 - `@confluentinc/kafka-javascript: "latest"` — peer dep rdkafka
 
@@ -195,6 +197,16 @@ curl http://localhost:8123/ping  # → Ok.
 
 **Важно**: `beforeAll` чистит топик через прямой `AdminClient` (не через Mockable), чтобы избежать race condition между запусками. Топик всегда создаётся заново в record-режиме.
 
+## schema-registry-тест
+
+`tests/schema-registry.spec.ts` — HTTP API методы (ping, postSubjectsVersions, getSubjectsByVersion, getSchemasById, getSubjects, getSubjectsVersions, getSchemasTypes). Record: `SnapshotStore.mode !== MODE_REPLAY` → вызовы API → `flushAllSnapshots()` в `afterAll`. Replay: воспроизведение из снапшота без live schema-registry.
+
+**Важно**: 
+- `deleteSubjects` вызывается только в record-режиме (через `SnapshotStore.mode !== MODE_REPLAY`)
+- `flushAllSnapshots()` автоматический в `tests/setup.ts` (`afterAll` хук)
+- Используется фиксированный subject (`unimock-test-subject`)
+- Один тест для обоих режимов (контроль через `UNIMOCK` env)
+
 **Ограничение**: глобальный счётчик refId (`obj_${counter++}`) в `mockable.ts` — при повторных `get()` на одном и том же connection создаются новые ConnectionHandler с разными refId. Фикс: сохранять результат `get()` в переменную и переиспользовать.
 
 Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}"`.
@@ -202,7 +214,7 @@ Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}
 ## Чеклист при изменениях
 
 - [ ] `pnpm --filter @biorate/unimock run build` — проверка типов
-- [ ] `pnpm --filter @biorate/unimock run test` — все 28 тестов
+- [ ] `pnpm --filter @biorate/unimock run test` — все 30 тестов
 - [ ] Если менялась сериализация — проверить `serialize`/`deserialize` symmetric
 - [ ] Если менялся `hasMethods` — проверить различение connection/data объектов
 - [ ] Если менялся replay-механизм — запустить clickhouse integration test (docker должен быть up)
