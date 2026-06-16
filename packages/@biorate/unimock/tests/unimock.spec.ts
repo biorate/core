@@ -1,4 +1,4 @@
-import { describe, it, expect, afterAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import {
   serialize,
   deserialize,
@@ -13,7 +13,6 @@ import {
 import { TestService, Connector, ConnectorWithConnection } from './__mocks__/unimock';
 
 afterAll(() => {
-  flushAllSnapshots();
   SnapshotStore.setMode('off');
 });
 

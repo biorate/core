@@ -1,4 +1,10 @@
-import { SequelizeConnector as RawSequelizeConnector, Model, Table, Column, DataType } from '@biorate/sequelize';
+import {
+  SequelizeConnector as RawSequelizeConnector,
+  Model,
+  Table,
+  Column,
+  DataType,
+} from '@biorate/sequelize';
 import { Mockable } from '../../src';
 
 export const PG = {

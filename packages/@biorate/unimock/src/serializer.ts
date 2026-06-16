@@ -54,7 +54,10 @@ export function stableStringify(value: unknown, seen?: Set<object>): string {
 }
 
 export function stableHash(value: unknown): string {
-  return createHash(HASH_ALGORITHM).update(stableStringify(value)).digest(HASH_ENCODING).slice(0, STABLE_HASH_LENGTH);
+  return createHash(HASH_ALGORITHM)
+    .update(stableStringify(value))
+    .digest(HASH_ENCODING)
+    .slice(0, STABLE_HASH_LENGTH);
 }
 
 export function makeCallKey(prefix: string, method: string, args: unknown[]): string {

@@ -2,7 +2,7 @@ import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { ISequelizeConnector } from '@biorate/sequelize';
-import { SnapshotStore, flushAllSnapshots } from '../src';
+import { SnapshotStore } from '../src';
 import {
   PG,
   DDL,
@@ -62,7 +62,6 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
     expect(rows[0].title).toBe('test');
     expect(rows[0].value).toBe(42);
 
-    flushAllSnapshots();
     container.unbind(Root);
   });
 });
@@ -114,7 +113,6 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
     );
     expect(rows[0].title).toBe('via-mockable-model');
 
-    flushAllSnapshots();
     container.unbind(Root);
   });
 });

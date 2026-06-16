@@ -31,7 +31,8 @@ export class ConnectionHandler {
       get: (obj, prop: string | symbol) => {
         if (prop === PROP_THEN) return undefined;
         if (prop === PROP_UNIMOCK_REF) return obj.__unimock_ref__;
-        if (typeof prop === 'string' && prop.startsWith(PROP_PRIVATE_PREFIX)) return undefined;
+        if (typeof prop === 'string' && prop.startsWith(PROP_PRIVATE_PREFIX))
+          return undefined;
 
         const mode = obj.store.mode;
 

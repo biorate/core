@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots } from '../src';
+import { SnapshotStore } from '../src';
 import { MssqlConnector } from './__mocks__/mssql';
 
 beforeAll(() => {
@@ -44,7 +44,6 @@ describe('@biorate/mssql', () => {
     // TODO: type fix
     expect((result.recordsets as any)[0][0].result).toBe(1);
 
-    flushAllSnapshots();
     container.unbind(Root);
   });
 });

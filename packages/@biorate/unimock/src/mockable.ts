@@ -42,7 +42,12 @@ function patchPrototype(proto: object, store: SnapshotStore): void {
   let current = proto;
   while (current && current !== Object.prototype) {
     for (const key of Object.getOwnPropertyNames(current)) {
-      if (key === PROP_CONSTRUCTOR || key.startsWith(PROP_PRIVATE_PREFIX) || visited.has(key)) continue;
+      if (
+        key === PROP_CONSTRUCTOR ||
+        key.startsWith(PROP_PRIVATE_PREFIX) ||
+        visited.has(key)
+      )
+        continue;
       visited.add(key);
       const descriptor = Object.getOwnPropertyDescriptor(current, key);
       if (descriptor) entries.push({ key, descriptor });
@@ -355,7 +360,7 @@ function wrapGetter(
 
     const result = original.call(this);
     if (hasMethods(result)) {
-    const refId = `${PREFIX_OBJ}${counter++}`;
+      const refId = `${PREFIX_OBJ}${counter++}`;
       const wrapped = new ConnectionHandler(result, refId, store);
       store.record(callKey, { args: [], result: { t: T_REF, v: refId } });
       return wrapped;

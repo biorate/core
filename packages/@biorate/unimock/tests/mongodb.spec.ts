@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots } from '../src';
+import { SnapshotStore } from '../src';
 import { MongoDBConnector } from './__mocks__/mongodb';
 
 beforeAll(() => {
@@ -38,11 +38,14 @@ describe('@biorate/mongodb', () => {
     const conn = root.connector.current!;
     // TODO: type fix
     const col = await (conn as any).collection('unimock_test');
-    await col.updateOne({ _id: 'unimock:key' }, { $set: { value: 'unimock-value' } }, { upsert: true });
+    await col.updateOne(
+      { _id: 'unimock:key' },
+      { $set: { value: 'unimock-value' } },
+      { upsert: true },
+    );
     const doc = await col.findOne({ _id: 'unimock:key' });
     expect(doc?.value).toBe('unimock-value');
 
-    flushAllSnapshots();
     container.unbind(Root);
   });
 });

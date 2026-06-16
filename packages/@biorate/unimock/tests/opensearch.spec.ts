@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots, MODE_REPLAY } from '../src';
+import { SnapshotStore, MODE_REPLAY } from '../src';
 import { OpenSearchConnector } from './__mocks__/opensearch';
 
 beforeAll(() => {
@@ -10,8 +10,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  for (const c of [OpenSearchConnector])
-    if (container.isBound(c)) container.unbind(c);
+  for (const c of [OpenSearchConnector]) if (container.isBound(c)) container.unbind(c);
 });
 
 describe('@biorate/opensearch', () => {
@@ -59,7 +58,6 @@ describe('@biorate/opensearch', () => {
     expect(getRes._source.title).toBe('test');
     expect(getRes._source.value).toBe(42);
 
-    flushAllSnapshots();
     container.unbind(Root);
   });
 });
