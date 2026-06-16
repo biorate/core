@@ -268,6 +268,7 @@ function hasMethods(value: unknown): value is object {
   return false;
 }
 
+// TODO: sequelize models static methods, need to be configurable...
 const STATIC_SAFE = new Set([
   'sync',
   'drop',
