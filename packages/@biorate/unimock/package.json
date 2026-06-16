@@ -68,6 +68,7 @@
     "@biorate/tools": "workspace:*",
     "@biorate/prometheus": "workspace:*",
     "@biorate/rdkafka": "workspace:*",
+    "@biorate/sequelize": "workspace:*",
     "@confluentinc/kafka-javascript": "latest"
   },
   "dependencies": {

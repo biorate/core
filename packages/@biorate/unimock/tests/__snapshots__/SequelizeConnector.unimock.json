@@ -1,0 +1,295 @@
+{
+  "version": 1,
+  "className": "SequelizeConnector",
+  "calls": {
+    "config:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_0"
+      }
+    },
+    "conn:obj_0:get:f2ac609f": {
+      "args": [
+        {
+          "t": "string",
+          "v": "Sequelize"
+        },
+        {
+          "t": "array",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "name",
+                "v": {
+                  "t": "string",
+                  "v": "connection"
+                }
+              },
+              {
+                "k": "options",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "logging",
+                      "v": {
+                        "t": "boolean",
+                        "v": false
+                      }
+                    },
+                    {
+                      "k": "dialect",
+                      "v": {
+                        "t": "string",
+                        "v": "sqlite"
+                      }
+                    },
+                    {
+                      "k": "storage",
+                      "v": {
+                        "t": "string",
+                        "v": ":memory:"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "connect:e488e1b9": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "logging",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  },
+                  {
+                    "k": "dialect",
+                    "v": {
+                      "t": "string",
+                      "v": "sqlite"
+                    }
+                  },
+                  {
+                    "k": "storage",
+                    "v": {
+                      "t": "string",
+                      "v": ":memory:"
+                    }
+                  },
+                  {
+                    "k": "models",
+                    "v": {
+                      "t": "array",
+                      "v": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_1"
+      }
+    },
+    "create:e488e1b9": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "logging",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  },
+                  {
+                    "k": "dialect",
+                    "v": {
+                      "t": "string",
+                      "v": "sqlite"
+                    }
+                  },
+                  {
+                    "k": "storage",
+                    "v": {
+                      "t": "string",
+                      "v": ":memory:"
+                    }
+                  },
+                  {
+                    "k": "models",
+                    "v": {
+                      "t": "array",
+                      "v": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_2"
+      }
+    },
+    "connection:d7517139": {
+      "args": [
+        {
+          "t": "undefined"
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_3"
+      }
+    },
+    "conn:obj_1:query:7ef23c02": {
+      "args": [
+        {
+          "t": "string",
+          "v": "SELECT 1 AS result"
+        },
+        {
+          "t": "object",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "array",
+            "v": [
+              {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "result",
+                    "v": {
+                      "t": "number",
+                      "v": 1
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "t": "object",
+            "v": []
+          }
+        ]
+      }
+    },
+    "conn:obj_3:query:7ef23c02": {
+      "args": [
+        {
+          "t": "string",
+          "v": "SELECT 1 AS result"
+        },
+        {
+          "t": "object",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "array",
+            "v": [
+              {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "result",
+                    "v": {
+                      "t": "number",
+                      "v": 1
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "t": "object",
+            "v": []
+          }
+        ]
+      }
+    },
+    "query:0576fadd": {
+      "args": [
+        {
+          "t": "string",
+          "v": "SELECT 1 AS result"
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "result",
+                "v": {
+                  "t": "number",
+                  "v": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

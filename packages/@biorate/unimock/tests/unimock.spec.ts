@@ -301,6 +301,34 @@ describe('Connector-like integration', () => {
     const result2 = await conn2.query('SELECT 1');
     expect(result2).toEqual([{ result: 'SELECT 1' }]);
   });
+
+  class ConnectorWithConnection {
+    private conn = { query: async (sql: string) => [{ result: sql }] };
+    public connection() {
+      return this.conn;
+    }
+    public async query(sql: string) {
+      const conn = this.connection();
+      return conn.query(sql);
+    }
+  }
+
+  it('records and replays query that internally calls connection()', async () => {
+    SnapshotStore.setMode('record');
+
+    @Mockable({ snapshotDir: '/tmp/unimock-test' })
+    class MockedConn extends ConnectorWithConnection {}
+
+    const c1 = new MockedConn();
+    const result1 = await c1.query('SELECT 1');
+    expect(result1).toEqual([{ result: 'SELECT 1' }]);
+    flushAllSnapshots();
+
+    SnapshotStore.setMode('replay');
+    const c2 = new MockedConn();
+    const result2 = await c2.query('SELECT 1');
+    expect(result2).toEqual([{ result: 'SELECT 1' }]);
+  });
 });
 
 afterAll(() => {
