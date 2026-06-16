@@ -4,8 +4,6 @@ import { IConfig, Config } from '@biorate/config';
 import { ClickhouseConnector as ChConnector } from '@biorate/clickhouse';
 import { Mockable, SnapshotStore, flushAllSnapshots } from '../src';
 
-// const snapshotDir = '/tmp/unimock-test/clickhouse';
-
 @Mockable({})
 class ClickhouseConnector extends ChConnector {}
 
