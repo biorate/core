@@ -89,7 +89,11 @@ function wrapMethod(
           },
           (error: Error) => {
             const sa = serializeArgs(recordedArgs, callbackRecords);
-            store.record(callKey, { args: sa, result: { t: 'undefined' }, error: serialize(error) });
+            store.record(callKey, {
+              args: sa,
+              result: { t: 'undefined' },
+              error: serialize(error),
+            });
             throw error;
           },
         );
@@ -99,13 +103,22 @@ function wrapMethod(
       return wrapAndRecord(store, callKey, result, sa);
     } catch (e: unknown) {
       const sa = serializeArgs(recordedArgs, callbackRecords);
-      store.record(callKey, { args: sa, result: { t: 'undefined' }, error: serialize(e as Error) });
+      store.record(callKey, {
+        args: sa,
+        result: { t: 'undefined' },
+        error: serialize(e as Error),
+      });
       throw e;
     }
   };
 }
 
-function replayCall(callKey: string, name: string, args: unknown[], store: SnapshotStore): unknown {
+function replayCall(
+  callKey: string,
+  name: string,
+  args: unknown[],
+  store: SnapshotStore,
+): unknown {
   const entry = store.get(callKey);
   if (!entry) throw new UnimockReplayMissError(callKey, name, args);
 
@@ -124,7 +137,10 @@ function replayCall(callKey: string, name: string, args: unknown[], store: Snaps
   return result;
 }
 
-function replayCallbacks(serializedArgs: SerializedValue[], originalArgs: unknown[]): Promise<unknown>[] {
+function replayCallbacks(
+  serializedArgs: SerializedValue[],
+  originalArgs: unknown[],
+): Promise<unknown>[] {
   const promises: Promise<unknown>[] = [];
   for (let i = 0; i < serializedArgs.length; i++) {
     const sa = serializedArgs[i];
@@ -139,10 +155,19 @@ function replayCallbacks(serializedArgs: SerializedValue[], originalArgs: unknow
   return promises;
 }
 
-function recordPrep(
-  args: unknown[],
-): { recordedArgs: unknown[]; callbackRecords: Array<{ index: number; records: unknown[][]; fn: (...a: unknown[]) => unknown }> } {
-  const callbackRecords: Array<{ index: number; records: unknown[][]; fn: (...a: unknown[]) => unknown }> = [];
+function recordPrep(args: unknown[]): {
+  recordedArgs: unknown[];
+  callbackRecords: Array<{
+    index: number;
+    records: unknown[][];
+    fn: (...a: unknown[]) => unknown;
+  }>;
+} {
+  const callbackRecords: Array<{
+    index: number;
+    records: unknown[][];
+    fn: (...a: unknown[]) => unknown;
+  }> = [];
   const recordedArgs = args.map((arg, i) => {
     if (typeof arg === 'function') {
       const records: unknown[][] = [];
@@ -150,7 +175,11 @@ function recordPrep(
         records.push(cbArgs);
         return (arg as (...a: unknown[]) => unknown)(...cbArgs);
       };
-      callbackRecords.push({ index: i, records, fn: arg as (...a: unknown[]) => unknown });
+      callbackRecords.push({
+        index: i,
+        records,
+        fn: arg as (...a: unknown[]) => unknown,
+      });
       return wrapped;
     }
     return arg;
@@ -160,7 +189,11 @@ function recordPrep(
 
 function serializeArgs(
   recordedArgs: unknown[],
-  callbacks: Array<{ index: number; records: unknown[][]; fn: (...a: unknown[]) => unknown }>,
+  callbacks: Array<{
+    index: number;
+    records: unknown[][];
+    fn: (...a: unknown[]) => unknown;
+  }>,
 ): SerializedValue[] {
   return recordedArgs.map((a, i) => {
     if (typeof a === 'function') {
@@ -179,14 +212,27 @@ function serializeArgs(
   });
 }
 
-function wrapAndRecord(store: SnapshotStore, callKey: string, result: unknown, serializedArgs: SerializedValue[]): unknown {
+function wrapAndRecord(
+  store: SnapshotStore,
+  callKey: string,
+  result: unknown,
+  serializedArgs: SerializedValue[],
+): unknown {
   if (hasMethods(result)) {
     const refId = `obj_${counter++}`;
     const wrapped = new ConnectionHandler(result, refId, store);
-    store.record(callKey, { args: serializedArgs, result: { t: 'ref', v: refId }, error: undefined });
+    store.record(callKey, {
+      args: serializedArgs,
+      result: { t: 'ref', v: refId },
+      error: undefined,
+    });
     return wrapped;
   }
-  store.record(callKey, { args: serializedArgs, result: serialize(result), error: undefined });
+  store.record(callKey, {
+    args: serializedArgs,
+    result: serialize(result),
+    error: undefined,
+  });
   return result;
 }
 
@@ -215,7 +261,8 @@ function wrapGetter(
     if (mode === 'replay') {
       const entry = store.get(callKey);
       if (!entry) throw new UnimockReplayMissError(callKey, name, []);
-      if (entry.result.t === 'ref') return new ConnectionHandler(null, entry.result.v, store);
+      if (entry.result.t === 'ref')
+        return new ConnectionHandler(null, entry.result.v, store);
       return deserialize(entry.result);
     }
 

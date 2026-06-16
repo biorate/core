@@ -3,7 +3,8 @@ import type { UnimockMode } from './interfaces';
 export function parseUnimockMode(): UnimockMode {
   const env = process.env.UNIMOCK?.toLowerCase().trim();
   if (!env || env === 'off' || env === '0' || env === 'false') return 'off';
-  if (env === 'record' || env === 'update' || env === '1' || env === 'true') return 'record';
+  if (env === 'record' || env === 'update' || env === '1' || env === 'true')
+    return 'record';
   if (env === 'replay') return 'replay';
   return 'off';
 }

@@ -1,6 +1,11 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
-import type { SnapshotCall, SnapshotFile, SnapshotStoreEntry, UnimockMode } from './interfaces';
+import type {
+  SnapshotCall,
+  SnapshotFile,
+  SnapshotStoreEntry,
+  UnimockMode,
+} from './interfaces';
 import { parseUnimockMode, resolveSnapshotDir } from './env';
 
 const stores = new Map<string, SnapshotStore>();
@@ -17,6 +22,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
   }
 
   public readonly className: string;
+
   public readonly snapshotPath: string;
 
   private data: SnapshotFile;

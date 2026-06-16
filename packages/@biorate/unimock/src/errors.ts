@@ -15,3 +15,9 @@ export class UnimockSerializeError extends BaseError {
     super(message, meta ? [meta] : undefined);
   }
 }
+
+export class UnimockConnectionHandlerTargetRequiredError extends BaseError {
+  public constructor(refId: string) {
+    super('ConnectionHandler: target required in record mode (refId: %s)', [refId]);
+  }
+}

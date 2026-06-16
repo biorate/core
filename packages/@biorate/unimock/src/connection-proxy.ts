@@ -1,7 +1,10 @@
 import type { SnapshotStore } from './snapshot-store';
 import type { SerializedValue } from './interfaces';
 import { makeCallKey, serialize, deserialize } from './serializer';
-import { UnimockReplayMissError } from './errors';
+import {
+  UnimockReplayMissError,
+  UnimockConnectionHandlerTargetRequiredError,
+} from './errors';
 
 export class ConnectionHandler {
   public readonly __unimock_ref__: string;
@@ -40,7 +43,7 @@ export class ConnectionHandler {
 
         const targetObj = obj.target as Record<string | symbol, unknown> | null;
         if (!targetObj)
-          throw new Error('ConnectionHandler: target required in record mode');
+          throw new UnimockConnectionHandlerTargetRequiredError(obj.__unimock_ref__);
 
         if (typeof targetObj[prop] === 'function') {
           return (...args: unknown[]) => {

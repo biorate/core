@@ -4,7 +4,8 @@ import type { SerializedValue } from './interfaces';
 export function stableStringify(value: unknown): string {
   if (value === null) return 'null';
   if (value === undefined) return '';
-  if (typeof value === 'boolean' || typeof value === 'number') return JSON.stringify(value);
+  if (typeof value === 'boolean' || typeof value === 'number')
+    return JSON.stringify(value);
   if (typeof value === 'string') return JSON.stringify(value);
   if (typeof value === 'bigint') return JSON.stringify(value.toString());
   if (typeof value === 'function') return '<function>';
@@ -12,7 +13,14 @@ export function stableStringify(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`;
   if (typeof value === 'object') {
     const keys = Object.keys(value as Record<string, unknown>).sort();
-    return `{${keys.map((k) => `${JSON.stringify(k)}:${stableStringify((value as Record<string, unknown>)[k])}`).join(',')}}`;
+    return `{${keys
+      .map(
+        (k) =>
+          `${JSON.stringify(k)}:${stableStringify(
+            (value as Record<string, unknown>)[k],
+          )}`,
+      )
+      .join(',')}}`;
   }
   return JSON.stringify(String(value));
 }
@@ -36,9 +44,11 @@ export function serialize(value: unknown, seen?: Map<object, string>): Serialize
   if (typeof value === 'bigint') return { t: 'bigint', v: value.toString() };
   if (typeof value === 'function') return { t: 'string', v: '<callback>' };
   if (value instanceof Date) return { t: 'date', v: value.toISOString() };
-  if (value instanceof RegExp) return { t: 'regexp', v: { s: value.source, f: value.flags } };
+  if (value instanceof RegExp)
+    return { t: 'regexp', v: { s: value.source, f: value.flags } };
   if (Buffer.isBuffer(value)) return { t: 'buffer', v: value.toString('base64') };
-  if (value instanceof Error) return { t: 'error', v: { n: value.name, m: value.message, s: value.stack } };
+  if (value instanceof Error)
+    return { t: 'error', v: { n: value.name, m: value.message, s: value.stack } };
   if (Array.isArray(value)) {
     const mapped: SerializedValue[] = [];
     const map = seen ?? new Map<object, string>();
@@ -84,13 +94,10 @@ export function deserialize(value: SerializedValue): unknown {
     case 'array':
       return value.v.map((v) => deserialize(v));
     case 'object':
-      return value.v.reduce(
-        (acc, { k, v }) => {
-          acc[k] = deserialize(v);
-          return acc;
-        },
-        {} as Record<string, unknown>,
-      );
+      return value.v.reduce((acc, { k, v }) => {
+        acc[k] = deserialize(v);
+        return acc;
+      }, {} as Record<string, unknown>);
     default:
       return undefined;
   }
