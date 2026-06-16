@@ -141,7 +141,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_ClickhouseConnector_1781630288903_nouo"
+        "v": "obj_ClickhouseConnector_1781633325326_vfzs"
       }
     },
     "conn:obj_3:query:eb4b73ef": {
@@ -168,7 +168,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_ClickhouseConnector_1781630288903_viu5"
+        "v": "obj_ClickhouseConnector_1781633325326_r1em"
       }
     },
     "conn:obj_4:query:eb4b73ef": {
@@ -195,7 +195,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_ClickhouseConnector_1781630288903_0prr"
+        "v": "obj_ClickhouseConnector_1781633325326_5bb1"
       }
     },
     "conn:obj_ClickhouseConnector_1781618854408_vsmj:json:": {
@@ -7820,6 +7820,1098 @@
                   "v": {
                     "t": "number",
                     "v": 0.000199679
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781630650227_vpm7:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000422787
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781630650228_svfo:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000422787
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781630650228_xuqr:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000422787
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781631336452_xxvt:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000182965
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781631336452_54iq:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000182965
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781631336452_8bq1:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000182965
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781633172993_wze4:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000329875
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781633172993_0r6a:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000329875
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781633172993_3kmy:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000329875
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781633325326_vfzs:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000457288
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781633325326_r1em:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000457288
+                  }
+                },
+                {
+                  "k": "rows_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "bytes_read",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_ClickhouseConnector_1781633325326_5bb1:json:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "meta",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "name",
+                      "v": {
+                        "t": "string",
+                        "v": "result"
+                      }
+                    },
+                    {
+                      "k": "type",
+                      "v": {
+                        "t": "string",
+                        "v": "UInt8"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "data",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "result",
+                      "v": {
+                        "t": "number",
+                        "v": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "rows",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "statistics",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "elapsed",
+                  "v": {
+                    "t": "number",
+                    "v": 0.000457288
                   }
                 },
                 {

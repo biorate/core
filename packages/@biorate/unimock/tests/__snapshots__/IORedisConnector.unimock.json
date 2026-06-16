@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "className": "IORedisConnector",
+  "calls": {
+    "config:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_0"
+      }
+    },
+    "conn:obj_0:get:5083c5fa": {
+      "args": [
+        {
+          "t": "string",
+          "v": "IORedis"
+        },
+        {
+          "t": "array",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "name",
+                "v": {
+                  "t": "string",
+                  "v": "connection"
+                }
+              },
+              {
+                "k": "options",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "host",
+                      "v": {
+                        "t": "string",
+                        "v": "localhost"
+                      }
+                    },
+                    {
+                      "k": "port",
+                      "v": {
+                        "t": "number",
+                        "v": 6379
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "connect:9ba6f072": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "host",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost"
+                    }
+                  },
+                  {
+                    "k": "port",
+                    "v": {
+                      "t": "number",
+                      "v": 6379
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_1"
+      }
+    },
+    "create:9ba6f072": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "host",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost"
+                    }
+                  },
+                  {
+                    "k": "port",
+                    "v": {
+                      "t": "number",
+                      "v": 6379
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_2"
+      }
+    },
+    "current:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_4"
+      }
+    },
+    "conn:obj_1:set:9fa72e66": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock:key"
+        },
+        {
+          "t": "string",
+          "v": "unimock-value"
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "OK"
+      }
+    },
+    "conn:obj_3:set:9fa72e66": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock:key"
+        },
+        {
+          "t": "string",
+          "v": "unimock-value"
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "OK"
+      }
+    },
+    "conn:obj_1:get:9f7e8c5a": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock:key"
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "unimock-value"
+      }
+    },
+    "conn:obj_4:get:9f7e8c5a": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock:key"
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "unimock-value"
+      }
+    }
+  }
+}

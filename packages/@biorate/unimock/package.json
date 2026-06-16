@@ -65,7 +65,10 @@
   "devDependencies": {
     "@biorate/clickhouse": "workspace:*",
     "@biorate/config": "workspace:*",
+    "@biorate/ioredis": "workspace:*",
     "@biorate/prometheus": "workspace:*",
+    "@biorate/proxy": "workspace:*",
+    "@biorate/proxy-prometheus": "workspace:*",
     "@biorate/rdkafka": "workspace:*",
     "@biorate/sequelize": "workspace:*",
     "@biorate/tools": "workspace:*",

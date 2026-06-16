@@ -1523,9 +1523,18 @@ importers:
       '@biorate/config':
         specifier: workspace:*
         version: link:../config
+      '@biorate/ioredis':
+        specifier: workspace:*
+        version: link:../ioredis
       '@biorate/prometheus':
         specifier: workspace:*
         version: link:../prometheus
+      '@biorate/proxy':
+        specifier: workspace:*
+        version: link:../proxy
+      '@biorate/proxy-prometheus':
+        specifier: workspace:*
+        version: link:../proxy-prometheus
       '@biorate/rdkafka':
         specifier: workspace:*
         version: link:../rdkafka

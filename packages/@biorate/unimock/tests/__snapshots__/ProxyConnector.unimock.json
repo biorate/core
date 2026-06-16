@@ -1,0 +1,343 @@
+{
+  "version": 1,
+  "className": "ProxyConnector",
+  "calls": {
+    "config:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_0"
+      }
+    },
+    "conn:obj_0:get:ea12f453": {
+      "args": [
+        {
+          "t": "string",
+          "v": "Proxy"
+        },
+        {
+          "t": "array",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "name",
+                "v": {
+                  "t": "string",
+                  "v": "connection"
+                }
+              },
+              {
+                "k": "retry",
+                "v": {
+                  "t": "number",
+                  "v": 10
+                }
+              },
+              {
+                "k": "server",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "address",
+                      "v": {
+                        "t": "object",
+                        "v": [
+                          {
+                            "k": "host",
+                            "v": {
+                              "t": "string",
+                              "v": "localhost"
+                            }
+                          },
+                          {
+                            "k": "port",
+                            "v": {
+                              "t": "number",
+                              "v": 27002
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "clients",
+                "v": {
+                  "t": "array",
+                  "v": [
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "liveness",
+                          "v": {
+                            "t": "string",
+                            "v": "http://localhost:28001"
+                          }
+                        },
+                        {
+                          "k": "address",
+                          "v": {
+                            "t": "object",
+                            "v": [
+                              {
+                                "k": "host",
+                                "v": {
+                                  "t": "string",
+                                  "v": "localhost"
+                                }
+                              },
+                              {
+                                "k": "port",
+                                "v": {
+                                  "t": "number",
+                                  "v": 27001
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "connect:78cc08c0": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "retry",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "server",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "address",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "host",
+                          "v": {
+                            "t": "string",
+                            "v": "localhost"
+                          }
+                        },
+                        {
+                          "k": "port",
+                          "v": {
+                            "t": "number",
+                            "v": 27002
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "clients",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "liveness",
+                        "v": {
+                          "t": "string",
+                          "v": "http://localhost:28001"
+                        }
+                      },
+                      {
+                        "k": "address",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "host",
+                              "v": {
+                                "t": "string",
+                                "v": "localhost"
+                              }
+                            },
+                            {
+                              "k": "port",
+                              "v": {
+                                "t": "number",
+                                "v": 27001
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_1"
+      }
+    },
+    "create:78cc08c0": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "retry",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "server",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "address",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "host",
+                          "v": {
+                            "t": "string",
+                            "v": "localhost"
+                          }
+                        },
+                        {
+                          "k": "port",
+                          "v": {
+                            "t": "number",
+                            "v": 27002
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "clients",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "liveness",
+                        "v": {
+                          "t": "string",
+                          "v": "http://localhost:28001"
+                        }
+                      },
+                      {
+                        "k": "address",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "host",
+                              "v": {
+                                "t": "string",
+                                "v": "localhost"
+                              }
+                            },
+                            {
+                              "k": "port",
+                              "v": {
+                                "t": "number",
+                                "v": 27001
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_2"
+      }
+    },
+    "stats:": {
+      "args": [],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "connection:d7517139": {
+      "args": [
+        {
+          "t": "undefined"
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_3"
+      }
+    },
+    "get:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_4"
+      }
+    }
+  }
+}
