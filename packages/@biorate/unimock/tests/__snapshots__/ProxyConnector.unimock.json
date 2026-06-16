@@ -338,6 +338,204 @@
         "t": "ref",
         "v": "obj_4"
       }
+    },
+    "connect:40488ac4": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "retry",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "server",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "address",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "host",
+                          "v": {
+                            "t": "string",
+                            "v": "localhost"
+                          }
+                        },
+                        {
+                          "k": "port",
+                          "v": {
+                            "t": "number",
+                            "v": 17102
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "clients",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "liveness",
+                        "v": {
+                          "t": "string",
+                          "v": "http://localhost:18101"
+                        }
+                      },
+                      {
+                        "k": "address",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "host",
+                              "v": {
+                                "t": "string",
+                                "v": "localhost"
+                              }
+                            },
+                            {
+                              "k": "port",
+                              "v": {
+                                "t": "number",
+                                "v": 17101
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_1"
+      }
+    },
+    "create:40488ac4": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "retry",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "server",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "address",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "host",
+                          "v": {
+                            "t": "string",
+                            "v": "localhost"
+                          }
+                        },
+                        {
+                          "k": "port",
+                          "v": {
+                            "t": "number",
+                            "v": 17102
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "clients",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "liveness",
+                        "v": {
+                          "t": "string",
+                          "v": "http://localhost:18101"
+                        }
+                      },
+                      {
+                        "k": "address",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "host",
+                              "v": {
+                                "t": "string",
+                                "v": "localhost"
+                              }
+                            },
+                            {
+                              "k": "port",
+                              "v": {
+                                "t": "number",
+                                "v": 17101
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_2"
+      }
     }
   }
 }
