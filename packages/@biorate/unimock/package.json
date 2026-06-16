@@ -64,7 +64,11 @@
   "license": "MIT",
   "devDependencies": {
     "@biorate/clickhouse": "workspace:*",
-    "@biorate/config": "workspace:*"
+    "@biorate/config": "workspace:*",
+    "@biorate/tools": "workspace:*",
+    "@biorate/prometheus": "workspace:*",
+    "@biorate/rdkafka": "workspace:*",
+    "@confluentinc/kafka-javascript": "latest"
   },
   "dependencies": {
     "@biorate/errors": "workspace:*",

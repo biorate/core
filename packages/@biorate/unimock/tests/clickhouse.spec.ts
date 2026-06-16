@@ -26,7 +26,7 @@ describe('@biorate/clickhouse', () => {
   });
 
   it('record', async () => {
-    SnapshotStore.setMode('replay');
+    SnapshotStore.setMode('record');
 
     container.get<IConfig>(Types.Config).merge({
       Clickhouse: [{ name: 'connection', options: {} }],

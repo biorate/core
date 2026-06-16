@@ -1,0 +1,483 @@
+{
+  "version": 1,
+  "className": "MockAdminConnector",
+  "calls": {
+    "config:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_0"
+      }
+    },
+    "conn:obj_0:get:81bf35ed": {
+      "args": [
+        {
+          "t": "string",
+          "v": "RDKafkaAdmin"
+        },
+        {
+          "t": "array",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "name",
+                "v": {
+                  "t": "string",
+                  "v": "admin"
+                }
+              },
+              {
+                "k": "global",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "metadata.broker.list",
+                      "v": {
+                        "t": "string",
+                        "v": "localhost:9092"
+                      }
+                    },
+                    {
+                      "k": "group.id",
+                      "v": {
+                        "t": "string",
+                        "v": "kafka"
+                      }
+                    },
+                    {
+                      "k": "socket.keepalive.enable",
+                      "v": {
+                        "t": "boolean",
+                        "v": true
+                      }
+                    },
+                    {
+                      "k": "queue.buffering.max.ms",
+                      "v": {
+                        "t": "number",
+                        "v": 5
+                      }
+                    },
+                    {
+                      "k": "allow.auto.create.topics",
+                      "v": {
+                        "t": "boolean",
+                        "v": false
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "connect:659284d7": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "admin"
+              }
+            },
+            {
+              "k": "global",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "metadata.broker.list",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost:9092"
+                    }
+                  },
+                  {
+                    "k": "group.id",
+                    "v": {
+                      "t": "string",
+                      "v": "kafka"
+                    }
+                  },
+                  {
+                    "k": "socket.keepalive.enable",
+                    "v": {
+                      "t": "boolean",
+                      "v": true
+                    }
+                  },
+                  {
+                    "k": "queue.buffering.max.ms",
+                    "v": {
+                      "t": "number",
+                      "v": 5
+                    }
+                  },
+                  {
+                    "k": "allow.auto.create.topics",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_1"
+      }
+    },
+    "create:659284d7": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "admin"
+              }
+            },
+            {
+              "k": "global",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "metadata.broker.list",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost:9092"
+                    }
+                  },
+                  {
+                    "k": "group.id",
+                    "v": {
+                      "t": "string",
+                      "v": "kafka"
+                    }
+                  },
+                  {
+                    "k": "socket.keepalive.enable",
+                    "v": {
+                      "t": "boolean",
+                      "v": true
+                    }
+                  },
+                  {
+                    "k": "queue.buffering.max.ms",
+                    "v": {
+                      "t": "number",
+                      "v": 5
+                    }
+                  },
+                  {
+                    "k": "allow.auto.create.topics",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_2"
+      }
+    },
+    "connection:d7517139": {
+      "args": [
+        {
+          "t": "undefined"
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_9"
+      }
+    },
+    "get:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_10"
+      }
+    },
+    "conn:obj_1:deleteTopic:bce04a79": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      },
+      "error": {
+        "t": "error",
+        "v": {
+          "n": "Error",
+          "m": "Broker: Unknown topic or partition",
+          "s": "Error: Broker: Unknown topic or partition\n    at LibrdKafkaError.createLibrdkafkaError [as create] (/www/biorate/core/node_modules/.pnpm/@confluentinc+kafka-javascript@1.9.0_encoding@0.1.13/node_modules/@confluentinc/kafka-javascript/lib/error.js:485:10)\n    at /www/biorate/core/node_modules/.pnpm/@confluentinc+kafka-javascript@1.9.0_encoding@0.1.13/node_modules/@confluentinc/kafka-javascript/lib/admin.js:320:28"
+        }
+      }
+    },
+    "conn:obj_9:deleteTopic:bce04a79": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      },
+      "error": {
+        "t": "error",
+        "v": {
+          "n": "Error",
+          "m": "Broker: Unknown topic or partition",
+          "s": "Error: Broker: Unknown topic or partition\n    at LibrdKafkaError.createLibrdkafkaError [as create] (/www/biorate/core/node_modules/.pnpm/@confluentinc+kafka-javascript@1.9.0_encoding@0.1.13/node_modules/@confluentinc/kafka-javascript/lib/error.js:485:10)\n    at /www/biorate/core/node_modules/.pnpm/@confluentinc+kafka-javascript@1.9.0_encoding@0.1.13/node_modules/@confluentinc/kafka-javascript/lib/admin.js:320:28"
+        }
+      }
+    },
+    "conn:obj_10:deleteTopic:bce04a79": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      },
+      "error": {
+        "t": "error",
+        "v": {
+          "n": "Error",
+          "m": "Broker: Unknown topic or partition",
+          "s": "Error: Broker: Unknown topic or partition\n    at LibrdKafkaError.createLibrdkafkaError [as create] (/www/biorate/core/node_modules/.pnpm/@confluentinc+kafka-javascript@1.9.0_encoding@0.1.13/node_modules/@confluentinc/kafka-javascript/lib/error.js:485:10)\n    at /www/biorate/core/node_modules/.pnpm/@confluentinc+kafka-javascript@1.9.0_encoding@0.1.13/node_modules/@confluentinc/kafka-javascript/lib/admin.js:320:28"
+        }
+      }
+    },
+    "conn:obj_1:createTopic:805d0b64": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "num_partitions",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            },
+            {
+              "k": "replication_factor",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            }
+          ]
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "conn:obj_11:createTopic:805d0b64": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "num_partitions",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            },
+            {
+              "k": "replication_factor",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            }
+          ]
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "conn:obj_12:createTopic:805d0b64": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "num_partitions",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            },
+            {
+              "k": "replication_factor",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            }
+          ]
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "conn:obj_9:createTopic:805d0b64": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "num_partitions",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            },
+            {
+              "k": "replication_factor",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            }
+          ]
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "conn:obj_10:createTopic:805d0b64": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "num_partitions",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            },
+            {
+              "k": "replication_factor",
+              "v": {
+                "t": "number",
+                "v": 1
+              }
+            }
+          ]
+        },
+        {
+          "t": "number",
+          "v": 1500
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    }
+  }
+}

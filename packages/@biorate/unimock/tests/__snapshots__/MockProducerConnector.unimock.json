@@ -1,0 +1,360 @@
+{
+  "version": 1,
+  "className": "MockProducerConnector",
+  "calls": {
+    "config:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_3"
+      }
+    },
+    "conn:obj_3:get:287aea80": {
+      "args": [
+        {
+          "t": "string",
+          "v": "RDKafkaProducer"
+        },
+        {
+          "t": "array",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "name",
+                "v": {
+                  "t": "string",
+                  "v": "producer"
+                }
+              },
+              {
+                "k": "global",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "metadata.broker.list",
+                      "v": {
+                        "t": "string",
+                        "v": "localhost:9092"
+                      }
+                    },
+                    {
+                      "k": "group.id",
+                      "v": {
+                        "t": "string",
+                        "v": "kafka"
+                      }
+                    },
+                    {
+                      "k": "socket.keepalive.enable",
+                      "v": {
+                        "t": "boolean",
+                        "v": true
+                      }
+                    },
+                    {
+                      "k": "queue.buffering.max.ms",
+                      "v": {
+                        "t": "number",
+                        "v": 5
+                      }
+                    },
+                    {
+                      "k": "allow.auto.create.topics",
+                      "v": {
+                        "t": "boolean",
+                        "v": false
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "pollInterval",
+                "v": {
+                  "t": "number",
+                  "v": 0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "connect:81559a30": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "producer"
+              }
+            },
+            {
+              "k": "global",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "metadata.broker.list",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost:9092"
+                    }
+                  },
+                  {
+                    "k": "group.id",
+                    "v": {
+                      "t": "string",
+                      "v": "kafka"
+                    }
+                  },
+                  {
+                    "k": "socket.keepalive.enable",
+                    "v": {
+                      "t": "boolean",
+                      "v": true
+                    }
+                  },
+                  {
+                    "k": "queue.buffering.max.ms",
+                    "v": {
+                      "t": "number",
+                      "v": 5
+                    }
+                  },
+                  {
+                    "k": "allow.auto.create.topics",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "pollInterval",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_4"
+      }
+    },
+    "create:81559a30": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "producer"
+              }
+            },
+            {
+              "k": "global",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "metadata.broker.list",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost:9092"
+                    }
+                  },
+                  {
+                    "k": "group.id",
+                    "v": {
+                      "t": "string",
+                      "v": "kafka"
+                    }
+                  },
+                  {
+                    "k": "socket.keepalive.enable",
+                    "v": {
+                      "t": "boolean",
+                      "v": true
+                    }
+                  },
+                  {
+                    "k": "queue.buffering.max.ms",
+                    "v": {
+                      "t": "number",
+                      "v": 5
+                    }
+                  },
+                  {
+                    "k": "allow.auto.create.topics",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "pollInterval",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_5"
+      }
+    },
+    "connection:d7517139": {
+      "args": [
+        {
+          "t": "undefined"
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_11"
+      }
+    },
+    "get:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_12"
+      }
+    },
+    "conn:obj_4:produce:880e8d4b": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "null"
+        },
+        {
+          "t": "buffer",
+          "v": "aGVsbG8gcmRLYWZrYSE="
+        },
+        {
+          "t": "null"
+        }
+      ],
+      "result": {
+        "t": "boolean",
+        "v": true
+      }
+    },
+    "conn:obj_13:produce:880e8d4b": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "null"
+        },
+        {
+          "t": "buffer",
+          "v": "aGVsbG8gcmRLYWZrYSE="
+        },
+        {
+          "t": "null"
+        }
+      ],
+      "result": {
+        "t": "boolean",
+        "v": true
+      }
+    },
+    "conn:obj_14:produce:880e8d4b": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "null"
+        },
+        {
+          "t": "buffer",
+          "v": "aGVsbG8gcmRLYWZrYSE="
+        },
+        {
+          "t": "null"
+        }
+      ],
+      "result": {
+        "t": "boolean",
+        "v": true
+      }
+    },
+    "conn:obj_11:produce:880e8d4b": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "null"
+        },
+        {
+          "t": "buffer",
+          "v": "aGVsbG8gcmRLYWZrYSE="
+        },
+        {
+          "t": "null"
+        }
+      ],
+      "result": {
+        "t": "boolean",
+        "v": true
+      }
+    },
+    "conn:obj_12:produce:880e8d4b": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock-rdkafka-test"
+        },
+        {
+          "t": "null"
+        },
+        {
+          "t": "buffer",
+          "v": "aGVsbG8gcmRLYWZrYSE="
+        },
+        {
+          "t": "null"
+        }
+      ],
+      "result": {
+        "t": "boolean",
+        "v": true
+      }
+    }
+  }
+}

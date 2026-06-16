@@ -39,6 +39,7 @@
 | `vitest/setup.ts` | Хук `afterAll` для автоматического `flushAllSnapshots()` |
 | `tests/unimock.spec.ts` | 24 unit-теста для ядра |
 | `tests/clickhouse.spec.ts` | 2 интеграционных теста с реальным Clickhouse (record + replay) |
+| `tests/rdkafka.spec.ts` | 2 интеграционных теста с реальным Kafka (record + replay) |
 
 ## Поток данных (sequence)
 
@@ -146,17 +147,20 @@ Replay: для каждого callback-аргумента воспроизвод
 ## Тестирование
 
 ```bash
-# Все тесты (24 unit + 2 integration)
+# Все тесты (24 unit + 2 clickhouse + 2 rdkafka)
 pnpm --filter @biorate/unimock test
 
 # Unit только
 pnpm --filter @biorate/unimock exec npx vitest run tests/unimock.spec.ts
 
-# Integration (нужен clickhouse в docker)
+# Clickhouse (нужен clickhouse в docker)
 pnpm --filter @biorate/unimock exec npx vitest run tests/clickhouse.spec.ts
 
-# Replay-режим (без clickhouse)
-UNIMOCK=replay pnpm --filter @biorate/unimock exec npx vitest run tests/clickhouse.spec.ts
+# RDKafka (нужен kafka на localhost:9092)
+pnpm --filter @biorate/unimock exec npx vitest run tests/rdkafka.spec.ts
+
+# Replay-режим (без инфраструктуры)
+UNIMOCK=replay pnpm --filter @biorate/unimock exec npx vitest run tests/{clickhouse,rdkafka}.spec.ts
 ```
 
 Clickhouse:
@@ -176,17 +180,29 @@ curl http://localhost:8123/ping  # → Ok.
 `package.json`:
 - `@biorate/clickhouse: "workspace:*"`
 - `@biorate/config: "workspace:*"`
+- `@biorate/prometheus: "workspace:*"` — требуется barrel-импортом `@biorate/rdkafka` (decorators)
+- `@biorate/rdkafka: "workspace:*"`
+- `@biorate/tools: "workspace:*"`
+- `@confluentinc/kafka-javascript: "latest"` — peer dep rdkafka
 
 ## clickhouse-тест
 
 `tests/clickhouse.spec.ts` использует DI из `@biorate/inversion`. Record: `SnapshotStore.setMode('record')` → DI-init → `SELECT 1` → `flushAllSnapshots()`. Replay: `SnapshotStore.setMode('replay')` → unbind/rebind DI → `$run()` (`@init()` live) → `get().query()` из снапшота.
+
+## rdkafka-тест
+
+`tests/rdkafka.spec.ts` — admin (createTopic) + producer (produce) + consumer (subscribe/consumePromise/commitMessageSync/unsubscribe). Record: `SnapshotStore.setMode('record')` → DI-init → produce message → consume → verify content → flush. Replay: `SnapshotStore.setMode('replay')` → consume из снапшота.
+
+**Важно**: `beforeAll` чистит топик через прямой `AdminClient` (не через Mockable), чтобы избежать race condition между запусками. Топик всегда создаётся заново в record-режиме.
+
+**Ограничение**: глобальный счётчик refId (`obj_${counter++}`) в `mockable.ts` — при повторных `get()` на одном и том же connection создаются новые ConnectionHandler с разными refId. Фикс: сохранять результат `get()` в переменную и переиспользовать.
 
 Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}"`.
 
 ## Чеклист при изменениях
 
 - [ ] `pnpm --filter @biorate/unimock run build` — проверка типов
-- [ ] `pnpm --filter @biorate/unimock run test` — все 26 тестов
+- [ ] `pnpm --filter @biorate/unimock run test` — все 28 тестов
 - [ ] Если менялась сериализация — проверить `serialize`/`deserialize` symmetric
 - [ ] Если менялся `hasMethods` — проверить различение connection/data объектов
 - [ ] Если менялся replay-механизм — запустить clickhouse integration test (docker должен быть up)

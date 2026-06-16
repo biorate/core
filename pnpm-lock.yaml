@@ -1523,6 +1523,18 @@ importers:
       '@biorate/config':
         specifier: workspace:*
         version: link:../config
+      '@biorate/prometheus':
+        specifier: workspace:*
+        version: link:../prometheus
+      '@biorate/rdkafka':
+        specifier: workspace:*
+        version: link:../rdkafka
+      '@biorate/tools':
+        specifier: workspace:*
+        version: link:../tools
+      '@confluentinc/kafka-javascript':
+        specifier: latest
+        version: 1.9.1(encoding@0.1.13)
 
   packages/@biorate/vault:
     dependencies:
@@ -1912,6 +1924,10 @@ packages:
 
   '@confluentinc/kafka-javascript@1.9.0':
     resolution: {integrity: sha512-bIH0IEkpgTAiU7h+MBg7aDhS8+hxVVO5LA3XdlP28aNNIWauI31z50Y5LWjkwbWbH/1i2UBE8H5qvA7gLcttWg==}
+    engines: {node: '>=18.0.0'}
+
+  '@confluentinc/kafka-javascript@1.9.1':
+    resolution: {integrity: sha512-Qc7IZGSiWb9PVcfGwhMDmVcn0fj4V2jZjJ7r1ObNdnu1JSFY1yMZvINS4QY9dAI00S7Ng6EE2zIaEQ7UrVDrPw==}
     engines: {node: '>=18.0.0'}
 
   '@cspotcode/source-map-support@0.8.1':
@@ -11489,6 +11505,15 @@ snapshots:
       '@clickhouse/client-common': 1.11.1
 
   '@confluentinc/kafka-javascript@1.9.0(encoding@0.1.13)':
+    dependencies:
+      '@mapbox/node-pre-gyp': 2.0.3(encoding@0.1.13)
+      bindings: 1.5.0
+      nan: 2.26.2
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  '@confluentinc/kafka-javascript@1.9.1(encoding@0.1.13)':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.3(encoding@0.1.13)
       bindings: 1.5.0
