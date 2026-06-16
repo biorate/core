@@ -1,0 +1,368 @@
+{
+  "version": 1,
+  "className": "MssqlConnector",
+  "calls": {
+    "config:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_0"
+      }
+    },
+    "conn:obj_0:get:fd298b0b": {
+      "args": [
+        {
+          "t": "string",
+          "v": "Mssql"
+        },
+        {
+          "t": "array",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "name",
+                "v": {
+                  "t": "string",
+                  "v": "connection"
+                }
+              },
+              {
+                "k": "options",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "server",
+                      "v": {
+                        "t": "string",
+                        "v": "localhost"
+                      }
+                    },
+                    {
+                      "k": "user",
+                      "v": {
+                        "t": "string",
+                        "v": "sa"
+                      }
+                    },
+                    {
+                      "k": "password",
+                      "v": {
+                        "t": "string",
+                        "v": "admin_007"
+                      }
+                    },
+                    {
+                      "k": "database",
+                      "v": {
+                        "t": "string",
+                        "v": "master"
+                      }
+                    },
+                    {
+                      "k": "options",
+                      "v": {
+                        "t": "object",
+                        "v": [
+                          {
+                            "k": "trustServerCertificate",
+                            "v": {
+                              "t": "boolean",
+                              "v": true
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "connect:f3c94200": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "server",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost"
+                    }
+                  },
+                  {
+                    "k": "user",
+                    "v": {
+                      "t": "string",
+                      "v": "sa"
+                    }
+                  },
+                  {
+                    "k": "password",
+                    "v": {
+                      "t": "string",
+                      "v": "admin_007"
+                    }
+                  },
+                  {
+                    "k": "database",
+                    "v": {
+                      "t": "string",
+                      "v": "master"
+                    }
+                  },
+                  {
+                    "k": "options",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "trustServerCertificate",
+                          "v": {
+                            "t": "boolean",
+                            "v": true
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_1"
+      }
+    },
+    "create:f3c94200": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "server",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost"
+                    }
+                  },
+                  {
+                    "k": "user",
+                    "v": {
+                      "t": "string",
+                      "v": "sa"
+                    }
+                  },
+                  {
+                    "k": "password",
+                    "v": {
+                      "t": "string",
+                      "v": "admin_007"
+                    }
+                  },
+                  {
+                    "k": "database",
+                    "v": {
+                      "t": "string",
+                      "v": "master"
+                    }
+                  },
+                  {
+                    "k": "options",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "trustServerCertificate",
+                          "v": {
+                            "t": "boolean",
+                            "v": true
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_2"
+      }
+    },
+    "current:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_3"
+      }
+    },
+    "conn:obj_1:query:0576fadd": {
+      "args": [
+        {
+          "t": "string",
+          "v": "SELECT 1 AS result"
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "recordsets",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "array",
+                  "v": [
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "result",
+                          "v": {
+                            "t": "number",
+                            "v": 1
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "recordset",
+            "v": {
+              "t": "undefined"
+            }
+          },
+          {
+            "k": "output",
+            "v": {
+              "t": "object",
+              "v": []
+            }
+          },
+          {
+            "k": "rowsAffected",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "number",
+                  "v": 1
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_3:query:0576fadd": {
+      "args": [
+        {
+          "t": "string",
+          "v": "SELECT 1 AS result"
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "recordsets",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "array",
+                  "v": [
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "result",
+                          "v": {
+                            "t": "number",
+                            "v": 1
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "k": "recordset",
+            "v": {
+              "t": "undefined"
+            }
+          },
+          {
+            "k": "output",
+            "v": {
+              "t": "object",
+              "v": []
+            }
+          },
+          {
+            "k": "rowsAffected",
+            "v": {
+              "t": "array",
+              "v": [
+                {
+                  "t": "number",
+                  "v": 1
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

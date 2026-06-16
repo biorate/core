@@ -1,0 +1,1162 @@
+{
+  "version": 1,
+  "className": "MongoDBConnector",
+  "calls": {
+    "connections:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_0"
+      }
+    },
+    "config:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_1"
+      }
+    },
+    "conn:obj_1:get:024093e7": {
+      "args": [
+        {
+          "t": "string",
+          "v": "MongoDB"
+        },
+        {
+          "t": "array",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "name",
+                "v": {
+                  "t": "string",
+                  "v": "connection"
+                }
+              },
+              {
+                "k": "host",
+                "v": {
+                  "t": "string",
+                  "v": "mongodb://localhost:27017/"
+                }
+              },
+              {
+                "k": "options",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "dbName",
+                      "v": {
+                        "t": "string",
+                        "v": "test"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "connect:750bcf46": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "host",
+              "v": {
+                "t": "string",
+                "v": "mongodb://localhost:27017/"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "dbName",
+                    "v": {
+                      "t": "string",
+                      "v": "test"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_2"
+      }
+    },
+    "create:750bcf46": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "connection"
+              }
+            },
+            {
+              "k": "host",
+              "v": {
+                "t": "string",
+                "v": "mongodb://localhost:27017/"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "dbName",
+                    "v": {
+                      "t": "string",
+                      "v": "test"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_3"
+      }
+    },
+    "current:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_4"
+      }
+    },
+    "conn:obj_2:collection:7c6de563": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock_test"
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_MongoDBConnector_1781638951155_szmp"
+      }
+    },
+    "conn:obj_4:collection:7c6de563": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock_test"
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_MongoDBConnector_1781638951155_2mgv"
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635441263_gbdl:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635441263_o2tj:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635441303_zdtg:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635441303_6fvp:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635816071_pdme:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635816071_0uzl:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635816071_pdme:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781635816071_0uzl:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638721417_2k6h:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638721417_12mn:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638721417_2k6h:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638721417_12mn:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638951155_szmp:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638951155_2mgv:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638951155_szmp:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781638951155_2mgv:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

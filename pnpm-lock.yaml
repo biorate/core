@@ -1526,6 +1526,15 @@ importers:
       '@biorate/ioredis':
         specifier: workspace:*
         version: link:../ioredis
+      '@biorate/mongodb':
+        specifier: workspace:*
+        version: link:../mongodb
+      '@biorate/mssql':
+        specifier: workspace:*
+        version: link:../mssql
+      '@biorate/pg':
+        specifier: workspace:*
+        version: link:../pg
       '@biorate/prometheus':
         specifier: workspace:*
         version: link:../prometheus
