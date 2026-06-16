@@ -1,79 +1,70 @@
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import {
-  RDKafkaAdminConnector,
-  RDKafkaProducerConnector,
-  RDKafkaConsumerConnector,
-} from '@biorate/rdkafka';
 import { timer } from '@biorate/tools';
-import { Mockable, SnapshotStore, flushAllSnapshots } from '../src';
+import { AdminClient } from '@confluentinc/kafka-javascript';
+import { SnapshotStore, flushAllSnapshots } from '../src';
+import {
+  MockAdminConnector,
+  MockProducerConnector,
+  MockConsumerConnector,
+  topic,
+  timeout,
+} from './__mocks__/rdkafka';
 
-@Mockable({})
-class MockAdminConnector extends RDKafkaAdminConnector {}
-@Mockable({})
-class MockProducerConnector extends RDKafkaProducerConnector {}
-@Mockable({})
-class MockConsumerConnector extends RDKafkaConsumerConnector {}
+beforeAll(async () => {
+  if (!container.isBound(Types.Config))
+    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+  container.get<IConfig>(Types.Config).merge({
+    RDKafkaGlobal: {
+      'metadata.broker.list': 'localhost:9092',
+      'group.id': 'kafka',
+      'socket.keepalive.enable': true,
+      'queue.buffering.max.ms': 5,
+      'allow.auto.create.topics': false,
+    },
+    RDKafkaTopic: {
+      'auto.offset.reset': 'earliest',
+      'enable.auto.commit': false,
+    },
+    RDKafkaAdmin: [
+      {
+        name: 'admin',
+        global: '#{RDKafkaGlobal}',
+      },
+    ],
+    RDKafkaProducer: [
+      {
+        name: 'producer',
+        global: '#{RDKafkaGlobal}',
+        pollInterval: 0,
+      },
+    ],
+    RDKafkaConsumer: [
+      {
+        name: 'consumer',
+        global: '#{RDKafkaGlobal}',
+        topic: '#{RDKafkaTopic}',
+      },
+    ],
+  });
+  const clean = AdminClient.create({ 'metadata.broker.list': 'localhost:9092' });
+  await new Promise<void>((resolve) => {
+    clean.deleteTopic(topic, timeout, () => resolve());
+    setTimeout(() => resolve(), 2000);
+  });
+  clean.disconnect();
+});
+
+afterAll(() => {
+  [MockAdminConnector, MockProducerConnector, MockConsumerConnector].forEach((c) => {
+    try {
+      if (container.isBound(c)) container.unbind(c);
+    } catch {}
+  });
+});
 
 describe('@biorate/rdkafka', () => {
-  const topic = 'unimock-rdkafka-test';
-  const timeout = 3000;
-
-  beforeAll(async () => {
-    if (!container.isBound(Types.Config))
-      container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-    container.get<IConfig>(Types.Config).merge({
-      RDKafkaGlobal: {
-        'metadata.broker.list': 'localhost:9092',
-        'group.id': 'kafka',
-        'socket.keepalive.enable': true,
-        'queue.buffering.max.ms': 5,
-        'allow.auto.create.topics': false,
-      },
-      RDKafkaTopic: {
-        'auto.offset.reset': 'earliest',
-        'enable.auto.commit': false,
-      },
-      RDKafkaAdmin: [
-        {
-          name: 'admin',
-          global: '#{RDKafkaGlobal}',
-        },
-      ],
-      RDKafkaProducer: [
-        {
-          name: 'producer',
-          global: '#{RDKafkaGlobal}',
-          pollInterval: 0,
-        },
-      ],
-      RDKafkaConsumer: [
-        {
-          name: 'consumer',
-          global: '#{RDKafkaGlobal}',
-          topic: '#{RDKafkaTopic}',
-        },
-      ],
-    });
-
-    const { AdminClient } = await import('@confluentinc/kafka-javascript');
-    const clean = AdminClient.create({ 'metadata.broker.list': 'localhost:9092' });
-    await new Promise<void>((resolve) => {
-      clean.deleteTopic(topic, timeout, () => resolve());
-      setTimeout(() => resolve(), 2000);
-    });
-    clean.disconnect();
-  });
-
-  afterAll(() => {
-    [MockAdminConnector, MockProducerConnector, MockConsumerConnector].forEach((c) => {
-      try {
-        if (container.isBound(c)) container.unbind(c);
-      } catch {}
-    });
-  });
-
   it('record', async () => {
     SnapshotStore.setMode('record');
 

@@ -10,23 +10,12 @@ import {
   ConnectionHandler,
   UnimockReplayMissError,
 } from '../src';
+import { TestService, Connector, ConnectorWithConnection } from './__mocks__/unimock';
 
-class TestService {
-  public async query(sql: string): Promise<{ data: number[] }> {
-    return { data: [1, 2, 3] };
-  }
-
-  public get value(): string {
-    return 'real-value';
-  }
-
-  public async subscribe(
-    topic: string,
-    handler: (msg: string) => Promise<void>,
-  ): Promise<void> {
-    await handler(`message-from-${topic}`);
-  }
-}
+afterAll(() => {
+  flushAllSnapshots();
+  SnapshotStore.setMode('off');
+});
 
 describe('serializer', () => {
   it('serialize/deserialize primitive types', () => {
@@ -276,13 +265,6 @@ describe('ConnectionHandler', () => {
 });
 
 describe('Connector-like integration', () => {
-  class Connector {
-    private conn = { query: async (sql: string) => [{ result: sql }] };
-    public get() {
-      return this.conn;
-    }
-  }
-
   it('records connector.get().query() chain', async () => {
     SnapshotStore.setMode('record');
 
@@ -302,17 +284,6 @@ describe('Connector-like integration', () => {
     expect(result2).toEqual([{ result: 'SELECT 1' }]);
   });
 
-  class ConnectorWithConnection {
-    private conn = { query: async (sql: string) => [{ result: sql }] };
-    public connection() {
-      return this.conn;
-    }
-    public async query(sql: string) {
-      const conn = this.connection();
-      return conn.query(sql);
-    }
-  }
-
   it('records and replays query that internally calls connection()', async () => {
     SnapshotStore.setMode('record');
 
@@ -329,9 +300,4 @@ describe('Connector-like integration', () => {
     const result2 = await c2.query('SELECT 1');
     expect(result2).toEqual([{ result: 'SELECT 1' }]);
   });
-});
-
-afterAll(() => {
-  flushAllSnapshots();
-  SnapshotStore.setMode('off');
 });

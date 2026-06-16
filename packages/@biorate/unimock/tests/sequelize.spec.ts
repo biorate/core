@@ -1,49 +1,18 @@
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
+import { ISequelizeConnector } from '@biorate/sequelize';
+import { SnapshotStore, flushAllSnapshots } from '../src';
 import {
-  SequelizeConnector as RawSequelizeConnector,
-  ISequelizeConnector,
-  Model,
-  Table,
-  Column,
-  DataType,
-} from '@biorate/sequelize';
-import { Mockable, SnapshotStore, flushAllSnapshots } from '../src';
-
-const PG = {
-  logging: false,
-  host: 'localhost',
-  port: 5432,
-  dialect: 'postgres',
-  username: 'postgres',
-  password: 'postgres',
-  database: 'postgres',
-};
-
-const DDL =
-  'CREATE TABLE IF NOT EXISTS mock_models (id INTEGER PRIMARY KEY, title TEXT, value INTEGER)';
-const DML = "INSERT INTO mock_models (id, title, value) VALUES (1, 'test', 42)";
-const SELECT = 'SELECT * FROM mock_models ORDER BY id';
-const SELECT_MODEL = 'SELECT * FROM mock_models WHERE id = 10 ORDER BY id';
-
-@Mockable({ wrapStatics: true })
-@Table({ tableName: 'mock_models', timestamps: false })
-class TestModel extends Model {
-  @Column({ type: DataType.INTEGER, primaryKey: true })
-  id: number;
-
-  @Column(DataType.STRING)
-  title: string;
-
-  @Column(DataType.INTEGER)
-  value: number;
-}
-
-@Mockable({})
-class SequelizeConnector extends RawSequelizeConnector {
-  protected readonly models = { connection: [TestModel] };
-}
+  PG,
+  DDL,
+  DML,
+  SELECT,
+  SELECT_MODEL,
+  TestModel,
+  SequelizeConnector,
+  ModelMockConnector,
+} from './__mocks__/sequelize';
 
 describe('@biorate/sequelize — connector.query() CRUD', () => {
   beforeAll(() => {
@@ -125,15 +94,6 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
     expect(rows[0].value).toBe(42);
   });
 });
-
-// ─── @Mockable on Model class — uses its own config namespace ──────────
-
-@Mockable({})
-class ModelMockConnector extends RawSequelizeConnector {
-  protected readonly namespace: string = 'SequelizeModel';
-
-  protected readonly models = { modelConn: [TestModel] };
-}
 
 describe('@biorate/sequelize — @Mockable on Model class', () => {
   beforeAll(() => {
