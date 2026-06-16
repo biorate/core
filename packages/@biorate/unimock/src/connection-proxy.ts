@@ -65,10 +65,15 @@ export class ConnectionHandler {
             const originalFn = targetObj[prop] as (...a: unknown[]) => unknown;
 
             try {
-              const result = originalFn.apply(targetObj, args);
+              const rawResult = originalFn.apply(targetObj, args);
+              const then =
+                rawResult !== null && typeof rawResult === 'object'
+                  ? (rawResult as Record<string, unknown>).then
+                  : undefined;
 
-              if (result instanceof Promise) {
-                return result.then(
+              if (typeof then === 'function') {
+                return (then as (...a: unknown[]) => unknown).call(
+                  rawResult,
                   (resolved: unknown) => {
                     const { wrapped, serialized } = wrapNested(resolved, obj.store);
                     obj.store.record(callKey, {
@@ -88,7 +93,7 @@ export class ConnectionHandler {
                 );
               }
 
-              const { wrapped, serialized } = wrapNested(result, obj.store);
+              const { wrapped, serialized } = wrapNested(rawResult, obj.store);
               obj.store.record(callKey, {
                 args: args.map((a: unknown) => serialize(a)),
                 result: serialized,

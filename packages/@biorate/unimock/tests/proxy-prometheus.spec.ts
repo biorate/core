@@ -4,7 +4,7 @@ import { Server as TCPServer } from 'net';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { IPrometheus, Prometheus } from '@biorate/prometheus';
-import { SnapshotStore, flushAllSnapshots, MODE_REPLAY, MODE_RECORD } from '../src';
+import { SnapshotStore, flushAllSnapshots, MODE_REPLAY } from '../src';
 import { ProxyConnector } from './__mocks__/proxy-prometheus';
 
 const httpPort = 28001;
@@ -83,7 +83,7 @@ describe('@biorate/proxy-prometheus', () => {
     const conn = root.connector.get();
     expect(conn).toBeDefined();
 
-    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
+    flushAllSnapshots();
     container.unbind(Root);
   });
 });

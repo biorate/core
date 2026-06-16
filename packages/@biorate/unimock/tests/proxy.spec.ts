@@ -3,7 +3,7 @@ import { Server as HTTPServer } from 'http';
 import { Server as TCPServer } from 'net';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots, MODE_REPLAY, MODE_RECORD } from '../src';
+import { SnapshotStore, flushAllSnapshots, MODE_REPLAY } from '../src';
 import { ProxyConnector } from './__mocks__/proxy';
 
 const httpPort = 18101;
@@ -82,7 +82,7 @@ describe('@biorate/proxy', () => {
     const conn = root.connector.get();
     expect(conn).toBeDefined();
 
-    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
+    flushAllSnapshots();
     container.unbind(Root);
   });
 });

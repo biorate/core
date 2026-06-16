@@ -61,7 +61,7 @@
                             "k": "port",
                             "v": {
                               "t": "number",
-                              "v": 27002
+                              "v": 17102
                             }
                           }
                         ]
@@ -82,7 +82,7 @@
                           "k": "liveness",
                           "v": {
                             "t": "string",
-                            "v": "http://localhost:28001"
+                            "v": "http://localhost:18101"
                           }
                         },
                         {
@@ -101,7 +101,7 @@
                                 "k": "port",
                                 "v": {
                                   "t": "number",
-                                  "v": 27001
+                                  "v": 17101
                                 }
                               }
                             ]

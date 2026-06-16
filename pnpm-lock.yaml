@@ -1532,6 +1532,9 @@ importers:
       '@biorate/mssql':
         specifier: workspace:*
         version: link:../mssql
+      '@biorate/opensearch':
+        specifier: workspace:*
+        version: link:../opensearch
       '@biorate/pg':
         specifier: workspace:*
         version: link:../pg

@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots, MODE_RECORD } from '../src';
+import { SnapshotStore, flushAllSnapshots } from '../src';
 import { IORedisConnector } from './__mocks__/ioredis';
 
 beforeAll(() => {
@@ -39,7 +39,7 @@ describe('@biorate/ioredis', () => {
     const value = await conn.get('unimock:key');
     expect(value).toBe('unimock-value');
 
-    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
+    flushAllSnapshots();
     container.unbind(Root);
   });
 });

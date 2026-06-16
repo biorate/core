@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, flushAllSnapshots, MODE_RECORD } from '../src';
+import { SnapshotStore, flushAllSnapshots } from '../src';
 import { PgConnector } from './__mocks__/pg';
 
 beforeAll(() => {
@@ -45,7 +45,7 @@ describe('@biorate/pg', () => {
       expect(result.rows[0].result).toBe(1);
     }
 
-    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
+    flushAllSnapshots();
     container.unbind(Root);
   });
 });

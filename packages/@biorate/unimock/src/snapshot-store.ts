@@ -86,6 +86,7 @@ export function getSnapshotStore(className: string, snapshotDir?: string): Snaps
 }
 
 export function flushAllSnapshots(): void {
+  if (SnapshotStore.mode !== 'record') return;
   for (const store of stores.values()) store.flush();
 }
 

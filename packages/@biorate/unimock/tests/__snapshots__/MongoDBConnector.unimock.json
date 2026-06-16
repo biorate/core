@@ -167,7 +167,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_MongoDBConnector_1781638951155_szmp"
+        "v": "obj_MongoDBConnector_1781642434487_tv58"
       }
     },
     "conn:obj_4:collection:7c6de563": {
@@ -179,7 +179,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_MongoDBConnector_1781638951155_2mgv"
+        "v": "obj_MongoDBConnector_1781642434487_umaz"
       }
     },
     "conn:obj_MongoDBConnector_1781635441263_gbdl:updateOne:24d222b5": {
@@ -1124,6 +1124,250 @@
       }
     },
     "conn:obj_MongoDBConnector_1781638951155_2mgv:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781642434487_tv58:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781642434487_umaz:updateOne:24d222b5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "$set",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "string",
+                      "v": "unimock-value"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "upsert",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "acknowledged",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "modifiedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "upsertedId",
+            "v": {
+              "t": "null"
+            }
+          },
+          {
+            "k": "upsertedCount",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "matchedCount",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781642434487_tv58:findOne:347b4643": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "_id",
+              "v": {
+                "t": "string",
+                "v": "unimock:key"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "unimock:key"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "string",
+              "v": "unimock-value"
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_MongoDBConnector_1781642434487_umaz:findOne:347b4643": {
       "args": [
         {
           "t": "object",

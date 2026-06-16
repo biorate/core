@@ -3,7 +3,7 @@ import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { timer } from '@biorate/tools';
 import { AdminClient } from '@confluentinc/kafka-javascript';
-import { SnapshotStore, flushAllSnapshots, MODE_REPLAY, MODE_RECORD } from '../src';
+import { SnapshotStore, flushAllSnapshots, MODE_REPLAY } from '../src';
 import {
   MockAdminConnector,
   MockProducerConnector,
@@ -117,7 +117,7 @@ describe('@biorate/rdkafka', () => {
 
     expect(messages[0].value?.toString()).toBe('hello rdKafka!');
 
-    if (SnapshotStore.mode === MODE_RECORD) flushAllSnapshots();
+    flushAllSnapshots();
     container.unbind(Root);
   });
 });

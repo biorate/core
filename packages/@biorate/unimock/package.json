@@ -70,6 +70,7 @@
     "@biorate/ioredis": "workspace:*",
     "@biorate/mongodb": "workspace:*",
     "@biorate/mssql": "workspace:*",
+    "@biorate/opensearch": "workspace:*",
     "@biorate/pg": "workspace:*",
     "@biorate/prometheus": "workspace:*",
     "@biorate/proxy": "workspace:*",
