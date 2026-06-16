@@ -1,14 +1,15 @@
 import type { UnimockMode } from './interfaces';
+import { MODE_RECORD, MODE_REPLAY, MODE_OFF, DEFAULT_SNAPSHOT_DIR } from './constants';
 
 export function parseUnimockMode(): UnimockMode {
   const env = process.env.UNIMOCK?.toLowerCase().trim();
-  if (!env || env === 'off' || env === '0' || env === 'false') return 'off';
-  if (env === 'record' || env === 'update' || env === '1' || env === 'true')
-    return 'record';
-  if (env === 'replay') return 'replay';
-  return 'off';
+  if (!env || env === MODE_OFF || env === '0' || env === 'false') return MODE_OFF;
+  if (env === MODE_RECORD || env === 'update' || env === '1' || env === 'true')
+    return MODE_RECORD;
+  if (env === MODE_REPLAY) return MODE_REPLAY;
+  return MODE_OFF;
 }
 
 export function resolveSnapshotDir(override?: string): string {
-  return override ?? process.env.UNIMOCK_SNAPSHOT_DIR ?? 'tests/__snapshots__';
+  return override ?? process.env.UNIMOCK_SNAPSHOT_DIR ?? DEFAULT_SNAPSHOT_DIR;
 }

@@ -5,6 +5,16 @@ import {
   UnimockReplayMissError,
   UnimockConnectionHandlerTargetRequiredError,
 } from './errors';
+import {
+  MODE_REPLAY,
+  T_REF,
+  T_UNDEFINED,
+  PROP_THEN,
+  PROP_UNIMOCK_REF,
+  PROP_PRIVATE_PREFIX,
+  PREFIX_CONN,
+  PREFIX_OBJ,
+} from './constants';
 
 export class ConnectionHandler {
   public readonly __unimock_ref__: string;
@@ -19,23 +29,23 @@ export class ConnectionHandler {
 
     return new Proxy(this, {
       get: (obj, prop: string | symbol) => {
-        if (prop === 'then') return undefined;
-        if (prop === '__unimock_ref__') return obj.__unimock_ref__;
-        if (typeof prop === 'string' && prop.startsWith('#')) return undefined;
+        if (prop === PROP_THEN) return undefined;
+        if (prop === PROP_UNIMOCK_REF) return obj.__unimock_ref__;
+        if (typeof prop === 'string' && prop.startsWith(PROP_PRIVATE_PREFIX)) return undefined;
 
         const mode = obj.store.mode;
 
-        if (mode === 'replay') {
+        if (mode === MODE_REPLAY) {
           return (...args: unknown[]) => {
             const callKey = makeCallKey(
-              `conn:${obj.__unimock_ref__}:`,
+              `${PREFIX_CONN}${obj.__unimock_ref__}:`,
               String(prop),
               args,
             );
             const entry = obj.store.get(callKey);
             if (!entry) throw new UnimockReplayMissError(callKey, String(prop), args);
             if (entry.error) throw deserialize(entry.error) as Error;
-            if (entry.result.t === 'ref')
+            if (entry.result.t === T_REF)
               return new ConnectionHandler(null, entry.result.v, obj.store);
             return deserialize(entry.result);
           };
@@ -48,7 +58,7 @@ export class ConnectionHandler {
         if (typeof targetObj[prop] === 'function') {
           return (...args: unknown[]) => {
             const callKey = makeCallKey(
-              `conn:${obj.__unimock_ref__}:`,
+              `${PREFIX_CONN}${obj.__unimock_ref__}:`,
               String(prop),
               args,
             );
@@ -70,7 +80,7 @@ export class ConnectionHandler {
                   (error: Error) => {
                     obj.store.record(callKey, {
                       args: args.map((a: unknown) => serialize(a)),
-                      result: { t: 'undefined' },
+                      result: { t: T_UNDEFINED },
                       error: serialize(error),
                     });
                     throw error;
@@ -87,7 +97,7 @@ export class ConnectionHandler {
             } catch (e: unknown) {
               obj.store.record(callKey, {
                 args: args.map((a: unknown) => serialize(a)),
-                result: { t: 'undefined' },
+                result: { t: T_UNDEFINED },
                 error: serialize(e),
               });
               throw e;
@@ -118,12 +128,12 @@ function wrapNested(
   store: SnapshotStore,
 ): { wrapped: unknown; serialized: SerializedValue } {
   if (hasMethods(result)) {
-    const refId = `obj_${store.className}_${Date.now()}_${Math.random()
+    const refId = `${PREFIX_OBJ}${store.className}_${Date.now()}_${Math.random()
       .toString(36)
       .slice(2, 6)}`;
     return {
       wrapped: new ConnectionHandler(result, refId, store),
-      serialized: { t: 'ref', v: refId },
+      serialized: { t: T_REF, v: refId },
     };
   }
   return { wrapped: result, serialized: serialize(result) };

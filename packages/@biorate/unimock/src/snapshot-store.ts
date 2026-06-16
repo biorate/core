@@ -7,6 +7,7 @@ import type {
   UnimockMode,
 } from './interfaces';
 import { parseUnimockMode, resolveSnapshotDir } from './env';
+import { SEPARATOR_STORE, SNAPSHOT_FILE_VERSION } from './constants';
 
 const stores = new Map<string, SnapshotStore>();
 
@@ -45,7 +46,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
     } catch {
       // corrupt file — start fresh
     }
-    return { version: 1, className: this.className, calls: {} };
+    return { version: SNAPSHOT_FILE_VERSION, className: this.className, calls: {} };
   }
 
   public get mode(): UnimockMode {
@@ -75,7 +76,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
 }
 
 export function getSnapshotStore(className: string, snapshotDir?: string): SnapshotStore {
-  const key = `${className}::${snapshotDir ?? ''}`;
+  const key = `${className}${SEPARATOR_STORE}${snapshotDir ?? ''}`;
   let store = stores.get(key);
   if (!store) {
     store = new SnapshotStore(className, snapshotDir);

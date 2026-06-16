@@ -4,8 +4,21 @@ import { getSnapshotStore } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { UnimockReplayMissError } from './errors';
 import { ConnectionHandler } from './connection-proxy';
+import {
+  MODE_REPLAY,
+  T_REF,
+  T_UNDEFINED,
+  T_CALLBACK,
+  PROP_CONSTRUCTOR,
+  PROP_PRIVATE_PREFIX,
+  PREFIX_OBJ,
+  PREFIX_CB,
+  MARKER_CALLBACK,
+  COUNTER_INIT,
+  STATIC_SAFE,
+} from './constants';
 
-let counter = 0;
+let counter = COUNTER_INIT;
 
 export function Mockable(options?: MockableOptions) {
   return function <T extends new (...args: any[]) => object>(Base: T): T {
@@ -29,7 +42,7 @@ function patchPrototype(proto: object, store: SnapshotStore): void {
   let current = proto;
   while (current && current !== Object.prototype) {
     for (const key of Object.getOwnPropertyNames(current)) {
-      if (key === 'constructor' || key.startsWith('#') || visited.has(key)) continue;
+      if (key === PROP_CONSTRUCTOR || key.startsWith(PROP_PRIVATE_PREFIX) || visited.has(key)) continue;
       visited.add(key);
       const descriptor = Object.getOwnPropertyDescriptor(current, key);
       if (descriptor) entries.push({ key, descriptor });
@@ -74,10 +87,10 @@ function makeMethodWrapper(
 ): (...args: unknown[]) => unknown {
   return function (this: unknown, ...args: unknown[]) {
     const mode = store.mode;
-    const reportArgs = args.map((a) => (typeof a === 'function' ? '<callback>' : a));
+    const reportArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
     const callKey = makeCallKey('', name, reportArgs);
 
-    if (mode === 'replay') return replayCall(callKey, name, args, store);
+    if (mode === MODE_REPLAY) return replayCall(callKey, name, args, store);
 
     const { recordedArgs, callbackRecords } = recordPrep(args);
 
@@ -94,7 +107,7 @@ function makeMethodWrapper(
             const sa = serializeArgs(recordedArgs, callbackRecords);
             store.record(callKey, {
               args: sa,
-              result: { t: 'undefined' },
+              result: { t: T_UNDEFINED },
               error: serialize(error),
             });
             throw error;
@@ -108,7 +121,7 @@ function makeMethodWrapper(
       const sa = serializeArgs(recordedArgs, callbackRecords);
       store.record(callKey, {
         args: sa,
-        result: { t: 'undefined' },
+        result: { t: T_UNDEFINED },
         error: serialize(e as Error),
       });
       throw e;
@@ -145,7 +158,7 @@ function replayCall(
 
   const promises = replayCallbacks(entry.args, args);
 
-  if (entry.result.t === 'ref') {
+  if (entry.result.t === T_REF) {
     const conn = new ConnectionHandler(null, entry.result.v, store);
     if (promises.length > 0) return Promise.all(promises).then(() => conn);
     return conn;
@@ -219,9 +232,9 @@ function serializeArgs(
       const cb = callbacks.find((c) => c.index === i);
       if (cb) {
         return {
-          t: 'callback' as const,
+          t: T_CALLBACK,
           v: {
-            callRef: `cb_${counter++}`,
+            callRef: `${PREFIX_CB}${counter++}`,
             recording: cb.records.map((rec) => rec.map((arg) => serialize(arg))),
           },
         };
@@ -242,7 +255,7 @@ function wrapAndRecord(
     const wrapped = new ConnectionHandler(result, refId, store);
     store.record(callKey, {
       args: serializedArgs,
-      result: { t: 'ref', v: refId },
+      result: { t: T_REF, v: refId },
       error: undefined,
     });
     return wrapped;
@@ -269,46 +282,6 @@ function hasMethods(value: unknown): value is object {
 }
 
 // TODO: sequelize models static methods, need to be configurable...
-const STATIC_SAFE = new Set([
-  'sync',
-  'drop',
-  'create',
-  'findOne',
-  'findAll',
-  'findByPk',
-  'findOrCreate',
-  'findOrBuild',
-  'findCreateFind',
-  'findAndCountAll',
-  'destroy',
-  'update',
-  'upsert',
-  'bulkCreate',
-  'truncate',
-  'restore',
-  'count',
-  'sum',
-  'min',
-  'max',
-  'increment',
-  'decrement',
-  'describe',
-  'scope',
-  'unscoped',
-  'schema',
-  'getTableName',
-  'addScope',
-  'removeAttribute',
-  'getAttributes',
-  'hasAlias',
-  'hasMany',
-  'belongsToMany',
-  'hasOne',
-  'belongsTo',
-  'build',
-  'bulkBuild',
-  'warnOnInvalidOptions',
-]);
 
 function wrapStaticMethods(
   klass: new (...args: unknown[]) => object,
@@ -319,7 +292,7 @@ function wrapStaticMethods(
   while (ctor && ctor !== Function.prototype) {
     for (const key of Object.getOwnPropertyNames(ctor)) {
       if (
-        key === 'constructor' ||
+        key === PROP_CONSTRUCTOR ||
         key === 'prototype' ||
         key === 'name' ||
         key === 'length' ||
@@ -372,19 +345,19 @@ function wrapGetter(
     const callKey = makeCallKey('', name, []);
     const mode = store.mode;
 
-    if (mode === 'replay') {
+    if (mode === MODE_REPLAY) {
       const entry = store.get(callKey);
       if (!entry) throw new UnimockReplayMissError(callKey, name, []);
-      if (entry.result.t === 'ref')
+      if (entry.result.t === T_REF)
         return new ConnectionHandler(null, entry.result.v, store);
       return deserialize(entry.result);
     }
 
     const result = original.call(this);
     if (hasMethods(result)) {
-      const refId = `obj_${counter++}`;
+    const refId = `${PREFIX_OBJ}${counter++}`;
       const wrapped = new ConnectionHandler(result, refId, store);
-      store.record(callKey, { args: [], result: { t: 'ref', v: refId } });
+      store.record(callKey, { args: [], result: { t: T_REF, v: refId } });
       return wrapped;
     }
     store.record(callKey, { args: [], result: serialize(result) });
