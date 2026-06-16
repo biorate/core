@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "className": "SequelizeConnector",
+  "className": "ModelMockConnector",
   "calls": {
     "config:": {
       "args": [],
       "result": {
         "t": "ref",
-        "v": "obj_0"
+        "v": "obj_7"
       }
     },
-    "conn:obj_0:get:f2ac609f": {
+    "conn:obj_7:get:2242da2d": {
       "args": [
         {
           "t": "string",
-          "v": "Sequelize"
+          "v": "SequelizeModel"
         },
         {
           "t": "array",
@@ -30,7 +30,7 @@
                 "k": "name",
                 "v": {
                   "t": "string",
-                  "v": "connection"
+                  "v": "modelConn"
                 }
               },
               {
@@ -67,7 +67,7 @@
         ]
       }
     },
-    "connect:e488e1b9": {
+    "connect:48c3e320": {
       "args": [
         {
           "t": "object",
@@ -76,7 +76,7 @@
               "k": "name",
               "v": {
                 "t": "string",
-                "v": "connection"
+                "v": "modelConn"
               }
             },
             {
@@ -125,10 +125,10 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_1"
+        "v": "obj_8"
       }
     },
-    "create:e488e1b9": {
+    "create:48c3e320": {
       "args": [
         {
           "t": "object",
@@ -137,7 +137,7 @@
               "k": "name",
               "v": {
                 "t": "string",
-                "v": "connection"
+                "v": "modelConn"
               }
             },
             {
@@ -186,7 +186,18 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_2"
+        "v": "obj_9"
+      }
+    },
+    "use:ce2a9f42": {
+      "args": [
+        {
+          "t": "string",
+          "v": "modelConn"
+        }
+      ],
+      "result": {
+        "t": "undefined"
       }
     },
     "connection:d7517139": {
@@ -197,262 +208,10 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_6"
+        "v": "obj_29"
       }
     },
-    "conn:obj_1:query:7ef23c02": {
-      "args": [
-        {
-          "t": "string",
-          "v": "SELECT 1 AS result"
-        },
-        {
-          "t": "object",
-          "v": []
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "array",
-            "v": [
-              {
-                "t": "object",
-                "v": [
-                  {
-                    "k": "result",
-                    "v": {
-                      "t": "number",
-                      "v": 1
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "t": "object",
-            "v": []
-          }
-        ]
-      }
-    },
-    "conn:obj_3:query:7ef23c02": {
-      "args": [
-        {
-          "t": "string",
-          "v": "SELECT 1 AS result"
-        },
-        {
-          "t": "object",
-          "v": []
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "array",
-            "v": [
-              {
-                "t": "object",
-                "v": [
-                  {
-                    "k": "result",
-                    "v": {
-                      "t": "number",
-                      "v": 1
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "t": "object",
-            "v": []
-          }
-        ]
-      }
-    },
-    "query:0576fadd": {
-      "args": [
-        {
-          "t": "string",
-          "v": "SELECT 1 AS result"
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "object",
-            "v": [
-              {
-                "k": "result",
-                "v": {
-                  "t": "number",
-                  "v": 1
-                }
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "conn:obj_1:query:b7e8c6da": {
-      "args": [
-        {
-          "t": "string",
-          "v": "CREATE TABLE IF NOT EXISTS mock_models (id INTEGER PRIMARY KEY, title TEXT, value INTEGER)"
-        },
-        {
-          "t": "object",
-          "v": []
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "array",
-            "v": []
-          },
-          {
-            "t": "object",
-            "v": []
-          }
-        ]
-      }
-    },
-    "conn:obj_4:query:b7e8c6da": {
-      "args": [
-        {
-          "t": "string",
-          "v": "CREATE TABLE IF NOT EXISTS mock_models (id INTEGER PRIMARY KEY, title TEXT, value INTEGER)"
-        },
-        {
-          "t": "object",
-          "v": []
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "array",
-            "v": []
-          },
-          {
-            "t": "object",
-            "v": []
-          }
-        ]
-      }
-    },
-    "query:2c06975c": {
-      "args": [
-        {
-          "t": "string",
-          "v": "CREATE TABLE IF NOT EXISTS mock_models (id INTEGER PRIMARY KEY, title TEXT, value INTEGER)"
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": []
-      }
-    },
-    "conn:obj_1:query:a0fd52bf": {
-      "args": [
-        {
-          "t": "string",
-          "v": "INSERT INTO mock_models (id, title, value) VALUES (1, 'test', 42)"
-        },
-        {
-          "t": "object",
-          "v": []
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "undefined"
-          },
-          {
-            "t": "object",
-            "v": [
-              {
-                "k": "lastID",
-                "v": {
-                  "t": "number",
-                  "v": 1
-                }
-              },
-              {
-                "k": "changes",
-                "v": {
-                  "t": "number",
-                  "v": 1
-                }
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "conn:obj_5:query:a0fd52bf": {
-      "args": [
-        {
-          "t": "string",
-          "v": "INSERT INTO mock_models (id, title, value) VALUES (1, 'test', 42)"
-        },
-        {
-          "t": "object",
-          "v": []
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "undefined"
-          },
-          {
-            "t": "object",
-            "v": [
-              {
-                "k": "lastID",
-                "v": {
-                  "t": "number",
-                  "v": 1
-                }
-              },
-              {
-                "k": "changes",
-                "v": {
-                  "t": "number",
-                  "v": 1
-                }
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "query:9f27021f": {
-      "args": [
-        {
-          "t": "string",
-          "v": "INSERT INTO mock_models (id, title, value) VALUES (1, 'test', 42)"
-        }
-      ],
-      "result": {
-        "t": "undefined"
-      }
-    },
-    "conn:obj_1:query:f1e83ab7": {
+    "conn:obj_8:query:f1e83ab7": {
       "args": [
         {
           "t": "string",
@@ -476,21 +235,21 @@
                     "k": "id",
                     "v": {
                       "t": "number",
-                      "v": 1
+                      "v": 10
                     }
                   },
                   {
                     "k": "title",
                     "v": {
                       "t": "string",
-                      "v": "test"
+                      "v": "via-mockable-model"
                     }
                   },
                   {
                     "k": "value",
                     "v": {
                       "t": "number",
-                      "v": 42
+                      "v": 777
                     }
                   }
                 ]
@@ -504,7 +263,7 @@
         ]
       }
     },
-    "conn:obj_6:query:f1e83ab7": {
+    "conn:obj_29:query:f1e83ab7": {
       "args": [
         {
           "t": "string",
@@ -528,21 +287,21 @@
                     "k": "id",
                     "v": {
                       "t": "number",
-                      "v": 1
+                      "v": 10
                     }
                   },
                   {
                     "k": "title",
                     "v": {
                       "t": "string",
-                      "v": "test"
+                      "v": "via-mockable-model"
                     }
                   },
                   {
                     "k": "value",
                     "v": {
                       "t": "number",
-                      "v": 42
+                      "v": 777
                     }
                   }
                 ]
@@ -573,24 +332,76 @@
                 "k": "id",
                 "v": {
                   "t": "number",
-                  "v": 1
+                  "v": 10
                 }
               },
               {
                 "k": "title",
                 "v": {
                   "t": "string",
-                  "v": "test"
+                  "v": "via-mockable-model"
                 }
               },
               {
                 "k": "value",
                 "v": {
                   "t": "number",
-                  "v": 42
+                  "v": 777
                 }
               }
             ]
+          }
+        ]
+      }
+    },
+    "conn:obj_10:query:f1e83ab7": {
+      "args": [
+        {
+          "t": "string",
+          "v": "SELECT * FROM mock_models ORDER BY id"
+        },
+        {
+          "t": "object",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "array",
+            "v": [
+              {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "id",
+                    "v": {
+                      "t": "number",
+                      "v": 10
+                    }
+                  },
+                  {
+                    "k": "title",
+                    "v": {
+                      "t": "string",
+                      "v": "via-mockable-model"
+                    }
+                  },
+                  {
+                    "k": "value",
+                    "v": {
+                      "t": "number",
+                      "v": 777
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "t": "object",
+            "v": []
           }
         ]
       }

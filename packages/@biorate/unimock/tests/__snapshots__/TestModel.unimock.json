@@ -1,0 +1,3160 @@
+{
+  "version": 1,
+  "className": "TestModel",
+  "calls": {
+    "getTableName:": {
+      "args": [],
+      "result": {
+        "t": "string",
+        "v": "mock_models"
+      }
+    },
+    "getTableName:43d37923": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "timestamps",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "validate",
+              "v": {
+                "t": "object",
+                "v": []
+              }
+            },
+            {
+              "k": "freezeTableName",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "underscored",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "paranoid",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "rejectOnEmpty",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "whereCollection",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "defaultScope",
+              "v": {
+                "t": "object",
+                "v": []
+              }
+            },
+            {
+              "k": "scopes",
+              "v": {
+                "t": "object",
+                "v": []
+              }
+            },
+            {
+              "k": "indexes",
+              "v": {
+                "t": "array",
+                "v": []
+              }
+            },
+            {
+              "k": "whereMergeStrategy",
+              "v": {
+                "t": "string",
+                "v": "overwrite"
+              }
+            },
+            {
+              "k": "name",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "plural",
+                    "v": {
+                      "t": "string",
+                      "v": "TestModels"
+                    }
+                  },
+                  {
+                    "k": "singular",
+                    "v": {
+                      "t": "string",
+                      "v": "TestModel"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "omitNull",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "tableName",
+              "v": {
+                "t": "string",
+                "v": "mock_models"
+              }
+            },
+            {
+              "k": "sequelize",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "options",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "dialect",
+                          "v": {
+                            "t": "string",
+                            "v": "sqlite"
+                          }
+                        },
+                        {
+                          "k": "dialectModule",
+                          "v": {
+                            "t": "null"
+                          }
+                        },
+                        {
+                          "k": "dialectModulePath",
+                          "v": {
+                            "t": "null"
+                          }
+                        },
+                        {
+                          "k": "protocol",
+                          "v": {
+                            "t": "string",
+                            "v": "tcp"
+                          }
+                        },
+                        {
+                          "k": "define",
+                          "v": {
+                            "t": "object",
+                            "v": []
+                          }
+                        },
+                        {
+                          "k": "query",
+                          "v": {
+                            "t": "object",
+                            "v": []
+                          }
+                        },
+                        {
+                          "k": "sync",
+                          "v": {
+                            "t": "object",
+                            "v": []
+                          }
+                        },
+                        {
+                          "k": "timezone",
+                          "v": {
+                            "t": "string",
+                            "v": "+00:00"
+                          }
+                        },
+                        {
+                          "k": "standardConformingStrings",
+                          "v": {
+                            "t": "boolean",
+                            "v": true
+                          }
+                        },
+                        {
+                          "k": "logging",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "omitNull",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "native",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "replication",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "ssl",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "pool",
+                          "v": {
+                            "t": "object",
+                            "v": []
+                          }
+                        },
+                        {
+                          "k": "quoteIdentifiers",
+                          "v": {
+                            "t": "boolean",
+                            "v": true
+                          }
+                        },
+                        {
+                          "k": "hooks",
+                          "v": {
+                            "t": "object",
+                            "v": []
+                          }
+                        },
+                        {
+                          "k": "retry",
+                          "v": {
+                            "t": "object",
+                            "v": [
+                              {
+                                "k": "max",
+                                "v": {
+                                  "t": "number",
+                                  "v": 5
+                                }
+                              },
+                              {
+                                "k": "match",
+                                "v": {
+                                  "t": "array",
+                                  "v": [
+                                    {
+                                      "t": "string",
+                                      "v": "SQLITE_BUSY: database is locked"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "transactionType",
+                          "v": {
+                            "t": "string",
+                            "v": "DEFERRED"
+                          }
+                        },
+                        {
+                          "k": "isolationLevel",
+                          "v": {
+                            "t": "null"
+                          }
+                        },
+                        {
+                          "k": "databaseVersion",
+                          "v": {
+                            "t": "number",
+                            "v": 0
+                          }
+                        },
+                        {
+                          "k": "typeValidation",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "benchmark",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "minifyAliases",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "logQueryParameters",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "attributeBehavior",
+                          "v": {
+                            "t": "string",
+                            "v": "throw"
+                          }
+                        },
+                        {
+                          "k": "storage",
+                          "v": {
+                            "t": "string",
+                            "v": ":memory:"
+                          }
+                        },
+                        {
+                          "k": "models",
+                          "v": {
+                            "t": "array",
+                            "v": [
+                              {
+                                "t": "string",
+                                "v": "<callback>"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "k": "config",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "database",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "username",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "password",
+                          "v": {
+                            "t": "null"
+                          }
+                        },
+                        {
+                          "k": "host",
+                          "v": {
+                            "t": "string",
+                            "v": "localhost"
+                          }
+                        },
+                        {
+                          "k": "port",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "pool",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "protocol",
+                          "v": {
+                            "t": "string",
+                            "v": "tcp"
+                          }
+                        },
+                        {
+                          "k": "native",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "ssl",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "replication",
+                          "v": {
+                            "t": "boolean",
+                            "v": false
+                          }
+                        },
+                        {
+                          "k": "dialectModule",
+                          "v": {
+                            "t": "null"
+                          }
+                        },
+                        {
+                          "k": "dialectModulePath",
+                          "v": {
+                            "t": "null"
+                          }
+                        },
+                        {
+                          "k": "keepDefaultTimezone",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "dialectOptions",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "k": "dialect",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "sequelize",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        },
+                        {
+                          "k": "connectionManager",
+                          "v": {
+                            "t": "object",
+                            "v": [
+                              {
+                                "k": "sequelize",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              },
+                              {
+                                "k": "config",
+                                "v": {
+                                  "t": "object",
+                                  "v": [
+                                    {
+                                      "k": "database",
+                                      "v": {
+                                        "t": "undefined"
+                                      }
+                                    },
+                                    {
+                                      "k": "username",
+                                      "v": {
+                                        "t": "undefined"
+                                      }
+                                    },
+                                    {
+                                      "k": "password",
+                                      "v": {
+                                        "t": "null"
+                                      }
+                                    },
+                                    {
+                                      "k": "host",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "localhost"
+                                      }
+                                    },
+                                    {
+                                      "k": "port",
+                                      "v": {
+                                        "t": "undefined"
+                                      }
+                                    },
+                                    {
+                                      "k": "pool",
+                                      "v": {
+                                        "t": "object",
+                                        "v": [
+                                          {
+                                            "k": "max",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 5
+                                            }
+                                          },
+                                          {
+                                            "k": "min",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 0
+                                            }
+                                          },
+                                          {
+                                            "k": "idle",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 10000
+                                            }
+                                          },
+                                          {
+                                            "k": "acquire",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 60000
+                                            }
+                                          },
+                                          {
+                                            "k": "evict",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 1000
+                                            }
+                                          },
+                                          {
+                                            "k": "validate",
+                                            "v": {
+                                              "t": "string",
+                                              "v": "<callback>"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k": "protocol",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "tcp"
+                                      }
+                                    },
+                                    {
+                                      "k": "native",
+                                      "v": {
+                                        "t": "boolean",
+                                        "v": false
+                                      }
+                                    },
+                                    {
+                                      "k": "ssl",
+                                      "v": {
+                                        "t": "undefined"
+                                      }
+                                    },
+                                    {
+                                      "k": "replication",
+                                      "v": {
+                                        "t": "boolean",
+                                        "v": false
+                                      }
+                                    },
+                                    {
+                                      "k": "dialectModule",
+                                      "v": {
+                                        "t": "null"
+                                      }
+                                    },
+                                    {
+                                      "k": "dialectModulePath",
+                                      "v": {
+                                        "t": "null"
+                                      }
+                                    },
+                                    {
+                                      "k": "keepDefaultTimezone",
+                                      "v": {
+                                        "t": "undefined"
+                                      }
+                                    },
+                                    {
+                                      "k": "dialectOptions",
+                                      "v": {
+                                        "t": "undefined"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "k": "dialect",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              },
+                              {
+                                "k": "versionPromise",
+                                "v": {
+                                  "t": "null"
+                                }
+                              },
+                              {
+                                "k": "dialectName",
+                                "v": {
+                                  "t": "string",
+                                  "v": "sqlite"
+                                }
+                              },
+                              {
+                                "k": "pool",
+                                "v": {
+                                  "t": "object",
+                                  "v": [
+                                    {
+                                      "k": "log",
+                                      "v": {
+                                        "t": "boolean",
+                                        "v": false
+                                      }
+                                    },
+                                    {
+                                      "k": "idleTimeoutMillis",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 10000
+                                      }
+                                    },
+                                    {
+                                      "k": "acquireTimeoutMillis",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 60000
+                                      }
+                                    },
+                                    {
+                                      "k": "reapIntervalMillis",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 1000
+                                      }
+                                    },
+                                    {
+                                      "k": "maxUsesPerResource",
+                                      "v": {
+                                        "t": "number",
+                                        "v": null
+                                      }
+                                    },
+                                    {
+                                      "k": "_factory",
+                                      "v": {
+                                        "t": "object",
+                                        "v": [
+                                          {
+                                            "k": "name",
+                                            "v": {
+                                              "t": "string",
+                                              "v": "sequelize"
+                                            }
+                                          },
+                                          {
+                                            "k": "create",
+                                            "v": {
+                                              "t": "string",
+                                              "v": "<callback>"
+                                            }
+                                          },
+                                          {
+                                            "k": "destroy",
+                                            "v": {
+                                              "t": "string",
+                                              "v": "<callback>"
+                                            }
+                                          },
+                                          {
+                                            "k": "validate",
+                                            "v": {
+                                              "t": "string",
+                                              "v": "<callback>"
+                                            }
+                                          },
+                                          {
+                                            "k": "max",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 5
+                                            }
+                                          },
+                                          {
+                                            "k": "min",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 0
+                                            }
+                                          },
+                                          {
+                                            "k": "acquireTimeoutMillis",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 60000
+                                            }
+                                          },
+                                          {
+                                            "k": "idleTimeoutMillis",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 10000
+                                            }
+                                          },
+                                          {
+                                            "k": "reapIntervalMillis",
+                                            "v": {
+                                              "t": "number",
+                                              "v": 1000
+                                            }
+                                          },
+                                          {
+                                            "k": "maxUses",
+                                            "v": {
+                                              "t": "undefined"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k": "_count",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 0
+                                      }
+                                    },
+                                    {
+                                      "k": "_draining",
+                                      "v": {
+                                        "t": "boolean",
+                                        "v": false
+                                      }
+                                    },
+                                    {
+                                      "k": "_pendingAcquires",
+                                      "v": {
+                                        "t": "array",
+                                        "v": []
+                                      }
+                                    },
+                                    {
+                                      "k": "_inUseObjects",
+                                      "v": {
+                                        "t": "array",
+                                        "v": []
+                                      }
+                                    },
+                                    {
+                                      "k": "_availableObjects",
+                                      "v": {
+                                        "t": "array",
+                                        "v": []
+                                      }
+                                    },
+                                    {
+                                      "k": "_removeIdleScheduled",
+                                      "v": {
+                                        "t": "boolean",
+                                        "v": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "k": "connections",
+                                "v": {
+                                  "t": "object",
+                                  "v": [
+                                    {
+                                      "k": "1",
+                                      "v": {
+                                        "t": "object",
+                                        "v": []
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "k": "lib",
+                                "v": {
+                                  "t": "object",
+                                  "v": [
+                                    {
+                                      "k": "Database",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "<callback>"
+                                      }
+                                    },
+                                    {
+                                      "k": "Statement",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "<callback>"
+                                      }
+                                    },
+                                    {
+                                      "k": "Backup",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "<callback>"
+                                      }
+                                    },
+                                    {
+                                      "k": "OPEN_READONLY",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 1
+                                      }
+                                    },
+                                    {
+                                      "k": "OPEN_READWRITE",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 2
+                                      }
+                                    },
+                                    {
+                                      "k": "OPEN_CREATE",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 4
+                                      }
+                                    },
+                                    {
+                                      "k": "OPEN_FULLMUTEX",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 65536
+                                      }
+                                    },
+                                    {
+                                      "k": "OPEN_URI",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 64
+                                      }
+                                    },
+                                    {
+                                      "k": "OPEN_SHAREDCACHE",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 131072
+                                      }
+                                    },
+                                    {
+                                      "k": "OPEN_PRIVATECACHE",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 262144
+                                      }
+                                    },
+                                    {
+                                      "k": "VERSION",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "3.38.4"
+                                      }
+                                    },
+                                    {
+                                      "k": "SOURCE_ID",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "2022-05-04 15:45:55 d402f49871152670a62f4f28cacb15d814f2c1644e9347ad7d258e562978e45e"
+                                      }
+                                    },
+                                    {
+                                      "k": "VERSION_NUMBER",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 3038004
+                                      }
+                                    },
+                                    {
+                                      "k": "OK",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 0
+                                      }
+                                    },
+                                    {
+                                      "k": "ERROR",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 1
+                                      }
+                                    },
+                                    {
+                                      "k": "INTERNAL",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 2
+                                      }
+                                    },
+                                    {
+                                      "k": "PERM",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 3
+                                      }
+                                    },
+                                    {
+                                      "k": "ABORT",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 4
+                                      }
+                                    },
+                                    {
+                                      "k": "BUSY",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 5
+                                      }
+                                    },
+                                    {
+                                      "k": "LOCKED",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 6
+                                      }
+                                    },
+                                    {
+                                      "k": "NOMEM",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 7
+                                      }
+                                    },
+                                    {
+                                      "k": "READONLY",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 8
+                                      }
+                                    },
+                                    {
+                                      "k": "INTERRUPT",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 9
+                                      }
+                                    },
+                                    {
+                                      "k": "IOERR",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 10
+                                      }
+                                    },
+                                    {
+                                      "k": "CORRUPT",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 11
+                                      }
+                                    },
+                                    {
+                                      "k": "NOTFOUND",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 12
+                                      }
+                                    },
+                                    {
+                                      "k": "FULL",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 13
+                                      }
+                                    },
+                                    {
+                                      "k": "CANTOPEN",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 14
+                                      }
+                                    },
+                                    {
+                                      "k": "PROTOCOL",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 15
+                                      }
+                                    },
+                                    {
+                                      "k": "EMPTY",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 16
+                                      }
+                                    },
+                                    {
+                                      "k": "SCHEMA",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 17
+                                      }
+                                    },
+                                    {
+                                      "k": "TOOBIG",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 18
+                                      }
+                                    },
+                                    {
+                                      "k": "CONSTRAINT",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 19
+                                      }
+                                    },
+                                    {
+                                      "k": "MISMATCH",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 20
+                                      }
+                                    },
+                                    {
+                                      "k": "MISUSE",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 21
+                                      }
+                                    },
+                                    {
+                                      "k": "NOLFS",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 22
+                                      }
+                                    },
+                                    {
+                                      "k": "AUTH",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 23
+                                      }
+                                    },
+                                    {
+                                      "k": "FORMAT",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 24
+                                      }
+                                    },
+                                    {
+                                      "k": "RANGE",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 25
+                                      }
+                                    },
+                                    {
+                                      "k": "NOTADB",
+                                      "v": {
+                                        "t": "number",
+                                        "v": 26
+                                      }
+                                    },
+                                    {
+                                      "k": "cached",
+                                      "v": {
+                                        "t": "object",
+                                        "v": [
+                                          {
+                                            "k": "Database",
+                                            "v": {
+                                              "t": "string",
+                                              "v": "<callback>"
+                                            }
+                                          },
+                                          {
+                                            "k": "objects",
+                                            "v": {
+                                              "t": "object",
+                                              "v": []
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k": "verbose",
+                                      "v": {
+                                        "t": "string",
+                                        "v": "<callback>"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "queryGenerator",
+                          "v": {
+                            "t": "object",
+                            "v": [
+                              {
+                                "k": "sequelize",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              },
+                              {
+                                "k": "options",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              },
+                              {
+                                "k": "dialect",
+                                "v": {
+                                  "t": "string",
+                                  "v": "sqlite"
+                                }
+                              },
+                              {
+                                "k": "_dialect",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              },
+                              {
+                                "k": "_quoteIdentifier",
+                                "v": {
+                                  "t": "string",
+                                  "v": "<callback>"
+                                }
+                              },
+                              {
+                                "k": "quoteIdentifier",
+                                "v": {
+                                  "t": "string",
+                                  "v": "<callback>"
+                                }
+                              },
+                              {
+                                "k": "OperatorMap",
+                                "v": {
+                                  "t": "object",
+                                  "v": []
+                                }
+                              },
+                              {
+                                "k": "typeValidation",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "queryInterface",
+                          "v": {
+                            "t": "object",
+                            "v": [
+                              {
+                                "k": "sequelize",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              },
+                              {
+                                "k": "queryGenerator",
+                                "v": {
+                                  "t": "undefined"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "k": "queryInterface",
+                    "v": {
+                      "t": "undefined"
+                    }
+                  },
+                  {
+                    "k": "models",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "TestModel",
+                          "v": {
+                            "t": "string",
+                            "v": "<callback>"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "k": "modelManager",
+                    "v": {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "models",
+                          "v": {
+                            "t": "array",
+                            "v": [
+                              {
+                                "t": "string",
+                                "v": "<callback>"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "sequelize",
+                          "v": {
+                            "t": "undefined"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "k": "connectionManager",
+                    "v": {
+                      "t": "undefined"
+                    }
+                  },
+                  {
+                    "k": "repositoryMode",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "hooks",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "mock_models"
+      }
+    },
+    "sync:": {
+      "args": [],
+      "result": {
+        "t": "string",
+        "v": "<callback>"
+      }
+    },
+    "changed:09d94db9": {
+      "args": [
+        {
+          "t": "string",
+          "v": "id"
+        },
+        {
+          "t": "boolean",
+          "v": true
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_10"
+      }
+    },
+    "set:6e81b094": {
+      "args": [
+        {
+          "t": "string",
+          "v": "id"
+        },
+        {
+          "t": "number",
+          "v": 10
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "include",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "silent",
+              "v": {
+                "t": "undefined"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_11"
+      }
+    },
+    "changed:9c801f4f": {
+      "args": [
+        {
+          "t": "string",
+          "v": "title"
+        },
+        {
+          "t": "boolean",
+          "v": true
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_12"
+      }
+    },
+    "set:b8c4b915": {
+      "args": [
+        {
+          "t": "string",
+          "v": "title"
+        },
+        {
+          "t": "string",
+          "v": "via-mockable-model"
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "include",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "silent",
+              "v": {
+                "t": "undefined"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_13"
+      }
+    },
+    "changed:5caf8a71": {
+      "args": [
+        {
+          "t": "string",
+          "v": "value"
+        },
+        {
+          "t": "boolean",
+          "v": true
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_14"
+      }
+    },
+    "set:d87e35e8": {
+      "args": [
+        {
+          "t": "string",
+          "v": "value"
+        },
+        {
+          "t": "number",
+          "v": 777
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "include",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "silent",
+              "v": {
+                "t": "undefined"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_15"
+      }
+    },
+    "set:6d3eab30": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "id",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "title",
+              "v": {
+                "t": "string",
+                "v": "via-mockable-model"
+              }
+            },
+            {
+              "k": "value",
+              "v": {
+                "t": "number",
+                "v": 777
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "include",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "silent",
+              "v": {
+                "t": "undefined"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_16"
+      }
+    },
+    "_initValues:6d3eab30": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "id",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "title",
+              "v": {
+                "t": "string",
+                "v": "via-mockable-model"
+              }
+            },
+            {
+              "k": "value",
+              "v": {
+                "t": "number",
+                "v": 777
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "include",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "silent",
+              "v": {
+                "t": "undefined"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "get:f8e781da": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "plain",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    },
+    "toJSON:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    },
+    "build:cfcaa2af": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "id",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "title",
+              "v": {
+                "t": "string",
+                "v": "via-mockable-model"
+              }
+            },
+            {
+              "k": "value",
+              "v": {
+                "t": "number",
+                "v": 777
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "include",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "silent",
+              "v": {
+                "t": "undefined"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    },
+    "sequelize:": {
+      "args": [],
+      "result": {
+        "t": "ref",
+        "v": "obj_19"
+      }
+    },
+    "validate:c7991511": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "hooks",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "validate",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "fields",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            },
+            {
+              "k": "defaultFields",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "returning",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_20"
+      }
+    },
+    "changed:": {
+      "args": [],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "string",
+            "v": "id"
+          },
+          {
+            "t": "string",
+            "v": "title"
+          },
+          {
+            "t": "string",
+            "v": "value"
+          }
+        ]
+      }
+    },
+    "getTableName:c7991511": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "hooks",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "validate",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "fields",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            },
+            {
+              "k": "defaultFields",
+              "v": {
+                "t": "undefined"
+              }
+            },
+            {
+              "k": "returning",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "mock_models"
+      }
+    },
+    "changed:8ab02fd2": {
+      "args": [
+        {
+          "t": "string",
+          "v": "id"
+        },
+        {
+          "t": "boolean",
+          "v": false
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_21"
+      }
+    },
+    "changed:c7e8acae": {
+      "args": [
+        {
+          "t": "string",
+          "v": "title"
+        },
+        {
+          "t": "boolean",
+          "v": false
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_22"
+      }
+    },
+    "changed:927a0e67": {
+      "args": [
+        {
+          "t": "string",
+          "v": "value"
+        },
+        {
+          "t": "boolean",
+          "v": false
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_23"
+      }
+    },
+    "save:a21cafb4": {
+      "args": [
+        {
+          "t": "object",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_24"
+      }
+    },
+    "conn:obj_24:toJSON:": {
+      "args": [],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    },
+    "create:cc612b5b": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "id",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "title",
+              "v": {
+                "t": "string",
+                "v": "via-mockable-model"
+              }
+            },
+            {
+              "k": "value",
+              "v": {
+                "t": "number",
+                "v": 777
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    },
+    "warnOnInvalidOptions:de9e723d": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "where",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "id",
+                    "v": {
+                      "t": "number",
+                      "v": 10
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "plain",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        },
+        {
+          "t": "array",
+          "v": [
+            {
+              "t": "string",
+              "v": "id"
+            },
+            {
+              "t": "string",
+              "v": "title"
+            },
+            {
+              "t": "string",
+              "v": "value"
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "getTableName:27b4010e": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "where",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "id",
+                    "v": {
+                      "t": "number",
+                      "v": 10
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "plain",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "mock_models"
+      }
+    },
+    "getTableName:ebb48612": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "where",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "id",
+                    "v": {
+                      "t": "number",
+                      "v": 10
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "plain",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "hooks",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "rejectOnEmpty",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "originalAttributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            },
+            {
+              "k": "tableNames",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "mock_models"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "string",
+        "v": "mock_models"
+      }
+    },
+    "set:67a1e244": {
+      "args": [
+        {
+          "t": "string",
+          "v": "id"
+        },
+        {
+          "t": "number",
+          "v": 10
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_25"
+      }
+    },
+    "set:dd7d09ec": {
+      "args": [
+        {
+          "t": "string",
+          "v": "title"
+        },
+        {
+          "t": "string",
+          "v": "via-mockable-model"
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_26"
+      }
+    },
+    "set:d2b511b3": {
+      "args": [
+        {
+          "t": "string",
+          "v": "value"
+        },
+        {
+          "t": "number",
+          "v": 777
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_27"
+      }
+    },
+    "set:9455aa0d": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "id",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "title",
+              "v": {
+                "t": "string",
+                "v": "via-mockable-model"
+              }
+            },
+            {
+              "k": "value",
+              "v": {
+                "t": "number",
+                "v": 777
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_28"
+      }
+    },
+    "_initValues:9455aa0d": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "id",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "title",
+              "v": {
+                "t": "string",
+                "v": "via-mockable-model"
+              }
+            },
+            {
+              "k": "value",
+              "v": {
+                "t": "number",
+                "v": 777
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "_schema",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "_schemaDelimiter",
+              "v": {
+                "t": "string",
+                "v": ""
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "undefined"
+      }
+    },
+    "build:677df51d": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "id",
+              "v": {
+                "t": "number",
+                "v": 10
+              }
+            },
+            {
+              "k": "title",
+              "v": {
+                "t": "string",
+                "v": "via-mockable-model"
+              }
+            },
+            {
+              "k": "value",
+              "v": {
+                "t": "number",
+                "v": 777
+              }
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    },
+    "bulkBuild:c0ef8b4c": {
+      "args": [
+        {
+          "t": "array",
+          "v": [
+            {
+              "t": "object",
+              "v": [
+                {
+                  "k": "id",
+                  "v": {
+                    "t": "number",
+                    "v": 10
+                  }
+                },
+                {
+                  "k": "title",
+                  "v": {
+                    "t": "string",
+                    "v": "via-mockable-model"
+                  }
+                },
+                {
+                  "k": "value",
+                  "v": {
+                    "t": "number",
+                    "v": 777
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "isNewRecord",
+              "v": {
+                "t": "boolean",
+                "v": false
+              }
+            },
+            {
+              "k": "raw",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            },
+            {
+              "k": "attributes",
+              "v": {
+                "t": "array",
+                "v": [
+                  {
+                    "t": "string",
+                    "v": "id"
+                  },
+                  {
+                    "t": "string",
+                    "v": "title"
+                  },
+                  {
+                    "t": "string",
+                    "v": "value"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "dataValues",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "id",
+                      "v": {
+                        "t": "number",
+                        "v": 10
+                      }
+                    },
+                    {
+                      "k": "title",
+                      "v": {
+                        "t": "string",
+                        "v": "via-mockable-model"
+                      }
+                    },
+                    {
+                      "k": "value",
+                      "v": {
+                        "t": "number",
+                        "v": 777
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "_previousDataValues",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "id",
+                      "v": {
+                        "t": "number",
+                        "v": 10
+                      }
+                    },
+                    {
+                      "k": "title",
+                      "v": {
+                        "t": "string",
+                        "v": "via-mockable-model"
+                      }
+                    },
+                    {
+                      "k": "value",
+                      "v": {
+                        "t": "number",
+                        "v": 777
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "uniqno",
+                "v": {
+                  "t": "number",
+                  "v": 1
+                }
+              },
+              {
+                "k": "_changed",
+                "v": {
+                  "t": "object",
+                  "v": []
+                }
+              },
+              {
+                "k": "_options",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "isNewRecord",
+                      "v": {
+                        "t": "boolean",
+                        "v": false
+                      }
+                    },
+                    {
+                      "k": "_schema",
+                      "v": {
+                        "t": "null"
+                      }
+                    },
+                    {
+                      "k": "_schemaDelimiter",
+                      "v": {
+                        "t": "string",
+                        "v": ""
+                      }
+                    },
+                    {
+                      "k": "raw",
+                      "v": {
+                        "t": "boolean",
+                        "v": true
+                      }
+                    },
+                    {
+                      "k": "attributes",
+                      "v": {
+                        "t": "array",
+                        "v": [
+                          {
+                            "t": "string",
+                            "v": "id"
+                          },
+                          {
+                            "t": "string",
+                            "v": "title"
+                          },
+                          {
+                            "t": "string",
+                            "v": "value"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "isNewRecord",
+                "v": {
+                  "t": "boolean",
+                  "v": false
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "findAll:27b4010e": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "where",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "id",
+                    "v": {
+                      "t": "number",
+                      "v": 10
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "k": "plain",
+              "v": {
+                "t": "boolean",
+                "v": true
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    },
+    "findOne:1608ebcf": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "where",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "id",
+                    "v": {
+                      "t": "number",
+                      "v": 10
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "id",
+            "v": {
+              "t": "number",
+              "v": 10
+            }
+          },
+          {
+            "k": "title",
+            "v": {
+              "t": "string",
+              "v": "via-mockable-model"
+            }
+          },
+          {
+            "k": "value",
+            "v": {
+              "t": "number",
+              "v": 777
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ export type UnimockMode = 'off' | 'record' | 'replay';
 
 export interface MockableOptions {
   snapshotDir?: string;
+  wrapStatics?: boolean;
 }
 
 export interface SerializedPrimitive {

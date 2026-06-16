@@ -10,64 +10,63 @@ let counter = 0;
 export function Mockable(options?: MockableOptions) {
   return function <T extends new (...args: any[]) => object>(Base: T): T {
     const className = Base.name;
+    const store = getSnapshotStore(className, options?.snapshotDir);
 
-    class MockedClass extends Base {
-      constructor(...args: any[]) {
-        super(...args);
+    patchPrototype(Base.prototype, store);
 
-        const mode = SnapshotStoreClass.mode;
-        if (mode === 'off') return;
-
-        const store = getSnapshotStore(className, options?.snapshotDir);
-
-        wrapPrototype(this as unknown as Record<string, unknown>, store);
-      }
+    if (options?.wrapStatics) {
+      wrapStaticMethods(Base, store);
     }
 
-    Object.defineProperty(MockedClass, 'name', {
-      value: className,
-      configurable: true,
-    });
-
-    return MockedClass as unknown as T;
+    return Base;
   };
 }
 
-function wrapPrototype(instance: Record<string, unknown>, store: SnapshotStore): void {
+function patchPrototype(proto: object, store: SnapshotStore): void {
   const visited = new Set<string>();
   const entries: Array<{ key: string; descriptor: PropertyDescriptor }> = [];
 
-  let proto = Object.getPrototypeOf(instance);
-  while (proto && proto !== Object.prototype) {
-    for (const key of Object.getOwnPropertyNames(proto)) {
+  let current = proto;
+  while (current && current !== Object.prototype) {
+    for (const key of Object.getOwnPropertyNames(current)) {
       if (key === 'constructor' || key.startsWith('#') || visited.has(key)) continue;
       visited.add(key);
-      const descriptor = Object.getOwnPropertyDescriptor(proto, key);
+      const descriptor = Object.getOwnPropertyDescriptor(current, key);
       if (descriptor) entries.push({ key, descriptor });
     }
-    proto = Object.getPrototypeOf(proto);
+    current = Object.getPrototypeOf(current);
   }
 
   entries.reverse();
 
   for (const { key, descriptor } of entries) {
     if (typeof descriptor.value === 'function') {
-      instance[key] = wrapMethod(key, descriptor.value.bind(instance), store);
+      Object.defineProperty(proto, key, {
+        value: wrapMethod(key, descriptor.value as (...args: unknown[]) => unknown, store),
+        writable: descriptor.writable,
+        configurable: descriptor.configurable,
+      });
     }
     if (descriptor.get) {
-      Object.defineProperty(instance, key, {
-        get: wrapGetter(key, descriptor.get.bind(instance), store),
-        set: descriptor.set ? descriptor.set.bind(instance) : undefined,
+      Object.defineProperty(proto, key, {
+        get: wrapGetter(key, descriptor.get, store),
+        set: descriptor.set,
         configurable: true,
       });
     }
   }
 }
 
-function wrapMethod(
+function makeMethodWrapper(
   name: string,
   original: (...args: unknown[]) => unknown,
   store: SnapshotStore,
+  recordResult: (
+    store: SnapshotStore,
+    callKey: string,
+    result: unknown,
+    sa: SerializedValue[],
+  ) => unknown,
 ): (...args: unknown[]) => unknown {
   return function (this: unknown, ...args: unknown[]) {
     const mode = store.mode;
@@ -85,7 +84,7 @@ function wrapMethod(
         return result.then(
           (resolved: unknown) => {
             const sa = serializeArgs(recordedArgs, callbackRecords);
-            return wrapAndRecord(store, callKey, resolved, sa);
+            return recordResult(store, callKey, resolved, sa);
           },
           (error: Error) => {
             const sa = serializeArgs(recordedArgs, callbackRecords);
@@ -100,7 +99,7 @@ function wrapMethod(
       }
 
       const sa = serializeArgs(recordedArgs, callbackRecords);
-      return wrapAndRecord(store, callKey, result, sa);
+      return recordResult(store, callKey, result, sa);
     } catch (e: unknown) {
       const sa = serializeArgs(recordedArgs, callbackRecords);
       store.record(callKey, {
@@ -111,6 +110,22 @@ function wrapMethod(
       throw e;
     }
   };
+}
+
+function wrapMethod(
+  name: string,
+  original: (...args: unknown[]) => unknown,
+  store: SnapshotStore,
+): (...args: unknown[]) => unknown {
+  return makeMethodWrapper(name, original, store, wrapAndRecord);
+}
+
+function wrapStaticMethod(
+  name: string,
+  original: (...args: unknown[]) => unknown,
+  store: SnapshotStore,
+): (...args: unknown[]) => unknown {
+  return makeMethodWrapper(name, original, store, recordStaticResult);
 }
 
 function replayCall(
@@ -249,12 +264,95 @@ function hasMethods(value: unknown): value is object {
   return false;
 }
 
+const STATIC_SAFE = new Set([
+  'sync',
+  'drop',
+  'create',
+  'findOne',
+  'findAll',
+  'findByPk',
+  'findOrCreate',
+  'findOrBuild',
+  'findCreateFind',
+  'findAndCountAll',
+  'destroy',
+  'update',
+  'upsert',
+  'bulkCreate',
+  'truncate',
+  'restore',
+  'count',
+  'sum',
+  'min',
+  'max',
+  'increment',
+  'decrement',
+  'describe',
+  'scope',
+  'unscoped',
+  'schema',
+  'getTableName',
+  'addScope',
+  'removeAttribute',
+  'getAttributes',
+  'hasAlias',
+  'hasMany',
+  'belongsToMany',
+  'hasOne',
+  'belongsTo',
+  'build',
+  'bulkBuild',
+  'warnOnInvalidOptions',
+]);
+
+function wrapStaticMethods(
+  klass: new (...args: unknown[]) => object,
+  store: SnapshotStore,
+): void {
+  const visited = new Set<string>();
+  let ctor = Object.getPrototypeOf(klass);
+  while (ctor && ctor !== Function.prototype) {
+    for (const key of Object.getOwnPropertyNames(ctor)) {
+      if (key === 'constructor' || key === 'prototype' || key === 'name' || key === 'length' || visited.has(key)) continue;
+      visited.add(key);
+      if (!STATIC_SAFE.has(key)) continue;
+      const descriptor = Object.getOwnPropertyDescriptor(ctor, key);
+      if (descriptor && typeof descriptor.value === 'function') {
+        Object.defineProperty(klass, key, {
+          value: wrapStaticMethod(key, descriptor.value, store),
+          writable: true,
+          configurable: true,
+        });
+      }
+    }
+    ctor = Object.getPrototypeOf(ctor);
+  }
+}
+
+function recordStaticResult(
+  store: SnapshotStore,
+  callKey: string,
+  result: unknown,
+  serializedArgs: SerializedValue[],
+): unknown {
+  const data = toPlain(result);
+  store.record(callKey, { args: serializedArgs, result: serialize(data), error: undefined });
+  return result;
+}
+
+function toPlain(value: unknown): unknown {
+  if (value && typeof value === 'object' && typeof (value as any).toJSON === 'function') {
+    return (value as any).toJSON();
+  }
+  return value;
+}
+
 function wrapGetter(
   name: string,
   original: () => unknown,
   store: SnapshotStore,
 ): () => unknown {
-  return () => {
+  return function (this: unknown) {
     const callKey = makeCallKey('', name, []);
     const mode = store.mode;
 
@@ -266,7 +364,7 @@ function wrapGetter(
       return deserialize(entry.result);
     }
 
-    const result = original();
+    const result = original.call(this);
     if (hasMethods(result)) {
       const refId = `obj_${counter++}`;
       const wrapped = new ConnectionHandler(result, refId, store);

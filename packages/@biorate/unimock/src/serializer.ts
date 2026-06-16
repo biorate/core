@@ -1,7 +1,10 @@
 import { createHash } from 'node:crypto';
 import type { SerializedValue } from './interfaces';
 
-export function stableStringify(value: unknown): string {
+export function stableStringify(
+  value: unknown,
+  seen?: Set<object>,
+): string {
   if (value === null) return 'null';
   if (value === undefined) return '';
   if (typeof value === 'boolean' || typeof value === 'number')
@@ -10,14 +13,19 @@ export function stableStringify(value: unknown): string {
   if (typeof value === 'bigint') return JSON.stringify(value.toString());
   if (typeof value === 'function') return '<function>';
   if (typeof value === 'symbol') return '<symbol>';
-  if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`;
-  if (typeof value === 'object') {
+  if (typeof value === 'object' && value !== null) {
+    const s = seen ?? new Set<object>();
+    if (s.has(value)) return '';
+    s.add(value);
+    if (Array.isArray(value))
+      return `[${value.map((v) => stableStringify(v, s)).join(',')}]`;
     const keys = Object.keys(value as Record<string, unknown>).sort();
     return `{${keys
       .map(
         (k) =>
           `${JSON.stringify(k)}:${stableStringify(
             (value as Record<string, unknown>)[k],
+            s,
           )}`,
       )
       .join(',')}}`;
@@ -50,14 +58,17 @@ export function serialize(value: unknown, seen?: Map<object, string>): Serialize
   if (value instanceof Error)
     return { t: 'error', v: { n: value.name, m: value.message, s: value.stack } };
   if (Array.isArray(value)) {
-    const mapped: SerializedValue[] = [];
     const map = seen ?? new Map<object, string>();
-    if (map.has(value)) return { t: 'ref', v: map.get(value)! };
+    if (map.has(value)) return { t: 'undefined' };
+    map.set(value, '');
+    const mapped: SerializedValue[] = [];
     for (const item of value) mapped.push(serialize(item, map));
     return { t: 'array', v: mapped };
   }
   if (typeof value === 'object' && value !== null) {
     const map = seen ?? new Map<object, string>();
+    if (map.has(value)) return { t: 'undefined' };
+    map.set(value, '');
     const entries = Object.entries(value as Record<string, unknown>);
     const mapped: { k: string; v: SerializedValue }[] = [];
     for (const [k, v] of entries) {
