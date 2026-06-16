@@ -329,7 +329,7 @@
                   "k": "_id",
                   "v": {
                     "t": "string",
-                    "v": "9UFV0p4BWcWiddyY9Ec8"
+                    "v": "_EFX0p4BWcWiddyYo0ce"
                   }
                 },
                 {
@@ -408,7 +408,7 @@
                   "k": "location",
                   "v": {
                     "t": "string",
-                    "v": "/unimock_test_opensearch/_doc/9UFV0p4BWcWiddyY9Ec8"
+                    "v": "/unimock_test_opensearch/_doc/_EFX0p4BWcWiddyYo0ce"
                   }
                 },
                 {
@@ -1486,7 +1486,7 @@
                                           "k": "localhost:9200::::::::false:::::::::::::",
                                           "v": {
                                             "t": "buffer",
-                                            "v": "MIIFXAIBAQICAwQEAhMBBCAItj+Ijdpg7ywJ1LR2VHLu1+4n3lFAxopnFxFn0RiOGwQgaH3KwSoZR1mRIe2QglXrb8yFA93aFdgJXK14Cdtn3a2hBgIEajG//KIEAgIcIKOCBEAwggQ8MIIDJKADAgECAhRphKURPefOyi1ZOta55U8+HXTItjANBgkqhkiG9w0BAQsFADCBjzETMBEGCgmSJomT8ixkARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1wbGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEhMB8GA1UEAwwYRXhhbXBsZSBDb20gSW5jLiBSb290IENBMB4XDTI0MDIyMDE3MDMyNVoXDTM0MDIxNzE3MDMyNVowVzELMAkGA1UEBhMCZGUxDTALBgNVBAcMBHRlc3QxDTALBgNVBAoMBG5vZGUxDTALBgNVBAsMBG5vZGUxGzAZBgNVBAMMEm5vZGUtMC5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKb3eRe14NAcwC9tQ809bmnJEcoMPjZcZZKCrSTUPb0L9R3IvbUcvNMlrj1lTaV0iRIqz0mpuQd3IrSjww7ovx2i0uhhvENZskVbxunXDq0NNTQcaSfjtdW7cTBt+tMQ2DeMW7456bpr/nTVLMhPMla1LRyfZ0gU4GKZNWlP/hm/mqtcDoKnhuI6ahNhaGL+pCXx3QhoAOKqhnUy9ltnrHvqpOtEBuD5RaSlMRegfXFNzyd2JtHv4c/o5OoIq+jU2ETy4/ilj59Z3pvqX4oujcgql9NsAglcg74zrsUu1Yq220Nqj3gHTr2yTMqToU+Bb85mHo9EIPSjE5q9X6V3ZKMCAwEAAaOBxjCBwzBHBgNVHREEQDA+iAUqAwQFBYISbm9kZS0wLmV4YW1wbGUuY29tgglsb2NhbGhvc3SHEAAAAAAAAAAAAAAAAAAAAAGHBH8AAAEwCwYDVR0PBAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBTT+oNBpjXSMijAKMtSnP8d9BfK3zAfBgNVHSMEGDAWgBQXh9+gWutmEqfV0Pi6EkU8tysAnDANBgkqhkiG9w0BAQsFAAOCAQEAZuKPlbIXR0qFCh1B9OIUNvvfKBTojJ4mQVKfEXruAPOlAlkoW9e5UFrdwY/l7tCndMrnQ35uVcYfTFd4hX2Vd5hSTiFV8GWn0tyVkZfy0aLtdrZ6cy8i3mr9iDceHvnlnGcNjEKgaQ05dSacy6wqy0TRjO9nka/p9xEoUFSBkuGFQGogQBiXLUSof/LjkA+JG3c2ivXIXrMQjhOcvTI2sfDovJCRQ0IcgYwkt+clD0txqYwYhc7HrSRc0xOKAX2hdfCLFYCcMz3LdBPxBcDuF6P/jORs768h5X/uUZR2TKA8CL3YS/LGayWIQzIxHRUg2Xx6bKhu9/Brugx5YxH6GKQCBAClAwIBFakFAgMBUYCqgZoEgZfs4q/q9bKXFigJnrv6YVGac8+moQDIsGuArXr0pEFShvZx8tD7F0nOFrEmQG8uFHoRsEpi1jODnNRrCsp5RZxKWH0QgtjIzm41+aE3aS6t01tsI/l17IaR7xIFS5uDS4O80V6dJEnwfCKNTJH42sgiZhk7n2Q9HB43nohwQNVo/auJvDjpzENxAG8Vdmr1HtQ3pCiAzd9rrgcCBQCC6NCBswMCAR0="
+                                            "v": "MIIFWwIBAQICAwQEAhMBBCDRrNJ/h7MhHth16Ahm8mLNqiFCizzUMyG+DXeMEePAtQQg/GddPzdU1kX4+0DVOkpITHXKLfNAmfhGIegXagGYyjShBgIEajHAaqIEAgIcIKOCBEAwggQ8MIIDJKADAgECAhRphKURPefOyi1ZOta55U8+HXTItjANBgkqhkiG9w0BAQsFADCBjzETMBEGCgmSJomT8ixkARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1wbGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEhMB8GA1UEAwwYRXhhbXBsZSBDb20gSW5jLiBSb290IENBMB4XDTI0MDIyMDE3MDMyNVoXDTM0MDIxNzE3MDMyNVowVzELMAkGA1UEBhMCZGUxDTALBgNVBAcMBHRlc3QxDTALBgNVBAoMBG5vZGUxDTALBgNVBAsMBG5vZGUxGzAZBgNVBAMMEm5vZGUtMC5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKb3eRe14NAcwC9tQ809bmnJEcoMPjZcZZKCrSTUPb0L9R3IvbUcvNMlrj1lTaV0iRIqz0mpuQd3IrSjww7ovx2i0uhhvENZskVbxunXDq0NNTQcaSfjtdW7cTBt+tMQ2DeMW7456bpr/nTVLMhPMla1LRyfZ0gU4GKZNWlP/hm/mqtcDoKnhuI6ahNhaGL+pCXx3QhoAOKqhnUy9ltnrHvqpOtEBuD5RaSlMRegfXFNzyd2JtHv4c/o5OoIq+jU2ETy4/ilj59Z3pvqX4oujcgql9NsAglcg74zrsUu1Yq220Nqj3gHTr2yTMqToU+Bb85mHo9EIPSjE5q9X6V3ZKMCAwEAAaOBxjCBwzBHBgNVHREEQDA+iAUqAwQFBYISbm9kZS0wLmV4YW1wbGUuY29tgglsb2NhbGhvc3SHEAAAAAAAAAAAAAAAAAAAAAGHBH8AAAEwCwYDVR0PBAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBTT+oNBpjXSMijAKMtSnP8d9BfK3zAfBgNVHSMEGDAWgBQXh9+gWutmEqfV0Pi6EkU8tysAnDANBgkqhkiG9w0BAQsFAAOCAQEAZuKPlbIXR0qFCh1B9OIUNvvfKBTojJ4mQVKfEXruAPOlAlkoW9e5UFrdwY/l7tCndMrnQ35uVcYfTFd4hX2Vd5hSTiFV8GWn0tyVkZfy0aLtdrZ6cy8i3mr9iDceHvnlnGcNjEKgaQ05dSacy6wqy0TRjO9nka/p9xEoUFSBkuGFQGogQBiXLUSof/LjkA+JG3c2ivXIXrMQjhOcvTI2sfDovJCRQ0IcgYwkt+clD0txqYwYhc7HrSRc0xOKAX2hdfCLFYCcMz3LdBPxBcDuF6P/jORs768h5X/uUZR2TKA8CL3YS/LGayWIQzIxHRUg2Xx6bKhu9/Brugx5YxH6GKQCBAClAwIBFakFAgMBUYCqgZoEgZfs4q/qym+9jWTZhXYCXYs/QYNAHACjXF7RxYmSFg96xHkzmPIbrO81h5VM9haF24jsfeRGJqs3A4VS71GZIIxIGKjU/40mPFKK3CDOHP39UEx2SzGGVREG6Lo27Qze9haQibcNH0wZSfW/L94XqWG6EuzaBROQo+H6q4fJG3c1DZ3eVVIYLuCigOR2HNi7fwHgZ5YSlJrdrgYCBE3BoW+zAwIBHQ=="
                                           }
                                         }
                                       ]
@@ -1596,7 +1596,7 @@
                   "k": "_id",
                   "v": {
                     "t": "string",
-                    "v": "9UFV0p4BWcWiddyY9Ec8"
+                    "v": "_EFX0p4BWcWiddyYo0ce"
                   }
                 },
                 {
@@ -1675,7 +1675,7 @@
                   "k": "location",
                   "v": {
                     "t": "string",
-                    "v": "/unimock_test_opensearch/_doc/9UFV0p4BWcWiddyY9Ec8"
+                    "v": "/unimock_test_opensearch/_doc/_EFX0p4BWcWiddyYo0ce"
                   }
                 },
                 {
@@ -2753,7 +2753,7 @@
                                           "k": "localhost:9200::::::::false:::::::::::::",
                                           "v": {
                                             "t": "buffer",
-                                            "v": "MIIFXAIBAQICAwQEAhMBBCAItj+Ijdpg7ywJ1LR2VHLu1+4n3lFAxopnFxFn0RiOGwQgaH3KwSoZR1mRIe2QglXrb8yFA93aFdgJXK14Cdtn3a2hBgIEajG//KIEAgIcIKOCBEAwggQ8MIIDJKADAgECAhRphKURPefOyi1ZOta55U8+HXTItjANBgkqhkiG9w0BAQsFADCBjzETMBEGCgmSJomT8ixkARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1wbGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEhMB8GA1UEAwwYRXhhbXBsZSBDb20gSW5jLiBSb290IENBMB4XDTI0MDIyMDE3MDMyNVoXDTM0MDIxNzE3MDMyNVowVzELMAkGA1UEBhMCZGUxDTALBgNVBAcMBHRlc3QxDTALBgNVBAoMBG5vZGUxDTALBgNVBAsMBG5vZGUxGzAZBgNVBAMMEm5vZGUtMC5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKb3eRe14NAcwC9tQ809bmnJEcoMPjZcZZKCrSTUPb0L9R3IvbUcvNMlrj1lTaV0iRIqz0mpuQd3IrSjww7ovx2i0uhhvENZskVbxunXDq0NNTQcaSfjtdW7cTBt+tMQ2DeMW7456bpr/nTVLMhPMla1LRyfZ0gU4GKZNWlP/hm/mqtcDoKnhuI6ahNhaGL+pCXx3QhoAOKqhnUy9ltnrHvqpOtEBuD5RaSlMRegfXFNzyd2JtHv4c/o5OoIq+jU2ETy4/ilj59Z3pvqX4oujcgql9NsAglcg74zrsUu1Yq220Nqj3gHTr2yTMqToU+Bb85mHo9EIPSjE5q9X6V3ZKMCAwEAAaOBxjCBwzBHBgNVHREEQDA+iAUqAwQFBYISbm9kZS0wLmV4YW1wbGUuY29tgglsb2NhbGhvc3SHEAAAAAAAAAAAAAAAAAAAAAGHBH8AAAEwCwYDVR0PBAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBTT+oNBpjXSMijAKMtSnP8d9BfK3zAfBgNVHSMEGDAWgBQXh9+gWutmEqfV0Pi6EkU8tysAnDANBgkqhkiG9w0BAQsFAAOCAQEAZuKPlbIXR0qFCh1B9OIUNvvfKBTojJ4mQVKfEXruAPOlAlkoW9e5UFrdwY/l7tCndMrnQ35uVcYfTFd4hX2Vd5hSTiFV8GWn0tyVkZfy0aLtdrZ6cy8i3mr9iDceHvnlnGcNjEKgaQ05dSacy6wqy0TRjO9nka/p9xEoUFSBkuGFQGogQBiXLUSof/LjkA+JG3c2ivXIXrMQjhOcvTI2sfDovJCRQ0IcgYwkt+clD0txqYwYhc7HrSRc0xOKAX2hdfCLFYCcMz3LdBPxBcDuF6P/jORs768h5X/uUZR2TKA8CL3YS/LGayWIQzIxHRUg2Xx6bKhu9/Brugx5YxH6GKQCBAClAwIBFakFAgMBUYCqgZoEgZfs4q/q9bKXFigJnrv6YVGac8+moQDIsGuArXr0pEFShvZx8tD7F0nOFrEmQG8uFHoRsEpi1jODnNRrCsp5RZxKWH0QgtjIzm41+aE3aS6t01tsI/l17IaR7xIFS5uDS4O80V6dJEnwfCKNTJH42sgiZhk7n2Q9HB43nohwQNVo/auJvDjpzENxAG8Vdmr1HtQ3pCiAzd9rrgcCBQCC6NCBswMCAR0="
+                                            "v": "MIIFWwIBAQICAwQEAhMBBCDRrNJ/h7MhHth16Ahm8mLNqiFCizzUMyG+DXeMEePAtQQg/GddPzdU1kX4+0DVOkpITHXKLfNAmfhGIegXagGYyjShBgIEajHAaqIEAgIcIKOCBEAwggQ8MIIDJKADAgECAhRphKURPefOyi1ZOta55U8+HXTItjANBgkqhkiG9w0BAQsFADCBjzETMBEGCgmSJomT8ixkARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1wbGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEhMB8GA1UEAwwYRXhhbXBsZSBDb20gSW5jLiBSb290IENBMB4XDTI0MDIyMDE3MDMyNVoXDTM0MDIxNzE3MDMyNVowVzELMAkGA1UEBhMCZGUxDTALBgNVBAcMBHRlc3QxDTALBgNVBAoMBG5vZGUxDTALBgNVBAsMBG5vZGUxGzAZBgNVBAMMEm5vZGUtMC5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKb3eRe14NAcwC9tQ809bmnJEcoMPjZcZZKCrSTUPb0L9R3IvbUcvNMlrj1lTaV0iRIqz0mpuQd3IrSjww7ovx2i0uhhvENZskVbxunXDq0NNTQcaSfjtdW7cTBt+tMQ2DeMW7456bpr/nTVLMhPMla1LRyfZ0gU4GKZNWlP/hm/mqtcDoKnhuI6ahNhaGL+pCXx3QhoAOKqhnUy9ltnrHvqpOtEBuD5RaSlMRegfXFNzyd2JtHv4c/o5OoIq+jU2ETy4/ilj59Z3pvqX4oujcgql9NsAglcg74zrsUu1Yq220Nqj3gHTr2yTMqToU+Bb85mHo9EIPSjE5q9X6V3ZKMCAwEAAaOBxjCBwzBHBgNVHREEQDA+iAUqAwQFBYISbm9kZS0wLmV4YW1wbGUuY29tgglsb2NhbGhvc3SHEAAAAAAAAAAAAAAAAAAAAAGHBH8AAAEwCwYDVR0PBAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBTT+oNBpjXSMijAKMtSnP8d9BfK3zAfBgNVHSMEGDAWgBQXh9+gWutmEqfV0Pi6EkU8tysAnDANBgkqhkiG9w0BAQsFAAOCAQEAZuKPlbIXR0qFCh1B9OIUNvvfKBTojJ4mQVKfEXruAPOlAlkoW9e5UFrdwY/l7tCndMrnQ35uVcYfTFd4hX2Vd5hSTiFV8GWn0tyVkZfy0aLtdrZ6cy8i3mr9iDceHvnlnGcNjEKgaQ05dSacy6wqy0TRjO9nka/p9xEoUFSBkuGFQGogQBiXLUSof/LjkA+JG3c2ivXIXrMQjhOcvTI2sfDovJCRQ0IcgYwkt+clD0txqYwYhc7HrSRc0xOKAX2hdfCLFYCcMz3LdBPxBcDuF6P/jORs768h5X/uUZR2TKA8CL3YS/LGayWIQzIxHRUg2Xx6bKhu9/Brugx5YxH6GKQCBAClAwIBFakFAgMBUYCqgZoEgZfs4q/qym+9jWTZhXYCXYs/QYNAHACjXF7RxYmSFg96xHkzmPIbrO81h5VM9haF24jsfeRGJqs3A4VS71GZIIxIGKjU/40mPFKK3CDOHP39UEx2SzGGVREG6Lo27Qze9haQibcNH0wZSfW/L94XqWG6EuzaBROQo+H6q4fJG3c1DZ3eVVIYLuCigOR2HNi7fwHgZ5YSlJrdrgYCBE3BoW+zAwIBHQ=="
                                           }
                                         }
                                       ]
@@ -2847,7 +2847,7 @@
             "k": "_id",
             "v": {
               "t": "string",
-              "v": "9UFV0p4BWcWiddyY9Ec8"
+              "v": "_EFX0p4BWcWiddyYo0ce"
             }
           },
           {
@@ -12963,6 +12963,2533 @@
             "v": {
               "t": "string",
               "v": "9UFV0p4BWcWiddyY9Ec8"
+            }
+          },
+          {
+            "k": "_version",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "_seq_no",
+            "v": {
+              "t": "number",
+              "v": 0
+            }
+          },
+          {
+            "k": "_primary_term",
+            "v": {
+              "t": "number",
+              "v": 1
+            }
+          },
+          {
+            "k": "found",
+            "v": {
+              "t": "boolean",
+              "v": true
+            }
+          },
+          {
+            "k": "_source",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "title",
+                  "v": {
+                    "t": "string",
+                    "v": "test"
+                  }
+                },
+                {
+                  "k": "value",
+                  "v": {
+                    "t": "number",
+                    "v": 42
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_1:get:1c16e084": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "index",
+              "v": {
+                "t": "string",
+                "v": "unimock_test_opensearch"
+              }
+            },
+            {
+              "k": "id",
+              "v": {
+                "t": "string",
+                "v": "_EFX0p4BWcWiddyYo0ce"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "body",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "_index",
+                  "v": {
+                    "t": "string",
+                    "v": "unimock_test_opensearch"
+                  }
+                },
+                {
+                  "k": "_id",
+                  "v": {
+                    "t": "string",
+                    "v": "_EFX0p4BWcWiddyYo0ce"
+                  }
+                },
+                {
+                  "k": "_version",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "_seq_no",
+                  "v": {
+                    "t": "number",
+                    "v": 0
+                  }
+                },
+                {
+                  "k": "_primary_term",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "found",
+                  "v": {
+                    "t": "boolean",
+                    "v": true
+                  }
+                },
+                {
+                  "k": "_source",
+                  "v": {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "title",
+                        "v": {
+                          "t": "string",
+                          "v": "test"
+                        }
+                      },
+                      {
+                        "k": "value",
+                        "v": {
+                          "t": "number",
+                          "v": 42
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "k": "statusCode",
+            "v": {
+              "t": "number",
+              "v": 200
+            }
+          },
+          {
+            "k": "headers",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "x-opensearch-version",
+                  "v": {
+                    "t": "string",
+                    "v": "OpenSearch/3.4.0 (opensearch)"
+                  }
+                },
+                {
+                  "k": "content-type",
+                  "v": {
+                    "t": "string",
+                    "v": "application/json; charset=UTF-8"
+                  }
+                },
+                {
+                  "k": "content-length",
+                  "v": {
+                    "t": "string",
+                    "v": "159"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "k": "meta",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "context",
+                  "v": {
+                    "t": "null"
+                  }
+                },
+                {
+                  "k": "request",
+                  "v": {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "params",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "method",
+                              "v": {
+                                "t": "string",
+                                "v": "GET"
+                              }
+                            },
+                            {
+                              "k": "path",
+                              "v": {
+                                "t": "string",
+                                "v": "/unimock_test_opensearch/_doc/_EFX0p4BWcWiddyYo0ce"
+                              }
+                            },
+                            {
+                              "k": "body",
+                              "v": {
+                                "t": "null"
+                              }
+                            },
+                            {
+                              "k": "querystring",
+                              "v": {
+                                "t": "string",
+                                "v": ""
+                              }
+                            },
+                            {
+                              "k": "headers",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "user-agent",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "opensearch-js/2.10.0 (linux 6.18.35-1-lts-x64; Node.js v24.13.0)"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "timeout",
+                              "v": {
+                                "t": "number",
+                                "v": 30000
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "options",
+                        "v": {
+                          "t": "object",
+                          "v": []
+                        }
+                      },
+                      {
+                        "k": "id",
+                        "v": {
+                          "t": "number",
+                          "v": 5
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "k": "name",
+                  "v": {
+                    "t": "string",
+                    "v": "opensearch-js"
+                  }
+                },
+                {
+                  "k": "connection",
+                  "v": {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "url",
+                        "v": {
+                          "t": "object",
+                          "v": []
+                        }
+                      },
+                      {
+                        "k": "ssl",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "rejectUnauthorized",
+                              "v": {
+                                "t": "boolean",
+                                "v": false
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "id",
+                        "v": {
+                          "t": "string",
+                          "v": "https://localhost:9200/"
+                        }
+                      },
+                      {
+                        "k": "headers",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "authorization",
+                              "v": {
+                                "t": "string",
+                                "v": "Basic YWRtaW46Zm80R2FpMXBoYWg3ZWV4dQ=="
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "deadCount",
+                        "v": {
+                          "t": "number",
+                          "v": 0
+                        }
+                      },
+                      {
+                        "k": "resurrectTimeout",
+                        "v": {
+                          "t": "number",
+                          "v": 0
+                        }
+                      },
+                      {
+                        "k": "_openRequests",
+                        "v": {
+                          "t": "number",
+                          "v": 0
+                        }
+                      },
+                      {
+                        "k": "_status",
+                        "v": {
+                          "t": "string",
+                          "v": "alive"
+                        }
+                      },
+                      {
+                        "k": "roles",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "data",
+                              "v": {
+                                "t": "boolean",
+                                "v": true
+                              }
+                            },
+                            {
+                              "k": "ingest",
+                              "v": {
+                                "t": "boolean",
+                                "v": true
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "agent",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "_events",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "free",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "<callback>"
+                                    }
+                                  },
+                                  {
+                                    "k": "newListener",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "<callback>"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "_eventsCount",
+                              "v": {
+                                "t": "number",
+                                "v": 2
+                              }
+                            },
+                            {
+                              "k": "_maxListeners",
+                              "v": {
+                                "t": "undefined"
+                              }
+                            },
+                            {
+                              "k": "options",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "keepAlive",
+                                    "v": {
+                                      "t": "boolean",
+                                      "v": true
+                                    }
+                                  },
+                                  {
+                                    "k": "keepAliveMsecs",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 1000
+                                    }
+                                  },
+                                  {
+                                    "k": "maxSockets",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 256
+                                    }
+                                  },
+                                  {
+                                    "k": "maxFreeSockets",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 256
+                                    }
+                                  },
+                                  {
+                                    "k": "scheduling",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "lifo"
+                                    }
+                                  },
+                                  {
+                                    "k": "rejectUnauthorized",
+                                    "v": {
+                                      "t": "boolean",
+                                      "v": false
+                                    }
+                                  },
+                                  {
+                                    "k": "defaultPort",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 443
+                                    }
+                                  },
+                                  {
+                                    "k": "protocol",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "https:"
+                                    }
+                                  },
+                                  {
+                                    "k": "noDelay",
+                                    "v": {
+                                      "t": "boolean",
+                                      "v": true
+                                    }
+                                  },
+                                  {
+                                    "k": "path",
+                                    "v": {
+                                      "t": "null"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "defaultPort",
+                              "v": {
+                                "t": "number",
+                                "v": 443
+                              }
+                            },
+                            {
+                              "k": "protocol",
+                              "v": {
+                                "t": "string",
+                                "v": "https:"
+                              }
+                            },
+                            {
+                              "k": "requests",
+                              "v": {
+                                "t": "object",
+                                "v": []
+                              }
+                            },
+                            {
+                              "k": "sockets",
+                              "v": {
+                                "t": "object",
+                                "v": []
+                              }
+                            },
+                            {
+                              "k": "freeSockets",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "localhost:9200::::::::false:::::::::::::",
+                                    "v": {
+                                      "t": "array",
+                                      "v": [
+                                        {
+                                          "t": "object",
+                                          "v": [
+                                            {
+                                              "k": "_tlsOptions",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "allowHalfOpen",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pipe",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": false
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "secureContext",
+                                                    "v": {
+                                                      "t": "object",
+                                                      "v": [
+                                                        {
+                                                          "k": "context",
+                                                          "v": {
+                                                            "t": "object",
+                                                            "v": []
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "isServer",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": false
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "requestCert",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": true
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "rejectUnauthorized",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": false
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "session",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "ALPNProtocols",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "requestOCSP",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "enableTrace",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pskCallback",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "highWaterMark",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onread",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "signal",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_secureEstablished",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "_securePending",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_newSessionPending",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_controlReleased",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "secureConnecting",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_SNICallback",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "servername",
+                                              "v": {
+                                                "t": "string",
+                                                "v": "localhost"
+                                              }
+                                            },
+                                            {
+                                              "k": "alpnProtocol",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "authorized",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "authorizationError",
+                                              "v": {
+                                                "t": "string",
+                                                "v": "UNABLE_TO_VERIFY_LEAF_SIGNATURE"
+                                              }
+                                            },
+                                            {
+                                              "k": "encrypted",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "_events",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "close",
+                                                    "v": {
+                                                      "t": "array",
+                                                      "v": [
+                                                        {
+                                                          "t": "string",
+                                                          "v": "<callback>"
+                                                        },
+                                                        {
+                                                          "t": "string",
+                                                          "v": "<callback>"
+                                                        },
+                                                        {
+                                                          "t": "string",
+                                                          "v": "<callback>"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "end",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "error",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "newListener",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "connect",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "secure",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "session",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "free",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "timeout",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "agentRemove",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "data",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "drain",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_eventsCount",
+                                              "v": {
+                                                "t": "number",
+                                                "v": 9
+                                              }
+                                            },
+                                            {
+                                              "k": "connecting",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_hadError",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_parent",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_host",
+                                              "v": {
+                                                "t": "string",
+                                                "v": "localhost"
+                                              }
+                                            },
+                                            {
+                                              "k": "_closeAfterHandlingError",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_readableState",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "highWaterMark",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 65536
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "buffer",
+                                                    "v": {
+                                                      "t": "array",
+                                                      "v": []
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "bufferIndex",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "length",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pipes",
+                                                    "v": {
+                                                      "t": "array",
+                                                      "v": []
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "awaitDrainWriters",
+                                                    "v": {
+                                                      "t": "null"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_writableState",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "highWaterMark",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 65536
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "length",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "corked",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onwrite",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "writelen",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "bufferedIndex",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pendingcb",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "allowHalfOpen",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_maxListeners",
+                                              "v": {
+                                                "t": "undefined"
+                                              }
+                                            },
+                                            {
+                                              "k": "_sockname",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_pendingData",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_pendingEncoding",
+                                              "v": {
+                                                "t": "string",
+                                                "v": ""
+                                              }
+                                            },
+                                            {
+                                              "k": "server",
+                                              "v": {
+                                                "t": "undefined"
+                                              }
+                                            },
+                                            {
+                                              "k": "_server",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "ssl",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "_parent",
+                                                    "v": {
+                                                      "t": "object",
+                                                      "v": [
+                                                        {
+                                                          "k": "reading",
+                                                          "v": {
+                                                            "t": "boolean",
+                                                            "v": true
+                                                          }
+                                                        },
+                                                        {
+                                                          "k": "onconnection",
+                                                          "v": {
+                                                            "t": "null"
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "_parentWrap",
+                                                    "v": {
+                                                      "t": "null"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "_secureContext",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "reading",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": true
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onkeylog",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onhandshakestart",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onhandshakedone",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onocspresponse",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onnewsession",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onerror",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_requestCert",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "_rejectUnauthorized",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "timeout",
+                                              "v": {
+                                                "t": "number",
+                                                "v": 0
+                                              }
+                                            },
+                                            {
+                                              "k": "parser",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_httpMessage",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "keepAliveMsecs",
+                              "v": {
+                                "t": "number",
+                                "v": 1000
+                              }
+                            },
+                            {
+                              "k": "keepAlive",
+                              "v": {
+                                "t": "boolean",
+                                "v": true
+                              }
+                            },
+                            {
+                              "k": "maxSockets",
+                              "v": {
+                                "t": "number",
+                                "v": 256
+                              }
+                            },
+                            {
+                              "k": "maxFreeSockets",
+                              "v": {
+                                "t": "number",
+                                "v": 256
+                              }
+                            },
+                            {
+                              "k": "scheduling",
+                              "v": {
+                                "t": "string",
+                                "v": "lifo"
+                              }
+                            },
+                            {
+                              "k": "maxTotalSockets",
+                              "v": {
+                                "t": "number",
+                                "v": null
+                              }
+                            },
+                            {
+                              "k": "totalSocketCount",
+                              "v": {
+                                "t": "number",
+                                "v": 1
+                              }
+                            },
+                            {
+                              "k": "agentKeepAliveTimeoutBuffer",
+                              "v": {
+                                "t": "number",
+                                "v": 1000
+                              }
+                            },
+                            {
+                              "k": "maxCachedSessions",
+                              "v": {
+                                "t": "number",
+                                "v": 100
+                              }
+                            },
+                            {
+                              "k": "_sessionCache",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "map",
+                                    "v": {
+                                      "t": "object",
+                                      "v": [
+                                        {
+                                          "k": "localhost:9200::::::::false:::::::::::::",
+                                          "v": {
+                                            "t": "buffer",
+                                            "v": "MIIFWwIBAQICAwQEAhMBBCDRrNJ/h7MhHth16Ahm8mLNqiFCizzUMyG+DXeMEePAtQQg/GddPzdU1kX4+0DVOkpITHXKLfNAmfhGIegXagGYyjShBgIEajHAaqIEAgIcIKOCBEAwggQ8MIIDJKADAgECAhRphKURPefOyi1ZOta55U8+HXTItjANBgkqhkiG9w0BAQsFADCBjzETMBEGCgmSJomT8ixkARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1wbGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEhMB8GA1UEAwwYRXhhbXBsZSBDb20gSW5jLiBSb290IENBMB4XDTI0MDIyMDE3MDMyNVoXDTM0MDIxNzE3MDMyNVowVzELMAkGA1UEBhMCZGUxDTALBgNVBAcMBHRlc3QxDTALBgNVBAoMBG5vZGUxDTALBgNVBAsMBG5vZGUxGzAZBgNVBAMMEm5vZGUtMC5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKb3eRe14NAcwC9tQ809bmnJEcoMPjZcZZKCrSTUPb0L9R3IvbUcvNMlrj1lTaV0iRIqz0mpuQd3IrSjww7ovx2i0uhhvENZskVbxunXDq0NNTQcaSfjtdW7cTBt+tMQ2DeMW7456bpr/nTVLMhPMla1LRyfZ0gU4GKZNWlP/hm/mqtcDoKnhuI6ahNhaGL+pCXx3QhoAOKqhnUy9ltnrHvqpOtEBuD5RaSlMRegfXFNzyd2JtHv4c/o5OoIq+jU2ETy4/ilj59Z3pvqX4oujcgql9NsAglcg74zrsUu1Yq220Nqj3gHTr2yTMqToU+Bb85mHo9EIPSjE5q9X6V3ZKMCAwEAAaOBxjCBwzBHBgNVHREEQDA+iAUqAwQFBYISbm9kZS0wLmV4YW1wbGUuY29tgglsb2NhbGhvc3SHEAAAAAAAAAAAAAAAAAAAAAGHBH8AAAEwCwYDVR0PBAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBTT+oNBpjXSMijAKMtSnP8d9BfK3zAfBgNVHSMEGDAWgBQXh9+gWutmEqfV0Pi6EkU8tysAnDANBgkqhkiG9w0BAQsFAAOCAQEAZuKPlbIXR0qFCh1B9OIUNvvfKBTojJ4mQVKfEXruAPOlAlkoW9e5UFrdwY/l7tCndMrnQ35uVcYfTFd4hX2Vd5hSTiFV8GWn0tyVkZfy0aLtdrZ6cy8i3mr9iDceHvnlnGcNjEKgaQ05dSacy6wqy0TRjO9nka/p9xEoUFSBkuGFQGogQBiXLUSof/LjkA+JG3c2ivXIXrMQjhOcvTI2sfDovJCRQ0IcgYwkt+clD0txqYwYhc7HrSRc0xOKAX2hdfCLFYCcMz3LdBPxBcDuF6P/jORs768h5X/uUZR2TKA8CL3YS/LGayWIQzIxHRUg2Xx6bKhu9/Brugx5YxH6GKQCBAClAwIBFakFAgMBUYCqgZoEgZfs4q/qym+9jWTZhXYCXYs/QYNAHACjXF7RxYmSFg96xHkzmPIbrO81h5VM9haF24jsfeRGJqs3A4VS71GZIIxIGKjU/40mPFKK3CDOHP39UEx2SzGGVREG6Lo27Qze9haQibcNH0wZSfW/L94XqWG6EuzaBROQo+H6q4fJG3c1DZ3eVVIYLuCigOR2HNi7fwHgZ5YSlJrdrgYCBE3BoW+zAwIBHQ=="
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "k": "list",
+                                    "v": {
+                                      "t": "array",
+                                      "v": [
+                                        {
+                                          "t": "string",
+                                          "v": "localhost:9200::::::::false:::::::::::::"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "makeRequest",
+                        "v": {
+                          "t": "string",
+                          "v": "<callback>"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "k": "attempts",
+                  "v": {
+                    "t": "number",
+                    "v": 0
+                  }
+                },
+                {
+                  "k": "aborted",
+                  "v": {
+                    "t": "boolean",
+                    "v": false
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "conn:obj_6:get:1c16e084": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "index",
+              "v": {
+                "t": "string",
+                "v": "unimock_test_opensearch"
+              }
+            },
+            {
+              "k": "id",
+              "v": {
+                "t": "string",
+                "v": "_EFX0p4BWcWiddyYo0ce"
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "body",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "_index",
+                  "v": {
+                    "t": "string",
+                    "v": "unimock_test_opensearch"
+                  }
+                },
+                {
+                  "k": "_id",
+                  "v": {
+                    "t": "string",
+                    "v": "_EFX0p4BWcWiddyYo0ce"
+                  }
+                },
+                {
+                  "k": "_version",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "_seq_no",
+                  "v": {
+                    "t": "number",
+                    "v": 0
+                  }
+                },
+                {
+                  "k": "_primary_term",
+                  "v": {
+                    "t": "number",
+                    "v": 1
+                  }
+                },
+                {
+                  "k": "found",
+                  "v": {
+                    "t": "boolean",
+                    "v": true
+                  }
+                },
+                {
+                  "k": "_source",
+                  "v": {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "title",
+                        "v": {
+                          "t": "string",
+                          "v": "test"
+                        }
+                      },
+                      {
+                        "k": "value",
+                        "v": {
+                          "t": "number",
+                          "v": 42
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "k": "statusCode",
+            "v": {
+              "t": "number",
+              "v": 200
+            }
+          },
+          {
+            "k": "headers",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "x-opensearch-version",
+                  "v": {
+                    "t": "string",
+                    "v": "OpenSearch/3.4.0 (opensearch)"
+                  }
+                },
+                {
+                  "k": "content-type",
+                  "v": {
+                    "t": "string",
+                    "v": "application/json; charset=UTF-8"
+                  }
+                },
+                {
+                  "k": "content-length",
+                  "v": {
+                    "t": "string",
+                    "v": "159"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "k": "meta",
+            "v": {
+              "t": "object",
+              "v": [
+                {
+                  "k": "context",
+                  "v": {
+                    "t": "null"
+                  }
+                },
+                {
+                  "k": "request",
+                  "v": {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "params",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "method",
+                              "v": {
+                                "t": "string",
+                                "v": "GET"
+                              }
+                            },
+                            {
+                              "k": "path",
+                              "v": {
+                                "t": "string",
+                                "v": "/unimock_test_opensearch/_doc/_EFX0p4BWcWiddyYo0ce"
+                              }
+                            },
+                            {
+                              "k": "body",
+                              "v": {
+                                "t": "null"
+                              }
+                            },
+                            {
+                              "k": "querystring",
+                              "v": {
+                                "t": "string",
+                                "v": ""
+                              }
+                            },
+                            {
+                              "k": "headers",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "user-agent",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "opensearch-js/2.10.0 (linux 6.18.35-1-lts-x64; Node.js v24.13.0)"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "timeout",
+                              "v": {
+                                "t": "number",
+                                "v": 30000
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "options",
+                        "v": {
+                          "t": "object",
+                          "v": []
+                        }
+                      },
+                      {
+                        "k": "id",
+                        "v": {
+                          "t": "number",
+                          "v": 5
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "k": "name",
+                  "v": {
+                    "t": "string",
+                    "v": "opensearch-js"
+                  }
+                },
+                {
+                  "k": "connection",
+                  "v": {
+                    "t": "object",
+                    "v": [
+                      {
+                        "k": "url",
+                        "v": {
+                          "t": "object",
+                          "v": []
+                        }
+                      },
+                      {
+                        "k": "ssl",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "rejectUnauthorized",
+                              "v": {
+                                "t": "boolean",
+                                "v": false
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "id",
+                        "v": {
+                          "t": "string",
+                          "v": "https://localhost:9200/"
+                        }
+                      },
+                      {
+                        "k": "headers",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "authorization",
+                              "v": {
+                                "t": "string",
+                                "v": "Basic YWRtaW46Zm80R2FpMXBoYWg3ZWV4dQ=="
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "deadCount",
+                        "v": {
+                          "t": "number",
+                          "v": 0
+                        }
+                      },
+                      {
+                        "k": "resurrectTimeout",
+                        "v": {
+                          "t": "number",
+                          "v": 0
+                        }
+                      },
+                      {
+                        "k": "_openRequests",
+                        "v": {
+                          "t": "number",
+                          "v": 0
+                        }
+                      },
+                      {
+                        "k": "_status",
+                        "v": {
+                          "t": "string",
+                          "v": "alive"
+                        }
+                      },
+                      {
+                        "k": "roles",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "data",
+                              "v": {
+                                "t": "boolean",
+                                "v": true
+                              }
+                            },
+                            {
+                              "k": "ingest",
+                              "v": {
+                                "t": "boolean",
+                                "v": true
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "agent",
+                        "v": {
+                          "t": "object",
+                          "v": [
+                            {
+                              "k": "_events",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "free",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "<callback>"
+                                    }
+                                  },
+                                  {
+                                    "k": "newListener",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "<callback>"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "_eventsCount",
+                              "v": {
+                                "t": "number",
+                                "v": 2
+                              }
+                            },
+                            {
+                              "k": "_maxListeners",
+                              "v": {
+                                "t": "undefined"
+                              }
+                            },
+                            {
+                              "k": "options",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "keepAlive",
+                                    "v": {
+                                      "t": "boolean",
+                                      "v": true
+                                    }
+                                  },
+                                  {
+                                    "k": "keepAliveMsecs",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 1000
+                                    }
+                                  },
+                                  {
+                                    "k": "maxSockets",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 256
+                                    }
+                                  },
+                                  {
+                                    "k": "maxFreeSockets",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 256
+                                    }
+                                  },
+                                  {
+                                    "k": "scheduling",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "lifo"
+                                    }
+                                  },
+                                  {
+                                    "k": "rejectUnauthorized",
+                                    "v": {
+                                      "t": "boolean",
+                                      "v": false
+                                    }
+                                  },
+                                  {
+                                    "k": "defaultPort",
+                                    "v": {
+                                      "t": "number",
+                                      "v": 443
+                                    }
+                                  },
+                                  {
+                                    "k": "protocol",
+                                    "v": {
+                                      "t": "string",
+                                      "v": "https:"
+                                    }
+                                  },
+                                  {
+                                    "k": "noDelay",
+                                    "v": {
+                                      "t": "boolean",
+                                      "v": true
+                                    }
+                                  },
+                                  {
+                                    "k": "path",
+                                    "v": {
+                                      "t": "null"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "defaultPort",
+                              "v": {
+                                "t": "number",
+                                "v": 443
+                              }
+                            },
+                            {
+                              "k": "protocol",
+                              "v": {
+                                "t": "string",
+                                "v": "https:"
+                              }
+                            },
+                            {
+                              "k": "requests",
+                              "v": {
+                                "t": "object",
+                                "v": []
+                              }
+                            },
+                            {
+                              "k": "sockets",
+                              "v": {
+                                "t": "object",
+                                "v": []
+                              }
+                            },
+                            {
+                              "k": "freeSockets",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "localhost:9200::::::::false:::::::::::::",
+                                    "v": {
+                                      "t": "array",
+                                      "v": [
+                                        {
+                                          "t": "object",
+                                          "v": [
+                                            {
+                                              "k": "_tlsOptions",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "allowHalfOpen",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pipe",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": false
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "secureContext",
+                                                    "v": {
+                                                      "t": "object",
+                                                      "v": [
+                                                        {
+                                                          "k": "context",
+                                                          "v": {
+                                                            "t": "object",
+                                                            "v": []
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "isServer",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": false
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "requestCert",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": true
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "rejectUnauthorized",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": false
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "session",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "ALPNProtocols",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "requestOCSP",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "enableTrace",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pskCallback",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "highWaterMark",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onread",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "signal",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_secureEstablished",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "_securePending",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_newSessionPending",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_controlReleased",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "secureConnecting",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_SNICallback",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "servername",
+                                              "v": {
+                                                "t": "string",
+                                                "v": "localhost"
+                                              }
+                                            },
+                                            {
+                                              "k": "alpnProtocol",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "authorized",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "authorizationError",
+                                              "v": {
+                                                "t": "string",
+                                                "v": "UNABLE_TO_VERIFY_LEAF_SIGNATURE"
+                                              }
+                                            },
+                                            {
+                                              "k": "encrypted",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "_events",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "close",
+                                                    "v": {
+                                                      "t": "array",
+                                                      "v": [
+                                                        {
+                                                          "t": "string",
+                                                          "v": "<callback>"
+                                                        },
+                                                        {
+                                                          "t": "string",
+                                                          "v": "<callback>"
+                                                        },
+                                                        {
+                                                          "t": "string",
+                                                          "v": "<callback>"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "end",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "error",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "newListener",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "connect",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "secure",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "session",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "free",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "timeout",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "agentRemove",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "data",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "drain",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_eventsCount",
+                                              "v": {
+                                                "t": "number",
+                                                "v": 9
+                                              }
+                                            },
+                                            {
+                                              "k": "connecting",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_hadError",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_parent",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_host",
+                                              "v": {
+                                                "t": "string",
+                                                "v": "localhost"
+                                              }
+                                            },
+                                            {
+                                              "k": "_closeAfterHandlingError",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_readableState",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "highWaterMark",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 65536
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "buffer",
+                                                    "v": {
+                                                      "t": "array",
+                                                      "v": []
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "bufferIndex",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "length",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pipes",
+                                                    "v": {
+                                                      "t": "array",
+                                                      "v": []
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "awaitDrainWriters",
+                                                    "v": {
+                                                      "t": "null"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_writableState",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "highWaterMark",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 65536
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "length",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "corked",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onwrite",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "writelen",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "bufferedIndex",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "pendingcb",
+                                                    "v": {
+                                                      "t": "number",
+                                                      "v": 0
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "allowHalfOpen",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "_maxListeners",
+                                              "v": {
+                                                "t": "undefined"
+                                              }
+                                            },
+                                            {
+                                              "k": "_sockname",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_pendingData",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_pendingEncoding",
+                                              "v": {
+                                                "t": "string",
+                                                "v": ""
+                                              }
+                                            },
+                                            {
+                                              "k": "server",
+                                              "v": {
+                                                "t": "undefined"
+                                              }
+                                            },
+                                            {
+                                              "k": "_server",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "ssl",
+                                              "v": {
+                                                "t": "object",
+                                                "v": [
+                                                  {
+                                                    "k": "_parent",
+                                                    "v": {
+                                                      "t": "object",
+                                                      "v": [
+                                                        {
+                                                          "k": "reading",
+                                                          "v": {
+                                                            "t": "boolean",
+                                                            "v": true
+                                                          }
+                                                        },
+                                                        {
+                                                          "k": "onconnection",
+                                                          "v": {
+                                                            "t": "null"
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "_parentWrap",
+                                                    "v": {
+                                                      "t": "null"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "_secureContext",
+                                                    "v": {
+                                                      "t": "undefined"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "reading",
+                                                    "v": {
+                                                      "t": "boolean",
+                                                      "v": true
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onkeylog",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onhandshakestart",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onhandshakedone",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onocspresponse",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onnewsession",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  },
+                                                  {
+                                                    "k": "onerror",
+                                                    "v": {
+                                                      "t": "string",
+                                                      "v": "<callback>"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "k": "_requestCert",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": true
+                                              }
+                                            },
+                                            {
+                                              "k": "_rejectUnauthorized",
+                                              "v": {
+                                                "t": "boolean",
+                                                "v": false
+                                              }
+                                            },
+                                            {
+                                              "k": "timeout",
+                                              "v": {
+                                                "t": "number",
+                                                "v": 0
+                                              }
+                                            },
+                                            {
+                                              "k": "parser",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            },
+                                            {
+                                              "k": "_httpMessage",
+                                              "v": {
+                                                "t": "null"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "k": "keepAliveMsecs",
+                              "v": {
+                                "t": "number",
+                                "v": 1000
+                              }
+                            },
+                            {
+                              "k": "keepAlive",
+                              "v": {
+                                "t": "boolean",
+                                "v": true
+                              }
+                            },
+                            {
+                              "k": "maxSockets",
+                              "v": {
+                                "t": "number",
+                                "v": 256
+                              }
+                            },
+                            {
+                              "k": "maxFreeSockets",
+                              "v": {
+                                "t": "number",
+                                "v": 256
+                              }
+                            },
+                            {
+                              "k": "scheduling",
+                              "v": {
+                                "t": "string",
+                                "v": "lifo"
+                              }
+                            },
+                            {
+                              "k": "maxTotalSockets",
+                              "v": {
+                                "t": "number",
+                                "v": null
+                              }
+                            },
+                            {
+                              "k": "totalSocketCount",
+                              "v": {
+                                "t": "number",
+                                "v": 1
+                              }
+                            },
+                            {
+                              "k": "agentKeepAliveTimeoutBuffer",
+                              "v": {
+                                "t": "number",
+                                "v": 1000
+                              }
+                            },
+                            {
+                              "k": "maxCachedSessions",
+                              "v": {
+                                "t": "number",
+                                "v": 100
+                              }
+                            },
+                            {
+                              "k": "_sessionCache",
+                              "v": {
+                                "t": "object",
+                                "v": [
+                                  {
+                                    "k": "map",
+                                    "v": {
+                                      "t": "object",
+                                      "v": [
+                                        {
+                                          "k": "localhost:9200::::::::false:::::::::::::",
+                                          "v": {
+                                            "t": "buffer",
+                                            "v": "MIIFWwIBAQICAwQEAhMBBCDRrNJ/h7MhHth16Ahm8mLNqiFCizzUMyG+DXeMEePAtQQg/GddPzdU1kX4+0DVOkpITHXKLfNAmfhGIegXagGYyjShBgIEajHAaqIEAgIcIKOCBEAwggQ8MIIDJKADAgECAhRphKURPefOyi1ZOta55U8+HXTItjANBgkqhkiG9w0BAQsFADCBjzETMBEGCgmSJomT8ixkARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1wbGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEhMB8GA1UEAwwYRXhhbXBsZSBDb20gSW5jLiBSb290IENBMB4XDTI0MDIyMDE3MDMyNVoXDTM0MDIxNzE3MDMyNVowVzELMAkGA1UEBhMCZGUxDTALBgNVBAcMBHRlc3QxDTALBgNVBAoMBG5vZGUxDTALBgNVBAsMBG5vZGUxGzAZBgNVBAMMEm5vZGUtMC5leGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKb3eRe14NAcwC9tQ809bmnJEcoMPjZcZZKCrSTUPb0L9R3IvbUcvNMlrj1lTaV0iRIqz0mpuQd3IrSjww7ovx2i0uhhvENZskVbxunXDq0NNTQcaSfjtdW7cTBt+tMQ2DeMW7456bpr/nTVLMhPMla1LRyfZ0gU4GKZNWlP/hm/mqtcDoKnhuI6ahNhaGL+pCXx3QhoAOKqhnUy9ltnrHvqpOtEBuD5RaSlMRegfXFNzyd2JtHv4c/o5OoIq+jU2ETy4/ilj59Z3pvqX4oujcgql9NsAglcg74zrsUu1Yq220Nqj3gHTr2yTMqToU+Bb85mHo9EIPSjE5q9X6V3ZKMCAwEAAaOBxjCBwzBHBgNVHREEQDA+iAUqAwQFBYISbm9kZS0wLmV4YW1wbGUuY29tgglsb2NhbGhvc3SHEAAAAAAAAAAAAAAAAAAAAAGHBH8AAAEwCwYDVR0PBAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBTT+oNBpjXSMijAKMtSnP8d9BfK3zAfBgNVHSMEGDAWgBQXh9+gWutmEqfV0Pi6EkU8tysAnDANBgkqhkiG9w0BAQsFAAOCAQEAZuKPlbIXR0qFCh1B9OIUNvvfKBTojJ4mQVKfEXruAPOlAlkoW9e5UFrdwY/l7tCndMrnQ35uVcYfTFd4hX2Vd5hSTiFV8GWn0tyVkZfy0aLtdrZ6cy8i3mr9iDceHvnlnGcNjEKgaQ05dSacy6wqy0TRjO9nka/p9xEoUFSBkuGFQGogQBiXLUSof/LjkA+JG3c2ivXIXrMQjhOcvTI2sfDovJCRQ0IcgYwkt+clD0txqYwYhc7HrSRc0xOKAX2hdfCLFYCcMz3LdBPxBcDuF6P/jORs768h5X/uUZR2TKA8CL3YS/LGayWIQzIxHRUg2Xx6bKhu9/Brugx5YxH6GKQCBAClAwIBFakFAgMBUYCqgZoEgZfs4q/qym+9jWTZhXYCXYs/QYNAHACjXF7RxYmSFg96xHkzmPIbrO81h5VM9haF24jsfeRGJqs3A4VS71GZIIxIGKjU/40mPFKK3CDOHP39UEx2SzGGVREG6Lo27Qze9haQibcNH0wZSfW/L94XqWG6EuzaBROQo+H6q4fJG3c1DZ3eVVIYLuCigOR2HNi7fwHgZ5YSlJrdrgYCBE3BoW+zAwIBHQ=="
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "k": "list",
+                                    "v": {
+                                      "t": "array",
+                                      "v": [
+                                        {
+                                          "t": "string",
+                                          "v": "localhost:9200::::::::false:::::::::::::"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "k": "makeRequest",
+                        "v": {
+                          "t": "string",
+                          "v": "<callback>"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "k": "attempts",
+                  "v": {
+                    "t": "number",
+                    "v": 0
+                  }
+                },
+                {
+                  "k": "aborted",
+                  "v": {
+                    "t": "boolean",
+                    "v": false
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "getDoc:f8b7c0f0": {
+      "args": [
+        {
+          "t": "string",
+          "v": "unimock_test_opensearch"
+        },
+        {
+          "t": "string",
+          "v": "_EFX0p4BWcWiddyYo0ce"
+        }
+      ],
+      "result": {
+        "t": "object",
+        "v": [
+          {
+            "k": "_index",
+            "v": {
+              "t": "string",
+              "v": "unimock_test_opensearch"
+            }
+          },
+          {
+            "k": "_id",
+            "v": {
+              "t": "string",
+              "v": "_EFX0p4BWcWiddyYo0ce"
             }
           },
           {
