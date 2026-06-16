@@ -18,7 +18,7 @@ const PG = {
   dialect: 'postgres',
   username: 'postgres',
   password: 'postgres',
-  database: 'biorate_test',
+  database: 'postgres',
 };
 
 const DDL =

@@ -1,6 +1,6 @@
-import type { MockableOptions, SerializedValue, UnimockMode } from './interfaces';
+import type { MockableOptions, SerializedValue } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
-import { getSnapshotStore, SnapshotStore as SnapshotStoreClass } from './snapshot-store';
+import { getSnapshotStore } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { UnimockReplayMissError } from './errors';
 import { ConnectionHandler } from './connection-proxy';

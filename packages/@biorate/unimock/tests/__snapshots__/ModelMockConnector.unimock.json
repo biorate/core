@@ -84,7 +84,7 @@
                       "k": "database",
                       "v": {
                         "t": "string",
-                        "v": "biorate_test"
+                        "v": "postgres"
                       }
                     }
                   ]
@@ -640,7 +640,7 @@
                           "k": "tableID",
                           "v": {
                             "t": "number",
-                            "v": 16469
+                            "v": 16392
                           }
                         },
                         {
@@ -694,7 +694,7 @@
                           "k": "tableID",
                           "v": {
                             "t": "number",
-                            "v": 16469
+                            "v": 16392
                           }
                         },
                         {
@@ -748,7 +748,7 @@
                           "k": "tableID",
                           "v": {
                             "t": "number",
-                            "v": 16469
+                            "v": 16392
                           }
                         },
                         {
@@ -985,7 +985,7 @@
                           "k": "tableID",
                           "v": {
                             "t": "number",
-                            "v": 16469
+                            "v": 16392
                           }
                         },
                         {
@@ -1039,7 +1039,7 @@
                           "k": "tableID",
                           "v": {
                             "t": "number",
-                            "v": 16469
+                            "v": 16392
                           }
                         },
                         {
@@ -1093,7 +1093,7 @@
                           "k": "tableID",
                           "v": {
                             "t": "number",
-                            "v": 16469
+                            "v": 16392
                           }
                         },
                         {
@@ -1274,6 +1274,184 @@
             ]
           }
         ]
+      }
+    },
+    "connect:6b930293": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "modelConn"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "logging",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  },
+                  {
+                    "k": "host",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost"
+                    }
+                  },
+                  {
+                    "k": "port",
+                    "v": {
+                      "t": "number",
+                      "v": 5432
+                    }
+                  },
+                  {
+                    "k": "dialect",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "username",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "password",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "database",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "models",
+                    "v": {
+                      "t": "array",
+                      "v": [
+                        {
+                          "t": "string",
+                          "v": "<callback>"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_9"
+      }
+    },
+    "create:6b930293": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "modelConn"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "logging",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  },
+                  {
+                    "k": "host",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost"
+                    }
+                  },
+                  {
+                    "k": "port",
+                    "v": {
+                      "t": "number",
+                      "v": 5432
+                    }
+                  },
+                  {
+                    "k": "dialect",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "username",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "password",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "database",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "models",
+                    "v": {
+                      "t": "array",
+                      "v": [
+                        {
+                          "t": "string",
+                          "v": "<callback>"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_10"
       }
     }
   }
