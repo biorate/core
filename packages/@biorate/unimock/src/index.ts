@@ -18,4 +18,10 @@ export const Unimock = {
   },
 };
 
-export type { UnimockMode, MockableOptions, SerializedValue, SnapshotCall, SnapshotFile } from './interfaces';
+export type {
+  UnimockMode,
+  MockableOptions,
+  SerializedValue,
+  SnapshotCall,
+  SnapshotFile,
+} from './interfaces';

@@ -42,7 +42,11 @@ function patchPrototype(proto: object, store: SnapshotStore): void {
   for (const { key, descriptor } of entries) {
     if (typeof descriptor.value === 'function') {
       Object.defineProperty(proto, key, {
-        value: wrapMethod(key, descriptor.value as (...args: unknown[]) => unknown, store),
+        value: wrapMethod(
+          key,
+          descriptor.value as (...args: unknown[]) => unknown,
+          store,
+        ),
         writable: descriptor.writable,
         configurable: descriptor.configurable,
       });
@@ -313,7 +317,14 @@ function wrapStaticMethods(
   let ctor = Object.getPrototypeOf(klass);
   while (ctor && ctor !== Function.prototype) {
     for (const key of Object.getOwnPropertyNames(ctor)) {
-      if (key === 'constructor' || key === 'prototype' || key === 'name' || key === 'length' || visited.has(key)) continue;
+      if (
+        key === 'constructor' ||
+        key === 'prototype' ||
+        key === 'name' ||
+        key === 'length' ||
+        visited.has(key)
+      )
+        continue;
       visited.add(key);
       if (!STATIC_SAFE.has(key)) continue;
       const descriptor = Object.getOwnPropertyDescriptor(ctor, key);
@@ -336,7 +347,11 @@ function recordStaticResult(
   serializedArgs: SerializedValue[],
 ): unknown {
   const data = toPlain(result);
-  store.record(callKey, { args: serializedArgs, result: serialize(data), error: undefined });
+  store.record(callKey, {
+    args: serializedArgs,
+    result: serialize(data),
+    error: undefined,
+  });
   return result;
 }
 

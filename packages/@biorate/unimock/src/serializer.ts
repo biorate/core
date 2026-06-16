@@ -1,10 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { SerializedValue } from './interfaces';
 
-export function stableStringify(
-  value: unknown,
-  seen?: Set<object>,
-): string {
+export function stableStringify(value: unknown, seen?: Set<object>): string {
   if (value === null) return 'null';
   if (value === undefined) return '';
   if (typeof value === 'boolean' || typeof value === 'number')
