@@ -62,6 +62,10 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "devDependencies": {
+    "@biorate/clickhouse": "workspace:*",
+    "@biorate/config": "workspace:*"
+  },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
