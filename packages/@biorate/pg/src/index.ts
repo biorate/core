@@ -87,7 +87,7 @@ export class PgConnector extends Connector<IPgConfig, IPgConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Pg';
+  protected readonly namespace: string = 'Pg';
   /**
    * @description Create connection
    */

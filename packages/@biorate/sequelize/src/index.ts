@@ -108,7 +108,7 @@ export class SequelizeConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Sequelize';
+  protected readonly namespace: string = 'Sequelize';
   /**
    * @description Models list, key - connection name, value - array of models
    */

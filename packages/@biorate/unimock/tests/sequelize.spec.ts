@@ -21,7 +21,8 @@ const PG = {
   database: 'biorate_test',
 };
 
-const DDL = 'CREATE TABLE IF NOT EXISTS mock_models (id INTEGER PRIMARY KEY, title TEXT, value INTEGER)';
+const DDL =
+  'CREATE TABLE IF NOT EXISTS mock_models (id INTEGER PRIMARY KEY, title TEXT, value INTEGER)';
 const DML = "INSERT INTO mock_models (id, title, value) VALUES (1, 'test', 42)";
 const SELECT = 'SELECT * FROM mock_models ORDER BY id';
 const SELECT_MODEL = 'SELECT * FROM mock_models WHERE id = 10 ORDER BY id';
@@ -88,7 +89,9 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
 
     await root.connector.query(DDL);
     await root.connector.query(DML);
-    const rows = await root.connector.query<{ id: number; title: string; value: number }>(SELECT);
+    const rows = await root.connector.query<{ id: number; title: string; value: number }>(
+      SELECT,
+    );
     expect(rows[0].title).toBe('test');
     expect(rows[0].value).toBe(42);
 
@@ -115,7 +118,9 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
 
     await root.connector.query(DDL);
     await root.connector.query(DML);
-    const rows = await root.connector.query<{ id: number; title: string; value: number }>(SELECT);
+    const rows = await root.connector.query<{ id: number; title: string; value: number }>(
+      SELECT,
+    );
     expect(rows[0].title).toBe('test');
     expect(rows[0].value).toBe(42);
   });
@@ -125,7 +130,8 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
 
 @Mockable({})
 class ModelMockConnector extends RawSequelizeConnector {
-  protected readonly namespace = 'SequelizeModel';
+  protected readonly namespace: string = 'SequelizeModel';
+
   protected readonly models = { modelConn: [TestModel] };
 }
 
@@ -173,7 +179,11 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
     await TestModel.sync();
     await TestModel.create({ id: 10, title: 'via-mockable-model', value: 777 });
     const found = await TestModel.findOne({ where: { id: 10 } });
-    expect(found?.toJSON()).toMatchObject({ id: 10, title: 'via-mockable-model', value: 777 });
+    expect(found?.toJSON()).toMatchObject({
+      id: 10,
+      title: 'via-mockable-model',
+      value: 777,
+    });
 
     const rows = await root.connector.query<{ id: number; title: string; value: number }>(
       SELECT_MODEL,

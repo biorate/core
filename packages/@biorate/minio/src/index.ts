@@ -73,7 +73,7 @@ export class MinioConnector extends Connector<IMinioConfig, IMinioConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Minio';
+  protected readonly namespace: string = 'Minio';
   /**
    * @description Create connection
    */

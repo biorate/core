@@ -29,7 +29,7 @@ export class RDKafkaConsumerConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'RDKafkaConsumer';
+  protected readonly namespace: string = 'RDKafkaConsumer';
   /**
    * @description Create connection
    */

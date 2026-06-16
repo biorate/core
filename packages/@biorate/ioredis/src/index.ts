@@ -61,7 +61,7 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'IORedis';
+  protected readonly namespace: string = 'IORedis';
   /**
    * @description Create connection
    */

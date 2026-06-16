@@ -60,7 +60,7 @@ export class RedisConnector extends Connector<IRedisConfig, IRedisConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Redis';
+  protected readonly namespace: string = 'Redis';
   /**
    * @description Create connection
    */

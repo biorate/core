@@ -112,7 +112,7 @@ export class MongoDBConnector extends Connector<IMongoDBConfig, IMongoDBConnecti
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'MongoDB';
+  protected readonly namespace: string = 'MongoDB';
   /**
    * @description Create connection
    */

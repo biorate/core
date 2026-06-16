@@ -30,7 +30,7 @@ export class KafkaJSAdminConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'KafkaJSAdmin';
+  protected readonly namespace: string = 'KafkaJSAdmin';
   /**
    * @description Create connection
    */

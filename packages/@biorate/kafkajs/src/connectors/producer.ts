@@ -89,7 +89,7 @@ export class KafkaJSProducerConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'KafkaJSProducer';
+  protected readonly namespace: string = 'KafkaJSProducer';
   /**
    * @description Create connection
    */

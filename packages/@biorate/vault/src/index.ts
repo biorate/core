@@ -66,7 +66,7 @@ export class VaultConnector extends Connector<IVaultConfig, IVaultConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Vault';
+  protected readonly namespace: string = 'Vault';
   /**
    * @description Create connection
    */

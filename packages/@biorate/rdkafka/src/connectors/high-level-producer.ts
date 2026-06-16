@@ -32,7 +32,7 @@ export class RDKafkaHighLevelProducerConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'RDKafkaHighLevelProducer';
+  protected readonly namespace: string = 'RDKafkaHighLevelProducer';
   /**
    * @description Create connection
    */

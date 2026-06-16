@@ -82,7 +82,7 @@ export class SchemaRegistryConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'SchemaRegistry';
+  protected readonly namespace: string = 'SchemaRegistry';
   /**
    * @description Create connection
    */

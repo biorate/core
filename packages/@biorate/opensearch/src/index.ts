@@ -79,7 +79,7 @@ export class OpenSearchConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'OpenSearch';
+  protected readonly namespace: string = 'OpenSearch';
 
   protected async connect(config: IOpenSearchConfig) {
     let connection: IOpenSearchConnection;
