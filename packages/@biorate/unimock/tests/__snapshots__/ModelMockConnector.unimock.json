@@ -6,10 +6,10 @@
       "args": [],
       "result": {
         "t": "ref",
-        "v": "obj_7"
+        "v": "obj_8"
       }
     },
-    "conn:obj_7:get:2242da2d": {
+    "conn:obj_8:get:2242da2d": {
       "args": [
         {
           "t": "string",
@@ -46,17 +46,45 @@
                       }
                     },
                     {
-                      "k": "dialect",
+                      "k": "host",
                       "v": {
                         "t": "string",
-                        "v": "sqlite"
+                        "v": "localhost"
                       }
                     },
                     {
-                      "k": "storage",
+                      "k": "port",
+                      "v": {
+                        "t": "number",
+                        "v": 5432
+                      }
+                    },
+                    {
+                      "k": "dialect",
                       "v": {
                         "t": "string",
-                        "v": ":memory:"
+                        "v": "postgres"
+                      }
+                    },
+                    {
+                      "k": "username",
+                      "v": {
+                        "t": "string",
+                        "v": "postgres"
+                      }
+                    },
+                    {
+                      "k": "password",
+                      "v": {
+                        "t": "string",
+                        "v": "postgres"
+                      }
+                    },
+                    {
+                      "k": "database",
+                      "v": {
+                        "t": "string",
+                        "v": "biorate_test"
                       }
                     }
                   ]
@@ -67,7 +95,7 @@
         ]
       }
     },
-    "connect:48c3e320": {
+    "connect:aa2807e5": {
       "args": [
         {
           "t": "object",
@@ -92,78 +120,45 @@
                     }
                   },
                   {
-                    "k": "dialect",
+                    "k": "host",
                     "v": {
                       "t": "string",
-                      "v": "sqlite"
+                      "v": "localhost"
                     }
                   },
                   {
-                    "k": "storage",
+                    "k": "port",
                     "v": {
-                      "t": "string",
-                      "v": ":memory:"
-                    }
-                  },
-                  {
-                    "k": "models",
-                    "v": {
-                      "t": "array",
-                      "v": [
-                        {
-                          "t": "string",
-                          "v": "<callback>"
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ],
-      "result": {
-        "t": "ref",
-        "v": "obj_8"
-      }
-    },
-    "create:48c3e320": {
-      "args": [
-        {
-          "t": "object",
-          "v": [
-            {
-              "k": "name",
-              "v": {
-                "t": "string",
-                "v": "modelConn"
-              }
-            },
-            {
-              "k": "options",
-              "v": {
-                "t": "object",
-                "v": [
-                  {
-                    "k": "logging",
-                    "v": {
-                      "t": "boolean",
-                      "v": false
+                      "t": "number",
+                      "v": 5432
                     }
                   },
                   {
                     "k": "dialect",
                     "v": {
                       "t": "string",
-                      "v": "sqlite"
+                      "v": "postgres"
                     }
                   },
                   {
-                    "k": "storage",
+                    "k": "username",
                     "v": {
                       "t": "string",
-                      "v": ":memory:"
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "password",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "database",
+                    "v": {
+                      "t": "string",
+                      "v": "biorate_test"
                     }
                   },
                   {
@@ -189,6 +184,95 @@
         "v": "obj_9"
       }
     },
+    "create:aa2807e5": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "name",
+              "v": {
+                "t": "string",
+                "v": "modelConn"
+              }
+            },
+            {
+              "k": "options",
+              "v": {
+                "t": "object",
+                "v": [
+                  {
+                    "k": "logging",
+                    "v": {
+                      "t": "boolean",
+                      "v": false
+                    }
+                  },
+                  {
+                    "k": "host",
+                    "v": {
+                      "t": "string",
+                      "v": "localhost"
+                    }
+                  },
+                  {
+                    "k": "port",
+                    "v": {
+                      "t": "number",
+                      "v": 5432
+                    }
+                  },
+                  {
+                    "k": "dialect",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "username",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "password",
+                    "v": {
+                      "t": "string",
+                      "v": "postgres"
+                    }
+                  },
+                  {
+                    "k": "database",
+                    "v": {
+                      "t": "string",
+                      "v": "biorate_test"
+                    }
+                  },
+                  {
+                    "k": "models",
+                    "v": {
+                      "t": "array",
+                      "v": [
+                        {
+                          "t": "string",
+                          "v": "<callback>"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_10"
+      }
+    },
     "use:ce2a9f42": {
       "args": [
         {
@@ -208,14 +292,266 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_29"
+        "v": "obj_31"
       }
     },
-    "conn:obj_8:query:f1e83ab7": {
+    "conn:obj_9:query:59737cc4": {
       "args": [
         {
           "t": "string",
-          "v": "SELECT * FROM mock_models ORDER BY id"
+          "v": "DROP TABLE IF EXISTS mock_models CASCADE"
+        },
+        {
+          "t": "object",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "array",
+            "v": []
+          },
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "command",
+                "v": {
+                  "t": "string",
+                  "v": "DROP"
+                }
+              },
+              {
+                "k": "rowCount",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "oid",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rows",
+                "v": {
+                  "t": "undefined"
+                }
+              },
+              {
+                "k": "fields",
+                "v": {
+                  "t": "array",
+                  "v": []
+                }
+              },
+              {
+                "k": "_parsers",
+                "v": {
+                  "t": "undefined"
+                }
+              },
+              {
+                "k": "_types",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "_types",
+                      "v": {
+                        "t": "object",
+                        "v": [
+                          {
+                            "k": "getTypeParser",
+                            "v": {
+                              "t": "string",
+                              "v": "<callback>"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "text",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    },
+                    {
+                      "k": "binary",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "RowCtor",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rowAsArray",
+                "v": {
+                  "t": "boolean",
+                  "v": false
+                }
+              },
+              {
+                "k": "_prebuiltEmptyResultObject",
+                "v": {
+                  "t": "null"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "conn:obj_11:query:59737cc4": {
+      "args": [
+        {
+          "t": "string",
+          "v": "DROP TABLE IF EXISTS mock_models CASCADE"
+        },
+        {
+          "t": "object",
+          "v": []
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": [
+          {
+            "t": "array",
+            "v": []
+          },
+          {
+            "t": "object",
+            "v": [
+              {
+                "k": "command",
+                "v": {
+                  "t": "string",
+                  "v": "DROP"
+                }
+              },
+              {
+                "k": "rowCount",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "oid",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rows",
+                "v": {
+                  "t": "undefined"
+                }
+              },
+              {
+                "k": "fields",
+                "v": {
+                  "t": "array",
+                  "v": []
+                }
+              },
+              {
+                "k": "_parsers",
+                "v": {
+                  "t": "undefined"
+                }
+              },
+              {
+                "k": "_types",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "_types",
+                      "v": {
+                        "t": "object",
+                        "v": [
+                          {
+                            "k": "getTypeParser",
+                            "v": {
+                              "t": "string",
+                              "v": "<callback>"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "text",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    },
+                    {
+                      "k": "binary",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "RowCtor",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rowAsArray",
+                "v": {
+                  "t": "boolean",
+                  "v": false
+                }
+              },
+              {
+                "k": "_prebuiltEmptyResultObject",
+                "v": {
+                  "t": "null"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "query:bcfb6620": {
+      "args": [
+        {
+          "t": "string",
+          "v": "DROP TABLE IF EXISTS mock_models CASCADE"
+        }
+      ],
+      "result": {
+        "t": "array",
+        "v": []
+      }
+    },
+    "conn:obj_9:query:92462800": {
+      "args": [
+        {
+          "t": "string",
+          "v": "SELECT * FROM mock_models WHERE id = 10 ORDER BY id"
         },
         {
           "t": "object",
@@ -258,16 +594,309 @@
           },
           {
             "t": "object",
-            "v": []
+            "v": [
+              {
+                "k": "command",
+                "v": {
+                  "t": "string",
+                  "v": "SELECT"
+                }
+              },
+              {
+                "k": "rowCount",
+                "v": {
+                  "t": "number",
+                  "v": 1
+                }
+              },
+              {
+                "k": "oid",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rows",
+                "v": {
+                  "t": "undefined"
+                }
+              },
+              {
+                "k": "fields",
+                "v": {
+                  "t": "array",
+                  "v": [
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "name",
+                          "v": {
+                            "t": "string",
+                            "v": "id"
+                          }
+                        },
+                        {
+                          "k": "tableID",
+                          "v": {
+                            "t": "number",
+                            "v": 16469
+                          }
+                        },
+                        {
+                          "k": "columnID",
+                          "v": {
+                            "t": "number",
+                            "v": 1
+                          }
+                        },
+                        {
+                          "k": "dataTypeID",
+                          "v": {
+                            "t": "number",
+                            "v": 23
+                          }
+                        },
+                        {
+                          "k": "dataTypeSize",
+                          "v": {
+                            "t": "number",
+                            "v": 4
+                          }
+                        },
+                        {
+                          "k": "dataTypeModifier",
+                          "v": {
+                            "t": "number",
+                            "v": -1
+                          }
+                        },
+                        {
+                          "k": "format",
+                          "v": {
+                            "t": "string",
+                            "v": "text"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "name",
+                          "v": {
+                            "t": "string",
+                            "v": "title"
+                          }
+                        },
+                        {
+                          "k": "tableID",
+                          "v": {
+                            "t": "number",
+                            "v": 16469
+                          }
+                        },
+                        {
+                          "k": "columnID",
+                          "v": {
+                            "t": "number",
+                            "v": 2
+                          }
+                        },
+                        {
+                          "k": "dataTypeID",
+                          "v": {
+                            "t": "number",
+                            "v": 1043
+                          }
+                        },
+                        {
+                          "k": "dataTypeSize",
+                          "v": {
+                            "t": "number",
+                            "v": -1
+                          }
+                        },
+                        {
+                          "k": "dataTypeModifier",
+                          "v": {
+                            "t": "number",
+                            "v": 259
+                          }
+                        },
+                        {
+                          "k": "format",
+                          "v": {
+                            "t": "string",
+                            "v": "text"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "name",
+                          "v": {
+                            "t": "string",
+                            "v": "value"
+                          }
+                        },
+                        {
+                          "k": "tableID",
+                          "v": {
+                            "t": "number",
+                            "v": 16469
+                          }
+                        },
+                        {
+                          "k": "columnID",
+                          "v": {
+                            "t": "number",
+                            "v": 3
+                          }
+                        },
+                        {
+                          "k": "dataTypeID",
+                          "v": {
+                            "t": "number",
+                            "v": 23
+                          }
+                        },
+                        {
+                          "k": "dataTypeSize",
+                          "v": {
+                            "t": "number",
+                            "v": 4
+                          }
+                        },
+                        {
+                          "k": "dataTypeModifier",
+                          "v": {
+                            "t": "number",
+                            "v": -1
+                          }
+                        },
+                        {
+                          "k": "format",
+                          "v": {
+                            "t": "string",
+                            "v": "text"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "_parsers",
+                "v": {
+                  "t": "array",
+                  "v": [
+                    {
+                      "t": "string",
+                      "v": "<callback>"
+                    },
+                    {
+                      "t": "string",
+                      "v": "<callback>"
+                    },
+                    {
+                      "t": "string",
+                      "v": "<callback>"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "_types",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "_types",
+                      "v": {
+                        "t": "object",
+                        "v": [
+                          {
+                            "k": "getTypeParser",
+                            "v": {
+                              "t": "string",
+                              "v": "<callback>"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "text",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    },
+                    {
+                      "k": "binary",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "RowCtor",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rowAsArray",
+                "v": {
+                  "t": "boolean",
+                  "v": false
+                }
+              },
+              {
+                "k": "_prebuiltEmptyResultObject",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "id",
+                      "v": {
+                        "t": "null"
+                      }
+                    },
+                    {
+                      "k": "title",
+                      "v": {
+                        "t": "null"
+                      }
+                    },
+                    {
+                      "k": "value",
+                      "v": {
+                        "t": "null"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ]
       }
     },
-    "conn:obj_29:query:f1e83ab7": {
+    "conn:obj_31:query:92462800": {
       "args": [
         {
           "t": "string",
-          "v": "SELECT * FROM mock_models ORDER BY id"
+          "v": "SELECT * FROM mock_models WHERE id = 10 ORDER BY id"
         },
         {
           "t": "object",
@@ -310,16 +939,309 @@
           },
           {
             "t": "object",
-            "v": []
+            "v": [
+              {
+                "k": "command",
+                "v": {
+                  "t": "string",
+                  "v": "SELECT"
+                }
+              },
+              {
+                "k": "rowCount",
+                "v": {
+                  "t": "number",
+                  "v": 1
+                }
+              },
+              {
+                "k": "oid",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rows",
+                "v": {
+                  "t": "undefined"
+                }
+              },
+              {
+                "k": "fields",
+                "v": {
+                  "t": "array",
+                  "v": [
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "name",
+                          "v": {
+                            "t": "string",
+                            "v": "id"
+                          }
+                        },
+                        {
+                          "k": "tableID",
+                          "v": {
+                            "t": "number",
+                            "v": 16469
+                          }
+                        },
+                        {
+                          "k": "columnID",
+                          "v": {
+                            "t": "number",
+                            "v": 1
+                          }
+                        },
+                        {
+                          "k": "dataTypeID",
+                          "v": {
+                            "t": "number",
+                            "v": 23
+                          }
+                        },
+                        {
+                          "k": "dataTypeSize",
+                          "v": {
+                            "t": "number",
+                            "v": 4
+                          }
+                        },
+                        {
+                          "k": "dataTypeModifier",
+                          "v": {
+                            "t": "number",
+                            "v": -1
+                          }
+                        },
+                        {
+                          "k": "format",
+                          "v": {
+                            "t": "string",
+                            "v": "text"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "name",
+                          "v": {
+                            "t": "string",
+                            "v": "title"
+                          }
+                        },
+                        {
+                          "k": "tableID",
+                          "v": {
+                            "t": "number",
+                            "v": 16469
+                          }
+                        },
+                        {
+                          "k": "columnID",
+                          "v": {
+                            "t": "number",
+                            "v": 2
+                          }
+                        },
+                        {
+                          "k": "dataTypeID",
+                          "v": {
+                            "t": "number",
+                            "v": 1043
+                          }
+                        },
+                        {
+                          "k": "dataTypeSize",
+                          "v": {
+                            "t": "number",
+                            "v": -1
+                          }
+                        },
+                        {
+                          "k": "dataTypeModifier",
+                          "v": {
+                            "t": "number",
+                            "v": 259
+                          }
+                        },
+                        {
+                          "k": "format",
+                          "v": {
+                            "t": "string",
+                            "v": "text"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "t": "object",
+                      "v": [
+                        {
+                          "k": "name",
+                          "v": {
+                            "t": "string",
+                            "v": "value"
+                          }
+                        },
+                        {
+                          "k": "tableID",
+                          "v": {
+                            "t": "number",
+                            "v": 16469
+                          }
+                        },
+                        {
+                          "k": "columnID",
+                          "v": {
+                            "t": "number",
+                            "v": 3
+                          }
+                        },
+                        {
+                          "k": "dataTypeID",
+                          "v": {
+                            "t": "number",
+                            "v": 23
+                          }
+                        },
+                        {
+                          "k": "dataTypeSize",
+                          "v": {
+                            "t": "number",
+                            "v": 4
+                          }
+                        },
+                        {
+                          "k": "dataTypeModifier",
+                          "v": {
+                            "t": "number",
+                            "v": -1
+                          }
+                        },
+                        {
+                          "k": "format",
+                          "v": {
+                            "t": "string",
+                            "v": "text"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "_parsers",
+                "v": {
+                  "t": "array",
+                  "v": [
+                    {
+                      "t": "string",
+                      "v": "<callback>"
+                    },
+                    {
+                      "t": "string",
+                      "v": "<callback>"
+                    },
+                    {
+                      "t": "string",
+                      "v": "<callback>"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "_types",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "_types",
+                      "v": {
+                        "t": "object",
+                        "v": [
+                          {
+                            "k": "getTypeParser",
+                            "v": {
+                              "t": "string",
+                              "v": "<callback>"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "text",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    },
+                    {
+                      "k": "binary",
+                      "v": {
+                        "t": "object",
+                        "v": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "RowCtor",
+                "v": {
+                  "t": "null"
+                }
+              },
+              {
+                "k": "rowAsArray",
+                "v": {
+                  "t": "boolean",
+                  "v": false
+                }
+              },
+              {
+                "k": "_prebuiltEmptyResultObject",
+                "v": {
+                  "t": "object",
+                  "v": [
+                    {
+                      "k": "id",
+                      "v": {
+                        "t": "null"
+                      }
+                    },
+                    {
+                      "k": "title",
+                      "v": {
+                        "t": "null"
+                      }
+                    },
+                    {
+                      "k": "value",
+                      "v": {
+                        "t": "null"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ]
       }
     },
-    "query:b12288b5": {
+    "query:26e60ac9": {
       "args": [
         {
           "t": "string",
-          "v": "SELECT * FROM mock_models ORDER BY id"
+          "v": "SELECT * FROM mock_models WHERE id = 10 ORDER BY id"
         }
       ],
       "result": {
@@ -350,58 +1272,6 @@
                 }
               }
             ]
-          }
-        ]
-      }
-    },
-    "conn:obj_10:query:f1e83ab7": {
-      "args": [
-        {
-          "t": "string",
-          "v": "SELECT * FROM mock_models ORDER BY id"
-        },
-        {
-          "t": "object",
-          "v": []
-        }
-      ],
-      "result": {
-        "t": "array",
-        "v": [
-          {
-            "t": "array",
-            "v": [
-              {
-                "t": "object",
-                "v": [
-                  {
-                    "k": "id",
-                    "v": {
-                      "t": "number",
-                      "v": 10
-                    }
-                  },
-                  {
-                    "k": "title",
-                    "v": {
-                      "t": "string",
-                      "v": "via-mockable-model"
-                    }
-                  },
-                  {
-                    "k": "value",
-                    "v": {
-                      "t": "number",
-                      "v": 777
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "t": "object",
-            "v": []
           }
         ]
       }

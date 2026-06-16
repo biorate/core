@@ -65,11 +65,12 @@
   "devDependencies": {
     "@biorate/clickhouse": "workspace:*",
     "@biorate/config": "workspace:*",
-    "@biorate/tools": "workspace:*",
     "@biorate/prometheus": "workspace:*",
     "@biorate/rdkafka": "workspace:*",
     "@biorate/sequelize": "workspace:*",
-    "@confluentinc/kafka-javascript": "latest"
+    "@biorate/tools": "workspace:*",
+    "@confluentinc/kafka-javascript": "latest",
+    "pg": "^8.20.0"
   },
   "dependencies": {
     "@biorate/errors": "workspace:*",

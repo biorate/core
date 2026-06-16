@@ -11,9 +11,20 @@ import {
 } from '@biorate/sequelize';
 import { Mockable, SnapshotStore, flushAllSnapshots } from '../src';
 
+const PG = {
+  logging: false,
+  host: 'localhost',
+  port: 5432,
+  dialect: 'postgres',
+  username: 'postgres',
+  password: 'postgres',
+  database: 'biorate_test',
+};
+
 const DDL = 'CREATE TABLE IF NOT EXISTS mock_models (id INTEGER PRIMARY KEY, title TEXT, value INTEGER)';
 const DML = "INSERT INTO mock_models (id, title, value) VALUES (1, 'test', 42)";
 const SELECT = 'SELECT * FROM mock_models ORDER BY id';
+const SELECT_MODEL = 'SELECT * FROM mock_models WHERE id = 10 ORDER BY id';
 
 @Mockable({ wrapStatics: true })
 @Table({ tableName: 'mock_models', timestamps: false })
@@ -21,7 +32,7 @@ class TestModel extends Model {
   @Column({ type: DataType.INTEGER, primaryKey: true })
   id: number;
 
-  @Column(DataType.CHAR)
+  @Column(DataType.STRING)
   title: string;
 
   @Column(DataType.INTEGER)
@@ -56,11 +67,7 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
       Sequelize: [
         {
           name: 'connection',
-          options: {
-            logging: false,
-            dialect: 'sqlite',
-            storage: ':memory:',
-          },
+          options: { ...PG },
         },
       ],
     });
@@ -75,6 +82,7 @@ describe('@biorate/sequelize — connector.query() CRUD', () => {
     const root = container.get<Root>(Root);
     await root.$run();
 
+    await root.connector.query('DROP TABLE IF EXISTS mock_models CASCADE');
     const simple = await root.connector.query<{ result: number }>('SELECT 1 AS result');
     expect(simple[0].result).toBe(1);
 
@@ -144,11 +152,7 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
       SequelizeModel: [
         {
           name: 'modelConn',
-          options: {
-            logging: false,
-            dialect: 'sqlite',
-            storage: ':memory:',
-          },
+          options: { ...PG },
         },
       ],
     });
@@ -165,13 +169,14 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
 
     root.connector.use('modelConn');
 
+    await root.connector.query('DROP TABLE IF EXISTS mock_models CASCADE');
     await TestModel.sync();
     await TestModel.create({ id: 10, title: 'via-mockable-model', value: 777 });
     const found = await TestModel.findOne({ where: { id: 10 } });
     expect(found?.toJSON()).toMatchObject({ id: 10, title: 'via-mockable-model', value: 777 });
 
     const rows = await root.connector.query<{ id: number; title: string; value: number }>(
-      SELECT,
+      SELECT_MODEL,
     );
     expect(rows[0].title).toBe('via-mockable-model');
 
@@ -199,7 +204,7 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
     expect(found).toMatchObject({ id: 10, title: 'via-mockable-model', value: 777 });
 
     const rows = await root.connector.query<{ id: number; title: string; value: number }>(
-      SELECT,
+      SELECT_MODEL,
     );
     expect(rows[0].title).toBe('via-mockable-model');
   });
