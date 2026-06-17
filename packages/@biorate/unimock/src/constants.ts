@@ -47,6 +47,7 @@ export const DEFAULT_SNAPSHOT_EXT = process.env.SNAPSHOT_EXT ?? '.snap';
 
 export const STABLE_HASH_LENGTH = 8;
 
+// TODO: sequelize models static methods, need to be configurable...
 export const STATIC_SAFE = new Set([
   'sync',
   'drop',

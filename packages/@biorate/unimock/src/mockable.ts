@@ -317,8 +317,6 @@ function wrapResult(
   return result;
 }
 
-// TODO: sequelize models static methods, need to be configurable...
-
 /**
  * @description Wraps static methods listed in {@link STATIC_SAFE} on the decorated class.
  *   Iterates the prototype chain up to `Function.prototype` and wraps matching methods.
