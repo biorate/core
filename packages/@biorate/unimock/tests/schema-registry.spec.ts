@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { setup, teardown, subject } from './__mocks__/schema-registry';
-import * as schema from './test.avsc.json';
+import * as schema from './__mocks__/test.avsc.json';
 
 let root: Awaited<ReturnType<typeof setup>>;
 

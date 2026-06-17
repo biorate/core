@@ -33,6 +33,11 @@ describe('@Mockable() comprehensive coverage', () => {
     expect(instance.retPlainObject()).toEqual({ a: 1, b: { c: 2 } });
     expect(instance.retArray()).toEqual([1, 2, 3]);
 
+    // --- Args differentiation ---
+    expect(instance.sum(1, 2)).toBe(3);
+    expect(instance.sum(10, 20)).toBe(30);
+    expect(instance.sum(1, 2)).toBe(3); // same args → same cached result
+
     // --- Class instance (hasMethods → wrapped in ConnectionHandler) ---
     const other = instance.retClassInstance();
     expect(other.doSomething()).toBe('other-done');
@@ -97,6 +102,11 @@ describe('@Mockable() comprehensive coverage', () => {
     expect(instance.retError().message).toBe('test-error');
     expect(instance.retPlainObject()).toEqual({ a: 1, b: { c: 2 } });
     expect(instance.retArray()).toEqual([1, 2, 3]);
+
+    // --- Args differentiation ---
+    expect(instance.sum(1, 2)).toBe(3);
+    expect(instance.sum(10, 20)).toBe(30);
+    expect(instance.sum(1, 2)).toBe(3);
 
     // --- Class instance (from T_REF → ConnectionHandler) ---
     const other = instance.retClassInstance();

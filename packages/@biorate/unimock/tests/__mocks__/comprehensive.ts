@@ -80,6 +80,11 @@ export class ComprehensiveService {
     return 'async-cb-done';
   }
 
+  // --- Args differentiation ---
+  sum(a: number, b: number): number {
+    return a + b;
+  }
+
   // --- No args ---
   noArgs(): string {
     return 'no-args';
