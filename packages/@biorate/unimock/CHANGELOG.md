@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/biorate/core/compare/@biorate/unimock@1.2.0...@biorate/unimock@1.3.0) (2026-06-17)
+
+### Features
+
+- **unimock:** connector.get() chain bug ([6bc733a](https://github.com/biorate/core/commit/6bc733a1b2644158eaf292d2416525f76f173cb5))
+
 # [1.2.0](https://github.com/biorate/core/compare/@biorate/unimock@1.1.0...@biorate/unimock@1.2.0) (2026-06-17)
 
 ### Features

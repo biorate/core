@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/biorate/core/compare/@biorate/clickhouse@2.3.0...@biorate/clickhouse@2.4.0) (2026-06-17)
+
+### Bug Fixes
+
+- **clickhouse:** unimock deps remove ([8aac791](https://github.com/biorate/core/commit/8aac791565a102a2f81c7b371901b912230bc635))
+
+### Features
+
+- **clickhouse:** unimock deps remove ([7199651](https://github.com/biorate/core/commit/719965181e11ad9b7908f5d5c45eb714fad986bd))
+
 # [2.3.0](https://github.com/biorate/core/compare/@biorate/clickhouse@2.2.0...@biorate/clickhouse@2.3.0) (2026-06-17)
 
 ### Features
