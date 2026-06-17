@@ -4,6 +4,7 @@ import { getSnapshotStore } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { ConnectionHandler } from './connection-proxy';
 import { hasMethods, nextRefId, collectOwnDescriptors, getReplayEntry, recordError } from './utils';
+import flattenDeep from 'lodash/flattenDeep';
 import {
   MODE_REPLAY,
   T_REF,
@@ -11,7 +12,6 @@ import {
   PROP_CONSTRUCTOR,
   PREFIX_CB,
   MARKER_CALLBACK,
-  STATIC_SAFE,
 } from './constants';
 
 const refIdCache = new WeakMap<object, string>();
@@ -30,7 +30,7 @@ const refIdCache = new WeakMap<object, string>();
  *   - Callback arguments are intercepted and their invocations are recorded/replayed.
  *   - Connection return values (objects with methods) are wrapped in {@link ConnectionHandler}
  *     so subsequent calls on them are also recorded/replayed.
- *   - Supports static method wrapping via {@link MockableOptions.wrapStatics}.
+ *   - Supports static method wrapping via {@link MockableOptions.statics}.
  *
  * @example
  * ```ts
@@ -47,8 +47,8 @@ export function Mockable(options?: MockableOptions) {
 
     patchPrototype(Base.prototype, store);
 
-    if (options?.wrapStatics) {
-      wrapStaticMethods(Base, store);
+    if (options?.statics) {
+      wrapStaticMethods(Base, store, options.statics);
     }
 
     return Base;
@@ -317,18 +317,17 @@ function wrapResult(
   return result;
 }
 
-/**
- * @description Wraps static methods listed in {@link STATIC_SAFE} on the decorated class.
- *   Iterates the prototype chain up to `Function.prototype` and wraps matching methods.
- */
 function wrapStaticMethods(
   klass: new (...args: unknown[]) => object,
   store: SnapshotStore,
+  statics: string[][],
 ): void {
+  const flat = new Set(flattenDeep(statics));
+
   const entries = collectOwnDescriptors(Object.getPrototypeOf(klass), Function.prototype, {
     skipKeys: new Set([PROP_CONSTRUCTOR, 'prototype', 'name', 'length']),
     filter: (key, descriptor) =>
-      STATIC_SAFE.has(key) && typeof descriptor.value === 'function',
+      flat.has(key) && typeof descriptor.value === 'function',
   });
 
   for (const { key, descriptor } of entries) {

@@ -5,8 +5,11 @@ export type UnimockMode = 'off' | 'record' | 'replay';
 export interface MockableOptions {
   /** @description Override snapshot directory (default: `tests/__snapshots__`). */
   snapshotDir?: string;
-  /** @description Whether to also wrap static methods on the decorated class. */
-  wrapStatics?: boolean;
+  /**
+   * @description Static method wrapping configuration. Each element is a list of method names.
+   *   Predefined lists like {@link SEQUELIZE_STATICS} can be used directly.
+   */
+  statics?: string[][];
 }
 
 /** @description Serialized primitive value (undefined, null, boolean, number, string, bigint). */

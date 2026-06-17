@@ -7,6 +7,9 @@ export { Mockable } from './mockable';
 /** @description Mode constants: `'record'`, `'replay'`, `'off'`. */
 export { MODE_RECORD, MODE_REPLAY, MODE_OFF } from './constants';
 
+/** @description Sequelize Model static method names for {@link MockableOptions.statics}. */
+export { SEQUELIZE_STATICS } from './constants';
+
 /** @description Error classes. */
 export { UnimockReplayMissError, UnimockSerializeError } from './errors';
 

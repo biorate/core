@@ -5,7 +5,7 @@ import {
   Column,
   DataType,
 } from '@biorate/sequelize';
-import { Mockable } from '../../src';
+import { Mockable, SEQUELIZE_STATICS } from '../../src';
 import { createMockSetup } from './helpers';
 
 export const PG = {
@@ -24,7 +24,7 @@ export const DML = "INSERT INTO mock_models (id, title, value) VALUES (1, 'test'
 export const SELECT = 'SELECT * FROM mock_models ORDER BY id';
 export const SELECT_MODEL = 'SELECT * FROM mock_models WHERE id = 10 ORDER BY id';
 
-@Mockable({ wrapStatics: true })
+@Mockable({ statics: [SEQUELIZE_STATICS] })
 @Table({ tableName: 'mock_models', timestamps: false })
 export class TestModel extends Model {
   @Column({ type: DataType.INTEGER, primaryKey: true })

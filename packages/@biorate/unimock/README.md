@@ -49,6 +49,38 @@ const replayed = new MockedService();
 console.log(await replayed.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
 ```
 
+### Static method wrapping
+
+Some ORMs and frameworks expose operations as static methods (e.g. Sequelize `Model.findByPk()`). Use the `statics` option to wrap them for recording and replay.
+
+```ts
+import { Mockable, SEQUELIZE_STATICS } from '@biorate/unimock';
+
+// Use a predefined list
+@Mockable({ statics: [SEQUELIZE_STATICS] })
+class TestModel extends Model {}
+```
+
+Each element in the `statics` array is a list of method names:
+
+```ts
+// Custom static methods
+@Mockable({ statics: [['myMethod', 'another']] })
+class MyService extends BaseService {}
+
+// Combined
+@Mockable({ statics: [SEQUELIZE_STATICS, ['myMethod']] })
+class HybridModel extends Model {
+  static myMethod() { ... }
+}
+```
+
+Available static method lists:
+
+| Export | Methods |
+| ------ | ------- |
+| `SEQUELIZE_STATICS` | `sync`, `drop`, `create`, `findOne`, `findAll`, `findByPk`, `findOrCreate`, `findOrBuild`, `findCreateFind`, `findAndCountAll`, `destroy`, `update`, `upsert`, `bulkCreate`, `truncate`, `restore`, `count`, `sum`, `min`, `max`, `increment`, `decrement`, `describe`, `scope`, `unscoped`, `schema`, `getTableName`, `addScope`, `removeAttribute`, `getAttributes`, `hasAlias`, `hasMany`, `belongsToMany`, `hasOne`, `belongsTo`, `build`, `bulkBuild`, `warnOnInvalidOptions` |
+
 ### Connector mocking (ClickHouse)
 
 ```ts

@@ -1,4 +1,4 @@
-import { Mockable, SnapshotStore, flushAllSnapshots } from '../src';
+import { Mockable, SnapshotStore, flushAllSnapshots, SEQUELIZE_STATICS } from '../src';
 
 import { ComprehensiveService } from './__mocks__/comprehensive';
 
@@ -12,7 +12,7 @@ describe('@Mockable() comprehensive coverage', () => {
   it('records all attribute types', async () => {
     SnapshotStore.setMode('record');
 
-    @Mockable({ snapshotDir: SNAPSHOT_DIR, wrapStatics: true })
+    @Mockable({ snapshotDir: SNAPSHOT_DIR, statics: [SEQUELIZE_STATICS] })
     class MockedComp extends ComprehensiveService {}
 
     const instance = new MockedComp();
@@ -63,7 +63,7 @@ describe('@Mockable() comprehensive coverage', () => {
     expect(await instance.withAsyncCallback(asyncCb)).toBe('async-cb-done');
     expect(asyncCb).toHaveBeenCalledWith('async-called');
 
-    // --- Static (STATIC_SAFE methods are wrapped) ---
+    // --- Static (SEQUELIZE_STATICS methods are wrapped) ---
     expect(MockedComp.count()).toBe(42);
     expect(MockedComp.sync()).toBe('synced');
 
@@ -77,7 +77,7 @@ describe('@Mockable() comprehensive coverage', () => {
   it('replays all attribute types', async () => {
     SnapshotStore.setMode('replay');
 
-    @Mockable({ snapshotDir: SNAPSHOT_DIR, wrapStatics: true })
+    @Mockable({ snapshotDir: SNAPSHOT_DIR, statics: [SEQUELIZE_STATICS] })
     class MockedComp extends ComprehensiveService {}
 
     const instance = new MockedComp();

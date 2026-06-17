@@ -1516,6 +1516,9 @@ importers:
       '@biorate/lifecycled':
         specifier: workspace:*
         version: link:../lifecycled
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.23
     devDependencies:
       '@biorate/clickhouse':
         specifier: workspace:*
@@ -1565,6 +1568,9 @@ importers:
       '@confluentinc/kafka-javascript':
         specifier: latest
         version: 1.9.1(encoding@0.1.13)
+      '@types/lodash':
+        specifier: ^4.14.173
+        version: 4.14.173
       pg:
         specifier: ^8.20.0
         version: 8.20.0
