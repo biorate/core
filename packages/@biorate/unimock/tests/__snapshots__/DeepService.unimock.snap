@@ -1,0 +1,1 @@
+{"version":1,"className":"DeepService","calls":{"foo:":{"args":[],"result":{"t":"ref","v":"ref_7"}},"call:ref_6:bar:":{"args":[],"result":{"t":"object","v":[{"k":"baz","v":{"t":"string","v":"<callback>"}}]}},"call:ref_7:bar:":{"args":[],"result":{"t":"ref","v":"ref_8"}}}}

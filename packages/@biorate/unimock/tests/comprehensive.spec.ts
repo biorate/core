@@ -1,4 +1,4 @@
-import { Mockable, SnapshotStore, flushAllSnapshots, SEQUELIZE_STATICS } from '../src';
+import { Mockable, mock, SnapshotStore, flushAllSnapshots, SEQUELIZE_STATICS } from '../src';
 
 import { ComprehensiveService, WithSymbolsService } from './__mocks__/comprehensive';
 
@@ -38,7 +38,7 @@ describe('@Mockable() comprehensive coverage', () => {
     expect(instance.sum(10, 20)).toBe(30);
     expect(instance.sum(1, 2)).toBe(3); // same args → same cached result
 
-    // --- Class instance (hasMethods → wrapped in ConnectionHandler) ---
+    // --- Class instance (hasMethods → wrapped in MockHandler) ---
     const other = instance.retClassInstance();
     expect(other.doSomething()).toBe('other-done');
 
@@ -208,5 +208,79 @@ describe('@Mockable() without symbols (default)', () => {
     const replayed = rep.getSymbol();
     expect(typeof replayed).toBe('string');
     expect(replayed).toBe('<symbol>');
+  });
+
+  describe('mock() — functional style', () => {
+    it('record and replay', () => {
+      SnapshotStore.setMode('record');
+      const Mocked = mock(ComprehensiveService);
+      const instance = new Mocked();
+      expect(instance.retString()).toBe('hello');
+      flushAllSnapshots();
+
+      SnapshotStore.setMode('replay');
+      const replayed = new Mocked();
+      expect(replayed.retString()).toBe('hello');
+    });
+
+    it('spy — originals not called in replay', () => {
+      const spy = vi.fn(() => 'real');
+      class SpyService {
+        get() {
+          return spy();
+        }
+      }
+      SnapshotStore.setMode('record');
+      const Mocked = mock(SpyService);
+      new Mocked().get();
+      expect(spy).toHaveBeenCalledTimes(1);
+      flushAllSnapshots();
+
+      spy.mockClear();
+
+      SnapshotStore.setMode('replay');
+      new Mocked().get();
+      expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('depth option', () => {
+    class DeepService {
+      foo(): { bar: () => { baz: () => string } } {
+        return { bar: () => ({ baz: () => 'deep' }) };
+      }
+    }
+
+    it('depth=0 — never wraps, serializes directly', () => {
+      SnapshotStore.setMode('record');
+      const Mocked = mock(DeepService, { depth: 0 });
+      const result = new Mocked().foo();
+      expect((result as any).__unimock_ref__).toBeUndefined();
+      expect((result as any).bar).toBeInstanceOf(Function);
+      // bar() result is also plain
+      const barResult = (result as any).bar();
+      expect(barResult.__unimock_ref__).toBeUndefined();
+      flushAllSnapshots();
+    });
+
+    it('depth=1 — wraps one level, serializes nested', () => {
+      SnapshotStore.setMode('record');
+      const Mocked = mock(DeepService, { depth: 1 });
+      const result = new Mocked().foo();
+      expect((result as any).__unimock_ref__).toBeDefined();
+      const barResult = (result as any).bar();
+      expect((barResult as any).__unimock_ref__).toBeUndefined();
+      flushAllSnapshots();
+    });
+
+    it('default (depth=Infinity) — wraps all levels', () => {
+      SnapshotStore.setMode('record');
+      const Mocked = mock(DeepService);
+      const result = new Mocked().foo();
+      expect((result as any).__unimock_ref__).toBeDefined();
+      const barResult = (result as any).bar();
+      expect((barResult as any).__unimock_ref__).toBeDefined();
+      flushAllSnapshots();
+    });
   });
 });

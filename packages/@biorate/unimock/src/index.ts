@@ -2,7 +2,7 @@
  * @description Decorator — wraps a class to intercept method calls for recording or replaying.
  *   See {@link Mockable} for details.
  */
-export { Mockable } from './mockable';
+export { Mockable, mock } from './mockable';
 
 /** @description Mode constants: `'record'`, `'replay'`, `'off'`. */
 export { MODE_RECORD, MODE_REPLAY, MODE_OFF } from './constants';
@@ -28,8 +28,8 @@ export {
   isRecord,
 } from './snapshot-store';
 
-/** @description Proxy wrapper for connection objects returned by mocked connectors. */
-export { ConnectionHandler } from './connection-proxy';
+/** @description Proxy wrapper for objects returned by mocked methods. */
+export { MockHandler } from './mock-handler';
 
 import { flushAllSnapshots, isReplay, isRecord } from './snapshot-store';
 import { parseUnimockMode, resolveSnapshotDir } from './env';

@@ -24,6 +24,6 @@ export function gzipEnabled(): boolean {
 export function stripRequestEnabled(): boolean {
   return envFlag('UNIMOCK_STRIP_REQUEST');
 }
-export function skipConnArgsEnabled(): boolean {
-  return envFlag('UNIMOCK_SKIP_CONN_ARGS');
+export function skipProxyArgsEnabled(): boolean {
+  return envFlag('UNIMOCK_SKIP_CONN_ARGS') || envFlag('UNIMOCK_SKIP_PROXY_ARGS');
 }

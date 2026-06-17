@@ -16,6 +16,13 @@ export interface MockableOptions {
    *   Disabled by default to avoid breaking existing snapshots.
    */
   symbols?: boolean;
+  /**
+   * @description Maximum depth for recursive wrapping of nested results in
+   *   a {@link MockHandler}. When the wrapping depth reaches this value,
+   *   results are serialized directly instead of being wrapped.
+   *   Default: `Infinity` (unlimited).
+   */
+  depth?: number;
 }
 
 /** @description Serialized primitive value (undefined, null, boolean, number, string, bigint). */
@@ -48,7 +55,7 @@ export interface SerializedError {
   v: { n: string; m: string; s?: string };
 }
 
-/** @description Reference to a {@link ConnectionHandler} by its refId. */
+/** @description Reference to a {@link MockHandler} by its refId. */
 export interface SerializedRef {
   t: 'ref';
   v: string;

@@ -59,6 +59,9 @@ export class SnapshotStore implements SnapshotStoreEntry {
   /** @description Enable symbol serialization (default: `false`). Set by `@Mockable({ symbols: true })`. */
   public symbols = false;
 
+  /** @description Maximum nested wrapping depth (default: `Infinity`). Set by `@Mockable({ depth })`. */
+  public depth = Infinity;
+
   private data: SnapshotFile;
 
   private dirty = false;

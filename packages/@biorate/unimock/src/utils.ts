@@ -1,4 +1,4 @@
-import { PREFIX_OBJ, T_UNDEFINED } from './constants';
+import { PREFIX_REF, T_UNDEFINED } from './constants';
 import { serialize, deserialize } from './serializer';
 import { UnimockReplayMissError } from './errors';
 import type { SnapshotStore } from './snapshot-store';
@@ -6,7 +6,7 @@ import type { SerializedValue, SnapshotCall } from './interfaces';
 
 let counter = 0;
 
-export function nextRefId(prefix = PREFIX_OBJ): string {
+export function nextRefId(prefix = PREFIX_REF): string {
   return `${prefix}${counter++}`;
 }
 

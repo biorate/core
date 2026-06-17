@@ -23,11 +23,11 @@ export class UnimockSerializeError extends BaseError {
 }
 
 /**
- * @description Thrown when a {@link ConnectionHandler} is used in record mode but its
- *   underlying target object is null. This can happen if a connection was not properly initialised.
+ * @description Thrown when a {@link MockHandler} is used in record mode but its
+ *   underlying target object is null.
  */
-export class UnimockConnectionHandlerTargetRequiredError extends BaseError {
+export class UnimockProxyTargetRequiredError extends BaseError {
   public constructor(refId: string) {
-    super('ConnectionHandler: target required in record mode (refId: %s)', [refId]);
+    super('MockHandler: target required in record mode (refId: %s)', [refId]);
   }
 }

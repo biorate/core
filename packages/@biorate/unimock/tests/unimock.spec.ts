@@ -7,7 +7,7 @@ import {
   Mockable,
   SnapshotStore,
   flushAllSnapshots,
-  ConnectionHandler,
+  MockHandler,
   UnimockReplayMissError,
 } from '../src';
 import { TestService, Connector, ConnectorWithConnection } from './__mocks__/unimock';
@@ -196,13 +196,13 @@ describe('Mockable decorator', () => {
   });
 });
 
-describe('ConnectionHandler', () => {
+describe('MockHandler', () => {
   it('wraps object methods in record mode', () => {
     SnapshotStore.setMode('record');
     const store = new SnapshotStore('TestConn', '/tmp/unimock-test');
 
     const target = { query: (sql: string) => ({ rows: [1, 2] }) };
-    const conn = new ConnectionHandler(target, 'conn_1', store) as any;
+    const conn = new MockHandler(target, 'conn_1', store) as any;
 
     expect(conn.query('SELECT 1')).toEqual({ rows: [1, 2] });
   });
@@ -212,7 +212,7 @@ describe('ConnectionHandler', () => {
     const store = new SnapshotStore('TestConn');
 
     const target = { query: () => 1 };
-    const conn = new ConnectionHandler(target, 'conn_1', store) as any;
+    const conn = new MockHandler(target, 'conn_1', store) as any;
 
     expect(conn.then).toBeUndefined();
   });
@@ -224,13 +224,13 @@ describe('ConnectionHandler', () => {
     const target = {
       query: (sql: string) => ({ rows: [1, 2] }),
     };
-    const conn = new ConnectionHandler(target, 'conn_2', store) as any;
+    const conn = new MockHandler(target, 'conn_2', store) as any;
     conn.query('SELECT 1');
     store.flush();
 
     SnapshotStore.setMode('replay');
     const store2 = new SnapshotStore('TestConnReplay', '/tmp/unimock-test');
-    const replayConn = new ConnectionHandler(null, 'conn_2', store2) as any;
+    const replayConn = new MockHandler(null, 'conn_2', store2) as any;
     expect(replayConn.query('SELECT 1')).toEqual({ rows: [1, 2] });
   });
 
@@ -239,7 +239,7 @@ describe('ConnectionHandler', () => {
     const store = new SnapshotStore('TestConnAsync', '/tmp/unimock-test');
 
     const target = { fetch: async (id: number) => ({ id, name: 'item' }) };
-    const conn = new ConnectionHandler(target, 'conn_3', store) as any;
+    const conn = new MockHandler(target, 'conn_3', store) as any;
 
     const result = await conn.fetch(42);
     expect(result).toEqual({ id: 42, name: 'item' });
@@ -250,13 +250,13 @@ describe('ConnectionHandler', () => {
     const store = new SnapshotStore('TestConnReplayAsync', '/tmp/unimock-test');
 
     const target = { fetch: async (id: number) => ({ id, name: 'item' }) };
-    const conn = new ConnectionHandler(target, 'conn_4', store) as any;
+    const conn = new MockHandler(target, 'conn_4', store) as any;
     await conn.fetch(42);
     store.flush();
 
     SnapshotStore.setMode('replay');
     const store2 = new SnapshotStore('TestConnReplayAsync', '/tmp/unimock-test');
-    const replayConn = new ConnectionHandler(null, 'conn_4', store2) as any;
+    const replayConn = new MockHandler(null, 'conn_4', store2) as any;
 
     const result = await replayConn.fetch(42);
     expect(result).toEqual({ id: 42, name: 'item' });

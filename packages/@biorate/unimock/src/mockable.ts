@@ -3,7 +3,7 @@ import type { MockableOptions, SerializedValue } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
 import { getSnapshotStore, isReplay } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
-import { ConnectionHandler } from './connection-proxy';
+import { MockHandler } from './mock-handler';
 import {
   hasMethods,
   nextRefId,
@@ -34,7 +34,7 @@ const refIdCache = new WeakMap<object, string>();
  *   ### Features:
  *   - Wraps prototype methods and getters recursively up to `Object.prototype`.
  *   - Callback arguments are intercepted and their invocations are recorded/replayed.
- *   - Connection return values (objects with methods) are wrapped in {@link ConnectionHandler}
+ *   - Results with methods are wrapped in {@link MockHandler}
  *     so subsequent calls on them are also recorded/replayed.
  *   - Supports static method wrapping via {@link MockableOptions.statics}.
  *
@@ -51,6 +51,7 @@ export function Mockable(options?: MockableOptions) {
     const className = Base.name;
     const store = getSnapshotStore(className, options?.snapshotDir);
     store.symbols = options?.symbols ?? false;
+    store.depth = options?.depth ?? Infinity;
 
     patchPrototype(Base.prototype, store);
 
@@ -154,7 +155,7 @@ function makeMethodWrapper(
 
 /**
  * @description Wraps an instance method: in record mode stores results via {@link wrapAndRecord}
- *   (which creates {@link ConnectionHandler} for object returns); in replay mode looks up
+ *   (which creates {@link MockHandler} for object returns); in replay mode looks up
  *   the snapshot entry.
  */
 function wrapMethod(
@@ -180,7 +181,7 @@ function wrapStaticMethod(
 /**
  * @description Replays a recorded call from the snapshot store.
  *   - Returns the deserialised result.
- *   - If the result was a `'ref'`, returns a new {@link ConnectionHandler} with the stored refId.
+ *   - If the result was a `'ref'`, returns a new {@link MockHandler} with the stored refId.
  *   - If the call originally threw, re-throws the deserialised error.
  *   - If callback arguments were recorded, replays their invocations.
  *
@@ -197,9 +198,9 @@ function replayCall(
   const promises = replayCallbacks(entry.args, args);
 
   if (entry.result.t === T_REF) {
-    const conn = new ConnectionHandler(null, entry.result.v, store);
-    if (promises.length > 0) return Promise.all(promises).then(() => conn);
-    return conn;
+    const handler = new MockHandler(null, entry.result.v, store);
+    if (promises.length > 0) return Promise.all(promises).then(() => handler);
+    return handler;
   }
 
   const result = deserialize(entry.result);
@@ -305,11 +306,19 @@ function wrapResult(
   callKey: string,
   result: unknown,
   serializedArgs: SerializedValue[],
+  depth = 0,
 ): unknown {
   if ((result as any)?.[PROP_UNIMOCK_REF]) {
     store.record(callKey, {
       args: serializedArgs,
       result: { t: T_REF, v: (result as any)[PROP_UNIMOCK_REF] },
+    });
+    return result;
+  }
+  if (depth >= store.depth) {
+    store.record(callKey, {
+      args: serializedArgs,
+      result: serialize(result, undefined, store.symbols),
     });
     return result;
   }
@@ -319,7 +328,7 @@ function wrapResult(
       refId = nextRefId();
       refIdCache.set(result, refId);
     }
-    const wrapped = new ConnectionHandler(result, refId, store);
+    const wrapped = new MockHandler(result, refId, store, depth + 1);
     store.record(callKey, {
       args: serializedArgs,
       result: { t: T_REF, v: refId },
@@ -409,10 +418,29 @@ function wrapGetter(
     if (isReplay()) {
       const entry = getReplayEntry(store, callKey, name, []);
       if (entry.result.t === T_REF)
-        return new ConnectionHandler(null, entry.result.v, store);
+        return new MockHandler(null, entry.result.v, store);
       return deserialize(entry.result);
     }
 
     return wrapResult(store, callKey, original.call(this), []);
   };
+}
+
+/**
+ * @description Functional alternative to the `@Mockable()` decorator.
+ *   Returns the same class with prototype methods wrapped, without using decorator syntax.
+ *
+ * @example
+ * ```ts
+ * import { mock, SnapshotStore } from '@biorate/unimock';
+ *
+ * const MockedService = mock(RealService);
+ * const instance = new MockedService();
+ * ```
+ */
+export function mock<T extends new (...args: any[]) => object>(
+  Base: T,
+  options?: MockableOptions,
+): T {
+  return Mockable(options)(Base);
 }

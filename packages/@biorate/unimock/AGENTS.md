@@ -21,7 +21,7 @@
           wrapMethod(): возвращает функцию, которая:
             - в record: вызывает original, записывает args/result в SnapshotStore
             - в replay: ищет entry по callKey
-            - оборачивает result с hasMethods() в ConnectionHandler
+            - оборачивает result с hasMethods() в MockHandler
 ```
 
 ## Ключевые файлы
@@ -29,13 +29,13 @@
 | Файл | Назначение |
 | ---- | ---------- |
 | `src/mockable.ts` | Декоратор `@Mockable()`, `wrapMethod`, `replayCall`, `wrapAndRecord`, `hasMethods`, `wrapGetter` |
-| `src/connection-proxy.ts` | `ConnectionHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.) |
+| `src/mock-handler.ts` | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.) |
 | `src/snapshot-store.ts` | `SnapshotStore` — загрузка/сохранение JSON-снапшотов, кэш stores, `flushAllSnapshots()`, `isReplay()`, `isRecord()` |
 | `src/serializer.ts` | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey` |
 | `src/env.ts` | `parseUnimockMode()`, `resolveSnapshotDir()` |
-| `src/errors.ts` | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockConnectionHandlerTargetRequiredError` |
+| `src/errors.ts` | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockProxyTargetRequiredError` |
 | `src/interfaces.ts` | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode` |
-| `src/index.ts` | Публичный API: `Mockable`, `SnapshotStore`, `flushAllSnapshots`, `ConnectionHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
+| `src/index.ts` | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
 | `vitest/setup.ts` | Хук `afterAll` для автоматического `flushAllSnapshots()` |
 | `tests/unimock.spec.ts` | 24 unit-теста для ядра |
 | `tests/clickhouse.spec.ts` | 2 интеграционных теста с реальным Clickhouse (record + replay) |
@@ -52,15 +52,15 @@
     1. original.apply(this, args) → real result
     2. serializeArgs(args_with_callback_recordings)
     3. hasMethods(result)?
-       YES → new ConnectionHandler(result, refId, store)
+       YES → new MockHandler(result, refId, store)
               store.record(callKey, { result: {t:'ref', v: refId} })
        NO  → store.record(callKey, { result: serialize(result) })
     4. return wrapped result
-  → ConnectionHandler.get('query') trap:
+  → MockHandler.get('query') trap:
     - record: wraps original query method on target
       → calls real query, wrapNested(result) → records ref
-    - returns Promise<ConnectionHandler> wrapping QueryResult
-  → ConnectionHandler.get('json') trap:
+    - returns Promise<MockHandler> wrapping QueryResult
+  → MockHandler.get('json') trap:
     - record: calls real json(), serializes plain data
     → returns Promise<{data: [...]}>
 ```
@@ -73,12 +73,12 @@
     1. replayCall(callKey, name, args, store)
     2. looks up callKey in store
     3. entry.result.t === 'ref'?
-       YES → return new ConnectionHandler(null, refId, store)
+       YES → return new MockHandler(null, refId, store)
        NO  → return deserialize(entry.result)
-  → ConnectionHandler.get('query') trap:
+  → MockHandler.get('query') trap:
     - mode='replay' → returns sync function
-    - looks up conn:refId:query:{hash} in store
-    - returns ConnectionHandler or deserialized data
+    - looks up call:refId:query:{hash} in store
+    - returns MockHandler or deserialized data
   → json() on that handler → same flow → returns plain data
 ```
 
@@ -101,17 +101,19 @@ function hasMethods(value: unknown): value is object {
 
 Логика: инстанс класса (прототип не `Object.prototype`) → true. Plain object с методом → true. Иначе false (data, оборачивать не нужно).
 
-## ConnectionHandler (Proxy)
+Глубина рекурсивной обёртки контролируется опцией `depth` (default: `Infinity`). При `depth >= store.depth` результат сериализуется напрямую, без создания `MockHandler`. Позволяет ограничить вложенность для глубоких цепочек вызовов.
+
+## MockHandler (Proxy)
 
 ```typescript
-new ConnectionHandler(target, refId, store) → Proxy
+new MockHandler(target, refId, store) → Proxy
 ```
 
-- **record mode**: `get` trap → если `prop` — функция на target, возвращает обёртку, вызывающую original, записывает `conn:{refId}:prop:{hash}`, оборачивает результат через `wrapNested`.
-- **replay mode**: `get` trap → возвращает функцию, ищущую `conn:{refId}:prop:{hash}` в store. `target` может быть `null`.
+- **record mode**: `get` trap → если `prop` — функция на target, возвращает обёртку, вызывающую original, записывает `call:{refId}:prop:{hash}`, оборачивает результат через `wrapNested`.
+- **replay mode**: `get` trap → возвращает функцию, ищущую `call:{refId}:prop:{hash}` в store. `target` может быть `null`.
 - `'then'`, `'constructor'`, `__unimock_ref__`, `#` → спецобработка (избегаем thenable, даём доступ к refId).
-- `wrapNested` возвращает `{ wrapped, serialized }` — ConnectionHandler + `{t:'ref', v: refId}`.
-- **Double-wrap guard**: `wrapResult` (mockable.ts) и `wrapNested` (connection-proxy.ts) проверяют `__unimock_ref__` на result. Если объект уже обёрнут в ConnectionHandler — переиспользуют существующий refId и не создают новый. Это позволяет вызывать `get()` (или `connection()`) многократно: все возвращают один и тот же ConnectionHandler с одинаковым refId, и записи `conn:{refId}:*` не дублируются.
+- `wrapNested` возвращает `{ wrapped, serialized }` — MockHandler + `{t:'ref', v: refId}`.
+- **Double-wrap guard**: `wrapResult` (mockable.ts) и `wrapNested` (mock-handler.ts) проверяют `__unimock_ref__` на result. Если объект уже обёрнут в MockHandler — переиспользуют существующий refId и не создают новый. Это позволяет вызывать `get()` (или `connection()`) многократно: все возвращают один и тот же MockHandler с одинаковым refId, и записи `call:{refId}:*` не дублируются.
 
 ## Сериализация
 
@@ -123,7 +125,7 @@ new ConnectionHandler(target, refId, store) → Proxy
 - `'error'` → `{ name, message, stack, cause, ... }`
 - `'array'` → `[{t, v}, ...]`
 - `'object'` → `[{k: string, v: {t, v}}, ...]`
-- `'ref'` → `{t:'ref', v: refId}` — ссылка на ConnectionHandler
+- `'ref'` → `{t:'ref', v: refId}` — ссылка на MockHandler
 - `'callback'` → `{t:'callback', v: {callRef, recording: [[{t,v},...]]}}`
 
 `stableHash` — детерминированный MD5-like хеш для аргументов. `makeCallKey(prefix, name, args)` = `prefix + name + ':' + stableHash(args)`.
@@ -134,11 +136,11 @@ new ConnectionHandler(target, refId, store) → Proxy
    - **Workaround**: переопределить `initialize` в тестовом подклассе как no-op.
    - **Потенциальный фикс**: добавить проверку `SnapshotStore.mode` внутри `initialize()` наследника, или изменить механизм `@init()`.
 
-2. **ConnectionHandler не возвращает Promise в replay-режиме**. В record-режиме `query()` возвращает Promise (original асинхронный). В replay — синхронно ConnectionHandler или deserialized data. `await` на non-Promise работает, но поведение неидентичное.
+2. **MockHandler не возвращает Promise в replay-режиме**. В record-режиме `query()` возвращает Promise (original асинхронный). В replay — синхронно MockHandler или deserialized data. `await` на non-Promise работает, но поведение неидентичное.
 
 3. **Сериализация функций** — функции сериализуются как строка `<function>`. При deserialization возвращается строка. Callback-аргументы обрабатываются через механизм `'callback'` записи.
 
-4. **Приватные поля `#`** не оборачиваются (`wrapPrototype` и ConnectionHandler фильтруют ключи, начинающиеся с `#`).
+4. **Приватные поля `#`** не оборачиваются (`wrapPrototype` и MockHandler фильтруют ключи, начинающиеся с `#`).
 
 ## Callback-механизм
 
@@ -194,20 +196,20 @@ curl http://localhost:8123/ping  # → Ok.
 
 ## rdkafka-тест
 
-`tests/rdkafka.spec.ts` — admin (createTopic) + producer (produce) + consumer (subscribe/consumePromise/commitMessageSync/unsubscribe). Record: `SnapshotStore.setMode('record')` → DI-init → produce message → consume → verify content → flush. Replay: `SnapshotStore.setMode('replay')` → consume из снапшота. Вызовы `admin.createTopic`, `producer.produce`, `consumer.commitMessageSync` — на ConnectionHandler-wrapped объектах, в replay воспроизводятся из снапшота.
+`tests/rdkafka.spec.ts` — admin (createTopic) + producer (produce) + consumer (subscribe/consumePromise/commitMessageSync/unsubscribe). Record: `SnapshotStore.setMode('record')` → DI-init → produce message → consume → verify content → flush. Replay: `SnapshotStore.setMode('replay')` → consume из снапшота. Вызовы `admin.createTopic`, `producer.produce`, `consumer.commitMessageSync` — на MockHandler-wrapped объектах, в replay воспроизводятся из снапшота.
 
 **Важно**: `beforeAll` чистит топик через прямой `AdminClient` (не через Mockable), чтобы избежать race condition между запусками. Этот вызов выполняется только в record-режиме.
 
 ## schema-registry-тест
 
-`tests/schema-registry.spec.ts` — HTTP API методы (ping, postSubjectsVersions, getSubjectsByVersion, getSchemasById, getSubjects, getSubjectsVersions, getSchemasTypes, deleteSubjects). Все вызовы на ConnectionHandler-wrapped объектах — в replay-режиме воспроизводятся из снапшота.
+`tests/schema-registry.spec.ts` — HTTP API методы (ping, postSubjectsVersions, getSubjectsByVersion, getSchemasById, getSubjects, getSubjectsVersions, getSchemasTypes, deleteSubjects). Все вызовы на MockHandler-wrapped объектах — в replay-режиме воспроизводятся из снапшота.
 
 **Важно**: 
 - `flushAllSnapshots()` автоматический в `tests/setup.ts` (`afterAll` хук)
 - Используется фиксированный subject (`unimock-test-subject`)
 - Один тест для обоих режимов (контроль через `UNIMOCK` env)
 
-**Ограничение**: глобальный счётчик refId (`obj_${counter++}`) в `mockable.ts` — при повторных `get()` на одном и том же connection создаются новые ConnectionHandler с разными refId. Фикс: сохранять результат `get()` в переменную и переиспользовать.
+**Ограничение**: глобальный счётчик refId (`ref_${counter++}`) в `mockable.ts` — при повторных `get()` на одном и том же connection создаются новые MockHandler с разными refId. Фикс: сохранять результат `get()` в переменную и переиспользовать.
 
 Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}"`.
 
@@ -217,11 +219,11 @@ Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}
 | ---------- | -------- |
 | `UNIMOCK_GZIP=1` | Gzip-компрессия `.unimock.json` при записи (~97% reduction на реальных данных). Чтение автоопределяет gzip-магию. |
 | `UNIMOCK_STRIP_REQUEST=1` | Пропускать поле `request` у Axios-подобных ответов при сериализации (HTTP-интерны, ~40KB на entry). |
-| `UNIMOCK_SKIP_CONN_ARGS=1` | Не сериализовать `args` для `conn:*` записей — они не используются в replay (только callKey нужен). |
+| `UNIMOCK_SKIP_PROXY_ARGS=1` (или `UNIMOCK_SKIP_CONN_ARGS=1`) | Не сериализовать `args` для `call:*` записей — они не используются в replay (только callKey нужен). |
 | `SNAPSHOT_EXT` | Расширение файла снапшота (default: `.snap`). Имя: `{ClassName}.unimock{ext}`. |
 
 **Всегда включены** (без флага):
-- **Cache refId** — `WeakMap<object, string>` в `wrapAndRecord`/`wrapGetter`/`wrapNested`. Повторные `get()` на том же объекте переиспользуют refId → устраняются дубли `conn:obj_X:method:hash`.
+- **Cache refId** — `WeakMap<object, string>` в `wrapAndRecord`/`wrapGetter`/`wrapNested`. Повторные `get()` на том же объекте переиспользуют refId → устраняются дубли `call:ref_X:method:hash`.
 - **String pool** — строки >500B в `SnapshotStore.record()` заменяются на `{t: "pooled_string", v: "$ref"}` с выносом в `strings:` словарь. Прозрачно расширяются обратно в `SnapshotStore.get()`.
 
 ## Helper-функции `isReplay()` / `isRecord()`
@@ -254,3 +256,4 @@ if (!isRecord()) return;
 - [ ] Если менялся `hasMethods` — проверить различение connection/data объектов
 - [ ] Если менялся replay-механизм — запустить clickhouse integration test (docker должен быть up)
 - [ ] Если менялся `@Mockable()` — проверить работу с `@init()` (ограничение #1)
+- [ ] Документация — обновить `README.md` (примеры, секции) и TSDoc на новых/изменённых функциях и типах
