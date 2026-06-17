@@ -1,3 +1,6 @@
+import { inject, container, Types, Core } from '@biorate/inversion';
+import { IConfig, Config } from '@biorate/config';
+import { ISequelizeConnector } from '@biorate/sequelize';
 import {
   SequelizeConnector as RawSequelizeConnector,
   Model,
@@ -45,4 +48,54 @@ export class SequelizeConnector extends RawSequelizeConnector {
 export class ModelMockConnector extends RawSequelizeConnector {
   protected readonly namespace: string = 'SequelizeModel';
   protected readonly models = { modelConn: [TestModel] };
+}
+
+class RootSequelize extends Core() {
+  @inject(SequelizeConnector) public connector: ISequelizeConnector;
+}
+
+class RootModelMock extends Core() {
+  @inject(ModelMockConnector) public connector: ISequelizeConnector;
+}
+
+export async function setupSequelize() {
+  if (!container.isBound(Types.Config))
+    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+  container.get<IConfig>(Types.Config).merge({
+    Sequelize: [{ name: 'connection', options: { ...PG } }],
+  });
+  container.bind(SequelizeConnector).toSelf().inSingletonScope();
+  container.bind(RootSequelize).toSelf().inSingletonScope();
+  const root = container.get<RootSequelize>(RootSequelize);
+  await root.$run();
+  return root as { connector: ISequelizeConnector };
+}
+
+export async function setupModelMock() {
+  if (!container.isBound(Types.Config))
+    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+  container.get<IConfig>(Types.Config).merge({
+    SequelizeModel: [{ name: 'modelConn', options: { ...PG } }],
+  });
+  container.bind(ModelMockConnector).toSelf().inSingletonScope();
+  container.bind(RootModelMock).toSelf().inSingletonScope();
+  const root = container.get<RootModelMock>(RootModelMock);
+  await root.$run();
+  return root as { connector: ISequelizeConnector };
+}
+
+export function teardownSequelize() {
+  for (const c of [SequelizeConnector]) {
+    try {
+      if (container.isBound(c)) container.unbind(c);
+    } catch {
+      /* ok */
+    }
+  }
+  if (container.isBound(RootSequelize)) container.unbind(RootSequelize);
+}
+
+export function teardownModelMock() {
+  for (const c of [ModelMockConnector]) if (container.isBound(c)) container.unbind(c);
+  if (container.isBound(RootModelMock)) container.unbind(RootModelMock);
 }

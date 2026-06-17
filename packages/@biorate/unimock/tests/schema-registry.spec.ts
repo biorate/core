@@ -1,37 +1,19 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
-import { inject, container, Types, Core } from '@biorate/inversion';
-import { IConfig, Config } from '@biorate/config';
-import { SchemaRegistryConnector } from './__mocks__/schema-registry';
+import { setup, teardown, subject } from './__mocks__/schema-registry';
 import * as schema from './test.avsc.json';
 
-beforeAll(() => {
-  if (!container.isBound(Types.Config))
-    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+let root: Awaited<ReturnType<typeof setup>>;
+
+beforeAll(async () => {
+  root = await setup();
 });
 
 afterAll(() => {
-  for (const c of [SchemaRegistryConnector])
-    if (container.isBound(c)) container.unbind(c);
+  teardown();
 });
 
 describe('@biorate/schema-registry', () => {
-  const subject = 'unimock-test-subject';
-
   it('schema-registry connector', async () => {
-    container.get<IConfig>(Types.Config).merge({
-      SchemaRegistry: [{ name: 'connection', baseURL: 'http://localhost:8085' }],
-    });
-
-    container.bind(SchemaRegistryConnector).toSelf().inSingletonScope();
-
-    class Root extends Core() {
-      @inject(SchemaRegistryConnector) public connector: SchemaRegistryConnector;
-    }
-    container.bind(Root).toSelf().inSingletonScope();
-
-    const root = container.get<Root>(Root);
-    await root.$run();
-
     const connection = root.connector.connection('connection');
 
     const { ping } = connection;
@@ -42,8 +24,7 @@ describe('@biorate/schema-registry', () => {
     const { data: versionData } = await postSubjectsVersions({ subject, schema });
     expect(versionData).to.has.property('id').that.be.a('number');
 
-    // Небольшая задержка для репликации в schema registry
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     const { getSubjectsByVersion } = connection;
     const { data: schemaData } = await getSubjectsByVersion({
@@ -77,7 +58,5 @@ describe('@biorate/schema-registry', () => {
       permanent: false,
     });
     expect(deleted[0]).to.be.a('number');
-
-    container.unbind(Root);
   });
 });

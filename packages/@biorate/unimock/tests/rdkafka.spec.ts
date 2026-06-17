@@ -1,84 +1,23 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
-import { inject, container, Types, Core } from '@biorate/inversion';
-import { IConfig, Config } from '@biorate/config';
 import { timer } from '@biorate/tools';
-import { AdminClient } from '@confluentinc/kafka-javascript';
-import { SnapshotStore, MODE_REPLAY } from '../src';
-import {
-  MockAdminConnector,
-  MockProducerConnector,
-  MockConsumerConnector,
-  topic,
-  timeout,
-} from './__mocks__/rdkafka';
+import { setup, teardown, cleanupTopic, topic, timeout } from './__mocks__/rdkafka';
+
+let root: Awaited<ReturnType<typeof setup>>;
 
 beforeAll(async () => {
-  if (!container.isBound(Types.Config))
-    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-  container.get<IConfig>(Types.Config).merge({
-    RDKafkaGlobal: {
-      'metadata.broker.list': 'localhost:9092',
-      'group.id': 'kafka',
-      'socket.keepalive.enable': true,
-      'queue.buffering.max.ms': 5,
-      'allow.auto.create.topics': false,
-    },
-    RDKafkaTopic: {
-      'auto.offset.reset': 'earliest',
-      'enable.auto.commit': false,
-    },
-    RDKafkaAdmin: [
-      {
-        name: 'admin',
-        global: '#{RDKafkaGlobal}',
-      },
-    ],
-    RDKafkaProducer: [
-      {
-        name: 'producer',
-        global: '#{RDKafkaGlobal}',
-        pollInterval: 0,
-      },
-    ],
-    RDKafkaConsumer: [
-      {
-        name: 'consumer',
-        global: '#{RDKafkaGlobal}',
-        topic: '#{RDKafkaTopic}',
-      },
-    ],
-  });
-  if (SnapshotStore.mode !== MODE_REPLAY) {
-    const clean = AdminClient.create({ 'metadata.broker.list': 'localhost:9092' });
-    await new Promise<void>((resolve) => {
-      clean.deleteTopic(topic, timeout, () => resolve());
-      setTimeout(() => resolve(), 2000);
-    });
-    clean.disconnect();
-  }
+  await cleanupTopic();
+});
+
+beforeAll(async () => {
+  root = await setup();
 });
 
 afterAll(() => {
-  for (const c of [MockAdminConnector, MockProducerConnector, MockConsumerConnector])
-    if (container.isBound(c)) container.unbind(c);
+  teardown();
 });
 
 describe('@biorate/rdkafka', () => {
   it('rdkafka admin / producer / consumer', async () => {
-    container.bind(MockAdminConnector).toSelf().inSingletonScope();
-    container.bind(MockProducerConnector).toSelf().inSingletonScope();
-    container.bind(MockConsumerConnector).toSelf().inSingletonScope();
-
-    class Root extends Core() {
-      @inject(MockAdminConnector) public admin: MockAdminConnector;
-      @inject(MockProducerConnector) public producer: MockProducerConnector;
-      @inject(MockConsumerConnector) public consumer: MockConsumerConnector;
-    }
-    container.bind(Root).toSelf().inSingletonScope();
-
-    const root = container.get<Root>(Root);
-    await root.$run();
-
     const admin = root.admin.get();
     const producer = root.producer.get();
     const consumer = root.consumer.get();
@@ -111,7 +50,5 @@ describe('@biorate/rdkafka', () => {
     consumer.unsubscribe();
 
     expect(messages[0].value?.toString()).toBe('hello rdKafka!');
-
-    container.unbind(Root);
   });
 });
