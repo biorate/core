@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/biorate/core/compare/@biorate/unimock@1.3.0...@biorate/unimock@1.4.0) (2026-06-17)
+
+### Features
+
+- **unimock:** isRecord & isReplay added ([e23c025](https://github.com/biorate/core/commit/e23c025c8b6d895bc9765522493ee9395423e63c))
+
 # [1.3.0](https://github.com/biorate/core/compare/@biorate/unimock@1.2.0...@biorate/unimock@1.3.0) (2026-06-17)
 
 ### Features
