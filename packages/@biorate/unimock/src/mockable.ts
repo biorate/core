@@ -4,21 +4,18 @@ import { getSnapshotStore } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { UnimockReplayMissError } from './errors';
 import { ConnectionHandler } from './connection-proxy';
+import { hasMethods, nextRefId, collectOwnDescriptors } from './utils';
 import {
   MODE_REPLAY,
   T_REF,
   T_UNDEFINED,
   T_CALLBACK,
   PROP_CONSTRUCTOR,
-  PROP_PRIVATE_PREFIX,
-  PREFIX_OBJ,
   PREFIX_CB,
   MARKER_CALLBACK,
-  COUNTER_INIT,
   STATIC_SAFE,
 } from './constants';
 
-let counter = COUNTER_INIT;
 const refIdCache = new WeakMap<object, string>();
 
 /**
@@ -61,26 +58,10 @@ export function Mockable(options?: MockableOptions) {
 }
 
 function patchPrototype(proto: object, store: SnapshotStore): void {
-  const visited = new Set<string>();
-  const entries: Array<{ key: string; descriptor: PropertyDescriptor }> = [];
-
-  let current = proto;
-  while (current && current !== Object.prototype) {
-    for (const key of Object.getOwnPropertyNames(current)) {
-      if (
-        key === PROP_CONSTRUCTOR ||
-        key.startsWith(PROP_PRIVATE_PREFIX) ||
-        visited.has(key)
-      )
-        continue;
-      visited.add(key);
-      const descriptor = Object.getOwnPropertyDescriptor(current, key);
-      if (descriptor) entries.push({ key, descriptor });
-    }
-    current = Object.getPrototypeOf(current);
-  }
-
-  entries.reverse();
+  const entries = collectOwnDescriptors(proto, Object.prototype, {
+    skipKeys: new Set([PROP_CONSTRUCTOR]),
+    skipPrefix: '#',
+  });
 
   for (const { key, descriptor } of entries) {
     if (typeof descriptor.value === 'function') {
@@ -308,7 +289,7 @@ function serializeArgs(
         return {
           t: T_CALLBACK,
           v: {
-            callRef: `${PREFIX_CB}${counter++}`,
+            callRef: nextRefId(PREFIX_CB),
             recording: cb.records.map((rec) => rec.map((arg) => serialize(arg))),
           },
         };
@@ -334,7 +315,7 @@ function wrapAndRecord(
   if (hasMethods(result)) {
     let refId = refIdCache.get(result);
     if (!refId) {
-      refId = `${PREFIX_OBJ}${counter++}`;
+      refId = nextRefId();
       refIdCache.set(result, refId);
     }
     const wrapped = new ConnectionHandler(result, refId, store);
@@ -353,26 +334,6 @@ function wrapAndRecord(
   return result;
 }
 
-/**
- * @description Determines whether a value should be wrapped in a {@link ConnectionHandler}.
- *   Returns `true` if the value is a non-null object that is:
- *   - Not a plain `{}` (i.e. has a prototype !== `Object.prototype`), OR
- *   - Has at least one own enumerable property whose value is a function.
- *   Returns `false` for arrays, Date, RegExp, Buffer, Error, and plain data objects.
- */
-function hasMethods(value: unknown): value is object {
-  if (!value || typeof value !== 'object') return false;
-  if (Array.isArray(value)) return false;
-  if (value instanceof Date || value instanceof RegExp) return false;
-  if (Buffer.isBuffer(value)) return false;
-  if (value instanceof Error) return false;
-  if (Object.getPrototypeOf(value) !== Object.prototype) return true;
-  for (const key of Object.keys(value)) {
-    if (typeof (value as Record<string, unknown>)[key] === 'function') return true;
-  }
-  return false;
-}
-
 // TODO: sequelize models static methods, need to be configurable...
 
 /**
@@ -383,30 +344,18 @@ function wrapStaticMethods(
   klass: new (...args: unknown[]) => object,
   store: SnapshotStore,
 ): void {
-  const visited = new Set<string>();
-  let ctor = Object.getPrototypeOf(klass);
-  while (ctor && ctor !== Function.prototype) {
-    for (const key of Object.getOwnPropertyNames(ctor)) {
-      if (
-        key === PROP_CONSTRUCTOR ||
-        key === 'prototype' ||
-        key === 'name' ||
-        key === 'length' ||
-        visited.has(key)
-      )
-        continue;
-      visited.add(key);
-      if (!STATIC_SAFE.has(key)) continue;
-      const descriptor = Object.getOwnPropertyDescriptor(ctor, key);
-      if (descriptor && typeof descriptor.value === 'function') {
-        Object.defineProperty(klass, key, {
-          value: wrapStaticMethod(key, descriptor.value, store),
-          writable: true,
-          configurable: true,
-        });
-      }
-    }
-    ctor = Object.getPrototypeOf(ctor);
+  const entries = collectOwnDescriptors(Object.getPrototypeOf(klass), Function.prototype, {
+    skipKeys: new Set([PROP_CONSTRUCTOR, 'prototype', 'name', 'length']),
+    filter: (key, descriptor) =>
+      STATIC_SAFE.has(key) && typeof descriptor.value === 'function',
+  });
+
+  for (const { key, descriptor } of entries) {
+    Object.defineProperty(klass, key, {
+      value: wrapStaticMethod(key, descriptor.value as (...args: unknown[]) => unknown, store),
+      writable: true,
+      configurable: true,
+    });
   }
 }
 
@@ -466,7 +415,7 @@ function wrapGetter(
     if (hasMethods(result)) {
       let refId = refIdCache.get(result);
       if (!refId) {
-        refId = `${PREFIX_OBJ}${counter++}`;
+        refId = nextRefId();
         refIdCache.set(result, refId);
       }
       const wrapped = new ConnectionHandler(result, refId, store);

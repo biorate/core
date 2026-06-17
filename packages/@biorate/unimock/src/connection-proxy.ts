@@ -14,9 +14,9 @@ import {
   PROP_PRIVATE_PREFIX,
   PREFIX_CONN,
   PREFIX_CONN_PROP,
-  PREFIX_OBJ,
 } from './constants';
 import { skipConnArgsEnabled } from './env';
+import { hasMethods, nextRefId } from './utils';
 
 /**
  * @description Proxy wrapper for connection objects returned by mocked connectors.
@@ -70,7 +70,7 @@ export class ConnectionHandler {
             if (hasMethods(result))
               return new ConnectionHandler(
                 result,
-                `${PREFIX_OBJ}${propKey}_proxy`,
+                nextRefId(),
                 obj.store,
               );
             return result;
@@ -167,18 +167,6 @@ export class ConnectionHandler {
   }
 }
 
-function hasMethods(value: unknown): value is object {
-  if (!value || typeof value !== 'object') return false;
-  if (Array.isArray(value)) return false;
-  if (value instanceof Date || value instanceof RegExp) return false;
-  if (Buffer.isBuffer(value)) return false;
-  if (value instanceof Error) return false;
-  if (Object.getPrototypeOf(value) !== Object.prototype) return true;
-  for (const key of Object.keys(value))
-    if (typeof (<Record<string, unknown>>value)[key] === 'function') return true;
-  return false;
-}
-
 const nestedRefIdCache = new WeakMap<object, string>();
 
 /**
@@ -193,9 +181,7 @@ function wrapNested(
   if (hasMethods(result)) {
     let refId = nestedRefIdCache.get(result);
     if (!refId) {
-      refId = `${PREFIX_OBJ}${store.className}_${Date.now()}_${Math.random()
-        .toString(36)
-        .slice(2, 6)}`;
+      refId = nextRefId();
       nestedRefIdCache.set(result, refId);
     }
     return {
