@@ -2,13 +2,11 @@ import type { MockableOptions, SerializedValue } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
 import { getSnapshotStore } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
-import { UnimockReplayMissError } from './errors';
 import { ConnectionHandler } from './connection-proxy';
-import { hasMethods, nextRefId, collectOwnDescriptors } from './utils';
+import { hasMethods, nextRefId, collectOwnDescriptors, getReplayEntry, recordError } from './utils';
 import {
   MODE_REPLAY,
   T_REF,
-  T_UNDEFINED,
   T_CALLBACK,
   PROP_CONSTRUCTOR,
   PREFIX_CB,
@@ -125,28 +123,25 @@ function makeMethodWrapper(
             const sa = serializeArgs(recordedArgs, callbackRecords);
             return recordResult(store, callKey, resolved, sa);
           },
-          (error: Error) => {
-            const sa = serializeArgs(recordedArgs, callbackRecords);
-            store.record(callKey, {
-              args: sa,
-              result: { t: T_UNDEFINED },
-              error: serialize(error),
-            });
-            throw error;
-          },
+          (error: Error) =>
+            recordError(
+              store,
+              callKey,
+              serializeArgs(recordedArgs, callbackRecords),
+              error,
+            ),
         );
       }
 
       const sa = serializeArgs(recordedArgs, callbackRecords);
       return recordResult(store, callKey, result, sa);
     } catch (e: unknown) {
-      const sa = serializeArgs(recordedArgs, callbackRecords);
-      store.record(callKey, {
-        args: sa,
-        result: { t: T_UNDEFINED },
-        error: serialize(e as Error),
-      });
-      throw e;
+      return recordError(
+        store,
+        callKey,
+        serializeArgs(recordedArgs, callbackRecords),
+        e,
+      );
     }
   };
 }
@@ -161,7 +156,7 @@ function wrapMethod(
   original: (...args: unknown[]) => unknown,
   store: SnapshotStore,
 ): (...args: unknown[]) => unknown {
-  return makeMethodWrapper(name, original, store, wrapAndRecord);
+  return makeMethodWrapper(name, original, store, wrapResult);
 }
 
 /**
@@ -191,10 +186,7 @@ function replayCall(
   args: unknown[],
   store: SnapshotStore,
 ): unknown {
-  const entry = store.get(callKey);
-  if (!entry) throw new UnimockReplayMissError(callKey, name, args);
-
-  if (entry.error) throw deserialize(entry.error) as Error;
+  const entry = getReplayEntry(store, callKey, name, args);
 
   const promises = replayCallbacks(entry.args, args);
 
@@ -299,14 +291,7 @@ function serializeArgs(
   });
 }
 
-/**
- * @description Records a method call result. If the result is an object with methods
- *   (detected by {@link hasMethods}), wraps it in a {@link ConnectionHandler} and stores
- *   a reference (`'ref'`). Otherwise stores the plain serialised value.
- *   Uses a {@link WeakMap} cache to reuse the same refId for repeated calls
- *   returning the same target object (deduplicates `conn:*` snapshot entries).
- */
-function wrapAndRecord(
+function wrapResult(
   store: SnapshotStore,
   callKey: string,
   result: unknown,
@@ -322,14 +307,12 @@ function wrapAndRecord(
     store.record(callKey, {
       args: serializedArgs,
       result: { t: T_REF, v: refId },
-      error: undefined,
     });
     return wrapped;
   }
   store.record(callKey, {
     args: serializedArgs,
     result: serialize(result),
-    error: undefined,
   });
   return result;
 }
@@ -404,25 +387,12 @@ function wrapGetter(
     const mode = store.mode;
 
     if (mode === MODE_REPLAY) {
-      const entry = store.get(callKey);
-      if (!entry) throw new UnimockReplayMissError(callKey, name, []);
+      const entry = getReplayEntry(store, callKey, name, []);
       if (entry.result.t === T_REF)
         return new ConnectionHandler(null, entry.result.v, store);
       return deserialize(entry.result);
     }
 
-    const result = original.call(this);
-    if (hasMethods(result)) {
-      let refId = refIdCache.get(result);
-      if (!refId) {
-        refId = nextRefId();
-        refIdCache.set(result, refId);
-      }
-      const wrapped = new ConnectionHandler(result, refId, store);
-      store.record(callKey, { args: [], result: { t: T_REF, v: refId } });
-      return wrapped;
-    }
-    store.record(callKey, { args: [], result: serialize(result) });
-    return result;
+    return wrapResult(store, callKey, original.call(this), []);
   };
 }

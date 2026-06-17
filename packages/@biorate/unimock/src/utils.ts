@@ -1,4 +1,8 @@
-import { PREFIX_OBJ, PROP_PRIVATE_PREFIX } from './constants';
+import { PREFIX_OBJ, T_UNDEFINED } from './constants';
+import { serialize, deserialize } from './serializer';
+import { UnimockReplayMissError } from './errors';
+import type { SnapshotStore } from './snapshot-store';
+import type { SerializedValue, SnapshotCall } from './interfaces';
 
 let counter = 0;
 
@@ -17,6 +21,32 @@ export function hasMethods(value: unknown): value is object {
     if (typeof (value as Record<string, unknown>)[key] === 'function') return true;
   }
   return false;
+}
+
+export function getReplayEntry(
+  store: SnapshotStore,
+  callKey: string,
+  name: string,
+  args: unknown[],
+): SnapshotCall {
+  const entry = store.get(callKey);
+  if (!entry) throw new UnimockReplayMissError(callKey, name, args);
+  if (entry.error) throw deserialize(entry.error) as Error;
+  return entry;
+}
+
+export function recordError(
+  store: SnapshotStore,
+  callKey: string,
+  serializedArgs: SerializedValue[],
+  error: unknown,
+): never {
+  store.record(callKey, {
+    args: serializedArgs,
+    result: { t: T_UNDEFINED },
+    error: serialize(error),
+  });
+  throw error;
 }
 
 export interface DescriptorEntry {

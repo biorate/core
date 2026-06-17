@@ -162,51 +162,46 @@ export class SnapshotStore implements SnapshotStoreEntry {
     return this.stringPool.get(ref);
   }
 
-  private poolValue(v: SerializedValue): SerializedValue {
-    if (v.t === T_STRING && typeof v.v === 'string' && v.v.length > POOL_THRESHOLD) {
-      const ref = this.getStringRef(v.v);
-      return { t: T_POOLED_STRING, v: ref };
-    }
-    if (v.t === T_ARRAY && Array.isArray(v.v)) {
+  private visitSerialized(
+    v: SerializedValue,
+    visit: (v: SerializedValue) => SerializedValue,
+  ): SerializedValue {
+    const result = visit(v);
+    if (result.t === T_ARRAY && Array.isArray(result.v)) {
       return {
         t: T_ARRAY,
-        v: v.v.map((item) => this.poolValue(item as SerializedValue)),
+        v: result.v.map((item) => this.visitSerialized(item as SerializedValue, visit)),
       };
     }
-    if (v.t === T_OBJECT && Array.isArray(v.v)) {
+    if (result.t === T_OBJECT && Array.isArray(result.v)) {
       return {
         t: T_OBJECT,
-        v: v.v.map((entry) => ({
+        v: result.v.map((entry) => ({
           k: entry.k,
-          v: this.poolValue(entry.v as SerializedValue),
+          v: this.visitSerialized(entry.v as SerializedValue, visit),
         })),
       };
     }
-    return v;
+    return result;
+  }
+
+  private poolValue(v: SerializedValue): SerializedValue {
+    return this.visitSerialized(v, (x) => {
+      if (x.t === T_STRING && typeof x.v === 'string' && x.v.length > POOL_THRESHOLD) {
+        return { t: T_POOLED_STRING, v: this.getStringRef(x.v) };
+      }
+      return x;
+    });
   }
 
   private depoolValue(v: SerializedValue): SerializedValue {
-    if (v.t === T_POOLED_STRING && typeof v.v === 'string') {
-      const value = this.resolveStringRef(v.v);
-      if (value) return { t: T_STRING, v: value };
-      return v;
-    }
-    if (v.t === T_ARRAY && Array.isArray(v.v)) {
-      return {
-        t: T_ARRAY,
-        v: v.v.map((item) => this.depoolValue(item as SerializedValue)),
-      };
-    }
-    if (v.t === T_OBJECT && Array.isArray(v.v)) {
-      return {
-        t: T_OBJECT,
-        v: v.v.map((entry) => ({
-          k: entry.k,
-          v: this.depoolValue(entry.v as SerializedValue),
-        })),
-      };
-    }
-    return v;
+    return this.visitSerialized(v, (x) => {
+      if (x.t === T_POOLED_STRING && typeof x.v === 'string') {
+        const value = this.resolveStringRef(x.v);
+        if (value) return { t: T_STRING, v: value };
+      }
+      return x;
+    });
   }
 }
 

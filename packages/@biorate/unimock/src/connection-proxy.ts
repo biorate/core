@@ -1,14 +1,10 @@
 import type { SnapshotStore } from './snapshot-store';
 import type { SerializedValue } from './interfaces';
 import { makeCallKey, serialize, deserialize } from './serializer';
-import {
-  UnimockReplayMissError,
-  UnimockConnectionHandlerTargetRequiredError,
-} from './errors';
+import { UnimockConnectionHandlerTargetRequiredError } from './errors';
 import {
   MODE_REPLAY,
   T_REF,
-  T_UNDEFINED,
   PROP_THEN,
   PROP_UNIMOCK_REF,
   PROP_PRIVATE_PREFIX,
@@ -16,7 +12,7 @@ import {
   PREFIX_CONN_PROP,
 } from './constants';
 import { skipConnArgsEnabled } from './env';
-import { hasMethods, nextRefId } from './utils';
+import { hasMethods, nextRefId, getReplayEntry, recordError } from './utils';
 
 /**
  * @description Proxy wrapper for connection objects returned by mocked connectors.
@@ -82,9 +78,7 @@ export class ConnectionHandler {
               String(prop),
               args,
             );
-            const entry = obj.store.get(callKey);
-            if (!entry) throw new UnimockReplayMissError(callKey, String(prop), args);
-            if (entry.error) throw deserialize(entry.error) as Error;
+            const entry = getReplayEntry(obj.store, callKey, String(prop), args);
             if (entry.result.t === T_REF)
               return new ConnectionHandler(null, entry.result.v, obj.store);
             return deserialize(entry.result);
@@ -126,14 +120,8 @@ export class ConnectionHandler {
                     });
                     return wrapped;
                   },
-                  (error: Error) => {
-                    obj.store.record(callKey, {
-                      args: recArgs,
-                      result: { t: T_UNDEFINED },
-                      error: serialize(error),
-                    });
-                    throw error;
-                  },
+                  (error: Error) =>
+                    recordError(obj.store, callKey, recArgs, error),
                 );
               }
 
@@ -144,12 +132,12 @@ export class ConnectionHandler {
               });
               return wrapped;
             } catch (e: unknown) {
-              obj.store.record(callKey, {
-                args: skipConnArgsEnabled() ? [] : args.map((a: unknown) => serialize(a)),
-                result: { t: T_UNDEFINED },
-                error: serialize(e),
-              });
-              throw e;
+              return recordError(
+                obj.store,
+                callKey,
+                skipConnArgsEnabled() ? [] : args.map((a: unknown) => serialize(a)),
+                e,
+              );
             }
           };
         }
