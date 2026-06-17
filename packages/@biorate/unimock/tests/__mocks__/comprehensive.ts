@@ -103,3 +103,15 @@ export class ComprehensiveService {
     return 'synced';
   }
 }
+
+export class WithSymbolsService {
+  getSymbol(): symbol {
+    return Symbol('test-symbol');
+  }
+  getSymbolKey(key: symbol): string {
+    return `key: ${key.description ?? 'undefined'}`;
+  }
+  retUndefined(): undefined {
+    return undefined;
+  }
+}

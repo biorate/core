@@ -64,11 +64,7 @@ export class ConnectionHandler {
           if (propEntry) {
             const result = deserialize(propEntry.result);
             if (hasMethods(result))
-              return new ConnectionHandler(
-                result,
-                nextRefId(),
-                obj.store,
-              );
+              return new ConnectionHandler(result, nextRefId(), obj.store);
             return result;
           }
 
@@ -107,7 +103,7 @@ export class ConnectionHandler {
 
               const recArgs = skipConnArgsEnabled()
                 ? []
-                : args.map((a: unknown) => serialize(a));
+                : args.map((a: unknown) => serialize(a, undefined, obj.store.symbols));
 
               if (typeof then === 'function') {
                 return (then as (...a: unknown[]) => unknown).call(
@@ -120,8 +116,7 @@ export class ConnectionHandler {
                     });
                     return wrapped;
                   },
-                  (error: Error) =>
-                    recordError(obj.store, callKey, recArgs, error),
+                  (error: Error) => recordError(obj.store, callKey, recArgs, error),
                 );
               }
 
@@ -135,7 +130,9 @@ export class ConnectionHandler {
               return recordError(
                 obj.store,
                 callKey,
-                skipConnArgsEnabled() ? [] : args.map((a: unknown) => serialize(a)),
+                skipConnArgsEnabled()
+                  ? []
+                  : args.map((a: unknown) => serialize(a, undefined, obj.store.symbols)),
                 e,
               );
             }
@@ -146,7 +143,7 @@ export class ConnectionHandler {
         const value = targetObj[prop];
         obj.store.record(propKey, {
           args: [],
-          result: serialize(value),
+          result: serialize(value, undefined, obj.store.symbols),
         });
 
         return value;
@@ -177,5 +174,5 @@ function wrapNested(
       serialized: { t: T_REF, v: refId },
     };
   }
-  return { wrapped: result, serialized: serialize(result) };
+  return { wrapped: result, serialized: serialize(result, undefined, store.symbols) };
 }

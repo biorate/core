@@ -54,6 +54,9 @@ export class SnapshotStore implements SnapshotStoreEntry {
   /** @description Absolute path to the snapshot file on disk. */
   public readonly snapshotPath: string;
 
+  /** @description Enable symbol serialization (default: `false`). Set by `@Mockable({ symbols: true })`. */
+  public symbols = false;
+
   private data: SnapshotFile;
 
   private dirty = false;

@@ -81,6 +81,17 @@ Available static method lists:
 | ------ | ------- |
 | `SEQUELIZE_STATICS` | `sync`, `drop`, `create`, `findOne`, `findAll`, `findByPk`, `findOrCreate`, `findOrBuild`, `findCreateFind`, `findAndCountAll`, `destroy`, `update`, `upsert`, `bulkCreate`, `truncate`, `restore`, `count`, `sum`, `min`, `max`, `increment`, `decrement`, `describe`, `scope`, `unscoped`, `schema`, `getTableName`, `addScope`, `removeAttribute`, `getAttributes`, `hasAlias`, `hasMany`, `belongsToMany`, `hasOne`, `belongsTo`, `build`, `bulkBuild`, `warnOnInvalidOptions` |
 
+### Symbol serialization
+
+By default, symbol values are serialized as a string marker (`'<symbol>'`). To preserve symbol identity across record/replay, enable the `symbols` option:
+
+```ts
+@Mockable({ symbols: true })
+class MockedService extends RealService {}
+```
+
+When enabled, symbols are serialized as `{ t: 'symbol', v: '<description>' }` and restored via `Symbol(description)`. This is an opt-in feature because it changes the snapshot format and would break existing snapshots.
+
 ### Connector mocking (ClickHouse)
 
 ```ts

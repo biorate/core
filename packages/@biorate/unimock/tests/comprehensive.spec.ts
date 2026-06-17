@@ -1,6 +1,6 @@
 import { Mockable, SnapshotStore, flushAllSnapshots, SEQUELIZE_STATICS } from '../src';
 
-import { ComprehensiveService } from './__mocks__/comprehensive';
+import { ComprehensiveService, WithSymbolsService } from './__mocks__/comprehensive';
 
 const SNAPSHOT_DIR = '/tmp/unimock-test';
 
@@ -161,5 +161,52 @@ describe('@Mockable() comprehensive coverage', () => {
     expect(spy).not.toHaveBeenCalled();
 
     spy.mockRestore();
+  });
+});
+
+describe('@Mockable({ symbols: true })', () => {
+  it('records and replays symbol values', async () => {
+    SnapshotStore.setMode('record');
+
+    @Mockable({ snapshotDir: SNAPSHOT_DIR, symbols: true })
+    class MockedSymbols extends WithSymbolsService {}
+
+    const rec = new MockedSymbols();
+    expect(typeof rec.getSymbol()).toBe('symbol');
+    expect((rec.getSymbol() as symbol).description).toBe('test-symbol');
+    expect(rec.retUndefined()).toBeUndefined();
+
+    flushAllSnapshots();
+
+    SnapshotStore.setMode('replay');
+
+    // Reuse same class name so snapshot file matches
+    const rep = new MockedSymbols();
+    const sym = rep.getSymbol();
+    expect(typeof sym).toBe('symbol');
+    expect((sym as symbol).description).toBe('test-symbol');
+    expect(rep.retUndefined()).toBeUndefined();
+  });
+});
+
+describe('@Mockable() without symbols (default)', () => {
+  it('does not break on symbol values', async () => {
+    SnapshotStore.setMode('record');
+
+    @Mockable({ snapshotDir: SNAPSHOT_DIR })
+    class MockedDefault extends WithSymbolsService {}
+
+    const rec = new MockedDefault();
+    // Record mode returns the original value (a real symbol)
+    expect(typeof rec.getSymbol()).toBe('symbol');
+
+    flushAllSnapshots();
+
+    // Replay mode deserializes the T_STRING marker back as '<symbol>' string
+    SnapshotStore.setMode('replay');
+    const rep = new MockedDefault();
+    const replayed = rep.getSymbol();
+    expect(typeof replayed).toBe('string');
+    expect(replayed).toBe('<symbol>');
   });
 });

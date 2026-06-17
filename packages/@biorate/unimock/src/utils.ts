@@ -44,7 +44,7 @@ export function recordError(
   store.record(callKey, {
     args: serializedArgs,
     result: { t: T_UNDEFINED },
-    error: serialize(error),
+    error: serialize(error, undefined, store.symbols),
   });
   throw error;
 }

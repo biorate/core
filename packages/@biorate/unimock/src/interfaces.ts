@@ -10,6 +10,12 @@ export interface MockableOptions {
    *   Predefined lists like {@link SEQUELIZE_STATICS} can be used directly.
    */
   statics?: string[][];
+  /**
+   * @description Enable serialization of symbol values (default: `false`).
+   *   When enabled, symbols are serialized as their description string and restored via `Symbol()`.
+   *   Disabled by default to avoid breaking existing snapshots.
+   */
+  symbols?: boolean;
 }
 
 /** @description Serialized primitive value (undefined, null, boolean, number, string, bigint). */
@@ -78,6 +84,12 @@ export interface SerializedPooledString {
   v: string;
 }
 
+/** @description Serialized symbol (description stored as string). */
+export interface SerializedSymbol {
+  t: 'symbol';
+  v: string;
+}
+
 /** @description Union of all serialized value types. */
 export type SerializedValue =
   | SerializedPrimitive
@@ -87,6 +99,7 @@ export type SerializedValue =
   | SerializedError
   | SerializedRef
   | SerializedCallback
+  | SerializedSymbol
   | SerializedArray
   | SerializedObject
   | SerializedPooledString;

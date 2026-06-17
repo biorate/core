@@ -17,6 +17,7 @@ export const T_REGEXP = 'regexp';
 export const T_BUFFER = 'buffer';
 export const T_ARRAY = 'array';
 export const T_OBJECT = 'object';
+export const T_SYMBOL = 'symbol';
 
 export const PROP_CONSTRUCTOR = 'constructor';
 export const PROP_THEN = 'then';
@@ -36,8 +37,6 @@ export const MARKER_SYMBOL = '<symbol>';
 export const HASH_ALGORITHM = 'md5';
 export const HASH_ENCODING = 'hex';
 export const ENCODING_BASE64 = 'base64';
-
-export const COUNTER_INIT = 0;
 
 export const SNAPSHOT_FILE_VERSION = 1;
 

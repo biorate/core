@@ -3,7 +3,13 @@ import type { SnapshotStore } from './snapshot-store';
 import { getSnapshotStore } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { ConnectionHandler } from './connection-proxy';
-import { hasMethods, nextRefId, collectOwnDescriptors, getReplayEntry, recordError } from './utils';
+import {
+  hasMethods,
+  nextRefId,
+  collectOwnDescriptors,
+  getReplayEntry,
+  recordError,
+} from './utils';
 import flattenDeep from 'lodash/flattenDeep';
 import {
   MODE_REPLAY,
@@ -44,6 +50,7 @@ export function Mockable(options?: MockableOptions) {
   return function <T extends new (...args: any[]) => object>(Base: T): T {
     const className = Base.name;
     const store = getSnapshotStore(className, options?.snapshotDir);
+    store.symbols = options?.symbols ?? false;
 
     patchPrototype(Base.prototype, store);
 
@@ -120,26 +127,26 @@ function makeMethodWrapper(
       if (result instanceof Promise) {
         return result.then(
           (resolved: unknown) => {
-            const sa = serializeArgs(recordedArgs, callbackRecords);
+            const sa = serializeArgs(recordedArgs, callbackRecords, store.symbols);
             return recordResult(store, callKey, resolved, sa);
           },
           (error: Error) =>
             recordError(
               store,
               callKey,
-              serializeArgs(recordedArgs, callbackRecords),
+              serializeArgs(recordedArgs, callbackRecords, store.symbols),
               error,
             ),
         );
       }
 
-      const sa = serializeArgs(recordedArgs, callbackRecords);
+      const sa = serializeArgs(recordedArgs, callbackRecords, store.symbols);
       return recordResult(store, callKey, result, sa);
     } catch (e: unknown) {
       return recordError(
         store,
         callKey,
-        serializeArgs(recordedArgs, callbackRecords),
+        serializeArgs(recordedArgs, callbackRecords, store.symbols),
         e,
       );
     }
@@ -273,6 +280,7 @@ function serializeArgs(
     records: unknown[][];
     fn: (...a: unknown[]) => unknown;
   }>,
+  symbols?: boolean,
 ): SerializedValue[] {
   return recordedArgs.map((a, i) => {
     if (typeof a === 'function') {
@@ -282,12 +290,14 @@ function serializeArgs(
           t: T_CALLBACK,
           v: {
             callRef: nextRefId(PREFIX_CB),
-            recording: cb.records.map((rec) => rec.map((arg) => serialize(arg))),
+            recording: cb.records.map((rec) =>
+              rec.map((arg) => serialize(arg, undefined, symbols)),
+            ),
           },
         };
       }
     }
-    return serialize(a);
+    return serialize(a, undefined, symbols);
   });
 }
 
@@ -312,7 +322,7 @@ function wrapResult(
   }
   store.record(callKey, {
     args: serializedArgs,
-    result: serialize(result),
+    result: serialize(result, undefined, store.symbols),
   });
   return result;
 }
@@ -324,15 +334,23 @@ function wrapStaticMethods(
 ): void {
   const flat = new Set(flattenDeep(statics));
 
-  const entries = collectOwnDescriptors(Object.getPrototypeOf(klass), Function.prototype, {
-    skipKeys: new Set([PROP_CONSTRUCTOR, 'prototype', 'name', 'length']),
-    filter: (key, descriptor) =>
-      flat.has(key) && typeof descriptor.value === 'function',
-  });
+  const entries = collectOwnDescriptors(
+    Object.getPrototypeOf(klass),
+    Function.prototype,
+    {
+      skipKeys: new Set([PROP_CONSTRUCTOR, 'prototype', 'name', 'length']),
+      filter: (key, descriptor) =>
+        flat.has(key) && typeof descriptor.value === 'function',
+    },
+  );
 
   for (const { key, descriptor } of entries) {
     Object.defineProperty(klass, key, {
-      value: wrapStaticMethod(key, descriptor.value as (...args: unknown[]) => unknown, store),
+      value: wrapStaticMethod(
+        key,
+        descriptor.value as (...args: unknown[]) => unknown,
+        store,
+      ),
       writable: true,
       configurable: true,
     });
@@ -352,7 +370,7 @@ function recordStaticResult(
   const data = toPlain(result);
   store.record(callKey, {
     args: serializedArgs,
-    result: serialize(data),
+    result: serialize(data, undefined, store.symbols),
     error: undefined,
   });
   return result;

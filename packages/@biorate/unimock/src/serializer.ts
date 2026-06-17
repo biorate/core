@@ -14,6 +14,7 @@ import {
   T_REF,
   T_ARRAY,
   T_OBJECT,
+  T_SYMBOL,
   PROP_PRIVATE_PREFIX,
   MARKER_CALLBACK,
   MARKER_FUNCTION,
@@ -101,13 +102,21 @@ export function makeCallKey(prefix: string, method: string, args: unknown[]): st
  * @param value - value to serialise
  * @param seen - cyclic reference guard (Map of object → placeholder)
  */
-export function serialize(value: unknown, seen?: Map<object, string>): SerializedValue {
+export function serialize(
+  value: unknown,
+  seen?: Map<object, string>,
+  symbols?: boolean,
+): SerializedValue {
   if (value === undefined) return { t: T_UNDEFINED };
   if (value === null) return { t: T_NULL };
   if (typeof value === 'boolean') return { t: T_BOOLEAN, v: value };
   if (typeof value === 'number') return { t: T_NUMBER, v: value };
   if (typeof value === 'string') return { t: T_STRING, v: value };
   if (typeof value === 'bigint') return { t: T_BIGINT, v: value.toString() };
+  if (typeof value === 'symbol') {
+    if (symbols) return { t: T_SYMBOL, v: value.description ?? '' };
+    return { t: T_STRING, v: MARKER_SYMBOL };
+  }
   if (typeof value === 'function') return { t: T_STRING, v: MARKER_CALLBACK };
   if (value instanceof Date) return { t: T_DATE, v: value.toISOString() };
   if (value instanceof RegExp)
@@ -120,7 +129,7 @@ export function serialize(value: unknown, seen?: Map<object, string>): Serialize
     if (map.has(value)) return { t: T_UNDEFINED };
     map.set(value, '');
     const mapped: SerializedValue[] = [];
-    for (const item of value) mapped.push(serialize(item, map));
+    for (const item of value) mapped.push(serialize(item, map, symbols));
     return { t: T_ARRAY, v: mapped };
   }
   if (typeof value === 'object' && value !== null) {
@@ -132,7 +141,7 @@ export function serialize(value: unknown, seen?: Map<object, string>): Serialize
     for (const [k, v] of entries) {
       if (k.startsWith(PROP_PRIVATE_PREFIX)) continue;
       if (stripRequestEnabled() && k === 'request') continue;
-      mapped.push({ k, v: serialize(v, map) });
+      mapped.push({ k, v: serialize(v, map, symbols) });
     }
     return { t: T_OBJECT, v: mapped };
   }
@@ -169,6 +178,8 @@ export function deserialize(value: SerializedValue): unknown {
       return Buffer.from(value.v, ENCODING_BASE64);
     case T_ERROR:
       return Object.assign(new Error(value.v.m), { name: value.v.n, stack: value.v.s });
+    case T_SYMBOL:
+      return Symbol(value.v);
     case T_REF:
       return value.v;
     case T_ARRAY:
