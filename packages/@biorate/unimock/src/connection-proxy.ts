@@ -163,6 +163,10 @@ function wrapNested(
   result: unknown,
   store: SnapshotStore,
 ): { wrapped: unknown; serialized: SerializedValue } {
+  const nestedRef = (result as any)?.[PROP_UNIMOCK_REF];
+  if (nestedRef) {
+    return { wrapped: result, serialized: { t: T_REF, v: nestedRef } };
+  }
   if (hasMethods(result)) {
     let refId = nestedRefIdCache.get(result);
     if (!refId) {

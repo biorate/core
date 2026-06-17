@@ -16,6 +16,7 @@ import {
   T_REF,
   T_CALLBACK,
   PROP_CONSTRUCTOR,
+  PROP_UNIMOCK_REF,
   PREFIX_CB,
   MARKER_CALLBACK,
 } from './constants';
@@ -307,6 +308,13 @@ function wrapResult(
   result: unknown,
   serializedArgs: SerializedValue[],
 ): unknown {
+  if ((result as any)?.[PROP_UNIMOCK_REF]) {
+    store.record(callKey, {
+      args: serializedArgs,
+      result: { t: T_REF, v: (result as any)[PROP_UNIMOCK_REF] },
+    });
+    return result;
+  }
   if (hasMethods(result)) {
     let refId = refIdCache.get(result);
     if (!refId) {

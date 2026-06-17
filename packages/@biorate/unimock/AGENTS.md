@@ -111,6 +111,7 @@ new ConnectionHandler(target, refId, store) → Proxy
 - **replay mode**: `get` trap → возвращает функцию, ищущую `conn:{refId}:prop:{hash}` в store. `target` может быть `null`.
 - `'then'`, `'constructor'`, `__unimock_ref__`, `#` → спецобработка (избегаем thenable, даём доступ к refId).
 - `wrapNested` возвращает `{ wrapped, serialized }` — ConnectionHandler + `{t:'ref', v: refId}`.
+- **Double-wrap guard**: `wrapResult` (mockable.ts) и `wrapNested` (connection-proxy.ts) проверяют `__unimock_ref__` на result. Если объект уже обёрнут в ConnectionHandler — переиспользуют существующий refId и не создают новый. Это позволяет вызывать `get()` (или `connection()`) многократно: все возвращают один и тот же ConnectionHandler с одинаковым refId, и записи `conn:{refId}:*` не дублируются.
 
 ## Сериализация
 
