@@ -168,7 +168,10 @@ export class SnapshotStore implements SnapshotStoreEntry {
       return { t: T_POOLED_STRING, v: ref };
     }
     if (v.t === T_ARRAY && Array.isArray(v.v)) {
-      return { t: T_ARRAY, v: v.v.map((item) => this.poolValue(item as SerializedValue)) };
+      return {
+        t: T_ARRAY,
+        v: v.v.map((item) => this.poolValue(item as SerializedValue)),
+      };
     }
     if (v.t === T_OBJECT && Array.isArray(v.v)) {
       return {
@@ -189,7 +192,10 @@ export class SnapshotStore implements SnapshotStoreEntry {
       return v;
     }
     if (v.t === T_ARRAY && Array.isArray(v.v)) {
-      return { t: T_ARRAY, v: v.v.map((item) => this.depoolValue(item as SerializedValue)) };
+      return {
+        t: T_ARRAY,
+        v: v.v.map((item) => this.depoolValue(item as SerializedValue)),
+      };
     }
     if (v.t === T_OBJECT && Array.isArray(v.v)) {
       return {

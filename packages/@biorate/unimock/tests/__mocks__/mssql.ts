@@ -1,14 +1,9 @@
-import { inject, container, Types, Core } from '@biorate/inversion';
-import { IConfig, Config } from '@biorate/config';
 import { MssqlConnector as RawMssqlConnector } from '@biorate/mssql';
 import { Mockable } from '../../src';
+import { createMockSetup } from './helpers';
 
 @Mockable({})
 export class MssqlConnector extends RawMssqlConnector {}
-
-class Root extends Core() {
-  @inject(MssqlConnector) public connector: MssqlConnector;
-}
 
 const config = {
   Mssql: [
@@ -25,18 +20,4 @@ const config = {
   ],
 };
 
-export async function setup() {
-  if (!container.isBound(Types.Config))
-    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-  container.get<IConfig>(Types.Config).merge(config);
-  container.bind(MssqlConnector).toSelf().inSingletonScope();
-  container.bind(Root).toSelf().inSingletonScope();
-  const root = container.get<Root>(Root);
-  await root.$run();
-  return root as { connector: MssqlConnector };
-}
-
-export function teardown() {
-  container.unbind(Root);
-  if (container.isBound(MssqlConnector)) container.unbind(MssqlConnector);
-}
+export const { setup, teardown } = createMockSetup(MssqlConnector, config);

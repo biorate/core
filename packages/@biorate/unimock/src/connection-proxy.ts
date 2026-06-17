@@ -68,7 +68,11 @@ export class ConnectionHandler {
           if (propEntry) {
             const result = deserialize(propEntry.result);
             if (hasMethods(result))
-              return new ConnectionHandler(result, `${PREFIX_OBJ}${propKey}_proxy`, obj.store);
+              return new ConnectionHandler(
+                result,
+                `${PREFIX_OBJ}${propKey}_proxy`,
+                obj.store,
+              );
             return result;
           }
 
@@ -107,7 +111,9 @@ export class ConnectionHandler {
                   ? (rawResult as Record<string, unknown>).then
                   : undefined;
 
-              const recArgs = skipConnArgsEnabled() ? [] : args.map((a: unknown) => serialize(a));
+              const recArgs = skipConnArgsEnabled()
+                ? []
+                : args.map((a: unknown) => serialize(a));
 
               if (typeof then === 'function') {
                 return (then as (...a: unknown[]) => unknown).call(

@@ -1,6 +1,5 @@
 import { inject, container, Types, Core } from '@biorate/inversion';
-import { IConfig, Config } from '@biorate/config';
-import { timer } from '@biorate/tools';
+import { IConfig } from '@biorate/config';
 import { AdminClient } from '@confluentinc/kafka-javascript';
 import {
   RDKafkaAdminConnector,
@@ -38,25 +37,10 @@ const config = {
     'auto.offset.reset': 'earliest',
     'enable.auto.commit': false,
   },
-  RDKafkaAdmin: [
-    {
-      name: 'admin',
-      global: '#{RDKafkaGlobal}',
-    },
-  ],
-  RDKafkaProducer: [
-    {
-      name: 'producer',
-      global: '#{RDKafkaGlobal}',
-      pollInterval: 0,
-    },
-  ],
+  RDKafkaAdmin: [{ name: 'admin', global: '#{RDKafkaGlobal}' }],
+  RDKafkaProducer: [{ name: 'producer', global: '#{RDKafkaGlobal}', pollInterval: 0 }],
   RDKafkaConsumer: [
-    {
-      name: 'consumer',
-      global: '#{RDKafkaGlobal}',
-      topic: '#{RDKafkaTopic}',
-    },
+    { name: 'consumer', global: '#{RDKafkaGlobal}', topic: '#{RDKafkaTopic}' },
   ],
 };
 
@@ -64,16 +48,20 @@ export function cleanupTopic() {
   if (SnapshotStore.mode !== MODE_REPLAY) {
     const clean = AdminClient.create({ 'metadata.broker.list': 'localhost:9092' });
     return new Promise<void>((resolve) => {
-      clean.deleteTopic(topic, timeout, () => resolve());
-      setTimeout(() => resolve(), 2000);
+      clean.deleteTopic(topic, timeout, () => {
+        clean.disconnect();
+        resolve();
+      });
+      setTimeout(() => {
+        clean.disconnect();
+        resolve();
+      }, 2000);
     });
   }
   return Promise.resolve();
 }
 
 export async function setup() {
-  if (!container.isBound(Types.Config))
-    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
   container.get<IConfig>(Types.Config).merge(config);
   container.bind(MockAdminConnector).toSelf().inSingletonScope();
   container.bind(MockProducerConnector).toSelf().inSingletonScope();
@@ -81,7 +69,11 @@ export async function setup() {
   container.bind(Root).toSelf().inSingletonScope();
   const root = container.get<Root>(Root);
   await root.$run();
-  return root as { admin: MockAdminConnector; producer: MockProducerConnector; consumer: MockConsumerConnector };
+  return root as {
+    admin: MockAdminConnector;
+    producer: MockProducerConnector;
+    consumer: MockConsumerConnector;
+  };
 }
 
 export function teardown() {

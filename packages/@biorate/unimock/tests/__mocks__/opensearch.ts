@@ -1,7 +1,6 @@
-import { inject, container, Types, Core } from '@biorate/inversion';
-import { IConfig, Config } from '@biorate/config';
 import { OpenSearchConnector as RawOpenSearchConnector } from '@biorate/opensearch';
 import { Mockable } from '../../src';
+import { createMockSetup } from './helpers';
 
 @Mockable({})
 export class OpenSearchConnector extends RawOpenSearchConnector {
@@ -26,10 +25,6 @@ export class OpenSearchConnector extends RawOpenSearchConnector {
   }
 }
 
-class Root extends Core() {
-  @inject(OpenSearchConnector) public connector: OpenSearchConnector;
-}
-
 const config = {
   OpenSearch: [
     {
@@ -42,18 +37,4 @@ const config = {
   ],
 };
 
-export async function setup() {
-  if (!container.isBound(Types.Config))
-    container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-  container.get<IConfig>(Types.Config).merge(config);
-  container.bind(OpenSearchConnector).toSelf().inSingletonScope();
-  container.bind(Root).toSelf().inSingletonScope();
-  const root = container.get<Root>(Root);
-  await root.$run();
-  return root as { connector: OpenSearchConnector };
-}
-
-export function teardown() {
-  container.unbind(Root);
-  if (container.isBound(OpenSearchConnector)) container.unbind(OpenSearchConnector);
-}
+export const { setup, teardown } = createMockSetup(OpenSearchConnector, config);

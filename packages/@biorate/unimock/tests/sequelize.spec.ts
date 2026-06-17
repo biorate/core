@@ -61,9 +61,11 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
       value: 777,
     });
 
-    const rows = await root2.connector.query<{ id: number; title: string; value: number }>(
-      SELECT_MODEL,
-    );
+    const rows = await root2.connector.query<{
+      id: number;
+      title: string;
+      value: number;
+    }>(SELECT_MODEL);
     expect(rows[0].title).toBe('via-mockable-model');
   });
 });

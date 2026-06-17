@@ -18,11 +18,11 @@ describe('@biorate/schema-registry', () => {
 
     const { ping } = connection;
     const pingResult = await ping();
-    expect(pingResult.data).to.be.a('object');
+    expect(pingResult.data).toEqual(expect.any(Object));
 
     const { postSubjectsVersions } = connection;
     const { data: versionData } = await postSubjectsVersions({ subject, schema });
-    expect(versionData).to.has.property('id').that.be.a('number');
+    expect(versionData).toHaveProperty('id', expect.any(Number));
 
     await new Promise((resolve) => setTimeout(resolve, 100));
 
@@ -31,32 +31,32 @@ describe('@biorate/schema-registry', () => {
       subject,
       version: 'latest',
     });
-    expect(schemaData).to.has.property('subject').that.be.a('string');
-    expect(schemaData).to.has.property('id').that.be.a('number');
-    expect(schemaData).to.has.property('version').that.be.a('number');
-    expect(schemaData).to.has.property('schema').that.be.a('string');
+    expect(schemaData).toHaveProperty('subject', expect.any(String));
+    expect(schemaData).toHaveProperty('id', expect.any(Number));
+    expect(schemaData).toHaveProperty('version', expect.any(Number));
+    expect(schemaData).toHaveProperty('schema', expect.any(String));
 
     const { getSchemasById } = connection;
     const { data: schemaById } = await getSchemasById(versionData.id);
-    expect(schemaById).to.has.property('schema').that.be.a('string');
+    expect(schemaById).toHaveProperty('schema', expect.any(String));
 
     const { getSubjects } = connection;
     const { data: subjects } = await getSubjects();
-    expect(subjects).to.be.an('array');
+    expect(subjects).toBeInstanceOf(Array);
 
     const { getSubjectsVersions } = connection;
     const { data: versions } = await getSubjectsVersions(subject);
-    expect(versions).to.be.an('array');
+    expect(versions).toBeInstanceOf(Array);
 
     const { getSchemasTypes } = connection;
     const { data: types } = await getSchemasTypes();
-    expect(types).to.be.an('array');
+    expect(types).toBeInstanceOf(Array);
 
     const { deleteSubjects } = connection;
     const { data: deleted } = await deleteSubjects({
       subject,
       permanent: false,
     });
-    expect(deleted[0]).to.be.a('number');
+    expect(deleted[0]).toEqual(expect.any(Number));
   });
 });
