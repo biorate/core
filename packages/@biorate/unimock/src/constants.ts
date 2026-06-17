@@ -24,6 +24,7 @@ export const PROP_UNIMOCK_REF = '__unimock_ref__';
 export const PROP_PRIVATE_PREFIX = '#';
 
 export const PREFIX_CONN = 'conn:';
+export const PREFIX_CONN_PROP = 'conn_prop:';
 export const PREFIX_OBJ = 'obj_';
 export const PREFIX_CB = 'cb_';
 export const SEPARATOR_STORE = '::';

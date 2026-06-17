@@ -13,6 +13,7 @@ import {
   PROP_UNIMOCK_REF,
   PROP_PRIVATE_PREFIX,
   PREFIX_CONN,
+  PREFIX_CONN_PROP,
   PREFIX_OBJ,
 } from './constants';
 import { skipConnArgsEnabled } from './env';
@@ -62,6 +63,15 @@ export class ConnectionHandler {
         const mode = obj.store.mode;
 
         if (mode === MODE_REPLAY) {
+          const propKey = `${PREFIX_CONN_PROP}${obj.__unimock_ref__}:${String(prop)}:`;
+          const propEntry = obj.store.get(propKey);
+          if (propEntry) {
+            const result = deserialize(propEntry.result);
+            if (hasMethods(result))
+              return new ConnectionHandler(result, `${PREFIX_OBJ}${propKey}_proxy`, obj.store);
+            return result;
+          }
+
           return (...args: unknown[]) => {
             const callKey = makeCallKey(
               `${PREFIX_CONN}${obj.__unimock_ref__}:`,
@@ -138,7 +148,14 @@ export class ConnectionHandler {
           };
         }
 
-        return targetObj[prop];
+        const propKey = `${PREFIX_CONN_PROP}${obj.__unimock_ref__}:${String(prop)}:`;
+        const value = targetObj[prop];
+        obj.store.record(propKey, {
+          args: [],
+          result: serialize(value),
+        });
+
+        return value;
       },
     });
   }
