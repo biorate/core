@@ -20,12 +20,18 @@ export { parseUnimockMode, resolveSnapshotDir } from './env';
 export { serialize, deserialize, stableHash, makeCallKey } from './serializer';
 
 /** @description Snapshot store — per-class persistence of recorded calls. */
-export { SnapshotStore, getSnapshotStore, flushAllSnapshots } from './snapshot-store';
+export {
+  SnapshotStore,
+  getSnapshotStore,
+  flushAllSnapshots,
+  isReplay,
+  isRecord,
+} from './snapshot-store';
 
 /** @description Proxy wrapper for connection objects returned by mocked connectors. */
 export { ConnectionHandler } from './connection-proxy';
 
-import { flushAllSnapshots } from './snapshot-store';
+import { flushAllSnapshots, isReplay, isRecord } from './snapshot-store';
 import { parseUnimockMode, resolveSnapshotDir } from './env';
 
 /**
@@ -45,6 +51,14 @@ export const Unimock = {
   /** @description Current operating mode (from `UNIMOCK` env). */
   get mode() {
     return parseUnimockMode();
+  },
+  /** @description Whether current mode is `'record'`. */
+  get isRecord() {
+    return isRecord();
+  },
+  /** @description Whether current mode is `'replay'`. */
+  get isReplay() {
+    return isReplay();
   },
   /** @description Resolved snapshot directory path. */
   get snapshotDir() {

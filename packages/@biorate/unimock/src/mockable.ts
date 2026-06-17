@@ -1,6 +1,7 @@
+import { flattenDeep } from 'lodash-es';
 import type { MockableOptions, SerializedValue } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
-import { getSnapshotStore } from './snapshot-store';
+import { getSnapshotStore, isReplay } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { ConnectionHandler } from './connection-proxy';
 import {
@@ -10,9 +11,7 @@ import {
   getReplayEntry,
   recordError,
 } from './utils';
-import { flattenDeep } from 'lodash-es';
 import {
-  MODE_REPLAY,
   T_REF,
   T_CALLBACK,
   PROP_CONSTRUCTOR,
@@ -114,11 +113,10 @@ function makeMethodWrapper(
   ) => unknown,
 ): (...args: unknown[]) => unknown {
   return function (this: unknown, ...args: unknown[]) {
-    const mode = store.mode;
     const reportArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
     const callKey = makeCallKey('', name, reportArgs);
 
-    if (mode === MODE_REPLAY) return replayCall(callKey, name, args, store);
+    if (isReplay()) return replayCall(callKey, name, args, store);
 
     const { recordedArgs, callbackRecords } = recordPrep(args);
 
@@ -407,9 +405,8 @@ function wrapGetter(
 ): () => unknown {
   return function (this: unknown) {
     const callKey = makeCallKey('', name, []);
-    const mode = store.mode;
 
-    if (mode === MODE_REPLAY) {
+    if (isReplay()) {
       const entry = getReplayEntry(store, callKey, name, []);
       if (entry.result.t === T_REF)
         return new ConnectionHandler(null, entry.result.v, store);

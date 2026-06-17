@@ -30,12 +30,12 @@
 | ---- | ---------- |
 | `src/mockable.ts` | Декоратор `@Mockable()`, `wrapMethod`, `replayCall`, `wrapAndRecord`, `hasMethods`, `wrapGetter` |
 | `src/connection-proxy.ts` | `ConnectionHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.) |
-| `src/snapshot-store.ts` | `SnapshotStore` — загрузка/сохранение JSON-снапшотов, кэш stores, `flushAllSnapshots()` |
+| `src/snapshot-store.ts` | `SnapshotStore` — загрузка/сохранение JSON-снапшотов, кэш stores, `flushAllSnapshots()`, `isReplay()`, `isRecord()` |
 | `src/serializer.ts` | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey` |
 | `src/env.ts` | `parseUnimockMode()`, `resolveSnapshotDir()` |
 | `src/errors.ts` | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockConnectionHandlerTargetRequiredError` |
 | `src/interfaces.ts` | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode` |
-| `src/index.ts` | Публичный API: `Mockable`, `SnapshotStore`, `flushAllSnapshots`, `ConnectionHandler`, `Unimock` |
+| `src/index.ts` | Публичный API: `Mockable`, `SnapshotStore`, `flushAllSnapshots`, `ConnectionHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
 | `vitest/setup.ts` | Хук `afterAll` для автоматического `flushAllSnapshots()` |
 | `tests/unimock.spec.ts` | 24 unit-теста для ядра |
 | `tests/clickhouse.spec.ts` | 2 интеграционных теста с реальным Clickhouse (record + replay) |
@@ -223,6 +223,28 @@ Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}
 **Всегда включены** (без флага):
 - **Cache refId** — `WeakMap<object, string>` в `wrapAndRecord`/`wrapGetter`/`wrapNested`. Повторные `get()` на том же объекте переиспользуют refId → устраняются дубли `conn:obj_X:method:hash`.
 - **String pool** — строки >500B в `SnapshotStore.record()` заменяются на `{t: "pooled_string", v: "$ref"}` с выносом в `strings:` словарь. Прозрачно расширяются обратно в `SnapshotStore.get()`.
+
+## Helper-функции `isReplay()` / `isRecord()`
+
+`isReplay()` и `isRecord()` — read-only функции, проверяющие глобальный режим (`SnapshotStore.mode`). Всегда читают актуальное значение, корректно работают после `SnapshotStore.setMode()`.
+
+Заменяют ручные проверки `store.mode === MODE_REPLAY` и `SnapshotStore.mode !== 'record'`:
+```ts
+// Было
+const mode = store.mode;
+if (mode === MODE_REPLAY) return replayCall(...);
+
+// Стало
+if (isReplay()) return replayCall(...);
+
+// Было
+if (SnapshotStore.mode !== 'record') return;
+
+// Стало
+if (!isRecord()) return;
+```
+
+Также доступны через `Unimock.isReplay`, `Unimock.isRecord` (getter-свойства).
 
 ## Чеклист при изменениях
 

@@ -13,6 +13,8 @@ import {
   SEPARATOR_STORE,
   SNAPSHOT_FILE_VERSION,
   DEFAULT_SNAPSHOT_EXT,
+  MODE_RECORD,
+  MODE_REPLAY,
   T_POOLED_STRING,
   T_STRING,
   T_ARRAY,
@@ -230,8 +232,26 @@ export function getSnapshotStore(className: string, snapshotDir?: string): Snaps
  *   Automatically called by the vitest setup hook (`vitest/setup.ts`).
  */
 export function flushAllSnapshots(): void {
-  if (SnapshotStore.mode !== 'record') return;
+  if (!isRecord()) return;
   for (const store of stores.values()) store.flush();
+}
+
+/**
+ * @description Returns `true` when the current global mode is `'replay'`.
+ *   Always reads `SnapshotStore.mode`, so it works correctly after
+ *   {@link SnapshotStore.setMode}. Replaces manual `store.mode === MODE_REPLAY` checks.
+ */
+export function isReplay(): boolean {
+  return SnapshotStore.mode === MODE_REPLAY;
+}
+
+/**
+ * @description Returns `true` when the current global mode is `'record'`.
+ *   Always reads `SnapshotStore.mode`, so it works correctly after
+ *   {@link SnapshotStore.setMode}. Replaces manual `SnapshotStore.mode !== 'record'` checks.
+ */
+export function isRecord(): boolean {
+  return SnapshotStore.mode === MODE_RECORD;
 }
 
 export { SnapshotStore as SnapshotStoreClass };

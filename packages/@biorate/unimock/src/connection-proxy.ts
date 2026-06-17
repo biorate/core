@@ -1,9 +1,9 @@
 import type { SnapshotStore } from './snapshot-store';
 import type { SerializedValue } from './interfaces';
+import { isReplay } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { UnimockConnectionHandlerTargetRequiredError } from './errors';
 import {
-  MODE_REPLAY,
   T_REF,
   PROP_THEN,
   PROP_UNIMOCK_REF,
@@ -56,9 +56,7 @@ export class ConnectionHandler {
         if (typeof prop === 'string' && prop.startsWith(PROP_PRIVATE_PREFIX))
           return undefined;
 
-        const mode = obj.store.mode;
-
-        if (mode === MODE_REPLAY) {
+        if (isReplay()) {
           const propKey = `${PREFIX_CONN_PROP}${obj.__unimock_ref__}:${String(prop)}:`;
           const propEntry = obj.store.get(propKey);
           if (propEntry) {

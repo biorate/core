@@ -21,7 +21,13 @@ pnpm add @biorate/unimock
 ### Basic service mocking
 
 ```ts
-import { Mockable, SnapshotStore, flushAllSnapshots } from '@biorate/unimock';
+import {
+  Mockable,
+  SnapshotStore,
+  flushAllSnapshots,
+  isReplay,
+  isRecord,
+} from '@biorate/unimock';
 
 class TestService {
   public async query(sql: string) {
@@ -157,6 +163,24 @@ Unimock is connector-agnostic and works with any class that returns a connection
 | *(unset)* / `off` / `0` / `false` | Mocking disabled — `@Mockable()` is a no-op |
 | `record` / `update` / `1` / `true` | Record mode — call real implementation, persist snapshots on flush |
 | `replay` | Replay mode — return recorded responses; miss → `UnimockReplayMissError` |
+
+### Mode helpers
+
+Use `isReplay()` and `isRecord()` in application code to conditionally skip or adapt logic during tests:
+
+```ts
+import { isReplay, isRecord } from '@biorate/unimock';
+
+if (isReplay()) {
+  // skip infrastructure-dependent setup
+}
+
+if (!isRecord()) {
+  // run cleanup only outside record mode
+}
+```
+
+These functions always read the current global mode — they work correctly after `SnapshotStore.setMode()`. Also accessible via `Unimock.isReplay` and `Unimock.isRecord` getters.
 
 ### Optimisation flags
 
