@@ -1,5 +1,4 @@
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { Unimock } from '@biorate/unimock';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { getTestRoot } from './__mocks__';
 import type { Root } from './__mocks__';
 
@@ -9,10 +8,6 @@ describe('@biorate/clickhouse', function () {
   beforeAll(async () => {
     root = getTestRoot();
     await root.$run();
-  });
-
-  afterAll(() => {
-    Unimock.flush();
   });
 
   it('query', async () => {
