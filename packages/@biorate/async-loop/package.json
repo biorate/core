@@ -1,6 +1,6 @@
 {
   "name": "@biorate/async-loop",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Async loop function",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

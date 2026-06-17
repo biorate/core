@@ -1,6 +1,6 @@
 {
   "name": "@biorate/schema-registry",
-  "version": "3.0.4",
+  "version": "3.1.0",
   "description": "Schema registry connector",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -52,11 +52,11 @@
   "license": "MIT",
   "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a",
   "dependencies": {
-    "@biorate/axios-prometheus": "^2.1.2",
-    "@biorate/config": "3.1.0",
-    "@biorate/connector": "3.0.2",
-    "@biorate/errors": "3.0.0",
-    "@biorate/inversion": "3.0.2",
+    "@biorate/axios-prometheus": "^2.2.0",
+    "@biorate/config": "^3.2.0",
+    "@biorate/connector": "^3.1.0",
+    "@biorate/errors": "^3.1.0",
+    "@biorate/inversion": "^3.1.0",
     "avsc": "^5.7.4"
   }
 }

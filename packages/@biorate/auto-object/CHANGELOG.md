@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/@biorate/auto-object@2.1.0...@biorate/auto-object@2.2.0) (2026-06-17)
+
+### Features
+
+- **unimock:** redesign, stability reached, docs update, minor fixes in monoreposytory deps, lodash-es moved into peerDependencies ([558a27e](https://github.com/biorate/core/commit/558a27e2c36e93522340a8bf61ba00bccc4df589))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/auto-object@2.0.1...@biorate/auto-object@2.1.0) (2026-05-18)
 
 ### Features

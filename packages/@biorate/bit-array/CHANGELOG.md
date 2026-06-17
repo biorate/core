@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/biorate/core/compare/@biorate/bit-array@2.0.0...@biorate/bit-array@2.1.0) (2026-06-17)
+
+### Features
+
+- **unimock:** redesign, stability reached, docs update, minor fixes in monoreposytory deps, lodash-es moved into peerDependencies ([558a27e](https://github.com/biorate/core/commit/558a27e2c36e93522340a8bf61ba00bccc4df589))
+
 # [2.0.0](https://github.com/biorate/core/compare/@biorate/bit-array@1.105.0...@biorate/bit-array@2.0.0) (2026-05-14)
 
 - feat!: ESLint added with auto-fix for all packages ([d17b810](https://github.com/biorate/core/commit/d17b81046ef6b4be217b01ef059a5a828e590fac))

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/opentelemetry",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "OpenTelemetry integration",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -49,8 +49,8 @@
     "reflect-metadata": ">=0.1.13"
   },
   "dependencies": {
-    "@biorate/errors": "3.0.0",
-    "@biorate/masquerade": "^2.1.2",
+    "@biorate/errors": "^3.1.0",
+    "@biorate/masquerade": "^2.2.0",
     "@opentelemetry/api": "1.9.0",
     "@opentelemetry/auto-instrumentations-node": "0.71.0",
     "@opentelemetry/exporter-metrics-otlp-grpc": "0.213.0",

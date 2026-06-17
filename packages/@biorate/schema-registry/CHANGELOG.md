@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/biorate/core/compare/@biorate/schema-registry@3.0.4...@biorate/schema-registry@3.1.0) (2026-06-17)
+
+### Features
+
+- **unimock:** redesign, stability reached, docs update, minor fixes in monoreposytory deps, lodash-es moved into peerDependencies ([558a27e](https://github.com/biorate/core/commit/558a27e2c36e93522340a8bf61ba00bccc4df589))
+
 ## [3.0.4](https://github.com/biorate/core/compare/@biorate/schema-registry@3.0.3...@biorate/schema-registry@3.0.4) (2026-05-20)
 
 ### Bug Fixes

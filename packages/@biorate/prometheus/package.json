@@ -1,6 +1,6 @@
 {
   "name": "@biorate/prometheus",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Prometheus DI module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

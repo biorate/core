@@ -509,22 +509,22 @@ importers:
   packages/@biorate/axios-prometheus:
     dependencies:
       '@biorate/axios':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../axios
       '@biorate/config':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../config
       '@biorate/inversion':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: ^2.0.4
+        specifier: ^2.1.0
         version: link:../opentelemetry
       '@biorate/prometheus':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../prometheus
       '@biorate/tools':
-        specifier: 3.0.1
+        specifier: ^3.1.0
         version: link:../tools
       json-stringify-safe:
         specifier: 5.0.1
@@ -882,13 +882,13 @@ importers:
   packages/@biorate/masquerade:
     dependencies:
       '@biorate/config':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../config
       '@biorate/inversion':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../inversion
       '@biorate/tools':
-        specifier: 3.0.1
+        specifier: ^3.1.0
         version: link:../tools
       lodash-es:
         specifier: '>=4.17.21'
@@ -900,58 +900,58 @@ importers:
   packages/@biorate/migrations:
     dependencies:
       '@biorate/amqp':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../amqp
       '@biorate/clickhouse':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../clickhouse
       '@biorate/config':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../config
       '@biorate/config-loader':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../config-loader
       '@biorate/config-loader-env':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../config-loader-env
       '@biorate/config-loader-fs':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../config-loader-fs
       '@biorate/config-loader-vault':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../config-loader-vault
       '@biorate/connector':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../connector
       '@biorate/errors':
-        specifier: 3.0.0
+        specifier: ^3.1.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../inversion
       '@biorate/kafkajs':
-        specifier: 2.1.0
+        specifier: ^2.2.0
         version: link:../kafkajs
       '@biorate/minio':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../minio
       '@biorate/mongodb':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../mongodb
       '@biorate/proxy':
-        specifier: 2.0.2
+        specifier: ^2.1.0
         version: link:../proxy
       '@biorate/schema-registry':
-        specifier: ^3.0.4
+        specifier: ^3.1.0
         version: link:../schema-registry
       '@biorate/sequelize':
-        specifier: 2.1.0
+        specifier: ^2.2.0
         version: link:../sequelize
       '@biorate/tools':
-        specifier: 3.0.1
+        specifier: ^3.1.0
         version: link:../tools
       '@biorate/vault':
-        specifier: 2.1.0
+        specifier: ^2.2.0
         version: link:../vault
 
   packages/@biorate/minio:
@@ -1091,25 +1091,25 @@ importers:
   packages/@biorate/nestjs-tools:
     dependencies:
       '@biorate/axios':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../axios
       '@biorate/config':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../config
       '@biorate/errors':
-        specifier: 3.0.0
+        specifier: ^3.1.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: ^2.0.4
+        specifier: ^2.1.0
         version: link:../opentelemetry
       '@biorate/prometheus':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../prometheus
       '@biorate/tools':
-        specifier: 3.0.1
+        specifier: ^3.1.0
         version: link:../tools
       '@nestjs/common':
         specifier: '>=10.4.15'
@@ -1174,10 +1174,10 @@ importers:
   packages/@biorate/opentelemetry:
     dependencies:
       '@biorate/errors':
-        specifier: 3.0.0
+        specifier: ^3.1.0
         version: link:../errors
       '@biorate/masquerade':
-        specifier: ^2.1.2
+        specifier: ^2.2.0
         version: link:../masquerade
       '@opentelemetry/api':
         specifier: 1.9.0
@@ -1360,22 +1360,22 @@ importers:
   packages/@biorate/rdkafka:
     dependencies:
       '@biorate/config':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../config
       '@biorate/connector':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../connector
       '@biorate/errors':
-        specifier: 3.0.0
+        specifier: ^3.1.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../inversion
       '@biorate/prometheus':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../prometheus
       '@biorate/tools':
-        specifier: 3.0.1
+        specifier: ^3.1.0
         version: link:../tools
       '@confluentinc/kafka-javascript':
         specifier: '>=1.9.0'
@@ -1442,19 +1442,19 @@ importers:
   packages/@biorate/schema-registry:
     dependencies:
       '@biorate/axios-prometheus':
-        specifier: ^2.1.2
+        specifier: ^2.2.0
         version: link:../axios-prometheus
       '@biorate/config':
-        specifier: 3.1.0
+        specifier: ^3.2.0
         version: link:../config
       '@biorate/connector':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../connector
       '@biorate/errors':
-        specifier: 3.0.0
+        specifier: ^3.1.0
         version: link:../errors
       '@biorate/inversion':
-        specifier: 3.0.2
+        specifier: ^3.1.0
         version: link:../inversion
       avsc:
         specifier: ^5.7.4
