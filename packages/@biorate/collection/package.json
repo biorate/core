@@ -57,13 +57,13 @@
   "license": "MIT",
   "gitHead": "366894dafd47b9613acde338a5615ee547f729a8",
   "peerDependencies": {
+    "lodash-es": ">=4.17.21",
     "reflect-metadata": ">=0.1.13"
   },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/symbolic": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "lodash-es": "^4.17.21",
     "luxon": "^1.27.0",
     "mobx": "^5.15.7"
   },

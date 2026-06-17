@@ -10,7 +10,7 @@ import {
   getReplayEntry,
   recordError,
 } from './utils';
-import flattenDeep from 'lodash/flattenDeep';
+import { flattenDeep } from 'lodash-es';
 import {
   MODE_REPLAY,
   T_REF,

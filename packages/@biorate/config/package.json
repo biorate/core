@@ -46,10 +46,12 @@
   "author": "llevkin",
   "license": "MIT",
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
+  "peerDependencies": {
+    "lodash-es": ">=4.17.21"
+  },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "lodash-es": "^4.17.21",
     "traverse": "^0.6.6"
   },
   "devDependencies": {

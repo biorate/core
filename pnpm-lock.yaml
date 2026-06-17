@@ -184,7 +184,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
       sinon:
         specifier: 21.0.1
         version: 21.0.1
@@ -472,8 +472,8 @@ importers:
         specifier: 0.14.1
         version: 0.14.1
       lodash-es:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: '>=4.17.21'
+        version: 4.17.23
       reflect-metadata:
         specifier: '>=0.1.13'
         version: 0.1.13
@@ -493,7 +493,7 @@ importers:
         specifier: 2.1.0
         version: 2.1.0
       lodash-es:
-        specifier: 4.17.23
+        specifier: '>=4.17.21'
         version: 4.17.23
       path-to-url:
         specifier: 0.1.0
@@ -585,8 +585,8 @@ importers:
         specifier: 1.11.1
         version: 1.11.1
       lodash-es:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: '>=4.17.21'
+        version: 4.17.23
     devDependencies:
       '@biorate/unimock':
         specifier: workspace:*
@@ -604,8 +604,8 @@ importers:
         specifier: workspace:*
         version: link:../tools
       lodash-es:
-        specifier: ^4.17.21
-        version: 4.18.1
+        specifier: '>=4.17.21'
+        version: 4.17.23
       luxon:
         specifier: ^1.27.0
         version: 1.28.1
@@ -638,8 +638,8 @@ importers:
         specifier: workspace:*
         version: link:../tools
       lodash-es:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: '>=4.17.21'
+        version: 4.17.23
 
   packages/@biorate/config:
     dependencies:
@@ -650,8 +650,8 @@ importers:
         specifier: workspace:*
         version: link:../inversion
       lodash-es:
-        specifier: ^4.17.21
-        version: 4.18.1
+        specifier: '>=4.17.21'
+        version: 4.17.23
       traverse:
         specifier: ^0.6.6
         version: 0.6.11
@@ -1479,7 +1479,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
     devDependencies:
       sqlite3:
         specifier: 5.0.7
@@ -1516,8 +1516,8 @@ importers:
       '@biorate/lifecycled':
         specifier: workspace:*
         version: link:../lifecycled
-      lodash:
-        specifier: ^4.17.21
+      lodash-es:
+        specifier: '>=4.17.21'
         version: 4.17.23
     devDependencies:
       '@biorate/clickhouse':
@@ -1568,12 +1568,9 @@ importers:
       '@confluentinc/kafka-javascript':
         specifier: latest
         version: 1.9.1(encoding@0.1.13)
-      '@types/lodash':
-        specifier: ^4.14.173
-        version: 4.14.173
-      pg:
-        specifier: ^8.20.0
-        version: 8.20.0
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
 
   packages/@biorate/vault:
     dependencies:
@@ -7530,9 +7527,6 @@ packages:
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
-
-  lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
 
   lodash-es@4.17.23:
     resolution: {integrity: sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==}
@@ -18104,8 +18098,6 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
-  lodash-es@4.17.21: {}
-
   lodash-es@4.17.23: {}
 
   lodash-es@4.18.1: {}
@@ -20563,7 +20555,7 @@ snapshots:
 
   sequelize-pool@7.1.0: {}
 
-  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13))):
+  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3):
     dependencies:
       '@types/node': 24.10.12
       '@types/validator': 13.15.10

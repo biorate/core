@@ -48,14 +48,16 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "lodash-es": ">=4.17.21"
+  },
   "dependencies": {
     "@biorate/config": "workspace:*",
     "@biorate/connector": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "@clickhouse/client": "1.11.1",
-    "lodash-es": "4.17.21"
+    "@clickhouse/client": "1.11.1"
   },
   "devDependencies": {
     "@biorate/unimock": "workspace:*"

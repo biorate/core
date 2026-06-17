@@ -48,12 +48,14 @@
   "author": "llevkin",
   "license": "MIT",
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
+  "peerDependencies": {
+    "lodash-es": ">=4.17.21"
+  },
   "dependencies": {
     "@biorate/singleton": "workspace:*",
     "axios": "1.15.1",
     "axios-retry": "4.5.0",
     "http-status": "2.1.0",
-    "lodash-es": "4.17.23",
     "path-to-url": "0.1.0"
   },
   "devDependencies": {

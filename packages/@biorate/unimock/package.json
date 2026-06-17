@@ -81,13 +81,14 @@
     "@biorate/sequelize": "workspace:*",
     "@biorate/tools": "workspace:*",
     "@confluentinc/kafka-javascript": "latest",
-    "@types/lodash": "^4.14.173",
-    "pg": "^8.20.0"
+    "@types/lodash-es": "^4.17.12"
+  },
+  "peerDependencies": {
+    "lodash-es": ">=4.17.21"
   },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "@biorate/lifecycled": "workspace:*",
-    "lodash": "^4.17.21"
+    "@biorate/lifecycled": "workspace:*"
   }
 }

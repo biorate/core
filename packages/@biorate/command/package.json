@@ -45,11 +45,13 @@
   "keywords": [],
   "author": "llevkin",
   "license": "MIT",
+  "peerDependencies": {
+    "lodash-es": ">=4.17.21"
+  },
   "dependencies": {
     "@biorate/config": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/singleton": "workspace:*",
-    "@biorate/tools": "workspace:*",
-    "lodash-es": "4.17.21"
+    "@biorate/tools": "workspace:*"
   }
 }
