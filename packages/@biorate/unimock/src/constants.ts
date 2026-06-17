@@ -41,6 +41,8 @@ export const COUNTER_INIT = 0;
 export const SNAPSHOT_FILE_VERSION = 1;
 
 export const DEFAULT_SNAPSHOT_DIR = 'tests/__snapshots__';
+/** @description Snapshot file extension. Override via `SNAPSHOT_EXT` env (default: `.snap`). Format: `{className}.unimock{ext}`. */
+export const DEFAULT_SNAPSHOT_EXT = process.env.SNAPSHOT_EXT ?? '.snap';
 
 export const STABLE_HASH_LENGTH = 8;
 

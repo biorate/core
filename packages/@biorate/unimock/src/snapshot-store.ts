@@ -12,6 +12,7 @@ import { parseUnimockMode, resolveSnapshotDir, gzipEnabled } from './env';
 import {
   SEPARATOR_STORE,
   SNAPSHOT_FILE_VERSION,
+  DEFAULT_SNAPSHOT_EXT,
   T_POOLED_STRING,
   T_STRING,
   T_ARRAY,
@@ -68,7 +69,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
   public constructor(className: string, snapshotDir?: string) {
     this.className = className;
     const baseDir = resolveSnapshotDir(snapshotDir);
-    this.snapshotPath = resolve(baseDir, `${className}.unimock.json`);
+    this.snapshotPath = resolve(baseDir, `${className}.unimock${DEFAULT_SNAPSHOT_EXT}`);
     this.stringPool = new Map();
     this.data = this.load();
   }

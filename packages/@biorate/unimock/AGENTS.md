@@ -217,6 +217,7 @@ Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}
 | `UNIMOCK_GZIP=1` | Gzip-компрессия `.unimock.json` при записи (~97% reduction на реальных данных). Чтение автоопределяет gzip-магию. |
 | `UNIMOCK_STRIP_REQUEST=1` | Пропускать поле `request` у Axios-подобных ответов при сериализации (HTTP-интерны, ~40KB на entry). |
 | `UNIMOCK_SKIP_CONN_ARGS=1` | Не сериализовать `args` для `conn:*` записей — они не используются в replay (только callKey нужен). |
+| `SNAPSHOT_EXT` | Расширение файла снапшота (default: `.snap`). Имя: `{ClassName}.unimock{ext}`. |
 
 **Всегда включены** (без флага):
 - **Cache refId** — `WeakMap<object, string>` в `wrapAndRecord`/`wrapGetter`/`wrapNested`. Повторные `get()` на том же объекте переиспользуют refId → устраняются дубли `conn:obj_X:method:hash`.

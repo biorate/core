@@ -123,6 +123,7 @@ Unimock is connector-agnostic and works with any class that returns a connection
 | `UNIMOCK_STRIP_REQUEST=1` | Strip the `request` field (Axios HTTP internals, ~40 KB per entry). |
 | `UNIMOCK_SKIP_CONN_ARGS=1` | Skip serialising `args` for `conn:*` entries — they are not used in replay. |
 | `UNIMOCK_SNAPSHOT_DIR` | Custom snapshot directory (default: `tests/__snapshots__`). |
+| `SNAPSHOT_EXT` | Snapshot file extension (default: `.snap`). File name: `{ClassName}.unimock{ext}`. |
 
 ### Always-on optimisations
 
