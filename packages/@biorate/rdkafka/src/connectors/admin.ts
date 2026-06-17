@@ -29,7 +29,7 @@ export class RDKafkaAdminConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'RDKafkaAdmin';
+  protected readonly namespace: string = 'RDKafkaAdmin';
   /**
    * @description Create connection
    */

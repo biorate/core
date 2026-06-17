@@ -113,7 +113,7 @@ export class ProxyConnector extends Connector<IProxyConfig, IProxyConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Proxy';
+  protected readonly namespace: string = 'Proxy';
   /**
    * @description Create connection
    */

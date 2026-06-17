@@ -51,7 +51,7 @@ export class KafkaJSConsumerConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'KafkaJSConsumer';
+  protected readonly namespace: string = 'KafkaJSConsumer';
   /**
    * @description configs
    */

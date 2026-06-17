@@ -2,36 +2,191 @@
 
 Snapshot-based proxy mocking for connectors and services.
 
-## Usage
+Record real calls once, replay them later without live infrastructure. Ideal for integration tests that depend on databases, message brokers, HTTP APIs, or any other external service.
 
-```ts
-import { Mockable } from '@biorate/unimock';
-import { ClickhouseConnector as BaseClickhouseConnector } from '@biorate/clickhouse';
+## How it works
 
-@Mockable()
-class ClickhouseConnector extends BaseClickhouseConnector {}
+`@Mockable()` extends the decorated class and replaces its prototype methods with wrappers. In **record** mode, each call passes through to the original implementation and the arguments + result are persisted into a JSON snapshot file. In **replay** mode, the wrappers return the recorded responses without invoking the original logic.
+
+Connection objects returned by `.get()` or getter properties are automatically wrapped in a `ConnectionHandler` (Proxy), so subsequent method calls on them are also recorded and replayed.
+
+## Installation
+
+```bash
+pnpm add @biorate/unimock
 ```
 
-Snapshots default to `tests/__snapshots__/<ClassName>.unimock.json` under `process.cwd()` (package root when you run `pnpm test`).
+## Usage
 
-Initialize the DI root **after** setting env (see clickhouse `tests/__mocks__/index.ts` → `getTestRoot()`).
+### Basic service mocking
+
+```ts
+import { Mockable, SnapshotStore, flushAllSnapshots } from '@biorate/unimock';
+
+class TestService {
+  public async query(sql: string) {
+    return { data: [1, 2, 3] };
+  }
+  public get value() {
+    return 'real-value';
+  }
+}
+
+// Record phase (needs live service)
+SnapshotStore.setMode('record');
+
+@Mockable()
+class MockedService extends TestService {}
+
+const service = new MockedService();
+console.log(await service.query('SELECT 1')); // { data: [1, 2, 3] } — real call
+flushAllSnapshots(); // writes tests/__snapshots__/MockedService.unimock.json
+
+// Replay phase (no live service needed)
+SnapshotStore.setMode('replay');
+
+const replayed = new MockedService();
+console.log(await replayed.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
+```
+
+### Static method wrapping
+
+Some ORMs and frameworks expose operations as static methods (e.g. Sequelize `Model.findByPk()`). Use the `statics` option to wrap them for recording and replay.
+
+```ts
+import { Mockable, SEQUELIZE_STATICS } from '@biorate/unimock';
+
+// Use a predefined list
+@Mockable({ statics: [SEQUELIZE_STATICS] })
+class TestModel extends Model {}
+```
+
+Each element in the `statics` array is a list of method names:
+
+```ts
+// Custom static methods
+@Mockable({ statics: [['myMethod', 'another']] })
+class MyService extends BaseService {}
+
+// Combined
+@Mockable({ statics: [SEQUELIZE_STATICS, ['myMethod']] })
+class HybridModel extends Model {
+  static myMethod() { ... }
+}
+```
+
+Available static method lists:
+
+| Export | Methods |
+| ------ | ------- |
+| `SEQUELIZE_STATICS` | `sync`, `drop`, `create`, `findOne`, `findAll`, `findByPk`, `findOrCreate`, `findOrBuild`, `findCreateFind`, `findAndCountAll`, `destroy`, `update`, `upsert`, `bulkCreate`, `truncate`, `restore`, `count`, `sum`, `min`, `max`, `increment`, `decrement`, `describe`, `scope`, `unscoped`, `schema`, `getTableName`, `addScope`, `removeAttribute`, `getAttributes`, `hasAlias`, `hasMany`, `belongsToMany`, `hasOne`, `belongsTo`, `build`, `bulkBuild`, `warnOnInvalidOptions` |
+
+### Symbol serialization
+
+By default, symbol values are serialized as a string marker (`'<symbol>'`). To preserve symbol identity across record/replay, enable the `symbols` option:
+
+```ts
+@Mockable({ symbols: true })
+class MockedService extends RealService {}
+```
+
+When enabled, symbols are serialized as `{ t: 'symbol', v: '<description>' }` and restored via `Symbol(description)`. This is an opt-in feature because it changes the snapshot format and would break existing snapshots.
+
+### Connector mocking (ClickHouse)
+
+```ts
+import { Core, inject, container, Types } from '@biorate/inversion';
+import { IConfig, Config } from '@biorate/config';
+import { Mockable, SnapshotStore, flushAllSnapshots } from '@biorate/unimock';
+import { ClickhouseConnector as ChConnector } from '@biorate/clickhouse';
+
+@Mockable()
+class ClickhouseConnector extends ChConnector {}
+
+class Root extends Core() {
+  @inject(ClickhouseConnector) public connector: ClickhouseConnector;
+}
+
+container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
+container.bind(ClickhouseConnector).toSelf().inSingletonScope();
+container.bind(Root).toSelf().inSingletonScope();
+
+container.get<IConfig>(Types.Config).merge({
+  Clickhouse: [{ name: 'connection', options: {} }],
+});
+
+// Record
+SnapshotStore.setMode('record');
+const root = container.get<Root>(Root);
+await root.$run();
+const { data } = await root.connector
+  .get()
+  .query({ query: 'SELECT 1 AS result;', format: 'JSON' });
+console.log(data); // [{ result: 1 }]
+flushAllSnapshots();
+
+// Replay (saved snapshot, no ClickHouse needed)
+SnapshotStore.setMode('replay');
+const { data: data2 } = await root.connector
+  .get()
+  .query({ query: 'SELECT 1 AS result;', format: 'JSON' });
+console.log(data2); // [{ result: 1 }] — from snapshot
+```
+
+### Supported connectors
+
+Unimock is connector-agnostic and works with any class that returns a connection object from a getter or a `.get()` method. The following connectors have integration tests:
+
+- [ClickHouse](https://github.com/biorate/core/tree/master/packages/%40biorate/clickhouse)
+- [Kafka (rdkafka)](https://github.com/biorate/core/tree/master/packages/%40biorate/rdkafka)
+- [Schema Registry](https://github.com/biorate/core/tree/master/packages/%40biorate/schema-registry)
+- [OpenSearch](https://github.com/biorate/core/tree/master/packages/%40biorate/opensearch)
+- [MongoDB](https://github.com/biorate/core/tree/master/packages/%40biorate/mongodb)
+- [Sequelize](https://github.com/biorate/core/tree/master/packages/%40biorate/sequelize)
+- [PostgreSQL](https://github.com/biorate/core/tree/master/packages/%40biorate/pg)
+- [MSSQL](https://github.com/biorate/core/tree/master/packages/%40biorate/mssql)
+- [Redis / ioredis](https://github.com/biorate/core/tree/master/packages/%40biorate/redis)
+- [Proxy](https://github.com/biorate/core/tree/master/packages/%40biorate/proxy)
 
 ## Environment
 
-| `UNIMOCK` | Proxy | Behaviour |
-| --------- | ----- | --------- |
-| *(unset)* / `off` / `0` / `false` | off | `@Mockable` is a no-op — real class, no snapshots |
-| `record` / `update` | on | Call real implementation and persist snapshots on flush |
-| `replay` | on | Return recorded responses; miss → `UnimockReplayMissError` |
-| `auto` / `1` / `true` | on | Replay when snapshot file has calls; otherwise record |
+### Mode selection
+
+| `UNIMOCK` | Behaviour |
+| --------- | --------- |
+| *(unset)* / `off` / `0` / `false` | Mocking disabled — `@Mockable()` is a no-op |
+| `record` / `update` / `1` / `true` | Record mode — call real implementation, persist snapshots on flush |
+| `replay` | Replay mode — return recorded responses; miss → `UnimockReplayMissError` |
+
+### Optimisation flags
 
 | Variable | Description |
 | -------- | ----------- |
-| `UNIMOCK_SNAPSHOT_DIR` | Override snapshot directory (default: `tests/__snapshots__`) |
+| `UNIMOCK_GZIP=1` | Gzip-compress snapshot files on write (~97 % reduction). Auto-detected on read. |
+| `UNIMOCK_STRIP_REQUEST=1` | Strip the `request` field (Axios HTTP internals, ~40 KB per entry). |
+| `UNIMOCK_SKIP_CONN_ARGS=1` | Skip serialising `args` for `conn:*` entries — they are not used in replay. |
+| `UNIMOCK_SNAPSHOT_DIR` | Custom snapshot directory (default: `tests/__snapshots__`). |
+| `SNAPSHOT_EXT` | Snapshot file extension (default: `.snap`). File name: `{ClassName}.unimock{ext}`. |
 
-Deprecated (shim + one-time warning): `UNIMOCK_UPDATE=1` → `record`, `UNIMOCK_LIVE=1` → `off`.
+### Always-on optimisations
 
-Call `Unimock.flush()` after tests to persist recorded snapshots (or use `@biorate/unimock/vitest/setup`).
+- **refId caching** — `WeakMap<object, string>` deduplicates `conn:obj_X:method:hash` entries when the same connection object is returned by `.get()`.
+- **String pool** — strings >500 B are moved to a shared dictionary (`strings:` key in the JSON file) and transparently expanded back on read.
+
+## Vitest setup
+
+```ts
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    setupFiles: ['@biorate/unimock/vitest/setup'],
+  },
+});
+```
+
+The setup hooks `afterAll` to call `flushAllSnapshots()` automatically when `UNIMOCK=record`.
 
 ## Scripts
 
@@ -42,19 +197,45 @@ UNIMOCK=replay pnpm --filter @biorate/clickhouse test
 # Re-record snapshots (needs live ClickHouse)
 UNIMOCK=record pnpm --filter @biorate/clickhouse test
 
-# E2E / integration without mocks
-pnpm --filter @biorate/clickhouse test:integration
+# With gzip compression and optimisations
+UNIMOCK=record UNIMOCK_GZIP=1 UNIMOCK_STRIP_REQUEST=1 pnpm --filter @biorate/schema-registry test
 ```
 
-## Vitest
+## Snapshot file format
 
-```ts
-// vitest.config.ts
-export default defineConfig({
-  test: {
-    setupFiles: ['@biorate/unimock/vitest/setup'],
+Snapshot files are stored in `tests/__snapshots__/<ClassName>.unimock.json`.
+
+```json
+{
+  "version": 1,
+  "className": "MockedService",
+  "calls": {
+    "query:a1b2c3d4": {
+      "args": [{ "t": "string", "v": "SELECT 1" }],
+      "result": { "t": "object", "v": [{ "k": "data", "v": { "t": "array", ... } }] }
+    }
   },
-});
+  "strings": {
+    "$0": "a very long repeated string..."
+  }
+}
 ```
 
-Commit `tests/__snapshots__/*.unimock.json`. CI runs with `UNIMOCK=replay` without infrastructure.
+## Known limitations
+
+1. **`@init()` from `@biorate/lifecycled`** still runs in replay mode because the decorator stores the original descriptor in constructor metadata, not on the instance. Workaround: override `initialize` in the test subclass as a no-op, or check `SnapshotStore.mode` inside `initialize()`.
+
+2. **ConnectionHandler returns synchronously in replay mode.** In record mode, `query()` returns a Promise. In replay mode, it returns the deserialised value directly (await on a non-Promise works, but behaviour is not identical).
+
+3. **Private `#` fields** are not wrapped — `wrapPrototype` and `ConnectionHandler` filter keys starting with `#`.
+
+### Learn
+* Documentation can be found here - [docs](https://biorate.github.io/core/modules/unimock.html).
+
+### Release History
+See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/CHANGELOG.md)
+
+### License
+[MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/LICENSE)
+
+Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)

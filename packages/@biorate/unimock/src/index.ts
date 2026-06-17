@@ -1,27 +1,61 @@
+/**
+ * @description Decorator — wraps a class to intercept method calls for recording or replaying.
+ *   See {@link Mockable} for details.
+ */
 export { Mockable } from './mockable';
-export { unwrapMockTarget } from './proxy';
-export { configureUnimock, flushAllSnapshots, getSnapshotStore } from './snapshot-store';
-export {
-  DEFAULT_SNAPSHOT_DIR,
-  isUnimockEnabled,
-  parseUnimockEnv,
-  resolveMode,
-  resolveSnapshotDir,
-} from './env';
-export type { UnimockEnv } from './env';
-export * from './errors';
-export * from './interfaces';
-export { defaultSerializers, opaqueHandleSerializer } from './default-serializers';
-export {
-  isReplayableSnapshotFile,
-  resolveSnapshotFilePath,
-  snapshotDirFromImportMeta,
-} from './snapshot-path';
 
-import { configureUnimock, flushAllSnapshots } from './snapshot-store';
+/** @description Mode constants: `'record'`, `'replay'`, `'off'`. */
+export { MODE_RECORD, MODE_REPLAY, MODE_OFF } from './constants';
 
-/** @description Global helpers for snapshot persistence. */
+/** @description Sequelize Model static method names for {@link MockableOptions.statics}. */
+export { SEQUELIZE_STATICS } from './constants';
+
+/** @description Error classes. */
+export { UnimockReplayMissError, UnimockSerializeError } from './errors';
+
+/** @description Environment variable parsers. */
+export { parseUnimockMode, resolveSnapshotDir } from './env';
+
+/** @description Serialiser/deserialiser and call key utilities. */
+export { serialize, deserialize, stableHash, makeCallKey } from './serializer';
+
+/** @description Snapshot store — per-class persistence of recorded calls. */
+export { SnapshotStore, getSnapshotStore, flushAllSnapshots } from './snapshot-store';
+
+/** @description Proxy wrapper for connection objects returned by mocked connectors. */
+export { ConnectionHandler } from './connection-proxy';
+
+import { flushAllSnapshots } from './snapshot-store';
+import { parseUnimockMode, resolveSnapshotDir } from './env';
+
+/**
+ * @description Convenience namespace bundling the most common Unimock utilities.
+ *
+ * @example
+ * ```ts
+ * import { Unimock } from '@biorate/unimock';
+ *
+ * console.log(Unimock.mode); // 'off' | 'record' | 'replay'
+ * Unimock.flush(); // flush all snapshots
+ * ```
+ */
 export const Unimock = {
+  /** @description Flushes all dirty snapshot stores to disk. */
   flush: flushAllSnapshots,
-  configure: configureUnimock,
+  /** @description Current operating mode (from `UNIMOCK` env). */
+  get mode() {
+    return parseUnimockMode();
+  },
+  /** @description Resolved snapshot directory path. */
+  get snapshotDir() {
+    return resolveSnapshotDir();
+  },
 };
+
+export type {
+  UnimockMode,
+  MockableOptions,
+  SerializedValue,
+  SnapshotCall,
+  SnapshotFile,
+} from './interfaces';

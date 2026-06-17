@@ -94,7 +94,7 @@ export class HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnecti
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Haproxy';
+  protected readonly namespace: string = 'Haproxy';
   /**
    * @description Create connection
    */

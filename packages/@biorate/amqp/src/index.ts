@@ -75,7 +75,7 @@ export class AmqpConnector extends Connector<IAmqpConfig, IAmqpConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Amqp';
+  protected readonly namespace: string = 'Amqp';
   /**
    * @description Channels storage
    */

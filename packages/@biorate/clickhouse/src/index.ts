@@ -64,7 +64,7 @@ export class ClickhouseConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Clickhouse';
+  protected readonly namespace: string = 'Clickhouse';
   /**
    * @description Create connection
    */

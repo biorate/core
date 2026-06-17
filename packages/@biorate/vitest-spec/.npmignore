@@ -7,3 +7,6 @@ vitest.config.ts
 tsconfig*.json
 dist/**/*.tsbuildinfo
 **/*.tsbuildinfo
+/AGENTS.md
+/CHANGELOG.md
+/tests

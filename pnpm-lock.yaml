@@ -472,8 +472,8 @@ importers:
         specifier: 0.14.1
         version: 0.14.1
       lodash-es:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: '>=4.17.21'
+        version: 4.17.23
       reflect-metadata:
         specifier: '>=0.1.13'
         version: 0.1.13
@@ -493,7 +493,7 @@ importers:
         specifier: 2.1.0
         version: 2.1.0
       lodash-es:
-        specifier: 4.17.23
+        specifier: '>=4.17.21'
         version: 4.17.23
       path-to-url:
         specifier: 0.1.0
@@ -585,8 +585,8 @@ importers:
         specifier: 1.11.1
         version: 1.11.1
       lodash-es:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: '>=4.17.21'
+        version: 4.17.23
     devDependencies:
       '@biorate/unimock':
         specifier: workspace:*
@@ -604,8 +604,8 @@ importers:
         specifier: workspace:*
         version: link:../tools
       lodash-es:
-        specifier: ^4.17.21
-        version: 4.18.1
+        specifier: '>=4.17.21'
+        version: 4.17.23
       luxon:
         specifier: ^1.27.0
         version: 1.28.1
@@ -638,8 +638,8 @@ importers:
         specifier: workspace:*
         version: link:../tools
       lodash-es:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: '>=4.17.21'
+        version: 4.17.23
 
   packages/@biorate/config:
     dependencies:
@@ -650,8 +650,8 @@ importers:
         specifier: workspace:*
         version: link:../inversion
       lodash-es:
-        specifier: ^4.17.21
-        version: 4.18.1
+        specifier: '>=4.17.21'
+        version: 4.17.23
       traverse:
         specifier: ^0.6.6
         version: 0.6.11
@@ -1516,6 +1516,61 @@ importers:
       '@biorate/lifecycled':
         specifier: workspace:*
         version: link:../lifecycled
+      lodash-es:
+        specifier: '>=4.17.21'
+        version: 4.17.23
+    devDependencies:
+      '@biorate/clickhouse':
+        specifier: workspace:*
+        version: link:../clickhouse
+      '@biorate/config':
+        specifier: workspace:*
+        version: link:../config
+      '@biorate/ioredis':
+        specifier: workspace:*
+        version: link:../ioredis
+      '@biorate/mongodb':
+        specifier: workspace:*
+        version: link:../mongodb
+      '@biorate/mssql':
+        specifier: workspace:*
+        version: link:../mssql
+      '@biorate/opensearch':
+        specifier: workspace:*
+        version: link:../opensearch
+      '@biorate/pg':
+        specifier: workspace:*
+        version: link:../pg
+      '@biorate/prometheus':
+        specifier: workspace:*
+        version: link:../prometheus
+      '@biorate/proxy':
+        specifier: workspace:*
+        version: link:../proxy
+      '@biorate/proxy-prometheus':
+        specifier: workspace:*
+        version: link:../proxy-prometheus
+      '@biorate/rdkafka':
+        specifier: workspace:*
+        version: link:../rdkafka
+      '@biorate/redis':
+        specifier: workspace:*
+        version: link:../redis
+      '@biorate/schema-registry':
+        specifier: workspace:*
+        version: link:../schema-registry
+      '@biorate/sequelize':
+        specifier: workspace:*
+        version: link:../sequelize
+      '@biorate/tools':
+        specifier: workspace:*
+        version: link:../tools
+      '@confluentinc/kafka-javascript':
+        specifier: latest
+        version: 1.9.1(encoding@0.1.13)
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
 
   packages/@biorate/vault:
     dependencies:
@@ -1905,6 +1960,10 @@ packages:
 
   '@confluentinc/kafka-javascript@1.9.0':
     resolution: {integrity: sha512-bIH0IEkpgTAiU7h+MBg7aDhS8+hxVVO5LA3XdlP28aNNIWauI31z50Y5LWjkwbWbH/1i2UBE8H5qvA7gLcttWg==}
+    engines: {node: '>=18.0.0'}
+
+  '@confluentinc/kafka-javascript@1.9.1':
+    resolution: {integrity: sha512-Qc7IZGSiWb9PVcfGwhMDmVcn0fj4V2jZjJ7r1ObNdnu1JSFY1yMZvINS4QY9dAI00S7Ng6EE2zIaEQ7UrVDrPw==}
     engines: {node: '>=18.0.0'}
 
   '@cspotcode/source-map-support@0.8.1':
@@ -7471,9 +7530,6 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
-  lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-
   lodash-es@4.17.23:
     resolution: {integrity: sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==}
 
@@ -11484,6 +11540,15 @@ snapshots:
       '@clickhouse/client-common': 1.11.1
 
   '@confluentinc/kafka-javascript@1.9.0(encoding@0.1.13)':
+    dependencies:
+      '@mapbox/node-pre-gyp': 2.0.3(encoding@0.1.13)
+      bindings: 1.5.0
+      nan: 2.26.2
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  '@confluentinc/kafka-javascript@1.9.1(encoding@0.1.13)':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.3(encoding@0.1.13)
       bindings: 1.5.0
@@ -18035,8 +18100,6 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
-
-  lodash-es@4.17.21: {}
 
   lodash-es@4.17.23: {}
 

@@ -32,7 +32,7 @@ export class RDKafkaProducerStreamConnector extends Connector<
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'RDKafkaProducerStream';
+  protected readonly namespace: string = 'RDKafkaProducerStream';
   /**
    * @description Create connection
    */

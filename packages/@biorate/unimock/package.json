@@ -42,7 +42,9 @@
     "lint": "eslint src --ext .ts",
     "format:fix": "prettier --write src",
     "lint:fix": "eslint src --ext .ts --fix",
-    "test": "npx vitest run --coverage",
+    "test": "pnpm run test:replay",
+    "test:replay": "UNIMOCK=replay npx vitest run --coverage",
+    "test:record": "UNIMOCK_STRIP_REQUEST=1 UNIMOCK_SKIP_CONN_ARGS=1 UNIMOCK_GZIP=1 UNIMOCK=record npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
@@ -62,6 +64,28 @@
   ],
   "author": "llevkin",
   "license": "MIT",
+  "devDependencies": {
+    "@biorate/clickhouse": "workspace:*",
+    "@biorate/config": "workspace:*",
+    "@biorate/ioredis": "workspace:*",
+    "@biorate/mongodb": "workspace:*",
+    "@biorate/mssql": "workspace:*",
+    "@biorate/opensearch": "workspace:*",
+    "@biorate/pg": "workspace:*",
+    "@biorate/prometheus": "workspace:*",
+    "@biorate/proxy": "workspace:*",
+    "@biorate/proxy-prometheus": "workspace:*",
+    "@biorate/rdkafka": "workspace:*",
+    "@biorate/redis": "workspace:*",
+    "@biorate/schema-registry": "workspace:*",
+    "@biorate/sequelize": "workspace:*",
+    "@biorate/tools": "workspace:*",
+    "@confluentinc/kafka-javascript": "latest",
+    "@types/lodash-es": "^4.17.12"
+  },
+  "peerDependencies": {
+    "lodash-es": ">=4.17.21"
+  },
   "dependencies": {
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",

@@ -83,7 +83,7 @@ export class MssqlConnector extends Connector<IMssqlConfig, IMssqlConnection> {
   /**
    * @description Namespace path for fetching configuration
    */
-  protected readonly namespace = 'Mssql';
+  protected readonly namespace: string = 'Mssql';
   /**
    * @description Create connection
    */

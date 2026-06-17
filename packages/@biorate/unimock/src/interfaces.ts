@@ -1,49 +1,139 @@
-/** @description Serialized call result stored in a snapshot file. */
-export type SnapshotResult =
-  | { kind: 'void' }
-  | { kind: 'primitive'; value: unknown }
-  | { kind: 'ref'; ref: string };
+/** @description Unimock operational mode. */
+export type UnimockMode = 'off' | 'record' | 'replay';
 
-/** @description Single recorded method call. */
-export interface SnapshotCallEntry {
-  args: unknown[];
-  result: SnapshotResult;
-}
-
-/** @description On-disk snapshot format (one file per class). */
-export interface SnapshotFile {
-  version: 1;
-  className: string;
-  calls: Record<string, SnapshotCallEntry>;
-  /** Serialized property bag for object refs returned from recorded calls. */
-  refs?: Record<string, unknown>;
-}
-
-/** @description Runtime mode resolved from env and snapshot presence. */
-export type UnimockMode = 'record' | 'replay';
-
-/** @description Custom pack/unpack for values JSON cannot represent. */
-export interface ISerializer {
-  test(value: unknown): boolean;
-  pack(value: unknown): unknown;
-  unpack(value: unknown): unknown;
-}
-
-/** @description Options for {@link Mockable}. */
+/** @description Options for the {@link Mockable} decorator. */
 export interface MockableOptions {
-  /** Absolute or relative path to snapshot file (default: `__snapshots__/<ClassName>.unimock.json`). */
-  snapshot?: string;
-  /** Directory for default snapshot path (relative to `snapshotBaseDir` or `cwd`). */
+  /** @description Override snapshot directory (default: `tests/__snapshots__`). */
   snapshotDir?: string;
-  /** Base directory for `snapshotDir` (use {@link snapshotDirFromImportMeta}). */
-  snapshotBaseDir?: string;
-  serializers?: ISerializer[];
+  /**
+   * @description Static method wrapping configuration. Each element is a list of method names.
+   *   Predefined lists like {@link SEQUELIZE_STATICS} can be used directly.
+   */
+  statics?: string[][];
+  /**
+   * @description Enable serialization of symbol values (default: `false`).
+   *   When enabled, symbols are serialized as their description string and restored via `Symbol()`.
+   *   Disabled by default to avoid breaking existing snapshots.
+   */
+  symbols?: boolean;
 }
 
-/** @description Global unimock settings. */
-export interface UnimockConfig {
-  snapshotDir?: string;
+/** @description Serialized primitive value (undefined, null, boolean, number, string, bigint). */
+export interface SerializedPrimitive {
+  t: 'undefined' | 'null' | 'boolean' | 'number' | 'string' | 'bigint';
+  v?: unknown;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Constructor<T = object> = new (...args: any[]) => T;
+/** @description Serialized Date (ISO string). */
+export interface SerializedDate {
+  t: 'date';
+  v: string;
+}
+
+/** @description Serialized RegExp (source + flags). */
+export interface SerializedRegExp {
+  t: 'regexp';
+  v: { s: string; f: string };
+}
+
+/** @description Serialized Buffer (base64). */
+export interface SerializedBuffer {
+  t: 'buffer';
+  v: string;
+}
+
+/** @description Serialized Error (name + message + optional stack). */
+export interface SerializedError {
+  t: 'error';
+  v: { n: string; m: string; s?: string };
+}
+
+/** @description Reference to a {@link ConnectionHandler} by its refId. */
+export interface SerializedRef {
+  t: 'ref';
+  v: string;
+}
+
+/** @description Serialized callback recording — stores arguments of each invocation. */
+export interface SerializedCallback {
+  t: 'callback';
+  v: { callRef: string; recording: unknown[][] };
+}
+
+/** @description Serialized array of nested {@link SerializedValue}s. */
+export interface SerializedArray {
+  t: 'array';
+  v: SerializedValue[];
+}
+
+/**
+ * @description Serialized plain object. Keys are sorted deterministically.
+ *   Only enumerable own properties are included. Private `#`-prefixed keys are excluded.
+ */
+export interface SerializedObject {
+  t: 'object';
+  v: { k: string; v: SerializedValue }[];
+}
+
+/**
+ * @description Reference to a pooled string. The actual value is stored in
+ *   {@link SnapshotFile.strings} to avoid duplicating large strings across entries.
+ */
+export interface SerializedPooledString {
+  t: 'pooled_string';
+  v: string;
+}
+
+/** @description Serialized symbol (description stored as string). */
+export interface SerializedSymbol {
+  t: 'symbol';
+  v: string;
+}
+
+/** @description Union of all serialized value types. */
+export type SerializedValue =
+  | SerializedPrimitive
+  | SerializedDate
+  | SerializedRegExp
+  | SerializedBuffer
+  | SerializedError
+  | SerializedRef
+  | SerializedCallback
+  | SerializedSymbol
+  | SerializedArray
+  | SerializedObject
+  | SerializedPooledString;
+
+/** @description A single recorded call entry within a snapshot file. */
+export interface SnapshotCall {
+  /** @description Serialized call arguments (used for callback replay). */
+  args: SerializedValue[];
+  /** @description Serialized return value. */
+  result: SerializedValue;
+  /** @description Serialized error, if the call threw. */
+  error?: SerializedValue;
+}
+
+/** @description On-disk snapshot file format. */
+export interface SnapshotFile {
+  /** @description Format version (currently `1`). */
+  version: 1;
+  /** @description Name of the mocked class. */
+  className: string;
+  /** @description Map of callKey → recorded entry. */
+  calls: Record<string, SnapshotCall>;
+  /**
+   * @description Pooled strings referenced by {@link SerializedPooledString} entries.
+   *   Only present when at least one large string was deduplicated.
+   */
+  strings?: Record<string, string>;
+}
+
+/** @description Minimal contract satisfied by {@link SnapshotStore}. */
+export interface SnapshotStoreEntry {
+  get(callKey: string): SnapshotCall | undefined;
+  has(callKey: string): boolean;
+  record(callKey: string, call: SnapshotCall): void;
+  flush(): void;
+  get mode(): UnimockMode;
+}
