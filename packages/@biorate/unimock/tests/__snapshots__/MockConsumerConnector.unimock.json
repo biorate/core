@@ -305,7 +305,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_MockConsumerConnector_1781645419417_yuic"
+        "v": "obj_MockConsumerConnector_1781693734703_da34"
       }
     },
     "conn:obj_13:subscribe:770386ee": {
@@ -322,7 +322,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_MockConsumerConnector_1781645419417_mitl"
+        "v": "obj_MockConsumerConnector_1781693734703_nice"
       }
     },
     "conn:obj_14:subscribe:770386ee": {
@@ -339,7 +339,7 @@
       ],
       "result": {
         "t": "ref",
-        "v": "obj_MockConsumerConnector_1781645419417_kihh"
+        "v": "obj_MockConsumerConnector_1781693734703_7an2"
       }
     },
     "conn:obj_7:consumePromise:35dba5d7": {
@@ -400,7 +400,7 @@
                 "k": "timestamp",
                 "v": {
                   "t": "number",
-                  "v": 1781645419414
+                  "v": 1781693734702
                 }
               },
               {
@@ -473,7 +473,7 @@
                 "k": "timestamp",
                 "v": {
                   "t": "number",
-                  "v": 1781645419414
+                  "v": 1781693734702
                 }
               },
               {
@@ -546,7 +546,7 @@
                 "k": "timestamp",
                 "v": {
                   "t": "number",
-                  "v": 1781645419414
+                  "v": 1781693734702
                 }
               },
               {
@@ -769,21 +769,21 @@
       "args": [],
       "result": {
         "t": "ref",
-        "v": "obj_MockConsumerConnector_1781645422581_jpqm"
+        "v": "obj_MockConsumerConnector_1781693740675_ec2u"
       }
     },
     "conn:obj_13:unsubscribe:": {
       "args": [],
       "result": {
         "t": "ref",
-        "v": "obj_MockConsumerConnector_1781645422581_8ha3"
+        "v": "obj_MockConsumerConnector_1781693740675_5qpi"
       }
     },
     "conn:obj_14:unsubscribe:": {
       "args": [],
       "result": {
         "t": "ref",
-        "v": "obj_MockConsumerConnector_1781645422581_va0r"
+        "v": "obj_MockConsumerConnector_1781693740675_nnyn"
       }
     },
     "conn:obj_7:commitMessageSync:8688d8a1": {
@@ -4048,6 +4048,210 @@
       "result": {
         "t": "ref",
         "v": "obj_MockConsumerConnector_1781645422580_g6se"
+      }
+    },
+    "conn:obj_7:commitMessageSync:91cb92aa": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "value",
+              "v": {
+                "t": "buffer",
+                "v": "aGVsbG8gcmRLYWZrYSE="
+              }
+            },
+            {
+              "k": "size",
+              "v": {
+                "t": "number",
+                "v": 14
+              }
+            },
+            {
+              "k": "key",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "offset",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            },
+            {
+              "k": "partition",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            },
+            {
+              "k": "timestamp",
+              "v": {
+                "t": "number",
+                "v": 1781693734702
+              }
+            },
+            {
+              "k": "leaderEpoch",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_MockConsumerConnector_1781693740675_s6li"
+      }
+    },
+    "conn:obj_13:commitMessageSync:91cb92aa": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "value",
+              "v": {
+                "t": "buffer",
+                "v": "aGVsbG8gcmRLYWZrYSE="
+              }
+            },
+            {
+              "k": "size",
+              "v": {
+                "t": "number",
+                "v": 14
+              }
+            },
+            {
+              "k": "key",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "offset",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            },
+            {
+              "k": "partition",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            },
+            {
+              "k": "timestamp",
+              "v": {
+                "t": "number",
+                "v": 1781693734702
+              }
+            },
+            {
+              "k": "leaderEpoch",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_MockConsumerConnector_1781693740675_szzk"
+      }
+    },
+    "conn:obj_14:commitMessageSync:91cb92aa": {
+      "args": [
+        {
+          "t": "object",
+          "v": [
+            {
+              "k": "value",
+              "v": {
+                "t": "buffer",
+                "v": "aGVsbG8gcmRLYWZrYSE="
+              }
+            },
+            {
+              "k": "size",
+              "v": {
+                "t": "number",
+                "v": 14
+              }
+            },
+            {
+              "k": "key",
+              "v": {
+                "t": "null"
+              }
+            },
+            {
+              "k": "topic",
+              "v": {
+                "t": "string",
+                "v": "unimock-rdkafka-test"
+              }
+            },
+            {
+              "k": "offset",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            },
+            {
+              "k": "partition",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            },
+            {
+              "k": "timestamp",
+              "v": {
+                "t": "number",
+                "v": 1781693734702
+              }
+            },
+            {
+              "k": "leaderEpoch",
+              "v": {
+                "t": "number",
+                "v": 0
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "t": "ref",
+        "v": "obj_MockConsumerConnector_1781693740675_ij8o"
       }
     }
   }

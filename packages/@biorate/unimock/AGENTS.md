@@ -193,16 +193,15 @@ curl http://localhost:8123/ping  # → Ok.
 
 ## rdkafka-тест
 
-`tests/rdkafka.spec.ts` — admin (createTopic) + producer (produce) + consumer (subscribe/consumePromise/commitMessageSync/unsubscribe). Record: `SnapshotStore.setMode('record')` → DI-init → produce message → consume → verify content → flush. Replay: `SnapshotStore.setMode('replay')` → consume из снапшота.
+`tests/rdkafka.spec.ts` — admin (createTopic) + producer (produce) + consumer (subscribe/consumePromise/commitMessageSync/unsubscribe). Record: `SnapshotStore.setMode('record')` → DI-init → produce message → consume → verify content → flush. Replay: `SnapshotStore.setMode('replay')` → consume из снапшота. Вызовы `admin.createTopic`, `producer.produce`, `consumer.commitMessageSync` — на ConnectionHandler-wrapped объектах, в replay воспроизводятся из снапшота.
 
-**Важно**: `beforeAll` чистит топик через прямой `AdminClient` (не через Mockable), чтобы избежать race condition между запусками. Топик всегда создаётся заново в record-режиме.
+**Важно**: `beforeAll` чистит топик через прямой `AdminClient` (не через Mockable), чтобы избежать race condition между запусками. Этот вызов выполняется только в record-режиме.
 
 ## schema-registry-тест
 
-`tests/schema-registry.spec.ts` — HTTP API методы (ping, postSubjectsVersions, getSubjectsByVersion, getSchemasById, getSubjects, getSubjectsVersions, getSchemasTypes). Record: `SnapshotStore.mode !== MODE_REPLAY` → вызовы API → `flushAllSnapshots()` в `afterAll`. Replay: воспроизведение из снапшота без live schema-registry.
+`tests/schema-registry.spec.ts` — HTTP API методы (ping, postSubjectsVersions, getSubjectsByVersion, getSchemasById, getSubjects, getSubjectsVersions, getSchemasTypes, deleteSubjects). Все вызовы на ConnectionHandler-wrapped объектах — в replay-режиме воспроизводятся из снапшота.
 
 **Важно**: 
-- `deleteSubjects` вызывается только в record-режиме (через `SnapshotStore.mode !== MODE_REPLAY`)
 - `flushAllSnapshots()` автоматический в `tests/setup.ts` (`afterAll` хук)
 - Используется фиксированный subject (`unimock-test-subject`)
 - Один тест для обоих режимов (контроль через `UNIMOCK` env)

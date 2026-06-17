@@ -1,7 +1,6 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, MODE_REPLAY } from '../src';
 import { OpenSearchConnector } from './__mocks__/opensearch';
 
 beforeAll(() => {
@@ -38,12 +37,10 @@ describe('@biorate/opensearch', () => {
     const root = container.get<Root>(Root);
     await root.$run();
 
-    if (SnapshotStore.mode !== MODE_REPLAY) {
-      try {
-        await root.connector.deleteIndex('unimock_test_opensearch');
-      } catch {
-        // index may not exist
-      }
+    try {
+      await root.connector.deleteIndex('unimock_test_opensearch');
+    } catch {
+      // index may not exist
     }
 
     const indexRes = await root.connector.createIndex('unimock_test_opensearch');

@@ -1,7 +1,6 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SnapshotStore, MODE_REPLAY } from '../src';
 import { SchemaRegistryConnector } from './__mocks__/schema-registry';
 import * as schema from './test.avsc.json';
 
@@ -72,15 +71,12 @@ describe('@biorate/schema-registry', () => {
     const { data: types } = await getSchemasTypes();
     expect(types).to.be.an('array');
 
-    // deleteSubjects вызываем только в record-режиме
-    if (SnapshotStore.mode !== MODE_REPLAY) {
-      const { deleteSubjects } = connection;
-      const { data: deleted } = await deleteSubjects({
-        subject,
-        permanent: false,
-      });
-      expect(deleted[0]).to.be.a('number');
-    }
+    const { deleteSubjects } = connection;
+    const { data: deleted } = await deleteSubjects({
+      subject,
+      permanent: false,
+    });
+    expect(deleted[0]).to.be.a('number');
 
     container.unbind(Root);
   });

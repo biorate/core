@@ -83,23 +83,20 @@ describe('@biorate/rdkafka', () => {
     const producer = root.producer.get();
     const consumer = root.consumer.get();
 
-    // create topic and produce message when not replaying
-    if (SnapshotStore.mode !== MODE_REPLAY) {
-      try {
-        await admin.deleteTopic(topic, timeout / 2);
-      } catch {}
+    try {
+      await admin.deleteTopic(topic, timeout / 2);
+    } catch {}
 
-      await admin.createTopic(
-        {
-          topic,
-          num_partitions: 1,
-          replication_factor: 1,
-        },
-        timeout / 2,
-      );
+    await admin.createTopic(
+      {
+        topic,
+        num_partitions: 1,
+        replication_factor: 1,
+      },
+      timeout / 2,
+    );
 
-      producer.produce(topic, null, Buffer.from('hello rdKafka!'), null);
-    }
+    producer.produce(topic, null, Buffer.from('hello rdKafka!'), null);
 
     consumer.subscribe([topic]);
 
@@ -110,9 +107,7 @@ describe('@biorate/rdkafka', () => {
       if (messages.length) break;
     }
 
-    if (SnapshotStore.mode !== MODE_REPLAY) {
-      consumer.commitMessageSync(messages[0]);
-    }
+    consumer.commitMessageSync(messages[0]);
     consumer.unsubscribe();
 
     expect(messages[0].value?.toString()).toBe('hello rdKafka!');
