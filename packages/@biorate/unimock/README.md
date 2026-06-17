@@ -2,9 +2,23 @@
 
 Snapshot-based proxy mocking for connectors and services.
 
-### Examples:
+Record real calls once, replay them later without live infrastructure. Ideal for integration tests that depend on databases, message brokers, HTTP APIs, or any other external service.
 
-#### Basic service mocking:
+## How it works
+
+`@Mockable()` extends the decorated class and replaces its prototype methods with wrappers. In **record** mode, each call passes through to the original implementation and the arguments + result are persisted into a JSON snapshot file. In **replay** mode, the wrappers return the recorded responses without invoking the original logic.
+
+Connection objects returned by `.get()` or getter properties are automatically wrapped in a `ConnectionHandler` (Proxy), so subsequent method calls on them are also recorded and replayed.
+
+## Installation
+
+```bash
+pnpm add @biorate/unimock
+```
+
+## Usage
+
+### Basic service mocking
 
 ```ts
 import { Mockable, SnapshotStore, flushAllSnapshots } from '@biorate/unimock';
@@ -35,7 +49,7 @@ const replayed = new MockedService();
 console.log(await replayed.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
 ```
 
-#### Connector mocking (Clickhouse):
+### Connector mocking (ClickHouse)
 
 ```ts
 import { Core, inject, container, Types } from '@biorate/inversion';
@@ -70,30 +84,57 @@ flushAllSnapshots();
 
 // Replay (saved snapshot, no ClickHouse needed)
 SnapshotStore.setMode('replay');
-// (re-bind container and re-create root — see tests/clickhouse.spec.ts)
 const { data: data2 } = await root.connector
   .get()
   .query({ query: 'SELECT 1 AS result;', format: 'JSON' });
 console.log(data2); // [{ result: 1 }] — from snapshot
 ```
 
-### Environment
+### Supported connectors
 
-| `UNIMOCK` | Proxy | Behaviour |
-| --------- | ----- | --------- |
-| *(unset)* / `off` / `0` / `false` | off | `@Mockable` is a no-op — real class, no snapshots |
-| `record` / `update` | on | Call real implementation and persist snapshots on flush |
-| `replay` | on | Return recorded responses; miss → `UnimockReplayMissError` |
-| `auto` / `1` / `true` | on | Replay when snapshot file has calls; otherwise record |
+Unimock is connector-agnostic and works with any class that returns a connection object from a getter or a `.get()` method. The following connectors have integration tests:
+
+- [ClickHouse](https://github.com/biorate/core/tree/master/packages/%40biorate/clickhouse)
+- [Kafka (rdkafka)](https://github.com/biorate/core/tree/master/packages/%40biorate/rdkafka)
+- [Schema Registry](https://github.com/biorate/core/tree/master/packages/%40biorate/schema-registry)
+- [OpenSearch](https://github.com/biorate/core/tree/master/packages/%40biorate/opensearch)
+- [MongoDB](https://github.com/biorate/core/tree/master/packages/%40biorate/mongodb)
+- [Sequelize](https://github.com/biorate/core/tree/master/packages/%40biorate/sequelize)
+- [PostgreSQL](https://github.com/biorate/core/tree/master/packages/%40biorate/pg)
+- [MSSQL](https://github.com/biorate/core/tree/master/packages/%40biorate/mssql)
+- [Redis / ioredis](https://github.com/biorate/core/tree/master/packages/%40biorate/redis)
+- [Proxy](https://github.com/biorate/core/tree/master/packages/%40biorate/proxy)
+
+## Environment
+
+### Mode selection
+
+| `UNIMOCK` | Behaviour |
+| --------- | --------- |
+| *(unset)* / `off` / `0` / `false` | Mocking disabled — `@Mockable()` is a no-op |
+| `record` / `update` / `1` / `true` | Record mode — call real implementation, persist snapshots on flush |
+| `replay` | Replay mode — return recorded responses; miss → `UnimockReplayMissError` |
+
+### Optimisation flags
 
 | Variable | Description |
 | -------- | ----------- |
-| `UNIMOCK_SNAPSHOT_DIR` | Override snapshot directory (default: `tests/__snapshots__`) |
+| `UNIMOCK_GZIP=1` | Gzip-compress snapshot files on write (~97 % reduction). Auto-detected on read. |
+| `UNIMOCK_STRIP_REQUEST=1` | Strip the `request` field (Axios HTTP internals, ~40 KB per entry). |
+| `UNIMOCK_SKIP_CONN_ARGS=1` | Skip serialising `args` for `conn:*` entries — they are not used in replay. |
+| `UNIMOCK_SNAPSHOT_DIR` | Custom snapshot directory (default: `tests/__snapshots__`). |
 
-### Vitest setup
+### Always-on optimisations
+
+- **refId caching** — `WeakMap<object, string>` deduplicates `conn:obj_X:method:hash` entries when the same connection object is returned by `.get()`.
+- **String pool** — strings >500 B are moved to a shared dictionary (`strings:` key in the JSON file) and transparently expanded back on read.
+
+## Vitest setup
 
 ```ts
 // vitest.config.ts
+import { defineConfig } from 'vitest/config';
+
 export default defineConfig({
   test: {
     setupFiles: ['@biorate/unimock/vitest/setup'],
@@ -101,9 +142,9 @@ export default defineConfig({
 });
 ```
 
-The setup hooks `afterAll` to flush all stores automatically.
+The setup hooks `afterAll` to call `flushAllSnapshots()` automatically when `UNIMOCK=record`.
 
-### Scripts
+## Scripts
 
 ```bash
 # CI — replay committed snapshots, no live infrastructure
@@ -111,18 +152,46 @@ UNIMOCK=replay pnpm --filter @biorate/clickhouse test
 
 # Re-record snapshots (needs live ClickHouse)
 UNIMOCK=record pnpm --filter @biorate/clickhouse test
+
+# With gzip compression and optimisations
+UNIMOCK=record UNIMOCK_GZIP=1 UNIMOCK_STRIP_REQUEST=1 pnpm --filter @biorate/schema-registry test
 ```
 
-### Learn
+## Snapshot file format
 
-- Documentation can be found here - [docs](https://biorate.github.io/core/modules/unimock.html).
+Snapshot files are stored in `tests/__snapshots__/<ClassName>.unimock.json`.
+
+```json
+{
+  "version": 1,
+  "className": "MockedService",
+  "calls": {
+    "query:a1b2c3d4": {
+      "args": [{ "t": "string", "v": "SELECT 1" }],
+      "result": { "t": "object", "v": [{ "k": "data", "v": { "t": "array", ... } }] }
+    }
+  },
+  "strings": {
+    "$0": "a very long repeated string..."
+  }
+}
+```
+
+## Known limitations
+
+1. **`@init()` from `@biorate/lifecycled`** still runs in replay mode because the decorator stores the original descriptor in constructor metadata, not on the instance. Workaround: override `initialize` in the test subclass as a no-op, or check `SnapshotStore.mode` inside `initialize()`.
+
+2. **ConnectionHandler returns synchronously in replay mode.** In record mode, `query()` returns a Promise. In replay mode, it returns the deserialised value directly (await on a non-Promise works, but behaviour is not identical).
+
+3. **Private `#` fields** are not wrapped — `wrapPrototype` and `ConnectionHandler` filter keys starting with `#`.
+
+### Learn
+* Documentation can be found here - [docs](https://biorate.github.io/core/modules/unimock.html).
 
 ### Release History
-
-See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/CHANGELOG.md).
+See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/CHANGELOG.md)
 
 ### License
-
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/LICENSE)
 
-Copyright (c) 2024-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)

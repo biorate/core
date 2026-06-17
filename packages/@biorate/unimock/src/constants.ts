@@ -10,6 +10,7 @@ export const T_NULL = 'null';
 export const T_BOOLEAN = 'boolean';
 export const T_NUMBER = 'number';
 export const T_STRING = 'string';
+export const T_POOLED_STRING = 'pooled_string';
 export const T_BIGINT = 'bigint';
 export const T_DATE = 'date';
 export const T_REGEXP = 'regexp';

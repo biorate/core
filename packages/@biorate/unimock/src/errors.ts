@@ -1,5 +1,10 @@
 import { BaseError } from '@biorate/errors';
 
+/**
+ * @description Thrown during replay when a call key is not found in the snapshot store.
+ *   Indicates the snapshot was recorded with different arguments or the method was not called
+ *   during the recording phase.
+ */
 export class UnimockReplayMissError extends BaseError {
   public constructor(callKey: string, method: string, args: unknown[]) {
     super(
@@ -10,12 +15,17 @@ export class UnimockReplayMissError extends BaseError {
   }
 }
 
+/** @description Thrown when serialisation of a value fails (e.g. unsupported type or circular structure). */
 export class UnimockSerializeError extends BaseError {
   public constructor(message: string, meta?: unknown) {
     super(message, meta ? [meta] : undefined);
   }
 }
 
+/**
+ * @description Thrown when a {@link ConnectionHandler} is used in record mode but its
+ *   underlying target object is null. This can happen if a connection was not properly initialised.
+ */
 export class UnimockConnectionHandlerTargetRequiredError extends BaseError {
   public constructor(refId: string) {
     super('ConnectionHandler: target required in record mode (refId: %s)', [refId]);

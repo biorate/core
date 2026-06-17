@@ -19,7 +19,32 @@ import {
 } from './constants';
 
 let counter = COUNTER_INIT;
+const refIdCache = new WeakMap<object, string>();
 
+/**
+ * @description Class decorator that enables snapshot-based mocking.
+ *
+ *   In **record** mode, every method call is forwarded to the original implementation
+ *   and its arguments + result are persisted into a snapshot file.
+ *
+ *   In **replay** mode, method calls return the previously recorded response from the snapshot
+ *   without invoking the original logic.
+ *
+ *   ### Features:
+ *   - Wraps prototype methods and getters recursively up to `Object.prototype`.
+ *   - Callback arguments are intercepted and their invocations are recorded/replayed.
+ *   - Connection return values (objects with methods) are wrapped in {@link ConnectionHandler}
+ *     so subsequent calls on them are also recorded/replayed.
+ *   - Supports static method wrapping via {@link MockableOptions.wrapStatics}.
+ *
+ * @example
+ * ```ts
+ * @Mockable()
+ * class MockedService extends RealService {}
+ * ```
+ *
+ * @param options - optional configuration (snapshot directory, static wrapping)
+ */
 export function Mockable(options?: MockableOptions) {
   return function <T extends new (...args: any[]) => object>(Base: T): T {
     const className = Base.name;
@@ -79,6 +104,17 @@ function patchPrototype(proto: object, store: SnapshotStore): void {
   }
 }
 
+/**
+ * @description Creates a wrapped function that intercepts calls for recording or replaying.
+ *   Shared factory used by both instance methods ({@link wrapMethod}) and static methods
+ *   ({@link wrapStaticMethod}).
+ *
+ * @param name - method name (used in call key)
+ * @param original - original implementation
+ * @param store - snapshot store instance
+ * @param recordResult - callback that serialises and stores the result (behaviour differs
+ *   for instance vs static methods)
+ */
 function makeMethodWrapper(
   name: string,
   original: (...args: unknown[]) => unknown,
@@ -134,6 +170,11 @@ function makeMethodWrapper(
   };
 }
 
+/**
+ * @description Wraps an instance method: in record mode stores results via {@link wrapAndRecord}
+ *   (which creates {@link ConnectionHandler} for object returns); in replay mode looks up
+ *   the snapshot entry.
+ */
 function wrapMethod(
   name: string,
   original: (...args: unknown[]) => unknown,
@@ -142,6 +183,10 @@ function wrapMethod(
   return makeMethodWrapper(name, original, store, wrapAndRecord);
 }
 
+/**
+ * @description Wraps a static method: in record mode stores the plain serialised result
+ *   (without ConnectionHandler wrapping); in replay mode looks up the snapshot entry.
+ */
 function wrapStaticMethod(
   name: string,
   original: (...args: unknown[]) => unknown,
@@ -150,6 +195,15 @@ function wrapStaticMethod(
   return makeMethodWrapper(name, original, store, recordStaticResult);
 }
 
+/**
+ * @description Replays a recorded call from the snapshot store.
+ *   - Returns the deserialised result.
+ *   - If the result was a `'ref'`, returns a new {@link ConnectionHandler} with the stored refId.
+ *   - If the call originally threw, re-throws the deserialised error.
+ *   - If callback arguments were recorded, replays their invocations.
+ *
+ * @throws {@link UnimockReplayMissError} when no entry is found for the call key
+ */
 function replayCall(
   callKey: string,
   name: string,
@@ -174,6 +228,12 @@ function replayCall(
   return result;
 }
 
+/**
+ * @description Replays recorded callback invocations.
+ *   For each serialised arg that is a `'callback'` type, invokes the corresponding
+ *   function from `originalArgs` with the recorded arguments. Returns an array of promises
+ *   for any async callbacks.
+ */
 function replayCallbacks(
   serializedArgs: SerializedValue[],
   originalArgs: unknown[],
@@ -192,6 +252,11 @@ function replayCallbacks(
   return promises;
 }
 
+/**
+ * @description Prepares arguments for recording. Replaces each function argument with a wrapped
+ *   version that records its invocations. Returns the modified args array and the collected
+ *   callback records.
+ */
 function recordPrep(args: unknown[]): {
   recordedArgs: unknown[];
   callbackRecords: Array<{
@@ -224,6 +289,10 @@ function recordPrep(args: unknown[]): {
   return { recordedArgs, callbackRecords };
 }
 
+/**
+ * @description Serialises call arguments, embedding callback recordings into `'callback'`-typed
+ *   entries. Functions that were not wrapped are serialised as a plain string marker.
+ */
 function serializeArgs(
   recordedArgs: unknown[],
   callbacks: Array<{
@@ -249,6 +318,13 @@ function serializeArgs(
   });
 }
 
+/**
+ * @description Records a method call result. If the result is an object with methods
+ *   (detected by {@link hasMethods}), wraps it in a {@link ConnectionHandler} and stores
+ *   a reference (`'ref'`). Otherwise stores the plain serialised value.
+ *   Uses a {@link WeakMap} cache to reuse the same refId for repeated calls
+ *   returning the same target object (deduplicates `conn:*` snapshot entries).
+ */
 function wrapAndRecord(
   store: SnapshotStore,
   callKey: string,
@@ -256,7 +332,11 @@ function wrapAndRecord(
   serializedArgs: SerializedValue[],
 ): unknown {
   if (hasMethods(result)) {
-    const refId = `obj_${counter++}`;
+    let refId = refIdCache.get(result);
+    if (!refId) {
+      refId = `${PREFIX_OBJ}${counter++}`;
+      refIdCache.set(result, refId);
+    }
     const wrapped = new ConnectionHandler(result, refId, store);
     store.record(callKey, {
       args: serializedArgs,
@@ -273,6 +353,13 @@ function wrapAndRecord(
   return result;
 }
 
+/**
+ * @description Determines whether a value should be wrapped in a {@link ConnectionHandler}.
+ *   Returns `true` if the value is a non-null object that is:
+ *   - Not a plain `{}` (i.e. has a prototype !== `Object.prototype`), OR
+ *   - Has at least one own enumerable property whose value is a function.
+ *   Returns `false` for arrays, Date, RegExp, Buffer, Error, and plain data objects.
+ */
 function hasMethods(value: unknown): value is object {
   if (!value || typeof value !== 'object') return false;
   if (Array.isArray(value)) return false;
@@ -288,6 +375,10 @@ function hasMethods(value: unknown): value is object {
 
 // TODO: sequelize models static methods, need to be configurable...
 
+/**
+ * @description Wraps static methods listed in {@link STATIC_SAFE} on the decorated class.
+ *   Iterates the prototype chain up to `Function.prototype` and wraps matching methods.
+ */
 function wrapStaticMethods(
   klass: new (...args: unknown[]) => object,
   store: SnapshotStore,
@@ -319,6 +410,10 @@ function wrapStaticMethods(
   }
 }
 
+/**
+ * @description Records a static method call result (without ConnectionHandler wrapping).
+ *   If the result has a `.toJSON()` method, it is called first to produce a plain value.
+ */
 function recordStaticResult(
   store: SnapshotStore,
   callKey: string,
@@ -334,6 +429,9 @@ function recordStaticResult(
   return result;
 }
 
+/**
+ * @description Converts a value to a plain object by calling its `.toJSON()` method if available.
+ */
 function toPlain(value: unknown): unknown {
   if (value && typeof value === 'object' && typeof (value as any).toJSON === 'function') {
     return (value as any).toJSON();
@@ -341,6 +439,12 @@ function toPlain(value: unknown): unknown {
   return value;
 }
 
+/**
+ * @description Wraps a getter for snapshot recording/replay.
+ *   In record mode, calls the original getter and wraps the result if it has methods.
+ *   In replay mode, returns the recorded value directly.
+ *   Caches refIds via {@link refIdCache} to avoid duplicate entries for the same target object.
+ */
 function wrapGetter(
   name: string,
   original: () => unknown,
@@ -360,7 +464,11 @@ function wrapGetter(
 
     const result = original.call(this);
     if (hasMethods(result)) {
-      const refId = `${PREFIX_OBJ}${counter++}`;
+      let refId = refIdCache.get(result);
+      if (!refId) {
+        refId = `${PREFIX_OBJ}${counter++}`;
+        refIdCache.set(result, refId);
+      }
       const wrapped = new ConnectionHandler(result, refId, store);
       store.record(callKey, { args: [], result: { t: T_REF, v: refId } });
       return wrapped;

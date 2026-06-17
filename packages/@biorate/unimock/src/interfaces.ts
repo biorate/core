@@ -1,55 +1,81 @@
+/** @description Unimock operational mode. */
 export type UnimockMode = 'off' | 'record' | 'replay';
 
+/** @description Options for the {@link Mockable} decorator. */
 export interface MockableOptions {
+  /** @description Override snapshot directory (default: `tests/__snapshots__`). */
   snapshotDir?: string;
+  /** @description Whether to also wrap static methods on the decorated class. */
   wrapStatics?: boolean;
 }
 
+/** @description Serialized primitive value (undefined, null, boolean, number, string, bigint). */
 export interface SerializedPrimitive {
   t: 'undefined' | 'null' | 'boolean' | 'number' | 'string' | 'bigint';
   v?: unknown;
 }
 
+/** @description Serialized Date (ISO string). */
 export interface SerializedDate {
   t: 'date';
   v: string;
 }
 
+/** @description Serialized RegExp (source + flags). */
 export interface SerializedRegExp {
   t: 'regexp';
   v: { s: string; f: string };
 }
 
+/** @description Serialized Buffer (base64). */
 export interface SerializedBuffer {
   t: 'buffer';
   v: string;
 }
 
+/** @description Serialized Error (name + message + optional stack). */
 export interface SerializedError {
   t: 'error';
   v: { n: string; m: string; s?: string };
 }
 
+/** @description Reference to a {@link ConnectionHandler} by its refId. */
 export interface SerializedRef {
   t: 'ref';
   v: string;
 }
 
+/** @description Serialized callback recording — stores arguments of each invocation. */
 export interface SerializedCallback {
   t: 'callback';
   v: { callRef: string; recording: unknown[][] };
 }
 
+/** @description Serialized array of nested {@link SerializedValue}s. */
 export interface SerializedArray {
   t: 'array';
   v: SerializedValue[];
 }
 
+/**
+ * @description Serialized plain object. Keys are sorted deterministically.
+ *   Only enumerable own properties are included. Private `#`-prefixed keys are excluded.
+ */
 export interface SerializedObject {
   t: 'object';
   v: { k: string; v: SerializedValue }[];
 }
 
+/**
+ * @description Reference to a pooled string. The actual value is stored in
+ *   {@link SnapshotFile.strings} to avoid duplicating large strings across entries.
+ */
+export interface SerializedPooledString {
+  t: 'pooled_string';
+  v: string;
+}
+
+/** @description Union of all serialized value types. */
 export type SerializedValue =
   | SerializedPrimitive
   | SerializedDate
@@ -59,20 +85,35 @@ export type SerializedValue =
   | SerializedRef
   | SerializedCallback
   | SerializedArray
-  | SerializedObject;
+  | SerializedObject
+  | SerializedPooledString;
 
+/** @description A single recorded call entry within a snapshot file. */
 export interface SnapshotCall {
+  /** @description Serialized call arguments (used for callback replay). */
   args: SerializedValue[];
+  /** @description Serialized return value. */
   result: SerializedValue;
+  /** @description Serialized error, if the call threw. */
   error?: SerializedValue;
 }
 
+/** @description On-disk snapshot file format. */
 export interface SnapshotFile {
+  /** @description Format version (currently `1`). */
   version: 1;
+  /** @description Name of the mocked class. */
   className: string;
+  /** @description Map of callKey → recorded entry. */
   calls: Record<string, SnapshotCall>;
+  /**
+   * @description Pooled strings referenced by {@link SerializedPooledString} entries.
+   *   Only present when at least one large string was deduplicated.
+   */
+  strings?: Record<string, string>;
 }
 
+/** @description Minimal contract satisfied by {@link SnapshotStore}. */
 export interface SnapshotStoreEntry {
   get(callKey: string): SnapshotCall | undefined;
   has(callKey: string): boolean;

@@ -23,7 +23,18 @@ import {
   ENCODING_BASE64,
   STABLE_HASH_LENGTH,
 } from './constants';
+import { stripRequestEnabled } from './env';
 
+/**
+ * @description Deterministic JSON-like stringification of arbitrary values.
+ *   - Object keys are sorted alphabetically.
+ *   - Functions and symbols are replaced with constant markers.
+ *   - Circular references produce an empty string for the repeated path.
+ *   Used internally by {@link stableHash} to produce consistent call keys.
+ *
+ * @param value - value to stringify
+ * @param seen - set of already-visited objects (circular reference guard)
+ */
 export function stableStringify(value: unknown, seen?: Set<object>): string {
   if (value === null) return 'null';
   if (value === undefined) return '';
@@ -53,6 +64,12 @@ export function stableStringify(value: unknown, seen?: Set<object>): string {
   return JSON.stringify(String(value));
 }
 
+/**
+ * @description Computes a short, deterministic hash of a value using {@link stableStringify} + MD5.
+ *   The hash length is controlled by {@link STABLE_HASH_LENGTH} (default 8 hex chars).
+ *
+ * @param value - value to hash
+ */
 export function stableHash(value: unknown): string {
   return createHash(HASH_ALGORITHM)
     .update(stableStringify(value))
@@ -60,12 +77,30 @@ export function stableHash(value: unknown): string {
     .slice(0, STABLE_HASH_LENGTH);
 }
 
+/**
+ * @description Builds a deterministic call key used for snapshot lookup.
+ *   Format: `prefix + method + ':' + stableHash(args)`.
+ *   Functions in args are replaced with {@link MARKER_CALLBACK} before hashing.
+ *
+ * @param prefix - key prefix (empty for direct methods, `conn:{refId}:` for connection calls)
+ * @param method - method name
+ * @param args - raw call arguments
+ */
 export function makeCallKey(prefix: string, method: string, args: unknown[]): string {
   const safeArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
   const h = safeArgs.length > 0 ? stableHash(safeArgs) : '';
   return `${prefix}${method}:${h}`;
 }
 
+/**
+ * @description Serialises an arbitrary JavaScript value into the uniform {@link SerializedValue} format.
+ *   Handles primitives, Date, RegExp, Buffer, Error, arrays, and plain objects.
+ *   Objects with prototype !== Object.prototype are treated as opaque and returned as `{t: 'ref'}`.
+ *   When {@link stripRequestEnabled} is set, the `request` key is skipped (Axios HTTP internals).
+ *
+ * @param value - value to serialise
+ * @param seen - cyclic reference guard (Map of object → placeholder)
+ */
 export function serialize(value: unknown, seen?: Map<object, string>): SerializedValue {
   if (value === undefined) return { t: T_UNDEFINED };
   if (value === null) return { t: T_NULL };
@@ -96,6 +131,7 @@ export function serialize(value: unknown, seen?: Map<object, string>): Serialize
     const mapped: { k: string; v: SerializedValue }[] = [];
     for (const [k, v] of entries) {
       if (k.startsWith(PROP_PRIVATE_PREFIX)) continue;
+      if (stripRequestEnabled() && k === 'request') continue;
       mapped.push({ k, v: serialize(v, map) });
     }
     return { t: T_OBJECT, v: mapped };
@@ -103,6 +139,16 @@ export function serialize(value: unknown, seen?: Map<object, string>): Serialize
   return { t: T_STRING, v: String(value) };
 }
 
+/**
+ * @description Reverses {@link serialize}, converting a {@link SerializedValue} back to its
+ *   original JavaScript type.
+ *   - `'ref'` entries are returned as the raw refId string (further resolution is done by
+ *     the caller via {@link ConnectionHandler}).
+ *   - `'pooled_string'` entries are NOT handled here — they are expanded transparently
+ *     by {@link SnapshotStore.get} before reaching this function.
+ *
+ * @param value - serialised value to restore
+ */
 export function deserialize(value: SerializedValue): unknown {
   switch (value.t) {
     case T_UNDEFINED:

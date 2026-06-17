@@ -15,8 +15,33 @@ import {
   PREFIX_CONN,
   PREFIX_OBJ,
 } from './constants';
+import { skipConnArgsEnabled } from './env';
 
+/**
+ * @description Proxy wrapper for connection objects returned by mocked connectors.
+ *
+ *   In **record** mode, every property access (method call) on the wrapped object is forwarded
+ *   to the real target and the call is recorded into the snapshot store with key
+ *   `conn:{refId}:{method}:{hash}`.
+ *
+ *   In **replay** mode, the proxy returns a function that looks up the recorded entry in the
+ *   snapshot store and returns the deserialised result (or another ConnectionHandler for nested
+ *   objects).
+ *
+ *   ### Features:
+ *   - Methods returning objects with methods are recursively wrapped (via {@link wrapNested}).
+ *   - Asynchronous results (Promises) are handled transparently.
+ *   - `then`, `constructor`, and `#`-prefixed properties are forwarded to avoid breaking
+ *     thenable detection and private field access.
+ *
+ * @example
+ * ```ts
+ * const conn = new ConnectionHandler(realClickhouseClient, 'obj_0', store);
+ * const result = await conn.query({ query: 'SELECT 1' });
+ * ```
+ */
 export class ConnectionHandler {
+  /** @description Unique reference identifier used in snapshot call keys (`conn:{refId}:...`). */
   public readonly __unimock_ref__: string;
 
   private store: SnapshotStore;
@@ -72,20 +97,22 @@ export class ConnectionHandler {
                   ? (rawResult as Record<string, unknown>).then
                   : undefined;
 
+              const recArgs = skipConnArgsEnabled() ? [] : args.map((a: unknown) => serialize(a));
+
               if (typeof then === 'function') {
                 return (then as (...a: unknown[]) => unknown).call(
                   rawResult,
                   (resolved: unknown) => {
                     const { wrapped, serialized } = wrapNested(resolved, obj.store);
                     obj.store.record(callKey, {
-                      args: args.map((a: unknown) => serialize(a)),
+                      args: recArgs,
                       result: serialized,
                     });
                     return wrapped;
                   },
                   (error: Error) => {
                     obj.store.record(callKey, {
-                      args: args.map((a: unknown) => serialize(a)),
+                      args: recArgs,
                       result: { t: T_UNDEFINED },
                       error: serialize(error),
                     });
@@ -96,13 +123,13 @@ export class ConnectionHandler {
 
               const { wrapped, serialized } = wrapNested(rawResult, obj.store);
               obj.store.record(callKey, {
-                args: args.map((a: unknown) => serialize(a)),
+                args: recArgs,
                 result: serialized,
               });
               return wrapped;
             } catch (e: unknown) {
               obj.store.record(callKey, {
-                args: args.map((a: unknown) => serialize(a)),
+                args: skipConnArgsEnabled() ? [] : args.map((a: unknown) => serialize(a)),
                 result: { t: T_UNDEFINED },
                 error: serialize(e),
               });
@@ -129,14 +156,25 @@ function hasMethods(value: unknown): value is object {
   return false;
 }
 
+const nestedRefIdCache = new WeakMap<object, string>();
+
+/**
+ * @description Wraps a result value in a {@link ConnectionHandler} if it has methods,
+ *   otherwise returns it as-is with its plain serialised form. Caches refIds via
+ *   {@link nestedRefIdCache} so repeated calls returning the same object reuse the same refId.
+ */
 function wrapNested(
   result: unknown,
   store: SnapshotStore,
 ): { wrapped: unknown; serialized: SerializedValue } {
   if (hasMethods(result)) {
-    const refId = `${PREFIX_OBJ}${store.className}_${Date.now()}_${Math.random()
-      .toString(36)
-      .slice(2, 6)}`;
+    let refId = nestedRefIdCache.get(result);
+    if (!refId) {
+      refId = `${PREFIX_OBJ}${store.className}_${Date.now()}_${Math.random()
+        .toString(36)
+        .slice(2, 6)}`;
+      nestedRefIdCache.set(result, refId);
+    }
     return {
       wrapped: new ConnectionHandler(result, refId, store),
       serialized: { t: T_REF, v: refId },

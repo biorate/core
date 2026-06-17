@@ -210,6 +210,18 @@ curl http://localhost:8123/ping  # → Ok.
 
 Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}"`.
 
+## ENV-флаги оптимизации снапшотов
+
+| Переменная | Описание |
+| ---------- | -------- |
+| `UNIMOCK_GZIP=1` | Gzip-компрессия `.unimock.json` при записи (~97% reduction на реальных данных). Чтение автоопределяет gzip-магию. |
+| `UNIMOCK_STRIP_REQUEST=1` | Пропускать поле `request` у Axios-подобных ответов при сериализации (HTTP-интерны, ~40KB на entry). |
+| `UNIMOCK_SKIP_CONN_ARGS=1` | Не сериализовать `args` для `conn:*` записей — они не используются в replay (только callKey нужен). |
+
+**Всегда включены** (без флага):
+- **Cache refId** — `WeakMap<object, string>` в `wrapAndRecord`/`wrapGetter`/`wrapNested`. Повторные `get()` на том же объекте переиспользуют refId → устраняются дубли `conn:obj_X:method:hash`.
+- **String pool** — строки >500B в `SnapshotStore.record()` заменяются на `{t: "pooled_string", v: "$ref"}` с выносом в `strings:` словарь. Прозрачно расширяются обратно в `SnapshotStore.get()`.
+
 ## Чеклист при изменениях
 
 - [ ] `pnpm --filter @biorate/unimock run build` — проверка типов
