@@ -60,7 +60,12 @@ export class MockHandler {
           if (propEntry) {
             const result = deserialize(propEntry.result);
             if (hasMethods(result))
-              return new MockHandler(result, nextRefId(), obj.store, obj.__unimock_depth__ + 1);
+              return new MockHandler(
+                result,
+                nextRefId(),
+                obj.store,
+                obj.__unimock_depth__ + 1,
+              );
             return result;
           }
 
@@ -72,14 +77,18 @@ export class MockHandler {
             );
             const entry = getReplayEntry(obj.store, callKey, String(prop), args);
             if (entry.result.t === T_REF)
-              return new MockHandler(null, entry.result.v, obj.store, obj.__unimock_depth__ + 1);
+              return new MockHandler(
+                null,
+                entry.result.v,
+                obj.store,
+                obj.__unimock_depth__ + 1,
+              );
             return deserialize(entry.result);
           };
         }
 
         const targetObj = obj.target as Record<string | symbol, unknown> | null;
-        if (!targetObj)
-          throw new UnimockProxyTargetRequiredError(obj.__unimock_ref__);
+        if (!targetObj) throw new UnimockProxyTargetRequiredError(obj.__unimock_ref__);
 
         if (typeof targetObj[prop] === 'function') {
           return (...args: unknown[]) => {
@@ -105,7 +114,11 @@ export class MockHandler {
                 return (then as (...a: unknown[]) => unknown).call(
                   rawResult,
                   (resolved: unknown) => {
-                    const { wrapped, serialized } = wrapNested(resolved, obj.store, obj.__unimock_depth__);
+                    const { wrapped, serialized } = wrapNested(
+                      resolved,
+                      obj.store,
+                      obj.__unimock_depth__,
+                    );
                     obj.store.record(callKey, {
                       args: recArgs,
                       result: serialized,
@@ -116,7 +129,11 @@ export class MockHandler {
                 );
               }
 
-              const { wrapped, serialized } = wrapNested(rawResult, obj.store, obj.__unimock_depth__);
+              const { wrapped, serialized } = wrapNested(
+                rawResult,
+                obj.store,
+                obj.__unimock_depth__,
+              );
               obj.store.record(callKey, {
                 args: recArgs,
                 result: serialized,

@@ -417,8 +417,7 @@ function wrapGetter(
 
     if (isReplay()) {
       const entry = getReplayEntry(store, callKey, name, []);
-      if (entry.result.t === T_REF)
-        return new MockHandler(null, entry.result.v, store);
+      if (entry.result.t === T_REF) return new MockHandler(null, entry.result.v, store);
       return deserialize(entry.result);
     }
 

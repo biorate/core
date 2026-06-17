@@ -1,4 +1,10 @@
-import { Mockable, mock, SnapshotStore, flushAllSnapshots, SEQUELIZE_STATICS } from '../src';
+import {
+  Mockable,
+  mock,
+  SnapshotStore,
+  flushAllSnapshots,
+  SEQUELIZE_STATICS,
+} from '../src';
 
 import { ComprehensiveService, WithSymbolsService } from './__mocks__/comprehensive';
 
