@@ -42,12 +42,12 @@ class TestService {
 // Record phase (needs live service)
 SnapshotStore.setMode('record');
 
-@Mockable()
+@Mockable({ importMeta: import.meta })
 class MockedService extends TestService {}
 
 const service = new MockedService();
 console.log(await service.query('SELECT 1')); // { data: [1, 2, 3] } — real call
-flushAllSnapshots(); // writes tests/__snapshots__/MockedService.unimock.json
+flushAllSnapshots(); // writes tests/__snapshots__/MockedService.unimock.json (next to test file)
 
 // Replay phase (no live service needed)
 SnapshotStore.setMode('replay');
@@ -69,7 +69,7 @@ class TestService {
   }
 }
 
-const MockedService = mock(TestService);
+const MockedService = mock(TestService, { importMeta: import.meta });
 
 SnapshotStore.setMode('record');
 const service = new MockedService();
@@ -230,7 +230,7 @@ These functions always read the current global mode — they work correctly afte
 | `UNIMOCK_GZIP=1` | Gzip-compress snapshot files on write (~97 % reduction). Auto-detected on read. |
 | `UNIMOCK_STRIP_REQUEST=1` | Strip the `request` field (Axios HTTP internals, ~40 KB per entry). |
 | `UNIMOCK_SKIP_PROXY_ARGS=1` (or `UNIMOCK_SKIP_CONN_ARGS=1`) | Skip serialising `args` for `call:*` entries — they are not used in replay. |
-| `UNIMOCK_SNAPSHOT_DIR` | Custom snapshot directory (default: `tests/__snapshots__`). |
+| `UNIMOCK_SNAPSHOT_DIR` | Custom snapshot directory fallback (default: `tests/__snapshots__`). Ignored when `importMeta` is passed. |
 | `SNAPSHOT_EXT` | Snapshot file extension (default: `.snap`). File name: `{ClassName}.unimock{ext}`. |
 
 ### Always-on optimisations
@@ -268,7 +268,7 @@ UNIMOCK=record UNIMOCK_GZIP=1 UNIMOCK_STRIP_REQUEST=1 pnpm --filter @biorate/sch
 
 ## Snapshot file format
 
-Snapshot files are stored in `tests/__snapshots__/<ClassName>.unimock.json`.
+Snapshot files are stored in `__snapshots__/<ClassName>.unimock.json` — one directory level above the test file when using `importMeta: import.meta`, or under `tests/__snapshots__/` by default.
 
 ```json
 {

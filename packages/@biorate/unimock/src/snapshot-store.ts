@@ -73,10 +73,11 @@ export class SnapshotStore implements SnapshotStoreEntry {
   /**
    * @param className - class name used for the snapshot filename
    * @param snapshotDir - optional directory override
+   * @param importMeta - pass `import.meta` from calling module to resolve snapshot dir relative to it
    */
-  public constructor(className: string, snapshotDir?: string) {
+  public constructor(className: string, snapshotDir?: string, importMeta?: ImportMeta) {
     this.className = className;
-    const baseDir = resolveSnapshotDir(snapshotDir);
+    const baseDir = resolveSnapshotDir(snapshotDir, importMeta);
     this.snapshotPath = resolve(baseDir, `${className}.unimock${DEFAULT_SNAPSHOT_EXT}`);
     this.stringPool = new Map();
     this.data = this.load();
@@ -219,12 +220,17 @@ export class SnapshotStore implements SnapshotStoreEntry {
  *
  * @param className - class name (snapshot filename stem)
  * @param snapshotDir - optional custom directory
+ * @param importMeta - pass `import.meta` from calling module to resolve snapshot dir relative to it
  */
-export function getSnapshotStore(className: string, snapshotDir?: string): SnapshotStore {
-  const key = `${className}${SEPARATOR_STORE}${snapshotDir ?? ''}`;
+export function getSnapshotStore(
+  className: string,
+  snapshotDir?: string,
+  importMeta?: ImportMeta,
+): SnapshotStore {
+  const key = `${className}${SEPARATOR_STORE}${snapshotDir ?? importMeta?.url ?? ''}`;
   let store = stores.get(key);
   if (!store) {
-    store = new SnapshotStore(className, snapshotDir);
+    store = new SnapshotStore(className, snapshotDir, importMeta);
     stores.set(key, store);
   }
   return store;

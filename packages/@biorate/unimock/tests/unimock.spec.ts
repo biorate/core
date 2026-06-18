@@ -95,7 +95,7 @@ describe('Mockable decorator', () => {
   it('wraps method calls in record mode', async () => {
     SnapshotStore.setMode('record');
 
-    @Mockable()
+    @Mockable({ importMeta: import.meta })
     class MockedService extends TestService {}
 
     const service = new MockedService();
@@ -140,7 +140,7 @@ describe('Mockable decorator', () => {
   it('throws on missing snapshot in replay mode', () => {
     SnapshotStore.setMode('replay');
 
-    @Mockable()
+    @Mockable({ importMeta: import.meta })
     class MockedService extends TestService {}
 
     const service = new MockedService();
@@ -150,7 +150,7 @@ describe('Mockable decorator', () => {
   it('does nothing in off mode', async () => {
     SnapshotStore.setMode('off');
 
-    @Mockable()
+    @Mockable({ importMeta: import.meta })
     class MockedService extends TestService {}
 
     const service = new MockedService();

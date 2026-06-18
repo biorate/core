@@ -175,7 +175,9 @@ curl http://localhost:8123/ping  # → Ok.
 
 ## Снапшоты
 
-- Формат: `tests/__snapshots__/<ClassName>.unimock.json` (или кастомный `snapshotDir`).
+- Формат: `__snapshots__/<ClassName>.unimock.json` рядом с файлом теста (или кастомный `snapshotDir`).
+  Механизм: передача `importMeta: import.meta` в `@Mockable()` или `mock()`. Если `importMeta` не
+  указан — используется `tests/__snapshots__/` (по умолчанию) или `UNIMOCK_SNAPSHOT_DIR`.
 - Структура: `{ version: 1, className, calls: { [callKey]: { args, result, error } } }`.
 - Коммитятся в репозиторий. CI использует `UNIMOCK=replay`.
 
@@ -220,6 +222,7 @@ Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}
 | `UNIMOCK_GZIP=1` | Gzip-компрессия `.unimock.json` при записи (~97% reduction на реальных данных). Чтение автоопределяет gzip-магию. |
 | `UNIMOCK_STRIP_REQUEST=1` | Пропускать поле `request` у Axios-подобных ответов при сериализации (HTTP-интерны, ~40KB на entry). |
 | `UNIMOCK_SKIP_PROXY_ARGS=1` (или `UNIMOCK_SKIP_CONN_ARGS=1`) | Не сериализовать `args` для `call:*` записей — они не используются в replay (только callKey нужен). |
+| `UNIMOCK_SNAPSHOT_DIR` | Кастомная папка снапшотов (fallback; игнорируется при `importMeta`). |
 | `SNAPSHOT_EXT` | Расширение файла снапшота (default: `.snap`). Имя: `{ClassName}.unimock{ext}`. |
 
 **Всегда включены** (без флага):

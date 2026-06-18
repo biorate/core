@@ -3,8 +3,13 @@ export type UnimockMode = 'off' | 'record' | 'replay';
 
 /** @description Options for the {@link Mockable} decorator. */
 export interface MockableOptions {
-  /** @description Override snapshot directory (default: `tests/__snapshots__`). */
+  /** @description Override snapshot directory (default: `__snapshots__` relative to the calling
+   *   test file when `importMeta` is provided, otherwise `tests/__snapshots__`). */
   snapshotDir?: string;
+  /** @description Pass `import.meta` from the calling test module to resolve the snapshot
+   *   directory relative to the test file: `__snapshots__/` alongside the test.
+   *   When provided, `snapshotDir` is ignored. */
+  importMeta?: ImportMeta;
   /**
    * @description Static method wrapping configuration. Each element is a list of method names.
    *   Predefined lists like {@link SEQUELIZE_STATICS} can be used directly.

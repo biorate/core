@@ -1,5 +1,7 @@
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
 import type { UnimockMode } from './interfaces';
-import { MODE_RECORD, MODE_REPLAY, MODE_OFF, DEFAULT_SNAPSHOT_DIR } from './constants';
+import { MODE_RECORD, MODE_REPLAY, MODE_OFF, DEFAULT_SNAPSHOT_DIR, SNAPSHOTS_DIR_NAME } from './constants';
 
 function envFlag(name: string): boolean {
   return process.env[name] === '1';
@@ -14,8 +16,12 @@ export function parseUnimockMode(): UnimockMode {
   return MODE_OFF;
 }
 
-export function resolveSnapshotDir(override?: string): string {
-  return override ?? process.env.UNIMOCK_SNAPSHOT_DIR ?? DEFAULT_SNAPSHOT_DIR;
+export function resolveSnapshotDir(override?: string, importMeta?: ImportMeta): string {
+  if (override) return override;
+  if (importMeta) {
+    return resolve(dirname(fileURLToPath(importMeta.url)), SNAPSHOTS_DIR_NAME);
+  }
+  return process.env.UNIMOCK_SNAPSHOT_DIR ?? DEFAULT_SNAPSHOT_DIR;
 }
 
 export function gzipEnabled(): boolean {

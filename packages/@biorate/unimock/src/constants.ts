@@ -41,6 +41,8 @@ export const ENCODING_BASE64 = 'base64';
 export const SNAPSHOT_FILE_VERSION = 1;
 
 export const DEFAULT_SNAPSHOT_DIR = 'tests/__snapshots__';
+/** @description Directory name for snapshots placed alongside a test file (via `importMeta`). */
+export const SNAPSHOTS_DIR_NAME = '__snapshots__';
 /** @description Snapshot file extension. Override via `SNAPSHOT_EXT` env (default: `.snap`). Format: `{className}.unimock{ext}`. */
 export const DEFAULT_SNAPSHOT_EXT = process.env.SNAPSHOT_EXT ?? '.snap';
 

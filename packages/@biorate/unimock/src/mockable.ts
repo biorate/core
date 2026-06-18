@@ -49,7 +49,7 @@ const refIdCache = new WeakMap<object, string>();
 export function Mockable(options?: MockableOptions) {
   return function <T extends new (...args: any[]) => object>(Base: T): T {
     const className = Base.name;
-    const store = getSnapshotStore(className, options?.snapshotDir);
+    const store = getSnapshotStore(className, options?.snapshotDir, options?.importMeta);
     store.symbols = options?.symbols ?? false;
     store.depth = options?.depth ?? Infinity;
 

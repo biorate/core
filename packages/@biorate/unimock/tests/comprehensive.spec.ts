@@ -219,7 +219,7 @@ describe('@Mockable() without symbols (default)', () => {
   describe('mock() — functional style', () => {
     it('record and replay', () => {
       SnapshotStore.setMode('record');
-      const Mocked = mock(ComprehensiveService);
+      const Mocked = mock(ComprehensiveService, { importMeta: import.meta });
       const instance = new Mocked();
       expect(instance.retString()).toBe('hello');
       flushAllSnapshots();
@@ -237,7 +237,7 @@ describe('@Mockable() without symbols (default)', () => {
         }
       }
       SnapshotStore.setMode('record');
-      const Mocked = mock(SpyService);
+      const Mocked = mock(SpyService, { importMeta: import.meta });
       new Mocked().get();
       expect(spy).toHaveBeenCalledTimes(1);
       flushAllSnapshots();
@@ -259,7 +259,7 @@ describe('@Mockable() without symbols (default)', () => {
 
     it('depth=0 — never wraps, serializes directly', () => {
       SnapshotStore.setMode('record');
-      const Mocked = mock(DeepService, { depth: 0 });
+      const Mocked = mock(DeepService, { depth: 0, importMeta: import.meta });
       const result = new Mocked().foo();
       expect((result as any).__unimock_ref__).toBeUndefined();
       expect((result as any).bar).toBeInstanceOf(Function);
@@ -271,7 +271,7 @@ describe('@Mockable() without symbols (default)', () => {
 
     it('depth=1 — wraps one level, serializes nested', () => {
       SnapshotStore.setMode('record');
-      const Mocked = mock(DeepService, { depth: 1 });
+      const Mocked = mock(DeepService, { depth: 1, importMeta: import.meta });
       const result = new Mocked().foo();
       expect((result as any).__unimock_ref__).toBeDefined();
       const barResult = (result as any).bar();
@@ -281,7 +281,7 @@ describe('@Mockable() without symbols (default)', () => {
 
     it('default (depth=Infinity) — wraps all levels', () => {
       SnapshotStore.setMode('record');
-      const Mocked = mock(DeepService);
+      const Mocked = mock(DeepService, { importMeta: import.meta });
       const result = new Mocked().foo();
       expect((result as any).__unimock_ref__).toBeDefined();
       const barResult = (result as any).bar();
