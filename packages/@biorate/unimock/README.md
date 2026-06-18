@@ -315,6 +315,24 @@ Snapshot files are stored in `__snapshots__/<ClassName>.unimock.json` — one di
 }
 ```
 
+## noop — universal mock stub
+
+A singleton for use as a drop-in dependency for any service — no call will ever throw:
+
+```ts
+import { noop } from '@biorate/unimock';
+
+noop.database.query('SELECT 1');   // → noop
+noop.config.get('key').nested;     // → noop
+'query' in noop.database;          // true
+await noop.asyncMethod();           // → noop
+for (const x of noop.items) {}     // empty iterator
+JSON.stringify(noop);              // {}
+typeof noop.callback;              // 'function'
+```
+
+**Note:** `typeof noop` returns `'function'` (the Proxy target is a function). This is a JavaScript limitation — `typeof` is not interceptable by Proxy.
+
 ## Known limitations
 
 1. **`@init()` from `@biorate/lifecycled`** still runs in replay mode because the decorator stores the original descriptor in constructor metadata, not on the instance. Workaround: override `initialize` in the test subclass as a no-op, or check `SnapshotStore.mode` inside `initialize()`.

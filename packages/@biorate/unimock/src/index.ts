@@ -31,6 +31,9 @@ export {
 /** @description Proxy wrapper for objects returned by mocked methods. */
 export { MockHandler } from './mock-handler';
 
+/** @description Universal noop proxy — any property, method, call, construct returns itself. */
+export { noop } from './noop';
+
 import { flushAllSnapshots, isReplay, isRecord } from './snapshot-store';
 import { parseUnimockMode, resolveSnapshotDir } from './env';
 

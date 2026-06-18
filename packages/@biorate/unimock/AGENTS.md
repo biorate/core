@@ -41,7 +41,7 @@
 | `tests/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming) |
 | `tests/clickhouse.spec.ts` | 2 интеграционных теста с реальным Clickhouse (record + replay) |
 | `tests/rdkafka.spec.ts` | 2 интеграционных теста с реальным Kafka (record + replay) |
-| `tests/schema-registry.spec.ts` | 2 интеграционных теста с Schema Registry (record + replay) |
+| `tests/noop.spec.ts` | 16 тестов для noop Proxy |
 
 ## Поток данных (sequence)
 
