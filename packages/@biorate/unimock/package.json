@@ -1,6 +1,6 @@
 {
   "name": "@biorate/unimock",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Snapshot-based proxy mocking for connectors and services",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

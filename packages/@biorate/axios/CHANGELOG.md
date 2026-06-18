@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/biorate/core/compare/@biorate/axios@3.2.0...@biorate/axios@3.3.0) (2026-06-18)
+
+### Features
+
+- **axios:** axios dependency update, memory leak in 1.15.1 ([e62a56d](https://github.com/biorate/core/commit/e62a56da3c7a3dc01733016881d4cce65a90cc88))
+
 # [3.2.0](https://github.com/biorate/core/compare/@biorate/axios@3.1.0...@biorate/axios@3.2.0) (2026-06-17)
 
 ### Features

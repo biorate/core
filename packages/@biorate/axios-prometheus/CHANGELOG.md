@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/biorate/core/compare/@biorate/axios-prometheus@2.2.0...@biorate/axios-prometheus@2.2.1) (2026-06-18)
+
+**Note:** Version bump only for package @biorate/axios-prometheus
+
 # [2.2.0](https://github.com/biorate/core/compare/@biorate/axios-prometheus@2.1.2...@biorate/axios-prometheus@2.2.0) (2026-06-17)
 
 ### Features
