@@ -2,7 +2,8 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "strict": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "module": "ESNext"
   },
   "include": ["index.ts", "src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]
