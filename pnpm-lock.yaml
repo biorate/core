@@ -184,7 +184,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
       sinon:
         specifier: 21.0.1
         version: 21.0.1
@@ -484,11 +484,11 @@ importers:
         specifier: workspace:*
         version: link:../singleton
       axios:
-        specifier: 1.15.1
-        version: 1.15.1
+        specifier: 1.18.0
+        version: 1.18.0
       axios-retry:
         specifier: 4.5.0
-        version: 4.5.0(axios@1.15.1)
+        version: 4.5.0(axios@1.18.0)
       http-status:
         specifier: 2.1.0
         version: 2.1.0
@@ -1475,7 +1475,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
     devDependencies:
       sqlite3:
         specifier: 5.0.7
@@ -4598,11 +4598,11 @@ packages:
     peerDependencies:
       axios: 0.x || 1.x
 
-  axios@1.13.4:
-    resolution: {integrity: sha512-1wVkUaAO6WyaYtCkcYCOx12ZgpGf9Zif+qXa4n+oYzK558YryKqiL6UWwd5DqiH3VRW0GYhTZQ/vlgJrCoNQlg==}
-
   axios@1.15.1:
     resolution: {integrity: sha512-WOG+Jj8ZOvR0a3rAn+Tuf1UQJRxw5venr6DgdbJzngJE3qG7X0kL83CZGpdHMxEm+ZK3seAbvFsw4FfOfP9vxg==}
+
+  axios@1.18.0:
+    resolution: {integrity: sha512-E32NzpYKp++W7XRe52rHiXV2ehxmh3wbdgO7MHeFM+vqxLBYHzt0ElkiImtOBxtOmyp0yoC8C6uESVV84Y2/hw==}
 
   babel-plugin-istanbul@6.1.1:
     resolution: {integrity: sha512-Y1IQok9821cC9onCx5otgFfRm7Lm+I+wwxOx738M/WLPZ9Q42m4IG5W0FNX8WLL2gYMZo3JkuXIH2DOpWM+qwA==}
@@ -9062,9 +9062,6 @@ packages:
   proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
-
-  proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
   proxy-from-env@2.1.0:
     resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
@@ -14444,18 +14441,10 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios-retry@4.5.0(axios@1.15.1):
+  axios-retry@4.5.0(axios@1.18.0):
     dependencies:
-      axios: 1.15.1
+      axios: 1.18.0
       is-retry-allowed: 2.2.0
-
-  axios@1.13.4:
-    dependencies:
-      follow-redirects: 1.16.0
-      form-data: 4.0.5
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
 
   axios@1.15.1:
     dependencies:
@@ -14464,6 +14453,16 @@ snapshots:
       proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
+
+  axios@1.18.0:
+    dependencies:
+      follow-redirects: 1.16.0
+      form-data: 4.0.5
+      https-proxy-agent: 5.0.1
+      proxy-from-env: 2.1.0
+    transitivePeerDependencies:
+      - debug
+      - supports-color
 
   babel-plugin-istanbul@6.1.1:
     dependencies:
@@ -18757,7 +18756,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.13.4
+      axios: 1.15.1
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -19664,8 +19663,6 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
-  proxy-from-env@1.1.0: {}
-
   proxy-from-env@2.1.0: {}
 
   prr@1.0.1:
@@ -20315,7 +20312,7 @@ snapshots:
 
   sequelize-pool@7.1.0: {}
 
-  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3):
+  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13))):
     dependencies:
       '@types/node': 24.10.12
       '@types/validator': 13.15.10

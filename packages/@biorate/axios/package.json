@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@biorate/singleton": "workspace:*",
-    "axios": "1.15.1",
+    "axios": "1.18.0",
     "axios-retry": "4.5.0",
     "http-status": "2.1.0",
     "path-to-url": "0.1.0"
