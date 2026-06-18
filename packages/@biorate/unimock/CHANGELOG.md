@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/biorate/core/compare/@biorate/unimock@1.5.0...@biorate/unimock@1.6.0) (2026-06-18)
+
+### Features
+
+- **unimock:** import.meta for dir setup ([8c0faaa](https://github.com/biorate/core/commit/8c0faaac2e7d1abce388b66936cc46671020ac69))
+
 # [1.5.0](https://github.com/biorate/core/compare/@biorate/unimock@1.4.0...@biorate/unimock@1.5.0) (2026-06-17)
 
 ### Bug Fixes
