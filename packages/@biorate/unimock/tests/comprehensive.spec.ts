@@ -263,7 +263,6 @@ describe('@Mockable() without symbols (default)', () => {
       const result = new Mocked().foo();
       expect((result as any).__unimock_ref__).toBeUndefined();
       expect((result as any).bar).toBeInstanceOf(Function);
-      // bar() result is also plain
       const barResult = (result as any).bar();
       expect(barResult.__unimock_ref__).toBeUndefined();
       flushAllSnapshots();
@@ -287,6 +286,67 @@ describe('@Mockable() without symbols (default)', () => {
       const barResult = (result as any).bar();
       expect((barResult as any).__unimock_ref__).toBeDefined();
       flushAllSnapshots();
+    });
+  });
+
+  describe('mock() — plain objects', () => {
+    it('record and replay', () => {
+      SnapshotStore.setMode('record');
+      const obj = mock({
+        query: (sql: string) => ({ data: [1, 2] }),
+      }, { importMeta: import.meta, name: 'MockPlain' });
+      expect(obj.query('SELECT 1')).toEqual({ data: [1, 2] });
+      flushAllSnapshots();
+
+      SnapshotStore.setMode('replay');
+      const obj2 = mock({
+        query: (sql: string) => ({ data: [99] }),
+      }, { importMeta: import.meta, name: 'MockPlain' });
+      // Value from snapshot, not from the new function
+      expect(obj2.query('SELECT 1')).toEqual({ data: [1, 2] });
+    });
+
+    it('does not mutate original', () => {
+      const original = { query: (sql: string) => ({ data: [sql] }) };
+      const mocked = mock(original, { importMeta: import.meta, name: 'MockNoMutate' });
+      expect(mocked.query).not.toBe(original.query);
+      expect(original.query('SELECT 1')).toEqual({ data: ['SELECT 1'] });
+    });
+
+    it('auto-names via constructor.name for class instances', () => {
+      class Connection {
+        query(sql: string) {
+          return { rows: [sql] };
+        }
+      }
+      const conn = new Connection();
+      SnapshotStore.setMode('record');
+      const mocked = mock(conn, { importMeta: import.meta });
+      expect(mocked.query('SELECT 1')).toEqual({ rows: ['SELECT 1'] });
+      flushAllSnapshots();
+
+      SnapshotStore.setMode('replay');
+      const mocked2 = mock(new Connection(), { importMeta: import.meta });
+      expect(mocked2.query('SELECT 1')).toEqual({ rows: ['SELECT 1'] });
+    });
+
+    it('auto-names via hash for plain literals', () => {
+      SnapshotStore.setMode('record');
+      const obj = mock(
+        { foo: () => 'bar', baz: () => 42 },
+        { importMeta: import.meta },
+      );
+      expect(obj.foo()).toBe('bar');
+      expect(obj.baz()).toBe(42);
+      flushAllSnapshots();
+
+      SnapshotStore.setMode('replay');
+      const obj2 = mock(
+        { foo: () => 'x', baz: () => 0 },
+        { importMeta: import.meta },
+      );
+      expect(obj2.foo()).toBe('bar');
+      expect(obj2.baz()).toBe(42);
     });
   });
 });

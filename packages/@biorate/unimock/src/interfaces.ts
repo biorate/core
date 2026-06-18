@@ -11,6 +11,12 @@ export interface MockableOptions {
    *   When provided, `snapshotDir` is ignored. */
   importMeta?: ImportMeta;
   /**
+   * @description Custom snapshot class name for `mock()`. Automatically derived when not set:
+   *   class constructors use their own `name`; plain objects use
+   *   `Object_<hash>` (hash of sorted method names).
+   */
+  name?: string;
+  /**
    * @description Static method wrapping configuration. Each element is a list of method names.
    *   Predefined lists like {@link SEQUELIZE_STATICS} can be used directly.
    */

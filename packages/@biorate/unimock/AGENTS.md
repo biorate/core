@@ -28,7 +28,7 @@
 
 | Файл | Назначение |
 | ---- | ---------- |
-| `src/mockable.ts` | Декоратор `@Mockable()`, `wrapMethod`, `replayCall`, `wrapAndRecord`, `hasMethods`, `wrapGetter` |
+| `src/mockable.ts` | Декоратор `@Mockable()`, `wrapMethod`, `replayCall`, `wrapAndRecord`, `hasMethods`, `wrapGetter`, `mock()` (overloaded), `mockObject()` |
 | `src/mock-handler.ts` | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.) |
 | `src/snapshot-store.ts` | `SnapshotStore` — загрузка/сохранение JSON-снапшотов, кэш stores, `flushAllSnapshots()`, `isReplay()`, `isRecord()` |
 | `src/serializer.ts` | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey` |
@@ -37,7 +37,8 @@
 | `src/interfaces.ts` | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode` |
 | `src/index.ts` | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
 | `vitest/setup.ts` | Хук `afterAll` для автоматического `flushAllSnapshots()` |
-| `tests/unimock.spec.ts` | 24 unit-теста для ядра |
+| `tests/unimock.spec.ts` | 25 unit-тестов для ядра |
+| `tests/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming) |
 | `tests/clickhouse.spec.ts` | 2 интеграционных теста с реальным Clickhouse (record + replay) |
 | `tests/rdkafka.spec.ts` | 2 интеграционных теста с реальным Kafka (record + replay) |
 | `tests/schema-registry.spec.ts` | 2 интеграционных теста с Schema Registry (record + replay) |
@@ -81,6 +82,17 @@
     - returns MockHandler or deserialized data
   → json() on that handler → same flow → returns plain data
 ```
+
+## mockObject() — мокирование plain объектов
+
+`mock()` принимает не только классы, но и plain объекты (в т.ч. инстансы классов). В этом случае создаётся копия объекта (прототип сохраняется), на каждом методе вызывается `wrapMethod()`.
+
+**Определение имени снапшота:**
+1. `options.name` — явное имя
+2. `obj.constructor.name` — если не `'Object'` (для class-инстансов)
+3. `Object_<stableHash(keys)>` — для литералов (хеш от имён методов)
+
+Оригинальный объект не мутируется — возвращается копия с тем же прототипом.
 
 ## hasMethods() — различение connection и data-объектов
 
@@ -254,9 +266,10 @@ if (!isRecord()) return;
 ## Чеклист при изменениях
 
 - [ ] `pnpm --filter @biorate/unimock run build` — проверка типов
-- [ ] `pnpm --filter @biorate/unimock run test` — все 30 тестов
+- [ ] `pnpm --filter @biorate/unimock run test` — все 39 тестов
 - [ ] Если менялась сериализация — проверить `serialize`/`deserialize` symmetric
 - [ ] Если менялся `hasMethods` — проверить различение connection/data объектов
 - [ ] Если менялся replay-механизм — запустить clickhouse integration test (docker должен быть up)
 - [ ] Если менялся `@Mockable()` — проверить работу с `@init()` (ограничение #1)
+- [ ] Если менялся `mock`/`mockObject` — проверить record+replay для plain объектов, сохранение прототипа, авто-naming
 - [ ] Документация — обновить `README.md` (примеры, секции) и TSDoc на новых/изменённых функциях и типах

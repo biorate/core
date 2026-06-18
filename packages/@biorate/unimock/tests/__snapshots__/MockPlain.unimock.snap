@@ -1,0 +1,1 @@
+{"version":1,"className":"MockPlain","calls":{"query:1a20d486":{"args":[{"t":"string","v":"SELECT 1"}],"result":{"t":"object","v":[{"k":"data","v":{"t":"array","v":[{"t":"number","v":1},{"t":"number","v":2}]}}]}}}}

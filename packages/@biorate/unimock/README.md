@@ -81,6 +81,35 @@ const replayed = new MockedService();
 console.log(await replayed.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
 ```
 
+### Plain object mocking
+
+`mock()` also accepts plain objects and class instances — every method is wrapped for record/replay:
+
+```ts
+import { mock, SnapshotStore, flushAllSnapshots } from '@biorate/unimock';
+
+const obj = mock({
+  query: async (sql: string) => ({ data: [1, 2, 3] }),
+}, { importMeta: import.meta });
+
+// Record phase
+SnapshotStore.setMode('record');
+console.log(await obj.query('SELECT 1')); // { data: [1, 2, 3] } — real call
+flushAllSnapshots();
+
+// Replay phase
+SnapshotStore.setMode('replay');
+console.log(await obj.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
+```
+
+The snapshot name is auto-derived: `constructor.name` for class instances, or `Object_<hash>` for literals. Use `name` in options to override:
+
+```ts
+const obj = mock(service, { name: 'MyService', importMeta: import.meta });
+```
+
+The original object is not mutated — a copy is returned.
+
 ### Static method wrapping
 
 Some ORMs and frameworks expose operations as static methods (e.g. Sequelize `Model.findByPk()`). Use the `statics` option to wrap them for recording and replay.
