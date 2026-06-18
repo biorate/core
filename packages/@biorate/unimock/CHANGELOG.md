@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/biorate/core/compare/@biorate/unimock@1.7.0...@biorate/unimock@1.8.0) (2026-06-18)
+
+### Features
+
+- **unimock:** noop added ([0349003](https://github.com/biorate/core/commit/0349003fbbb51c8794eb15e9ad52bf9e83e34b7a))
+
 # [1.7.0](https://github.com/biorate/core/compare/@biorate/unimock@1.6.2...@biorate/unimock@1.7.0) (2026-06-18)
 
 ### Features
