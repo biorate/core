@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/biorate/core/compare/@biorate/i18n@2.1.0...@biorate/i18n@2.1.1) (2026-06-19)
+
+### Bug Fixes
+
+- **i18n:** languages type ([9f40056](https://github.com/biorate/core/commit/9f400568ded1be3f2d478e56bfd8cd56e84ab183))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/i18n@2.0.2...@biorate/i18n@2.1.0) (2026-06-17)
 
 ### Features
