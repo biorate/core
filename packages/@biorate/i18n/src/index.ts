@@ -83,6 +83,6 @@ export abstract class I18n {
   }
 
   public get languages() {
-    return this?.options?.supportedLngs ?? [];
+    return <string[]>this?.options?.supportedLngs ?? [];
   }
 }
