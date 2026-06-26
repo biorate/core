@@ -111,7 +111,7 @@ Children marked with `override: true` replace parent methods with the same lifec
 ### Event binding with `@on`
 
 ```ts
-class MyEmitter {
+class MyEmitter extends EventEmitter {
   @on('data') public handleData(payload: unknown) {
     console.log('data received', payload);
   }
@@ -121,9 +121,10 @@ class MyEmitter {
   }
 }
 
-const emitter = new EventEmitter();
-Object.setPrototypeOf(/* … wiring … */);
-// lifecycled automatically calls emitter.on('data', handleData)
+const emitter = new MyEmitter();
+await lifecycled(emitter);
+// lifecycled calls emitter.on('data', emitter.handleData)
+// and emitter.on('error', emitter.handleError)
 ```
 
 ### Topological init order
