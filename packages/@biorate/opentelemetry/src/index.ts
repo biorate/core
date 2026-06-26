@@ -29,33 +29,27 @@ export * from './decorators';
  * OpenTelemetry integration
  *
  * @example
- * ```
- * process.env.OTEL_METRICS_EXPORTER = 'console';
- * process.env.OTEL_KUBE_NODE_NAME = 'localhost';
- * process.env.OTEL_SERVICE_NAME = 'test-app';
+ * ```ts
+ * // Minimal setup – environment variables must be set before import.
+ * process.env.OTEL_SERVICE_NAME = 'my-app';
  * process.env.OTEL_TRACES_SAMPLER = 'always_on';
  * process.env.OTEL_TRACES_SAMPLER_ARG = '1';
- * process.env.OTEL_PROPAGATORS = 'tracecontext,baggage';
- * process.env.OTEL_EXPORTER_OTLP_ENDPOINT = 'http://localhost:14317';
- * process.env.OTEL_NODE_IP = 'localhost';
- * process.env.OTEL_RESOURCE_ATTRIBUTES_NODE_NAME = 'application-nodes';
- * process.env.OTEL_RESOURCE_ATTRIBUTES =
- *   'k8s.container.name=app,k8s.deployment.name=app,k8s.namespace.name=test,k8s.node.name=application-nodes,k8s.pod.name=app,k8s.replicaset.name=app,service.instance.id=test.app,service.version=develop';
- * process.env.OTEL_POD_IP = 'localhost';
- * process.env.OTEL_RESOURCE_ATTRIBUTES_POD_NAME = 'app';
+ * process.env.OTEL_EXPORTER_OTLP_ENDPOINT = 'http://localhost:4317';
  *
  * import { scope, span } from '@biorate/opentelemetry';
  *
- * @scope('v2')
- * export class Test {
- *   @span()
- *   public test(a: number, b: number) {
- *     return { a, b };
+ * @scope('1.0')
+ * class Service {
+ *   @span({ exclude: ['arguments.0.password', 'result.token'] })
+ *   public authenticate(credentials: { password: string; login: string }) {
+ *     return { token: 'jwt...', user: { id: 1 } };
  *   }
  * }
  *
- * const test = new Test();
- * test.test(1, 2);
+ * const svc = new Service();
+ * svc.authenticate({ password: 'secret', login: 'admin' });
+ * // span.arguments → '[{"login":"admin"}]' (password excluded)
+ * // span.result    → '{"user":{"id":1}}'       (token excluded)
  * ```
  */
 function getMetricReader() {
