@@ -1,16 +1,16 @@
 # @biorate/inversion
 
-IoC container and DI framework built on InversifyJS, extended with automatic lifecycle management (`$run` / `$destroy`) via `@biorate/lifecycled`.
+IoC container and DI framework built on InversifyJS, extended with automatic lifecycle management (`$run`) via `@biorate/lifecycled`.
 
 ## Features
 
 - **`@injectable()`** — marks a class for DI registration.
 - **`@inject()`** — lazy property injection (supports `.multi`, `.named`, `.tagged`).
-- **`Core()` mixin** — adds `$run()` / `$destroy()` lifecycle with logging.
+- **`Core()` mixin** — adds `$run()` lifecycle with logging.
 - **`container`** — global InversifyJS `Container` singleton.
 - **`Types.***` — shared symbolic type identifiers for cross‑package DI.
 - **`@init()` / `@kill()`** — lifecycle decorators re‑exported from `@biorate/lifecycled`.
-- **Async shutdown** — graceful process exit via `async-exit-hook`.
+- **Async shutdown** — graceful process exit via `@biorate/shutdown-hook`.
 
 ## Installation
 
@@ -56,8 +56,7 @@ await root.$run();
 // Logger ready
 // App started
 // [Root] initialized [0.01s]
-
-await root.$destroy();
+// @kill() methods will run automatically on process shutdown
 ```
 
 ## API Reference
@@ -72,8 +71,8 @@ Creates an `@injectable()` class that extends `Class` (or an empty class) with:
 
 | Method         | Description                           |
 |----------------|---------------------------------------|
-| `$run(root?)`  | Calls `lifecycled()` on the instance. |
-| `$destroy()`   | Calls `lifecycled` kill phase.        |
+| `$run(root?, _parent?)` | Calls `lifecycled()` on the instance. `_parent` is used internally for recursion. |
+| _(none)_       | Kill phase runs automatically via `ShutdownHook` on process exit. |
 
 ```ts
 class MyApp extends Core() { /* … */ }
@@ -135,7 +134,7 @@ container.bind(Bar).to(BarImpl);
 | Decorator | Description            |
 |-----------|------------------------|
 | `@init()` | Marked method runs on `$run()`. |
-| `@kill()` | Marked method runs on `$destroy()` / process exit. |
+| `@kill()` | Marked method runs on process shutdown via `ShutdownHook`. |
 
 ## Usage patterns
 
@@ -165,6 +164,8 @@ container.bind(Root).toSelf().inSingletonScope();
 ```
 
 ### Custom logging
+
+By default `Core.log = console`. Override to customise:
 
 ```ts
 Core.log = {

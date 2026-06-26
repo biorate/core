@@ -52,7 +52,7 @@
   "license": "MIT",
   "peerDependencies": {
     "class-validator": ">=0.14.1",
-    "lodash-es": ">=4.17.21",
+    "lodash-es": ">=4.18.1",
     "reflect-metadata": ">=0.1.13",
     "vitest": ">=2.0.0"
   },

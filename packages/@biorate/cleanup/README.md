@@ -5,7 +5,7 @@ Cleanup files and directories
 ### Examples:
 
 ```ts
-import {} from '@biorate/cleanup';
+import { cleanup } from '@biorate/cleanup';
 
 (async () => await cleanup('./tests/dir'))();
 ```

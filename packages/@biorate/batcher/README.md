@@ -6,6 +6,17 @@ Tasks batcher
 
 - Group single tasks into batch request
 
+### API
+
+```ts
+new Batcher<O, M>(count?: number, timeout?: number);
+```
+
+| Param     | Type     | Default | Description                               |
+|-----------|----------|---------|-------------------------------------------|
+| `count`   | `number` | `100`   | Max tasks per batch before flush.         |
+| `timeout` | `number` | `100`   | Max wait (ms) before flush when count not reached. |
+
 ### Examples:
 
 ```ts

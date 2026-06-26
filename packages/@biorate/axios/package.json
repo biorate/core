@@ -49,7 +49,7 @@
   "license": "MIT",
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
   "peerDependencies": {
-    "lodash-es": ">=4.17.21"
+    "lodash-es": ">=4.18.1"
   },
   "dependencies": {
     "@biorate/singleton": "workspace:*",

@@ -41,7 +41,7 @@ console.log(err.stack);   // Full stack trace
 
 | Member             | Type                         | Description                                              |
 |--------------------|------------------------------|----------------------------------------------------------|
-| `constructor`      | `(message, args?, meta?)`    | Template string with positional `util.format` args.      |
+| `constructor`      | `(message, args?, meta?, ...options?)` | Template string with positional `util.format` args.      |
 | `.message`         | `string`                     | Formatted message (inherited from `Error`).              |
 | `.code`            | `string`                     | Returns `this.constructor.name`.                         |
 | `.meta`            | `unknown`                    | Arbitrary metadata payload (second constructor arg).     |
@@ -50,12 +50,13 @@ console.log(err.stack);   // Full stack trace
 ### Constructor signature
 
 ```ts
-new BaseError(message: string, args?: unknown[], meta?: unknown);
+new BaseError(message: string, args?: unknown[], meta?: unknown, ...options: unknown[]);
 ```
 
 - **`message`** — template using `%s`, `%d`, `%j`, `%%` etc. (Node.js `util.format`).
 - **`args`** — array of values injected into the template.
 - **`meta`** — any extra data stored on `this.meta`.
+- **`...options`** — additional arguments forwarded to `Error` constructor (e.g. `options.cause`).
 
 ## Usage patterns
 

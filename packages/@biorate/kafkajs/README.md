@@ -42,7 +42,7 @@ container.get<IConfig>(Types.Config).merge({
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-  await root.producer.current!.send({
+  await root.producer.send('producer', {
     topic: 'test',
     messages: [{ key: 'key', value: 'hello' }],
   });

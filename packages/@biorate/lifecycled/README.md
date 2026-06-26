@@ -18,7 +18,7 @@ Decorator‑driven async lifecycle manager for object trees. Recursively scans a
 pnpm add @biorate/lifecycled
 ```
 
-Peer dependency: `reflect-metadata`. Requires `@biorate/tools`, `@biorate/shutdown-hook`, and `lodash-es`.
+Peer dependencies: `reflect-metadata`, `lodash-es`. Requires `@biorate/tools`, `@biorate/shutdown-hook`.
 
 ## Quick start
 
@@ -76,7 +76,7 @@ Scans `root` and all nested objects for `@init` / `@kill` methods, invokes `@ini
 | Decorator     | Target         | Behaviour                                              |
 |---------------|----------------|--------------------------------------------------------|
 | `@init()`     | Method         | Called during `lifecycled()` — async initializer.      |
-| `@kill()`     | Method         | Called on `$destroy()` or process exit — async cleanup.|
+| `@kill()`     | Method         | Called on process shutdown via `ShutdownHook` — async cleanup.|
 | `@on(event)`  | Method         | Binds to `object.on(event, handler)` at scan time.     |
 
 ## Usage patterns

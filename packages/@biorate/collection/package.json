@@ -57,7 +57,7 @@
   "license": "MIT",
   "gitHead": "366894dafd47b9613acde338a5615ee547f729a8",
   "peerDependencies": {
-    "lodash-es": ">=4.17.21",
+    "lodash-es": ">=4.18.1",
     "reflect-metadata": ">=0.1.13"
   },
   "dependencies": {

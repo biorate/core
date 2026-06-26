@@ -84,7 +84,7 @@
     "@types/lodash-es": "^4.17.12"
   },
   "peerDependencies": {
-    "lodash-es": ">=4.17.21"
+    "lodash-es": ">=4.18.1"
   },
   "dependencies": {
     "@biorate/errors": "workspace:*",

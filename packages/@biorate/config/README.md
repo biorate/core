@@ -1,155 +1,216 @@
-# Config
+# @biorate/config
 
-Application configurator
+Application configurator — hierarchical key-value store with string interpolation, references, and template expressions.
 
-### Examples:
+## Features
 
-#### Get / Set:
+- **`get / has / set / merge`** — standard config API with dot-notation and array paths.
+- **String interpolation** — `${path}` and `@{path}` placeholders resolve to other config values.
+- **Link references** — `#{path}` points to an entire subtree.
+- **RegExp templates** — `R{/pattern/flags}` creates `RegExp` objects at config runtime.
+- **Function templates** — `F{args => body}` creates executable functions.
+- **Empty value templates** — `!{object}`, `!{array}`, `!{void}`, `!{null}`, `!{string}` produce typed empty values.
+- **Toggle per template type** — `Config.Template.*` flags enable/disable individual template processors.
+- **Recursive templating** — `get()` resolves templates on read (not on merge), so circular-safe.
 
-```ts
-import { Config } from '@biorate/config';
+## Installation
 
-const config = new Config();
-
-config.set('a', 1);
-
-console.log(config.get<number>('a')); // 1
+```bash
+pnpm add @biorate/config
 ```
 
-#### Has:
+Requires `@biorate/errors`, `@biorate/inversion`, `traverse`, `lodash-es` (peer).
+
+## Quick start
 
 ```ts
 import { Config } from '@biorate/config';
 
 const config = new Config();
 
-config.set('a', 1);
+config.set('host', 'localhost');
+config.set('port', 3000);
+config.merge({ url: 'http://${host}:${port}/api' });
 
-console.log(config.has('a')); // true
-console.log(config.has('b')); // false
+console.log(config.get<string>('url')); // 'http://localhost:3000/api'
+console.log(config.has('host'));        // true
 ```
 
-#### Merge:
+## Module reference
+
+### `Config` — Main class
 
 ```ts
 import { Config } from '@biorate/config';
-
-const config = new Config();
-
-config.merge({
-  a: { b: { c: 1 } },
-});
-
-config.merge({
-  a: { b: { d: 2 } },
-});
-
-console.log(config.has('a')); // true
-console.log(config.has('a.b')); // true
-console.log(config.get<number>('a.b.c')); // 1
-console.log(config.get<number>('a.b.d')); // 2
 ```
 
-#### String template:
+Decorated with `@injectable()` for DI use.
+
+#### Static members
+
+| Member              | Signature                                      | Description                          |
+|---------------------|------------------------------------------------|--------------------------------------|
+| `Config.Template`   | `static Template: { string, link, regexp, function, empty }` | Toggle each template type (`true` by default). |
+
+#### Instance members
+
+| Member     | Signature                                               | Description                                           |
+|------------|---------------------------------------------------------|-------------------------------------------------------|
+| `get<T>`   | `get<T = unknown>(path, def?): T`                       | Resolves path. Throws `UndefinedConfigPathError` if no `def`. String/object values are template-resolved. |
+| `has`      | `has(path): boolean`                                    | Checks if path exists in the data tree.               |
+| `set`      | `set(path, value): void`                                | Sets a value at the path (creates intermediates).      |
+| `merge`    | `merge(data): void`                                     | Deep merges data into the store via `lodash.merge`.    |
+
+`path` is of type `PropertyPath = string | string[]` — dot-separated or array paths.
+
+#### Template types
+
+Configured per key by flag:
 
 ```ts
-import { Config } from '@biorate/config';
+Config.Template.string = false;    // disable ${...} / @{...} interpolation
+Config.Template.link = false;      // disable #{...} references
+Config.Template.regexp = false;    // disable R{/pattern/}  
+Config.Template.function = false;  // disable F{...} function creation
+Config.Template.empty = false;     // disable !{...} empty values
+```
 
-const config = new Config();
+### `IConfig` — Interface
 
+```ts
+import { IConfig } from '@biorate/config';
+```
+
+```ts
+interface IConfig {
+  get<T>(path: PropertyPath, def?: T): T;
+  has(path: PropertyPath): boolean;
+  set(path: PropertyPath, value: unknown): void;
+  merge(data: unknown): void;
+}
+```
+
+The contract used by DI consumers. `Config` implements `IConfig`.
+
+### `IResult` — Template result type
+
+```ts
+import { IResult } from '@biorate/config';
+```
+
+```ts
+type IResult = {
+  value: string | RegExp | (() => unknown) | unknown[] | unknown | Record<string, unknown> | null | undefined;
+};
+```
+
+Internal type representing the resolved value after a template processor runs.
+
+### `UndefinedConfigPathError` — Error class
+
+```ts
+import { UndefinedConfigPathError } from '@biorate/config';
+```
+
+```ts
+class UndefinedConfigPathError extends BaseError {
+  constructor(path: PropertyPath);
+}
+```
+
+Thrown by `config.get(path)` when a path does not exist and no default value is provided.
+
+## Template reference
+
+### String interpolation — `${...}` / `@{...}`
+
+```ts
 config.merge({
-  url: '${protocol}${host}/${path}',
   protocol: 'https://',
   host: 'hostname.ru',
   path: 'main',
+  url1: '${protocol}${host}/${path}',
+  url2: '@{protocol}@{host}/@{path}',
 });
 
-console.log(config.get<string>('url')); // https://hostname.ru/main
+config.get('url1'); // 'https://hostname.ru/main'
+config.get('url2'); // 'https://hostname.ru/main'
 ```
 
-#### Link template:
+Both `$` and `@` prefixes work identically. Supports recursion — templates within templates resolve iteratively.
+
+### Link references — `#{...}`
 
 ```ts
-import { Config } from '@biorate/config';
-
-const config = new Config();
-
 config.merge({
   obj1: { a: 1, b: 2 },
   obj2: '#{obj1}',
 });
 
-console.log(config.get<{ a: number; b: number }>('obj2')); // { "a": 1, "b": 2 }
+config.get('obj2'); // { a: 1, b: 2 } — same object reference (via config lookup)
 ```
 
-#### RegExp template:
+The entire value at the referenced path is injected.
+
+### RegExp templates — `R{/pattern/flags}`
 
 ```ts
-import { Config } from '@biorate/config';
-
-const config = new Config();
-
 config.merge({
   regexp: 'R{/^test$/igm}',
 });
 
-const regexp = config.get<RegExp>('regexp');
-
-console.log(regexp.test('test')); // true
+const re = config.get<RegExp>('regexp');
+console.log(re.test('test')); // true
 ```
 
-#### Function template:
+Creates a `RegExpExt` instance (extends `RegExp` with custom `toJSON()`).
+
+### Function templates — `F{args => body}`
 
 ```ts
-import { Config } from '@biorate/config';
-
-const config = new Config();
-
 config.merge({
   sum: 'F{a, b => return a + b;}',
 });
 
-const sum = config.get<(a: number, b: number) => number>('sum');
-
-console.log(sum(1, 2)); // 3
+const fn = config.get<(a: number, b: number) => number>('sum');
+console.log(fn(1, 2)); // 3
 ```
 
-#### Empty template:
+Arguments are comma-separated, body follows `=>`.
 
-```ts
-import { Config } from '@biorate/config';
+### Empty templates — `!{type}`
 
-const config = new Config();
+| Template        | Result      |
+|-----------------|-------------|
+| `'!{object}'`   | `{}`        |
+| `'!{array}'`    | `[]`        |
+| `'!{void}'`     | `undefined` |
+| `'!{null}'`     | `null`      |
+| `'!{string}'`   | `""`        |
+| `'!{ }'`        | `null`      |
 
-config.merge({ data: '!{object}' });
-console.log(config.get('data')); // {}
+## Architecture
 
-config.merge({ data: '!{array}' });
-console.log(config.get('data')); // []
-
-config.merge({ data: '!{void}' });
-console.log(config.get('data')); // undefined
-
-config.merge({ data: '!{null}' });
-console.log(config.get('data')); // null
-
-config.merge({ data: '!{string}' });
-console.log(config.get('data')); // ""
-
-config.merge({ data: '!{ }' });
-console.log(config.get('data')); // null
 ```
-
-If you want to disable templates, you can turn off it in static `Config.Template` variable:
-
-```ts
-import { Config } from '@biorate/config';
-
-Config.Template.string = false;
-Config.Template.empty = false;
-Config.Template.regexp = false;
-Config.Template.function = false;
-Config.Template.link = false;
+Config implements IConfig
+│
+├── data: {}                         Internal object tree
+├── Template (static flags)          Toggle processors
+│
+├── get(path, def?)
+│   ├── lodash.get(data, path)
+│   ├── if string → template(value)
+│   │   ├── Template.string()        Replace ${...} / @{...}
+│   │   ├── Template.link()          Replace #{...}
+│   │   ├── Template.regexp()        Parse R{/.../}
+│   │   ├── Template.function()      Parse F{...}
+│   │   └── Template.empty()         Parse !{...}
+│   ├── if object → templatize()     Recursive via traverse
+│   └── throw UndefinedConfigPathError if missing and no def
+│
+├── has(path)                        lodash.has(data, path)
+├── set(path, value)                 lodash.set(data, path, value)
+└── merge(data)                      lodash.merge(data, data)
 ```
 
 ### Learn
@@ -160,7 +221,7 @@ Config.Template.link = false;
 
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/config/CHANGELOG.md)
 
-### License
+## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/config/LICENSE)
 

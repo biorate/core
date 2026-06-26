@@ -278,13 +278,6 @@ class FullOptionsTest {
   async test() {}
 }
 ```
-  @test('test 1')
-  async test1() {}
-
-  @test('test 2')
-  async test2() {}
-}
-```
 
 ## Migration from Mocha
 

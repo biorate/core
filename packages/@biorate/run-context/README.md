@@ -31,7 +31,7 @@ export class Scenario2 extends Scenario {
   console.log(ctx.get<boolean>('step1')); // true
   console.log(ctx.get<number>('step2')); // 1
   console.log(ctx.get<boolean>('step3')); // false
-  console.log(ctx.get()); // {
+  console.log(ctx.all()); // {
   //    'step1': true,
   //    'step2': 1,
   //    'step3': false

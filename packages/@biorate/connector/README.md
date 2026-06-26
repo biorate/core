@@ -69,7 +69,7 @@ container.get<IConfig>(Types.Config).merge({
 
 ## API Reference
 
-### `Connector<C, R>` abstract class
+### `Connector<C extends IConnectorConfig, T>` abstract class
 
 | Member                    | Type                          | Description                                    |
 |---------------------------|-------------------------------|------------------------------------------------|
