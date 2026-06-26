@@ -15,7 +15,7 @@
         "**/*.spec.ts",
         "**/__snapshots__/**",
         "**/__mocks__/**",
-        "**/*.md",
+        "**/!(README).md",
         "**/package-lock.json",
         "**/pnpm-lock.yaml",
         "**/.npmrc",
