@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Application configurator",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/config-loader",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Config loader abstraction",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

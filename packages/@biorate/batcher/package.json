@@ -1,6 +1,6 @@
 {
   "name": "@biorate/batcher",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Tasks batcher",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

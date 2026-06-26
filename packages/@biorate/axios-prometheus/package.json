@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios-prometheus",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Axios-prometheus HTTP interface",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -49,11 +49,11 @@
   "license": "MIT",
   "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a",
   "dependencies": {
-    "@biorate/axios": "^3.3.2",
-    "@biorate/config": "^3.2.2",
-    "@biorate/inversion": "^3.1.2",
-    "@biorate/opentelemetry": "^2.2.2",
-    "@biorate/prometheus": "^3.1.2",
+    "@biorate/axios": "^3.3.3",
+    "@biorate/config": "^3.2.3",
+    "@biorate/inversion": "^3.1.3",
+    "@biorate/opentelemetry": "^2.2.3",
+    "@biorate/prometheus": "^3.1.3",
     "@biorate/tools": "^3.1.2",
     "json-stringify-safe": "5.0.1"
   },

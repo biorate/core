@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/biorate/core/compare/@biorate/lifecycled@3.2.2...@biorate/lifecycled@3.2.3) (2026-06-26)
+
+### Bug Fixes
+
+- deps, docs ([900bf80](https://github.com/biorate/core/commit/900bf800dd0d1609b285646e1825c69cca7ccac2))
+
 ## [3.2.2](https://github.com/biorate/core/compare/@biorate/lifecycled@3.2.1...@biorate/lifecycled@3.2.2) (2026-06-26)
 
 ### Bug Fixes

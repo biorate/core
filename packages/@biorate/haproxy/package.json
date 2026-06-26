@@ -1,6 +1,6 @@
 {
   "name": "@biorate/haproxy",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Haproxy runner",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
