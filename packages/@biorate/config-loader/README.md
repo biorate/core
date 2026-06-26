@@ -1,49 +1,59 @@
-# Config loader
+# @biorate/config-loader
 
-Config loader abstraction
+Config loader abstraction — abstract base class for all config loaders in the `@biorate` DI ecosystem.
 
-### Features:
+## Features
 
-- Common interface for load configuration from different sources
+- **DI-ready** — decorated with `@injectable()`, injects `IConfig`.
+- **Template Method pattern** — abstract `initialize()` must be implemented by subclasses.
+- **Lifecycle integration** — `@init()` decorator from `@biorate/inversion` for automatic startup.
 
-### Examples:
+## Installation
 
-##### ./config-loader-test.ts
+```bash
+pnpm add @biorate/config-loader
 ```
-import { init } from '@biorate/inversion';
-import { ConfigLoader } from '../../src';
-import { key, value } from './';
 
-export class ConfigLoaderTest extends ConfigLoader {
-  @init() protected initialize() {
-    this.config.set(key, value);
+Requires `@biorate/config`, `@biorate/errors`, `@biorate/inversion`.
+
+## Module reference
+
+### `ConfigLoader` — Abstract base
+
+```ts
+import { ConfigLoader } from '@biorate/config-loader';
+```
+
+| Member       | Visibility    | Type / Signature                         | Description                   |
+|--------------|---------------|------------------------------------------|-------------------------------|
+| `config`     | `protected readonly` | `IConfig`                          | Injected config service.      |
+| `initialize` | `protected abstract` | `(): Promise<void> \| void`       | Load config into `this.config`. |
+
+## Usage pattern
+
+```ts
+import { injectable, init } from '@biorate/inversion';
+import { ConfigLoader } from '@biorate/config-loader';
+
+@injectable()
+class EnvLoader extends ConfigLoader {
+  @init()
+  protected initialize() {
+    this.config.merge({ env: process.env.NODE_ENV || 'development' });
   }
 }
 ```
 
-##### ./index.ts
+## Architecture
+
 ```
-import { inject, container, Types, Core } from '@biorate/inversion';
-import { IConfig, Config } from '@biorate/config';
-import { ConfigLoader } from '@biorate/config-loader';
-import { ConfigLoaderTest } from './config-loader-test';
-
-class Root extends Core() {
-  @inject(Types.Config) public config: IConfig;
-  @inject(Types.ConfigLoaderTest) public configLoaderTest: ConfigLoader;
-}
-
-container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<ConfigLoader>(Types.ConfigLoaderTest).to(ConfigLoaderTest).inSingletonScope();
-container.bind<Root>(Root).toSelf().inSingletonScope();
-
-container.get<IConfig>(Types.Config).merge({});
-
-(async () => {
-  const root = container.get<Root>(Root);
-  await root.$run();
-  root.config.get('test'); // Hello world!
-})();
+ConfigLoader (abstract, @injectable)
+│
+├── @inject(Types.Config) config: IConfig    Injected on construction
+│
+└── @init() initialize() [abstract]          Called by Core.$run()
+    │
+    └── subclass implements                  Reads/parses → config.merge()
 ```
 
 ### Learn
@@ -54,7 +64,7 @@ container.get<IConfig>(Types.Config).merge({});
 
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/config-loader/CHANGELOG.md)
 
-### License
+## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/config-loader/LICENSE)
 
