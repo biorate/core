@@ -1,6 +1,6 @@
 {
   "name": "@biorate/proxy",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Proxy connector",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.5](https://github.com/biorate/core/compare/@biorate/unimock@1.8.4...@biorate/unimock@1.8.5) (2026-06-26)
+
+**Note:** Version bump only for package @biorate/unimock
+
 ## [1.8.4](https://github.com/biorate/core/compare/@biorate/unimock@1.8.3...@biorate/unimock@1.8.4) (2026-06-26)
 
 **Note:** Version bump only for package @biorate/unimock

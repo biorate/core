@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/biorate/core/compare/@biorate/config-loader-vault@2.1.3...@biorate/config-loader-vault@2.1.4) (2026-06-26)
+
+### Bug Fixes
+
+- deps, docs ([b6f4931](https://github.com/biorate/core/commit/b6f4931e8df1009398b6e0a717f1ae9fbbb940a5))
+
 ## [2.1.3](https://github.com/biorate/core/compare/@biorate/config-loader-vault@2.1.2...@biorate/config-loader-vault@2.1.3) (2026-06-26)
 
 **Note:** Version bump only for package @biorate/config-loader-vault
