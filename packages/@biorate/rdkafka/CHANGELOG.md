@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/biorate/core/compare/@biorate/rdkafka@2.3.0...@biorate/rdkafka@2.3.1) (2026-06-26)
+
+### Bug Fixes
+
+- docs ([e7ef07a](https://github.com/biorate/core/commit/e7ef07ada7d3759a33ca65fbf7b5649f5116eab0))
+
 # [2.3.0](https://github.com/biorate/core/compare/@biorate/rdkafka@2.2.0...@biorate/rdkafka@2.3.0) (2026-06-17)
 
 ### Features

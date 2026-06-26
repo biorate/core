@@ -184,7 +184,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
       sinon:
         specifier: 21.0.1
         version: 21.0.1
@@ -509,23 +509,23 @@ importers:
   packages/@biorate/axios-prometheus:
     dependencies:
       '@biorate/axios':
-        specifier: ^3.3.0
-        version: 3.3.0(lodash-es@4.18.1)
+        specifier: ^3.3.1
+        version: link:../axios
       '@biorate/config':
-        specifier: ^3.2.0
-        version: 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.2.1
+        version: link:../config
       '@biorate/inversion':
-        specifier: ^3.1.0
-        version: 3.1.0(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: ^2.2.0
+        specifier: ^2.2.1
         version: link:../opentelemetry
       '@biorate/prometheus':
-        specifier: ^3.1.0
-        version: 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../prometheus
       '@biorate/tools':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../tools
       json-stringify-safe:
         specifier: 5.0.1
         version: 5.0.1
@@ -878,14 +878,14 @@ importers:
   packages/@biorate/masquerade:
     dependencies:
       '@biorate/config':
-        specifier: ^3.2.0
-        version: 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.2.1
+        version: link:../config
       '@biorate/inversion':
-        specifier: ^3.1.0
-        version: 3.1.0(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../inversion
       '@biorate/tools':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../tools
       lodash-es:
         specifier: '>=4.17.21'
         version: 4.18.1
@@ -896,59 +896,59 @@ importers:
   packages/@biorate/migrations:
     dependencies:
       '@biorate/amqp':
-        specifier: ^2.1.0
-        version: 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/clickhouse':
-        specifier: ^2.4.0
-        version: 2.4.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config':
-        specifier: ^3.2.0
-        version: 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config-loader':
-        specifier: ^2.1.0
-        version: 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config-loader-env':
-        specifier: ^2.1.0
-        version: 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config-loader-fs':
-        specifier: ^2.1.0
-        version: 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config-loader-vault':
-        specifier: ^2.1.0
-        version: 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector':
-        specifier: ^3.1.0
-        version: 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors':
-        specifier: ^3.1.0
-        version: 3.1.0
-      '@biorate/inversion':
-        specifier: ^3.1.0
-        version: 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/kafkajs':
-        specifier: ^2.2.0
-        version: 2.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/minio':
-        specifier: ^2.1.0
-        version: 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/mongodb':
-        specifier: ^2.1.0
-        version: 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/proxy':
         specifier: ^2.1.1
-        version: 2.1.1(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        version: link:../amqp
+      '@biorate/clickhouse':
+        specifier: ^2.4.1
+        version: link:../clickhouse
+      '@biorate/config':
+        specifier: ^3.2.1
+        version: link:../config
+      '@biorate/config-loader':
+        specifier: ^2.1.1
+        version: link:../config-loader
+      '@biorate/config-loader-env':
+        specifier: ^2.1.1
+        version: link:../config-loader-env
+      '@biorate/config-loader-fs':
+        specifier: ^2.1.1
+        version: link:../config-loader-fs
+      '@biorate/config-loader-vault':
+        specifier: ^2.1.1
+        version: link:../config-loader-vault
+      '@biorate/connector':
+        specifier: ^3.1.1
+        version: link:../connector
+      '@biorate/errors':
+        specifier: ^3.1.1
+        version: link:../errors
+      '@biorate/inversion':
+        specifier: ^3.1.1
+        version: link:../inversion
+      '@biorate/kafkajs':
+        specifier: ^2.2.1
+        version: link:../kafkajs
+      '@biorate/minio':
+        specifier: ^2.1.1
+        version: link:../minio
+      '@biorate/mongodb':
+        specifier: ^2.1.1
+        version: link:../mongodb
+      '@biorate/proxy':
+        specifier: ^2.1.2
+        version: link:../proxy
       '@biorate/schema-registry':
-        specifier: ^3.1.2
+        specifier: ^3.1.3
         version: link:../schema-registry
       '@biorate/sequelize':
-        specifier: ^2.2.0
-        version: 2.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)(sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3))(sequelize@6.37.3)
+        specifier: ^2.2.1
+        version: link:../sequelize
       '@biorate/tools':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../tools
       '@biorate/vault':
-        specifier: ^2.2.0
-        version: 2.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^2.2.1
+        version: link:../vault
 
   packages/@biorate/minio:
     dependencies:
@@ -1087,26 +1087,26 @@ importers:
   packages/@biorate/nestjs-tools:
     dependencies:
       '@biorate/axios':
-        specifier: ^3.3.0
-        version: 3.3.0(lodash-es@4.18.1)
+        specifier: ^3.3.1
+        version: link:../axios
       '@biorate/config':
-        specifier: ^3.2.0
-        version: 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.2.1
+        version: link:../config
       '@biorate/errors':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../errors
       '@biorate/inversion':
-        specifier: ^3.1.0
-        version: 3.1.0(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../inversion
       '@biorate/opentelemetry':
-        specifier: ^2.2.0
+        specifier: ^2.2.1
         version: link:../opentelemetry
       '@biorate/prometheus':
-        specifier: ^3.1.0
-        version: 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../prometheus
       '@biorate/tools':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../tools
       '@nestjs/common':
         specifier: '>=10.4.15'
         version: 10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -1170,11 +1170,11 @@ importers:
   packages/@biorate/opentelemetry:
     dependencies:
       '@biorate/errors':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../errors
       '@biorate/masquerade':
-        specifier: ^2.2.0
-        version: 2.2.0(lodash-es@4.18.1)(reflect-metadata@0.1.13)
+        specifier: ^2.2.1
+        version: link:../masquerade
       '@opentelemetry/api':
         specifier: 1.9.0
         version: 1.9.0
@@ -1362,23 +1362,23 @@ importers:
   packages/@biorate/rdkafka:
     dependencies:
       '@biorate/config':
-        specifier: ^3.2.0
-        version: 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.2.1
+        version: link:../config
       '@biorate/connector':
-        specifier: ^3.1.0
-        version: 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../connector
       '@biorate/errors':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../errors
       '@biorate/inversion':
-        specifier: ^3.1.0
-        version: 3.1.0(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../inversion
       '@biorate/prometheus':
-        specifier: ^3.1.0
-        version: 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../prometheus
       '@biorate/tools':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../tools
       '@confluentinc/kafka-javascript':
         specifier: '>=1.9.0'
         version: 1.9.0(encoding@0.1.13)
@@ -1444,20 +1444,20 @@ importers:
   packages/@biorate/schema-registry:
     dependencies:
       '@biorate/axios-prometheus':
-        specifier: ^2.2.2
+        specifier: ^2.2.3
         version: link:../axios-prometheus
       '@biorate/config':
-        specifier: ^3.2.0
-        version: 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.2.1
+        version: link:../config
       '@biorate/connector':
-        specifier: ^3.1.0
-        version: 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../connector
       '@biorate/errors':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: link:../errors
       '@biorate/inversion':
-        specifier: ^3.1.0
-        version: 3.1.0(reflect-metadata@0.2.2)
+        specifier: ^3.1.1
+        version: link:../inversion
       avsc:
         specifier: ^5.7.4
         version: 5.7.9
@@ -1481,7 +1481,7 @@ importers:
         version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
     devDependencies:
       sqlite3:
         specifier: 5.0.7
@@ -1940,99 +1940,12 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@biorate/amqp@2.1.0':
-    resolution: {integrity: sha512-fuiZuVz/WVDPz8/+CJBsDxx0B/uoS/PUNRRaVHxY1mMr8FaAhhd8fsAnUZula/ZDZarmCYJ2oj7JylfSKDrL3g==}
-
-  '@biorate/axios@3.3.0':
-    resolution: {integrity: sha512-osxtWdaLWKjpVXZ/epaK7Sj2Ozh/meYGoqBzLow49RODM0ygWu00NbfsoMSfyB2g4eLj6YA/Wmo9Sp/7bQhg9Q==}
-    peerDependencies:
-      lodash-es: '>=4.17.21'
-
   '@biorate/cleanup@1.169.1':
     resolution: {integrity: sha512-v1Q+NyvOfpU+Ff8Z7+yLNoK3lAJDAhfhADIzp8nT35S91lm0DQvnWkrQf+aD81BRtLbkJTztyYe6qYRmmgcv7g==}
     hasBin: true
 
-  '@biorate/clickhouse@2.4.0':
-    resolution: {integrity: sha512-9Bs2flhZBVcTaqfiJ5VIOJzrwy0FVVFaUk8tw2kd4H8CgNLxS9yiljP6ZMhHcubkh+7Xva+wGBgZ+vdBWpDx5g==}
-    peerDependencies:
-      lodash-es: '>=4.17.21'
-
-  '@biorate/config-loader-env@2.1.0':
-    resolution: {integrity: sha512-LzNIJTjp9LokW5N416t4/unu3JaPz+0pk1AMXHl4KckChMv4M1hrcghyxvtZhoO0WDNIzIyBPOp//rzHzS40DQ==}
-
-  '@biorate/config-loader-fs@2.1.0':
-    resolution: {integrity: sha512-vbdYyOCz7/W+Sv+TvxcS7K7VN6FkgYHAoKx0jyo0ARF1K+m8CmwJlI5jTfhtObXICxl3KKtkuTq14wfsemkfnQ==}
-
-  '@biorate/config-loader-vault@2.1.0':
-    resolution: {integrity: sha512-hGXmz7V8sBTI7DdqtKUz0uzo9uGTxQHOY1ATBAxgLRdPYxPYBCbWpARoNdhhVyp561JM39XwJT0y0gB7xz+rnA==}
-
-  '@biorate/config-loader@2.1.0':
-    resolution: {integrity: sha512-IERB/tX0T5a4+Q20wMupIIHRyqW9GCFbfLiyvSVthQAZkEGe1WBrw/95KLPRmBO2t8JJ/vOCMAy82fiXqDxOcA==}
-
-  '@biorate/config@3.2.0':
-    resolution: {integrity: sha512-J6M9YeQx5nzOLhZCdmAOmJD9N+cKuEMHf02sWNKgMp+tfpvrBLKMhEDUrk/9dpkv/M12q86PZIMie0ghrFrC5g==}
-    peerDependencies:
-      lodash-es: '>=4.17.21'
-
-  '@biorate/connector@3.1.0':
-    resolution: {integrity: sha512-rBnLkoZktyuKIIqxLNZh3N57o41psoRAxr27L1YzN9TiezZrKykS709N/H0U2GgfNhP9EsclFR8ASQgc9fObCg==}
-
   '@biorate/errors@1.102.0':
     resolution: {integrity: sha512-r3xoEwNmCh6w6djSPoEud2JRYeRM+ZXILcSvlLUMydM+5Rti6CpxU62Icnd8nZ2xvX+/MnsS+ZqWAYHARf6HiQ==}
-
-  '@biorate/errors@3.1.0':
-    resolution: {integrity: sha512-KhLrIBGhEiNJiMOJpeUwb8xcdK/VmJb8XDTF9KkhGlpdly9pXHPyI7PD/yNLjCYJ0GkY3/Q0rHvUBgNFDljaGg==}
-
-  '@biorate/inversion@3.1.0':
-    resolution: {integrity: sha512-/LMUryEp3z5PQX0oU0u3SjU/6PKTKKEP2p8gVsD09RH0Adg1gMuqmD/MHzdfJbcEEMtSXuft7RbSpQk4BrTi7g==}
-    peerDependencies:
-      reflect-metadata: '>=0.1.13'
-
-  '@biorate/kafkajs@2.2.0':
-    resolution: {integrity: sha512-1D/ZuYtdFhcBfcRF+ZoFga5qIX3QY+/yWGhsGFCpg8QNGRT8+vr7DqAZC/QOuLf6uPm2QOvnsZkNDPI8gBpMsw==}
-
-  '@biorate/lifecycled@3.2.0':
-    resolution: {integrity: sha512-Jq7iS7l9i4kZKfTLSXBwUkpFY7uCtQ/fWpFGQ5f9HgHyjr5YQV7Thyp4DXkjQ0DPIUb1slbBbU1lwfCuFpsPrg==}
-    peerDependencies:
-      reflect-metadata: '>=0.1.13'
-
-  '@biorate/masquerade@2.2.0':
-    resolution: {integrity: sha512-nQPE+8Msl35wDmGjHKM/BrTXpI0HUiVsdce8Y58PhXdEXLqRywz8XlG0MzMAZTA39E6hd1NnxJq3TjquZADI/Q==}
-    peerDependencies:
-      lodash-es: '>=4.17.21'
-
-  '@biorate/minio@2.1.0':
-    resolution: {integrity: sha512-oFsHW/JResTebcLOQv7+mVDAS1+uZIXMxPOHNhEj/OhZX40onOPSyuZd+GRAqfRaC2YNzljqitiaJUnBlfE08A==}
-
-  '@biorate/mongodb@2.1.0':
-    resolution: {integrity: sha512-Mphcd+Zgb7VY1oidcQ00Pq7aSmQB+lF3okclQ9ZmNxchlIyUQ0c33mEXUYIfk92gRlvymIEwXcr8Qr4wBU1fUQ==}
-
-  '@biorate/prometheus@3.1.0':
-    resolution: {integrity: sha512-GEiUZjQbtzVqLK2BrqOO8itzCAwJRl8q/ueHZkJ5fpg/IaLQlVUPjKnOPjKsmqPXdH5jeov+Nj/IpXk2qTPQeQ==}
-
-  '@biorate/proxy@2.1.1':
-    resolution: {integrity: sha512-8Qx3+cmqJMGF0LsO/1RLyIX76UGvcMFs+ybpyiwKUYhP3au/JevU1A9+thChg2XTEexn+8YnX9DPDdpBRoIp7A==}
-
-  '@biorate/sequelize@2.2.0':
-    resolution: {integrity: sha512-JQo26wGicgvIspN+LnBCrxMXzej4Bbydf1Xq+1/R5rMQlRVqX+A4GZt9tIDHU9kAqA2/rbGJ8ahIrX6HbdxAZQ==}
-    peerDependencies:
-      sequelize: 6.37.3
-      sequelize-typescript: 2.1.6
-
-  '@biorate/shutdown-hook@2.1.0':
-    resolution: {integrity: sha512-OiJW2z4eRB3TRaan7+eaRz5R9P4bZLe0RuC/EiRqAbKJGA0LlWzojW9hJpWyVnkQv0u7nTWTL37Vvg8JKqhnyg==}
-
-  '@biorate/singleton@2.1.0':
-    resolution: {integrity: sha512-WD/NWP7NpVNvtnPC9LhGr7IsB4Uz3DpunLzN3FwXK2+x+eYcIsgkP3JWAfo8E6IyF5nCFG55Fvb3JIFZzGiMkA==}
-
-  '@biorate/symbolic@3.1.0':
-    resolution: {integrity: sha512-0af6k520RsovyqlT+vSSH70NrFR+WQm+8dVUc9DETXJw2Q91KJo7YMmNFNjy+Z7X7bGLVxWAnjqi2Za5rtyo+A==}
-
-  '@biorate/tools@3.1.0':
-    resolution: {integrity: sha512-9KXL6IQ/fbrubdC4Dru0bGxUoX99MysolXWCEmevSICk0Fd9x+qm2/TR3eZ66O6963RDc/6zWKnNJkni95O2aA==}
-
-  '@biorate/vault@2.2.0':
-    resolution: {integrity: sha512-/Tfbza/6NbroBumxSxspMU0azdSt86elkkDmuV4+G/xVFseNXGvg4GUqxFD0drPjhFhelx54ZNRFEffWfI2x/A==}
 
   '@cacheable/memory@2.0.8':
     resolution: {integrity: sha512-FvEb29x5wVwu/Kf93IWwsOOEuhHh6dYCJF3vcKLzXc0KXIW181AOzv6ceT4ZpBHDvAfG60eqb+ekmrnLHIy+jw==}
@@ -11529,275 +11442,13 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@biorate/amqp@2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-      amqp-connection-manager: 4.1.14(amqplib@0.10.3)
-      amqplib: 0.10.3
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-      - supports-color
-
-  '@biorate/axios@3.3.0(lodash-es@4.18.1)':
-    dependencies:
-      '@biorate/singleton': 2.1.0
-      axios: 1.18.0
-      axios-retry: 4.5.0(axios@1.18.0)
-      http-status: 2.1.0
-      lodash-es: 4.18.1
-      path-to-url: 0.1.0
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
   '@biorate/cleanup@1.169.1':
     dependencies:
       '@biorate/errors': 1.102.0
       glob: 13.0.6
       minimist: 1.2.8
 
-  '@biorate/clickhouse@2.4.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-      '@clickhouse/client': 1.11.1
-      lodash-es: 4.18.1
-    transitivePeerDependencies:
-      - reflect-metadata
-
-  '@biorate/config-loader-env@2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config-loader': 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@dotenvx/dotenvx': 1.61.1
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
-  '@biorate/config-loader-fs@2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config-loader': 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
-  '@biorate/config-loader-vault@2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/config-loader': 2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-      '@biorate/vault': 2.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-      - supports-color
-
-  '@biorate/config-loader@2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
-  '@biorate/config@3.2.0(lodash-es@4.18.1)(reflect-metadata@0.1.13)':
-    dependencies:
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.1.13)
-      lodash-es: 4.18.1
-      traverse: 0.6.11
-    transitivePeerDependencies:
-      - reflect-metadata
-
-  '@biorate/config@3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      lodash-es: 4.18.1
-      traverse: 0.6.11
-    transitivePeerDependencies:
-      - reflect-metadata
-
-  '@biorate/connector@3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
   '@biorate/errors@1.102.0': {}
-
-  '@biorate/errors@3.1.0': {}
-
-  '@biorate/inversion@3.1.0(reflect-metadata@0.1.13)':
-    dependencies:
-      '@biorate/errors': 3.1.0
-      '@biorate/lifecycled': 3.2.0(reflect-metadata@0.1.13)
-      '@biorate/symbolic': 3.1.0
-      '@biorate/tools': 3.1.0
-      async-exit-hook: 2.0.1
-      inversify: 5.1.1
-      inversify-inject-decorators: 3.1.0
-      reflect-metadata: 0.1.13
-
-  '@biorate/inversion@3.1.0(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/errors': 3.1.0
-      '@biorate/lifecycled': 3.2.0(reflect-metadata@0.2.2)
-      '@biorate/symbolic': 3.1.0
-      '@biorate/tools': 3.1.0
-      async-exit-hook: 2.0.1
-      inversify: 5.1.1
-      inversify-inject-decorators: 3.1.0
-      reflect-metadata: 0.2.2
-
-  '@biorate/kafkajs@2.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/prometheus': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-      kafkajs: 2.2.4
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
-  '@biorate/lifecycled@3.2.0(reflect-metadata@0.1.13)':
-    dependencies:
-      '@biorate/shutdown-hook': 2.1.0
-      '@biorate/tools': 3.1.0
-      async-exit-hook: 2.0.1
-      reflect-metadata: 0.1.13
-
-  '@biorate/lifecycled@3.2.0(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/shutdown-hook': 2.1.0
-      '@biorate/tools': 3.1.0
-      async-exit-hook: 2.0.1
-      reflect-metadata: 0.2.2
-
-  '@biorate/masquerade@2.2.0(lodash-es@4.18.1)(reflect-metadata@0.1.13)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.1.13)
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.1.13)
-      '@biorate/tools': 3.1.0
-      lodash-es: 4.18.1
-      maskdata: 1.3.3
-    transitivePeerDependencies:
-      - reflect-metadata
-
-  '@biorate/minio@2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-      minio: 8.0.4
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
-  '@biorate/mongodb@2.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-      '@typegoose/typegoose': 11.8.1(mongoose@7.8.9)
-      mongodb: 5.9.2
-      mongoose: 7.8.9
-    transitivePeerDependencies:
-      - '@aws-sdk/credential-providers'
-      - '@mongodb-js/zstd'
-      - kerberos
-      - lodash-es
-      - mongodb-client-encryption
-      - reflect-metadata
-      - snappy
-      - supports-color
-
-  '@biorate/prometheus@3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      prom-client: 14.2.0
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
-  '@biorate/proxy@2.1.1(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/axios': 3.3.0(lodash-es@4.18.1)
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      '@biorate/tools': 3.1.0
-      pug: 3.0.4
-    transitivePeerDependencies:
-      - debug
-      - lodash-es
-      - reflect-metadata
-      - supports-color
-
-  '@biorate/sequelize@2.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)(sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3))(sequelize@6.37.3)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      sequelize: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
-      sequelize-typescript: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)))
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-
-  '@biorate/shutdown-hook@2.1.0':
-    dependencies:
-      '@biorate/tools': 3.1.0
-
-  '@biorate/singleton@2.1.0': {}
-
-  '@biorate/symbolic@3.1.0': {}
-
-  '@biorate/tools@3.1.0':
-    dependencies:
-      '@biorate/errors': 3.1.0
-
-  '@biorate/vault@2.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@biorate/config': 3.2.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/connector': 3.1.0(lodash-es@4.18.1)(reflect-metadata@0.2.2)
-      '@biorate/errors': 3.1.0
-      '@biorate/inversion': 3.1.0(reflect-metadata@0.2.2)
-      node-vault: 0.10.9
-    transitivePeerDependencies:
-      - lodash-es
-      - reflect-metadata
-      - supports-color
 
   '@cacheable/memory@2.0.8':
     dependencies:
@@ -20680,7 +20331,7 @@ snapshots:
 
   sequelize-pool@7.1.0: {}
 
-  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13))):
+  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3):
     dependencies:
       '@types/node': 24.10.12
       '@types/validator': 13.15.10
