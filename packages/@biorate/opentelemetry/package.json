@@ -66,10 +66,12 @@
     "@opentelemetry/sdk-node": "0.213.0",
     "@opentelemetry/sdk-trace-base": "2.6.0",
     "json-stringify-safe": "5.0.1",
+    "micromatch": "4.0.8",
     "traverse": "0.6.11"
   },
   "devDependencies": {
     "@types/json-stringify-safe": "5.0.3",
+    "@types/micromatch": "4.0.9",
     "@types/traverse": "0.6.37"
   },
   "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a"

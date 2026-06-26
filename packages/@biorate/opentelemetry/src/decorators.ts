@@ -1,7 +1,6 @@
-import stringify from 'json-stringify-safe';
 import { trace, SpanStatusCode, Tracer } from '@opentelemetry/api';
 import { OTELUndefinedTracerError } from './errors';
-import { copyMetadata } from './utils';
+import { copyMetadata, attrStringify } from './utils';
 
 const key = Symbol('tracer');
 
@@ -14,7 +13,7 @@ export const scope = (version?: string, name?: string) => (Class: any) => {
 
 /** @description Method decorator that wraps a method in an OpenTelemetry span with attributes for class, method, arguments, and result. */
 export const span =
-  (props?: { name?: string; spanKind?: string }) =>
+  (props?: { name?: string; spanKind?: string; exclude?: string[] }) =>
   (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const obj = {
@@ -25,13 +24,16 @@ export const span =
           try {
             span.setAttribute('class', target.constructor.name);
             span.setAttribute('method', propertyKey);
-            span.setAttribute('arguments', stringify(args));
+            const argsStr = attrStringify('arguments', args, props?.exclude);
+            if (argsStr !== undefined) span.setAttribute('arguments', argsStr);
             span.setAttribute('SpanKind', props?.spanKind ?? 'SERVER');
             const result = method.apply(this, args);
             if (result instanceof Promise)
               return result
                 .then((result: unknown) => {
-                  span.setAttribute('result', stringify(result));
+                  const resultStr = attrStringify('result', result, props?.exclude);
+                  if (resultStr !== undefined)
+                    span.setAttribute('result', resultStr);
                   return result;
                 })
                 .catch((e: unknown) => {
@@ -40,7 +42,8 @@ export const span =
                   throw e;
                 })
                 .finally(() => span.end());
-            else span.setAttribute('result', stringify(result));
+            const resultStr = attrStringify('result', result, props?.exclude);
+            if (resultStr !== undefined) span.setAttribute('result', resultStr);
             span.end();
             return result;
           } catch (e) {
