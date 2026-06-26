@@ -1,63 +1,93 @@
-# Mssql
+# @biorate/mssql
 
-Mssql raw connector
+MSSQL connector — connection manager for the `mssql` library (Microsoft SQL Server).
 
-### Examples:
+## Features
+
+- **Auto-connect** — creates `ConnectionPool` on `@init()` via config namespace `Mssql`.
+- **Full TSQL support** — raw `query()`, prepared statements, stored procedures via the `mssql` connection.
+- **Typed errors** — `MssqlCantConnectError` on connection failure.
+
+## Installation
+
+```bash
+pnpm add @biorate/mssql
+```
+
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `mssql`.
+
+## Quick start
 
 ```ts
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { MssqlConnector, IMssqlConnector } from '@biorate/mssql';
+import { MssqlConnector } from '@biorate/mssql';
 
 class Root extends Core() {
-  @inject(MssqlConnector) public connector: IMssqlConnector;
+  @inject(MssqlConnector) public connector: MssqlConnector;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<IMssqlConnector>(MssqlConnector).toSelf().inSingletonScope();
+container.bind<MssqlConnector>(MssqlConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Mssql: [
-    {
-      name: 'connection',
-      options: {
-        server: 'localhost',
-        user: 'sa',
-        password: 'admin_007',
-        database: 'master',
-        options: {
-          trustServerCertificate: true,
-        },
-      },
+  Mssql: [{
+    name: 'connection',
+    options: {
+      server: 'localhost',
+      user: 'sa',
+      password: 'admin_007',
+      database: 'master',
+      options: { trustServerCertificate: true },
     },
-  ],
+  }],
 });
 
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-  await root.connector!.current?.query(
-    `CREATE TABLE test (
-         count int,
-         text varchar(20)
-      );`,
-  );
-  await root.connector!.current?.query(
-    `INSERT INTO test (count, text) VALUES (1, 'test1'), (2, 'test2'), (3, 'test3');`,
-  );
-  console.log(await root.connector!.current?.query(`SELECT * FROM test;`));
-  // {
-  //   recordsets: [ [ [Object], [Object], [Object] ] ],
-  //   recordset: [
-  //     { count: 1, text: 'test1' },
-  //     { count: 2, text: 'test2' },
-  //     { count: 3, text: 'test3' }
-  //   ],
-  //  output: {},
-  //   rowsAffected: [ 3 ]
-  //  }
+  await root.connector.current!.query(`
+    CREATE TABLE #test (count int, text varchar(20));
+    INSERT INTO #test (count, text) VALUES (1, 'test1'), (2, 'test2');
+    SELECT * FROM #test;
+  `);
+  const result = await root.connector.current!.query(`SELECT 1 AS result`);
+  console.log(result.recordset); // [{ result: 1 }]
 })();
+```
+
+## API Reference
+
+### `MssqlConnector`
+
+| Member           | Type                                      | Description                              |
+|------------------|-------------------------------------------|------------------------------------------|
+| `namespace`      | `'Mssql'`                                 | Config key for connection definitions.   |
+| `connect(config)` | `(config) => Promise<IMssqlConnection>`   | Creates `ConnectionPool` via `mssql.connect`. |
+
+### Config
+
+```ts
+interface IMssqlConfig extends IConnectorConfig {
+  options: config;  // mssql ConnectionPool config (server, user, password, database, etc.)
+}
+```
+
+### Errors
+
+| Error                        | Condition                                   |
+|------------------------------|---------------------------------------------|
+| `MssqlCantConnectError`      | `mssql.connect()` fails.                    |
+
+## Architecture
+
+```
+MssqlConnector extends Connector<IMssqlConfig, IMssqlConnection>
+│
+├── namespace = 'Mssql'
+├── connect(config) → await mssql.connect(config.options)
+└── connection is a mssql.ConnectionPool
 ```
 
 ### Learn
@@ -68,8 +98,6 @@ container.get<IConfig>(Types.Config).merge({
 
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/mssql/CHANGELOG.md)
 
-### License
+## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/mssql/LICENSE)
-
-Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)

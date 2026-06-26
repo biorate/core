@@ -1,13 +1,28 @@
-# IORedis
+# @biorate/ioredis
 
-IORedis connector
+IORedis connector — connection manager for the `ioredis` Redis client with configurable reconnect strategy.
 
-### Examples:
+## Features
+
+- **Auto-connect** — creates `Redis` instance on `@init()` via config namespace `IORedis`.
+- **Reconnect strategy** — configurable retry count, timeout delta, and limit.
+- **Lazy connect** — uses `lazyConnect: true` for controlled connection timing.
+- **Typed errors** — `IORedisCantConnectError` on connection failure.
+
+## Installation
+
+```bash
+pnpm add @biorate/ioredis
+```
+
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `ioredis`.
+
+## Quick start
 
 ```ts
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { IORedisConnector, IORedisConfig } from '@biorate/ioredis';
+import { IORedisConnector } from '@biorate/ioredis';
 
 class Root extends Core() {
   @inject(IORedisConnector) public connector: IORedisConnector;
@@ -21,10 +36,7 @@ container.get<IConfig>(Types.Config).merge({
   IORedis: [
     {
       name: 'connection',
-      options: {
-        host: 'localhost',
-        port: 6379,
-      },
+      options: { host: 'localhost', port: 6379 },
     },
   ],
 });
@@ -32,10 +44,56 @@ container.get<IConfig>(Types.Config).merge({
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-
   await root.connector.current!.set('key', 'value');
-  console.log(await root.connector.current!.get('key')); // value
+  console.log(await root.connector.current!.get('key')); // 'value'
 })();
+```
+
+## API Reference
+
+### `IORedisConnector`
+
+| Member           | Type                                      | Description                              |
+|------------------|-------------------------------------------|------------------------------------------|
+| `namespace`      | `'IORedis'`                               | Config key for connection definitions.   |
+| `connect(config)` | `(config) => Promise<IIORedisConnection>` | Creates `Redis` instance and connects.   |
+
+### Config
+
+```ts
+interface IIORedisConfig extends IConnectorConfig {
+  options: RedisOptions & {
+    reconnectTimes?: number;          // max reconnect attempts (-1 = infinite)
+    reconnectTimeoutDelta?: number;   // ms multiplier, default 100
+    reconnectTimeoutLimit?: number;   // max ms between retries, default 5000
+  };
+}
+```
+
+### Errors
+
+| Error                        | Condition                                   |
+|------------------------------|---------------------------------------------|
+| `IORedisCantConnectError`    | `new Redis()` or `connect()` fails.         |
+
+## Architecture
+
+```
+IORedisConnector extends Connector<IIORedisConfig, IIORedisConnection>
+│
+├── namespace = 'IORedis'
+├── connect(config)
+│   ├── new Redis({
+│   │     retryStrategy: (times) => {
+│   │       if (times > reconnectTimes && reconnectTimes !== -1) return null;
+│   │       return Math.min(times * delta, limit);
+│   │     },
+│   │     ...config.options,
+│   │     lazyConnect: true,
+│   │   })
+│   └── await connection.connect()
+│
+└── connection is a redis: ioredis.Redis
 ```
 
 ### Learn
@@ -46,8 +104,6 @@ container.get<IConfig>(Types.Config).merge({
 
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/ioredis/CHANGELOG.md)
 
-### License
+## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/ioredis/LICENSE)
-
-Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)

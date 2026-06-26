@@ -1,77 +1,118 @@
-# Sequelize
+# @biorate/sequelize
 
-Sequelize ORM connector
+Sequelize ORM connector — connection manager for Sequelize with model auto-loading and multi-connection support.
 
-### Examples:
+## Features
+
+- **Auto-connect** — creates Sequelize instance on `@init()` via config namespace `Sequelize`.
+- **Model auto-loading** — `add()` registers models; `load()` attaches them to all connections.
+- **Connection verification** — calls `authenticate()` after initialisation.
+- **Multi-connection** — named connections with model-copy per connection.
+- **Typed errors** — `SequelizeCantConnectError` on failure.
+
+## Installation
+
+```bash
+pnpm add @biorate/sequelize
+```
+
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `sequelize`.
+
+## Quick start
 
 ```ts
-import { join } from 'path';
-import { tmpdir } from 'os';
-import { container, Core, inject, Types } from '@biorate/inversion';
-import { Config, IConfig } from '@biorate/config';
-import {
-  ISequelizeConnector,
-  SequelizeConnector as BaseSequelizeConnector,
-} from '@biorate/sequelize';
-import { Table, Column, Model, DataType } from '@biorate/sequelize';
+import { inject, container, Types, Core } from '@biorate/inversion';
+import { IConfig, Config } from '@biorate/config';
+import { SequelizeConnector } from '@biorate/sequelize';
+import { Sequelize, DataTypes, Model } from 'sequelize';
 
-const connectionName = 'db';
+class User extends Model {}
 
-// Create model
-@Table({
-  tableName: 'test',
-  timestamps: false,
-})
-export class TestModel extends Model {
-  @Column({ type: DataType.CHAR, primaryKey: true })
-  key: string;
+const attributes = {
+  firstName: { type: DataTypes.STRING, allowNull: false },
+  lastName: { type: DataTypes.STRING, allowNull: false },
+};
 
-  @Column(DataType.INTEGER)
-  value: number;
+class Root extends Core() {
+  @inject(SequelizeConnector) public connector: SequelizeConnector;
+  protected constructor() {
+    super();
+    this.connector.add(User, { tableName: 'users' }, attributes);
+  }
 }
 
-// Assign models with sequelize connector
-class SequelizeConnector extends BaseSequelizeConnector {
-  protected readonly models = { [connectionName]: [TestModel] };
-}
-
-// Create Root class
-export class Root extends Core() {
-  @inject(SequelizeConnector) public connector: ISequelizeConnector;
-}
-
-// Bind dependencies
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<ISequelizeConnector>(SequelizeConnector).toSelf().inSingletonScope();
+container.bind<SequelizeConnector>(SequelizeConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
-// Merge config
 container.get<IConfig>(Types.Config).merge({
-  Sequelize: [
-    {
-      name: connectionName,
-      options: {
-        logging: false,
-        dialect: 'sqlite',
-        storage: join(tmpdir(), 'sqlite-test.db'),
-      },
+  Sequelize: [{
+    name: 'connection',
+    options: {
+      dialect: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'postgres',
     },
-  ],
+  }],
 });
 
-// Example
 (async () => {
-  await container.get<Root>(Root).$run();
-  // Drop table if exists
-  await TestModel.drop();
-  // Create table
-  await TestModel.sync();
-  // Create model item
-  await TestModel.create({ key: 'test', value: 1 });
-  // Create find model item by key
-  const data = await TestModel.findOne({ where: { key: 'test' } });
-  console.log(data.toJSON()); // { key: 'test', value: 1 }
+  const root = container.get<Root>(Root);
+  await root.$run();
+  root.connector.load('connection');  // attaches User model to 'connection'
+  await root.connector.current!.sync();
+  const user = await root.connector.current!.model('User').create({
+    firstName: 'Vasya', lastName: 'Pupkin',
+  });
+  console.log(user.toJSON());
 })();
+```
+
+## API Reference
+
+### `SequelizeConnector`
+
+| Member           | Type                                        | Description                              |
+|------------------|---------------------------------------------|------------------------------------------|
+| `namespace`      | `'Sequelize'`                               | Config key for connection definitions.   |
+| `connect(config)` | `(config) => Promise<ISequelizeConnection>` | Creates Sequelize instance and authenticates. |
+| `add(model, options?, attributes?, indexes?)` | `(...) => void` | Register a model class for later loading. |
+| `load(name)`     | `(name) => void`                            | Copies all registered models into a named connection. |
+
+### Config
+
+```ts
+interface ISequelizeConfig extends IConnectorConfig {
+  options: SequelizeOptions;  // dialect, host, port, username, password, database, etc.
+}
+```
+
+### Errors
+
+| Error                          | Condition                                    |
+|--------------------------------|----------------------------------------------|
+| `SequelizeCantConnectError`    | `new Sequelize()` or `authenticate()` fails. |
+
+## Architecture
+
+```
+SequelizeConnector extends Connector<ISequelizeConfig, ISequelizeConnection>
+│
+├── namespace = 'Sequelize'
+├── connect(config) → new Sequelize(config.options)
+│   └── await connection.authenticate()
+│
+├── add(Model, options?, attributes?, indexes?)
+│   └── stores model definition in internal registry
+│
+├── load(name)
+│   ├── get connection(name)
+│   └── for each registered model → connection.define(...)
+│
+└── connection is a Sequelize instance with attached model classes
 ```
 
 ### Learn
@@ -82,8 +123,6 @@ container.get<IConfig>(Types.Config).merge({
 
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/sequelize/CHANGELOG.md)
 
-### License
+## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/sequelize/LICENSE)
-
-Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
