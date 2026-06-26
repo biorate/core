@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@2.1.0...@biorate/opentelemetry@2.2.0) (2026-06-26)
+
+### Bug Fixes
+
+- **opentelemetry:** docs ([44f4ff2](https://github.com/biorate/core/commit/44f4ff26aaac2dd158fcf2370f7a2a2237f5ca84))
+- **opentelemetry:** docs ([f2ab68e](https://github.com/biorate/core/commit/f2ab68eb7042f0e04a273cd0fd37da0564bfab30))
+
+### Features
+
+- **opentelemetry:** exclude option added ([432048d](https://github.com/biorate/core/commit/432048d7fea17656e74bd85c6b518947c1d061eb))
+
 # [2.1.0](https://github.com/biorate/core/compare/@biorate/opentelemetry@2.0.4...@biorate/opentelemetry@2.1.0) (2026-06-17)
 
 ### Features

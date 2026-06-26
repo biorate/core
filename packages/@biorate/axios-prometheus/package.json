@@ -1,6 +1,6 @@
 {
   "name": "@biorate/axios-prometheus",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Axios-prometheus HTTP interface",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -52,7 +52,7 @@
     "@biorate/axios": "^3.3.0",
     "@biorate/config": "^3.2.0",
     "@biorate/inversion": "^3.1.0",
-    "@biorate/opentelemetry": "^2.1.0",
+    "@biorate/opentelemetry": "^2.2.0",
     "@biorate/prometheus": "^3.1.0",
     "@biorate/tools": "^3.1.0",
     "json-stringify-safe": "5.0.1"

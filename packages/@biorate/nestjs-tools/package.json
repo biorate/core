@@ -1,6 +1,6 @@
 {
   "name": "@biorate/nestjs-tools",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "NestJS tools",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -63,7 +63,7 @@
     "@biorate/config": "^3.2.0",
     "@biorate/errors": "^3.1.0",
     "@biorate/inversion": "^3.1.0",
-    "@biorate/opentelemetry": "^2.1.0",
+    "@biorate/opentelemetry": "^2.2.0",
     "@biorate/prometheus": "^3.1.0",
     "@biorate/tools": "^3.1.0",
     "http-proxy": "1.18.1",
