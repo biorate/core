@@ -22,6 +22,10 @@ import {
 import { OTELMetricsExporterError } from './errors';
 import { DataMaskingProcessor } from './data-masking-processor';
 
+// Skip GCP metadata server detection by default (overridable via env).
+if (!process.env.METADATA_SERVER_DETECTION)
+  process.env.METADATA_SERVER_DETECTION = 'none';
+
 export * from '@opentelemetry/api';
 export * from './decorators';
 /**
