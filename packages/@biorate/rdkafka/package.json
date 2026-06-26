@@ -1,6 +1,6 @@
 {
   "name": "@biorate/rdkafka",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Rdkafka connector",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -54,11 +54,11 @@
     "@confluentinc/kafka-javascript": ">=1.9.0"
   },
   "dependencies": {
-    "@biorate/config": "^3.2.1",
-    "@biorate/connector": "^3.1.1",
-    "@biorate/errors": "^3.1.1",
-    "@biorate/inversion": "^3.1.1",
-    "@biorate/prometheus": "^3.1.1",
-    "@biorate/tools": "^3.1.1"
+    "@biorate/config": "^3.2.2",
+    "@biorate/connector": "^3.1.2",
+    "@biorate/errors": "^3.1.2",
+    "@biorate/inversion": "^3.1.2",
+    "@biorate/prometheus": "^3.1.2",
+    "@biorate/tools": "^3.1.2"
   }
 }

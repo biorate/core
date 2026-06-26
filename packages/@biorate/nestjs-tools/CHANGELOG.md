@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](https://github.com/biorate/core/compare/@biorate/nestjs-tools@2.2.3...@biorate/nestjs-tools@2.2.4) (2026-06-26)
+
+### Bug Fixes
+
+- deps, docs ([7e76b7b](https://github.com/biorate/core/commit/7e76b7b09ccc2047469b2377804d3cbac1633f1a))
+
 ## [2.2.3](https://github.com/biorate/core/compare/@biorate/nestjs-tools@2.2.2...@biorate/nestjs-tools@2.2.3) (2026-06-26)
 
 ### Bug Fixes

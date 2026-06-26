@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/biorate/core/compare/@biorate/prometheus@3.1.1...@biorate/prometheus@3.1.2) (2026-06-26)
+
+**Note:** Version bump only for package @biorate/prometheus
+
 ## [3.1.1](https://github.com/biorate/core/compare/@biorate/prometheus@3.1.0...@biorate/prometheus@3.1.1) (2026-06-26)
 
 ### Bug Fixes

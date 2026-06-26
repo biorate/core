@@ -1,6 +1,6 @@
 {
   "name": "@biorate/nestjs-tools",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "NestJS tools",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -59,13 +59,13 @@
     "ws": ">=8.18.0"
   },
   "dependencies": {
-    "@biorate/axios": "^3.3.1",
-    "@biorate/config": "^3.2.1",
-    "@biorate/errors": "^3.1.1",
-    "@biorate/inversion": "^3.1.1",
-    "@biorate/opentelemetry": "^2.2.1",
-    "@biorate/prometheus": "^3.1.1",
-    "@biorate/tools": "^3.1.1",
+    "@biorate/axios": "^3.3.2",
+    "@biorate/config": "^3.2.2",
+    "@biorate/errors": "^3.1.2",
+    "@biorate/inversion": "^3.1.2",
+    "@biorate/opentelemetry": "^2.2.2",
+    "@biorate/prometheus": "^3.1.2",
+    "@biorate/tools": "^3.1.2",
     "http-proxy": "1.18.1",
     "http-proxy-middleware": "2.0.6",
     "json-stringify-safe": "5.0.1",

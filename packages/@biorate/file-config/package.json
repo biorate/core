@@ -1,6 +1,6 @@
 {
   "name": "@biorate/file-config",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Module for configuring the application using files",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

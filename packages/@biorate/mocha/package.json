@@ -1,6 +1,6 @@
 {
   "name": "@biorate/mocha",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Mocha OOP tests based on @testdeck/core",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@biorate/cleanup",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Cleanup files and directories",
   "bin": {
     "cleanup": "./bin/cleanup"
