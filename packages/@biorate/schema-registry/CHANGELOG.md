@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.7](https://github.com/biorate/core/compare/@biorate/schema-registry@3.1.6...@biorate/schema-registry@3.1.7) (2026-07-06)
+
+**Note:** Version bump only for package @biorate/schema-registry
+
 ## [3.1.6](https://github.com/biorate/core/compare/@biorate/schema-registry@3.1.5...@biorate/schema-registry@3.1.6) (2026-06-26)
 
 **Note:** Version bump only for package @biorate/schema-registry

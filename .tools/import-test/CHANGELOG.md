@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.20](https://github.com/biorate/core/compare/@biorate-tools/import-test@1.1.19...@biorate-tools/import-test@1.1.20) (2026-07-06)
+
+**Note:** Version bump only for package @biorate-tools/import-test
+
 ## [1.1.19](https://github.com/biorate/core/compare/@biorate-tools/import-test@1.1.18...@biorate-tools/import-test@1.1.19) (2026-06-26)
 
 **Note:** Version bump only for package @biorate-tools/import-test

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](https://github.com/biorate/core/compare/@biorate/opentelemetry@2.2.3...@biorate/opentelemetry@2.2.4) (2026-07-06)
+
+### Bug Fixes
+
+- **opentelemetry:** micromatch import ([356d7ab](https://github.com/biorate/core/commit/356d7ab60389babde4f828940c222e70a42c9cce))
+
 ## [2.2.3](https://github.com/biorate/core/compare/@biorate/opentelemetry@2.2.2...@biorate/opentelemetry@2.2.3) (2026-06-26)
 
 **Note:** Version bump only for package @biorate/opentelemetry
