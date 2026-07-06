@@ -1,7 +1,7 @@
 import { flattenDeep } from 'lodash-es';
 import type { MockableOptions, SerializedValue } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
-import { getSnapshotStore, isReplay } from './snapshot-store';
+import { getSnapshotStore, isReplay, isRecord } from './snapshot-store';
 import { makeCallKey, serialize, deserialize, stableHash } from './serializer';
 import { MockHandler } from './mock-handler';
 import {
@@ -118,6 +118,7 @@ function makeMethodWrapper(
     const callKey = makeCallKey('', name, reportArgs);
 
     if (isReplay()) return replayCall(callKey, name, args, store);
+    if (!isRecord()) return original.apply(this, args);
 
     const { recordedArgs, callbackRecords } = recordPrep(args);
 
@@ -251,7 +252,10 @@ function recordPrep(args: unknown[]): {
     fn: (...a: unknown[]) => unknown;
   }> = [];
   const recordedArgs = args.map((arg, i) => {
-    if (typeof arg === 'function') {
+    const isCtor =
+      typeof arg === 'function' &&
+      Object.getOwnPropertyDescriptor(arg, 'prototype')?.writable === false;
+    if (typeof arg === 'function' && !isCtor) {
       const records: unknown[][] = [];
       const wrapped = (...cbArgs: unknown[]) => {
         records.push(cbArgs);
@@ -420,6 +424,7 @@ function wrapGetter(
       if (entry.result.t === T_REF) return new MockHandler(null, entry.result.v, store);
       return deserialize(entry.result);
     }
+    if (!isRecord()) return original.call(this);
 
     return wrapResult(store, callKey, original.call(this), []);
   };
