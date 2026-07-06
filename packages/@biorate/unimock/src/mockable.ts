@@ -1,7 +1,7 @@
 import { flattenDeep } from 'lodash-es';
 import type { MockableOptions, SerializedValue } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
-import { getSnapshotStore, isReplay } from './snapshot-store';
+import { getSnapshotStore, isReplay, isOff } from './snapshot-store';
 import { makeCallKey, serialize, deserialize, stableHash } from './serializer';
 import { MockHandler } from './mock-handler';
 import {
@@ -114,6 +114,8 @@ function makeMethodWrapper(
   ) => unknown,
 ): (...args: unknown[]) => unknown {
   return function (this: unknown, ...args: unknown[]) {
+    if (isOff()) return original.apply(this, args);
+
     const reportArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
     const callKey = makeCallKey('', name, reportArgs);
 
@@ -405,6 +407,7 @@ function toPlain(value: unknown): unknown {
  * @description Wraps a getter for snapshot recording/replay.
  *   In record mode, calls the original getter and wraps the result if it has methods.
  *   In replay mode, returns the recorded value directly.
+ *   In off mode, calls the original getter without any wrapping.
  *   Caches refIds via {@link refIdCache} to avoid duplicate entries for the same target object.
  */
 function wrapGetter(
@@ -413,6 +416,8 @@ function wrapGetter(
   store: SnapshotStore,
 ): () => unknown {
   return function (this: unknown) {
+    if (isOff()) return original.call(this);
+
     const callKey = makeCallKey('', name, []);
 
     if (isReplay()) {

@@ -26,6 +26,7 @@ export {
   flushAllSnapshots,
   isReplay,
   isRecord,
+  isOff,
 } from './snapshot-store';
 
 /** @description Proxy wrapper for objects returned by mocked methods. */
@@ -34,7 +35,7 @@ export { MockHandler } from './mock-handler';
 /** @description Universal noop proxy — any property, method, call, construct returns itself. */
 export { noop } from './noop';
 
-import { flushAllSnapshots, isReplay, isRecord } from './snapshot-store';
+import { flushAllSnapshots, isReplay, isRecord, isOff } from './snapshot-store';
 import { parseUnimockMode, resolveSnapshotDir } from './env';
 
 /**
@@ -62,6 +63,10 @@ export const Unimock = {
   /** @description Whether current mode is `'replay'`. */
   get isReplay() {
     return isReplay();
+  },
+  /** @description Whether current mode is `'off'` (transparent passthrough). */
+  get isOff() {
+    return isOff();
   },
   /** @description Resolved snapshot directory path. */
   get snapshotDir() {

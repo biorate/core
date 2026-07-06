@@ -15,6 +15,7 @@ import {
   DEFAULT_SNAPSHOT_EXT,
   MODE_RECORD,
   MODE_REPLAY,
+  MODE_OFF,
   T_POOLED_STRING,
   T_STRING,
   T_ARRAY,
@@ -261,6 +262,17 @@ export function isReplay(): boolean {
  */
 export function isRecord(): boolean {
   return SnapshotStore.mode === MODE_RECORD;
+}
+
+/**
+ * @description Returns `true` when the current global mode is `'off'`.
+ *   In this mode, all wrappers are transparent no-ops — original methods are called
+ *   without any recording, callback wrapping, or MockHandler wrapping.
+ *   Always reads `SnapshotStore.mode`, so it works correctly after
+ *   {@link SnapshotStore.setMode}.
+ */
+export function isOff(): boolean {
+  return SnapshotStore.mode === MODE_OFF;
 }
 
 export { SnapshotStore as SnapshotStoreClass };

@@ -1,6 +1,6 @@
 import type { SnapshotStore } from './snapshot-store';
 import type { SerializedValue } from './interfaces';
-import { isReplay } from './snapshot-store';
+import { isReplay, isOff } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { UnimockProxyTargetRequiredError } from './errors';
 import {
@@ -53,6 +53,12 @@ export class MockHandler {
         if (prop === PROP_UNIMOCK_REF) return obj.__unimock_ref__;
         if (typeof prop === 'string' && prop.startsWith(PROP_PRIVATE_PREFIX))
           return undefined;
+
+        if (isOff()) {
+          const targetObj = obj.target as Record<string | symbol, unknown> | null;
+          if (!targetObj) throw new UnimockProxyTargetRequiredError(obj.__unimock_ref__);
+          return targetObj[prop];
+        }
 
         if (isReplay()) {
           const propKey = `${PREFIX_PROP}${obj.__unimock_ref__}:${String(prop)}:`;

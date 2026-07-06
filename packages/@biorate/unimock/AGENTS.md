@@ -4,7 +4,12 @@
 
 ## Назначение
 
-`@biorate/unimock` — библиотека для snapshot-мокирования коннекторов и сервисов через декоратор `@Mockable()`. Два режима: **record** (реальный вызов + сохранение снапшота) и **replay** (воспроизведение из снапшота без live-инфраструктуры).
+`@biorate/unimock` — библиотека для snapshot-мокирования коннекторов и сервисов через декоратор `@Mockable()`. Три режима:
+- **off** (default) — полностью прозрачный passthrough, оригинальные методы вызываются без обёрток
+- **record** — реальный вызов + сохранение снапшота
+- **replay** — воспроизведение из снапшота без live-инфраструктуры
+
+**Важно:** в режиме `off` декоратор `@Mockable()` не влияет на поведение — можно использовать в продакшен-коде без накладных расходов.
 
 ## Архитектура (Option 1 — Method Override-based)
 
@@ -30,12 +35,12 @@
 | ---- | ---------- |
 | `src/mockable.ts` | Декоратор `@Mockable()`, `wrapMethod`, `replayCall`, `wrapAndRecord`, `hasMethods`, `wrapGetter`, `mock()` (overloaded), `mockObject()` |
 | `src/mock-handler.ts` | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.) |
-| `src/snapshot-store.ts` | `SnapshotStore` — загрузка/сохранение JSON-снапшотов, кэш stores, `flushAllSnapshots()`, `isReplay()`, `isRecord()` |
+| `src/snapshot-store.ts` | `SnapshotStore` — загрузка/сохранение JSON-снапшотов, кэш stores, `flushAllSnapshots()`, `isReplay()`, `isRecord()`, `isOff()` |
 | `src/serializer.ts` | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey` |
 | `src/env.ts` | `parseUnimockMode()`, `resolveSnapshotDir()` |
 | `src/errors.ts` | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockProxyTargetRequiredError` |
 | `src/interfaces.ts` | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode` |
-| `src/index.ts` | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
+| `src/index.ts` | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `isOff`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
 | `vitest/setup.ts` | Хук `afterAll` для автоматического `flushAllSnapshots()` |
 | `tests/unimock.spec.ts` | 25 unit-тестов для ядра |
 | `tests/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming) |
@@ -153,6 +158,8 @@ new MockHandler(target, refId, store) → Proxy
 3. **Сериализация функций** — функции сериализуются как строка `<function>`. При deserialization возвращается строка. Callback-аргументы обрабатываются через механизм `'callback'` записи.
 
 4. **Приватные поля `#`** не оборачиваются (`wrapPrototype` и MockHandler фильтруют ключи, начинающиеся с `#`).
+
+5. **MODE_OFF полностью прозрачен** — в этом режиме `@Mockable()` не влияет на поведение: методы вызываются напрямую без callback-обёрток, MockHandler не создаётся. Это позволяет использовать декорированные классы в продакшен-коде без накладных расходов.
 
 ## Callback-механизм
 
