@@ -1,6 +1,6 @@
 import traverse from 'traverse';
 import stringify from 'json-stringify-safe';
-import { isMatch } from 'micromatch';
+import micromatch from 'micromatch';
 
 const SEP = '/';
 
@@ -42,7 +42,7 @@ export function filterByPaths<T>(data: T, root: string, patterns: string[]): T {
   }
   return traverse(clone).map(function (value: any) {
     if (this.isRoot) return;
-    if (relevant.some((pattern) => isMatch(this.path.join(SEP), pattern.join(SEP))))
+    if (relevant.some((pattern) => micromatch.isMatch(this.path.join(SEP), pattern.join(SEP))))
       this.remove();
   });
 }
