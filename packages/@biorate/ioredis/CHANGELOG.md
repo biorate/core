@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/@biorate/ioredis@2.1.3...@biorate/ioredis@2.2.0) (2026-08-03)
+
+### Features
+
+- **ioredis:** default reconnection params ([0442cf8](https://github.com/biorate/core/commit/0442cf8efcd2b6869468cee077b1dd1585add3c2))
+
 ## [2.1.3](https://github.com/biorate/core/compare/@biorate/ioredis@2.1.2...@biorate/ioredis@2.1.3) (2026-06-26)
 
 **Note:** Version bump only for package @biorate/ioredis
