@@ -63,9 +63,10 @@ container.get<IConfig>(Types.Config).merge({
 ```ts
 interface IIORedisConfig extends IConnectorConfig {
   options: RedisOptions & {
-    reconnectTimes?: number;          // max reconnect attempts (-1 = infinite)
-    reconnectTimeoutDelta?: number;   // ms multiplier, default 100
-    reconnectTimeoutLimit?: number;   // max ms between retries, default 5000
+    reconnectTimes?: number;            // default: -1 (infinite attempts)
+    reconnectTimeoutDelta?: number;     // default: 30_000 (ms)
+    reconnectTimeoutLimit?: number;     // default: 30_000 (ms)
+    failoverDetector?: boolean;         // default: true
   };
 }
 ```
@@ -89,12 +90,22 @@ IORedisConnector extends Connector<IIORedisConfig, IIORedisConnection>
 │   │       return Math.min(times * delta, limit);
 │   │     },
 │   │     ...config.options,
+│   │     failoverDetector: true,
 │   │     lazyConnect: true,
 │   │   })
 │   └── await connection.connect()
 │
 └── connection is a redis: ioredis.Redis
 ```
+
+### Config Defaults
+
+| Option                | Default    | Notes                                      |
+|-----------------------|------------|--------------------------------------------|
+| `reconnectTimes`      | `-1`       | Infinite reconnect attempts                |
+| `reconnectTimeoutDelta` | `30_000`  | ms between retry attempts                  |
+| `reconnectTimeoutLimit` | `30_000`  | max ms between retry attempts              |
+| `failoverDetector`    | `true`     | Enable Sentinel failover detection         |
 
 ### Learn
 

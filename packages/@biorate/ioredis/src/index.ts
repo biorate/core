@@ -66,9 +66,10 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
    * @description Create connection
    */
   protected async connect(config: IIORedisConfig) {
-    const reconnectTimes = config.options?.reconnectTimes ?? 0;
-    const reconnectTimeoutDelta = config.options?.reconnectTimeoutDelta ?? 100;
-    const reconnectTimeoutLimit = config.options?.reconnectTimeoutLimit ?? 5000;
+    const reconnectTimes = config.options?.reconnectTimes ?? -1;
+    const reconnectTimeoutDelta = config.options?.reconnectTimeoutDelta ?? 30_000;
+    const reconnectTimeoutLimit = config.options?.reconnectTimeoutLimit ?? 30_000;
+    const failoverDetector = config.options?.failoverDetector ?? true;
     let connection: IIORedisConnection;
     try {
       connection = new Redis({
@@ -77,6 +78,7 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
           return Math.min(times * reconnectTimeoutDelta, reconnectTimeoutLimit);
         },
         ...config.options,
+        failoverDetector,
         lazyConnect: true,
       });
       await connection.connect();

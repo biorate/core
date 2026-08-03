@@ -1,16 +1,33 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
-import { RedisOptions, Redis } from 'ioredis';
+import { SentinelConnectionOptions, Redis } from 'ioredis';
 
-/** @description IORedis connection type (aliases the `ioredis` Redis class). */
 export type IIORedisConnection = Redis;
 
 /** @description Configuration interface for IORedis connector. */
 export interface IIORedisConfig extends IConnectorConfig {
   host: string;
-  options: RedisOptions & {
-    reconnectTimes?: number;
-    reconnectTimeoutDelta?: number;
-    reconnectTimeoutLimit?: number;
+  options: SentinelConnectionOptions & {
+    /**
+     * @description Maximum reconnect attempts before giving up
+     * @default -1
+     * @remarks -1 = infinite attempts
+     */
+    reconnectTimes?: number | undefined;
+    /**
+     * @description Base timeout (ms) between reconnect attempts
+     * @default 30_000
+     */
+    reconnectTimeoutDelta?: number | undefined;
+    /**
+     * @description Maximum timeout (ms) between reconnect attempts
+     * @default 30_000
+     */
+    reconnectTimeoutLimit?: number | undefined;
+    /**
+     * @description Enable Sentinel failover detection via subscribing to Sentinel PubSub events
+     * @default true
+     */
+    failoverDetector?: boolean | undefined;
   };
 }
 
