@@ -11,6 +11,9 @@ allure-report
 # NX
 .nx
 
+# Omo
+.omo
+
 # Logs
 logs
 *.log
