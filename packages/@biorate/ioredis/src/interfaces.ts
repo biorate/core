@@ -28,6 +28,12 @@ export interface IIORedisConfig extends IConnectorConfig {
      * @default true
      */
     failoverDetector?: boolean | undefined;
+
+    /**
+     * @description Enable lazy connect
+     * @default true
+     */
+    lazyConnect?: boolean | undefined;
   };
 }
 

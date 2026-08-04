@@ -69,7 +69,6 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
     const reconnectTimes = config.options?.reconnectTimes ?? -1;
     const reconnectTimeoutDelta = config.options?.reconnectTimeoutDelta ?? 30_000;
     const reconnectTimeoutLimit = config.options?.reconnectTimeoutLimit ?? 30_000;
-    const failoverDetector = config.options?.failoverDetector ?? true;
     let connection: IIORedisConnection;
     try {
       connection = new Redis({
@@ -77,9 +76,9 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
           if (times > reconnectTimes && reconnectTimes !== -1) return null;
           return Math.min(times * reconnectTimeoutDelta, reconnectTimeoutLimit);
         },
-        ...config.options,
-        failoverDetector,
+        failoverDetector: true,
         lazyConnect: true,
+        ...config.options,
       });
       await connection.connect();
     } catch (e: unknown) {
