@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/biorate/core/compare/@biorate/ioredis@2.2.0...@biorate/ioredis@2.2.1) (2026-08-04)
+
+### Bug Fixes
+
+- **ioredis:** default fields ([105e018](https://github.com/biorate/core/commit/105e0182f23914653b0ab5b2301c8e72d5f103f6))
+
 # [2.2.0](https://github.com/biorate/core/compare/@biorate/ioredis@2.1.3...@biorate/ioredis@2.2.0) (2026-08-03)
 
 ### Features
