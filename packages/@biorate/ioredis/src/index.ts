@@ -1,12 +1,12 @@
 import { injectable } from '@biorate/inversion';
 import { Connector } from '@biorate/connector';
 import { Redis } from 'ioredis';
+import { gracefulDegradation } from './graceful';
 import { IORedisCantConnectError } from './errors';
 import { IIORedisConfig, IIORedisConnection } from './interfaces';
 
 export * from './errors';
 export * from './interfaces';
-
 /**
  * @description IORedis connector
  *
@@ -66,11 +66,11 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
    * @description Create connection
    */
   protected async connect(config: IIORedisConfig) {
-    const reconnectTimes = config.options?.reconnectTimes ?? -1;
-    const reconnectTimeoutDelta = config.options?.reconnectTimeoutDelta ?? 30_000;
-    const reconnectTimeoutLimit = config.options?.reconnectTimeoutLimit ?? 30_000;
     let connection: IIORedisConnection;
     try {
+      const reconnectTimes = config.options?.reconnectTimes ?? -1;
+      const reconnectTimeoutDelta = config.options?.reconnectTimeoutDelta ?? 30_000;
+      const reconnectTimeoutLimit = config.options?.reconnectTimeoutLimit ?? 30_000;
       connection = new Redis({
         retryStrategy: (times) => {
           if (times > reconnectTimes && reconnectTimes !== -1) return null;
@@ -84,6 +84,7 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
     } catch (e: unknown) {
       throw new IORedisCantConnectError(<Error>e);
     }
+    if (config.options?.gracefulDegradation !== false) gracefulDegradation(connection);
     return connection;
   }
 }

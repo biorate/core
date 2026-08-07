@@ -67,9 +67,68 @@ interface IIORedisConfig extends IConnectorConfig {
     reconnectTimeoutDelta?: number;     // default: 30_000 (ms)
     reconnectTimeoutLimit?: number;     // default: 30_000 (ms)
     failoverDetector?: boolean;         // default: true
+    gracefulDegradation?: boolean;      // default: true
   };
 }
 ```
+
+## Graceful Degradation
+
+By default, all Redis commands return `null` instead of throwing errors when Redis is unavailable. This is controlled by the `gracefulDegradation` option.
+
+### Usage
+
+```ts
+container.get<IConfig>(Types.Config).merge({
+  IORedis: [
+    {
+      name: 'connection',
+      options: {
+        host: 'localhost',
+        port: 6379,
+        
+        // Enable graceful degradation (default: true)
+        gracefulDegradation: true,
+      },
+    },
+  ],
+});
+```
+
+### Behavior
+
+- `get()` → `null` instead of error
+- `set()` → `null` (operation ignored)
+- `del()` → `null` (operation ignored)
+- All other methods → similar behavior
+
+### Disable Graceful Degradation
+
+To throw errors instead of returning `null`:
+
+```ts
+container.get<IConfig>(Types.Config).merge({
+  IORedis: [
+    {
+      name: 'critical',
+      options: {
+        host: 'localhost',
+        port: 6379,
+        gracefulDegradation: false,  // ← Throw errors
+      },
+    },
+  ],
+});
+```
+
+### When Redis is Unavailable
+
+When graceful degradation is enabled:
+1. Connection attempt on startup is logged as warning
+2. All commands return `null` instead of throwing
+3. A warning is logged for each failed command
+
+This allows your application to continue running without Redis (e.g., in development or when Redis is temporarily unavailable).
 
 ### Errors
 

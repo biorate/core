@@ -34,6 +34,12 @@ export interface IIORedisConfig extends IConnectorConfig {
      * @default true
      */
     lazyConnect?: boolean | undefined;
+
+    /**
+     * @description Enable graceful degradation (return null instead of errors)
+     * @default true
+     */
+    gracefulDegradation?: boolean | undefined;
   };
 }
 
