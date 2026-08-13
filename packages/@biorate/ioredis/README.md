@@ -7,6 +7,7 @@ IORedis connector — connection manager for the `ioredis` Redis client with con
 - **Auto-connect** — creates `Redis` instance on `@init()` via config namespace `IORedis`.
 - **Reconnect strategy** — configurable retry count, timeout delta, and limit.
 - **Lazy connect** — uses `lazyConnect: true` for controlled connection timing.
+- **Fail-fast commands** — `maxRetriesPerRequest: 0` disables retries and command queueing, so errors surface immediately.
 - **Typed errors** — `IORedisCantConnectError` on connection failure.
 
 ## Installation
@@ -53,21 +54,23 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `IORedisConnector`
 
-| Member           | Type                                      | Description                              |
-|------------------|-------------------------------------------|------------------------------------------|
-| `namespace`      | `'IORedis'`                               | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<IIORedisConnection>` | Creates `Redis` instance and connects.   |
+| Member            | Type                                      | Description                                                        |
+| ----------------- | ----------------------------------------- | ------------------------------------------------------------------ |
+| `namespace`       | `'IORedis'`                               | Config key for connection definitions.                             |
+| `connect(config)` | `(config) => Promise<IIORedisConnection>` | Creates `Redis` instance; connects only when `lazyConnect: false`. |
 
 ### Config
 
 ```ts
 interface IIORedisConfig extends IConnectorConfig {
-  options: RedisOptions & {
-    reconnectTimes?: number;            // default: -1 (infinite attempts)
-    reconnectTimeoutDelta?: number;     // default: 30_000 (ms)
-    reconnectTimeoutLimit?: number;     // default: 30_000 (ms)
-    failoverDetector?: boolean;         // default: true
-    gracefulDegradation?: boolean;      // default: true
+  host: string;
+  options: SentinelConnectionOptions & {
+    reconnectTimes?: number; // default: -1 (infinite attempts)
+    reconnectTimeoutDelta?: number; // default: 30_000 (ms)
+    reconnectTimeoutLimit?: number; // default: 30_000 (ms)
+    failoverDetector?: boolean; // default: true
+    lazyConnect?: boolean; // default: true
+    gracefulDegradation?: boolean; // default: true
   };
 }
 ```
@@ -86,7 +89,7 @@ container.get<IConfig>(Types.Config).merge({
       options: {
         host: 'localhost',
         port: 6379,
-        
+
         // Enable graceful degradation (default: true)
         gracefulDegradation: true,
       },
@@ -114,7 +117,7 @@ container.get<IConfig>(Types.Config).merge({
       options: {
         host: 'localhost',
         port: 6379,
-        gracefulDegradation: false,  // ← Throw errors
+        gracefulDegradation: false, // ← Throw errors
       },
     },
   ],
@@ -124,17 +127,20 @@ container.get<IConfig>(Types.Config).merge({
 ### When Redis is Unavailable
 
 When graceful degradation is enabled:
-1. Connection attempt on startup is logged as warning
-2. All commands return `null` instead of throwing
+
+1. No connection attempt happens on startup (lazy connect) — Redis connects on the first command
+2. All patched commands return `null` instead of throwing
 3. A warning is logged for each failed command
+
+Combined with `maxRetriesPerRequest: 0`, commands fail fast (no retries or offline queueing), so a command against an unavailable Redis returns `null` almost immediately instead of hanging.
 
 This allows your application to continue running without Redis (e.g., in development or when Redis is temporarily unavailable).
 
 ### Errors
 
-| Error                        | Condition                                   |
-|------------------------------|---------------------------------------------|
-| `IORedisCantConnectError`    | `new Redis()` or `connect()` fails.         |
+| Error                     | Condition                           |
+| ------------------------- | ----------------------------------- |
+| `IORedisCantConnectError` | `new Redis()` or `connect()` fails. |
 
 ## Architecture
 
@@ -148,23 +154,28 @@ IORedisConnector extends Connector<IIORedisConfig, IIORedisConnection>
 │   │       if (times > reconnectTimes && reconnectTimes !== -1) return null;
 │   │       return Math.min(times * delta, limit);
 │   │     },
-│   │     ...config.options,
 │   │     failoverDetector: true,
 │   │     lazyConnect: true,
+│   │     maxRetriesPerRequest: 0,
+│   │     ...config.options,            // user options win over defaults
 │   │   })
-│   └── await connection.connect()
+│   ├── if (config.options.lazyConnect === false) await connection.connect()
+│   └── if (config.options.gracefulDegradation !== false) gracefulDegradation(connection)
 │
 └── connection is a redis: ioredis.Redis
 ```
 
 ### Config Defaults
 
-| Option                | Default    | Notes                                      |
-|-----------------------|------------|--------------------------------------------|
-| `reconnectTimes`      | `-1`       | Infinite reconnect attempts                |
-| `reconnectTimeoutDelta` | `30_000`  | ms between retry attempts                  |
-| `reconnectTimeoutLimit` | `30_000`  | max ms between retry attempts              |
-| `failoverDetector`    | `true`     | Enable Sentinel failover detection         |
+| Option                  | Default  | Notes                                       |
+| ----------------------- | -------- | ------------------------------------------- |
+| `reconnectTimes`        | `-1`     | Infinite reconnect attempts                 |
+| `reconnectTimeoutDelta` | `30_000` | ms between retry attempts                   |
+| `reconnectTimeoutLimit` | `30_000` | max ms between retry attempts               |
+| `failoverDetector`      | `true`   | Enable Sentinel failover detection          |
+| `lazyConnect`           | `true`   | Connect on first command instead of startup |
+| `maxRetriesPerRequest`  | `0`      | No command retries / offline queueing       |
+| `gracefulDegradation`   | `true`   | Return `null` instead of throwing           |
 
 ### Learn
 

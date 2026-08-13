@@ -54,6 +54,6 @@
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
     "@biorate/tools": "workspace:*",
-    "ioredis": "^5.4.1"
+    "ioredis": "^6.0.0"
   }
 }

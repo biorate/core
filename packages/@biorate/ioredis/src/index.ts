@@ -78,13 +78,14 @@ export class IORedisConnector extends Connector<IIORedisConfig, IIORedisConnecti
         },
         failoverDetector: true,
         lazyConnect: true,
+        maxRetriesPerRequest: 0,
         ...config.options,
       });
-      await connection.connect();
+      if (config.options.lazyConnect === false) await connection.connect();
+      if (config.options?.gracefulDegradation !== false) gracefulDegradation(connection);
     } catch (e: unknown) {
       throw new IORedisCantConnectError(<Error>e);
     }
-    if (config.options?.gracefulDegradation !== false) gracefulDegradation(connection);
     return connection;
   }
 }
