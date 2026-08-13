@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/biorate/core/compare/@biorate/ioredis@2.2.1...@biorate/ioredis@2.3.0) (2026-08-13)
+
+### Features
+
+- **ioredis:** gracefull-patch ([ffb7d3e](https://github.com/biorate/core/commit/ffb7d3e81ad81e4069ef2389e27c5ddf6f11c9a1))
+- redis-gracefull-patch ([3e6ef51](https://github.com/biorate/core/commit/3e6ef51eed222298dd5bf932b587d3b1b390a83e))
+
 ## [2.2.1](https://github.com/biorate/core/compare/@biorate/ioredis@2.2.0...@biorate/ioredis@2.2.1) (2026-08-04)
 
 ### Bug Fixes
