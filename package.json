@@ -117,5 +117,10 @@
     "webpack-dev-server": "5.2.3",
     "webpack-merge": "5.7.3",
     "ws": "8.18.0"
+  },
+  "dependencies": {
+    "@biorate/axios-prometheus": "link:packages/@biorate/axios-prometheus",
+    "@opentelemetry/api": "1.9.0",
+    "@opentelemetry/sdk-trace-base": "2.6.0"
   }
 }

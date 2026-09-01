@@ -1,5 +1,3 @@
-// noinspection TypeScriptUnresolvedVariable
-
 import stringify from 'json-stringify-safe';
 import { readFileSync, writeFileSync, statSync, mkdirSync } from 'fs';
 import { path, time as timeTools } from '@biorate/tools';
@@ -221,7 +219,7 @@ export abstract class AxiosPrometheus extends Axios {
   protected async before(params?: IAxiosFetchOptions, meta?: Record<string, unknown>) {
     await super.before(params);
     const tracer = trace.getTracer(this.constructor.name);
-    tracer.startActiveSpan(this.url, async (span) => {
+    tracer.startActiveSpan(this.url ?? '', async (span) => {
       const url = this.fullUrl(params);
       if (!this.needTrace(url, span)) return void span.end();
       meta!.span = span;

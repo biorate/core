@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Google, Prometheus } from './__mocks__';
 
-describe('@biorate/axios-prometheus', () => {
+describe('@biorate/axios-prometheus / main', () => {
   it('fetch', async () => expect((await Google.fetch()).status).to.be.equal(200));
 
   it('log', async () => {

@@ -7,6 +7,16 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@biorate/axios-prometheus':
+        specifier: link:packages/@biorate/axios-prometheus
+        version: link:packages/@biorate/axios-prometheus
+      '@opentelemetry/api':
+        specifier: 1.9.0
+        version: 1.9.0
+      '@opentelemetry/sdk-trace-base':
+        specifier: 2.6.0
+        version: 2.6.0(@opentelemetry/api@1.9.0)
     devDependencies:
       '@biorate/cleanup':
         specifier: 1.169.1
@@ -530,9 +540,18 @@ importers:
         specifier: 5.0.1
         version: 5.0.1
     devDependencies:
+      '@opentelemetry/api':
+        specifier: 1.9.0
+        version: 1.9.0
+      '@opentelemetry/sdk-trace-base':
+        specifier: 2.6.0
+        version: 2.6.0(@opentelemetry/api@1.9.0)
       '@types/json-stringify-safe':
         specifier: 5.0.3
         version: 5.0.3
+      nock:
+        specifier: 14.0.10
+        version: 14.0.10
 
   packages/@biorate/batcher:
     dependencies:
