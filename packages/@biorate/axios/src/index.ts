@@ -152,17 +152,18 @@ export class Axios extends Singleton {
     const params = {
       ...omit(settings, axiosRetryConfigKeys.concat(axiosExcludeKeys)),
     };
-    await this.before(params);
+    const meta: Record<string, unknown> = {};
+    await this.before(params, meta);
     const startTime = this.getStartTime();
     try {
       const result = await this.#client(params);
-      await this.after<T>(result, startTime, params);
+      await this.after<T>(result, startTime, params, meta);
       return result;
     } catch (e: unknown) {
-      await this.catch(<Error>e, startTime, params);
+      await this.catch(<Error>e, startTime, params, meta);
       throw e;
     } finally {
-      await this.finally(startTime, params);
+      await this.finally(startTime, params, meta);
     }
   }
   /**
@@ -174,7 +175,7 @@ export class Axios extends Singleton {
   /**
    * @description Before hook
    */
-  protected async before(params?: IAxiosFetchOptions) {}
+  protected async before(params?: IAxiosFetchOptions, meta?: Record<string, unknown>) {}
   /**
    * @description After hook
    */
@@ -182,6 +183,7 @@ export class Axios extends Singleton {
     result: AxiosResponse<T, D>,
     startTime: [number, number],
     params?: IAxiosFetchOptions,
+    meta?: Record<string, unknown>,
   ) {}
   /**
    * @description Catch hook
@@ -190,9 +192,14 @@ export class Axios extends Singleton {
     e: Error,
     startTime: [number, number],
     params?: IAxiosFetchOptions,
+    meta?: Record<string, unknown>,
   ) {}
   /**
    * @description Finally hook
    */
-  protected async finally(startTime: [number, number], params?: IAxiosFetchOptions) {}
+  protected async finally(
+    startTime: [number, number],
+    params?: IAxiosFetchOptions,
+    meta?: Record<string, unknown>,
+  ) {}
 }
