@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/biorate/core/compare/@biorate/axios@3.3.4...@biorate/axios@3.4.0) (2026-09-01)
+
+### Features
+
+- trace ([bfc75ba](https://github.com/biorate/core/commit/bfc75ba055768ee12a8d20e4991821a84d55d350))
+
 ## [3.3.4](https://github.com/biorate/core/compare/@biorate/axios@3.3.3...@biorate/axios@3.3.4) (2026-06-26)
 
 **Note:** Version bump only for package @biorate/axios
