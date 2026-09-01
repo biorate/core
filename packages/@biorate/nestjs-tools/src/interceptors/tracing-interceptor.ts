@@ -1,6 +1,6 @@
 import stringify from 'json-stringify-safe';
 import { tap, catchError, finalize } from 'rxjs';
-import { trace, Span } from '@biorate/opentelemetry';
+import { trace, Span, SpanStatusCode } from '@biorate/opentelemetry';
 import {
   Injectable,
   NestInterceptor,
@@ -53,6 +53,8 @@ export class TracingInterceptor implements NestInterceptor {
         span.setAttribute('incoming.response.statusCode', this.stringify(res.statusCode));
         span.setAttribute('incoming.response.errorCode', this.stringify(e.code));
         span.setAttribute('incoming.response.data', this.stringify(e?.response?.data));
+        span.recordException(e);
+        span.setStatus({ code: SpanStatusCode.ERROR });
         throw e;
       }),
       tap((data) => {

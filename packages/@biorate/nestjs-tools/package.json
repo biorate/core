@@ -72,6 +72,8 @@
     "on-headers": "1.0.2"
   },
   "devDependencies": {
+    "@opentelemetry/api": "1.9.0",
+    "@opentelemetry/sdk-trace-base": "2.6.0",
     "@types/json-stringify-safe": "5.0.3"
   }
 }
