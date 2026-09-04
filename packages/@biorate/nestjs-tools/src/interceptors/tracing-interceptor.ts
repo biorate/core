@@ -1,5 +1,5 @@
 import stringify from 'json-stringify-safe';
-import { tap, catchError, finalize } from 'rxjs';
+import { Observable, tap, catchError, finalize } from 'rxjs';
 import { trace, Span, SpanStatusCode } from '@biorate/opentelemetry';
 import {
   Injectable,
@@ -74,10 +74,13 @@ export class TracingInterceptor implements NestInterceptor {
   }
 
   public intercept(context: ExecutionContext, next: CallHandler) {
-    return trace.getTracer(this.constructor.name).startActiveSpan('incoming', (span) => {
-      if (!span) return next.handle();
-      const type = context.getType();
-      return this[type](span, context, next).pipe(finalize(() => span.end()));
-    });
+    return new Observable((subscriber) =>
+      trace.getTracer(this.constructor.name).startActiveSpan('incoming', (span) => {
+        const type = context.getType();
+        return this[type](span, context, next)
+          .pipe(finalize(() => span.end()))
+          .subscribe(subscriber);
+      }),
+    );
   }
 }
