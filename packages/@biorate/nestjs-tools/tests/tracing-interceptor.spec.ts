@@ -1,6 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { firstValueFrom } from 'rxjs';
+import { defer, firstValueFrom, of } from 'rxjs';
 import { SpanStatusCode, trace } from '@biorate/opentelemetry';
+import type { Span, Tracer } from '@biorate/opentelemetry';
 import { TracingInterceptor } from '../src';
 import {
   exporter,
@@ -77,5 +78,46 @@ describe('TracingInterceptor', () => {
       expect(Object.keys(spans[0].attributes)).toHaveLength(0);
       exporter.reset();
     }
+  });
+
+  it('subscribes to the handler while the incoming span is active', async () => {
+    let spanIsActive = false;
+    let subscribedWhileActive = false;
+    const span = {
+      setAttribute: vi.fn(),
+      recordException: vi.fn(),
+      setStatus: vi.fn(),
+      end: vi.fn(),
+    } as unknown as Span;
+    const tracer = {
+      startActiveSpan: (_name: string, callback: (span: Span) => unknown) => {
+        spanIsActive = true;
+        try {
+          return callback(span);
+        } finally {
+          spanIsActive = false;
+        }
+      },
+    } as unknown as Tracer;
+    const getTracer = vi.spyOn(trace, 'getTracer').mockReturnValue(tracer);
+
+    try {
+      const interceptor = new TracingInterceptor();
+      setTracingExcluded([]);
+      await firstValueFrom(
+        interceptor.intercept(makeContext('http'), {
+          handle: () =>
+            defer(() => {
+              subscribedWhileActive = spanIsActive;
+              return of({ data: 'ok' });
+            }),
+        }),
+      );
+    } finally {
+      getTracer.mockRestore();
+    }
+
+    expect(subscribedWhileActive).toBe(true);
+    expect(span.end).toHaveBeenCalledOnce();
   });
 });
