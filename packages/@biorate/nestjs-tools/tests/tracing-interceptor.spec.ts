@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { defer, firstValueFrom, of } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { SpanStatusCode, trace } from '@biorate/opentelemetry';
-import type { Span, Tracer } from '@biorate/opentelemetry';
+import type { Span } from '@biorate/opentelemetry';
 import { TracingInterceptor } from '../src';
 import {
   exporter,
@@ -16,6 +16,18 @@ import {
 // replace the module with a clean re-export of @opentelemetry/api.
 vi.mock('@biorate/opentelemetry', async () => await import('@opentelemetry/api'));
 
+const tracer = provider.getTracer('test');
+
+async function withActiveSpan<T>(run: (span: Span) => T): Promise<T> {
+  const span = tracer.startSpan('incoming');
+  const spy = vi.spyOn(trace, 'getActiveSpan').mockReturnValue(span);
+  try {
+    return await run(span);
+  } finally {
+    spy.mockRestore();
+  }
+}
+
 describe('TracingInterceptor', () => {
   beforeAll(() => trace.setGlobalTracerProvider(provider));
   beforeEach(() => exporter.reset());
@@ -23,9 +35,12 @@ describe('TracingInterceptor', () => {
   it('ends and exports the span with request/response attributes on happy path', async () => {
     const interceptor = new TracingInterceptor();
     setTracingExcluded([]);
-    await firstValueFrom(
-      interceptor.intercept(makeContext('http'), nextOf({ data: 'ok' })),
-    );
+    await withActiveSpan(async (span) => {
+      await firstValueFrom(
+        interceptor.intercept(makeContext('http'), nextOf({ data: 'ok' })),
+      );
+      span.end();
+    });
     const spans = exporter.getFinishedSpans();
     expect(spans).toHaveLength(1);
     const span = spans[0];
@@ -41,9 +56,12 @@ describe('TracingInterceptor', () => {
     const interceptor = new TracingInterceptor();
     setTracingExcluded([]);
     const error = { code: 'E_TEST', response: { data: 'boom' } };
-    await expect(
-      firstValueFrom(interceptor.intercept(makeContext('http'), nextThrow(error))),
-    ).rejects.toBe(error);
+    await withActiveSpan(async (span) => {
+      await expect(
+        firstValueFrom(interceptor.intercept(makeContext('http'), nextThrow(error))),
+      ).rejects.toBe(error);
+      span.end();
+    });
     const spans = exporter.getFinishedSpans();
     expect(spans).toHaveLength(1);
     const span = spans[0];
@@ -56,9 +74,12 @@ describe('TracingInterceptor', () => {
   it('ends an attribute-less span for excluded urls', async () => {
     const interceptor = new TracingInterceptor();
     setTracingExcluded(['/skip']);
-    await firstValueFrom(
-      interceptor.intercept(makeContext('http', '/skip/me'), nextOf({ data: 'ok' })),
-    );
+    await withActiveSpan(async (span) => {
+      await firstValueFrom(
+        interceptor.intercept(makeContext('http', '/skip/me'), nextOf({ data: 'ok' })),
+      );
+      span.end();
+    });
     const spans = exporter.getFinishedSpans();
     expect(spans).toHaveLength(1);
     expect(spans[0].attributes['incoming.request.url']).toBeUndefined();
@@ -69,10 +90,13 @@ describe('TracingInterceptor', () => {
     setTracingExcluded([]);
     for (const type of ['ws', 'rpc']) {
       exporter.reset();
-      const result = await firstValueFrom(
-        interceptor.intercept(makeContext(type), nextOf({ data: 'ok' })),
-      );
-      expect(result).toEqual({ data: 'ok' });
+      await withActiveSpan(async (span) => {
+        const result = await firstValueFrom(
+          interceptor.intercept(makeContext(type), nextOf({ data: 'ok' })),
+        );
+        expect(result).toEqual({ data: 'ok' });
+        span.end();
+      });
       const spans = exporter.getFinishedSpans();
       expect(spans).toHaveLength(1);
       expect(Object.keys(spans[0].attributes)).toHaveLength(0);
@@ -80,44 +104,35 @@ describe('TracingInterceptor', () => {
     }
   });
 
-  it('subscribes to the handler while the incoming span is active', async () => {
-    let spanIsActive = false;
-    let subscribedWhileActive = false;
-    const span = {
-      setAttribute: vi.fn(),
-      recordException: vi.fn(),
-      setStatus: vi.fn(),
-      end: vi.fn(),
-    } as unknown as Span;
-    const tracer = {
-      startActiveSpan: (_name: string, callback: (span: Span) => unknown) => {
-        spanIsActive = true;
-        try {
-          return callback(span);
-        } finally {
-          spanIsActive = false;
-        }
-      },
-    } as unknown as Tracer;
-    const getTracer = vi.spyOn(trace, 'getTracer').mockReturnValue(tracer);
-
+  it('passes the handler result through untouched when no span is active', async () => {
+    const interceptor = new TracingInterceptor();
+    setTracingExcluded([]);
+    const spy = vi.spyOn(trace, 'getActiveSpan').mockReturnValue(undefined);
     try {
-      const interceptor = new TracingInterceptor();
-      setTracingExcluded([]);
-      await firstValueFrom(
-        interceptor.intercept(makeContext('http'), {
-          handle: () =>
-            defer(() => {
-              subscribedWhileActive = spanIsActive;
-              return of({ data: 'ok' });
-            }),
-        }),
+      const result = await firstValueFrom(
+        interceptor.intercept(makeContext('http'), nextOf({ data: 'ok' })),
       );
+      expect(result).toEqual({ data: 'ok' });
     } finally {
-      getTracer.mockRestore();
+      spy.mockRestore();
     }
+    expect(exporter.getFinishedSpans()).toHaveLength(0);
+  });
 
-    expect(subscribedWhileActive).toBe(true);
-    expect(span.end).toHaveBeenCalledOnce();
+  it('decorates but does not end the caller-owned active span', async () => {
+    const interceptor = new TracingInterceptor();
+    setTracingExcluded([]);
+    await withActiveSpan(async (span) => {
+      await firstValueFrom(
+        interceptor.intercept(makeContext('http'), nextOf({ data: 'ok' })),
+      );
+      // interceptor must not close a span it does not own
+      expect(exporter.getFinishedSpans()).toHaveLength(0);
+      span.end();
+    });
+    expect(exporter.getFinishedSpans()).toHaveLength(1);
+    expect(
+      exporter.getFinishedSpans()[0].attributes['incoming.request.url'],
+    ).toBe('/test');
   });
 });
