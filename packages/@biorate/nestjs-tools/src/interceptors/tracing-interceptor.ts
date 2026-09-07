@@ -74,13 +74,9 @@ export class TracingInterceptor implements NestInterceptor {
   }
 
   public intercept(context: ExecutionContext, next: CallHandler) {
-    return new Observable((subscriber) =>
-      trace.getTracer(this.constructor.name).startActiveSpan('incoming', (span) => {
-        const type = context.getType();
-        return this[type](span, context, next)
-          .pipe(finalize(() => span.end()))
-          .subscribe(subscriber);
-      }),
-    );
+    const span = trace.getActiveSpan();
+    if (!span) return next.handle();
+    const type = context.getType();
+    return this[type](span, context, next);
   }
 }
