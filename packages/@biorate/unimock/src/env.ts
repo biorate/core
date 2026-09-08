@@ -1,7 +1,13 @@
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
 import type { UnimockMode } from './interfaces';
-import { MODE_RECORD, MODE_REPLAY, MODE_OFF, DEFAULT_SNAPSHOT_DIR, SNAPSHOTS_DIR_NAME } from './constants';
+import {
+  MODE_RECORD,
+  MODE_REPLAY,
+  MODE_OFF,
+  DEFAULT_SNAPSHOT_DIR,
+  SNAPSHOTS_DIR_NAME,
+} from './constants';
 
 function envFlag(name: string): boolean {
   return process.env[name] === '1';

@@ -1,4 +1,6 @@
-const EMPTY_ITERATOR: Iterator<unknown> = { next: () => ({ done: true, value: undefined }) };
+const EMPTY_ITERATOR: Iterator<unknown> = {
+  next: () => ({ done: true, value: undefined }),
+};
 const EMPTY_ASYNC_ITERATOR: AsyncIterator<unknown> = {
   next: () => Promise.resolve({ done: true, value: undefined }),
 };

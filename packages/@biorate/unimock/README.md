@@ -88,9 +88,12 @@ console.log(await replayed.query('SELECT 1')); // { data: [1, 2, 3] } — from s
 ```ts
 import { mock, SnapshotStore, flushAllSnapshots } from '@biorate/unimock';
 
-const obj = mock({
-  query: async (sql: string) => ({ data: [1, 2, 3] }),
-}, { importMeta: import.meta });
+const obj = mock(
+  {
+    query: async (sql: string) => ({ data: [1, 2, 3] }),
+  },
+  { importMeta: import.meta },
+);
 
 // Record phase
 SnapshotStore.setMode('record');
@@ -138,9 +141,24 @@ class HybridModel extends Model {
 
 Available static method lists:
 
-| Export | Methods |
-| ------ | ------- |
+| Export              | Methods                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `SEQUELIZE_STATICS` | `sync`, `drop`, `create`, `findOne`, `findAll`, `findByPk`, `findOrCreate`, `findOrBuild`, `findCreateFind`, `findAndCountAll`, `destroy`, `update`, `upsert`, `bulkCreate`, `truncate`, `restore`, `count`, `sum`, `min`, `max`, `increment`, `decrement`, `describe`, `scope`, `unscoped`, `schema`, `getTableName`, `addScope`, `removeAttribute`, `getAttributes`, `hasAlias`, `hasMany`, `belongsToMany`, `hasOne`, `belongsTo`, `build`, `bulkBuild`, `warnOnInvalidOptions` |
+
+#### Replay reconstruction of model instances
+
+In replay mode, the recorded result of a static that returns model instances is reconstructed into real model instances (with working `toJSON()`, `get()`, `save()`, etc.) by the model's own **original** static `build(plain, { isNewRecord: false })`, captured before wrapping. The result shape determines how the recorded data is rebuilt:
+
+| Statics                                                   | Replayed result                                                             |
+| --------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `create`, `findOne`, `findByPk`, `build`                  | a single model instance                                                     |
+| `findAll`, `bulkCreate`, `bulkBuild`                      | an array of model instances                                                 |
+| `findOrCreate`, `findOrBuild`, `findCreateFind`, `upsert` | an `[instance, created]` pair                                               |
+| `update`                                                  | a `[count, instances]` pair                                                 |
+| `findAndCountAll`                                         | `{ count, rows: instances }`                                                |
+| `scope`, `unscoped`, `schema`                             | the model class itself, so chaining like `Model.scope('x').findAll()` works |
+
+Unknown or custom statics keep the legacy behaviour: the recorded result is deserialized as plain data. Instance methods called on reconstructed instances are replayed with per-instance call keys (`call:{refId}:...`), so each row of a multi-row result returns its own data.
 
 ### Symbol serialization
 
@@ -228,11 +246,11 @@ Unimock is connector-agnostic and works with any class that returns a connection
 
 ### Mode selection
 
-| `UNIMOCK` | Behaviour |
-| --------- | --------- |
-| *(unset)* / `off` / `0` / `false` | Mocking disabled — `@Mockable()` is a no-op |
-| `record` / `update` / `1` / `true` | Record mode — call real implementation, persist snapshots on flush |
-| `replay` | Replay mode — return recorded responses; miss → `UnimockReplayMissError` |
+| `UNIMOCK`                          | Behaviour                                                                                                                                                                                                 |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _(unset)_ / `off` / `0` / `false`  | Mocking off — **zero-overhead pass-through**: wrapped calls go straight to the original implementation without any argument hashing or call-key computation; nothing is read from or written to snapshots |
+| `record` / `update` / `1` / `true` | Record mode — call real implementation, persist snapshots on flush                                                                                                                                        |
+| `replay`                           | Replay mode — return recorded responses; miss → `UnimockReplayMissError`                                                                                                                                  |
 
 ### Mode helpers
 
@@ -254,13 +272,13 @@ These functions always read the current global mode — they work correctly afte
 
 ### Optimisation flags
 
-| Variable | Description |
-| -------- | ----------- |
-| `UNIMOCK_GZIP=1` | Gzip-compress snapshot files on write (~97 % reduction). Auto-detected on read. |
-| `UNIMOCK_STRIP_REQUEST=1` | Strip the `request` field (Axios HTTP internals, ~40 KB per entry). |
-| `UNIMOCK_SKIP_PROXY_ARGS=1` (or `UNIMOCK_SKIP_CONN_ARGS=1`) | Skip serialising `args` for `call:*` entries — they are not used in replay. |
-| `UNIMOCK_SNAPSHOT_DIR` | Custom snapshot directory fallback (default: `tests/__snapshots__`). Ignored when `importMeta` is passed. |
-| `SNAPSHOT_EXT` | Snapshot file extension (default: `.snap`). File name: `{ClassName}.unimock{ext}`. |
+| Variable                                                    | Description                                                                                               |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `UNIMOCK_GZIP=1`                                            | Gzip-compress snapshot files on write (~97 % reduction). Auto-detected on read.                           |
+| `UNIMOCK_STRIP_REQUEST=1`                                   | Strip the `request` field (Axios HTTP internals, ~40 KB per entry).                                       |
+| `UNIMOCK_SKIP_PROXY_ARGS=1` (or `UNIMOCK_SKIP_CONN_ARGS=1`) | Skip serialising `args` for `call:*` entries — they are not used in replay.                               |
+| `UNIMOCK_SNAPSHOT_DIR`                                      | Custom snapshot directory fallback (default: `tests/__snapshots__`). Ignored when `importMeta` is passed. |
+| `SNAPSHOT_EXT`                                              | Snapshot file extension (default: `.snap`). File name: `{ClassName}.unimock{ext}`.                        |
 
 ### Always-on optimisations
 
@@ -315,6 +333,17 @@ Snapshot files are stored in `__snapshots__/<ClassName>.unimock.json` — one di
 }
 ```
 
+### Migration note (1.9.0)
+
+The snapshot format version stays `1`, but the **recorded data shape changed** in 1.9.0 for:
+
+- `findAll`, `bulkCreate`, `bulkBuild`, `findAndCountAll` — rows are now clean `toJSON()` data (no `dataValues`, `_previousDataValues`, `uniqno` keys);
+- top-level `Date` static results — now `t: 'date'` instead of an ISO string produced by `Date.toJSON()`.
+
+If you have committed snapshots for these statics, **re-record them**. Replaying old snapshots for these statics still works, but the results come back as plain objects instead of model instances.
+
+Snapshot entries for instance-returning statics may carry an optional `refs` marker (parallel to `result`). Its absence means the legacy format and is tolerated on read.
+
 ## noop — universal mock stub
 
 A singleton for use as a drop-in dependency for any service — no call will ever throw:
@@ -322,13 +351,14 @@ A singleton for use as a drop-in dependency for any service — no call will eve
 ```ts
 import { noop } from '@biorate/unimock';
 
-noop.database.query('SELECT 1');   // → noop
-noop.config.get('key').nested;     // → noop
-'query' in noop.database;          // true
-await noop.asyncMethod();           // → noop
-for (const x of noop.items) {}     // empty iterator
-JSON.stringify(noop);              // {}
-typeof noop.callback;              // 'function'
+noop.database.query('SELECT 1'); // → noop
+noop.config.get('key').nested; // → noop
+'query' in noop.database; // true
+await noop.asyncMethod(); // → noop
+for (const x of noop.items) {
+} // empty iterator
+JSON.stringify(noop); // {}
+typeof noop.callback; // 'function'
 ```
 
 **Note:** `typeof noop` returns `'function'` (the Proxy target is a function). This is a JavaScript limitation — `typeof` is not interceptable by Proxy.
@@ -341,13 +371,22 @@ typeof noop.callback;              // 'function'
 
 3. **Private `#` fields** are not wrapped — `wrapPrototype` and `MockHandler` filter keys starting with `#`.
 
+4. **Nested model objects stay plain in replay.** Reconstruction rebuilds only the top-level shape elements of a static result (single / array / pair / wrapper). Nested include/association objects inside a row remain plain deserialized objects.
+
+5. **Unrecorded instance methods throw in replay.** An instance method that was never invoked on an instance during the record phase throws `UnimockReplayMissError` when called in replay.
+
+6. **Replayed instances are rebuilt by the model's own static `build`.** The model class must be importable and initialized at replay time (for Sequelize models: bound to a `Sequelize` instance, e.g. via `new Sequelize({ models: [Model] })` in test setup).
+
 ### Learn
-* Documentation can be found here - [docs](https://biorate.github.io/core/modules/unimock.html).
+
+- Documentation can be found here - [docs](https://biorate.github.io/core/modules/unimock.html).
 
 ### Release History
+
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/CHANGELOG.md)
 
 ### License
+
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)

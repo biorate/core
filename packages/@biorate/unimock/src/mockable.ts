@@ -1,7 +1,7 @@
 import { flattenDeep } from 'lodash-es';
-import type { MockableOptions, SerializedValue } from './interfaces';
+import type { MockableOptions, SerializedValue, SnapshotCall } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
-import { getSnapshotStore, isReplay, isRecord } from './snapshot-store';
+import { getSnapshotStore, isOff, isReplay, isRecord } from './snapshot-store';
 import { makeCallKey, serialize, deserialize, stableHash } from './serializer';
 import { MockHandler } from './mock-handler';
 import {
@@ -17,10 +17,61 @@ import {
   PROP_CONSTRUCTOR,
   PROP_UNIMOCK_REF,
   PREFIX_CB,
+  PREFIX_CALL,
   MARKER_CALLBACK,
 } from './constants';
 
 const refIdCache = new WeakMap<object, string>();
+
+/**
+ * @description Original (pre-wrap) implementations of wrapped static methods, keyed by class.
+ *   Captured in {@link wrapStaticMethods} before `Object.defineProperty` replaces them.
+ *   Replay reconstruction MUST use the original `build` — the wrapped one routes into a
+ *   replay lookup for reconstruction args that were never recorded and would throw
+ *   {@link UnimockReplayMissError}.
+ */
+const staticOriginals = new WeakMap<
+  object,
+  Map<string, (...args: unknown[]) => unknown>
+>();
+
+/** @description Replay result shape of a known static method (see {@link STATIC_REPLAY_SHAPE}). */
+type StaticReplayShape =
+  | 'chain'
+  | 'single'
+  | 'array'
+  | 'pairInstance'
+  | 'pairCount'
+  | 'wrapper';
+
+/**
+ * @description Replay result-shape classification for known Sequelize-style statics.
+ *   - `chain`: the static returns the class itself (`scope`/`unscoped`/`schema`) — replay returns the class.
+ *   - `single`: one model instance (`create`/`findOne`/`findByPk`/`build`).
+ *   - `array`: array of model instances (`findAll`/`bulkCreate`/`bulkBuild`).
+ *   - `pairInstance`: `[instance, boolean]` (`findOrCreate`/`findOrBuild`/`findCreateFind`/`upsert`).
+ *   - `pairCount`: `[count, instances[]]` (`update`).
+ *   - `wrapper`: `{ count, rows: instances[] }` (`findAndCountAll`).
+ *   - not listed: deserialized data as-is (legacy behavior).
+ */
+const STATIC_REPLAY_SHAPE: Record<string, StaticReplayShape> = {
+  scope: 'chain',
+  unscoped: 'chain',
+  schema: 'chain',
+  create: 'single',
+  findOne: 'single',
+  findByPk: 'single',
+  build: 'single',
+  findAll: 'array',
+  bulkCreate: 'array',
+  bulkBuild: 'array',
+  findOrCreate: 'pairInstance',
+  findOrBuild: 'pairInstance',
+  findCreateFind: 'pairInstance',
+  upsert: 'pairInstance',
+  update: 'pairCount',
+  findAndCountAll: 'wrapper',
+};
 
 /**
  * @description Class decorator that enables snapshot-based mocking.
@@ -92,15 +143,36 @@ function patchPrototype(proto: object, store: SnapshotStore): void {
 }
 
 /**
+ * @description Call-key prefix that scopes an instance method/getter to the unimock
+ *   identity of `thisArg`, using the EXACT {@link MockHandler} connection convention
+ *   (`call:{refId}:` — see mock-handler.ts). Returns `''` for objects without an
+ *   assigned identity, so those keep the legacy unscoped key.
+ *
+ *   Scoping rule: a call is scoped iff unimock itself assigned `this` an identity
+ *   (via {@link wrapResult} or {@link assignStaticRefs}).
+ */
+function connectionPrefix(thisArg: unknown): string {
+  if (!thisArg || typeof thisArg !== 'object') return '';
+  const refId = refIdCache.get(thisArg);
+  return refId ? `${PREFIX_CALL}${refId}:` : '';
+}
+
+/**
  * @description Creates a wrapped function that intercepts calls for recording or replaying.
  *   Shared factory used by both instance methods ({@link wrapMethod}) and static methods
  *   ({@link wrapStaticMethod}).
+ *
+ *   The call key is prefixed with {@link connectionPrefix} in BOTH record and replay
+ *   branches, so calls on identity-carrying instances produce/resume the same keys as
+ *   {@link MockHandler}-mediated calls on the same object.
  *
  * @param name - method name (used in call key)
  * @param original - original implementation
  * @param store - snapshot store instance
  * @param recordResult - callback that serialises and stores the result (behaviour differs
  *   for instance vs static methods)
+ * @param replayOverride - optional custom replay handler (static methods use it to rebuild
+ *   model instances); when omitted the standard {@link replayCall} is used
  */
 function makeMethodWrapper(
   name: string,
@@ -112,12 +184,25 @@ function makeMethodWrapper(
     result: unknown,
     sa: SerializedValue[],
   ) => unknown,
+  replayOverride?: (
+    thisArg: unknown,
+    callKey: string,
+    name: string,
+    args: unknown[],
+    store: SnapshotStore,
+  ) => unknown,
 ): (...args: unknown[]) => unknown {
   return function (this: unknown, ...args: unknown[]) {
-    const reportArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
-    const callKey = makeCallKey('', name, reportArgs);
+    if (isOff()) return original.apply(this, args);
 
-    if (isReplay()) return replayCall(callKey, name, args, store);
+    const reportArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
+    const callKey = makeCallKey(connectionPrefix(this), name, reportArgs);
+
+    if (isReplay()) {
+      return replayOverride
+        ? replayOverride(this, callKey, name, args, store)
+        : replayCall(callKey, name, args, store);
+    }
     if (!isRecord()) return original.apply(this, args);
 
     const { recordedArgs, callbackRecords } = recordPrep(args);
@@ -169,14 +254,177 @@ function wrapMethod(
 
 /**
  * @description Wraps a static method: in record mode stores the plain serialised result
- *   (without ConnectionHandler wrapping); in replay mode looks up the snapshot entry.
+ *   (without ConnectionHandler wrapping); in replay mode delegates to {@link replayStaticCall},
+ *   which rebuilds model instances via the original static `build` when the static's
+ *   return shape is known ({@link STATIC_REPLAY_SHAPE}).
  */
 function wrapStaticMethod(
   name: string,
   original: (...args: unknown[]) => unknown,
   store: SnapshotStore,
+  klass: new (...args: unknown[]) => object,
 ): (...args: unknown[]) => unknown {
-  return makeMethodWrapper(name, original, store, recordStaticResult);
+  return makeMethodWrapper(
+    name,
+    original,
+    store,
+    (st, callKey, result, sa) => recordStaticResult(name, st, callKey, result, sa),
+    (_thisArg, callKey, methodName, args) =>
+      replayStaticCall(klass, callKey, methodName, args, store),
+  );
+}
+
+/**
+ * @description Replays a recorded static call with result-shape reconstruction.
+ *   - `chain`: returns the decorated class itself.
+ *   - `single`/`array`/`pairInstance`/`pairCount`/`wrapper`: deserialises the recorded
+ *     data and rebuilds each model element via {@link rebuildInstance}.
+ *   - unknown shape: deserialised data as-is (legacy behavior).
+ *   - A recorded error is re-thrown; recorded callback invocations are replayed first.
+ *
+ * @throws {@link UnimockReplayMissError} when no entry is found for the call key
+ */
+function replayStaticCall(
+  klass: new (...args: unknown[]) => object,
+  callKey: string,
+  name: string,
+  args: unknown[],
+  store: SnapshotStore,
+): unknown {
+  const entry = getReplayEntry(store, callKey, name, args);
+
+  const promises = replayCallbacks(entry.args, args);
+
+  if (STATIC_REPLAY_SHAPE[name] === 'chain') {
+    if (promises.length > 0) return Promise.all(promises).then(() => klass);
+    return klass;
+  }
+
+  const data = deserialize(entry.result);
+  let rebuilt: unknown;
+
+  switch (STATIC_REPLAY_SHAPE[name]) {
+    case 'single':
+      rebuilt = rebuildInstance(klass, data);
+      break;
+    case 'array':
+      rebuilt = Array.isArray(data) ? data.map((v) => rebuildInstance(klass, v)) : data;
+      break;
+    case 'pairInstance': {
+      const pair = Array.isArray(data) ? data : [];
+      rebuilt = [rebuildInstance(klass, pair[0]), pair[1]];
+      break;
+    }
+    case 'pairCount': {
+      const pair = Array.isArray(data) ? data : [];
+      rebuilt = [
+        pair[0],
+        Array.isArray(pair[1])
+          ? (pair[1] as unknown[]).map((v) => rebuildInstance(klass, v))
+          : pair[1],
+      ];
+      break;
+    }
+    case 'wrapper': {
+      const wrapper = (data ?? {}) as { rows?: unknown };
+      rebuilt = {
+        ...wrapper,
+        rows: Array.isArray(wrapper.rows)
+          ? (wrapper.rows as unknown[]).map((v) => rebuildInstance(klass, v))
+          : wrapper.rows,
+      };
+      break;
+    }
+    default:
+      rebuilt = data;
+  }
+
+  // Entry WITHOUT refs → legacy path above stays unchanged (old-format compat).
+  // With refs → register each rebuilt instance under its recorded refId so that
+  // direct instance methods/getters on it use the same scoped call keys.
+  if (entry.refs !== undefined) {
+    registerStaticRefs(STATIC_REPLAY_SHAPE[name], rebuilt, entry.refs);
+  }
+
+  if (promises.length > 0) return Promise.all(promises).then(() => rebuilt);
+  return rebuilt;
+}
+
+/**
+ * @description Registers rebuilt model instances under their recorded refIds (the `refs`
+ *   markup of the static's snapshot entry), mirroring {@link MockHandler}'s resolution —
+ *   which is purely key-based (`call:{refId}:` prefix, no separate registration store).
+ *   Skips `undefined` entries; NEVER assigns fresh refIds in replay (reuses recorded ids
+ *   only, so the refId high-water counter is never polluted by replay).
+ */
+function registerStaticRefs(
+  shape: StaticReplayShape | undefined,
+  rebuilt: unknown,
+  refs: unknown,
+): void {
+  const set = (el: unknown, refId: unknown): void => {
+    if (!refId || typeof refId !== 'string' || !el || typeof el !== 'object') return;
+    refIdCache.set(el, refId);
+  };
+
+  switch (shape) {
+    case 'single':
+      set(rebuilt, refs);
+      break;
+    case 'array': {
+      if (!Array.isArray(rebuilt) || !Array.isArray(refs)) return;
+      for (let i = 0; i < rebuilt.length; i++) set(rebuilt[i], refs[i]);
+      break;
+    }
+    case 'pairInstance': {
+      if (!Array.isArray(rebuilt) || !Array.isArray(refs)) return;
+      set(rebuilt[0], refs[0]);
+      break;
+    }
+    case 'pairCount': {
+      if (!Array.isArray(rebuilt) || !Array.isArray(rebuilt[1])) return;
+      if (!Array.isArray(refs) || !Array.isArray(refs[1])) return;
+      const rows = rebuilt[1] as unknown[];
+      const refRows = refs[1] as unknown[];
+      for (let i = 0; i < rows.length; i++) set(rows[i], refRows[i]);
+      break;
+    }
+    case 'wrapper': {
+      const rows = (rebuilt as { rows?: unknown } | null)?.rows;
+      const refRows = (refs as { rows?: unknown } | null)?.rows;
+      if (!Array.isArray(rows) || !Array.isArray(refRows)) return;
+      for (let i = 0; i < rows.length; i++) set(rows[i], refRows[i]);
+      break;
+    }
+    default:
+      break;
+  }
+}
+
+/**
+ * @description Rebuilds a model instance from plain (deserialised) data using the ORIGINAL
+ *   static `build` captured before wrapping: `build.call(klass, plain, { isNewRecord: false })`.
+ *   The wrapped `build` is deliberately not used — in replay mode it would route into a
+ *   replay lookup for reconstruction args that were never recorded and throw
+ *   {@link UnimockReplayMissError}.
+ *   Returns `plain` as-is when `build` is unavailable or `plain` is not a non-empty
+ *   plain object (null, array, class instance, empty object).
+ */
+function rebuildInstance(
+  klass: new (...args: unknown[]) => object,
+  plain: unknown,
+): unknown {
+  const build = staticOriginals.get(klass)?.get('build') ?? (klass as any).build;
+  const isPlainObject =
+    plain !== null &&
+    typeof plain === 'object' &&
+    !Array.isArray(plain) &&
+    Object.getPrototypeOf(plain) === Object.prototype &&
+    Object.keys(plain).length > 0;
+  if (typeof build === 'function' && isPlainObject) {
+    return build.call(klass, plain, { isNewRecord: false });
+  }
+  return plain;
 }
 
 /**
@@ -346,6 +594,11 @@ function wrapResult(
   return result;
 }
 
+/**
+ * @description Wraps the listed static methods of a class for snapshot record/replay.
+ *   Captures each original implementation into {@link staticOriginals} before replacing it,
+ *   so replay reconstruction can call the original `build`.
+ */
 function wrapStaticMethods(
   klass: new (...args: unknown[]) => object,
   store: SnapshotStore,
@@ -363,13 +616,17 @@ function wrapStaticMethods(
     },
   );
 
+  let originals = staticOriginals.get(klass);
+  if (!originals) {
+    originals = new Map<string, (...args: unknown[]) => unknown>();
+    staticOriginals.set(klass, originals);
+  }
+
   for (const { key, descriptor } of entries) {
+    const original = descriptor.value as (...args: unknown[]) => unknown;
+    originals.set(key, original);
     Object.defineProperty(klass, key, {
-      value: wrapStaticMethod(
-        key,
-        descriptor.value as (...args: unknown[]) => unknown,
-        store,
-      ),
+      value: wrapStaticMethod(key, original, store, klass),
       writable: true,
       configurable: true,
     });
@@ -377,30 +634,122 @@ function wrapStaticMethods(
 }
 
 /**
+ * @description Assigns a per-instance refId to every model element of a LIVE static
+ *   result, mirroring {@link wrapResult}'s assignment (refIdCache.get/set + nextRefId) —
+ *   but static results stay RAW (never MockHandler-wrapped).
+ *
+ *   MUST run BEFORE {@link toPlain}: toPlain's `value.toJSON()` side-effect calls hit the
+ *   WRAPPED instance methods with `this` already ref'd, so they auto-record per-instance
+ *   (scoped `call:{refId}:`) connection entries — desired eager capture.
+ *
+ *   Returns the parallel `refs` markup for the snapshot entry, shaped per
+ *   {@link STATIC_REPLAY_SHAPE}: `single` → `string`; `array` → `(string|undefined)[]`;
+ *   `pairInstance` → `[string|undefined, undefined]`; `pairCount` →
+ *   `[undefined, (string|undefined)[]]`; `wrapper` → `{ rows: (string|undefined)[] }`.
+ *   Returns `undefined` for chain/unknown shapes or when no model element was found
+ *   (entry stays in the legacy format — no `refs` field).
+ */
+function assignStaticRefs(name: string, result: unknown): unknown {
+  const shape = STATIC_REPLAY_SHAPE[name];
+  if (!shape || shape === 'chain') return undefined;
+
+  const assign = (el: unknown): string | undefined => {
+    if (!el || typeof el !== 'object') return undefined;
+    const existing = (el as Record<string, unknown>)[PROP_UNIMOCK_REF];
+    if (typeof existing === 'string') return existing;
+    if (!hasMethods(el)) return undefined;
+    let refId = refIdCache.get(el);
+    if (!refId) {
+      refId = nextRefId();
+      refIdCache.set(el, refId);
+    }
+    return refId;
+  };
+
+  switch (shape) {
+    case 'single':
+      return assign(result);
+    case 'array': {
+      if (!Array.isArray(result)) return undefined;
+      const refs = result.map(assign);
+      return refs.some((r) => r !== undefined) ? refs : undefined;
+    }
+    case 'pairInstance': {
+      if (!Array.isArray(result)) return undefined;
+      const ref = assign(result[0]);
+      return ref !== undefined ? [ref, undefined] : undefined;
+    }
+    case 'pairCount': {
+      if (!Array.isArray(result) || !Array.isArray(result[1])) return undefined;
+      const rows = (result[1] as unknown[]).map(assign);
+      return rows.some((r) => r !== undefined) ? [undefined, rows] : undefined;
+    }
+    case 'wrapper': {
+      const rows = (result as { rows?: unknown } | null)?.rows;
+      if (!Array.isArray(rows)) return undefined;
+      const refs = rows.map(assign);
+      return refs.some((r) => r !== undefined) ? { rows: refs } : undefined;
+    }
+    default:
+      return undefined;
+  }
+}
+
+/**
  * @description Records a static method call result (without ConnectionHandler wrapping).
- *   If the result has a `.toJSON()` method, it is called first to produce a plain value.
+ *   Assigns per-instance refIds to model elements first (see {@link assignStaticRefs}),
+ *   then converts via {@link toPlain} (a `.toJSON()` call produces the plain value).
+ *   STILL RETURNS THE RAW LIVE RESULT — callers receive real instances in record mode.
  */
 function recordStaticResult(
+  name: string,
   store: SnapshotStore,
   callKey: string,
   result: unknown,
   serializedArgs: SerializedValue[],
 ): unknown {
+  const refs = assignStaticRefs(name, result);
   const data = toPlain(result);
-  store.record(callKey, {
+  const call: SnapshotCall = {
     args: serializedArgs,
     result: serialize(data, undefined, store.symbols),
     error: undefined,
-  });
+  };
+  if (refs !== undefined) call.refs = refs;
+  store.record(callKey, call);
   return result;
 }
 
 /**
- * @description Converts a value to a plain object by calling its `.toJSON()` method if available.
+ * @description Recursively converts a value into plain JSON-ready data for static results.
+ *   - `null`, primitives and functions are returned as-is.
+ *   - `Date`, `RegExp`, `Buffer` and `Error` are returned as-is so the serializer keeps
+ *     their native tags (`date`/`regexp`/`buffer`/`error`) — never converted via `toJSON`.
+ *   - Objects exposing a `.toJSON()` method are converted via `toJSON()`
+ *     (the result is NOT recursed into).
+ *   - Arrays are mapped element-wise with the same rules.
+ *   - Plain objects (prototype === `Object.prototype`) are rebuilt key-by-key.
+ *   - Anything else (class instances without `toJSON`, null-prototype objects, `Map`, …)
+ *     is returned as-is (legacy behaviour).
  */
 function toPlain(value: unknown): unknown {
-  if (value && typeof value === 'object' && typeof (value as any).toJSON === 'function') {
-    return (value as any).toJSON();
+  if (value === null || typeof value !== 'object') return value;
+  if (
+    value instanceof Date ||
+    value instanceof RegExp ||
+    value instanceof Error ||
+    Buffer.isBuffer(value)
+  ) {
+    return value;
+  }
+  if (typeof (value as any).toJSON === 'function') return (value as any).toJSON();
+  if (Array.isArray(value)) return value.map((item) => toPlain(item));
+  if (Object.getPrototypeOf(value) === Object.prototype) {
+    const result: Record<string, unknown> = {};
+    for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
+      result[key] = toPlain(entry);
+    }
+    return result;
   }
   return value;
 }
@@ -410,6 +759,8 @@ function toPlain(value: unknown): unknown {
  *   In record mode, calls the original getter and wraps the result if it has methods.
  *   In replay mode, returns the recorded value directly.
  *   Caches refIds via {@link refIdCache} to avoid duplicate entries for the same target object.
+ *   The call key uses {@link connectionPrefix}, so getters on identity-carrying
+ *   instances are recorded/replayed per-instance.
  */
 function wrapGetter(
   name: string,
@@ -417,7 +768,9 @@ function wrapGetter(
   store: SnapshotStore,
 ): () => unknown {
   return function (this: unknown) {
-    const callKey = makeCallKey('', name, []);
+    if (isOff()) return original.call(this);
+
+    const callKey = makeCallKey(connectionPrefix(this), name, []);
 
     if (isReplay()) {
       const entry = getReplayEntry(store, callKey, name, []);
@@ -465,10 +818,7 @@ export function mock<T extends Record<string, any>>(
   Base: T,
   options?: MockableOptions,
 ): T;
-export function mock(
-  Base: any,
-  options?: MockableOptions,
-): any {
+export function mock(Base: any, options?: MockableOptions): any {
   if (typeof Base === 'function' && Base.prototype) {
     return Mockable(options)(Base);
   }
@@ -480,19 +830,13 @@ export function mock(
  *   Each method on the object is wrapped for record/replay.
  *   The original object is not mutated — a shallow copy is returned.
  */
-function mockObject<T extends Record<string, any>>(
-  obj: T,
-  options?: MockableOptions,
-): T {
+function mockObject<T extends Record<string, any>>(obj: T, options?: MockableOptions): T {
   const className = resolveObjectName(obj, options?.name);
   const store = getSnapshotStore(className, options?.snapshotDir, options?.importMeta);
   store.symbols = options?.symbols ?? false;
   store.depth = options?.depth ?? Infinity;
 
-  const result = Object.assign(
-    Object.create(Object.getPrototypeOf(obj)) as T,
-    obj,
-  );
+  const result = Object.assign(Object.create(Object.getPrototypeOf(obj)) as T, obj);
 
   const entries = collectOwnDescriptors(result, Object.prototype, {
     skipKeys: new Set([PROP_CONSTRUCTOR]),
@@ -528,10 +872,7 @@ function mockObject<T extends Record<string, any>>(
  *   Priority: `explicitName` → `obj.constructor.name` (if not `Object`) →
  *   `Object_<stableHash>`.
  */
-function resolveObjectName(
-  obj: Record<string, any>,
-  explicitName?: string,
-): string {
+function resolveObjectName(obj: Record<string, any>, explicitName?: string): string {
   if (explicitName) return explicitName;
   const ctorName = obj.constructor?.name;
   if (ctorName && ctorName !== 'Object') return ctorName;

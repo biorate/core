@@ -292,16 +292,22 @@ describe('@Mockable() without symbols (default)', () => {
   describe('mock() — plain objects', () => {
     it('record and replay', () => {
       SnapshotStore.setMode('record');
-      const obj = mock({
-        query: (sql: string) => ({ data: [1, 2] }),
-      }, { importMeta: import.meta, name: 'MockPlain' });
+      const obj = mock(
+        {
+          query: (sql: string) => ({ data: [1, 2] }),
+        },
+        { importMeta: import.meta, name: 'MockPlain' },
+      );
       expect(obj.query('SELECT 1')).toEqual({ data: [1, 2] });
       flushAllSnapshots();
 
       SnapshotStore.setMode('replay');
-      const obj2 = mock({
-        query: (sql: string) => ({ data: [99] }),
-      }, { importMeta: import.meta, name: 'MockPlain' });
+      const obj2 = mock(
+        {
+          query: (sql: string) => ({ data: [99] }),
+        },
+        { importMeta: import.meta, name: 'MockPlain' },
+      );
       // Value from snapshot, not from the new function
       expect(obj2.query('SELECT 1')).toEqual({ data: [1, 2] });
     });
@@ -332,19 +338,13 @@ describe('@Mockable() without symbols (default)', () => {
 
     it('auto-names via hash for plain literals', () => {
       SnapshotStore.setMode('record');
-      const obj = mock(
-        { foo: () => 'bar', baz: () => 42 },
-        { importMeta: import.meta },
-      );
+      const obj = mock({ foo: () => 'bar', baz: () => 42 }, { importMeta: import.meta });
       expect(obj.foo()).toBe('bar');
       expect(obj.baz()).toBe(42);
       flushAllSnapshots();
 
       SnapshotStore.setMode('replay');
-      const obj2 = mock(
-        { foo: () => 'x', baz: () => 0 },
-        { importMeta: import.meta },
-      );
+      const obj2 = mock({ foo: () => 'x', baz: () => 0 }, { importMeta: import.meta });
       expect(obj2.foo()).toBe('bar');
       expect(obj2.baz()).toBe(42);
     });

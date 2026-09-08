@@ -130,6 +130,17 @@ export interface SnapshotCall {
   result: SerializedValue;
   /** @description Serialized error, if the call threw. */
   error?: SerializedValue;
+  /**
+   * @description Optional per-instance refId markup, parallel to `result`, for statics that
+   *   return model instances (see `STATIC_REPLAY_SHAPE` in mockable.ts). Shapes mirror the
+   *   recorded result: `single` → refId string; `array` → `(refId|undefined)[]`;
+   *   `pairInstance` → `[refId|undefined, undefined]`; `pairCount` →
+   *   `[undefined, (refId|undefined)[]]`; `wrapper` → `{ rows: (refId|undefined)[] }`.
+   *   Absence means the legacy format — replay falls back to the unscoped
+   *   reconstruction path. Optional by design: existing snapshots load unchanged
+   *   (no format version bump).
+   */
+  refs?: unknown;
 }
 
 /** @description On-disk snapshot file format. */

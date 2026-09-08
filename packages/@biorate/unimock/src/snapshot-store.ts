@@ -15,6 +15,7 @@ import {
   DEFAULT_SNAPSHOT_EXT,
   MODE_RECORD,
   MODE_REPLAY,
+  MODE_OFF,
   T_POOLED_STRING,
   T_STRING,
   T_ARRAY,
@@ -122,6 +123,8 @@ export class SnapshotStore implements SnapshotStoreEntry {
       args: call.args.map((a) => this.depoolValue(a)),
       result: this.depoolValue(call.result),
       error: call.error ? this.depoolValue(call.error) : undefined,
+      // Optional per-instance refId markup (absent on legacy entries — kept as-is).
+      ...(call.refs !== undefined ? { refs: call.refs } : {}),
     };
   }
 
@@ -130,6 +133,8 @@ export class SnapshotStore implements SnapshotStoreEntry {
       args: call.args.map((a) => this.poolValue(a)),
       result: this.poolValue(call.result),
       error: call.error ? this.poolValue(call.error) : undefined,
+      // Optional per-instance refId markup (absent on legacy entries — kept as-is).
+      ...(call.refs !== undefined ? { refs: call.refs } : {}),
     };
     this.dirty = true;
   }
@@ -261,6 +266,16 @@ export function isReplay(): boolean {
  */
 export function isRecord(): boolean {
   return SnapshotStore.mode === MODE_RECORD;
+}
+
+/**
+ * @description Returns `true` when the current global mode is `'off'`.
+ *   Always reads `SnapshotStore.mode`, so it works correctly after
+ *   {@link SnapshotStore.setMode}. Lets method wrappers short-circuit to the
+ *   original implementation with zero overhead (no call-key computation).
+ */
+export function isOff(): boolean {
+  return SnapshotStore.mode === MODE_OFF;
 }
 
 export { SnapshotStore as SnapshotStoreClass };

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/biorate/core/compare/@biorate/unimock@1.8.11...@biorate/unimock@1.9.0) (2026-09-08)
+
+### Bug Fixes
+
+- **unimock:** replay of instance-returning model statics (`create`, `findOne`, `findByPk`, `build`, `findAll`, `bulkCreate`, `bulkBuild`, `findOrCreate`, `findOrBuild`, `findCreateFind`, `upsert`, `update`, `findAndCountAll`) now returns real model instances with working `toJSON()`/`get()` (previously plain objects — app code like `item.toJSON()` threw TypeError)
+- **unimock:** instance methods of instances returned from statics are refId-scoped (previously all instances in a multi-row result shared one call key → every row's `toJSON()` returned the last row's data in replay)
+
+### Performance Improvements
+
+- **unimock:** off mode (`UNIMOCK` unset/off) is now a zero-overhead pass-through — wrapped calls go straight to the original without any argument hashing or call-key computation
+
 ## [1.8.11](https://github.com/biorate/core/compare/@biorate/unimock@1.8.10...@biorate/unimock@1.8.11) (2026-09-01)
 
 **Note:** Version bump only for package @biorate/unimock
