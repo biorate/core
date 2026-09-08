@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/biorate/core/compare/@biorate/axios-prometheus@2.3.0...@biorate/axios-prometheus@2.3.1) (2026-09-08)
+
+### Bug Fixes
+
+- **axios-prometheus:** classname in active span name ([44c2a0c](https://github.com/biorate/core/commit/44c2a0ce2d4a51b1f82cb4c2e3eb22228ff762fc))
+
 # [2.3.0](https://github.com/biorate/core/compare/@biorate/axios-prometheus@2.2.7...@biorate/axios-prometheus@2.3.0) (2026-09-01)
 
 ### Features

@@ -954,7 +954,7 @@ importers:
         specifier: ^2.1.6
         version: link:../proxy
       '@biorate/schema-registry':
-        specifier: ^3.1.8
+        specifier: ^3.1.9
         version: link:../schema-registry
       '@biorate/sequelize':
         specifier: ^2.2.3
@@ -1466,7 +1466,7 @@ importers:
   packages/@biorate/schema-registry:
     dependencies:
       '@biorate/axios-prometheus':
-        specifier: ^2.3.0
+        specifier: ^2.3.1
         version: link:../axios-prometheus
       '@biorate/config':
         specifier: ^3.2.3

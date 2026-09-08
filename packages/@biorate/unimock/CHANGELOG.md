@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/biorate/core/compare/@biorate/unimock@1.8.11...@biorate/unimock@1.10.0) (2026-09-08)
+
+### Features
+
+- **unimock:** static handle improved ([497d5e0](https://github.com/biorate/core/commit/497d5e01b6018e0c12f56c79e2c6ebf2a6e1d7e3))
+
 # [1.9.0](https://github.com/biorate/core/compare/@biorate/unimock@1.8.11...@biorate/unimock@1.9.0) (2026-09-08)
 
 ### Bug Fixes
