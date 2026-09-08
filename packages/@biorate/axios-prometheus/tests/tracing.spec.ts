@@ -78,6 +78,6 @@ describe('@biorate/axios-prometheus / tracing', () => {
   it('should set span name to the request url', async () => {
     nock(URL).get('/').reply(200, {});
     await TestService.fetch();
-    expect(exporter.getFinishedSpans()[0].name).toBe('/');
+    expect(exporter.getFinishedSpans()[0].name).toBe('[TestService] /');
   });
 });

@@ -219,18 +219,21 @@ export abstract class AxiosPrometheus extends Axios {
   protected async before(params?: IAxiosFetchOptions, meta?: Record<string, unknown>) {
     await super.before(params);
     const tracer = trace.getTracer(this.constructor.name);
-    tracer.startActiveSpan(this.url ?? '', async (span) => {
-      const url = this.fullUrl(params);
-      if (!this.needTrace(url, span)) return void span.end();
-      meta!.span = span;
-      span.setAttribute('outgoing.request.url', this.stringify(url));
-      span.setAttribute('outgoing.request.body', this.stringify(params?.data));
-      span.setAttribute('outgoing.request.headers', this.stringify(params?.headers));
-      span.setAttribute('outgoing.request.method', this.stringify(params?.method));
-      span.setAttribute('outgoing.request.params', this.stringify(params?.path));
-      span.setAttribute('outgoing.request.query', this.stringify(params?.params));
-      span.setAttribute('SpanKind', 'CLIENT');
-    });
+    tracer.startActiveSpan(
+      `[${this.constructor.name}] ${this.url ?? ''}`,
+      async (span) => {
+        const url = this.fullUrl(params);
+        if (!this.needTrace(url, span)) return void span.end();
+        meta!.span = span;
+        span.setAttribute('outgoing.request.url', this.stringify(url));
+        span.setAttribute('outgoing.request.body', this.stringify(params?.data));
+        span.setAttribute('outgoing.request.headers', this.stringify(params?.headers));
+        span.setAttribute('outgoing.request.method', this.stringify(params?.method));
+        span.setAttribute('outgoing.request.params', this.stringify(params?.path));
+        span.setAttribute('outgoing.request.query', this.stringify(params?.params));
+        span.setAttribute('SpanKind', 'CLIENT');
+      },
+    );
   }
 
   protected async after(
