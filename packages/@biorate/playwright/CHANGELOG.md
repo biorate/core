@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/biorate/core/compare/@biorate/playwright@2.3.2...@biorate/playwright@2.3.4) (2026-09-09)
+
+### Bug Fixes
+
+- **@biorate/playwright:** forward allure runtime metadata to test attachments ([182fbc0](https://github.com/biorate/core/commit/182fbc0ed6aa8b47cc5c1e9aa0b0b1a4bf578ba2))
+
 ## [2.3.3](https://github.com/biorate/core/compare/@biorate/playwright@2.3.2...@biorate/playwright@2.3.3) (2026-09-09)
 
 ### Bug Fixes
