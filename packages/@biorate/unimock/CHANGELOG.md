@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/biorate/core/compare/@biorate/unimock@1.10.0...@biorate/unimock@1.10.1) (2026-09-09)
+
+### Bug Fixes
+
+- **unimock:** pass through constructor-internal calls during replay reconstruction — when a recorded result is rebuilt via the model's original static `build(plain, { isNewRecord: false })`, the vanilla constructor re-enters wrapped prototype methods (e.g. Sequelize `_initValues`) with reconstruction options that record mode never produced (recon `{ isNewRecord: false, _schema: null, _schemaDelimiter: '' }` vs hydration `{ raw: true, attributes: [...] }`) → `UnimockReplayMissError` on the unscoped `_initValues` call key. Those inner calls now pass through to the originals (instance state is populated by the model's own constructor); post-construction calls (`toJSON`/`get`/…) are served from the recorded `call:{refId}:` entries. Record/replay construction options no longer need to match, and seeding a `build()` call with identical args is no longer needed
+
 # [1.10.0](https://github.com/biorate/core/compare/@biorate/unimock@1.8.11...@biorate/unimock@1.10.0) (2026-09-08)
 
 ### Features

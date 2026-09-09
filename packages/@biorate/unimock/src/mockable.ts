@@ -35,6 +35,20 @@ const staticOriginals = new WeakMap<
   Map<string, (...args: unknown[]) => unknown>
 >();
 
+/**
+ * @description Depth counter of in-flight replay reconstructions ({@link rebuildInstance}).
+ *   While `> 0`, wrapped instance methods and getters must NOT touch the snapshot store:
+ *   during replay reconstruction the vanilla constructor re-enters wrapped prototype
+ *   methods (e.g. Sequelize `_initValues`) with options that record mode never produced
+ *   (recon `{ isNewRecord: false, _schema: null, _schemaDelimiter: '' }` vs hydration
+ *   `{ raw: true, attributes: [...] }`), so a replay lookup would miss with
+ *   {@link UnimockReplayMissError}. The call passes through to the original instead —
+ *   instance state is populated by the model's own constructor; post-construction calls
+ *   (`toJSON`/`get`/…) are served from the recorded `call:{refId}:` entries once
+ *   {@link registerStaticRefs} binds the rebuilt instances under their recorded refIds.
+ */
+let reconstructionDepth = 0;
+
 /** @description Replay result shape of a known static method (see {@link STATIC_REPLAY_SHAPE}). */
 type StaticReplayShape =
   | 'chain'
@@ -162,6 +176,10 @@ function connectionPrefix(thisArg: unknown): string {
  *   Shared factory used by both instance methods ({@link wrapMethod}) and static methods
  *   ({@link wrapStaticMethod}).
  *
+ *   Fast paths, in order: `isOff()` (T1 zero-overhead invariant) →
+ *   {@link reconstructionDepth} > 0 (replay reconstruction — pass through to the original
+ *   before any hashing/lookup; see its TSDoc).
+ *
  *   The call key is prefixed with {@link connectionPrefix} in BOTH record and replay
  *   branches, so calls on identity-carrying instances produce/resume the same keys as
  *   {@link MockHandler}-mediated calls on the same object.
@@ -194,6 +212,8 @@ function makeMethodWrapper(
 ): (...args: unknown[]) => unknown {
   return function (this: unknown, ...args: unknown[]) {
     if (isOff()) return original.apply(this, args);
+
+    if (reconstructionDepth > 0) return original.apply(this, args);
 
     const reportArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
     const callKey = makeCallKey(connectionPrefix(this), name, reportArgs);
@@ -407,6 +427,11 @@ function registerStaticRefs(
  *   The wrapped `build` is deliberately not used — in replay mode it would route into a
  *   replay lookup for reconstruction args that were never recorded and throw
  *   {@link UnimockReplayMissError}.
+ *
+ *   The call is made with {@link reconstructionDepth} raised so that constructor-internal
+ *   wrapped prototype calls (e.g. Sequelize `_initValues`) pass through to their originals
+ *   instead of doing replay lookups with reconstruction options record mode never produced.
+ *
  *   Returns `plain` as-is when `build` is unavailable or `plain` is not a non-empty
  *   plain object (null, array, class instance, empty object).
  */
@@ -422,7 +447,12 @@ function rebuildInstance(
     Object.getPrototypeOf(plain) === Object.prototype &&
     Object.keys(plain).length > 0;
   if (typeof build === 'function' && isPlainObject) {
-    return build.call(klass, plain, { isNewRecord: false });
+    reconstructionDepth += 1;
+    try {
+      return build.call(klass, plain, { isNewRecord: false });
+    } finally {
+      reconstructionDepth -= 1;
+    }
   }
   return plain;
 }
@@ -769,6 +799,8 @@ function wrapGetter(
 ): () => unknown {
   return function (this: unknown) {
     if (isOff()) return original.call(this);
+
+    if (reconstructionDepth > 0) return original.call(this);
 
     const callKey = makeCallKey(connectionPrefix(this), name, []);
 

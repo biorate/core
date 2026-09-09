@@ -1076,3 +1076,94 @@ describe('instance method refId scoping (production pattern)', () => {
     }
   });
 });
+
+describe('replay reconstruction — constructor-internal pass-through (1.10.1)', () => {
+  /**
+   * Mimics the Sequelize hydration-vs-reconstruction options mismatch (the T4
+   *   "BUILD SEED" gap):
+   *   - record: `findAll` hydrates rows via `this.build(row, hydrationOptions)`
+   *     (`raw: true, attributes: [...]`) — the vanilla-style constructor calls the
+   *     wrapped prototype `_initValues(values, hydrationOptions)` on a refId-less
+   *     instance (unscoped call key, options that record mode only ever produced
+   *     with `raw`/`attributes`).
+   *   - replay: `rebuildInstance` runs the ORIGINAL `build(plain, { isNewRecord:
+   *     false })` — a DIFFERENT options object → a different unscoped
+   *     `_initValues` call key that record mode never produced →
+   *     `UnimockReplayMissError` unless the reconstruction-internal pass-through
+   *     forwards the inner wrapped call to the original. No seeded `build()` call
+   *     is used or needed.
+   */
+  class ReconModel {
+    public dataValues: Record<string, unknown> = {};
+    /** The options the constructor-internal `_initValues` call saw. */
+    public __initOptions?: Record<string, unknown>;
+
+    constructor(values: Record<string, unknown>, options?: Record<string, unknown>) {
+      this._initValues(values, options);
+    }
+
+    public _initValues(values: Record<string, unknown>, options?: Record<string, unknown>): void {
+      this.dataValues = { ...values };
+      this.__initOptions = options ? { ...options } : undefined;
+    }
+
+    public toJSON(): Record<string, unknown> {
+      return { ...this.dataValues };
+    }
+
+    public static build(
+      values: Record<string, unknown>,
+      options?: Record<string, unknown>,
+    ): ReconModel {
+      return new this(values, options ? { ...options } : undefined);
+    }
+
+    public static findAll(_options: Record<string, unknown>): ReconModel[] {
+      return [
+        this.build({ id: 101, title: 'alpha' }, {
+          isNewRecord: false,
+          raw: true,
+          attributes: ['id', 'title'],
+        }),
+        this.build({ id: 102, title: 'beta' }, {
+          isNewRecord: false,
+          raw: true,
+          attributes: ['id', 'title'],
+        }),
+      ];
+    }
+  }
+
+  it('replays findAll reconstruction without a seed (hydration vs reconstruction options differ)', () => {
+    const prevMode = SnapshotStore.mode;
+    SnapshotStore.setMode('record');
+
+    try {
+      @Mockable({ snapshotDir: '/tmp/unimock-test', statics: [['findAll', 'build']] })
+      class MockedReconHydration extends ReconModel {}
+
+      const live = MockedReconHydration.findAll({ where: { id: 101 } });
+      expect(live).toHaveLength(2);
+      expect(live.every((r) => r instanceof MockedReconHydration)).toBe(true);
+      flushAllSnapshots();
+
+      SnapshotStore.setMode('replay');
+      // Pre-fix: this throws UnimockReplayMissError `no snapshot found for
+      // call "_initValues:..."` — the reconstruction options were never recorded.
+      const rows = MockedReconHydration.findAll({ where: { id: 101 } }) as ReconModel[];
+      expect(rows).toHaveLength(2);
+      // Post-construction calls are served from the recorded call:{refId}: entries.
+      expect(rows.map((r) => r.toJSON())).toEqual([
+        { id: 101, title: 'alpha' },
+        { id: 102, title: 'beta' },
+      ]);
+      // The vanilla constructor ran the ORIGINAL _initValues (pass-through) with
+      // the reconstruction options — instance state populated by the original.
+      for (const r of rows) {
+        expect(r.__initOptions).toEqual({ isNewRecord: false });
+      }
+    } finally {
+      SnapshotStore.setMode(prevMode);
+    }
+  });
+});

@@ -37,7 +37,7 @@
 | `src/interfaces.ts`           | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode`                                                                                               |
 | `src/index.ts`                | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
 | `vitest/setup.ts`             | Хук `afterAll` для автоматического `flushAllSnapshots()`                                                                                                            |
-| `tests/unimock.spec.ts`       | 46 unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping)                                                |
+| `tests/unimock.spec.ts`       | 47 unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                     |
 | `tests/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming)                                                                                                     |
 | `tests/sequelize.spec.ts`     | 3 интеграционных теста: instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                                                    |
 | `tests/clickhouse.spec.ts`    | 2 интеграционных теста с реальным Clickhouse (record + replay)                                                                                                      |
@@ -157,6 +157,12 @@ new MockHandler(target, refId, store) → Proxy
 
 `rebuildInstance(klass, plain)`: берёт `staticOriginals.get(klass)?.get('build') ?? (klass as any).build` (единственный задокументированный `as any` в src) и вызывает `build.call(klass, plain, { isNewRecord: false })` — но только если `plain` — непустой plain object и `build` — функция; иначе (null, array, инстанс, пустой объект) plain возвращается как есть. Реконструированный инстанс — инстанс **декорированного** класса (`new this(...)` внутри оригинального `build`), поэтому его прототип-методы обёрнуты, и replay-lookup для них работает.
 
+### `reconstructionDepth` — pass-through во время replay-реконструкции (1.10.1)
+
+`let reconstructionDepth = 0;` (module-private, `src/mockable.ts`). `rebuildInstance` повышает/понижает его вокруг `build.call` (`++`/`try`/`finally --`). Пока счётчик `> 0`, первая проверка в `makeMethodWrapper` (после `isOff()` — T1-инвариант zero-overhead fast path остаётся первой) и в `wrapGetter` **возвращает `original` напрямую** — до `reportArgs`/`makeCallKey` (hashing во время реконструкции не считается — бесплатный перф-бонус) и до replay/record-веток.
+
+Причина: vanilla-конструктор Sequelize при реконструкции повторно входит в обёрнутые прототип-методы (например `_initValues`) с опциями, которые record-режим **никогда не производил** (recon `{isNewRecord:false,_schema:null,_schemaDelimiter:""}` vs hydration `{raw:true,attributes:[...]}`) → unscoped call-key `_initValues:{hash}` без entry → `UnimockReplayMissError`. С pass-through состояние инстанса заполняет сам Sequelize; post-construction-вызовы (`toJSON`/`get`/…) обслуживаются из записанных `call:{refId}:`-entries после `registerStaticRefs`. Последствие: опции конструирования в record и replay **больше не обязаны совпадать**; сид-вызов `build()` с идентичными аргументами (внутренний T4-воркараунд) больше не нужен. Статический путь `build` не меняется: `staticOriginals`-инвариант T3 цел (dedicated-тест «replays build() itself without replay-lookup miss» зелёный).
+
 ### `toPlain` — рекурсивная конверсия результата статика (record-сторона)
 
 Порядок: null/примитивы/функции как есть → `instanceof Date/RegExp/Error` + `Buffer.isBuffer` как есть (**до** toJSON-проверки — у Date и Buffer есть `toJSON`, конвертировать нельзя) → `typeof value.toJSON === 'function'` → `value.toJSON()` (результат **не** рекурсируется дальше) → `Array.isArray` → `map(toPlain)` → plain object (прототип `Object.prototype`) → rebuild через `Object.entries` с `toPlain` по значениям → иначе как есть.
@@ -216,7 +222,7 @@ Replay: для каждого callback-аргумента воспроизвод
 ## Тестирование
 
 ```bash
-# Все тесты (15 files / 91 tests, верифицировано 2026-09-08)
+# Все тесты (15 files / 92 tests, верифицировано 2026-09-09)
 pnpm --filter @biorate/unimock test
 
 # Unit только
@@ -324,7 +330,7 @@ if (!isRecord()) return;
 ## Чеклист при изменениях
 
 - [ ] `pnpm --filter @biorate/unimock run build` — проверка типов
-- [ ] `pnpm --filter @biorate/unimock run test` — все 91 тест (15 files)
+- [ ] `pnpm --filter @biorate/unimock run test` — все 92 тест (15 files)
 - [ ] Если менялась сериализация — проверить `serialize`/`deserialize` symmetric
 - [ ] Если менялся `hasMethods` — проверить различение connection/data объектов
 - [ ] Если менялся replay-механизм — запустить clickhouse integration test (docker должен быть up)

@@ -85,24 +85,6 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
   it('model mock instance-returning statics', async () => {
     root2.connector.use('modelConn');
 
-    // Replay reconstruction runs the ORIGINAL static build → `new TestModel(...)`,
-    // and the vanilla constructor calls wrapped instance methods (_initValues/set)
-    // on an instance that has no refId yet — unscoped call keys with the
-    // reconstruction options ({ isNewRecord: false }). Record mode never executes
-    // that exact path, so calling build() with the same args here (a real
-    // record/replay bidirectional assertion) records those unscoped entries and
-    // makes the replay reconstruction lookups hit.
-    const seeded = TestModel.build(
-      { id: 10, title: 'via-mockable-model', value: 777 },
-      { isNewRecord: false },
-    );
-    expect(seeded.toJSON()).toMatchObject({
-      id: 10,
-      title: 'via-mockable-model',
-      value: 777,
-    });
-    expect(seeded).toBeInstanceOf(Model);
-
     const all = await TestModel.findAll({ where: { id: 10 } });
     expect(all).toHaveLength(1);
     for (const found of all) {

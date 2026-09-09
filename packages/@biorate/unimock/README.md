@@ -149,6 +149,8 @@ Available static method lists:
 
 In replay mode, the recorded result of a static that returns model instances is reconstructed into real model instances (with working `toJSON()`, `get()`, `save()`, etc.) by the model's own **original** static `build(plain, { isNewRecord: false })`, captured before wrapping. The result shape determines how the recorded data is rebuilt:
 
+**Constructor-internal pass-through (1.10.1).** While the original `build` is running, the vanilla constructor may re-enter the model's own wrapped prototype methods (e.g. Sequelize `_initValues`). Those inner calls are **not** looked up in the snapshot store — they pass through to the original implementations, and instance state is populated by the model's own constructor. This means the construction options seen in record mode (hydration: `raw: true, attributes: [...]`) and in replay (reconstruction: `{ isNewRecord: false }`) **do not need to match**, and seeding a `build()` call with identical args is no longer required. Post-construction calls (`toJSON()`, `get()`, …) are served from the recorded per-instance `call:{refId}:` entries.
+
 | Statics                                                   | Replayed result                                                             |
 | --------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `create`, `findOne`, `findByPk`, `build`                  | a single model instance                                                     |
@@ -375,7 +377,7 @@ typeof noop.callback; // 'function'
 
 5. **Unrecorded instance methods throw in replay.** An instance method that was never invoked on an instance during the record phase throws `UnimockReplayMissError` when called in replay.
 
-6. **Replayed instances are rebuilt by the model's own static `build`.** The model class must be importable and initialized at replay time (for Sequelize models: bound to a `Sequelize` instance, e.g. via `new Sequelize({ models: [Model] })` in test setup).
+6. **Replayed instances are rebuilt by the model's own static `build`.** The model class must be importable and initialized at replay time (for Sequelize models: bound to a `Sequelize` instance, e.g. via `new Sequelize({ models: [Model] })` in test setup). Since 1.10.1, constructor-internal calls during the rebuild pass through to the originals — record/replay construction options no longer need to match and a seeded `build()` call is not required.
 
 ### Learn
 
