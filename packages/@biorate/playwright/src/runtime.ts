@@ -2,10 +2,7 @@ import { test } from '@playwright/test';
 import type { Label, Link } from 'allure-js-commons';
 import { ALLURE_RUNTIME_MESSAGE_CONTENT_TYPE } from 'allure-js-commons/sdk/reporter';
 import type { RuntimeMessage } from 'allure-js-commons/sdk';
-import {
-  MessageTestRuntime,
-  setGlobalTestRuntime,
-} from 'allure-js-commons/sdk/runtime';
+import { MessageTestRuntime, setGlobalTestRuntime } from 'allure-js-commons/sdk/runtime';
 
 class BioratePlaywrightRuntime extends MessageTestRuntime {
   async attachment(name: string, content: Buffer | string, options: any) {
