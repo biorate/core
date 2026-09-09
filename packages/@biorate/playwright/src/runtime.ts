@@ -1,11 +1,13 @@
 import { test } from '@playwright/test';
 import type { Label, Link } from 'allure-js-commons';
+import { ALLURE_RUNTIME_MESSAGE_CONTENT_TYPE } from 'allure-js-commons/sdk/reporter';
+import type { RuntimeMessage } from 'allure-js-commons/sdk';
 import {
-  MessageHolderTestRuntime,
+  MessageTestRuntime,
   setGlobalTestRuntime,
 } from 'allure-js-commons/sdk/runtime';
 
-class BioratePlaywrightRuntime extends MessageHolderTestRuntime {
+class BioratePlaywrightRuntime extends MessageTestRuntime {
   async attachment(name: string, content: Buffer | string, options: any) {
     await test.info().attach(name, {
       body: content,
@@ -78,6 +80,13 @@ class BioratePlaywrightRuntime extends MessageHolderTestRuntime {
 
   async step<T = void>(name: string, body: () => T | PromiseLike<T>): Promise<T> {
     return test.step(name, () => body() as Promise<T>);
+  }
+
+  async sendMessage(message: RuntimeMessage) {
+    await test.info().attach(`Allure Metadata (${message.type})`, {
+      contentType: ALLURE_RUNTIME_MESSAGE_CONTENT_TYPE,
+      body: Buffer.from(JSON.stringify(message), 'utf8'),
+    });
   }
 
   labels(...labels: Label[]) {
