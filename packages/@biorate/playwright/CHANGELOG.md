@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.5](https://github.com/biorate/core/compare/@biorate/playwright@2.3.4...@biorate/playwright@2.3.5) (2026-09-09)
+
+**Note:** Version bump only for package @biorate/playwright
+
 ## [2.3.4](https://github.com/biorate/core/compare/@biorate/playwright@2.3.2...@biorate/playwright@2.3.4) (2026-09-09)
 
 ### Bug Fixes
