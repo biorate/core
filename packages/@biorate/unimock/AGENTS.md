@@ -39,7 +39,7 @@
 | `vitest/setup.ts`             | Хук `afterAll` для автоматического `flushAllSnapshots()`                                                                                                            |
 | `tests/unimock.spec.ts`       | 47 unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                     |
 | `tests/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming)                                                                                                     |
-| `tests/sequelize.spec.ts`     | 3 интеграционных теста: instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                                                    |
+| `tests/sequelize.spec.ts`     | 4 интеграционных теста (+destroy: instance + static); instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                      |
 | `tests/clickhouse.spec.ts`    | 2 интеграционных теста с реальным Clickhouse (record + replay)                                                                                                      |
 | `tests/rdkafka.spec.ts`       | 1 интеграционный тест с реальным Kafka (record + replay в одном файле)                                                                                              |
 | `tests/noop.spec.ts`          | 16 тестов для noop Proxy                                                                                                                                            |
@@ -155,6 +155,8 @@ new MockHandler(target, refId, store) → Proxy
 | `wrapper`       | `findAndCountAll`                                         | `{ ...data, rows: data.rows.map(rebuildInstance) }` |
 | (нет в таблице) | кастомные/неизвестные статик-и                            | deserialized data as-is (legacy-поведение)          |
 
+Статик-и, отсутствующие в таблице (destroy, count, truncate и др.), проходят default-ветку: deserialized data as-is (legacy-поведение) — покрыто тестами в tests/sequelize.spec.ts.
+
 `rebuildInstance(klass, plain)`: берёт `staticOriginals.get(klass)?.get('build') ?? (klass as any).build` (единственный задокументированный `as any` в src) и вызывает `build.call(klass, plain, { isNewRecord: false })` — но только если `plain` — непустой plain object и `build` — функция; иначе (null, array, инстанс, пустой объект) plain возвращается как есть. Реконструированный инстанс — инстанс **декорированного** класса (`new this(...)` внутри оригинального `build`), поэтому его прототип-методы обёрнуты, и replay-lookup для них работает.
 
 ### `reconstructionDepth` — pass-through во время replay-реконструкции (1.10.1)
@@ -222,7 +224,7 @@ Replay: для каждого callback-аргумента воспроизвод
 ## Тестирование
 
 ```bash
-# Все тесты (15 files / 92 tests, верифицировано 2026-09-09)
+# Все тесты (15 files / 93 tests, верифицировано 2026-09-14)
 pnpm --filter @biorate/unimock test
 
 # Unit только

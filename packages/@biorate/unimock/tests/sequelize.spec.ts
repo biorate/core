@@ -121,4 +121,34 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
       expect(found.get('id')).toBe(10);
     }
   });
+
+  it('model mock destroy (instance + static)', async () => {
+    root2.connector.use('modelConn');
+
+    await TestModel.create({ id: 20, title: 'destroy-me', value: 1 });
+    await TestModel.create({ id: 21, title: 'keep-me', value: 2 });
+
+    const found = (await TestModel.findByPk(20))!;
+    expect(found).toBeInstanceOf(Model);
+    expect(found.get('title')).toBe('destroy-me');
+
+    await found.destroy();
+
+    const gone = await TestModel.findAll({ where: { id: 20 } });
+    expect(gone).toHaveLength(0);
+
+    const rest = await TestModel.findAll({ where: { id: 21 } });
+    expect(rest).toHaveLength(1);
+    expect(rest[0].toJSON()).toMatchObject({ id: 21, title: 'keep-me', value: 2 });
+
+    await TestModel.create({ id: 22, title: 'static-destroy', value: 3 });
+    const destroyed = await TestModel.destroy({ where: { id: 22 } });
+    expect(destroyed).toBe(1);
+
+    const gone22 = await TestModel.findAll({ where: { id: 22 } });
+    expect(gone22).toHaveLength(0);
+
+    const kept = await TestModel.count({ where: { id: 21 } });
+    expect(kept).toBe(1);
+  });
 });
