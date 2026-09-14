@@ -42,6 +42,17 @@
 - Точечно по пакету: `pnpm --filter @biorate/<имя> run <script>` (например `test`, `build`).
 - Согласованные версии Node/pnpm: поле **`engines`** в корневом `package.json`.
 
+## Публикация
+
+Публикация в npm идёт через **trusted publishing (OIDC)** в GitHub Actions: publish-токены не используются, право на publish выдаёт одноразовый OIDC-токен раннера.
+
+- **Процесс релиза:** (1) локально `npx lerna version` (как раньше: bump + changelog + commit) → (2) push в master → (3) GitHub Actions → workflow `publish` → Run workflow (branch master) → (4) мониторинг запуска. Триггер только один: `workflow_dispatch` (ручной запуск из UI); триггеры push/tags/schedule намеренно не используются.
+- **Что делает workflow:** `pnpm install` → `pnpm run build` → import smoke tests (`import-test:cjs` / `import-test:esm`) → `npx lerna publish from-package --yes` через OIDC (пермиссия `id-token: write` в workflow). Publish-токен не нужен: lerna >= 9 подхватывает OIDC автоматически. Provenance проставляет npm сам при OIDC-публикации, дополнительных флагов нет.
+- **HG1 (единоразово, выполняет владелец): настройка trusted publishers.** Требования: node >= 22.14, npm >= 11.15, аккаунт npm не заблокирован (инцидент 2026-09-14: security-hold после входа с recovery-code; снимается автоматически ~72 ч либо через https://www.npmjs.com/support). Команды: `npm i -g npm@^11.15.0 && DRY_RUN=1 bash .scripts/configure-npm-trust.sh` (проверить список) → затем прогон без DRY_RUN: `bash .scripts/configure-npm-trust.sh`. На первом пакете npm попросит интерактивную 2FA (окно «skip 2FA» живёт 5 минут, bulk-прогон должен стартовать сразу), дальше пакеты обрабатываются подряд. Проверка: `VERIFY=1 bash .scripts/configure-npm-trust.sh` → `OK: 55/55`, плюс глазами глянуть сырой вывод `npm trust list @biorate/unimock`.
+- **HG2 (выполняет владелец): первая публикация.** GitHub Actions → workflow `publish` → Run workflow (master) → дождаться зелёного запуска → проверить на npmjs.com: новая версия пакета и бейдж provenance.
+- **HG3 (выполняет владелец): гигиена токенов.** После первой успешной CI-публикации отозвать старый bypass-2FA гранулированный токен на npmjs.com.
+- **Fallback и дедлайн.** С января 2027 прямая публикация access-токенами прекратится (сейчас они уже ограничены staged publishing). Локальная публикация без токена = npm staged publishing (https://docs.npmjs.com/trusted-publishers).
+
 ## Обязательный рабочий процесс
 
 Перед написанием кода строго следуй алгоритму:
