@@ -31,8 +31,7 @@
       ]
     },
     "publish": {
-      "ignore": ["@biorate-tools/import-test"],
-      "verifyAccess": false
+      "ignore": ["@biorate-tools/import-test"]
     }
   },
   "npmClient": "pnpm"
