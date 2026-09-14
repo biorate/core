@@ -65,21 +65,21 @@
   "author": "llevkin",
   "license": "MIT",
   "devDependencies": {
-    "@biorate/clickhouse": "workspace:*",
-    "@biorate/config": "workspace:*",
-    "@biorate/ioredis": "workspace:*",
-    "@biorate/mongodb": "workspace:*",
-    "@biorate/mssql": "workspace:*",
-    "@biorate/opensearch": "workspace:*",
-    "@biorate/pg": "workspace:*",
-    "@biorate/prometheus": "workspace:*",
-    "@biorate/proxy": "workspace:*",
-    "@biorate/proxy-prometheus": "workspace:*",
-    "@biorate/rdkafka": "workspace:*",
-    "@biorate/redis": "workspace:*",
-    "@biorate/schema-registry": "workspace:*",
-    "@biorate/sequelize": "workspace:*",
-    "@biorate/tools": "workspace:*",
+    "@biorate/clickhouse": "2.4.3",
+    "@biorate/config": "3.2.3",
+    "@biorate/ioredis": "2.3.0",
+    "@biorate/mongodb": "2.1.3",
+    "@biorate/mssql": "2.1.3",
+    "@biorate/opensearch": "2.1.3",
+    "@biorate/pg": "2.1.3",
+    "@biorate/prometheus": "3.1.3",
+    "@biorate/proxy": "2.1.6",
+    "@biorate/proxy-prometheus": "2.1.6",
+    "@biorate/rdkafka": "2.3.3",
+    "@biorate/redis": "2.1.3",
+    "@biorate/schema-registry": "3.1.9",
+    "@biorate/sequelize": "2.2.3",
+    "@biorate/tools": "3.1.2",
     "@confluentinc/kafka-javascript": "latest",
     "@types/lodash-es": "^4.17.12"
   },
@@ -87,8 +87,9 @@
     "lodash-es": ">=4.18.1"
   },
   "dependencies": {
-    "@biorate/errors": "workspace:*",
-    "@biorate/inversion": "workspace:*",
-    "@biorate/lifecycled": "workspace:*"
-  }
+    "@biorate/errors": "3.1.2",
+    "@biorate/inversion": "3.1.3",
+    "@biorate/lifecycled": "3.2.3"
+  },
+  "gitHead": "1887b4b6db14f64f3410e6afb7b75f673bc50252"
 }
