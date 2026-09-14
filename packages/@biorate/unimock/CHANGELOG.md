@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/biorate/core/compare/@biorate/unimock@1.11.0...@biorate/unimock@1.11.1) (2026-09-14)
+
+### Bug Fixes
+
+- **unimock:** destroy tests ([17f9bd7](https://github.com/biorate/core/commit/17f9bd7b7ead8a9429500ba54088056a3fa670e1))
+
 # [1.11.0](https://github.com/biorate/core/compare/@biorate/unimock@1.10.0...@biorate/unimock@1.11.0) (2026-09-09)
 
 ### Features
