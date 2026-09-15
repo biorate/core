@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.11.1...%40biorate%2Funimock%401.12.0) (2026-09-15)
+
+### Features
+
+- **unimock:** serialize shared object references fix ([60f1159](https://github.com/biorate/core/commit/60f11599857b93806fac165436bb929acc0ca36c))
+
 ## [1.11.2](https://github.com/biorate/core/compare/@biorate/unimock@1.11.1...@biorate/unimock@1.11.2) (2026-09-15)
 
 ### Bug Fixes
