@@ -17,7 +17,13 @@ export { UnimockReplayMissError, UnimockSerializeError } from './errors';
 export { parseUnimockMode, resolveSnapshotDir } from './env';
 
 /** @description Serialiser/deserialiser and call key utilities. */
-export { serialize, deserialize, stableHash, makeCallKey } from './serializer';
+export {
+  serialize,
+  deserialize,
+  stableHash,
+  stableStringify,
+  makeCallKey,
+} from './serializer';
 
 /** @description Snapshot store — per-class persistence of recorded calls. */
 export {

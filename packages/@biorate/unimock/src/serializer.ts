@@ -34,7 +34,7 @@ import { stripRequestEnabled } from './env';
  *   Used internally by {@link stableHash} to produce consistent call keys.
  *
  * @param value - value to stringify
- * @param seen - set of already-visited objects (circular reference guard)
+ * @param seen - set of objects currently on the recursion path (circular reference guard)
  */
 export function stableStringify(value: unknown, seen?: Set<object>): string {
   if (value === null) return 'null';
@@ -49,18 +49,22 @@ export function stableStringify(value: unknown, seen?: Set<object>): string {
     const s = seen ?? new Set<object>();
     if (s.has(value)) return '';
     s.add(value);
-    if (Array.isArray(value))
-      return `[${value.map((v) => stableStringify(v, s)).join(',')}]`;
-    const keys = Object.keys(value as Record<string, unknown>).sort();
-    return `{${keys
-      .map(
-        (k) =>
-          `${JSON.stringify(k)}:${stableStringify(
-            (value as Record<string, unknown>)[k],
-            s,
-          )}`,
-      )
-      .join(',')}}`;
+    try {
+      if (Array.isArray(value))
+        return `[${value.map((v) => stableStringify(v, s)).join(',')}]`;
+      const keys = Object.keys(value as Record<string, unknown>).sort();
+      return `{${keys
+        .map(
+          (k) =>
+            `${JSON.stringify(k)}:${stableStringify(
+              (value as Record<string, unknown>)[k],
+              s,
+            )}`,
+        )
+        .join(',')}}`;
+    } finally {
+      s.delete(value);
+    }
   }
   return JSON.stringify(String(value));
 }
@@ -100,7 +104,8 @@ export function makeCallKey(prefix: string, method: string, args: unknown[]): st
  *   When {@link stripRequestEnabled} is set, the `request` key is skipped (Axios HTTP internals).
  *
  * @param value - value to serialise
- * @param seen - cyclic reference guard (Map of object → placeholder)
+ * @param seen - cyclic reference guard (Map of object → placeholder, stores only objects
+ *   currently on the recursion path — removed once their subtree has been serialised)
  */
 export function serialize(
   value: unknown,
@@ -128,22 +133,30 @@ export function serialize(
     const map = seen ?? new Map<object, string>();
     if (map.has(value)) return { t: T_UNDEFINED };
     map.set(value, '');
-    const mapped: SerializedValue[] = [];
-    for (const item of value) mapped.push(serialize(item, map, symbols));
-    return { t: T_ARRAY, v: mapped };
+    try {
+      const mapped: SerializedValue[] = [];
+      for (const item of value) mapped.push(serialize(item, map, symbols));
+      return { t: T_ARRAY, v: mapped };
+    } finally {
+      map.delete(value);
+    }
   }
   if (typeof value === 'object' && value !== null) {
     const map = seen ?? new Map<object, string>();
     if (map.has(value)) return { t: T_UNDEFINED };
     map.set(value, '');
-    const entries = Object.entries(value as Record<string, unknown>);
-    const mapped: { k: string; v: SerializedValue }[] = [];
-    for (const [k, v] of entries) {
-      if (k.startsWith(PROP_PRIVATE_PREFIX)) continue;
-      if (stripRequestEnabled() && k === 'request') continue;
-      mapped.push({ k, v: serialize(v, map, symbols) });
+    try {
+      const entries = Object.entries(value as Record<string, unknown>);
+      const mapped: { k: string; v: SerializedValue }[] = [];
+      for (const [k, v] of entries) {
+        if (k.startsWith(PROP_PRIVATE_PREFIX)) continue;
+        if (stripRequestEnabled() && k === 'request') continue;
+        mapped.push({ k, v: serialize(v, map, symbols) });
+      }
+      return { t: T_OBJECT, v: mapped };
+    } finally {
+      map.delete(value);
     }
-    return { t: T_OBJECT, v: mapped };
   }
   return { t: T_STRING, v: String(value) };
 }

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.2](https://github.com/biorate/core/compare/@biorate/unimock@1.11.1...@biorate/unimock@1.11.2) (2026-09-15)
+
+### Bug Fixes
+
+- **unimock:** serialize shared (non-cyclic) object references in full ([47f3a2b](https://github.com/biorate/core/commit/47f3a2b)) — replaced the "seen forever" cycle guard with an active-stack guard in `serialize`/`stableStringify` so repeated references to the same object are no longer collapsed to `undefined`. This fixes `UnimockReplayMissError` mismatches for configs whose entries share one `options` object via `@biorate/config` template links.
+
 ## [1.11.1](https://github.com/biorate/core/compare/@biorate/unimock@1.11.0...@biorate/unimock@1.11.1) (2026-09-14)
 
 ### Bug Fixes

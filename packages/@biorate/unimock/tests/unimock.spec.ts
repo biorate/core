@@ -3,6 +3,7 @@ import {
   serialize,
   deserialize,
   stableHash,
+  stableStringify,
   makeCallKey,
   Mockable,
   SnapshotStore,
@@ -89,6 +90,59 @@ describe('serializer', () => {
     const k1 = makeCallKey('', 'query', ['SELECT 1']);
     const k2 = makeCallKey('', 'query', ['SELECT 2']);
     expect(k1).not.toBe(k2);
+  });
+
+  it('serializes repeated (shared, non-cyclic) references fully — no false undefined', () => {
+    const options = { host: 'localhost', dialect: 'postgres' };
+    const config = [
+      { name: 'base-ru-migrations', options },
+      { name: 'cashoffice-migrations', options },
+      { name: 'debug-migrations', options },
+    ];
+    const des = deserialize(serialize(config)) as Array<{
+      name: string;
+      options: unknown;
+    }>;
+    expect(des).toHaveLength(3);
+    for (const entry of des) {
+      expect(entry.name).toBeTruthy();
+      expect(entry.options).toEqual(options);
+    }
+  });
+
+  it('shared references in object values are fully serialized', () => {
+    const shared = { ttl: 500 };
+    const obj = { a: shared, b: shared, c: shared };
+    const des = deserialize(serialize(obj)) as Record<string, unknown>;
+    expect(des.a).toEqual(shared);
+    expect(des.b).toEqual(shared);
+    expect(des.c).toEqual(shared);
+  });
+
+  it('true cycles still terminate and produce undefined placeholder', () => {
+    const a: Record<string, unknown> = {};
+    const b: Record<string, unknown> = {};
+    a.self = a;
+    a.b = b;
+    b.back = a;
+    expect(() => serialize(a)).not.toThrow();
+  });
+
+  it('stableHash is symmetric for shared references (record == replay args)', () => {
+    const shared = { options: { dialect: 'postgres' } };
+    const a = stableHash([shared, shared]);
+    const b = stableHash([
+      { options: { dialect: 'postgres' } },
+      { options: { dialect: 'postgres' } },
+    ]);
+    expect(a).toBe(b);
+  });
+
+  it('stableStringify repeats shared scalar-bearing objects (no false empty)', () => {
+    const shared = { dialect: 'postgres' };
+    const out = stableStringify([{ name: 'a', opts: shared }, { name: 'b', opts: shared }]);
+    expect(out).not.toContain('""');
+    expect((out.match(/postgres/g) ?? []).length).toBe(2);
   });
 });
 
