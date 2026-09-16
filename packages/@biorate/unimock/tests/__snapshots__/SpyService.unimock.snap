@@ -1,1 +1,3 @@
-{"version":1,"className":"SpyService","calls":{"get:":{"args":[],"result":{"t":"string","v":"real"}}}}
+{"_jsonl":1,"className":"SpyService"}
+{"_t":"c","key":"get:","call":{"args":[],"result":{"t":"string","v":"real"}}}
+{"_t":"c","key":"get:","call":{"args":[],"result":{"t":"string","v":"real"}}}

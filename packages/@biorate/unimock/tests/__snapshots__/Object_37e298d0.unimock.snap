@@ -1,1 +1,5 @@
-{"version":1,"className":"Object_37e298d0","calls":{"foo:":{"args":[],"result":{"t":"string","v":"bar"}},"baz:":{"args":[],"result":{"t":"number","v":42}}}}
+{"_jsonl":1,"className":"Object_37e298d0"}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"string","v":"bar"}}}
+{"_t":"c","key":"baz:","call":{"args":[],"result":{"t":"number","v":42}}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"string","v":"bar"}}}
+{"_t":"c","key":"baz:","call":{"args":[],"result":{"t":"number","v":42}}}

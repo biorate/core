@@ -1,1 +1,13 @@
-{"version":1,"className":"DeepService","calls":{"foo:":{"args":[],"result":{"t":"ref","v":"ref_7"}},"call:ref_6:bar:":{"args":[],"result":{"t":"object","v":[{"k":"baz","v":{"t":"string","v":"<callback>"}}]}},"call:ref_7:bar:":{"args":[],"result":{"t":"ref","v":"ref_8"}}}}
+{"_jsonl":1,"className":"DeepService"}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"object","v":[{"k":"bar","v":{"t":"string","v":"<callback>"}}]}}}
+{"_t":"c","key":"call:ref_6:bar:","call":{"args":[],"result":{"t":"object","v":[{"k":"baz","v":{"t":"string","v":"<callback>"}}]}}}
+{"_t":"c","key":"call:ref_7:bar:","call":{"args":[],"result":{"t":"ref","v":"ref_8"}}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"ref","v":"ref_6"}}}
+{"_t":"c","key":"call:ref_6:bar:","call":{"args":[],"result":{"t":"object","v":[{"k":"baz","v":{"t":"string","v":"<callback>"}}]}}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"ref","v":"ref_7"}}}
+{"_t":"c","key":"call:ref_7:bar:","call":{"args":[],"result":{"t":"ref","v":"ref_8"}}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"object","v":[{"k":"bar","v":{"t":"string","v":"<callback>"}}]}}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"ref","v":"ref_6"}}}
+{"_t":"c","key":"call:ref_6:bar:","call":{"args":[],"result":{"t":"object","v":[{"k":"baz","v":{"t":"string","v":"<callback>"}}]}}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"ref","v":"ref_7"}}}
+{"_t":"c","key":"call:ref_7:bar:","call":{"args":[],"result":{"t":"ref","v":"ref_8"}}}

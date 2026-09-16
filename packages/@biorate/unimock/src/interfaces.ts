@@ -102,6 +102,16 @@ export interface SerializedPooledString {
   v: string;
 }
 
+/**
+ * @description Reference to a pooled value — a large serialized subtree stored once as a
+ *   `_t:'v'` blob and referenced by `@<ref>` from call entries. The dedup index survives
+ *   flushes, so identical subtrees (e.g. Sequelize `include` trees) are never re-written.
+ */
+export interface SerializedPooledValue {
+  t: 'pooled_value';
+  v: string;
+}
+
 /** @description Serialized symbol (description stored as string). */
 export interface SerializedSymbol {
   t: 'symbol';
@@ -120,7 +130,8 @@ export type SerializedValue =
   | SerializedSymbol
   | SerializedArray
   | SerializedObject
-  | SerializedPooledString;
+  | SerializedPooledString
+  | SerializedPooledValue;
 
 /** @description A single recorded call entry within a snapshot file. */
 export interface SnapshotCall {

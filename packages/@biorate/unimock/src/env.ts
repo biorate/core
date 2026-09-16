@@ -33,6 +33,17 @@ export function resolveSnapshotDir(override?: string, importMeta?: ImportMeta): 
 export function gzipEnabled(): boolean {
   return envFlag('UNIMOCK_GZIP');
 }
+export function valuePoolEnabled(): boolean {
+  return process.env.UNIMOCK_VALUE_POOL !== '0';
+}
+export function valuePoolThreshold(): number {
+  const n = Number(process.env.UNIMOCK_VALUE_POOL_THRESHOLD);
+  return Number.isFinite(n) && n > 0 ? n : 100_000;
+}
+export function valuePoolCountLimit(): number {
+  const n = Number(process.env.UNIMOCK_VALUE_POOL_COUNT_LIMIT);
+  return Number.isFinite(n) && n > 0 ? n : 2_000;
+}
 export function stripRequestEnabled(): boolean {
   return envFlag('UNIMOCK_STRIP_REQUEST');
 }
