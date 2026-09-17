@@ -1099,6 +1099,39 @@ describe('instance method refId scoping (production pattern)', () => {
     }
   });
 
+  it('REPLAY FALLBACK: unrecorded method on an unregistered (no-refs) rebuilt instance falls back to original', () => {
+    const prevMode = SnapshotStore.mode;
+    SnapshotStore.setMode('record');
+
+    try {
+      @Mockable({ snapshotDir: '/tmp/unimock-test', statics: [['build', 'findAll']] })
+      class MockedProdFallback extends RefIdModel {}
+
+      toEntity(MockedProdFallback.findAll()); // only toJSON was invoked during record
+      const store = getSnapshotStore('MockedProdFallback', '/tmp/unimock-test');
+      // Simulate the production raw:true case: record-time rows were plain objects,
+      // so the static entry has no refs and no per-instance method records.
+      const calls = (store as any).data.calls as Record<string, any>;
+      delete calls['findAll:'].refs;
+      delete calls['toJSON:'];
+      for (const key of Object.keys(calls)) {
+        if (key.startsWith('call:')) delete calls[key];
+      }
+      flushAllSnapshots();
+
+      SnapshotStore.setMode('replay');
+      const rows = MockedProdFallback.findAll() as RefIdModel[];
+      expect(rows).toHaveLength(3);
+      expect(rows.every((r) => r instanceof MockedProdFallback)).toBe(true);
+      // Unregistered rebuilt instances fall back to their own recorded dataValues
+      // instead of throwing UnimockReplayMissError (Sequelize attribute-getter parity).
+      expect(rows.map((r) => r.get('id'))).toEqual([1, 2, 3]);
+      expect(rows.map((r) => r.get('title'))).toEqual(['one', 'two', 'three']);
+    } finally {
+      SnapshotStore.setMode(prevMode);
+    }
+  });
+
   it('GETTER SCOPING: getter on ref-id instances records/replays per-instance', () => {
     const prevMode = SnapshotStore.mode;
     SnapshotStore.setMode('record');

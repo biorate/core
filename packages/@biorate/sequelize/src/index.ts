@@ -119,8 +119,10 @@ export class SequelizeConnector extends Connector<
   protected async connect(config: ISequelizeConfig) {
     let connection: ISequelizeConnection;
     try {
-      config.options.models = this.models[config.name] ?? [];
-      connection = new Sequelize(config.options);
+      connection = new Sequelize({
+        ...config.options,
+        models: this.models[config.name] ?? [],
+      });
       await connection.authenticate();
     } catch (e: unknown) {
       throw new SequelizeCantConnectError(<Error>e);

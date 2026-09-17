@@ -12,6 +12,7 @@ export const T_NUMBER = 'number';
 export const T_STRING = 'string';
 export const T_POOLED_STRING = 'pooled_string';
 export const T_POOLED_VALUE = 'pooled_value';
+export const T_COMPACT_TABLE = 'compact_table';
 export const T_BIGINT = 'bigint';
 export const T_DATE = 'date';
 export const T_REGEXP = 'regexp';

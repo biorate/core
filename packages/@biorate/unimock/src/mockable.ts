@@ -3,6 +3,7 @@ import type { MockableOptions, SerializedValue, SnapshotCall } from './interface
 import type { SnapshotStore } from './snapshot-store';
 import { getSnapshotStore, isOff, isReplay, isRecord } from './snapshot-store';
 import { makeCallKey, serialize, deserialize, stableHash } from './serializer';
+import { UnimockReplayMissError } from './errors';
 import { MockHandler } from './mock-handler';
 import {
   hasMethods,
@@ -22,6 +23,14 @@ import {
 } from './constants';
 
 const refIdCache = new WeakMap<object, string>();
+
+/**
+ * @description Instances constructed by {@link rebuildInstance} during replay. Only these
+ *   are eligible for the replay-miss fallback: they are reconstructed locally from
+ *   recorded data, so unrecorded instance methods (e.g. Sequelize attribute getters)
+ *   can safely read their own state. Fresh user-constructed instances stay strict.
+ */
+const replayRebuilt = new WeakSet<object>();
 
 /**
  * @description Original (pre-wrap) implementations of wrapped static methods, keyed by class.
@@ -219,9 +228,20 @@ function makeMethodWrapper(
     const callKey = makeCallKey(connectionPrefix(this), name, reportArgs);
 
     if (isReplay()) {
-      return replayOverride
-        ? replayOverride(this, callKey, name, args, store)
-        : replayCall(callKey, name, args, store);
+      if (replayOverride) return replayOverride(this, callKey, name, args, store);
+      try {
+        return replayCall(callKey, name, args, store);
+      } catch (e) {
+        // Only replay-rebuilt, unregistered instances fall back to their own recorded
+        // data (Sequelize attribute getters). Everything else stays strict.
+        if (
+          e instanceof UnimockReplayMissError &&
+          replayRebuilt.has(this as object) &&
+          refIdCache.get(this as object) === undefined
+        )
+          return original.apply(this, args);
+        throw e;
+      }
     }
     if (!isRecord()) return original.apply(this, args);
 
@@ -449,7 +469,9 @@ function rebuildInstance(
   if (typeof build === 'function' && isPlainObject) {
     reconstructionDepth += 1;
     try {
-      return build.call(klass, plain, { isNewRecord: false });
+      const instance = build.call(klass, plain, { isNewRecord: false });
+      if (instance !== null && typeof instance === 'object') replayRebuilt.add(instance);
+      return instance;
     } finally {
       reconstructionDepth -= 1;
     }

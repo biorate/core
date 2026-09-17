@@ -112,6 +112,17 @@ export interface SerializedPooledValue {
   v: string;
 }
 
+/**
+ * @description Columnar encoding of a uniform array of objects (all items share the same
+ *   key list, in the same order). `k` holds the column keys, `r` holds one row per item —
+ *   each row's cells align positionally with `k`. Opt-in via `UNIMOCK_COMPACT`;
+ *   depooling transposes back to the original array unconditionally.
+ */
+export interface SerializedCompactTable {
+  t: 'compact_table';
+  v: { k: string[]; r: SerializedValue[][] };
+}
+
 /** @description Serialized symbol (description stored as string). */
 export interface SerializedSymbol {
   t: 'symbol';
@@ -131,7 +142,8 @@ export type SerializedValue =
   | SerializedArray
   | SerializedObject
   | SerializedPooledString
-  | SerializedPooledValue;
+  | SerializedPooledValue
+  | SerializedCompactTable;
 
 /** @description A single recorded call entry within a snapshot file. */
 export interface SnapshotCall {

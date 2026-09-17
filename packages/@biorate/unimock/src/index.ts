@@ -30,6 +30,8 @@ export {
   SnapshotStore,
   getSnapshotStore,
   flushAllSnapshots,
+  releaseSnapshotStore,
+  resetSnapshotStores,
   isReplay,
   isRecord,
 } from './snapshot-store';
@@ -40,7 +42,13 @@ export { MockHandler } from './mock-handler';
 /** @description Universal noop proxy — any property, method, call, construct returns itself. */
 export { noop } from './noop';
 
-import { flushAllSnapshots, isReplay, isRecord } from './snapshot-store';
+import {
+  flushAllSnapshots,
+  releaseSnapshotStore,
+  resetSnapshotStores,
+  isReplay,
+  isRecord,
+} from './snapshot-store';
 import { parseUnimockMode, resolveSnapshotDir } from './env';
 
 /**
@@ -57,6 +65,14 @@ import { parseUnimockMode, resolveSnapshotDir } from './env';
 export const Unimock = {
   /** @description Flushes all dirty snapshot stores to disk. */
   flush: flushAllSnapshots,
+  /**
+   * @description Releases a single snapshot store's in-memory data by class name. No-op
+   *   when `className` is absent or no store is registered. Call between host test files to
+   *   bound memory in a long-running worker (e.g. vitest `isolate: false`).
+   */
+  release: releaseSnapshotStore,
+  /** @description Releases all snapshot stores' in-memory data (clears the registry). */
+  resetStores: resetSnapshotStores,
   /** @description Current operating mode (from `UNIMOCK` env). */
   get mode() {
     return parseUnimockMode();

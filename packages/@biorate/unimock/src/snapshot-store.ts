@@ -1,4 +1,11 @@
-import { existsSync, mkdirSync, readFileSync, openSync, closeSync, writeSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  openSync,
+  closeSync,
+  writeSync,
+} from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
@@ -16,6 +23,8 @@ import {
   valuePoolEnabled,
   valuePoolThreshold,
   valuePoolCountLimit,
+  rowPoolEnabled,
+  compactEnabled,
 } from './env';
 import {
   SEPARATOR_STORE,
@@ -26,6 +35,7 @@ import {
   MODE_OFF,
   T_POOLED_STRING,
   T_POOLED_VALUE,
+  T_COMPACT_TABLE,
   T_STRING,
   T_ARRAY,
   T_OBJECT,
@@ -125,12 +135,21 @@ export class SnapshotStore implements SnapshotStoreEntry {
     this.data = this.load();
   }
 
+  /**
+   * @description Reads the snapshot file into a buffer, decompressing it when gzip-compressed.
+   *   Scopes the raw bytes so the buffer is garbage-collectable before the (large) jsonl walk.
+   */
+  private readSnapshotBuffer(): Buffer {
+    const raw = readFileSync(this.snapshotPath);
+    const gzipped = raw[0] === 0x1f && raw[1] === 0x8b;
+    return gzipped ? gunzipSync(raw) : raw;
+  }
+
   private load(): SnapshotFile {
     try {
       if (existsSync(this.snapshotPath)) {
-        const raw = readFileSync(this.snapshotPath);
-        const gzipped = raw[0] === 0x1f && raw[1] === 0x8b;
-        const buf = gzipped ? gunzipSync(raw) : raw;
+        // Local only (never stored on `this`), so the transient read/decompressed bytes drop after load().
+        const buf = this.readSnapshotBuffer();
         if (buf.length > 0 && this.isJsonl(buf)) {
           this.jsonlOnDisk = true;
           this.jsonlHeaderWritten = true;
@@ -245,6 +264,27 @@ export class SnapshotStore implements SnapshotStoreEntry {
     } else {
       this.appendJsonl();
     }
+    this.dirty = false;
+  }
+
+  /**
+   * @description Frees this store's in-memory snapshot data so it can be garbage-collected
+   *   once no references to the store remain. Clears `data.calls` and the string/value pools
+   *   and pending indexes (all become GC-eligible). After release the store holds no snapshot
+   *   data; if it is requested again via {@link getSnapshotStore} a fresh store is created and
+   *   lazily re-loaded from disk.
+   *
+   *   Call this between host test files to bound memory in a long-running worker (e.g. vitest
+   *   `isolate: false`). Make sure the store has been flushed first.
+   */
+  public release(): void {
+    this.data = { version: SNAPSHOT_FILE_VERSION, className: this.className, calls: {} };
+    this.stringPool.clear();
+    this.valuePool.clear();
+    this.valueIndex.clear();
+    this.pendingKeys.clear();
+    this.pendingStrings.clear();
+    this.pendingValues.clear();
     this.dirty = false;
   }
 
@@ -380,18 +420,87 @@ export class SnapshotStore implements SnapshotStoreEntry {
     return result;
   }
 
+  private poolVisit(x: SerializedValue): SerializedValue {
+    if (valuePoolEnabled() && (x.t === T_ARRAY || x.t === T_OBJECT)) {
+      if (this.isLargeValue(x)) return { t: T_POOLED_VALUE, v: this.getValueRef(x) };
+    }
+    if (x.t === T_STRING && typeof x.v === 'string' && x.v.length > POOL_THRESHOLD) {
+      return { t: T_POOLED_STRING, v: this.getStringRef(x.v) };
+    }
+    return x;
+  }
+
   private poolValue(v: SerializedValue): SerializedValue {
+    if (rowPoolEnabled()) {
+      return this.poolValueDeep(v);
+    }
     return this.visitSerialized(v, (x) => {
-      if (valuePoolEnabled() && (x.t === T_ARRAY || x.t === T_OBJECT)) {
-        if (this.isLargeValue(x)) {
-          return { t: T_POOLED_VALUE, v: this.getValueRef(x) };
-        }
+      if (compactEnabled() && x.t === T_ARRAY && Array.isArray(x.v)) {
+        const table = this.tryCompactTable(x.v, (cell) =>
+          this.visitSerialized(cell, (y) => this.poolVisit(y)),
+        );
+        if (table) return table;
       }
-      if (x.t === T_STRING && typeof x.v === 'string' && x.v.length > POOL_THRESHOLD) {
-        return { t: T_POOLED_STRING, v: this.getStringRef(x.v) };
-      }
-      return x;
+      return this.poolVisit(x);
     });
+  }
+
+  private poolValueDeep(v: SerializedValue): SerializedValue {
+    let current: SerializedValue = v;
+    if (current.t === T_ARRAY && Array.isArray(current.v)) {
+      if (compactEnabled()) {
+        const table = this.tryCompactTable(current.v, (cell) => this.poolValueDeep(cell));
+        if (table) return table;
+      }
+      current = {
+        t: T_ARRAY,
+        v: current.v.map((item) => this.poolValueDeep(item as SerializedValue)),
+      };
+    } else if (current.t === T_OBJECT && Array.isArray(current.v)) {
+      current = {
+        t: T_OBJECT,
+        v: current.v.map((entry) => ({
+          k: entry.k,
+          v: this.poolValueDeep(entry.v as SerializedValue),
+        })),
+      };
+    }
+    if (
+      current.t === T_STRING &&
+      typeof current.v === 'string' &&
+      current.v.length > POOL_THRESHOLD
+    ) {
+      return { t: T_POOLED_STRING, v: this.getStringRef(current.v) };
+    }
+    if (valuePoolEnabled() && (current.t === T_ARRAY || current.t === T_OBJECT)) {
+      return { t: T_POOLED_VALUE, v: this.getValueRef(current) };
+    }
+    return current;
+  }
+
+  /**
+   * @description Encodes a uniform array of objects (>= 50 items, identical key list and
+   *   order) as a columnar {@link SerializedCompactTable}. Returns `undefined` when the
+   *   shape does not qualify, leaving the array untouched.
+   */
+  private tryCompactTable(
+    items: SerializedValue[],
+    poolCell: (v: SerializedValue) => SerializedValue,
+  ): SerializedValue | undefined {
+    if (items.length < 50) return undefined;
+    const first = items[0];
+    if (first?.t !== T_OBJECT) return undefined;
+    const k = first.v.map((entry) => entry.k);
+    const rows: SerializedValue[][] = [];
+    for (const item of items) {
+      if (item?.t !== T_OBJECT) return undefined;
+      if (item.v.length !== k.length) return undefined;
+      for (let i = 0; i < k.length; i++) {
+        if (item.v[i]?.k !== k[i]) return undefined;
+      }
+      rows.push(item.v.map((entry) => poolCell(entry.v)));
+    }
+    return { t: T_COMPACT_TABLE, v: { k, r: rows } };
   }
 
   private isLargeValue(v: SerializedValue): boolean {
@@ -420,19 +529,29 @@ export class SnapshotStore implements SnapshotStoreEntry {
         const value = this.valuePool.get(x.v);
         if (value) return value;
       }
+      if (x.t === T_COMPACT_TABLE) {
+        const { k, r } = x.v;
+        return {
+          t: T_ARRAY,
+          v: r.map((row) => ({
+            t: T_OBJECT,
+            v: k.map((key, i) => ({ k: key, v: row[i] })),
+          })),
+        };
+      }
       return x;
     });
   }
 }
 
 /**
- * @description Splits a buffer into lines without materialising it as one giant string.
+ * @description Lazily yields a buffer's lines one at a time, so the caller never holds the whole
+ *   line array (a large transient allocation on multi-hundred-MB snapshots).
  *   Uses `subarray(pos).indexOf(0x0a)` so the searched offset stays relative to a small view —
  *   `Buffer.indexOf` on absolute offsets wraps into a negative int32 at locations >= 2^31,
  *   which would be misinterpreted as "not found" and collapse the tail into a single line.
  */
-function splitLines(buf: Buffer): string[] {
-  const lines: string[] = [];
+function* splitLines(buf: Buffer): Generator<string> {
   let pos = 0;
   while (pos < buf.length) {
     const relEnd = buf.subarray(pos).indexOf(0x0a);
@@ -440,11 +559,10 @@ function splitLines(buf: Buffer): string[] {
     if (relEnd < 0) end = buf.length;
     else end = pos + relEnd;
     if (end > pos) {
-      lines.push(buf.subarray(pos, end).toString('utf-8'));
+      yield buf.subarray(pos, end).toString('utf-8');
     }
     pos = end + 1;
   }
-  return lines;
 }
 
 /**
@@ -476,6 +594,41 @@ export function getSnapshotStore(
 export function flushAllSnapshots(): void {
   if (!isRecord()) return;
   for (const store of stores.values()) store.flush();
+}
+
+/**
+ * @description Releases the snapshot store(s) for a given class name, freeing their in-memory
+ *   call/string/value pools so they can be garbage-collected. The released store(s) are also
+ *   removed from the global registry; if needed again they are re-created and lazily re-loaded
+ *   from disk on the next {@link getSnapshotStore}. No-op when `className` is absent or no store
+ *   exists for it.
+ *
+ *   Call this between host test files to bound memory in a long-running worker (e.g. vitest
+ *   `isolate: false`). Make sure data has been flushed first.
+ *
+ * @param className - name of the mocked class to release
+ */
+export function releaseSnapshotStore(className?: string): void {
+  if (className === undefined) return;
+  for (const [key, store] of stores) {
+    if (store.className === className) {
+      store.release();
+      stores.delete(key);
+    }
+  }
+}
+
+/**
+ * @description Releases every cached snapshot store, freeing all in-memory call/string/value
+ *   pools and clearing the global registry. Any released store is re-created and lazily
+ *   re-loaded from disk on the next {@link getSnapshotStore} for its class.
+ *
+ *   Call this between host test files to bound memory in a long-running worker (e.g. vitest
+ *   `isolate: false`). Make sure data has been flushed first.
+ */
+export function resetSnapshotStores(): void {
+  for (const store of stores.values()) store.release();
+  stores.clear();
 }
 
 /**

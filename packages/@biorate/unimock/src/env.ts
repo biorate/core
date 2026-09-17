@@ -50,3 +50,9 @@ export function stripRequestEnabled(): boolean {
 export function skipProxyArgsEnabled(): boolean {
   return envFlag('UNIMOCK_SKIP_CONN_ARGS') || envFlag('UNIMOCK_SKIP_PROXY_ARGS');
 }
+export function rowPoolEnabled(): boolean {
+  return envFlag('UNIMOCK_ROW_POOL');
+}
+export function compactEnabled(): boolean {
+  return envFlag('UNIMOCK_COMPACT');
+}
