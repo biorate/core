@@ -1,0 +1,3 @@
+{"_jsonl":2,"className":"Object_37e298d0"}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"string","v":"bar"},"refs":null}}
+{"_t":"c","key":"baz:","call":{"args":[],"result":{"t":"number","v":42},"refs":null}}

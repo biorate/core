@@ -1,0 +1,6 @@
+{"_jsonl":2,"className":"DeepService"}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"object","v":[{"k":"bar","v":{"t":"string","v":"<callback>"}}]},"refs":null}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"ref","v":"ref_Object_1"},"refs":null}}
+{"_t":"c","key":"call:ref_Object_1:bar:","call":{"args":[],"result":{"t":"object","v":[{"k":"baz","v":{"t":"string","v":"<callback>"}}]},"refs":null}}
+{"_t":"c","key":"foo:","call":{"args":[],"result":{"t":"ref","v":"ref_Object_2"},"refs":null}}
+{"_t":"c","key":"call:ref_Object_2:bar:","call":{"args":[],"result":{"t":"ref","v":"ref_Object_3"},"refs":null}}

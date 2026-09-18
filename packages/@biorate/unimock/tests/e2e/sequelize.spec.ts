@@ -1,0 +1,154 @@
+import { describe, expect, it, beforeAll, afterAll } from 'vitest';
+import { Model, Sequelize } from '@biorate/sequelize';
+import { isReplay } from '../../src';
+import {
+  DDL,
+  DML,
+  PG,
+  SELECT,
+  SELECT_MODEL,
+  TestModel,
+  setupSequelize,
+  teardownSequelize,
+  setupModelMock,
+  teardownModelMock,
+} from '../__mocks__/sequelize';
+
+let root: Awaited<ReturnType<typeof setupSequelize>>;
+
+describe('@biorate/sequelize — connector.query() CRUD', () => {
+  beforeAll(async () => {
+    root = await setupSequelize();
+  });
+
+  afterAll(() => {
+    teardownSequelize();
+  });
+
+  it('sequelize connector', async () => {
+    await root.connector.query('DROP TABLE IF EXISTS mock_models CASCADE');
+    const simple = await root.connector.query<{ result: number }>('SELECT 1 AS result');
+    expect(simple[0].result).toBe(1);
+
+    await root.connector.query(DDL);
+    await root.connector.query(DML);
+    const rows = await root.connector.query<{ id: number; title: string; value: number }>(
+      SELECT,
+    );
+    expect(rows[0].title).toBe('test');
+    expect(rows[0].value).toBe(42);
+  });
+});
+
+describe('@biorate/sequelize — @Mockable on Model class', () => {
+  let root2: Awaited<ReturnType<typeof setupModelMock>>;
+
+  beforeAll(async () => {
+    root2 = await setupModelMock();
+    if (isReplay()) {
+      // Replay never executes the original `connect()` (it is replayed from
+      // the connector snapshot), so TestModel is never bound to a Sequelize
+      // instance and its sequelize-typescript `isInitialized` flag stays
+      // false — the original static build() would throw
+      // ModelNotInitializedError during replay reconstruction. Bind the model
+      // to an offline Sequelize instance (the constructor performs no I/O)
+      // to emulate what the real connect() does in record mode.
+      new Sequelize({ ...PG, dialect: 'postgres' as const, models: [TestModel] });
+    }
+  });
+
+  afterAll(() => {
+    teardownModelMock();
+  });
+
+  it('model mock connector', async () => {
+    root2.connector.use('modelConn');
+
+    await root2.connector.query('DROP TABLE IF EXISTS mock_models CASCADE');
+    await TestModel.sync();
+    await TestModel.create({ id: 10, title: 'via-mockable-model', value: 777 });
+    const found = await TestModel.findOne({ where: { id: 10 } });
+    expect(found).toMatchObject({
+      id: 10,
+      title: 'via-mockable-model',
+      value: 777,
+    });
+
+    const rows = await root2.connector.query<{
+      id: number;
+      title: string;
+      value: number;
+    }>(SELECT_MODEL);
+    expect(rows[0].title).toBe('via-mockable-model');
+  });
+
+  it('model mock instance-returning statics', async () => {
+    root2.connector.use('modelConn');
+
+    const all = await TestModel.findAll({ where: { id: 10 } });
+    expect(all).toHaveLength(1);
+    for (const found of all) {
+      expect(found.toJSON()).toMatchObject({
+        id: 10,
+        title: 'via-mockable-model',
+        value: 777,
+      });
+      expect(found).toBeInstanceOf(Model);
+      expect(found.get('id')).toBe(10);
+    }
+
+    const counted = await TestModel.findAndCountAll({ where: { id: 10 } });
+    expect(counted.count).toBe(1);
+    expect(counted.rows).toHaveLength(1);
+    const row = counted.rows[0];
+    expect(row.toJSON()).toMatchObject({
+      id: 10,
+      title: 'via-mockable-model',
+      value: 777,
+    });
+    expect(row).toBeInstanceOf(Model);
+    expect(row.get('id')).toBe(10);
+
+    const unscopedRows = await TestModel.unscoped().findAll({ where: { id: 10 } });
+    expect(unscopedRows).toHaveLength(1);
+    for (const found of unscopedRows) {
+      expect(found.toJSON()).toMatchObject({
+        id: 10,
+        title: 'via-mockable-model',
+        value: 777,
+      });
+      expect(found).toBeInstanceOf(Model);
+      expect(found.get('id')).toBe(10);
+    }
+  });
+
+  it('model mock destroy (instance + static)', async () => {
+    root2.connector.use('modelConn');
+
+    await TestModel.create({ id: 20, title: 'destroy-me', value: 1 });
+    await TestModel.create({ id: 21, title: 'keep-me', value: 2 });
+
+    const found = (await TestModel.findByPk(20))!;
+    expect(found).toBeInstanceOf(Model);
+    expect(found.get('title')).toBe('destroy-me');
+
+    await found.destroy();
+
+    const gone = await TestModel.findAll({ where: { id: 20 } });
+    expect(gone).toHaveLength(0);
+
+    const rest = await TestModel.findAll({ where: { id: 21 } });
+    expect(rest).toHaveLength(1);
+    expect(rest[0].toJSON()).toMatchObject({ id: 21, title: 'keep-me', value: 2 });
+
+    await TestModel.create({ id: 22, title: 'static-destroy', value: 3 });
+    const destroyed = await TestModel.destroy({ where: { id: 22 } });
+    expect(destroyed).toBe(1);
+
+    const gone22 = await TestModel.findAll({ where: { id: 22 } });
+    expect(gone22).toHaveLength(0);
+
+    const kept = await TestModel.count({ where: { id: 21 } });
+    expect(kept).toBe(1);
+  });
+});

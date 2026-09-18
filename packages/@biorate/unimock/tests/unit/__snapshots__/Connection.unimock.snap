@@ -1,0 +1,2 @@
+{"_jsonl":2,"className":"Connection"}
+{"_t":"c","key":"query:1a20d486","call":{"args":[{"t":"string","v":"SELECT 1"}],"result":{"t":"object","v":[{"k":"rows","v":{"t":"array","v":[{"t":"string","v":"SELECT 1"}]}}]},"refs":null}}

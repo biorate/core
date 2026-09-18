@@ -42,12 +42,12 @@
 | `src/constants.ts`            | Постоянные: mode-строки, t/v теги, префиксы call-key, `POOL_THRESHOLD`, `JSONL_FORMAT_VERSION`                                                                      |
 | `src/index.ts`                | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
 | `vitest/setup.ts`             | Хук `afterAll` для автоматического `flushAllSnapshots()`                                                                                                            |
-| `tests/unimock.spec.ts`       | 47+ unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                     |
-| `tests/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming)                                                                                                     |
-| `tests/sequelize.spec.ts`     | 4 интеграционных теста (+destroy: instance + static); instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                      |
-| `tests/clickhouse.spec.ts`    | 2 интеграционных теста с реальным Clickhouse (record + replay)                                                                                                      |
-| `tests/rdkafka.spec.ts`       | 1 интеграционный тест с реальным Kafka (record + replay в одном файле)                                                                                              |
-| `tests/noop.spec.ts`          | 16 тестов для noop Proxy                                                                                                                                            |
+| `tests/unit/unimock.spec.ts`       | 47+ unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                     |
+| `tests/unit/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming)                                                                                                     |
+| `tests/e2e/sequelize.spec.ts`     | 4 интеграционных теста (+destroy: instance + static); instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                      |
+| `tests/e2e/clickhouse.spec.ts`    | 2 интеграционных теста с реальным Clickhouse (record + replay)                                                                                                      |
+| `tests/e2e/rdkafka.spec.ts`       | 1 интеграционный тест с реальным Kafka (record + replay в одном файле)                                                                                              |
+| `tests/unit/noop.spec.ts`          | 16 тестов для noop Proxy                                                                                                                                            |
 
 ## Поток данных (sequence)
 
@@ -160,7 +160,7 @@ new MockHandler(target, refId, store) → Proxy
 | `wrapper`       | `findAndCountAll`                                         | `{ ...data, rows: data.rows.map(rebuildInstance) }` |
 | (нет в таблице) | кастомные/неизвестные статик-и                            | deserialized data as-is (legacy-поведение)          |
 
-Статик-и, отсутствующие в таблице (destroy, count, truncate и др.), проходят default-ветку: deserialized data as-is (legacy-поведение) — покрыто тестами в tests/sequelize.spec.ts.
+Статик-и, отсутствующие в таблице (destroy, count, truncate и др.), проходят default-ветку: deserialized data as-is (legacy-поведение) — покрыто тестами в tests/e2e/sequelize.spec.ts.
 
 `rebuildInstance(klass, plain)`: берёт `staticOriginals.get(klass)?.get('build') ?? (klass as any).build` (единственный задокументированный `as any` в src) и вызывает `build.call(klass, plain, { isNewRecord: false })` — но только если `plain` — непустой plain object и `build` — функция; иначе (null, array, инстанс, пустой объект) plain возвращается как есть. Реконструированный инстанс — инстанс **декорированного** класса (`new this(...)` внутри оригинального `build`), поэтому его прототип-методы обёрнуты, и replay-lookup для них работает.
 
@@ -228,21 +228,29 @@ Replay: для каждого callback-аргумента воспроизвод
 
 ## Тестирование
 
+Сьют (25 files / 136 tests, верифицировано 2026-09-18) делится на два класса:
+
+**Unit — 15 файлов** (`tests/unit/`), самодостаточны, внешняя инфраструктура не нужна (сами выставляют `SnapshotStore.setMode` / `process.env`): `unimock`, `noop`, `comprehensive`, `compact-table`, `content-dedup`, `mode-guards`, `record-session`, `snapshot-store-lifecycle`, `iterator-replay`, `static-sequence-replay`, `refid-determinism`, `association-replay`, `aggregate-replay`, `proxy`, `proxy-prometheus`.
+
+**E2E — 10 файлов** (`tests/e2e/`), требуют живую инфраструктуру (docker-compose сервисы): `clickhouse` (:8123), `ioredis` (:6379), `mongodb` (:27017), `mssql` (:1433), `opensearch` (:9200), `pg` (:5432), `rdkafka` (:9092), `redis` (:6379), `schema-registry` (:8085), `sequelize` (:5432).
+
+Важно: даже в replay-режиме e2e **требуют** live-инфру, потому что `@init()` из `@biorate/lifecycled` выполняется реально (ограничение #1) и коннектится к сервису до обращения к снапшоту. Полностью офлайн без инфры — только `test:unit` (или `UNIMOCK=replay npx vitest run tests/unit`).
+
 ```bash
-# Все тесты (25 files / 137 tests, верифицировано 2026-09-18)
+# Весь сьют в replay-режиме (e2e в этом прогоне всё равно требуют поднятую инфру — ограничение #1)
 pnpm --filter @biorate/unimock test
 
-# Unit только
-pnpm --filter @biorate/unimock exec npx vitest run tests/unimock.spec.ts
+# Unit только (без e2e-файлов, без инфраструктуры, off-режим)
+pnpm --filter @biorate/unimock run test:unit
 
-# Clickhouse (нужен clickhouse в docker)
-pnpm --filter @biorate/unimock exec npx vitest run tests/clickhouse.spec.ts
+# E2E только (запись снапшотов; требут поднятую инфру: docker compose up -d)
+pnpm --filter @biorate/unimock run test:e2e
 
-# RDKafka (нужен kafka на localhost:9092)
-pnpm --filter @biorate/unimock exec npx vitest run tests/rdkafka.spec.ts
+# Индивидуальный unit-спек
+pnpm --filter @biorate/unimock exec npx vitest run tests/unit/unimock.spec.ts
 
-# Replay-режим (без инфраструктуры)
-UNIMOCK=replay pnpm --filter @biorate/unimock exec npx vitest run tests/{clickhouse,rdkafka}.spec.ts
+# Replay-режим точечно (e2e всё равно требуют live-инфру для @init(), см. выше)
+UNIMOCK=replay pnpm --filter @biorate/unimock exec npx vitest run tests/e2e/{clickhouse,rdkafka}.spec.ts
 ```
 
 Clickhouse:
@@ -278,7 +286,7 @@ curl http://localhost:8123/ping  # → Ok.
 - Sweep при `setMode()`: переход в record (из replay/off) сбрасывает память всех кэшированных store реестра (включая `valueIndex`, счётчики пулов, `jsonlOnDisk=false` → следующий flush = `writeJsonlFull`). Повторный `setMode('record')` без выхода из record сессию НЕ очищает (sweep только на переходе).
 - Edge: если record-сессия ни разу не флашится, файл на диске остаётся устаревшим (держит контент прошлой сессии).
 - Параллельная безопасность: 1 файл снапшота = одна record-сессия-владелец; className+dir уникальны per spec-файл или mkdtemp-директория. Параллельный replay безопасен по построению (не пишет).
-- Контракт зафиксирован тестами: `tests/mode-guards.spec.ts` (4 теста: replay/off не создают файл; replay не меняет существующий байт-в-байт; record happy-path) и `tests/record-session.spec.ts` (5 тестов: чистая сессия, отсутствие межпрогонных дублей, инвариант повторного `setMode`, in-process record→flush→replay, fresh-конструктор).
+- Контракт зафиксирован тестами: `tests/unit/mode-guards.spec.ts` (4 теста: replay/off не создают файл; replay не меняет существующий байт-в-байт; record happy-path) и `tests/unit/record-session.spec.ts` (5 тестов: чистая сессия, отсутствие межпрогонных дублей, инвариант повторного `setMode`, in-process record→flush→replay, fresh-конструктор).
 
 ## devDependencies для интеграционных тестов
 
@@ -294,17 +302,17 @@ curl http://localhost:8123/ping  # → Ok.
 
 ## clickhouse-тест
 
-`tests/clickhouse.spec.ts` использует DI из `@biorate/inversion`. Record: `SnapshotStore.setMode('record')` → DI-init → `SELECT 1` → `flushAllSnapshots()`. Replay: `SnapshotStore.setMode('replay')` → unbind/rebind DI → `$run()` (`@init()` live) → `get().query()` из снапшота.
+`tests/e2e/clickhouse.spec.ts` использует DI из `@biorate/inversion`. Record: `SnapshotStore.setMode('record')` → DI-init → `SELECT 1` → `flushAllSnapshots()`. Replay: `SnapshotStore.setMode('replay')` → unbind/rebind DI → `$run()` (`@init()` live) → `get().query()` из снапшота.
 
 ## rdkafka-тест
 
-`tests/rdkafka.spec.ts` — admin (createTopic) + producer (produce) + consumer (subscribe/consumePromise/commitMessageSync/unsubscribe). Record: `SnapshotStore.setMode('record')` → DI-init → produce message → consume → verify content → flush. Replay: `SnapshotStore.setMode('replay')` → consume из снапшота. Вызовы `admin.createTopic`, `producer.produce`, `consumer.commitMessageSync` — на MockHandler-wrapped объектах, в replay воспроизводятся из снапшота.
+`tests/e2e/rdkafka.spec.ts` — admin (createTopic) + producer (produce) + consumer (subscribe/consumePromise/commitMessageSync/unsubscribe). Record: `SnapshotStore.setMode('record')` → DI-init → produce message → consume → verify content → flush. Replay: `SnapshotStore.setMode('replay')` → consume из снапшота. Вызовы `admin.createTopic`, `producer.produce`, `consumer.commitMessageSync` — на MockHandler-wrapped объектах, в replay воспроизводятся из снапшота.
 
 **Важно**: `beforeAll` чистит топик через прямой `AdminClient` (не через Mockable), чтобы избежать race condition между запусками. Этот вызов выполняется только в record-режиме.
 
 ## schema-registry-тест
 
-`tests/schema-registry.spec.ts` — HTTP API методы (ping, postSubjectsVersions, getSubjectsByVersion, getSchemasById, getSubjects, getSubjectsVersions, getSchemasTypes, deleteSubjects). Все вызовы на MockHandler-wrapped объектах — в replay-режиме воспроизводятся из снапшота.
+`tests/e2e/schema-registry.spec.ts` — HTTP API методы (ping, postSubjectsVersions, getSubjectsByVersion, getSchemasById, getSubjects, getSubjectsVersions, getSchemasTypes, deleteSubjects). Все вызовы на MockHandler-wrapped объектах — в replay-режиме воспроизводятся из снапшота.
 
 **Важно**:
 
@@ -358,8 +366,8 @@ if (!isRecord()) return;
 
 - [ ] `pnpm --filter @biorate/unimock run build` — проверка типов
 - [ ] `pnpm --filter @biorate/unimock run test` — все 137 тестов (25 files)
-- [ ] Если менялся режимный контракт (`record()`/`flush()`/`setMode()`/конструктор store) — прогнать контракт-тесты: `npx vitest run tests/mode-guards.spec.ts tests/record-session.spec.ts`
-- [ ] Если менялся sweep/fresh-сессия — проверить отсутствие межпрогонных дублей `_t:'c'` (`tests/record-session.spec.ts`) и неизменность файлов снапшотов при `UNIMOCK=replay`
+- [ ] Если менялся режимный контракт (`record()`/`flush()`/`setMode()`/конструктор store) — прогнать контракт-тесты: `npx vitest run tests/unit/mode-guards.spec.ts tests/unit/record-session.spec.ts`
+- [ ] Если менялся sweep/fresh-сессия — проверить отсутствие межпрогонных дублей `_t:'c'` (`tests/unit/record-session.spec.ts`) и неизменность файлов снапшотов при `UNIMOCK=replay`
 - [ ] Если менялась сериализация — проверить `serialize`/`deserialize` symmetric
 - [ ] Если менялся `hasMethods` — проверить различение connection/data объектов
 - [ ] Если менялся replay-механизм — запустить clickhouse integration test (docker должен быть up)
