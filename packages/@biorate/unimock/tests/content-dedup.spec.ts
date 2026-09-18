@@ -2,7 +2,8 @@ import { mkdtempSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
-import { SnapshotStore, serialize } from '../src';
+import { MODE_OFF, MODE_RECORD, SnapshotStore, serialize } from '../src';
+import type { UnimockMode } from '../src';
 
 const dirs: string[] = [];
 const mkdir = (): string => {
@@ -13,6 +14,17 @@ const mkdir = (): string => {
 afterAll(() => {
   for (const d of dirs) rmSync(d, { recursive: true, force: true });
 });
+
+/** Runs `fn` under `mode`, always restoring the previous global mode. */
+const withMode = (mode: UnimockMode, fn: () => void): void => {
+  const prev = SnapshotStore.mode;
+  SnapshotStore.setMode(mode);
+  try {
+    fn();
+  } finally {
+    SnapshotStore.setMode(prev);
+  }
+};
 
 // Build an array of N identical row objects.
 const rows = (n: number) =>
@@ -28,8 +40,10 @@ describe('nested content-address pooling (T2.2)', () => {
     const storeOn = new SnapshotStore('DedupOn', dirOn);
     process.env.UNIMOCK_ROW_POOL = '1';
     try {
-      storeOn.record('call:1', call);
-      storeOn.flush();
+      withMode(MODE_RECORD, () => {
+        storeOn.record('call:1', call);
+        storeOn.flush();
+      });
     } finally {
       delete process.env.UNIMOCK_ROW_POOL;
     }
@@ -40,22 +54,30 @@ describe('nested content-address pooling (T2.2)', () => {
     process.env.UNIMOCK_VALUE_POOL = '0';
     const dirOff = mkdir();
     const storeOff = new SnapshotStore('DedupOff', dirOff);
-    storeOff.record('call:1', call);
-    storeOff.flush();
+    withMode(MODE_RECORD, () => {
+      storeOff.record('call:1', call);
+      storeOff.flush();
+    });
     const sizeOff = statSync(storeOff.snapshotPath).size;
     delete process.env.UNIMOCK_VALUE_POOL;
 
     // Fresh re-load of the ON snapshot must reproduce the EXACT original value.
-    const relaod = new SnapshotStore('DedupOn', dirOn);
-    const got = relaod.get('call:1');
-    expect(got?.result).toEqual({ t: 'string', v: 'ok' });
-    // args[0] should deep-equal the original serialized array (nested refs expanded)
-    expect(got?.args?.[0]).toEqual(serialize(arr));
+    withMode(MODE_OFF, () => {
+      const relaod = new SnapshotStore('DedupOn', dirOn);
+      const got = relaod.get('call:1');
+      expect(got?.result).toEqual({ t: 'string', v: 'ok' });
+      // args[0] should deep-equal the original serialized array (nested refs expanded)
+      expect(got?.args?.[0]).toEqual(serialize(arr));
+    });
 
     // Materially smaller with pooling.
     expect(sizeOn).toBeLessThan(sizeOff);
     // Report
     // eslint-disable-next-line no-console
-    console.log(`T2.2 size: with-pool=${sizeOn} bytes, no-pool=${sizeOff} bytes, ratio=${(sizeOff / sizeOn).toFixed(1)}x`);
+    console.log(
+      `T2.2 size: with-pool=${sizeOn} bytes, no-pool=${sizeOff} bytes, ratio=${(
+        sizeOff / sizeOn
+      ).toFixed(1)}x`,
+    );
   });
 });

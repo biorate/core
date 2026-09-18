@@ -1,9 +1,10 @@
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { gunzipSync } from 'node:zlib';
 import { afterAll, describe, expect, it } from 'vitest';
-import { SnapshotStore, releaseSnapshotStore, serialize } from '../src';
-import type { SnapshotCall } from '../src';
+import { MODE_OFF, MODE_RECORD, SnapshotStore, releaseSnapshotStore, serialize } from '../src';
+import type { SnapshotCall, UnimockMode } from '../src';
 
 /**
  * Opt-in compact-table encoding (`UNIMOCK_COMPACT`): a uniform array of objects
@@ -29,10 +30,7 @@ const trackClass = (className: string): string => {
 };
 
 /** Temporarily swaps env values (`undefined` deletes) and restores them afterwards. */
-const withEnv = (
-  values: Record<string, string | undefined>,
-  fn: () => void,
-): void => {
+const withEnv = (values: Record<string, string | undefined>, fn: () => void): void => {
   const saved: Record<string, string | undefined> = {};
   for (const [key, value] of Object.entries(values)) {
     saved[key] = process.env[key];
@@ -46,6 +44,17 @@ const withEnv = (
       if (value === undefined) delete process.env[key];
       else process.env[key] = value;
     }
+  }
+};
+
+/** Runs `fn` under `mode`, always restoring the previous global mode. */
+const withMode = (mode: UnimockMode, fn: () => void): void => {
+  const prev = SnapshotStore.mode;
+  SnapshotStore.setMode(mode);
+  try {
+    fn();
+  } finally {
+    SnapshotStore.setMode(prev);
   }
 };
 
@@ -64,12 +73,23 @@ const uniformRows = (count: number): { id: number; name: string; score: number }
 const compactCall = (): SnapshotCall => ({
   args: [serialize({ page: 1 })],
   result: serialize({ rows: uniformRows(200) }),
+  refs: null,
 });
 
 const readCallLines = (snapshotPath: string): string[] =>
-  readFileSync(snapshotPath, 'utf-8')
+  readSnapshotText(snapshotPath)
     .split('\n')
     .filter((line) => line.includes('"_t":"c"'));
+
+/**
+ * Reads a snapshot file as text, transparently decompressing it when the file is gzipped
+ * (magic bytes `1f 8b`) so content assertions are immune to a global `UNIMOCK_GZIP=1`.
+ */
+const readSnapshotText = (snapshotPath: string): string => {
+  const raw = readFileSync(snapshotPath);
+  const gzipped = raw[0] === 0x1f && raw[1] === 0x8b;
+  return (gzipped ? gunzipSync(raw) : raw).toString('utf-8');
+};
 
 afterAll(() => {
   for (const className of classNames) releaseSnapshotStore(className);
@@ -85,12 +105,14 @@ describe('compact_table encoding (UNIMOCK_COMPACT)', () => {
 
     withEnv(COMPACT_FLAGS, () => {
       const store = new SnapshotStore(className, dir);
-      store.record('rows:1', call);
-      store.flush();
+      withMode(MODE_RECORD, () => {
+        store.record('rows:1', call);
+        store.flush();
+      });
       snapshotPath = store.snapshotPath;
     });
 
-    const raw = readFileSync(snapshotPath, 'utf-8');
+    const raw = readSnapshotText(snapshotPath);
     const tableLines = raw.split('\n').filter((l) => l.includes('"compact_table"'));
     expect(tableLines.length).toBeGreaterThan(0);
     expect(tableLines[0]).toContain('"k":["id","name","score"]');
@@ -104,27 +126,31 @@ describe('compact_table encoding (UNIMOCK_COMPACT)', () => {
 
     withEnv(COMPACT_FLAGS, () => {
       const store = new SnapshotStore(className, dir);
-      store.record('rows:1', call);
-      store.flush();
+      withMode(MODE_RECORD, () => {
+        store.record('rows:1', call);
+        store.flush();
+      });
     });
 
     releaseSnapshotStore(className);
 
     withEnv({ UNIMOCK_COMPACT: undefined, UNIMOCK_ROW_POOL: undefined }, () => {
-      const fresh = new SnapshotStore(className, dir);
-      const got = fresh.get('rows:1');
-      expect(got).toEqual(call);
-      const result = got!.result as { t: string; v: { k: string; v: unknown }[] };
-      expect(result.t).toBe('object');
-      const rowsNode = result.v.find((e) => e.k === 'rows')!.v as {
-        t: string;
-        v: { t: string; v: { k: string; v: unknown }[] }[];
-      };
-      expect(rowsNode.t).toBe('array');
-      const rows = rowsNode.v;
-      expect(rows).toHaveLength(200);
-      expect(rows[0]).toEqual(serialize({ id: 0, name: 'row-0', score: 0 }));
-      expect(rows[199]).toEqual(serialize({ id: 199, name: 'row-199', score: 298.5 }));
+      withMode(MODE_OFF, () => {
+        const fresh = new SnapshotStore(className, dir);
+        const got = fresh.get('rows:1');
+        expect(got).toEqual(call);
+        const result = got!.result as { t: string; v: { k: string; v: unknown }[] };
+        expect(result.t).toBe('object');
+        const rowsNode = result.v.find((e) => e.k === 'rows')!.v as {
+          t: string;
+          v: { t: string; v: { k: string; v: unknown }[] }[];
+        };
+        expect(rowsNode.t).toBe('array');
+        const rows = rowsNode.v;
+        expect(rows).toHaveLength(200);
+        expect(rows[0]).toEqual(serialize({ id: 0, name: 'row-0', score: 0 }));
+        expect(rows[199]).toEqual(serialize({ id: 199, name: 'row-199', score: 298.5 }));
+      });
     });
   });
 
@@ -136,8 +162,10 @@ describe('compact_table encoding (UNIMOCK_COMPACT)', () => {
 
     withEnv({ UNIMOCK_COMPACT: undefined, UNIMOCK_ROW_POOL: undefined }, () => {
       const store = new SnapshotStore(className, dir);
-      store.record('rows:1', call);
-      store.flush();
+      withMode(MODE_RECORD, () => {
+        store.record('rows:1', call);
+        store.flush();
+      });
       snapshotPath = store.snapshotPath;
     });
 

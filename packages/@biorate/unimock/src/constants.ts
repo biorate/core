@@ -40,7 +40,21 @@ export const HASH_ALGORITHM = 'md5';
 export const HASH_ENCODING = 'hex';
 export const ENCODING_BASE64 = 'base64';
 
+/**
+ * @description Minimum serialised length of a string (in characters) above which it is
+ *   deduplicated into the snapshot's `_t:'s'` pool instead of being stored inline.
+ */
+export const POOL_THRESHOLD = 500;
+
 export const SNAPSHOT_FILE_VERSION = 1;
+
+/**
+ * @description JSONL framing version written in the `_jsonl` header line. Bumped to `2` when
+ *   `refs` became a mandatory field on every `_t:'c'` call entry (explicit `null` when no
+ *   model-instance markup). The legacy non-JSONL `{version, className, calls}` format still
+ *   uses {@link SNAPSHOT_FILE_VERSION}.
+ */
+export const JSONL_FORMAT_VERSION = 2;
 
 export const DEFAULT_SNAPSHOT_DIR = 'tests/__snapshots__';
 /** @description Directory name for snapshots placed alongside a test file (via `importMeta`). */

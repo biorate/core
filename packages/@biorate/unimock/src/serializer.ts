@@ -87,7 +87,7 @@ export function stableHash(value: unknown): string {
  *   Format: `prefix + method + ':' + stableHash(args)`.
  *   Functions in args are replaced with {@link MARKER_CALLBACK} before hashing.
  *
- * @param prefix - key prefix (empty for direct methods, `conn:{refId}:` for connection calls)
+ * @param prefix - key prefix (empty for direct methods, `call:{refId}:` for connection-scoped calls)
  * @param method - method name
  * @param args - raw call arguments
  */

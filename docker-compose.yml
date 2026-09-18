@@ -117,6 +117,7 @@ services:
       - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
       - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
       - OPENSEARCH_INITIAL_ADMIN_PASSWORD=fo4Gai1phah7eexu
+      - cluster.routing.allocation.disk.threshold_enabled=false # avoid auto read-only create-index block on overlay filesystems
     ulimits:
       memlock:
         soft: -1

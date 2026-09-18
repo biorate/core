@@ -48,8 +48,9 @@ import {
   resetSnapshotStores,
   isReplay,
   isRecord,
+  SnapshotStore,
 } from './snapshot-store';
-import { parseUnimockMode, resolveSnapshotDir } from './env';
+import { resolveSnapshotDir } from './env';
 
 /**
  * @description Convenience namespace bundling the most common Unimock utilities.
@@ -73,9 +74,14 @@ export const Unimock = {
   release: releaseSnapshotStore,
   /** @description Releases all snapshot stores' in-memory data (clears the registry). */
   resetStores: resetSnapshotStores,
-  /** @description Current operating mode (from `UNIMOCK` env). */
+  /**
+   * @description Current operating mode. Reads the mutating {@link SnapshotStore.mode}
+   *   (tracked by `setMode`), so it stays consistent with {@link Unimock.isRecord} /
+   *   {@link Unimock.isReplay} after a runtime mode switch — unlike a static parse of the
+   *   `UNIMOCK` env var.
+   */
   get mode() {
-    return parseUnimockMode();
+    return SnapshotStore.mode;
   },
   /** @description Whether current mode is `'record'`. */
   get isRecord() {

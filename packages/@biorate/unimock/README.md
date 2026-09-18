@@ -272,6 +272,20 @@ if (!isRecord()) {
 
 These functions always read the current global mode — they work correctly after `SnapshotStore.setMode()`. Also accessible via `Unimock.isReplay` and `Unimock.isRecord` getters.
 
+### Mode contract and snapshot lifecycle (Контракт режимов и жизненный цикл снапшотов)
+
+Snapshot files follow a strict mode contract. It is enforced at three levels: the `@Mockable()` wrappers (they never touch the store outside record mode), the store API itself, and the contract tests (`tests/mode-guards.spec.ts`, `tests/record-session.spec.ts`).
+
+1. **Only record mode writes.** `SnapshotStore.record()` and `store.flush()` are no-ops outside record mode (defense in depth: the wrappers already skip them, and the guards also cover direct API calls). `flushAllSnapshots()` is guarded the same way.
+
+2. **A record session starts from a clean slate.** In record mode the store constructor does not load an existing snapshot file, and the first `flush()` of a session rewrites the file in full (truncate + rewrite). Cross-session duplicate `_t:'c'` lines for the same call key are therefore impossible. The transition into record, for example `setMode('replay')` followed by `setMode('record')`, sweeps every cached store: in-memory calls, pools and pending buffers are reset, so the next flush rewrites the file again. Repeating `setMode('record')` while already in record mode does **not** sweep, the current session stays intact.
+
+3. **Replay and off physically cannot change snapshot files.** Neither mode creates, appends to, or truncates anything. A replay run against committed snapshots leaves them byte-for-byte identical.
+
+**Edge case: an unflushed session leaves the file stale.** Snapshot data lives in memory until `flush()` runs (the vitest setup calls `flushAllSnapshots()` for you in an `afterAll` hook). If a record session ends without a single flush, the old file stays on disk untouched and still holds the previous session's content.
+
+**Parallel safety convention.** One snapshot file belongs to exactly one record session at a time. Keep `className` + snapshot directory unique per spec file, or let each spec record into its own `mkdtempSync` directory. Under this convention concurrent record sessions never write the same file. Concurrent replay runs are safe by construction since replay never writes.
+
 ### Optimisation flags
 
 | Variable                                                    | Description                                                                                               |
@@ -335,16 +349,12 @@ Snapshot files are stored in `__snapshots__/<ClassName>.unimock.json` — one di
 }
 ```
 
-### Migration note (1.9.0)
+### Migration note
 
-The snapshot format version stays `1`, but the **recorded data shape changed** in 1.9.0 for:
+- **v2 JSONL format (`_jsonl: 2`)** — every `_t:'c'` call entry now carries an explicit `refs` field (`null` when the result held no model instance). The reader identifies the version from the header and falls back to the legacy path for files written as v1 (no `refs` key on some entries). Legacy `.fmt` files (non-JSONL, `{version: 1, ...}`) are still readable but are no longer written.
+- **1.9.0 data shape change** — `findAll`, `bulkCreate`, `bulkBuild`, `findAndCountAll` rows are now clean `toJSON()` data (no `dataValues`, `_previousDataValues`, `uniqno` keys); top-level `Date` static results are now `t: 'date'` instead of an ISO string produced by `Date.toJSON()`.
 
-- `findAll`, `bulkCreate`, `bulkBuild`, `findAndCountAll` — rows are now clean `toJSON()` data (no `dataValues`, `_previousDataValues`, `uniqno` keys);
-- top-level `Date` static results — now `t: 'date'` instead of an ISO string produced by `Date.toJSON()`.
-
-If you have committed snapshots for these statics, **re-record them**. Replaying old snapshots for these statics still works, but the results come back as plain objects instead of model instances.
-
-Snapshot entries for instance-returning statics may carry an optional `refs` marker (parallel to `result`). Its absence means the legacy format and is tolerated on read.
+If you have committed snapshots generated before these changes, **re-record them** (`UNIMOCK=record`). Replaying old v1 snapshots still works; the reader reconstructs results via the legacy path.
 
 ## noop — universal mock stub
 

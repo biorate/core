@@ -29,6 +29,7 @@ import {
 import {
   SEPARATOR_STORE,
   SNAPSHOT_FILE_VERSION,
+  JSONL_FORMAT_VERSION,
   DEFAULT_SNAPSHOT_EXT,
   MODE_RECORD,
   MODE_REPLAY,
@@ -41,12 +42,12 @@ import {
   T_OBJECT,
   HASH_ALGORITHM,
   HASH_ENCODING,
+  POOL_THRESHOLD,
 } from './constants';
 import { stableStringify } from './serializer';
+import { resetRefCounters } from './utils';
 
 const stores = new Map<string, SnapshotStore>();
-
-const POOL_THRESHOLD = 500;
 
 /**
  * @description Per-class snapshot store that manages loading, recording, and persisting
@@ -76,9 +77,21 @@ export class SnapshotStore implements SnapshotStoreEntry {
     return SnapshotStore._mode;
   }
 
-  /** @description Sets the global operating mode. */
+  /**
+   * @description Sets the global operating mode. Sweep: the transition into `'record'` (from
+   *   replay/off) resets every cached store to a fresh record session, so the file is
+   *   rewritten in full on the first flush. Repeating `setMode('record')` while already in
+   *   record mode does NOT sweep: the current session stays intact.
+   */
   public static setMode(mode: UnimockMode): void {
+    const prev = SnapshotStore._mode;
     SnapshotStore._mode = mode;
+    if (mode === MODE_RECORD && prev !== MODE_RECORD) {
+      resetRefCounters();
+      for (const store of stores.values()) {
+        store.beginFreshRecordSession();
+      }
+    }
   }
 
   /** @description Name of the mocked class (from `Base.name`). */
@@ -102,9 +115,16 @@ export class SnapshotStore implements SnapshotStoreEntry {
    */
   private callSeq: Map<string, SnapshotCall[]>;
 
+  private staticReplayCounters = new Map<string, number>();
+
+  private staticReplayWarned = new Set<string>();
+
   private dirty = false;
 
   private stringPool: Map<string, string>;
+
+  /** @description Reverse index of pooled strings (value → ref) for O(1) lookups. */
+  private stringIndex: Map<string, string>;
 
   private poolCounter = 0;
 
@@ -128,19 +148,27 @@ export class SnapshotStore implements SnapshotStoreEntry {
    * @param className - class name used for the snapshot filename
    * @param snapshotDir - optional directory override
    * @param importMeta - pass `import.meta` from calling module to resolve snapshot dir relative to it
+   *
+   *   In `'record'` mode the store starts from a clean slate: an existing snapshot file is
+   *   NOT loaded (`jsonlOnDisk`/`jsonlHeaderWritten` stay `false`), so the first flush rewrites
+   *   the file in full via {@link writeJsonlFull}. Outside record mode the file is loaded as
+   *   before.
    */
   public constructor(className: string, snapshotDir?: string, importMeta?: ImportMeta) {
     this.className = className;
     const baseDir = resolveSnapshotDir(snapshotDir, importMeta);
     this.snapshotPath = resolve(baseDir, `${className}.unimock${DEFAULT_SNAPSHOT_EXT}`);
     this.stringPool = new Map();
+    this.stringIndex = new Map();
     this.valuePool = new Map();
     this.valueIndex = new Map();
     this.pendingKeys = new Set();
     this.pendingStrings = new Set();
     this.pendingValues = new Set();
     this.callSeq = new Map();
-    this.data = this.load();
+    this.data = isRecord()
+      ? { version: SNAPSHOT_FILE_VERSION, className: this.className, calls: {} }
+      : this.load();
   }
 
   /**
@@ -167,6 +195,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
         if (parsed.strings) {
           for (const [ref, value] of Object.entries(parsed.strings)) {
             this.stringPool.set(ref, value);
+            this.stringIndex.set(value, ref);
           }
           this.poolCounter = Object.keys(parsed.strings).length;
         }
@@ -190,6 +219,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
       className: this.className,
       calls: {},
     };
+    let version = 1;
     let maxStringRef = -1;
     let maxValueRef = -1;
     for (const line of splitLines(buf)) {
@@ -200,10 +230,15 @@ export class SnapshotStore implements SnapshotStoreEntry {
       } catch {
         continue;
       }
+      if (rec && typeof rec === 'object' && '_jsonl' in (rec as object)) {
+        if ((rec as Record<string, unknown>)._jsonl === 2) version = 2;
+        continue;
+      }
       if (rec && typeof rec === 'object' && (rec as { _t?: string })._t === 's') {
         const { ref, val } = rec as { ref: string; val: string };
         if (typeof ref === 'string' && typeof val === 'string') {
           this.stringPool.set(ref, val);
+          this.stringIndex.set(val, ref);
           if (ref.startsWith('$')) {
             const idx = parseInt(ref.slice(1), 10);
             if (idx > maxStringRef) maxStringRef = idx;
@@ -221,6 +256,10 @@ export class SnapshotStore implements SnapshotStoreEntry {
       } else if (rec && typeof rec === 'object' && (rec as { _t?: string })._t === 'c') {
         const { key, call } = rec as { key: string; call: SnapshotCall };
         if (typeof key === 'string' && call && typeof call === 'object') {
+          // v2 files carry an explicit `refs` field on every call entry; a missing field is
+          // normalized to `null` (no model instance). v1 files keep it absent so the legacy
+          // reconstruction path in replayStaticCall still applies.
+          if (version >= 2 && call.refs === undefined) (call as { refs: unknown }).refs = null;
           parsed.calls[key] = call;
           this.pushSeq(key, call);
         }
@@ -239,16 +278,35 @@ export class SnapshotStore implements SnapshotStoreEntry {
     return callKey in this.data.calls;
   }
 
+  /**
+   * @description Builds a `SnapshotCall` object, omitting `error` when absent (replay is
+   *   tolerant, `assembleCall` callers pass `undefined`); `refs` is passed through as-is
+   *   (`record()` always supplies an explicit `null`-or-value so the v2 format always carries
+   *   the field, while `get()`/`getAt()` preserve `undefined` for legacy v1 entries).
+   */
+  private static assembleCall(
+    init: { args: SerializedValue[]; result: SerializedValue; error?: SerializedValue },
+    refs?: unknown,
+  ): SnapshotCall {
+    return {
+      args: init.args,
+      result: init.result,
+      ...(init.error !== undefined ? { error: init.error } : {}),
+      ...(refs !== undefined ? { refs } : {}),
+    };
+  }
+
   public get(callKey: string): SnapshotCall | undefined {
     const call = this.data.calls[callKey];
     if (!call) return undefined;
-    return {
-      args: call.args.map((a) => this.depoolValue(a)),
-      result: this.depoolValue(call.result),
-      error: call.error ? this.depoolValue(call.error) : undefined,
-      // Optional per-instance refId markup (absent on legacy entries — kept as-is).
-      ...(call.refs !== undefined ? { refs: call.refs } : {}),
-    };
+    return SnapshotStore.assembleCall(
+      {
+        args: call.args.map((a) => this.depoolValue(a)),
+        result: this.depoolValue(call.result),
+        error: call.error ? this.depoolValue(call.error) : undefined,
+      },
+      call.refs,
+    );
   }
 
   private pushSeq(key: string, call: SnapshotCall): void {
@@ -270,31 +328,69 @@ export class SnapshotStore implements SnapshotStoreEntry {
   public getAt(callKey: string, index: number): SnapshotCall | undefined {
     const call = this.callSeq.get(callKey)?.[index];
     if (!call) return undefined;
-    return {
-      args: call.args.map((a) => this.depoolValue(a)),
-      result: this.depoolValue(call.result),
-      error: call.error ? this.depoolValue(call.error) : undefined,
-      // Optional per-instance refId markup (absent on legacy entries — kept as-is).
-      ...(call.refs !== undefined ? { refs: call.refs } : {}),
-    };
+    return SnapshotStore.assembleCall(
+      {
+        args: call.args.map((a) => this.depoolValue(a)),
+        result: this.depoolValue(call.result),
+        error: call.error ? this.depoolValue(call.error) : undefined,
+      },
+      call.refs,
+    );
   }
 
+  /**
+   * @description Sequence-aware replay lookup for unscoped (static) call keys: the k-th replay
+   *   call to `callKey` returns the k-th recorded occurrence (file order), generalising the
+   *   iterator `next()` sequence behaviour to statics. When the recorded sequence is exhausted,
+   *   falls back to the LAST recorded occurrence (warn-once) instead of missing. When a key was
+   *   recorded exactly once, this is identical to last-wins.
+   *
+   *   Returns `undefined` when the key has no recorded occurrences at all.
+   */
+  public nextStaticReplayEntry(callKey: string): SnapshotCall | undefined {
+    const len = this.sequenceLength(callKey);
+    if (len === 0) return undefined;
+    const k = this.staticReplayCounters.get(callKey) ?? 0;
+    this.staticReplayCounters.set(callKey, k + 1);
+    if (k < len) return this.getAt(callKey, k);
+    if (!this.staticReplayWarned.has(callKey)) {
+      this.staticReplayWarned.add(callKey);
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[unimock] ${this.className}: static replay key "${callKey}" called ${k + 1} times but only ${len} occurrence(s) recorded; serving the last occurrence`,
+      );
+    }
+    return this.getAt(callKey, len - 1);
+  }
+
+  /**
+   * @description Records a call entry (last-wins per callKey, plus ordered history for
+   *   sequence-aware replay). No-op outside record mode (defense in depth): the `@Mockable()`
+   *   wrappers never call this in replay/off, and the guard also protects direct API calls.
+   */
   public record(callKey: string, call: SnapshotCall): void {
-    const pooled: SnapshotCall = {
-      args: call.args.map((a) => this.poolValue(a)),
-      result: this.poolValue(call.result),
-      error: call.error ? this.poolValue(call.error) : undefined,
-      // Optional per-instance refId markup (absent on legacy entries — kept as-is).
-      ...(call.refs !== undefined ? { refs: call.refs } : {}),
-    };
+    if (!isRecord()) return;
+    const pooled = SnapshotStore.assembleCall(
+      {
+        args: call.args.map((a) => this.poolValue(a)),
+        result: this.poolValue(call.result),
+        error: call.error ? this.poolValue(call.error) : undefined,
+      },
+      call.refs ?? null,
+    );
     this.data.calls[callKey] = pooled;
     this.pushSeq(callKey, pooled);
     this.pendingKeys.add(callKey);
     this.dirty = true;
   }
 
+  /**
+   * @description Persists pending changes to the snapshot file; never writes outside record
+   *   mode. The first flush of a record session rewrites the file in full (`writeJsonlFull`,
+   *   lazy truncate), subsequent flushes append incrementally.
+   */
   public flush(): void {
-    if (!this.dirty) return;
+    if (!isRecord() || !this.dirty) return;
     const dir = dirname(this.snapshotPath);
     if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 
@@ -317,44 +413,59 @@ export class SnapshotStore implements SnapshotStoreEntry {
    *   `isolate: false`). Make sure the store has been flushed first.
    */
   public release(): void {
+    this.resetState({ counters: false, fileState: false });
+  }
+
+  /**
+   * @description Resets all in-memory snapshot state. `fileState` additionally forgets the
+   *   on-disk file (next flush rewrites it in full) and `counters` resets the pooled
+   *   string/value counters. Instance config fields (`className`, `snapshotPath`, `symbols`,
+   *   `depth`) are left untouched.
+   */
+  private resetState(opts: { counters: boolean; fileState: boolean }): void {
     this.data = { version: SNAPSHOT_FILE_VERSION, className: this.className, calls: {} };
     this.callSeq.clear();
+    this.staticReplayCounters.clear();
+    this.staticReplayWarned.clear();
     this.stringPool.clear();
+    this.stringIndex.clear();
     this.valuePool.clear();
     this.valueIndex.clear();
     this.pendingKeys.clear();
     this.pendingStrings.clear();
     this.pendingValues.clear();
     this.dirty = false;
+    if (opts.counters) {
+      this.poolCounter = 0;
+      this.valueCounter = 0;
+    }
+    if (opts.fileState) {
+      this.jsonlOnDisk = false;
+      this.jsonlHeaderWritten = false;
+    }
+  }
+
+  /**
+   * @description Resets all in-memory snapshot state so the next flush rewrites the file in
+   *   full (lazy truncate). Invoked by {@link setMode} on the transition to `'record'` so a
+   *   new record session starts from a clean slate — no cross-session `_t:'c'` duplicates.
+   *
+   *   Unlike {@link release}, this also resets `poolCounter`/`valueCounter` and
+   *   `jsonlOnDisk`/`jsonlHeaderWritten` (a released store still owns its on-disk file and is
+   *   lazily re-loaded).
+   */
+  private beginFreshRecordSession(): void {
+    this.resetState({ counters: true, fileState: true });
   }
 
   private writeJsonlFull(): void {
     const gz = gzipEnabled();
     const fd = openSync(this.snapshotPath, 'w');
-    const batch: string[] = [];
-    const flushBatch = () => {
-      if (batch.length === 0) return;
-      const content = batch.join('\n') + '\n';
-      batch.length = 0;
-      const buf = Buffer.from(content, 'utf-8');
-      if (gz) writeSync(fd, gzipSync(buf, { level: 9 }));
-      else writeSync(fd, buf);
-    };
     try {
-      batch.push(JSON.stringify({ _jsonl: 1, className: this.className }));
-      for (const [ref, value] of this.stringPool) {
-        batch.push(JSON.stringify({ _t: 's', ref, val: value }));
-        if (batch.length >= 500) flushBatch();
-      }
-      for (const [ref, value] of this.valuePool) {
-        batch.push(JSON.stringify({ _t: 'v', ref, val: value }));
-        if (batch.length >= 500) flushBatch();
-      }
-      for (const [key, call] of Object.entries(this.data.calls)) {
-        batch.push(JSON.stringify({ _t: 'c', key, call }));
-        if (batch.length >= 500) flushBatch();
-      }
-      flushBatch();
+      this.writeJsonlRecords(
+        { gz, fd },
+        this.jsonlRecords(),
+      );
     } finally {
       closeSync(fd);
     }
@@ -368,9 +479,61 @@ export class SnapshotStore implements SnapshotStoreEntry {
     this.pendingValues.clear();
   }
 
+  /**
+   * @description Serialised JSONL body of the snapshot file: header, string pool, value pool
+   *   and call lines — in that deterministic order.
+   */
+  private *jsonlRecords(): Generator<string> {
+    yield JSON.stringify({ _jsonl: JSONL_FORMAT_VERSION, className: this.className });
+    for (const [ref, value] of this.stringPool) yield JSON.stringify({ _t: 's', ref, val: value });
+    for (const [ref, value] of this.valuePool) yield JSON.stringify({ _t: 'v', ref, val: value });
+    for (const [key, call] of Object.entries(this.data.calls)) yield JSON.stringify({ _t: 'c', key, call });
+  }
+
   private appendJsonl(): void {
     const gz = gzipEnabled();
     const fd = openSync(this.snapshotPath, 'a');
+    try {
+      this.writeJsonlRecords(
+        { gz, fd },
+        this.pendingRecords(),
+      );
+    } finally {
+      closeSync(fd);
+    }
+    this.pendingKeys.clear();
+    this.pendingStrings.clear();
+    this.pendingValues.clear();
+  }
+
+  /**
+   * @description Pending (not yet flushed) string/value/call records referenced by their
+   *   subscription sets.
+   */
+  private *pendingRecords(): Generator<string> {
+    for (const ref of this.pendingStrings) {
+      const value = this.stringPool.get(ref);
+      if (value !== undefined) yield JSON.stringify({ _t: 's', ref, val: value });
+    }
+    for (const ref of this.pendingValues) {
+      const value = this.valuePool.get(ref);
+      if (value !== undefined) yield JSON.stringify({ _t: 'v', ref, val: value });
+    }
+    for (const key of this.pendingKeys) {
+      const call = this.data.calls[key];
+      if (call !== undefined) yield JSON.stringify({ _t: 'c', key, call });
+    }
+  }
+
+  /**
+   * @description Serialises `records` to the file descriptor, batching 500 lines per `writeSync`
+   *   (and per gzip member when compression is enabled) to bound memory and I/O syscalls.
+   */
+  private writeJsonlRecords(
+    target: { gz: boolean; fd: number },
+    records: Iterable<string>,
+  ): void {
+    const { gz, fd } = target;
     const batch: string[] = [];
     const flushBatch = () => {
       if (batch.length === 0) return;
@@ -380,43 +543,19 @@ export class SnapshotStore implements SnapshotStoreEntry {
       if (gz) writeSync(fd, gzipSync(buf, { level: 9 }));
       else writeSync(fd, buf);
     };
-    try {
-      for (const ref of this.pendingStrings) {
-        const value = this.stringPool.get(ref);
-        if (value !== undefined) {
-          batch.push(JSON.stringify({ _t: 's', ref, val: value }));
-          if (batch.length >= 500) flushBatch();
-        }
-      }
-      for (const ref of this.pendingValues) {
-        const value = this.valuePool.get(ref);
-        if (value !== undefined) {
-          batch.push(JSON.stringify({ _t: 'v', ref, val: value }));
-          if (batch.length >= 500) flushBatch();
-        }
-      }
-      for (const key of this.pendingKeys) {
-        const call = this.data.calls[key];
-        if (call !== undefined) {
-          batch.push(JSON.stringify({ _t: 'c', key, call }));
-          if (batch.length >= 500) flushBatch();
-        }
-      }
-      flushBatch();
-    } finally {
-      closeSync(fd);
+    for (const record of records) {
+      batch.push(record);
+      if (batch.length >= 500) flushBatch();
     }
-    this.pendingKeys.clear();
-    this.pendingStrings.clear();
-    this.pendingValues.clear();
+    flushBatch();
   }
 
   private getStringRef(value: string): string {
-    for (const [ref, v] of this.stringPool) {
-      if (v === value) return ref;
-    }
+    const existing = this.stringIndex.get(value);
+    if (existing) return existing;
     const ref = `$${this.poolCounter++}`;
     this.stringPool.set(ref, value);
+    this.stringIndex.set(value, ref);
     this.pendingStrings.add(ref);
     return ref;
   }
@@ -543,12 +682,19 @@ export class SnapshotStore implements SnapshotStoreEntry {
     return { t: T_COMPACT_TABLE, v: { k, r: rows } };
   }
 
+  /**
+   * @description Decides whether a serialized subtree should be pooled as a `_t:'v'` blob.
+   *   Counts the nested nodes cheaply first: subtrees within `valuePoolCountLimit()` nodes are
+   *   never pooled (no stringify cost). Larger subtrees are pooled only when the serialised
+   *   size exceeds {@link valuePoolThreshold} (`UNIMOCK_VALUE_POOL_THRESHOLD`, default 100 KB),
+   *   so node count guards the stringify cost while the byte threshold guards disk space.
+   */
   private isLargeValue(v: SerializedValue): boolean {
     let count = 0;
     const stack: SerializedValue[] = [v];
     while (stack.length) {
       const cur = stack.pop()!;
-      if (++count > valuePoolCountLimit()) return true;
+      count++;
       if (cur.t === T_ARRAY && Array.isArray(cur.v)) {
         for (const item of cur.v) stack.push(item);
       } else if (cur.t === T_OBJECT && Array.isArray(cur.v)) {

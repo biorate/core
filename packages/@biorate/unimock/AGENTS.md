@@ -4,7 +4,7 @@
 
 ## Назначение
 
-`@biorate/unimock` — библиотека для snapshot-мокирования коннекторов и сервисов через декоратор `@Mockable()`. Два режима: **record** (реальный вызов + сохранение снапшота) и **replay** (воспроизведение из снапшота без live-инфраструктуры).
+`@biorate/unimock` — библиотека для snapshot-мокирования коннекторов и сервисов через декоратор `@Mockable()`. Три режима: **record** (реальный вызов + сохранение снапшота), **replay** (воспроизведение из снапшота без live-инфраструктуры) и **off** (zero-overhead pass-through, по умолчанию).
 
 ## Архитектура (Option 1 — Method Override-based)
 
@@ -28,16 +28,21 @@
 
 | Файл                          | Назначение                                                                                                                                                          |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src/mockable.ts`             | Декоратор `@Mockable()`, `wrapMethod`, `replayCall`, `wrapAndRecord`, `hasMethods`, `wrapGetter`, `mock()` (overloaded), `mockObject()`                             |
-| `src/mock-handler.ts`         | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.)                                                                             |
-| `src/snapshot-store.ts`       | `SnapshotStore` — загрузка/сохранение JSON-снапшотов, кэш stores, `flushAllSnapshots()`, `isReplay()`, `isRecord()`, `isOff()` (internal, fast path)                |
+| `src/mockable.ts`             | Декоратор `@Mockable()`, `mock()` (overloaded), `mockObject()`, `patchPrototype`, `resolveObjectName`                                                               |
+| `src/method-wrapper.ts`       | `MethodWrapper` (config-object), `wrapMethod`, `wrapGetter`, `replayCall`, `replayCallbacks`, `recordPrep`, `serializeArgs`, `wrapResult`, `hasMethods`              |
+| `src/statics.ts`              | `StaticReplayShape`, `STATIC_REPLAY_SHAPE`, `wrapStaticMethod`, `replayStaticCall`, `registerStaticRefs`, `rebuildInstance`, `recordStaticResult`, `toPlain`, `assignStaticRefs` |
+| `src/state.ts`                | Module-level state: `replayRebuilt`, `staticOriginals`, `reconstructionDepth` + `inReconstruction()`/`withReconstructionDepth()`                                      |
+| `src/mock-handler.ts`         | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.), private `#replayGet`/`#recordGet`                                           |
+| `src/snapshot-store.ts`       | `SnapshotStore` — JSONL загрузка/сохранение (v2 header `_jsonl:2`, refs всегда явный), кэш stores, режимные гейты `record()`/`flush()`, `flushAllSnapshots()`, `isReplay()`, `isRecord()`, `isOff()` (internal, fast path) |
 | `src/serializer.ts`           | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey`                                                                                                 |
+| `src/utils.ts`                | `getOrAssignRefId`, `getRefId`, `setRefId`, `getUnimockRef`, `isPromiseLike`, `getReplayStaticEntry`, `recordError`                                                  |
 | `src/env.ts`                  | `parseUnimockMode()`, `resolveSnapshotDir()`                                                                                                                        |
 | `src/errors.ts`               | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockProxyTargetRequiredError`                                                                                |
 | `src/interfaces.ts`           | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode`                                                                                               |
+| `src/constants.ts`            | Постоянные: mode-строки, t/v теги, префиксы call-key, `POOL_THRESHOLD`, `JSONL_FORMAT_VERSION`                                                                      |
 | `src/index.ts`                | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
 | `vitest/setup.ts`             | Хук `afterAll` для автоматического `flushAllSnapshots()`                                                                                                            |
-| `tests/unimock.spec.ts`       | 47 unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                     |
+| `tests/unimock.spec.ts`       | 47+ unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                     |
 | `tests/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming)                                                                                                     |
 | `tests/sequelize.spec.ts`     | 4 интеграционных теста (+destroy: instance + static); instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                      |
 | `tests/clickhouse.spec.ts`    | 2 интеграционных теста с реальным Clickhouse (record + replay)                                                                                                      |
@@ -129,7 +134,7 @@ new MockHandler(target, refId, store) → Proxy
 - **replay mode**: `get` trap → возвращает функцию, ищущую `call:{refId}:prop:{hash}` в store. `target` может быть `null`.
 - `'then'`, `'constructor'`, `__unimock_ref__`, `#` → спецобработка (избегаем thenable, даём доступ к refId).
 - `wrapNested` возвращает `{ wrapped, serialized }` — MockHandler + `{t:'ref', v: refId}`.
-- **Double-wrap guard**: `wrapResult` (mockable.ts) и `wrapNested` (mock-handler.ts) проверяют `__unimock_ref__` на result. Если объект уже обёрнут в MockHandler — переиспользуют существующий refId и не создают новый. Это позволяет вызывать `get()` (или `connection()`) многократно: все возвращают один и тот же MockHandler с одинаковым refId, и записи `call:{refId}:*` не дублируются.
+- **Double-wrap guard**: `wrapResult` (method-wrapper.ts) и `wrapNested` (mock-handler.ts) проверяют `__unimock_ref__` на result. Если объект уже обёрнут в MockHandler — переиспользуют существующий refId и не создают новый. Это позволяет вызывать `get()` (или `connection()`) многократно: все возвращают один и тот же MockHandler с одинаковым refId, и записи `call:{refId}:*` не дублируются.
 
 ## Обёртка статических методов и replay-реконструкция (1.9.0)
 
@@ -141,7 +146,7 @@ new MockHandler(target, refId, store) → Proxy
 
 ### `staticOriginals` — WeakMap оригинальных статиков
 
-`const staticOriginals = new WeakMap<object, Map<string, Function>>()` (module-level, `src/mockable.ts`). `wrapStaticMethods` **до** `Object.defineProperty` сохраняет оригинальную реализацию каждого статика (в первую очередь `build`). Критично: replay-реконструкция должна вызывать **оригинальный** `build`, а не обёрнутый (обёрнутый ушёл бы в replay-lookup и упал бы с `UnimockReplayMissError`).
+`const staticOriginals = new WeakMap<object, Map<string, Function>>()` (module-level, `src/state.ts`). `wrapStaticMethods` **до** `Object.defineProperty` сохраняет оригинальную реализацию каждого статика (в первую очередь `build`). Критично: replay-реконструкция должна вызывать **оригинальный** `build`, а не обёрнутый (обёрнутый ушёл бы в replay-lookup и упал бы с `UnimockReplayMissError`).
 
 ### `STATIC_REPLAY_SHAPE` — формы результата в replay
 
@@ -161,7 +166,7 @@ new MockHandler(target, refId, store) → Proxy
 
 ### `reconstructionDepth` — pass-through во время replay-реконструкции (1.10.1)
 
-`let reconstructionDepth = 0;` (module-private, `src/mockable.ts`). `rebuildInstance` повышает/понижает его вокруг `build.call` (`++`/`try`/`finally --`). Пока счётчик `> 0`, первая проверка в `makeMethodWrapper` (после `isOff()` — T1-инвариант zero-overhead fast path остаётся первой) и в `wrapGetter` **возвращает `original` напрямую** — до `reportArgs`/`makeCallKey` (hashing во время реконструкции не считается — бесплатный перф-бонус) и до replay/record-веток.
+`let reconstructionDepth = 0;` (module-private, `src/state.ts`). `rebuildInstance` повышает/понижает его вокруг `build.call` (`++`/`try`/`finally --`). Пока счётчик `> 0`, первая проверка в `makeMethodWrapper` (после `isOff()` — T1-инвариант zero-overhead fast path остаётся первой) и в `wrapGetter` **возвращает `original` напрямую** — до `reportArgs`/`makeCallKey` (hashing во время реконструкции не считается — бесплатный перф-бонус) и до replay/record-веток.
 
 Причина: vanilla-конструктор Sequelize при реконструкции повторно входит в обёрнутые прототип-методы (например `_initValues`) с опциями, которые record-режим **никогда не производил** (recon `{isNewRecord:false,_schema:null,_schemaDelimiter:""}` vs hydration `{raw:true,attributes:[...]}`) → unscoped call-key `_initValues:{hash}` без entry → `UnimockReplayMissError`. С pass-through состояние инстанса заполняет сам Sequelize; post-construction-вызовы (`toJSON`/`get`/…) обслуживаются из записанных `call:{refId}:`-entries после `registerStaticRefs`. Последствие: опции конструирования в record и replay **больше не обязаны совпадать**; сид-вызов `build()` с идентичными аргументами (внутренний T4-воркараунд) больше не нужен. Статический путь `build` не меняется: `staticOriginals`-инвариант T3 цел (dedicated-тест «replays build() itself without replay-lookup miss» зелёный).
 
@@ -173,10 +178,10 @@ new MockHandler(target, refId, store) → Proxy
 
 ### refId-scoping для инстансов из статиков
 
-- Запись (`recordStaticResult`): `assignStaticRefs(name, result)` идёт **до** `toPlain(result)` — живым инстансам раздаются refId'ы (WeakMap `refIdCache`), и тогда wrapped-`toJSON()` записывает per-instance scoped-входы. `refs` кладётся в entry только если ≥1 элемент получил refId.
-- `SnapshotCall.refs?: unknown` — **опциональное** поле (формат version не менялся, 1): отсутствует = legacy, чтение толерантно.
+- Запись (`recordStaticResult`): `assignStaticRefs(name, result)` идёт **до** `toPlain(result)` — живым инстансам раздаются refId'ы (WeakMap `refIdCache`), и тогда wrapped-`toJSON()` записывает per-instance scoped-входы. В v2 `refs` пишется всегда (`refs ?? null`); <code>null</code> = результат без модели (raw/plain marker).
+- `SnapshotCall.refs?: unknown` — **опциональный** тип (runtime): в v2-файле всегда присутствует (значение или `null`); legacy v1-записи без поля читаются с `undefined`, что триггерит legacy rebuild path. Отличие `null` от отсутствия важно: `null` → результат as-is без реконструкции.
 - Воспроизведение (`replayStaticCall`): `registerStaticRefs(shape, rebuilt, entry.refs)` ставит реконструированные инстансы в `refIdCache` под **записанными** refId'ами (никогда не `nextRefId()` в replay).
-- Прямые вызовы обёрнутых методов/геттеров на этих инстансах считаются с префиксом `connectionPrefix(this)` → call-key `call:{refId}:{method}:{hash}` (та же конвенция, что в `mock-handler.ts`; `conn:{refId}:` в TSDoc сериализатора — устаревшая док, реальный формат `call:`).
+- Прямые вызовы обёрнутых методов/геттеров на этих инстансах считаются с префиксом `connectionPrefix(this)` → call-key `call:{refId}:{method}:{hash}` (та же конвенция, что в `mock-handler.ts`).
 - Незаписанный instance-метод на ref'd-инстансе в replay → `UnimockReplayMissError` (by design).
 - Passthrough `refs` в `snapshot-store.ts` `get()`/`record()` — обязательно: record()/get() пересобирают entry-объекты с фиксированным набором полей, без условного spread `refs` терялся бы при flush и при чтении.
 
@@ -224,7 +229,7 @@ Replay: для каждого callback-аргумента воспроизвод
 ## Тестирование
 
 ```bash
-# Все тесты (15 files / 93 tests, верифицировано 2026-09-14)
+# Все тесты (25 files / 137 tests, верифицировано 2026-09-18)
 pnpm --filter @biorate/unimock test
 
 # Unit только
@@ -249,11 +254,31 @@ curl http://localhost:8123/ping  # → Ok.
 
 ## Снапшоты
 
-- Формат: `__snapshots__/<ClassName>.unimock.json` рядом с файлом теста (или кастомный `snapshotDir`).
+- Формат: `__snapshots__/<ClassName>.unimock.json` (или кастомный `snapshotDir`).
   Механизм: передача `importMeta: import.meta` в `@Mockable()` или `mock()`. Если `importMeta` не
   указан — используется `tests/__snapshots__/` (по умолчанию) или `UNIMOCK_SNAPSHOT_DIR`.
-- Структура: `{ version: 1, className, calls: { [callKey]: { args, result, error } } }`.
+- Формат файла: **streaming JSONL** (gzip по флагу). Три типа строк:
+  - `_t:'s'` — строковый пул (`ref→val`); threshold >500 символов.
+  - `_t:'v'` — пул значений (массивы/объекты).
+  - `_t:'c'` — запись вызова: `{ key, call: { args, result, error?, refs? } }`.
+- **v2-формат** (текущий, `_jsonl: 2`): поле `refs` **обязательно** на каждой `_t:'c'`-строке
+  (explicit `null` когда нет модели). Reader отличает v1/v2 по заголовку; v1 без `refs` →
+  legacy rebuild path, v2 с `refs: null` → `asIs` (raw/plain без реконструкции).
+  При `record()` в памяти `call.refs` нормализуется через `call.refs ?? null`.
+- Файл `{version: 1, className, calls}` (legacy non-JSONL `.fmt`) поддерживается для чтения,
+  но не записывается.
 - Коммитятся в репозиторий. CI использует `UNIMOCK=replay`.
+- **Отказ от call-key-словаря (`_t:'k'`)** (измерено на TestModel): ключи почти всегда уникальны,
+  словарь на delta +3542B увеличивает файл, а не сокращает → идея отброшена, ключи пишутся inline.
+
+### Контракт режимов и жизненный цикл снапшотов
+
+- Пишут только в record-режиме: `record()` и `flush()` вне record являются no-op (`if (!isRecord()) return;`, защита в глубину: обёртки `@Mockable()` и так не вызывают их вне record). `flushAllSnapshots()` защищён так же.
+- Record-сессия начинается с чистого листа: конструктор store в record НЕ загружает существующий файл, первый flush сессии перезаписывает файл целиком (truncate + rewrite через `writeJsonlFull`). Межпрогонные дубли `_t:'c'`-строк одного ключа невозможны. Внутри-сессионные повторные `_t:'c'`-строки одного ключа остаются (нужны итераторам и sequence-replay).
+- Sweep при `setMode()`: переход в record (из replay/off) сбрасывает память всех кэшированных store реестра (включая `valueIndex`, счётчики пулов, `jsonlOnDisk=false` → следующий flush = `writeJsonlFull`). Повторный `setMode('record')` без выхода из record сессию НЕ очищает (sweep только на переходе).
+- Edge: если record-сессия ни разу не флашится, файл на диске остаётся устаревшим (держит контент прошлой сессии).
+- Параллельная безопасность: 1 файл снапшота = одна record-сессия-владелец; className+dir уникальны per spec-файл или mkdtemp-директория. Параллельный replay безопасен по построению (не пишет).
+- Контракт зафиксирован тестами: `tests/mode-guards.spec.ts` (4 теста: replay/off не создают файл; replay не меняет существующий байт-в-байт; record happy-path) и `tests/record-session.spec.ts` (5 тестов: чистая сессия, отсутствие межпрогонных дублей, инвариант повторного `setMode`, in-process record→flush→replay, fresh-конструктор).
 
 ## devDependencies для интеграционных тестов
 
@@ -287,7 +312,7 @@ curl http://localhost:8123/ping  # → Ok.
 - Используется фиксированный subject (`unimock-test-subject`)
 - Один тест для обоих режимов (контроль через `UNIMOCK` env)
 
-**Ограничение**: глобальный счётчик refId (`ref_${counter++}`) в `mockable.ts` — при повторных `get()` на одном и том же connection создаются новые MockHandler с разными refId. Фикс: сохранять результат `get()` в переменную и переиспользовать.
+**Ограничение**: глобальный счётчик refId (`ref_${counter++}`) в `mock-handler.ts`/`utils.ts` — при повторных `get()` на одном и том же connection создаются новые MockHandler с разными refId. Фикс: сохранять результат `get()` в переменную и переиспользовать.
 
 Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}"`.
 
@@ -332,7 +357,9 @@ if (!isRecord()) return;
 ## Чеклист при изменениях
 
 - [ ] `pnpm --filter @biorate/unimock run build` — проверка типов
-- [ ] `pnpm --filter @biorate/unimock run test` — все 92 тест (15 files)
+- [ ] `pnpm --filter @biorate/unimock run test` — все 137 тестов (25 files)
+- [ ] Если менялся режимный контракт (`record()`/`flush()`/`setMode()`/конструктор store) — прогнать контракт-тесты: `npx vitest run tests/mode-guards.spec.ts tests/record-session.spec.ts`
+- [ ] Если менялся sweep/fresh-сессия — проверить отсутствие межпрогонных дублей `_t:'c'` (`tests/record-session.spec.ts`) и неизменность файлов снапшотов при `UNIMOCK=replay`
 - [ ] Если менялась сериализация — проверить `serialize`/`deserialize` symmetric
 - [ ] Если менялся `hasMethods` — проверить различение connection/data объектов
 - [ ] Если менялся replay-механизм — запустить clickhouse integration test (docker должен быть up)

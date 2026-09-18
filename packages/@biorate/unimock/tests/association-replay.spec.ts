@@ -14,6 +14,7 @@ import {
 } from '@biorate/sequelize';
 import {
   MODE_OFF,
+  MODE_RECORD,
   MODE_REPLAY,
   Mockable,
   SEQUELIZE_STATICS,
@@ -45,6 +46,8 @@ import {
  */
 
 const SNAPSHOT_DIR = mkdtempSync(join(tmpdir(), 'unimock-assoc-'));
+
+const SNAPSHOT_CLASS = 'AssocEmpModel';
 
 const PG = {
   logging: false,
@@ -115,7 +118,11 @@ export class AssocEmpModel extends Model {
 {
   const bindingMode = SnapshotStore.mode;
   SnapshotStore.setMode(MODE_OFF);
-  new Sequelize({ ...PG, dialect: 'postgres' as const, models: [AssocEmpModel, AssocRoleModel, AssocPoliticsModel, AssocEmpRoleModel] });
+  new Sequelize({
+    ...PG,
+    dialect: 'postgres' as const,
+    models: [AssocEmpModel, AssocRoleModel, AssocPoliticsModel, AssocEmpRoleModel],
+  });
   SnapshotStore.setMode(bindingMode);
 }
 
@@ -137,22 +144,34 @@ const PLAIN_EMPLOYEE: Record<string, unknown> = {
 
 const QUERY = { where: { ldap: '60032113' } };
 
-/** Records a static call entry the same way the record-mode wrapper would. */
+/**
+ * Seeds a static call entry into the model's cached store — the SAME store instance the
+ * `@Mockable` static wrappers captured at decoration time (release/recreate would break the
+ * identity: the wrappers keep a reference to the original store). `refs` undefined → the
+ * entry stays field-less exactly like a legacy v1 file (legacy reconstruction path); a
+ * supplied `refs` exercises the refs-registered path. In-memory seeding deliberately bypasses
+ * `record()`'s v2 `refs ?? null` normalization.
+ */
 const recordStatic = (
   name: string,
   query: unknown,
   result: unknown,
   refs?: unknown,
 ): void => {
-  const store = getSnapshotStore('AssocEmpModel', SNAPSHOT_DIR);
+  const store = getSnapshotStore(SNAPSHOT_CLASS, SNAPSHOT_DIR);
   const call: SnapshotCall = {
     args: [serialize(query)],
     result: serialize(result),
     error: undefined,
   };
   if (refs !== undefined) call.refs = refs;
-  store.record(makeCallKey('', name, [query]), call);
-  store.flush();
+  const internal = store as unknown as {
+    data: { calls: Record<string, SnapshotCall> };
+    callSeq: Map<string, SnapshotCall[]>;
+  };
+  const key = makeCallKey('', name, [query]);
+  internal.data.calls[key] = call;
+  internal.callSeq.set(key, [call]);
 };
 
 const initialMode = SnapshotStore.mode;

@@ -1027,7 +1027,7 @@ describe('instance method refId scoping (production pattern)', () => {
       MockedProdShapes.findAndCountAll();
 
       const store = getSnapshotStore('MockedProdShapes', '/tmp/unimock-test');
-      const ref = expect.stringMatching(/^ref_\d+$/);
+      const ref = expect.stringMatching(/^ref_[A-Za-z_$][A-Za-z0-9_$]*_\d+$/);
 
       expect(entry(store, 'findOne').refs).toEqual(ref);
       expect(entry(store, 'findAll').refs).toStrictEqual([ref, ref, ref]);
@@ -1246,8 +1246,9 @@ describe('replay reconstruction — constructor-internal pass-through (1.10.1)',
       ]);
       // The vanilla constructor ran the ORIGINAL _initValues (pass-through) with
       // the reconstruction options — instance state populated by the original.
+      // `raw: true` mirrors live hydration (keeps aggregate aliases in dataValues).
       for (const r of rows) {
-        expect(r.__initOptions).toEqual({ isNewRecord: false });
+        expect(r.__initOptions).toEqual({ isNewRecord: false, raw: true });
       }
     } finally {
       SnapshotStore.setMode(prevMode);

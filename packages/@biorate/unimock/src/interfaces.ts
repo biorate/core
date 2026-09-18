@@ -154,14 +154,17 @@ export interface SnapshotCall {
   /** @description Serialized error, if the call threw. */
   error?: SerializedValue;
   /**
-   * @description Optional per-instance refId markup, parallel to `result`, for statics that
-   *   return model instances (see `STATIC_REPLAY_SHAPE` in mockable.ts). Shapes mirror the
+   * @description Per-instance refId markup, parallel to `result`, for statics that
+   *   return model instances (see `STATIC_REPLAY_SHAPE` in statics.ts). Shapes mirror the
    *   recorded result: `single` → refId string; `array` → `(refId|undefined)[]`;
    *   `pairInstance` → `[refId|undefined, undefined]`; `pairCount` →
    *   `[undefined, (refId|undefined)[]]`; `wrapper` → `{ rows: (refId|undefined)[] }`.
-   *   Absence means the legacy format — replay falls back to the unscoped
-   *   reconstruction path. Optional by design: existing snapshots load unchanged
-   *   (no format version bump).
+   *   `null` marks a known-shape result that contained NO model instance at record time
+   *   (e.g. `raw: true` query rows) — replay returns the recorded data without
+   *   reconstruction. Optional type kept for legacy in-memory entries; in the v2 JSONL
+   *   format the field is ALWAYS written (explicit `null` when unused) and the reader
+   *   normalizes a missing field to `null`, while v1 files keep it absent so the legacy
+   *   reconstruction path still applies.
    */
   refs?: unknown;
 }

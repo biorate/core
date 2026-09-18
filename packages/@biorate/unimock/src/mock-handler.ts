@@ -13,7 +13,14 @@ import {
   PREFIX_PROP,
 } from './constants';
 import { skipProxyArgsEnabled } from './env';
-import { hasMethods, nextRefId, getReplayEntry, recordError } from './utils';
+import {
+  hasMethods,
+  getOrAssignRefId,
+  getUnimockRef,
+  isPromiseLike,
+  getReplayEntry,
+  recordError,
+} from './utils';
 
 /**
  * @description Proxy wrapper for objects returned by mocked methods.
@@ -39,8 +46,8 @@ export class MockHandler {
   /** @description Current wrapping depth (0 = top-level). Used for {@link SnapshotStore.depth}. */
   public readonly __unimock_depth__: number;
 
-  private store: SnapshotStore;
-  private target: unknown;
+  private readonly store: SnapshotStore;
+  private readonly target: unknown;
 
   public constructor(target: unknown, refId: string, store: SnapshotStore, depth = 0) {
     this.__unimock_ref__ = refId;
@@ -55,127 +62,117 @@ export class MockHandler {
         if (typeof prop === 'string' && prop.startsWith(PROP_PRIVATE_PREFIX))
           return undefined;
 
-        if (isReplay()) {
-          const propKey = `${PREFIX_PROP}${obj.__unimock_ref__}:${String(prop)}:`;
-          const propEntry = obj.store.get(propKey);
-          if (propEntry) {
-            const result = deserialize(propEntry.result);
-            if (hasMethods(result))
-              return new MockHandler(
-                result,
-                nextRefId(),
-                obj.store,
-                obj.__unimock_depth__ + 1,
-              );
-            return result;
-          }
+        if (isReplay()) return obj.#replayGet(prop);
 
-          return (...args: unknown[]) => {
-            const name = String(prop);
-            const callKey = makeCallKey(
-              `${PREFIX_CALL}${obj.__unimock_ref__}:`,
-              name,
-              args,
-            );
-            if (name === 'next')
-              return replayIteratorNext(obj, callKey, obj.store, obj.__unimock_depth__);
-            const entry = getReplayEntry(obj.store, callKey, name, args);
-            if (entry.result.t === T_REF)
-              return new MockHandler(
-                null,
-                entry.result.v,
-                obj.store,
-                obj.__unimock_depth__ + 1,
-              );
-            return deserialize(entry.result);
-          };
-        }
-
-        if (!isRecord()) {
-          const targetObj = obj.target as Record<string | symbol, unknown> | null;
-          if (!targetObj) throw new UnimockProxyTargetRequiredError(obj.__unimock_ref__);
-          return targetObj[prop];
-        }
+        if (isRecord()) return obj.#recordGet(prop);
 
         const targetObj = obj.target as Record<string | symbol, unknown> | null;
         if (!targetObj) throw new UnimockProxyTargetRequiredError(obj.__unimock_ref__);
-
-        if (typeof targetObj[prop] === 'function') {
-          return (...args: unknown[]) => {
-            const callKey = makeCallKey(
-              `${PREFIX_CALL}${obj.__unimock_ref__}:`,
-              String(prop),
-              args,
-            );
-            const originalFn = targetObj[prop] as (...a: unknown[]) => unknown;
-
-            try {
-              const rawResult = originalFn.apply(targetObj, args);
-              const then =
-                rawResult !== null && typeof rawResult === 'object'
-                  ? (rawResult as Record<string, unknown>).then
-                  : undefined;
-
-              const recArgs = skipProxyArgsEnabled()
-                ? []
-                : args.map((a: unknown) => serialize(a, undefined, obj.store.symbols));
-
-              if (typeof then === 'function') {
-                return (then as (...a: unknown[]) => unknown).call(
-                  rawResult,
-                  (resolved: unknown) => {
-                    const { wrapped, serialized } = wrapNested(
-                      resolved,
-                      obj.store,
-                      obj.__unimock_depth__,
-                    );
-                    obj.store.record(callKey, {
-                      args: recArgs,
-                      result: serialized,
-                    });
-                    return wrapped;
-                  },
-                  (error: Error) => recordError(obj.store, callKey, recArgs, error),
-                );
-              }
-
-              const { wrapped, serialized } = wrapNested(
-                rawResult,
-                obj.store,
-                obj.__unimock_depth__,
-              );
-              obj.store.record(callKey, {
-                args: recArgs,
-                result: serialized,
-              });
-              return wrapped;
-            } catch (e: unknown) {
-              return recordError(
-                obj.store,
-                callKey,
-                skipProxyArgsEnabled()
-                  ? []
-                  : args.map((a: unknown) => serialize(a, undefined, obj.store.symbols)),
-                e,
-              );
-            }
-          };
-        }
-
-        const propKey = `${PREFIX_PROP}${obj.__unimock_ref__}:${String(prop)}:`;
-        const value = targetObj[prop];
-        obj.store.record(propKey, {
-          args: [],
-          result: serialize(value, undefined, obj.store.symbols),
-        });
-
-        return value;
+        return targetObj[prop];
       },
     });
   }
-}
 
-const nestedRefIdCache = new WeakMap<object, string>();
+  /**
+   * @description Replay-mode property access. Property entries (recorded `prop:` keys) win
+   *   over method calls; otherwise a callable is returned that looks the `call:{refId}:` key
+   *   up in the snapshot store. `next` gets iterator-sequence semantics.
+   */
+  #replayGet(prop: string | symbol): unknown {
+    const propKey = `${PREFIX_PROP}${this.__unimock_ref__}:${String(prop)}:`;
+    const propEntry = this.store.get(propKey);
+    if (propEntry) {
+      const result = deserialize(propEntry.result);
+      if (hasMethods(result))
+        return new MockHandler(
+          result,
+          getOrAssignRefId(result),
+          this.store,
+          this.__unimock_depth__ + 1,
+        );
+      return result;
+    }
+
+    return (...args: unknown[]) => {
+      const name = String(prop);
+      const callKey = makeCallKey(`${PREFIX_CALL}${this.__unimock_ref__}:`, name, args);
+      if (name === 'next')
+        return replayIteratorNext(this, callKey, this.store, this.__unimock_depth__);
+      const entry = getReplayEntry(this.store, callKey, name, args);
+      if (entry.result.t === T_REF)
+        return new MockHandler(
+          null,
+          entry.result.v,
+          this.store,
+          this.__unimock_depth__ + 1,
+        );
+      return deserialize(entry.result);
+    };
+  }
+
+  /**
+   * @description Record-mode property access. Function properties become wrapper functions
+   *   that call the real target, record the `call:{refId}:` entry and wrap the result via
+   *   {@link wrapNested}; plain properties are recorded as `prop:` entries and returned as-is.
+   */
+  #recordGet(prop: string | symbol): unknown {
+    const targetObj = this.target as Record<string | symbol, unknown> | null;
+    if (!targetObj) throw new UnimockProxyTargetRequiredError(this.__unimock_ref__);
+
+    if (typeof targetObj[prop] === 'function') {
+      const name = String(prop);
+      const originalFn = targetObj[prop] as (...a: unknown[]) => unknown;
+
+      return (...args: unknown[]) => {
+        const callKey = makeCallKey(`${PREFIX_CALL}${this.__unimock_ref__}:`, name, args);
+        const recArgs = skipProxyArgsEnabled()
+          ? []
+          : args.map((a: unknown) => serialize(a, undefined, this.store.symbols));
+
+        let rawResult: unknown;
+        try {
+          rawResult = originalFn.apply(targetObj, args);
+        } catch (e: unknown) {
+          return recordError(this.store, callKey, recArgs, e);
+        }
+
+        if (isPromiseLike(rawResult)) {
+          const then = (rawResult as { then: (...a: unknown[]) => unknown }).then;
+          return then.call(
+            rawResult,
+            (resolved: unknown) => {
+              const { wrapped, serialized } = wrapNested(
+                resolved,
+                this.store,
+                this.__unimock_depth__,
+              );
+              this.store.record(callKey, { args: recArgs, result: serialized });
+              return wrapped;
+            },
+            (error: Error) => recordError(this.store, callKey, recArgs, error),
+          );
+        }
+
+        const { wrapped, serialized } = wrapNested(
+          rawResult,
+          this.store,
+          this.__unimock_depth__,
+        );
+        this.store.record(callKey, { args: recArgs, result: serialized });
+        return wrapped;
+      };
+    }
+
+    const propKey = `${PREFIX_PROP}${this.__unimock_ref__}:${String(prop)}:`;
+    const value = targetObj[prop];
+    this.store.record(propKey, {
+      args: [],
+      result: serialize(value, undefined, this.store.symbols),
+    });
+
+    return value;
+  }
+}
 
 /**
  * @description Per-iterator-instance call counter for replayed `next()` calls. Each replayed
@@ -229,8 +226,9 @@ function replayIteratorNext(
 
 /**
  * @description Wraps a result value in a {@link MockHandler} if it has methods,
- *   otherwise returns it as-is with its plain serialised form. Caches refIds via
- *   {@link nestedRefIdCache} so repeated calls returning the same object reuse the same refId.
+ *   otherwise returns it as-is with its plain serialised form. Caches refIds via the
+ *   shared refId cache ({@link getOrAssignRefId}) so repeated calls returning the same
+ *   object reuse the same refId.
  *   Respects {@link SnapshotStore.depth} — when `depth >= store.depth` the result
  *   is serialised directly without wrapping.
  */
@@ -239,19 +237,15 @@ function wrapNested(
   store: SnapshotStore,
   depth = 0,
 ): { wrapped: unknown; serialized: SerializedValue } {
-  const nestedRef = (result as any)?.[PROP_UNIMOCK_REF];
-  if (nestedRef) {
+  const nestedRef = getUnimockRef(result);
+  if (nestedRef !== undefined) {
     return { wrapped: result, serialized: { t: T_REF, v: nestedRef } };
   }
   if (depth >= store.depth) {
     return { wrapped: result, serialized: serialize(result, undefined, store.symbols) };
   }
   if (hasMethods(result)) {
-    let refId = nestedRefIdCache.get(result);
-    if (!refId) {
-      refId = nextRefId();
-      nestedRefIdCache.set(result, refId);
-    }
+    const refId = getOrAssignRefId(result);
     return {
       wrapped: new MockHandler(result, refId, store, depth + 1),
       serialized: { t: T_REF, v: refId },
