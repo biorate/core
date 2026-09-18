@@ -442,6 +442,134 @@ function registerStaticRefs(
 }
 
 /**
+ * @description Restores a model's association map when replay re-initialised it.
+ *
+ *   sequelize-typescript populates `Model.associations` in `associateModels` (run once by
+ *   the `Sequelize` constructor), but plain `Model#init` — which any later
+ *   `new Sequelize({ models })` / `addModels` re-run triggers — resets it to `{}`. In a
+ *   replay boot the model can therefore end up initialised (so `build` works and scalar
+ *   attributes read) yet carry an empty `associations` map, which both {@link
+ *   buildIncludeTree} and Sequelize's own `_setInclude` rehydration depend on.
+ *
+ *   The `@BelongsToMany`/`@HasMany`/… decorators store their definitions as the
+ *   `sequelize:associations` class metadata, which `init` does NOT wipe. When the live
+ *   map is empty but that metadata is present, re-run the instance's own
+ *   `associateModels` over its registered models so the map is repopulated exactly as the
+ *   original (record-mode) boot did. No-op when the map is already populated, the model is
+ *   not sequelize-bound, or it has no association metadata (plain model).
+ */
+function ensureAssociated(klass: object): void {
+  const k = klass as {
+    associations?: Record<string, unknown>;
+    prototype?: unknown;
+    sequelize?: {
+      models?: Record<string, unknown>;
+      associateModels?: (models: unknown[]) => void;
+    };
+  };
+  const existing = k.associations;
+  if (existing && typeof existing === 'object' && Object.keys(existing).length > 0) return;
+  const sequelize = k.sequelize;
+  if (!sequelize || typeof sequelize.associateModels !== 'function') return;
+  // `reflect-metadata` (which provides `Reflect.getMetadata`) is a peer/runtime concern of the
+  // consumer, not this package — resolve it defensively so the metadata lookup degrades to a
+  // no-op when the polyfill is absent.
+  const reflect = Reflect as unknown as {
+    getMetadata?: (key: PropertyKey, target: object) => unknown;
+  };
+  const meta =
+    typeof reflect.getMetadata === 'function' && k.prototype
+      ? reflect.getMetadata('sequelize:associations', k.prototype)
+      : null;
+  if (!Array.isArray(meta) || meta.length === 0) return;
+  const registered = sequelize.models ? Object.values(sequelize.models) : [klass];
+  try {
+    sequelize.associateModels(registered);
+  } catch {
+    // best-effort: a model that cannot be re-associated keeps its legacy scalar-only
+    // reconstruction rather than breaking the whole replay.
+  }
+}
+
+/**
+ * @description Synthesises the Sequelize hydration include-descriptor tree from the
+ *   association aliases present in `sample` — the exact shape a real query with includes
+ *   feeds into `options.include` / `options.includeMap` / `options.includeNames` when
+ *   `findOne({ include })` hydrates instances (`handleSelectQuery` →
+ *   `bulkBuild(rows, { include, includeNames, includeMap, includeValidated: true, raw: true })`).
+ *
+ *   Each descriptor mirrors what `_conformIncludes` produces for the hydration step:
+ *   `{ as, association, model: association.target, include, includeNames, includeMap }`.
+ *   `Model#_setInclude` (invoked by `set()` during construction) then rebuilds each
+ *   included association's rows via `include.model.bulkBuild(row, childOptions)`, so
+ *   `instance[alias]`, `instance.dataValues[alias]` and `instance.get(alias)` all resolve
+ *   exactly as on a live hydrated instance, recursively for nested includes.
+ *
+ *   Returns `null` when `sample` carries no key registered as an association on `klass`
+ *   (plain model without included associations), so reconstruction keeps the legacy
+ *   scalar-only behaviour.
+ */
+function buildIncludeTree(
+  klass: object,
+  sample: unknown,
+): {
+  include: unknown[];
+  includeNames: string[];
+  includeMap: Record<string, unknown>;
+} | null {
+  const associations = (klass as { associations?: Record<string, unknown> }).associations;
+  if (!associations || !sample || typeof sample !== 'object') return null;
+  const row = Array.isArray(sample)
+    ? sample.find(
+        (r): r is Record<string, unknown> =>
+          r !== null && typeof r === 'object' && !Array.isArray(r),
+      )
+    : (sample as Record<string, unknown>);
+  if (!row || typeof row !== 'object') return null;
+
+  const include: unknown[] = [];
+  const includeNames: string[] = [];
+  const includeMap: Record<string, unknown> = {};
+  for (const key of Object.keys(row)) {
+    const association = (associations as Record<string, any>)[key];
+    if (!association || typeof association.target !== 'function') continue;
+    const nested = buildIncludeTree(association.target, row[key]);
+    const descriptor = {
+      as: key,
+      association,
+      model: association.target,
+      include: nested?.include ?? [],
+      includeNames: nested?.includeNames ?? [],
+      includeMap: nested?.includeMap ?? {},
+    };
+    include.push(descriptor);
+    includeNames.push(key);
+    includeMap[key] = descriptor;
+  }
+  return include.length > 0 ? { include, includeNames, includeMap } : null;
+}
+
+/**
+ * @description Marks every model instance produced during a replay reconstruction
+ *   (the top-level one and all nested included-association rows) as eligible for the
+ *   replay-miss fallback. Sequelize column accessors delegate to the wrapped `get`, and
+ *   association rows rebuilt via `_setInclude` are never registered under refIds, so
+ *   without this their unrecorded attribute reads (e.g. `role.role_id`) would throw
+ *   {@link UnimockReplayMissError} instead of reading their own hydrated state.
+ */
+function markRebuiltDeep(value: unknown): void {
+  if (!value || typeof value !== 'object') return;
+  if (Array.isArray(value)) {
+    for (const el of value) markRebuiltDeep(el);
+    return;
+  }
+  const dataValues = (value as { dataValues?: unknown }).dataValues;
+  if (dataValues === undefined || typeof dataValues !== 'object') return;
+  replayRebuilt.add(value);
+  for (const el of Object.values(dataValues as Record<string, unknown>)) markRebuiltDeep(el);
+}
+
+/**
  * @description Rebuilds a model instance from plain (deserialised) data using the ORIGINAL
  *   static `build` captured before wrapping: `build.call(klass, plain, { isNewRecord: false })`.
  *   The wrapped `build` is deliberately not used — in replay mode it would route into a
@@ -451,6 +579,19 @@ function registerStaticRefs(
  *   The call is made with {@link reconstructionDepth} raised so that constructor-internal
  *   wrapped prototype calls (e.g. Sequelize `_initValues`) pass through to their originals
  *   instead of doing replay lookups with reconstruction options record mode never produced.
+ *
+ *   Before synthesising the include tree, {@link ensureAssociated} repopulates the model's
+ *   `associations` map when the replay boot re-initialised it (plain `Model#init` resets it to
+ *   `{}`), so alias detection and Sequelize's own `_setInclude` rehydration behave as in record
+ *   mode.
+ *
+ *   When `plain` carries included associations (keys matching the model's registered
+ *   association aliases — e.g. `roles` on a `findOne({ include })` result), the call is
+ *   made with the hydration options synthesised by {@link buildIncludeTree}
+ *   (`include` / `includeNames` / `includeMap` / `includeValidated: true` / `raw: true`) so
+ *   the constructor's `set()` routes those keys through Sequelize's own `_setInclude`
+ *   rehydration — the same path a live query result takes. Scalar-only records keep the
+ *   legacy `{ isNewRecord: false }` call.
  *
  *   Returns `plain` as-is when `build` is unavailable or `plain` is not a non-empty
  *   plain object (null, array, class instance, empty object).
@@ -469,8 +610,20 @@ function rebuildInstance(
   if (typeof build === 'function' && isPlainObject) {
     reconstructionDepth += 1;
     try {
-      const instance = build.call(klass, plain, { isNewRecord: false });
-      if (instance !== null && typeof instance === 'object') replayRebuilt.add(instance);
+      ensureAssociated(klass);
+      const includeTree = buildIncludeTree(klass, plain);
+      const options = includeTree
+        ? {
+            isNewRecord: false,
+            include: includeTree.include,
+            includeNames: includeTree.includeNames,
+            includeMap: includeTree.includeMap,
+            includeValidated: true,
+            raw: true,
+          }
+        : { isNewRecord: false };
+      const instance = build.call(klass, plain, options);
+      if (instance !== null && typeof instance === 'object') markRebuiltDeep(instance);
       return instance;
     } finally {
       reconstructionDepth -= 1;

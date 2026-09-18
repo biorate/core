@@ -1,10 +1,11 @@
 import type { SnapshotStore } from './snapshot-store';
-import type { SerializedValue } from './interfaces';
+import type { SerializedValue, SnapshotCall } from './interfaces';
 import { isReplay, isRecord } from './snapshot-store';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { UnimockProxyTargetRequiredError } from './errors';
 import {
   T_REF,
+  T_OBJECT,
   PROP_THEN,
   PROP_UNIMOCK_REF,
   PROP_PRIVATE_PREFIX,
@@ -70,12 +71,15 @@ export class MockHandler {
           }
 
           return (...args: unknown[]) => {
+            const name = String(prop);
             const callKey = makeCallKey(
               `${PREFIX_CALL}${obj.__unimock_ref__}:`,
-              String(prop),
+              name,
               args,
             );
-            const entry = getReplayEntry(obj.store, callKey, String(prop), args);
+            if (name === 'next')
+              return replayIteratorNext(obj, callKey, obj.store, obj.__unimock_depth__);
+            const entry = getReplayEntry(obj.store, callKey, name, args);
             if (entry.result.t === T_REF)
               return new MockHandler(
                 null,
@@ -172,6 +176,56 @@ export class MockHandler {
 }
 
 const nestedRefIdCache = new WeakMap<object, string>();
+
+/**
+ * @description Per-iterator-instance call counter for replayed `next()` calls. Each replayed
+ *   iterator proxy instance replays the recorded `next()` sequence from the beginning.
+ */
+const iteratorNextCounters = new WeakMap<object, number>();
+
+function isIteratorResult(v: SerializedValue): boolean {
+  if (v.t !== T_OBJECT || !Array.isArray(v.v)) return false;
+  return v.v.some((entry) => entry.k === 'done');
+}
+
+function unwrapEntry(entry: SnapshotCall, store: SnapshotStore, depth: number): unknown {
+  if (entry.result.t === T_REF)
+    return new MockHandler(null, entry.result.v, store, depth + 1);
+  return deserialize(entry.result);
+}
+
+/**
+ * @description Replays an iterator protocol `next()` call as the ordered sequence of its
+ *   recorded results (per iterator instance), returning a synthetic
+ *   `{ value: undefined, done: true }` once the sequence is exhausted.
+ *
+ *   Iterators are stateful: a stateless last-wins replay would repeat the last recorded
+ *   result forever when the recorded iteration was interrupted early (return/break) and no
+ *   `done: true` entry was recorded, producing an infinite loop in the replaying test.
+ *
+ *   Non-iterator methods named `next` (recorded results without a `done` property) keep the
+ *   legacy last-wins behaviour.
+ */
+function replayIteratorNext(
+  handler: object,
+  callKey: string,
+  store: SnapshotStore,
+  depth: number,
+): unknown {
+  const legacy = getReplayEntry(store, callKey, 'next', []);
+  if (!isIteratorResult(legacy.result)) return unwrapEntry(legacy, store, depth);
+
+  const idx = iteratorNextCounters.get(handler) ?? 0;
+  iteratorNextCounters.set(handler, idx + 1);
+
+  const len = store.sequenceLength(callKey);
+  if (len === 0) return unwrapEntry(legacy, store, depth);
+  if (idx >= len) return { value: undefined, done: true };
+
+  const entry = store.getAt(callKey, idx);
+  if (!entry) return unwrapEntry(legacy, store, depth);
+  return unwrapEntry(entry, store, depth);
+}
 
 /**
  * @description Wraps a result value in a {@link MockHandler} if it has methods,

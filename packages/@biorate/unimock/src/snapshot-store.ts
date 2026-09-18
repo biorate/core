@@ -95,6 +95,13 @@ export class SnapshotStore implements SnapshotStoreEntry {
 
   private data: SnapshotFile;
 
+  /**
+   * @description Ordered per-key history of every recorded call event (file order), kept
+   *   alongside the last-wins `data.calls` so stateful call sites (iterator `next()`) can
+   *   be replayed in order.
+   */
+  private callSeq: Map<string, SnapshotCall[]>;
+
   private dirty = false;
 
   private stringPool: Map<string, string>;
@@ -132,6 +139,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
     this.pendingKeys = new Set();
     this.pendingStrings = new Set();
     this.pendingValues = new Set();
+    this.callSeq = new Map();
     this.data = this.load();
   }
 
@@ -214,6 +222,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
         const { key, call } = rec as { key: string; call: SnapshotCall };
         if (typeof key === 'string' && call && typeof call === 'object') {
           parsed.calls[key] = call;
+          this.pushSeq(key, call);
         }
       }
     }
@@ -242,14 +251,44 @@ export class SnapshotStore implements SnapshotStoreEntry {
     };
   }
 
+  private pushSeq(key: string, call: SnapshotCall): void {
+    const seq = this.callSeq.get(key);
+    if (seq) seq.push(call);
+    else this.callSeq.set(key, [call]);
+  }
+
+  /**
+   * @description Number of recorded occurrences of a call key, in file order.
+   */
+  public sequenceLength(callKey: string): number {
+    return this.callSeq.get(callKey)?.length ?? 0;
+  }
+
+  /**
+   * @description The `index`-th (0-based) recorded occurrence of a call key, de-pooled.
+   */
+  public getAt(callKey: string, index: number): SnapshotCall | undefined {
+    const call = this.callSeq.get(callKey)?.[index];
+    if (!call) return undefined;
+    return {
+      args: call.args.map((a) => this.depoolValue(a)),
+      result: this.depoolValue(call.result),
+      error: call.error ? this.depoolValue(call.error) : undefined,
+      // Optional per-instance refId markup (absent on legacy entries — kept as-is).
+      ...(call.refs !== undefined ? { refs: call.refs } : {}),
+    };
+  }
+
   public record(callKey: string, call: SnapshotCall): void {
-    this.data.calls[callKey] = {
+    const pooled: SnapshotCall = {
       args: call.args.map((a) => this.poolValue(a)),
       result: this.poolValue(call.result),
       error: call.error ? this.poolValue(call.error) : undefined,
       // Optional per-instance refId markup (absent on legacy entries — kept as-is).
       ...(call.refs !== undefined ? { refs: call.refs } : {}),
     };
+    this.data.calls[callKey] = pooled;
+    this.pushSeq(callKey, pooled);
     this.pendingKeys.add(callKey);
     this.dirty = true;
   }
@@ -279,6 +318,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
    */
   public release(): void {
     this.data = { version: SNAPSHOT_FILE_VERSION, className: this.className, calls: {} };
+    this.callSeq.clear();
     this.stringPool.clear();
     this.valuePool.clear();
     this.valueIndex.clear();
