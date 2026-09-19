@@ -18,6 +18,8 @@ pnpm add @biorate/unimock
 
 ## Usage
 
+> 💡 **Examples** — полные примеры интеграции по видам мокируемых зависимостей (что добавить в vitest setup и в `__mocks__/`): см. [`examples/`](examples/README.md).
+
 ### Basic service mocking
 
 ```ts
@@ -56,6 +58,8 @@ const replayed = new MockedService();
 console.log(await replayed.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
 ```
 
+> 📚 Пример — [`examples/service-class.md`](examples/service-class.md).
+
 ### Functional style
 
 If you prefer not to use decorators, use `mock()` — it works identically to `@Mockable()`:
@@ -81,6 +85,8 @@ const replayed = new MockedService();
 console.log(await replayed.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
 ```
 
+> 📚 Пример — [`examples/service-class.md`](examples/service-class.md).
+
 ### Plain object mocking
 
 `mock()` also accepts plain objects and class instances — every method is wrapped for record/replay:
@@ -104,6 +110,8 @@ flushAllSnapshots();
 SnapshotStore.setMode('replay');
 console.log(await obj.query('SELECT 1')); // { data: [1, 2, 3] } — from snapshot
 ```
+
+> 📚 Пример — [`examples/plain-object.md`](examples/plain-object.md).
 
 The snapshot name is auto-derived: `constructor.name` for class instances, or `Object_<hash>` for literals. Use `name` in options to override:
 
@@ -145,6 +153,8 @@ Available static method lists:
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `SEQUELIZE_STATICS` | `sync`, `drop`, `create`, `findOne`, `findAll`, `findByPk`, `findOrCreate`, `findOrBuild`, `findCreateFind`, `findAndCountAll`, `destroy`, `update`, `upsert`, `bulkCreate`, `truncate`, `restore`, `count`, `sum`, `min`, `max`, `increment`, `decrement`, `describe`, `scope`, `unscoped`, `schema`, `getTableName`, `addScope`, `removeAttribute`, `getAttributes`, `hasAlias`, `hasMany`, `belongsToMany`, `hasOne`, `belongsTo`, `build`, `bulkBuild`, `warnOnInvalidOptions` |
 
+> 📚 Пример (включая offline-биндинг моделей в replay — обход `ModelNotInitializedError`) — [`examples/static-methods.md`](examples/static-methods.md).
+
 #### Replay reconstruction of model instances
 
 In replay mode, the recorded result of a static that returns model instances is reconstructed into real model instances (with working `toJSON()`, `get()`, `save()`, etc.) by the model's own **original** static `build(plain, { isNewRecord: false })`, captured before wrapping. The result shape determines how the recorded data is rebuilt:
@@ -171,6 +181,8 @@ By default, symbol values are serialized as a string marker (`'<symbol>'`). To p
 class MockedService extends RealService {}
 ```
 
+> 📚 Пример — [`examples/options.md`](examples/options.md).
+
 When enabled, symbols are serialized as `{ t: 'symbol', v: '<description>' }` and restored via `Symbol(description)`. This is an opt-in feature because it changes the snapshot format and would break existing snapshots.
 
 ### Nested wrapping depth
@@ -186,7 +198,15 @@ class ShallowService extends RealService {}
 const ShallowService = mock(RealService, { depth: 2 });
 ```
 
+> 📚 Пример — [`examples/options.md`](examples/options.md).
+
 When the limit is reached, nested results are serialized directly as plain data instead of being wrapped in a `MockHandler`.
+
+### Callback arguments
+
+Functions passed as arguments to mocked methods are intercepted: their invocations are recorded in record mode and replayed in replay mode.
+
+> 📚 Пример — [`examples/callbacks.md`](examples/callbacks.md).
 
 ### Connector mocking (ClickHouse)
 
@@ -228,6 +248,8 @@ const { data: data2 } = await root.connector
   .query({ query: 'SELECT 1 AS result;', format: 'JSON' });
 console.log(data2); // [{ result: 1 }] — from snapshot
 ```
+
+> 📚 Пример — [`examples/connector.md`](examples/connector.md).
 
 ### Supported connectors
 
@@ -272,6 +294,8 @@ if (!isRecord()) {
 
 These functions always read the current global mode — they work correctly after `SnapshotStore.setMode()`. Also accessible via `Unimock.isReplay` and `Unimock.isRecord` getters.
 
+> 📚 Setup для vitest, режимы, флаги и контракт снапшотов — [`examples/setup.md`](examples/setup.md).
+
 ### Mode contract and snapshot lifecycle (Контракт режимов и жизненный цикл снапшотов)
 
 Snapshot files follow a strict mode contract. It is enforced at three levels: the `@Mockable()` wrappers (they never touch the store outside record mode), the store API itself, and the contract tests (`tests/mode-guards.spec.ts`, `tests/record-session.spec.ts`).
@@ -315,6 +339,8 @@ export default defineConfig({
 ```
 
 The setup hooks `afterAll` to call `flushAllSnapshots()` automatically when `UNIMOCK=record`.
+
+> 📚 Пример — [`examples/setup.md`](examples/setup.md).
 
 ## Scripts
 
@@ -373,6 +399,8 @@ JSON.stringify(noop); // {}
 typeof noop.callback; // 'function'
 ```
 
+> 📚 Пример — [`examples/noop.md`](examples/noop.md).
+
 **Note:** `typeof noop` returns `'function'` (the Proxy target is a function). This is a JavaScript limitation — `typeof` is not interceptable by Proxy.
 
 ## Known limitations
@@ -387,7 +415,7 @@ typeof noop.callback; // 'function'
 
 5. **Unrecorded instance methods throw in replay.** An instance method that was never invoked on an instance during the record phase throws `UnimockReplayMissError` when called in replay.
 
-6. **Replayed instances are rebuilt by the model's own static `build`.** The model class must be importable and initialized at replay time (for Sequelize models: bound to a `Sequelize` instance, e.g. via `new Sequelize({ models: [Model] })` in test setup). Since 1.10.1, constructor-internal calls during the rebuild pass through to the originals — record/replay construction options no longer need to match and a seeded `build()` call is not required.
+6. **Replayed instances are rebuilt by the model's own static `build`.** The model class must be importable and initialized at replay time (for Sequelize models: bound to a `Sequelize` instance — use the [`bindReplaySequelizeModels`](examples/static-methods.md) test-setup helper, which does an offline no-I/O bind in replay mode and is a no-op otherwise). Since 1.10.1, constructor-internal calls during the rebuild pass through to the originals — record/replay construction options no longer need to match and a seeded `build()` call is not required.
 
 ### Learn
 

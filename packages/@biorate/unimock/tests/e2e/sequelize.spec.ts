@@ -1,10 +1,9 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
-import { Model, Sequelize } from '@biorate/sequelize';
-import { isReplay } from '../../src';
+import { Model } from '@biorate/sequelize';
+import { bindReplaySequelizeModels } from '../../src';
 import {
   DDL,
   DML,
-  PG,
   SELECT,
   SELECT_MODEL,
   TestModel,
@@ -45,16 +44,13 @@ describe('@biorate/sequelize — @Mockable on Model class', () => {
 
   beforeAll(async () => {
     root2 = await setupModelMock();
-    if (isReplay()) {
-      // Replay never executes the original `connect()` (it is replayed from
-      // the connector snapshot), so TestModel is never bound to a Sequelize
-      // instance and its sequelize-typescript `isInitialized` flag stays
-      // false — the original static build() would throw
-      // ModelNotInitializedError during replay reconstruction. Bind the model
-      // to an offline Sequelize instance (the constructor performs no I/O)
-      // to emulate what the real connect() does in record mode.
-      new Sequelize({ ...PG, dialect: 'postgres' as const, models: [TestModel] });
-    }
+    // Replay never executes the original `connect()` (it is replayed from the connector
+    // snapshot), so TestModel is never bound to a Sequelize instance and its
+    // sequelize-typescript `isInitialized` flag stays false — the original static build()
+    // would throw ModelNotInitializedError during replay reconstruction. bindReplaySequelizeModels
+    // binds the model to an offline `Sequelize` instance (the constructor performs no I/O),
+    // emulating what the real connect() does in record mode; it's a no-op outside replay.
+    bindReplaySequelizeModels(TestModel);
   });
 
   afterAll(() => {

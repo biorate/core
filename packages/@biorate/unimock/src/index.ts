@@ -42,6 +42,10 @@ export { MockHandler } from './mock-handler';
 /** @description Universal noop proxy — any property, method, call, construct returns itself. */
 export { noop } from './noop';
 
+/** @description Sequelize model risk-free binding helper for replay test setup (offline, no I/O). */
+export { bindReplaySequelizeModels } from './sequelize';
+export type { SequelizeOptions } from '@biorate/sequelize';
+
 import {
   flushAllSnapshots,
   releaseSnapshotStore,

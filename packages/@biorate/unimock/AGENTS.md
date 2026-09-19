@@ -33,6 +33,7 @@
 | `src/statics.ts`              | `StaticReplayShape`, `STATIC_REPLAY_SHAPE`, `wrapStaticMethod`, `replayStaticCall`, `registerStaticRefs`, `rebuildInstance`, `recordStaticResult`, `toPlain`, `assignStaticRefs` |
 | `src/state.ts`                | Module-level state: `replayRebuilt`, `staticOriginals`, `reconstructionDepth` + `inReconstruction()`/`withReconstructionDepth()`                                      |
 | `src/mock-handler.ts`         | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.), private `#replayGet`/`#recordGet`                                           |
+| `src/sequelize.ts`            | `bindReplaySequelizeModels` — offline-binding Sequelize-моделей в replay (no-op вне replay, off-guard вокруг биндинга, вариадик-модели + опции)                                      |
 | `src/snapshot-store.ts`       | `SnapshotStore` — JSONL загрузка/сохранение (v2 header `_jsonl:2`, refs всегда явный), кэш stores, режимные гейты `record()`/`flush()`, `flushAllSnapshots()`, `isReplay()`, `isRecord()`, `isOff()` (internal, fast path) |
 | `src/serializer.ts`           | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey`                                                                                                 |
 | `src/utils.ts`                | `getOrAssignRefId`, `getRefId`, `setRefId`, `getUnimockRef`, `isPromiseLike`, `getReplayStaticEntry`, `recordError`                                                  |
@@ -218,7 +219,7 @@ new MockHandler(target, refId, store) → Proxy
 
 6. **Невызывавшийся в record instance-метод бросает `UnimockReplayMissError` в replay.** Если метод не вызывался на данном инстансе в record-фазе — в replay его вызов промахнётся (by design, семантика replay).
 
-7. **Replay-инстансы реконструируются оригинальным статик-`build` самой модели** — класс модели должен быть импортируем и инициализирован в replay-среде (для Sequelize: связан с инстансом `Sequelize`, иначе `build` упадёт с `ModelNotInitializedError`; в тестах — offline `new Sequelize({ models: [Model] })` в setup).
+7. **Replay-инстансы реконструируются оригинальным статик-`build` самой модели** — класс модели должен быть импортируем и инициализирован в replay-среде (для Sequelize: связан с инстансом `Sequelize`, иначе `build` упадёт с `ModelNotInitializedError`). Для этого есть публичный хелпер `bindReplaySequelizeModels(...models)` (`src/sequelize.ts`): offline-binding без I/O, no-op вне replay, внутри временно переключает режим в off (wrapped-статики вроде `getTableName` не уходят в replay-lookup). Используется в `tests/e2e/sequelize.spec.ts`; юнит-спеки android (`association-replay`, `aggregate-replay`) биндят безусловно вручную (нужны вне replay тоже).
 
 ## Callback-механизм
 

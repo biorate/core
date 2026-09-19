@@ -80,7 +80,6 @@
     "@biorate/rdkafka": "2.3.3",
     "@biorate/redis": "2.1.3",
     "@biorate/schema-registry": "3.1.9",
-    "@biorate/sequelize": "2.2.3",
     "@biorate/tools": "3.1.2",
     "@confluentinc/kafka-javascript": "latest",
     "@types/lodash-es": "^4.17.12"
@@ -91,7 +90,8 @@
   "dependencies": {
     "@biorate/errors": "3.1.2",
     "@biorate/inversion": "3.1.3",
-    "@biorate/lifecycled": "3.2.3"
+    "@biorate/lifecycled": "3.2.3",
+    "@biorate/sequelize": "2.2.3"
   },
   "gitHead": "58e33c5c146be2ade7957d96f1bc61eb801217e2"
 }
