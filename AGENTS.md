@@ -19,7 +19,7 @@
 
 **Воркспейсы:** `pnpm-workspace.yaml` и поле `workspaces` в корневом `package.json` задают `packages/*/*` и `.tools/*`.
 
-**Версии пакетов:** Lerna в режиме **independent** (`lerna.json`), клиент — **pnpm**. Публикация: `pnpm run publish` → `lerna publish from-package`.
+**Версии пакетов:** Lerna в режиме **independent** (`lerna.json`), клиент — **pnpm**. Публикация: `pnpm run release` → `lerna publish from-package`.
 
 **Nx:** в `nx.json` кэшируется операция `build`; оркестрация задач по-прежнему через Lerna/pnpm.
 

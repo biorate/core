@@ -11,7 +11,7 @@
     "demo": "npx lerna run demo",
     "doc": "npx typedoc --skipErrorChecking packages/@biorate/*/index.ts",
     "postdoc": "npm run demo",
-    "publish": "npx lerna publish from-package",
+    "release": "npx lerna publish from-package",
     "lint": "npx lerna run lint",
     "lint:fix": "npx lerna run lint:fix",
     "format": "npx lerna run format",
