@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/biorate/core/compare/%40biorate%2Fsequelize%402.2.3...%40biorate%2Fsequelize%402.3.0) (2026-09-19)
+
+### Features
+
+- **unimok:** optimisation ([29d4296](https://github.com/biorate/core/commit/29d4296dda4fd813fd576c5680e76af98750bc7c))
+
 ## [2.2.3](https://github.com/biorate/core/compare/@biorate/sequelize@2.2.2...@biorate/sequelize@2.2.3) (2026-06-26)
 
 **Note:** Version bump only for package @biorate/sequelize

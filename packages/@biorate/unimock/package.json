@@ -1,6 +1,6 @@
 {
   "name": "@biorate/unimock",
-  "version": "1.12.2",
+  "version": "1.13.0",
   "description": "Snapshot-based proxy mocking for connectors and services",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -91,7 +91,7 @@
     "@biorate/errors": "3.1.2",
     "@biorate/inversion": "3.1.3",
     "@biorate/lifecycled": "3.2.3",
-    "@biorate/sequelize": "2.2.3"
+    "@biorate/sequelize": "^2.3.0"
   },
   "gitHead": "58e33c5c146be2ade7957d96f1bc61eb801217e2"
 }

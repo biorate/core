@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.12.0...%40biorate%2Funimock%401.13.0) (2026-09-19)
+
+### Features
+
+- **unimok:** bindReplaySequelizeModels ([875c3aa](https://github.com/biorate/core/commit/875c3aacb6a3fb968e229d9b1ee543e752e11f75))
+- **unimok:** optimisation ([8d954d5](https://github.com/biorate/core/commit/8d954d5871423f6c204a6ee024d71ffa4d6377e9))
+- **unimok:** optimisation ([26664b8](https://github.com/biorate/core/commit/26664b85a7ac1f6ca0d16498de0b5402d7203823))
+- **unimok:** optimisation ([97ca20c](https://github.com/biorate/core/commit/97ca20c8931638585180a7d609fe3003ee2a2b71))
+- **unimok:** optimisation ([29d4296](https://github.com/biorate/core/commit/29d4296dda4fd813fd576c5680e76af98750bc7c))
+- **unimok:** optimisation ([450c280](https://github.com/biorate/core/commit/450c28088d7eb546bc8ed940e4bd26ba4b12bf49))
+
 # [1.12.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.11.1...%40biorate%2Funimock%401.12.0) (2026-09-15)
 
 ### Features
