@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.13.0...%40biorate%2Funimock%401.14.0) (2026-09-22)
+
+### Features
+
+- **unimok:** makeConnectionManagerOffline / fallbackOnMissEnabled ([cedce29](https://github.com/biorate/core/commit/cedce29e17501dc73929fc521eccb29c66fb25f6))
+
 # [1.13.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.12.0...%40biorate%2Funimock%401.13.0) (2026-09-19)
 
 ### Features
