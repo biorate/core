@@ -417,6 +417,8 @@ typeof noop.callback; // 'function'
 
 6. **Replayed instances are rebuilt by the model's own static `build`.** The model class must be importable and initialized at replay time (for Sequelize models: bound to a `Sequelize` instance — use the [`bindReplaySequelizeModels`](examples/static-methods.md) test-setup helper, which does an offline no-I/O bind in replay mode and is a no-op otherwise). Since 1.10.1, constructor-internal calls during the rebuild pass through to the originals — record/replay construction options no longer need to match and a seeded `build()` call is not required.
 
+7. **Replay is fully DB-less when `bindReplaySequelizeModels` is used.** The helper makes the bound `Sequelize` instance hermetic: its connection manager is replaced with an offline stub (`getConnection` returns an inert in-memory connection whose every query resolves to an empty postgres-shaped result). Any code path that executes raw library code on the instance during replay — strays like `Model.sequelize?.query('SELECT setval(...)')`, `authenticate()`, or a direct `transaction()` — terminates offline instead of opening a live connection. The stub is instance-level and idempotent. When `UNIMOCK_FALLBACK_ON_MISS=1` the connection manager is intentionally left live so the replay-miss fallback can run against the real backend.
+
 ### Learn
 
 - Documentation can be found here - [docs](https://biorate.github.io/core/modules/unimock.html).

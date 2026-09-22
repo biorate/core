@@ -56,3 +56,7 @@ export function rowPoolEnabled(): boolean {
 export function compactEnabled(): boolean {
   return envFlag('UNIMOCK_COMPACT');
 }
+
+export function fallbackOnMissEnabled(): boolean {
+  return envFlag('UNIMOCK_FALLBACK_ON_MISS');
+}

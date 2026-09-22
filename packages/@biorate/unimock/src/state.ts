@@ -54,3 +54,19 @@ export function withReconstructionDepth<T>(fn: () => T): T {
     reconstructionDepth -= 1;
   }
 }
+
+/**
+ * @description Real backend instances keyed by class name, used for the optional
+ *   replay-miss fallback (`UNIMOCK_FALLBACK_ON_MISS=1`). A replayed proxy whose
+ *   recorded call is missing executes the untouched method on the registered real
+ *   instance (e.g. the Sequelize created by {@link bindReplaySequelizeModels}).
+ */
+const replayFallbacks = new Map<string, unknown>();
+
+export function registerReplayFallback(className: string, value: unknown): void {
+  replayFallbacks.set(className, value);
+}
+
+export function getReplayFallback(className: string): unknown {
+  return replayFallbacks.get(className);
+}

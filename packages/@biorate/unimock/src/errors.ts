@@ -7,9 +7,15 @@ import { BaseError } from '@biorate/errors';
  */
 export class UnimockReplayMissError extends BaseError {
   public constructor(callKey: string, method: string, args: unknown[]) {
+    let argsString: string;
+    try {
+      argsString = JSON.stringify(args);
+    } catch {
+      argsString = '[unstringifiable args]';
+    }
     super(
       `Unimock replay miss: no snapshot found for call "${callKey}" ` +
-        `(method "${method}", args: ${JSON.stringify(args)}). ` +
+        `(method "${method}", args: ${argsString}). ` +
         `Run with UNIMOCK=record to create snapshots.`,
     );
   }

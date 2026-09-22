@@ -12,7 +12,7 @@ import {
   PREFIX_CALL,
   PREFIX_PROP,
 } from './constants';
-import { skipProxyArgsEnabled } from './env';
+import { skipProxyArgsEnabled, fallbackOnMissEnabled } from './env';
 import {
   hasMethods,
   getOrAssignRefId,
@@ -21,6 +21,8 @@ import {
   getReplayEntry,
   recordError,
 } from './utils';
+import { getReplayFallback } from './state';
+import { UnimockReplayMissError } from './errors';
 
 /**
  * @description Proxy wrapper for objects returned by mocked methods.
@@ -98,7 +100,20 @@ export class MockHandler {
       const callKey = makeCallKey(`${PREFIX_CALL}${this.__unimock_ref__}:`, name, args);
       if (name === 'next')
         return replayIteratorNext(this, callKey, this.store, this.__unimock_depth__);
-      const entry = getReplayEntry(this.store, callKey, name, args);
+      let entry: SnapshotCall | undefined;
+      try {
+        entry = this.store.nextReplayEntry(callKey);
+        if (!entry) throw new UnimockReplayMissError(callKey, name, args);
+        if (entry.error) throw deserialize(entry.error);
+      } catch (e) {
+        if (e instanceof UnimockReplayMissError && fallbackOnMissEnabled()) {
+          const fb = getReplayFallback(refClassName(this.__unimock_ref__));
+          const fn = (fb as Record<string | symbol, unknown> | undefined)?.[prop];
+          if (typeof fn === 'function')
+            return (fn as (...a: unknown[]) => unknown).apply(fb, args);
+        }
+        throw e;
+      }
       if (entry.result.t === T_REF)
         return new MockHandler(
           null,
@@ -179,6 +194,11 @@ export class MockHandler {
  *   iterator proxy instance replays the recorded `next()` sequence from the beginning.
  */
 const iteratorNextCounters = new WeakMap<object, number>();
+
+function refClassName(refId: string): string {
+  const m = /^ref_(.+)_(\d+)$/.exec(refId);
+  return m ? m[1] : '';
+}
 
 function isIteratorResult(v: SerializedValue): boolean {
   if (v.t !== T_OBJECT || !Array.isArray(v.v)) return false;

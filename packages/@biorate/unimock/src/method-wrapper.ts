@@ -1,6 +1,7 @@
 import type { SerializedValue } from './interfaces';
 import type { SnapshotStore } from './snapshot-store';
 import { isOff, isReplay, isRecord } from './snapshot-store';
+import { fallbackOnMissEnabled } from './env';
 import { makeCallKey, serialize, deserialize } from './serializer';
 import { UnimockReplayMissError } from './errors';
 import { MockHandler } from './mock-handler';
@@ -11,7 +12,6 @@ import {
   getOrAssignRefId,
   getUnimockRef,
   isPromiseLike,
-  getReplayEntry,
   recordError,
 } from './utils';
 import { inReconstruction, replayRebuilt } from './state';
@@ -81,10 +81,16 @@ export class MethodWrapper {
       const callKey = makeCallKey(connectionPrefix(this), name, reportArgs);
 
       if (isReplay()) {
-        if (replayOverride) return replayOverride(this, callKey, name, args, store);
         try {
+          if (replayOverride) return replayOverride(this, callKey, name, args, store);
           return replayCall(callKey, name, args, store);
         } catch (e) {
+          // Fall back to the original implementation when UNIMOCK_FALLBACK_ON_MISS=1 is set:
+          // a replay miss must not crash the process (recorded flows can legitimately diverge,
+          // e.g. query caches or file order); the original executes against the real
+          // backend. Without the flag the previous strict behaviour is kept.
+          if (e instanceof UnimockReplayMissError && fallbackOnMissEnabled())
+            return original.apply(this, args);
           // Only replay-rebuilt, unregistered instances fall back to their own recorded
           // data (Sequelize attribute getters). Everything else stays strict.
           if (
@@ -181,7 +187,9 @@ export function replayCall(
   args: unknown[],
   store: SnapshotStore,
 ): unknown {
-  const entry = getReplayEntry(store, callKey, name, args);
+  const entry = store.nextReplayEntry(callKey);
+  if (!entry) throw new UnimockReplayMissError(callKey, name, args);
+  if (entry.error) throw deserialize(entry.error);
 
   const promises = replayCallbacks(entry.args, args);
 
@@ -358,9 +366,17 @@ export function wrapGetter(
     const callKey = makeCallKey(connectionPrefix(this), name, []);
 
     if (isReplay()) {
-      const entry = getReplayEntry(store, callKey, name, []);
-      if (entry.result.t === T_REF) return new MockHandler(null, entry.result.v, store);
-      return deserialize(entry.result);
+      try {
+        const entry = store.nextReplayEntry(callKey);
+        if (!entry) throw new UnimockReplayMissError(callKey, name, []);
+        if (entry.error) throw deserialize(entry.error);
+        if (entry.result.t === T_REF) return new MockHandler(null, entry.result.v, store);
+        return deserialize(entry.result);
+      } catch (e) {
+        if (e instanceof UnimockReplayMissError && fallbackOnMissEnabled())
+          return original.call(this);
+        throw e;
+      }
     }
     if (!isRecord()) return original.call(this);
 

@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it } from 'vitest';
 import { Column, DataType, Model, Sequelize, Table } from '@biorate/sequelize';
 import {
   MODE_OFF,
@@ -68,5 +68,65 @@ describe('bindReplaySequelizeModels', () => {
     expect((instance as Sequelize).getDialect()).toBe('sqlite');
     expect(BindReplaySqliteModel.isInitialized).toBe(true);
     expect(SnapshotStore.mode).toBe(MODE_REPLAY);
+  });
+});
+
+describe('bindReplaySequelizeModels — offline connection manager', () => {
+  afterEach(() => {
+    delete process.env.UNIMOCK_FALLBACK_ON_MISS;
+    SnapshotStore.setMode(MODE_REPLAY);
+  });
+
+  it('returns an inert connection through the patched connection manager', async () => {
+    SnapshotStore.setMode(MODE_REPLAY);
+
+    const instance = bindReplaySequelizeModels(BindReplayModel);
+    const cm = (
+      instance as unknown as { connectionManager: { getConnection(): unknown } }
+    ).connectionManager;
+
+    const conn = (await cm.getConnection()) as {
+      query(sql: string, cb?: (e: Error | null, r: object) => void): unknown;
+    };
+    const empty = { command: 'SELECT', rowCount: 0, rows: [], fields: [] };
+
+    expect(await conn.query('SELECT setval(seq, 50)')).toEqual(empty);
+
+    const cbResult = await new Promise((resolve) => {
+      conn.query('SELECT 1', (e, r) => resolve(e ?? r));
+    });
+    expect(cbResult).toEqual(empty);
+  });
+
+  it('serves a raw query through Model.sequelize without touching the network', async () => {
+    SnapshotStore.setMode(MODE_REPLAY);
+
+    const instance = bindReplaySequelizeModels(BindReplayModel) as Sequelize;
+
+    const [rows] = await instance.query('SELECT setval("seq", 50)');
+    expect(rows).toEqual([]);
+
+    await expect(instance.authenticate()).resolves.toBeUndefined();
+  });
+
+  it('lets a direct transaction begin and rollback offline', async () => {
+    SnapshotStore.setMode(MODE_REPLAY);
+
+    const instance = bindReplaySequelizeModels(BindReplayModel) as Sequelize;
+
+    const tx = await instance.transaction();
+    await expect(tx.rollback()).resolves.toBeUndefined();
+  });
+
+  it('keeps the live connection manager when UNIMOCK_FALLBACK_ON_MISS=1', () => {
+    SnapshotStore.setMode(MODE_REPLAY);
+    process.env.UNIMOCK_FALLBACK_ON_MISS = '1';
+
+    const instance = bindReplaySequelizeModels(BindReplayModel);
+    const cm = (instance as unknown as { connectionManager: Record<string, unknown> })
+      .connectionManager;
+
+    expect(cm['__unimock_offline_connection__']).toBeUndefined();
+    expect(cm.getConnection).toBe(Object.getPrototypeOf(cm).getConnection);
   });
 });

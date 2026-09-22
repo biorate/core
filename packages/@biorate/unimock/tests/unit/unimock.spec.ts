@@ -1067,11 +1067,11 @@ describe('instance method refId scoping (production pattern)', () => {
       expect(rows.every((r) => r instanceof MockedProdLegacy)).toBe(true);
       // Legacy T3 rebuild: per-row dataValues come from the recorded plain rows.
       expect(rows.map((r) => r.dataValues)).toEqual(THREE_ROWS);
-      // Legacy shared slot: every row's toJSON() returns the last recorded row —
-      // the old (buggy but crash-free) semantics, not a regression.
+      // Same-key instance calls (toJSON) replay in recorded FIFO order now:
+      // each row's toJSON() returns its own recorded occurrence, not the last.
       expect(rows.map((r) => r.toJSON())).toEqual([
-        { id: 3, title: 'three' },
-        { id: 3, title: 'three' },
+        { id: 1, title: 'one' },
+        { id: 2, title: 'two' },
         { id: 3, title: 'three' },
       ]);
     } finally {

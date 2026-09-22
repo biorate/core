@@ -135,6 +135,8 @@ export class SnapshotStore implements SnapshotStoreEntry {
   private valueCounter = 0;
 
   private pendingKeys: Set<string>;
+  /** Per-callKey count of occurrences already written to the on-disk file (for appends). */
+  private flushedSeq: Map<string, number>;
 
   private pendingStrings: Set<string>;
 
@@ -163,6 +165,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
     this.valuePool = new Map();
     this.valueIndex = new Map();
     this.pendingKeys = new Set();
+    this.flushedSeq = new Map();
     this.pendingStrings = new Set();
     this.pendingValues = new Set();
     this.callSeq = new Map();
@@ -364,6 +367,17 @@ export class SnapshotStore implements SnapshotStoreEntry {
   }
 
   /**
+   * @description Sequence-aware replay lookup for scoped (instance) call keys: same FIFO
+   *   semantics as { @link nextStaticReplayEntry }, keyed by the full `call:ref_...:method:`
+   *   or getter key. Required for repeated same-argument instance calls whose RESULTS differ
+   *   per invocation (e.g. raw `query()` with an incrementing `RETURNING number`), where
+   *   last-wins replay would hand every call the final recorded value.
+   */
+  public nextReplayEntry(callKey: string): SnapshotCall | undefined {
+    return this.nextStaticReplayEntry(callKey);
+  }
+
+  /**
    * @description Records a call entry (last-wins per callKey, plus ordered history for
    *   sequence-aware replay). No-op outside record mode (defense in depth): the `@Mockable()`
    *   wrappers never call this in replay/off, and the guard also protects direct API calls.
@@ -425,6 +439,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
   private resetState(opts: { counters: boolean; fileState: boolean }): void {
     this.data = { version: SNAPSHOT_FILE_VERSION, className: this.className, calls: {} };
     this.callSeq.clear();
+    this.flushedSeq.clear();
     this.staticReplayCounters.clear();
     this.staticReplayWarned.clear();
     this.stringPool.clear();
@@ -471,6 +486,8 @@ export class SnapshotStore implements SnapshotStoreEntry {
     }
     this.jsonlOnDisk = true;
     this.jsonlHeaderWritten = true;
+    this.flushedSeq.clear();
+    for (const [key, seq] of this.callSeq) this.flushedSeq.set(key, seq.length);
     // Keep calls, stringPool and valuePool resident: replay may run in the same process
     // (record -> flushAllSnapshots -> setMode('replay') -> get) and in-memory entries must
     // still resolve, including pooled strings/values. Only pending markers are cleared.
@@ -487,7 +504,9 @@ export class SnapshotStore implements SnapshotStoreEntry {
     yield JSON.stringify({ _jsonl: JSONL_FORMAT_VERSION, className: this.className });
     for (const [ref, value] of this.stringPool) yield JSON.stringify({ _t: 's', ref, val: value });
     for (const [ref, value] of this.valuePool) yield JSON.stringify({ _t: 'v', ref, val: value });
-    for (const [key, call] of Object.entries(this.data.calls)) yield JSON.stringify({ _t: 'c', key, call });
+    // callSeq, not data.calls: replay consumes occurrences FIFO and loses them across restarts.
+    for (const [key, seq] of this.callSeq)
+      for (const call of seq) yield JSON.stringify({ _t: 'c', key, call });
   }
 
   private appendJsonl(): void {
@@ -501,6 +520,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
     } finally {
       closeSync(fd);
     }
+    for (const key of this.pendingKeys) this.flushedSeq.set(key, this.callSeq.get(key)?.length ?? 0);
     this.pendingKeys.clear();
     this.pendingStrings.clear();
     this.pendingValues.clear();
@@ -519,9 +539,14 @@ export class SnapshotStore implements SnapshotStoreEntry {
       const value = this.valuePool.get(ref);
       if (value !== undefined) yield JSON.stringify({ _t: 'v', ref, val: value });
     }
+    // Occurrences, not last-wins: data.calls holds only the final call per key, and
+    // replay consumes occurrences FIFO (nextStaticReplayEntry), so every occurrence
+    // recorded since the previous flush must reach the file or replay answers mismatch.
     for (const key of this.pendingKeys) {
-      const call = this.data.calls[key];
-      if (call !== undefined) yield JSON.stringify({ _t: 'c', key, call });
+      const seq = this.callSeq.get(key);
+      if (!seq) continue;
+      const from = this.flushedSeq.get(key) ?? 0;
+      for (let i = from; i < seq.length; i++) yield JSON.stringify({ _t: 'c', key, call: seq[i] });
     }
   }
 

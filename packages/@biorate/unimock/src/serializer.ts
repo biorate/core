@@ -25,6 +25,8 @@ import {
   STABLE_HASH_LENGTH,
 } from './constants';
 import { stripRequestEnabled } from './env';
+import { getRefId, getUnimockRef } from './utils';
+
 
 /**
  * @description Deterministic JSON-like stringification of arbitrary values.
@@ -84,17 +86,63 @@ export function stableHash(value: unknown): string {
 
 /**
  * @description Builds a deterministic call key used for snapshot lookup.
- *   Format: `prefix + method + ':' + stableHash(args)`.
- *   Functions in args are replaced with {@link MARKER_CALLBACK} before hashing.
+ *   Format: `prefix + method + ':' + stableHash(normalizedArgs)`.
+ *   Args are normalized before hashing: ref-registered values become `@refId`,
+ *   the execution-context `transaction` option is dropped, and runtime-generated
+ *   `Date` values (timestamps) are replaced by a constant marker, so the same
+ *   logical call hashes identically across record and replay runs.
  *
  * @param prefix - key prefix (empty for direct methods, `call:{refId}:` for connection-scoped calls)
  * @param method - method name
  * @param args - raw call arguments
  */
 export function makeCallKey(prefix: string, method: string, args: unknown[]): string {
-  const safeArgs = args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a));
+  const safeArgs = normalizeArgsForHash(args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a)));
   const h = safeArgs.length > 0 ? stableHash(safeArgs) : '';
   return `${prefix}${method}:${h}`;
+}
+
+function normalizeArgsForHash(args: unknown[]): unknown[] {
+  return args.map((a) => normalizeValueForHash(a, new Set<object>()));
+}
+
+/**
+ * @description Keys whose VALUES must not influence the call key.
+ *   These fields carry run-specific identity: generated session ids (embed
+ *   workstation/tx/date rolled by the app), crypto-random uuids, DB-sequence
+ *   transaction ids and runtime timestamps. Hashing them guarantees that the
+ *   same logical call hashes differently across record and replay runs.
+ *   Occurrences of one logical call are still disambiguated by FIFO replay
+ *   order (each call consumes the next recorded occurrence).
+ */
+const HASH_IGNORED_KEYS = new Set<string>([
+  'transaction',
+  'session_id',
+  'uuid',
+  'transaction_id',
+  'last_stamp',
+  'creation',
+]);
+
+function normalizeValueForHash(value: unknown, seen: Set<object>): unknown {
+  if (value === null || typeof value !== 'object') return value;
+  if (value instanceof Date) return '__DATE__';
+  const refId = getUnimockRef(value) ?? getRefId(value);
+  if (refId !== undefined) return `@${refId}`;
+  const object = value as object;
+  if (seen.has(object)) return '';
+  seen.add(object);
+  try {
+    if (Array.isArray(value)) return value.map((v) => normalizeValueForHash(v, seen));
+    const out: Record<string, unknown> = {};
+    for (const k of Object.keys(value)) {
+      if (HASH_IGNORED_KEYS.has(k)) continue;
+      out[k] = normalizeValueForHash(value[k as keyof typeof value], seen);
+    }
+    return out;
+  } finally {
+    seen.delete(object);
+  }
 }
 
 /**
@@ -129,6 +177,19 @@ export function serialize(
   if (Buffer.isBuffer(value)) return { t: T_BUFFER, v: value.toString(ENCODING_BASE64) };
   if (value instanceof Error)
     return { t: T_ERROR, v: { n: value.name, m: value.message, s: value.stack } };
+  if (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as { toJSON?: unknown }).toJSON === 'function'
+  ) {
+    // JSON.stringify semantics: class instances with toJSON (e.g. decimal.js) are stored as
+    // their JSON form so replay returns the same value the real HTTP layer produced.
+    return serialize(
+      ((value as unknown) as { toJSON: () => unknown }).toJSON(),
+      seen,
+      symbols,
+    );
+  }
   if (Array.isArray(value)) {
     const map = seen ?? new Map<object, string>();
     if (map.has(value)) return { t: T_UNDEFINED };
