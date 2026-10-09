@@ -122,7 +122,10 @@ fi
 preflight
 
 # Реальный прогон. stderr npm trust пробрасывается как есть (текст ошибок
-# не классифицируется — его формулировка не зафиксирована).
+# не классифицируется — его формулировка не зафиксирована). Ошибка на одном
+# пакете не прерывает прогон: пакеты настраиваются независимо, сводка отказов
+# печатается в конце (exit 1, если был хоть один отказ).
+failed=()
 for i in "${!PACKAGES[@]}"; do
   pkg="${PACKAGES[$i]}"
   # Пауза между реальными вызовами (не перед первым).
@@ -130,10 +133,17 @@ for i in "${!PACKAGES[@]}"; do
     sleep "$SLEEP_SECONDS"
   fi
   if ! npm trust github "$pkg" --file "$WORKFLOW_FILE" --repo "$REPO" --allow-publish --yes; then
-    echo "ERROR: 'npm trust' failed for ${pkg}; stderr above is passed through as-is." >&2
-    echo "Replace recipe: npm trust list ${pkg} -> npm trust revoke --id <id> ${pkg} -> re-run this script." >&2
-    exit 1
+    echo "ERROR: 'npm trust' failed for ${pkg}; continuing with remaining packages." >&2
+    failed+=("$pkg")
   fi
 done
+
+if [ "${#failed[@]}" -gt 0 ]; then
+  echo "Failed packages: ${#failed[@]}/${#PACKAGES[@]}" >&2
+  for pkg in "${failed[@]}"; do
+    echo "Replace recipe: npm trust list ${pkg} -> npm trust revoke --id <id> ${pkg} -> re-run this script." >&2
+  done
+  exit 1
+fi
 
 echo "Done: ${#PACKAGES[@]} trusted publisher configs processed."
