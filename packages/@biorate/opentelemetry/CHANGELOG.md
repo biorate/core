@@ -7,7 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **opentelemetry:** metricReader -> metricReaders ([9fbed39](https://github.com/biorate/core/commit/9fbed3958fba12b8b215b2c29bab0f01b843e3b1))
+- **opentelemetry:** metricReader -> metricReader ([9fbed39](https://github.com/biorate/core/commit/9fbed3958fba12b8b215b2c29bab0f01b843e3b1))
 
 ### Features
 

@@ -61,7 +61,7 @@ export const sdk = new NodeSDK({
       ),
     ),
   ],
-  metricReaders: getMetricReader(),
+  metricReader: getMetricReader(),
   resourceDetectors,
 });
 
