@@ -141,9 +141,9 @@ describe('aggregate findOne replay: real Model instances with populated dataValu
     const aggregateQuery = { where: { shop_id: 35, order_type: 2 } };
     recordStatic('OrderListModel', 'findOne', aggregateQuery, { number: 954 }, 'ref_1');
 
-    const aggregate = (await OrderListModel.findOne(
-      aggregateQuery,
-    )) as (Model & { dataValues: Record<string, unknown> }) | null;
+    const aggregate = (await OrderListModel.findOne(aggregateQuery)) as
+      | (Model & { dataValues: Record<string, unknown> })
+      | null;
     const r1 = shape(aggregate);
     expect(r1.isModel).toBe(true);
     expect((r1.dv as Record<string, unknown>).number).toBe(954);
@@ -151,26 +151,38 @@ describe('aggregate findOne replay: real Model instances with populated dataValu
     const emptyQuery = { where: { shop_id: 99, order_type: 2 } };
     recordStatic('OrderListModel', 'findOne', emptyQuery, { number: null }, 'ref_2');
 
-    const empty = (await OrderListModel.findOne(
-      emptyQuery,
-    )) as (Model & { dataValues: Record<string, unknown> }) | null;
+    const empty = (await OrderListModel.findOne(emptyQuery)) as
+      | (Model & { dataValues: Record<string, unknown> })
+      | null;
     const r2 = shape(empty);
     expect(r2.isModel).toBe(true);
     expect((r2.dv as Record<string, unknown>).number).toBeNull();
 
     const settingQuery = { where: { shop_id: 35, doc_type: 'PKO' } };
-    recordStatic('DocNumberSettingModel', 'findOne', settingQuery, { first_number: '30' }, 'ref_3');
-
-    const setting = (await DocNumberSettingModel.findOne(
+    recordStatic(
+      'DocNumberSettingModel',
+      'findOne',
       settingQuery,
-    )) as (Model & { dataValues: Record<string, unknown> }) | null;
+      { first_number: '30' },
+      'ref_3',
+    );
+
+    const setting = (await DocNumberSettingModel.findOne(settingQuery)) as
+      | (Model & { dataValues: Record<string, unknown> })
+      | null;
     const r3 = shape(setting);
     expect(r3.isModel).toBe(true);
     expect((r3.dv as Record<string, unknown>).first_number).toBe('30');
 
     // raw:true record → refs === null → plain object, no dataValues, not a Model.
     const rawQuery = { where: { shop_id: 35, order_type: 2 }, raw: true };
-    recordStatic('OrderListModel', 'findOne', rawQuery, { id: 1, order_number: 954 }, null);
+    recordStatic(
+      'OrderListModel',
+      'findOne',
+      rawQuery,
+      { id: 1, order_number: 954 },
+      null,
+    );
 
     const rawRow = await OrderListModel.findOne(rawQuery);
     expect(rawRow).toEqual({ id: 1, order_number: 954 });

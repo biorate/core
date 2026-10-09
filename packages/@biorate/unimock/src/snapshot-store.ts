@@ -30,7 +30,7 @@ import {
   SEPARATOR_STORE,
   SNAPSHOT_FILE_VERSION,
   JSONL_FORMAT_VERSION,
-  DEFAULT_SNAPSHOT_EXT,
+  getSnapshotExt,
   MODE_RECORD,
   MODE_REPLAY,
   MODE_OFF,
@@ -159,7 +159,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
   public constructor(className: string, snapshotDir?: string, importMeta?: ImportMeta) {
     this.className = className;
     const baseDir = resolveSnapshotDir(snapshotDir, importMeta);
-    this.snapshotPath = resolve(baseDir, `${className}.unimock${DEFAULT_SNAPSHOT_EXT}`);
+    this.snapshotPath = resolve(baseDir, `${className}.unimock${getSnapshotExt()}`);
     this.stringPool = new Map();
     this.stringIndex = new Map();
     this.valuePool = new Map();
@@ -262,7 +262,8 @@ export class SnapshotStore implements SnapshotStoreEntry {
           // v2 files carry an explicit `refs` field on every call entry; a missing field is
           // normalized to `null` (no model instance). v1 files keep it absent so the legacy
           // reconstruction path in replayStaticCall still applies.
-          if (version >= 2 && call.refs === undefined) (call as { refs: unknown }).refs = null;
+          if (version >= 2 && call.refs === undefined)
+            (call as { refs: unknown }).refs = null;
           parsed.calls[key] = call;
           this.pushSeq(key, call);
         }
@@ -360,7 +361,9 @@ export class SnapshotStore implements SnapshotStoreEntry {
       this.staticReplayWarned.add(callKey);
       // eslint-disable-next-line no-console
       console.warn(
-        `[unimock] ${this.className}: static replay key "${callKey}" called ${k + 1} times but only ${len} occurrence(s) recorded; serving the last occurrence`,
+        `[unimock] ${this.className}: static replay key "${callKey}" called ${
+          k + 1
+        } times but only ${len} occurrence(s) recorded; serving the last occurrence`,
       );
     }
     return this.getAt(callKey, len - 1);
@@ -477,10 +480,7 @@ export class SnapshotStore implements SnapshotStoreEntry {
     const gz = gzipEnabled();
     const fd = openSync(this.snapshotPath, 'w');
     try {
-      this.writeJsonlRecords(
-        { gz, fd },
-        this.jsonlRecords(),
-      );
+      this.writeJsonlRecords({ gz, fd }, this.jsonlRecords());
     } finally {
       closeSync(fd);
     }
@@ -502,8 +502,10 @@ export class SnapshotStore implements SnapshotStoreEntry {
    */
   private *jsonlRecords(): Generator<string> {
     yield JSON.stringify({ _jsonl: JSONL_FORMAT_VERSION, className: this.className });
-    for (const [ref, value] of this.stringPool) yield JSON.stringify({ _t: 's', ref, val: value });
-    for (const [ref, value] of this.valuePool) yield JSON.stringify({ _t: 'v', ref, val: value });
+    for (const [ref, value] of this.stringPool)
+      yield JSON.stringify({ _t: 's', ref, val: value });
+    for (const [ref, value] of this.valuePool)
+      yield JSON.stringify({ _t: 'v', ref, val: value });
     // callSeq, not data.calls: replay consumes occurrences FIFO and loses them across restarts.
     for (const [key, seq] of this.callSeq)
       for (const call of seq) yield JSON.stringify({ _t: 'c', key, call });
@@ -513,14 +515,12 @@ export class SnapshotStore implements SnapshotStoreEntry {
     const gz = gzipEnabled();
     const fd = openSync(this.snapshotPath, 'a');
     try {
-      this.writeJsonlRecords(
-        { gz, fd },
-        this.pendingRecords(),
-      );
+      this.writeJsonlRecords({ gz, fd }, this.pendingRecords());
     } finally {
       closeSync(fd);
     }
-    for (const key of this.pendingKeys) this.flushedSeq.set(key, this.callSeq.get(key)?.length ?? 0);
+    for (const key of this.pendingKeys)
+      this.flushedSeq.set(key, this.callSeq.get(key)?.length ?? 0);
     this.pendingKeys.clear();
     this.pendingStrings.clear();
     this.pendingValues.clear();
@@ -546,7 +546,8 @@ export class SnapshotStore implements SnapshotStoreEntry {
       const seq = this.callSeq.get(key);
       if (!seq) continue;
       const from = this.flushedSeq.get(key) ?? 0;
-      for (let i = from; i < seq.length; i++) yield JSON.stringify({ _t: 'c', key, call: seq[i] });
+      for (let i = from; i < seq.length; i++)
+        yield JSON.stringify({ _t: 'c', key, call: seq[i] });
     }
   }
 

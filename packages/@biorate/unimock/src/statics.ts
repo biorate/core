@@ -12,11 +12,7 @@ import {
   collectOwnDescriptors,
   getReplayStaticEntry,
 } from './utils';
-import {
-  replayRebuilt,
-  staticOriginals,
-  withReconstructionDepth,
-} from './state';
+import { replayRebuilt, staticOriginals, withReconstructionDepth } from './state';
 import { PROP_CONSTRUCTOR } from './constants';
 
 /** @description Replay result shape of a known static method (see {@link STATIC_REPLAY_SHAPE}). */
@@ -73,7 +69,8 @@ export function wrapStaticMethod(
     name,
     original,
     store,
-    recordResult: (st, callKey, result, sa) => recordStaticResult(name, st, callKey, result, sa),
+    recordResult: (st, callKey, result, sa) =>
+      recordStaticResult(name, st, callKey, result, sa),
     replayOverride: (_thisArg, callKey, methodName, args) =>
       replayStaticCall(klass, callKey, methodName, args, store),
   }).wrap();
@@ -422,7 +419,9 @@ function rebuildInstance(
   klass: new (...args: unknown[]) => object,
   plain: unknown,
 ): unknown {
-  const build = staticOriginals.get(klass)?.get('build') ?? (klass as unknown as Record<string, unknown>).build;
+  const build =
+    staticOriginals.get(klass)?.get('build') ??
+    (klass as unknown as Record<string, unknown>).build;
   const isPlainObject =
     plain !== null &&
     typeof plain === 'object' &&
@@ -443,7 +442,11 @@ function rebuildInstance(
             raw: true,
           }
         : { isNewRecord: false, raw: true };
-      const instance = (build as (...a: unknown[]) => unknown).call(klass, plain, options);
+      const instance = (build as (...a: unknown[]) => unknown).call(
+        klass,
+        plain,
+        options,
+      );
       if (instance !== null && typeof instance === 'object') markRebuiltDeep(instance);
       return instance;
     });

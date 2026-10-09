@@ -1,5 +1,10 @@
 import { describe, expect, it, beforeAll, afterAll } from 'vitest';
-import { setup, teardown, startServers, stopServers } from '../__mocks__/proxy-prometheus';
+import {
+  setup,
+  teardown,
+  startServers,
+  stopServers,
+} from '../__mocks__/proxy-prometheus';
 
 let root: Awaited<ReturnType<typeof setup>>;
 

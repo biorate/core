@@ -203,7 +203,8 @@ describe('per-flush occurrence persistence', () => {
   });
 });
 
-describe('replay miss surfaces the primary callKey', () => {  it('UnimockReplayMissError message does not crash on unstringifiable proxy args', () => {
+describe('replay miss surfaces the primary callKey', () => {
+  it('UnimockReplayMissError message does not crash on unstringifiable proxy args', () => {
     const dir = mkSnapshotDir();
     const store = getSnapshotStore(trackClass(`ErrMsgSvc${classSeq++}`), dir);
     const proxy = new MockHandler({ live: true }, 'ref_Tx_1', store);
@@ -213,11 +214,9 @@ describe('replay miss surfaces the primary callKey', () => {  it('UnimockReplayM
     // the primary miss (it must print the real missed callKey instead).
     withMode(MODE_REPLAY, () => {
       try {
-        throw new UnimockReplayMissError(
-          'findOne:deadbeef',
-          'findOne',
-          [{ where: { a: 1 }, transaction: proxy }],
-        );
+        throw new UnimockReplayMissError('findOne:deadbeef', 'findOne', [
+          { where: { a: 1 }, transaction: proxy },
+        ]);
       } catch (e) {
         error = e;
       }
@@ -231,18 +230,43 @@ describe('replay miss surfaces the primary callKey', () => {  it('UnimockReplayM
 
 describe('callKey ignores volatile identity values', () => {
   it('same call with different session_id/uuid/transaction_id hashes identically', () => {
-    const stable = { shop_id: 35, workstation_id: 0, tx_number: 137, ldap: '60032113', type: 'LOAN' };
+    const stable = {
+      shop_id: 35,
+      workstation_id: 0,
+      tx_number: 137,
+      ldap: '60032113',
+      type: 'LOAN',
+    };
     const a = makeCallKey('', 'create', [
-      { ...stable, session_id: '60032113:35:0:137:20251110', uuid: 'u-one', transaction_id: 17, last_stamp: '2025-11-10T13:58:43+03:00', creation: '2025-11-10T13:58:43+03:00' },
+      {
+        ...stable,
+        session_id: '60032113:35:0:137:20251110',
+        uuid: 'u-one',
+        transaction_id: 17,
+        last_stamp: '2025-11-10T13:58:43+03:00',
+        creation: '2025-11-10T13:58:43+03:00',
+      },
       { ignoreDuplicates: false },
     ]);
     const b = makeCallKey('', 'create', [
-      { ...stable, session_id: '60032113:35:10:17:20251115', uuid: 'u-two', transaction_id: 42, last_stamp: '2025-11-15T18:01:00+03:00', creation: '2025-11-15T18:01:00+03:00' },
+      {
+        ...stable,
+        session_id: '60032113:35:10:17:20251115',
+        uuid: 'u-two',
+        transaction_id: 42,
+        last_stamp: '2025-11-15T18:01:00+03:00',
+        creation: '2025-11-15T18:01:00+03:00',
+      },
       { ignoreDuplicates: false },
     ]);
     expect(a).toBe(b);
     const c = makeCallKey('', 'create', [
-      { ...stable, session_id: '60032113:35:0:137:20251110', uuid: 'u-one', tx_number: 999 },
+      {
+        ...stable,
+        session_id: '60032113:35:0:137:20251110',
+        uuid: 'u-one',
+        tx_number: 999,
+      },
       { ignoreDuplicates: false },
     ]);
     expect(a).not.toBe(c);

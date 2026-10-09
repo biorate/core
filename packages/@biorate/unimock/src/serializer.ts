@@ -27,7 +27,6 @@ import {
 import { stripRequestEnabled } from './env';
 import { getRefId, getUnimockRef } from './utils';
 
-
 /**
  * @description Deterministic JSON-like stringification of arbitrary values.
  *   - Object keys are sorted alphabetically.
@@ -97,7 +96,9 @@ export function stableHash(value: unknown): string {
  * @param args - raw call arguments
  */
 export function makeCallKey(prefix: string, method: string, args: unknown[]): string {
-  const safeArgs = normalizeArgsForHash(args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a)));
+  const safeArgs = normalizeArgsForHash(
+    args.map((a) => (typeof a === 'function' ? MARKER_CALLBACK : a)),
+  );
   const h = safeArgs.length > 0 ? stableHash(safeArgs) : '';
   return `${prefix}${method}:${h}`;
 }
@@ -185,7 +186,7 @@ export function serialize(
     // JSON.stringify semantics: class instances with toJSON (e.g. decimal.js) are stored as
     // their JSON form so replay returns the same value the real HTTP layer produced.
     return serialize(
-      ((value as unknown) as { toJSON: () => unknown }).toJSON(),
+      (value as unknown as { toJSON: () => unknown }).toJSON(),
       seen,
       symbols,
     );

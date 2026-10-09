@@ -310,6 +310,41 @@ Snapshot files follow a strict mode contract. It is enforced at three levels: th
 
 **Parallel safety convention.** One snapshot file belongs to exactly one record session at a time. Keep `className` + snapshot directory unique per spec file, or let each spec record into its own `mkdtempSync` directory. Under this convention concurrent record sessions never write the same file. Concurrent replay runs are safe by construction since replay never writes.
 
+### Config file (`.unimock.json`)
+
+The `.unimock.json` file sets the same options as the environment variables above, committing the test configuration to the repository. The file is looked up as follows:
+
+1. `UNIMOCK_CONFIG_FILE` — an explicit path, resolved against the current working directory.
+2. `./.unimock.json` — in the current working directory, by default.
+
+Each option is resolved as **file → env → default**: a value present in the file shadows the corresponding environment variable, and a missing or invalid file leaves the environment variables in charge. A broken file — invalid JSON, a non-object root, or an explicitly configured path that is missing — logs a `console.warn` and is treated as absent; a missing default file is silently ignored. A runtime `SnapshotStore.setMode()` (and `Unimock.mode`) always takes precedence over the file's `mode`.
+
+| Ключ                  | Тип                              | Дефолт                | Соответствующая env-переменная                         |
+| --------------------- | -------------------------------- | --------------------- | ------------------------------------------------------ |
+| `mode`                | string (`off`/`record`/`replay`) | `off`                 | `UNIMOCK`                                              |
+| `snapshotDir`         | string                           | `tests/__snapshots__` | `UNIMOCK_SNAPSHOT_DIR`                                 |
+| `snapshotExt`         | string                           | `.snap`               | `SNAPSHOT_EXT`                                         |
+| `gzip`                | boolean                          | `false`               | `UNIMOCK_GZIP=1`                                       |
+| `valuePool`           | boolean                          | `true`                | `UNIMOCK_VALUE_POOL=0`                                 |
+| `valuePoolThreshold`  | number                           | `100000`              | `UNIMOCK_VALUE_POOL_THRESHOLD`                         |
+| `valuePoolCountLimit` | number                           | `2000`                | `UNIMOCK_VALUE_POOL_COUNT_LIMIT`                       |
+| `stripRequest`        | boolean                          | `false`               | `UNIMOCK_STRIP_REQUEST=1`                              |
+| `skipProxyArgs`       | boolean                          | `false`               | `UNIMOCK_SKIP_CONN_ARGS` / `UNIMOCK_SKIP_PROXY_ARGS=1` |
+| `rowPool`             | boolean                          | `false`               | `UNIMOCK_ROW_POOL=1`                                   |
+| `compact`             | boolean                          | `false`               | `UNIMOCK_COMPACT=1`                                    |
+| `fallbackOnMiss`      | boolean                          | `false`               | `UNIMOCK_FALLBACK_ON_MISS=1`                           |
+
+Example:
+
+```json
+{
+  "mode": "record",
+  "gzip": true,
+  "valuePoolThreshold": 50000,
+  "snapshotDir": "tests/__snapshots__"
+}
+```
+
 ### Optimisation flags
 
 | Variable                                                    | Description                                                                                               |

@@ -15,13 +15,7 @@ import {
   recordError,
 } from './utils';
 import { inReconstruction, replayRebuilt } from './state';
-import {
-  T_REF,
-  T_CALLBACK,
-  PREFIX_CB,
-  PREFIX_CALL,
-  MARKER_CALLBACK,
-} from './constants';
+import { T_REF, T_CALLBACK, PREFIX_CB, PREFIX_CALL, MARKER_CALLBACK } from './constants';
 
 /**
  * @description Runtime configuration of a {@link MethodWrapper}.
@@ -63,7 +57,9 @@ export interface MethodWrapperConfig {
  *   {@link MockHandler}-mediated calls on the same object.
  */
 export class MethodWrapper {
-  private readonly config: Required<Pick<MethodWrapperConfig, 'name' | 'original' | 'store' | 'recordResult'>> &
+  private readonly config: Required<
+    Pick<MethodWrapperConfig, 'name' | 'original' | 'store' | 'recordResult'>
+  > &
     Pick<MethodWrapperConfig, 'replayOverride'>;
 
   constructor(config: MethodWrapperConfig) {

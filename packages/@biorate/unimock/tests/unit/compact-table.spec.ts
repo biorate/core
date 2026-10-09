@@ -3,7 +3,13 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { afterAll, describe, expect, it } from 'vitest';
-import { MODE_OFF, MODE_RECORD, SnapshotStore, releaseSnapshotStore, serialize } from '../../src';
+import {
+  MODE_OFF,
+  MODE_RECORD,
+  SnapshotStore,
+  releaseSnapshotStore,
+  serialize,
+} from '../../src';
 import type { SnapshotCall, UnimockMode } from '../../src';
 
 /**

@@ -154,7 +154,9 @@ export function getUnimockRef(value: unknown): string | undefined {
  *   Promises, Bluebird, `Promise.resolve`-like userland promises). Avoids the expensive
  *   `instanceof Promise` that misses cross-realm/augmented promise implementations.
  */
-export function isPromiseLike(value: unknown): value is { then: (...a: unknown[]) => unknown } {
+export function isPromiseLike(
+  value: unknown,
+): value is { then: (...a: unknown[]) => unknown } {
   return (
     value !== null &&
     (typeof value === 'object' || typeof value === 'function') &&

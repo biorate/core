@@ -140,7 +140,10 @@ describe('serializer', () => {
 
   it('stableStringify repeats shared scalar-bearing objects (no false empty)', () => {
     const shared = { dialect: 'postgres' };
-    const out = stableStringify([{ name: 'a', opts: shared }, { name: 'b', opts: shared }]);
+    const out = stableStringify([
+      { name: 'a', opts: shared },
+      { name: 'b', opts: shared },
+    ]);
     expect(out).not.toContain('""');
     expect((out.match(/postgres/g) ?? []).length).toBe(2);
   });
@@ -1189,7 +1192,10 @@ describe('replay reconstruction — constructor-internal pass-through (1.10.1)',
       this._initValues(values, options);
     }
 
-    public _initValues(values: Record<string, unknown>, options?: Record<string, unknown>): void {
+    public _initValues(
+      values: Record<string, unknown>,
+      options?: Record<string, unknown>,
+    ): void {
       this.dataValues = { ...values };
       this.__initOptions = options ? { ...options } : undefined;
     }
@@ -1207,16 +1213,22 @@ describe('replay reconstruction — constructor-internal pass-through (1.10.1)',
 
     public static findAll(_options: Record<string, unknown>): ReconModel[] {
       return [
-        this.build({ id: 101, title: 'alpha' }, {
-          isNewRecord: false,
-          raw: true,
-          attributes: ['id', 'title'],
-        }),
-        this.build({ id: 102, title: 'beta' }, {
-          isNewRecord: false,
-          raw: true,
-          attributes: ['id', 'title'],
-        }),
+        this.build(
+          { id: 101, title: 'alpha' },
+          {
+            isNewRecord: false,
+            raw: true,
+            attributes: ['id', 'title'],
+          },
+        ),
+        this.build(
+          { id: 102, title: 'beta' },
+          {
+            isNewRecord: false,
+            raw: true,
+            attributes: ['id', 'title'],
+          },
+        ),
       ];
     }
   }

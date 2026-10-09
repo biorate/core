@@ -1,3 +1,5 @@
+import { getUnimockFileConfig } from './file-config';
+
 export const MODE_RECORD = 'record';
 export const MODE_REPLAY = 'replay';
 export const MODE_OFF = 'off';
@@ -59,8 +61,20 @@ export const JSONL_FORMAT_VERSION = 2;
 export const DEFAULT_SNAPSHOT_DIR = 'tests/__snapshots__';
 /** @description Directory name for snapshots placed alongside a test file (via `importMeta`). */
 export const SNAPSHOTS_DIR_NAME = '__snapshots__';
-/** @description Snapshot file extension. Override via `SNAPSHOT_EXT` env (default: `.snap`). Format: `{className}.unimock{ext}`. */
-export const DEFAULT_SNAPSHOT_EXT = process.env.SNAPSHOT_EXT ?? '.snap';
+/** @description Default snapshot file extension. Format: `{className}.unimock{ext}`. */
+export const DEFAULT_SNAPSHOT_EXT = '.snap';
+
+/**
+ * @description Snapshot file extension, resolved as file config `snapshotExt` → `SNAPSHOT_EXT`
+ *   env → default `.snap`. Reads the in-process file config so `UNIMOCK_CONFIG_FILE` takes
+ *   precedence over the environment.
+ */
+export function getSnapshotExt(): string {
+  const file = getUnimockFileConfig();
+  if (typeof file.snapshotExt === 'string' && file.snapshotExt.length > 0)
+    return file.snapshotExt;
+  return process.env.SNAPSHOT_EXT ?? DEFAULT_SNAPSHOT_EXT;
+}
 
 export const STABLE_HASH_LENGTH = 8;
 
