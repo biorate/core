@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/biorate/core/compare/%40biorate%2Fopentelemetry%402.4.0...%40biorate%2Fopentelemetry%402.4.1) (2026-10-09)
+
+### Bug Fixes
+
+- **opentelemetry:** metricReaders -> metricReader ([26999b9](https://github.com/biorate/core/commit/26999b9b9758978d7a43d3ea50f26f36f5fef26c))
+
 # [2.4.0](https://github.com/biorate/core/compare/%40biorate%2Fopentelemetry%402.2.4...%40biorate%2Fopentelemetry%402.4.0) (2026-10-09)
 
 ### Bug Fixes
