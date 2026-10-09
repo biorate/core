@@ -335,7 +335,7 @@ Import @biorate/opentelemetry
        ├─ resource detectors (env, host, container, cloud)
        ├─ OTLPTraceExporter
        ├─ DataMaskingProcessor (masks span attributes on export)
-       └─ metricReader (OTLP / Prometheus / Console)
+       └─ metricReaders (OTLP / Prometheus / Console)
 
 @scope('v') class C { @span() m() {} }
   ├─ @scope:  trace.getTracer(C.name, 'v') → Reflect.defineMetadata(tracer, C)
