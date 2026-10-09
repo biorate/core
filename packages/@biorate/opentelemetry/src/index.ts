@@ -1,26 +1,14 @@
 import 'reflect-metadata';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc';
-import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-grpc';
-import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
-import { containerDetector } from '@opentelemetry/resource-detector-container';
-import { gcpDetector } from '@opentelemetry/resource-detector-gcp';
-import { alibabaCloudEcsDetector } from '@opentelemetry/resource-detector-alibaba-cloud';
-import { awsEksDetector, awsEc2Detector } from '@opentelemetry/resource-detector-aws';
-import { ResourceDetector } from '@opentelemetry/resources';
 import { NodeSDK } from '@opentelemetry/sdk-node';
-import {
-  PeriodicExportingMetricReader,
-  ConsoleMetricExporter,
-} from '@opentelemetry/sdk-metrics';
-import {
-  envDetector,
-  hostDetector,
-  osDetector,
-  processDetector,
-} from '@opentelemetry/resources';
-import { OTELMetricsExporterError } from './errors';
 import { DataMaskingProcessor } from './data-masking-processor';
+import {
+  exporter,
+  getMetricReader,
+  resourceDetectors,
+  resolveSpanProcessorMode,
+  spanProcessorFactories,
+} from './utils';
 
 // Skip GCP metadata server detection by default (overridable via env).
 if (!process.env.METADATA_SERVER_DETECTION)
@@ -39,6 +27,7 @@ export * from './decorators';
  * process.env.OTEL_TRACES_SAMPLER = 'always_on';
  * process.env.OTEL_TRACES_SAMPLER_ARG = '1';
  * process.env.OTEL_EXPORTER_OTLP_ENDPOINT = 'http://localhost:4317';
+ * process.env.OTEL_SPAN_PROCESSOR = 'batch'; // 'batch' (default) | 'simple' | 'console'
  *
  * import { scope, span } from '@biorate/opentelemetry';
  *
@@ -55,54 +44,23 @@ export * from './decorators';
  * // span.arguments → '[{"login":"admin"}]' (password excluded)
  * // span.result    → '{"user":{"id":1}}'       (token excluded)
  * ```
+ *
+ * Span processor tuning (optional, defaults shown):
+ * - `OTEL_SPAN_PROCESSOR=batch|simple|console` (default `batch`; unknown/empty values fall back to `batch`)
+ * - `OTEL_BSP_SCHEDULE_DELAY=5000`, `OTEL_BSP_MAX_QUEUE_SIZE=2048`
+ * - `OTEL_BSP_MAX_EXPORT_BATCH_SIZE=512`, `OTEL_BSP_EXPORT_TIMEOUT=30000`
+ * - `OTEL_SPAN_ATTR_MAX_LENGTH=2048` truncates string span attributes.
  */
-function getMetricReader() {
-  switch (process.env.OTEL_METRICS_EXPORTER) {
-    case undefined:
-    case '':
-    case 'none':
-      return;
-    case 'otlp':
-      return new PeriodicExportingMetricReader({ exporter: new OTLPMetricExporter() });
-    case 'prometheus':
-      return new PrometheusExporter({});
-    case 'console':
-      return new PeriodicExportingMetricReader({ exporter: new ConsoleMetricExporter() });
-    default:
-      throw new OTELMetricsExporterError();
-  }
-}
-
-const resources = {
-  // Standard resource detectors.
-  containerDetector,
-  envDetector,
-  hostDetector,
-  osDetector,
-  processDetector,
-  // Cloud resource detectors.
-  alibabaCloudEcsDetector,
-  // Ordered AWS Resource Detectors as per:
-  // https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md#ordering
-  awsEksDetector,
-  awsEc2Detector,
-  gcpDetector,
-};
-
-const otelExcludeDetectors = (process.env.OTEL_EXCLUDED_DETECTORS ?? '').split(',');
-
-const resourceDetectors: ResourceDetector[] = [];
-for (const field in resources)
-  if (!otelExcludeDetectors.includes(field))
-    resourceDetectors.push(resources[<keyof typeof resources>field]);
-
-const exporter = new OTLPTraceExporter();
-
-const sdk = new NodeSDK({
+export const sdk = new NodeSDK({
   autoDetectResources: true,
   instrumentations: [getNodeAutoInstrumentations()],
-  spanProcessors: [new DataMaskingProcessor(exporter)],
-  traceExporter: exporter,
+  spanProcessors: [
+    new DataMaskingProcessor(
+      spanProcessorFactories[resolveSpanProcessorMode(process.env.OTEL_SPAN_PROCESSOR)](
+        exporter,
+      ),
+    ),
+  ],
   metricReader: getMetricReader(),
   resourceDetectors,
 });

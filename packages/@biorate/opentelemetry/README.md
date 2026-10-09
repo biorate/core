@@ -198,6 +198,51 @@ Masquerade.use(EmailMask).use(PhoneMask).use(CardMask);
 
 At export time every string attribute value is scanned for emails, phones, and card numbers via regex, and JSON-parsed attributes are masked by field name rules from `maskJSON2`.
 
+## Span export modes
+
+### Span processor selection
+
+The `OTEL_SPAN_PROCESSOR` environment variable selects how completed spans are exported:
+
+- `batch` (default) — spans are queued and exported in batches via `BatchSpanProcessor`.
+- `simple` — spans are exported synchronously as they end via `SimpleSpanProcessor` (previous behavior).
+- `console` — debug mode: prints spans to stdout via `ConsoleSpanExporter`, no OTLP collector needed.
+
+The value is matched case-insensitively, with surrounding whitespace trimmed; **unknown/empty `OTEL_SPAN_PROCESSOR` falls back to `batch`**.
+
+The value is read **before** `import '@biorate/opentelemetry'` — the SDK starts on import:
+
+```ts
+process.env.OTEL_SERVICE_NAME = 'my-app';
+process.env.OTEL_SPAN_PROCESSOR = 'batch'; // 'batch' (default) | 'simple' | 'console'
+
+import { scope, span } from '@biorate/opentelemetry';
+```
+
+### Batch-mode trade-offs
+
+Batch export improves throughput but introduces two risks:
+
+- **Delayed trace visibility** — spans are exported on a schedule, so a completed span may not appear in the backend for up to `OTEL_BSP_SCHEDULE_DELAY` (default 5s).
+- **Span loss on crash** — spans still sitting in the queue are **lost** if the process crashes; queue capacity is `OTEL_BSP_MAX_QUEUE_SIZE` (default 2048).
+
+Batch processor tuning (batch mode only):
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `OTEL_BSP_SCHEDULE_DELAY` | `5000` | Delay between consecutive exports (ms) |
+| `OTEL_BSP_MAX_QUEUE_SIZE` | `2048` | Maximum queue size (spans beyond it are dropped) |
+| `OTEL_BSP_MAX_EXPORT_BATCH_SIZE` | `512` | Maximum batch size per export |
+| `OTEL_BSP_EXPORT_TIMEOUT` | `30000` | Export timeout (ms) |
+
+### Attribute truncation
+
+`OTEL_SPAN_ATTR_MAX_LENGTH` (default `2048`) truncates string span attributes to the given length. Masking is applied **before** truncation, so sensitive data is redacted first and the truncated value cannot expose it.
+
+### Rollback
+
+Set `OTEL_SPAN_PROCESSOR=simple` in the deployment to restore the previous synchronous export behavior without a release.
+
 ## Configuration
 
 ### OpenTelemetry environment variables
@@ -211,6 +256,7 @@ At export time every string attribute value is scanned for emails, phones, and c
 | `OTEL_EXPORTER_OTLP_ENDPOINT` | — | OTLP gRPC endpoint for traces and metrics |
 | `OTEL_LOG_LEVEL` | — | OpenTelemetry log level |
 | `OTEL_METRICS_EXPORTER` | `'none'` | Metrics exporter: `otlp`, `prometheus`, `console`, `none` |
+| `OTEL_SPAN_PROCESSOR` | `'batch'` | Span processor mode: `batch`, `simple`, `console`; unknown/empty falls back to `batch` |
 | `OTEL_BSP_SCHEDULE_DELAY` | `5000` | Batch span processor schedule delay (ms) |
 | `OTEL_BSP_EXPORT_TIMEOUT` | `30000` | Batch span processor export timeout (ms) |
 | `OTEL_EXCLUDED_DETECTORS` | — | Comma-separated resource detector names to skip |

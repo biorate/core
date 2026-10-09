@@ -32,8 +32,7 @@ export const span =
               return result
                 .then((result: unknown) => {
                   const resultStr = attrStringify('result', result, props?.exclude);
-                  if (resultStr !== undefined)
-                    span.setAttribute('result', resultStr);
+                  if (resultStr !== undefined) span.setAttribute('result', resultStr);
                   return result;
                 })
                 .catch((e: unknown) => {

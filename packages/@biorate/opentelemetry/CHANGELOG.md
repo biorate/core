@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.3.0 (2026-10-09)
+
+### Features
+
+- **opentelemetry:** `OTEL_SPAN_PROCESSOR=batch|simple` (default `batch`) — batch export via BatchSpanProcessor with `OTEL_BSP_*` tuning
+- **opentelemetry:** span attribute truncation via `OTEL_SPAN_ATTR_MAX_LENGTH` (default 2048), masking applied before truncation
+- **opentelemetry:** `console` debug mode for `OTEL_SPAN_PROCESSOR` — prints spans to stdout via `ConsoleSpanExporter`, no OTLP collector needed
+- **opentelemetry:** `OTEL_SPAN_PROCESSOR` is now case-insensitive and whitespace-trimmed, with fallback to `batch` on unknown/empty values (`resolveSpanProcessorMode`)
+
+### Removed
+
+- dead `traceExporter` option passed to NodeSDK (ignored when spanProcessors set)
+
+### BREAKING CHANGES
+
+- **opentelemetry:** `DataMaskingProcessor` constructor now takes a `SpanProcessor` (delegate) instead of a trace exporter.
+
 ## [2.2.4](https://github.com/biorate/core/compare/@biorate/opentelemetry@2.2.3...@biorate/opentelemetry@2.2.4) (2026-07-06)
 
 ### Bug Fixes
