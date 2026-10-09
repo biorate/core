@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.14.0...%40biorate%2Funimock%401.15.0) (2026-10-09)
+
+### Bug Fixes
+
+- deps ([4744a2f](https://github.com/biorate/core/commit/4744a2f1db6db4efd6c75be8e81ff89f8c460bab))
+
+### Features
+
+- **unimock:** .unimock.json config added ([1402eac](https://github.com/biorate/core/commit/1402eacd54c1b054d6ae6ed48017eb4c5dfe95a3))
+
 # [1.14.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.13.0...%40biorate%2Funimock%401.14.0) (2026-09-22)
 
 ### Features
