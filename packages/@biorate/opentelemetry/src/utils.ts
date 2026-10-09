@@ -158,7 +158,7 @@ export function getMetricReader() {
   }
 }
 
-export const resources = {
+const resources = {
   // Standard resource detectors.
   containerDetector,
   envDetector,
