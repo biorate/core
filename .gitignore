@@ -11,8 +11,10 @@ allure-report
 # NX
 .nx
 
-# Omo
+# LLM Agents
 .omo
+.opencode
+.serena
 
 # Logs
 logs
