@@ -37,4 +37,4 @@ jobs:
           pnpm run import-test:cjs
           pnpm run import-test:esm
       - name: Publish
-        run: npx lerna publish from-package --yes
+        run: npx lerna publish from-package --yes --loglevel verbose
