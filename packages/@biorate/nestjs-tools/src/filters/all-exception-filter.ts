@@ -90,9 +90,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
     if (exception instanceof AxiosError)
       console.error(
         new AxiosRequestError(
-          exception?.response?.data?.statusCode,
-          exception?.response?.data?.error,
-          exception?.response?.data?.message,
+          exception?.response?.data?.statusCode ?? exception.status,
+          exception?.response?.data?.error ?? exception.code,
+          exception?.response?.data?.message ?? exception.message,
         ).stack,
       );
     else console.error(exception.stack);
