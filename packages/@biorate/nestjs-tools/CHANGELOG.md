@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/biorate/core/compare/%40biorate%2Fnestjs-tools%402.3.4...%40biorate%2Fnestjs-tools%402.4.0) (2026-10-12)
+
+### Features
+
+- **nestjs-tools:** AllExceptionsFilter && deps ([bc9681d](https://github.com/biorate/core/commit/bc9681d75a012197da3144a50132bce1981eba78))
+
 ## [2.3.4](https://github.com/biorate/core/compare/%40biorate%2Fnestjs-tools%402.3.3...%40biorate%2Fnestjs-tools%402.3.4) (2026-10-09)
 
 **Note:** Version bump only for package @biorate/nestjs-tools
