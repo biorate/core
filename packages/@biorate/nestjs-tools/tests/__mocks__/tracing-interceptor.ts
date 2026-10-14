@@ -20,6 +20,25 @@ export function setTracingExcluded(patterns: (string | RegExp)[]) {
   container.get<IConfig>(Types.Config).set('TracingInterceptor.excluded', patterns);
 }
 
+export function setTracingExcludedAttributes(aspects: string[]) {
+  container
+    .get<IConfig>(Types.Config)
+    .set('TracingInterceptor.excludedAttributes', aspects);
+}
+
+export function setTracingExcludedByUrl(
+  entries: { url: string | RegExp; attributes: string[] }[],
+) {
+  container.get<IConfig>(Types.Config).set('TracingInterceptor.excludedByURL', entries);
+}
+
+export function resetTracingConfig() {
+  const config = container.get<IConfig>(Types.Config);
+  config.set('TracingInterceptor.excluded', []);
+  config.set('TracingInterceptor.excludedAttributes', []);
+  config.set('TracingInterceptor.excludedByURL', []);
+}
+
 export const exporter = new InMemorySpanExporter();
 
 export const provider = new BasicTracerProvider({

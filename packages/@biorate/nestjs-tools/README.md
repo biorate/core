@@ -77,12 +77,12 @@ app.use(ResponseTimeMiddleware.create());
 
 Config options:
 
-| Path                                                | Default     |
-|-----------------------------------------------------|-------------|
-| `app.middleware.ResponseTimeMiddleware.suffix`       | `true`      |
-| `app.middleware.ResponseTimeMiddleware.header`       | `x-response-time` |
-| `app.middleware.ResponseTimeMiddleware.digits`       | `3`         |
-| `app.middleware.ResponseTimeMiddleware.log-base-url` | `false`     |
+| Path                                                 | Default                 |
+| ---------------------------------------------------- | ----------------------- |
+| `app.middleware.ResponseTimeMiddleware.suffix`       | `true`                  |
+| `app.middleware.ResponseTimeMiddleware.header`       | `x-response-time`       |
+| `app.middleware.ResponseTimeMiddleware.digits`       | `3`                     |
+| `app.middleware.ResponseTimeMiddleware.log-base-url` | `false`                 |
 | `ResponseTimeMiddleware.histogram.buckets`           | `[0.005, 0.01, … , 10]` |
 
 ### `ProxyPrometheusMiddleware`
@@ -92,13 +92,18 @@ Prometheus‑instrumented HTTP proxy via `http-proxy-middleware`.
 ```ts
 import { ProxyPrometheusMiddleware } from '@biorate/nestjs-tools';
 
-consumer.apply(ProxyPrometheusMiddleware.create({
-  target: 'http://upstream.service:8080',
-  changeOrigin: true,
-})).forRoutes('/api/v2/legacy');
+consumer
+  .apply(
+    ProxyPrometheusMiddleware.create({
+      target: 'http://upstream.service:8080',
+      changeOrigin: true,
+    }),
+  )
+  .forRoutes('/api/v2/legacy');
 ```
 
 Creates two metrics:
+
 - `http_proxy_server_requests_seconds_count` (counter)
 - `http_proxy_server_requests_seconds` (histogram)
 
@@ -145,7 +150,32 @@ incoming.response.data
 incoming.response.errorCode
 ```
 
-Config: `TracingInterceptor.excluded` — array of strings or RegExp to skip URLs.
+Config: `TracingInterceptor.excluded` — array of strings or RegExp to skip URLs
+(string entries match by substring inclusion, RegExp entries by test).
+
+#### Aspect exclusion
+
+Granular control over which span attributes are written:
+
+```json
+{
+  "TracingInterceptor": {
+    "excluded": ["/health"],
+    "excludedAttributes": ["response.data"],
+    "excludedByURL": [{ "url": "/files", "attributes": ["body", "response"] }]
+  }
+}
+```
+
+- `TracingInterceptor.excludedAttributes` — string[] of aspects to skip globally.
+- `TracingInterceptor.excludedByURL` — array of `{ url: string | RegExp, attributes: string[] }`
+  entries; aspects are skipped only for matching URLs (string entries match by
+  substring inclusion, RegExp entries by test).
+- An excluded item also matches aspect groups by prefix: `response` excludes
+  `response.headers`, `response.statusCode`, `response.data` and `response.errorCode`.
+- Accepted aliases: `url`, `method`, `headers`, `body`, `params`, `query`
+  (→ `incoming.request.*`), `statusCode`, `data`, `errorCode` (→ `incoming.response.*`);
+  full names (`request.body`, `response.data`, …) work as-is.
 
 ### `RoutesInterceptor`
 
@@ -164,7 +194,9 @@ HTTP Basic Authentication guard. Validates `Authorization: Basic …` against co
 export class MyController {
   @Get('/admin')
   @AuthBasic()
-  public admin() { return 'secret data'; }
+  public admin() {
+    return 'secret data';
+  }
 }
 ```
 
@@ -173,12 +205,21 @@ export class MyController {
 Bitmask‑based role guard. Use with `@Roles()` decorator:
 
 ```ts
+import { Controller, Get } from '@nestjs/common';
 import { Roles, UserRoles } from '@biorate/nestjs-tools';
 
-@Roles(UserRoles.Admin | UserRoles.Manager)
-@Get('/admin')
-public admin() { return 'ok'; }
+@Controller()
+export class AdminController {
+  @Roles(UserRoles.Admin, UserRoles.Basic)
+  @Get('/admin')
+  public admin() {
+    return 'ok';
+  }
+}
 ```
+
+`Roles(...)` accepts a variadic list of roles (combined into a bitmask via
+bitwise OR internally). Built-in `UserRoles`: `Basic` (`1 << 0`), `Admin` (`1 << 1`).
 
 Override `getUser()` to load the user from your database:
 
@@ -202,10 +243,10 @@ app.use(BootstrapProvider.create());
 
 ## Decorators
 
-| Decorator     | Composition                                      |
-|---------------|--------------------------------------------------|
-| `@Roles(...)` | `SetMetadata(ROLES_KEY, bitmask)`                |
-| `@AuthBasic()`| `ApiBasicAuth()` + `UseGuards(AuthGuardProvider)` |
+| Decorator      | Composition                                       |
+| -------------- | ------------------------------------------------- |
+| `@Roles(...)`  | `SetMetadata(ROLES_KEY, bitmask)`                 |
+| `@AuthBasic()` | `ApiBasicAuth()` + `UseGuards(AuthGuardProvider)` |
 
 ## CORS
 
@@ -225,9 +266,9 @@ Exposes `GET /metrics` with Prometheus metrics from the shared registry.
 
 ### `ProbeController`
 
-| Route           | Purpose             |
-|-----------------|---------------------|
-| `GET /probe`    | Liveness/readiness  |
+| Route        | Purpose            |
+| ------------ | ------------------ |
+| `GET /probe` | Liveness/readiness |
 
 ### `LocalesController`
 
