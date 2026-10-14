@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/biorate/core/compare/%40biorate%2Fnestjs-tools%402.4.0...%40biorate%2Fnestjs-tools%402.5.0) (2026-10-14)
+
+### Features
+
+- tracing settings ([dbc6dce](https://github.com/biorate/core/commit/dbc6dced58c9ba61fdd15c1ffbd2fc02344a75a0))
+
 # [2.4.0](https://github.com/biorate/core/compare/%40biorate%2Fnestjs-tools%402.3.4...%40biorate%2Fnestjs-tools%402.4.0) (2026-10-12)
 
 ### Features

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.3](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.15.2...%40biorate%2Funimock%401.15.3) (2026-10-14)
+
+**Note:** Version bump only for package @biorate/unimock
+
 ## [1.15.2](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.15.1...%40biorate%2Funimock%401.15.2) (2026-10-12)
 
 **Note:** Version bump only for package @biorate/unimock

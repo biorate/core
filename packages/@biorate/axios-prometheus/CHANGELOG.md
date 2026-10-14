@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/biorate/core/compare/%40biorate%2Faxios-prometheus%402.3.4...%40biorate%2Faxios-prometheus%402.4.0) (2026-10-14)
+
+### Features
+
+- tracing settings ([d055eb8](https://github.com/biorate/core/commit/d055eb8f260e232647d35a4ee2ec20f3f764f9bd))
+
 ## [2.3.4](https://github.com/biorate/core/compare/%40biorate%2Faxios-prometheus%402.3.3...%40biorate%2Faxios-prometheus%402.3.4) (2026-10-12)
 
 **Note:** Version bump only for package @biorate/axios-prometheus
