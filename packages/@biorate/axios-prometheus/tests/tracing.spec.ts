@@ -4,6 +4,8 @@ import {
   exporter,
   TestService,
   setTracingExcluded,
+  setTracingExcludedAttributes,
+  setTracingExcludedByUrl,
   enableInMemoryTracing,
   URL,
 } from './__mocks__/tracing';
@@ -15,6 +17,8 @@ describe('@biorate/axios-prometheus / tracing', () => {
 
   afterEach(() => {
     exporter.reset();
+    setTracingExcluded([]);
+    setTracingExcludedAttributes([]);
     nock.cleanAll();
   });
 
@@ -79,5 +83,130 @@ describe('@biorate/axios-prometheus / tracing', () => {
     nock(URL).get('/').reply(200, {});
     await TestService.fetch();
     expect(exporter.getFinishedSpans()[0].name).toBe('[TestService] /');
+  });
+
+  it('should keep every attribute when nothing is excluded (pin)', async () => {
+    nock(URL)
+      .get('/')
+      .reply(200, { message: 'ok' }, { 'content-type': 'application/json' });
+    await TestService.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(Object.keys(attrs).sort()).toEqual([
+      'SpanKind',
+      'outgoing.request.body',
+      'outgoing.request.headers',
+      'outgoing.request.method',
+      'outgoing.request.params',
+      'outgoing.request.query',
+      'outgoing.request.url',
+      'outgoing.response.data',
+      'outgoing.response.headers',
+      'outgoing.response.statusCode',
+    ]);
+  });
+
+  it('should exclude only listed aspects', async () => {
+    setTracingExcludedAttributes(['response.data']);
+    nock(URL)
+      .get('/')
+      .reply(200, { message: 'ok' }, { 'content-type': 'application/json' });
+    await TestService.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).not.toHaveProperty('outgoing.response.data');
+    expect(attrs).toHaveProperty('outgoing.response.statusCode');
+    expect(attrs).toHaveProperty('outgoing.response.headers');
+    expect(attrs).toHaveProperty('outgoing.request.url');
+  });
+
+  it('should exclude the whole response group by prefix', async () => {
+    setTracingExcludedAttributes(['response']);
+    nock(URL)
+      .get('/')
+      .reply(200, { message: 'ok' }, { 'content-type': 'application/json' });
+    await TestService.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).not.toHaveProperty('outgoing.response.data');
+    expect(attrs).not.toHaveProperty('outgoing.response.statusCode');
+    expect(attrs).not.toHaveProperty('outgoing.response.headers');
+    expect(attrs).toHaveProperty('outgoing.request.url');
+    expect(attrs).toHaveProperty('outgoing.request.body');
+  });
+
+  it('should exclude a request aspect via the request.* alias', async () => {
+    setTracingExcludedAttributes(['request.body']);
+    nock(URL).get('/').reply(200, { message: 'ok' });
+    await TestService.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).not.toHaveProperty('outgoing.request.body');
+    expect(attrs).toHaveProperty('outgoing.request.url');
+  });
+
+  it('should exclude aspects via short aliases (data, statusCode)', async () => {
+    setTracingExcludedAttributes(['data', 'statusCode']);
+    nock(URL)
+      .get('/')
+      .reply(200, { message: 'ok' }, { 'content-type': 'application/json' });
+    await TestService.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).not.toHaveProperty('outgoing.response.data');
+    expect(attrs).not.toHaveProperty('outgoing.response.statusCode');
+    expect(attrs).toHaveProperty('outgoing.response.headers');
+  });
+
+  it('should exclude response aspects on the error path', async () => {
+    setTracingExcludedAttributes(['response.data']);
+    nock(URL).get('/').reply(500, { error: 'boom' });
+    try {
+      await TestService.fetch();
+    } catch {}
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).not.toHaveProperty('outgoing.response.data');
+    expect(JSON.parse(<string>attrs['outgoing.response.statusCode'])).toBe(500);
+  });
+
+  it('should exclude aspects per matching url only (string inclusion)', async () => {
+    setTracingExcludedByUrl([
+      { url: 'https://cdn.example.com', attributes: ['response.data'] },
+    ]);
+    nock(URL).get('/').reply(200, { message: 'ok' });
+    await TestService.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).toHaveProperty('outgoing.response.data');
+    expect(attrs).toHaveProperty('outgoing.request.url');
+  });
+
+  it('should exclude aspects for a matching url (regexp)', async () => {
+    setTracingExcludedByUrl([{ url: /cdn\.example\.com/, attributes: ['data'] }]);
+    nock('https://cdn.example.com').get('/').reply(200, { message: 'ok' });
+    const Service = class extends TestService {
+      public baseURL = 'https://cdn.example.com';
+    };
+    await Service.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).not.toHaveProperty('outgoing.response.data');
+    expect(attrs).toHaveProperty('outgoing.response.statusCode');
+    expect(attrs).toHaveProperty('outgoing.request.url');
+  });
+
+  it('should keep aspects for non-matching urls', async () => {
+    setTracingExcludedByUrl([{ url: 'https://cdn.example.com', attributes: ['data'] }]);
+    nock(URL).get('/').reply(200, { message: 'ok' });
+    await TestService.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).toHaveProperty('outgoing.response.data');
+  });
+
+  it('should exclude aspects when the url contains the pattern mid-string', async () => {
+    setTracingExcludedByUrl([{ url: 'cdn.example.com', attributes: ['data'] }]);
+    nock('https://proxy.internal/cdn.example.com/x')
+      .get('/')
+      .reply(200, { message: 'ok' });
+    const Service = class extends TestService {
+      public baseURL = 'https://proxy.internal/cdn.example.com/x';
+    };
+    await Service.fetch();
+    const attrs = exporter.getFinishedSpans()[0].attributes;
+    expect(attrs).not.toHaveProperty('outgoing.response.data');
+    expect(attrs).toHaveProperty('outgoing.request.url');
   });
 });

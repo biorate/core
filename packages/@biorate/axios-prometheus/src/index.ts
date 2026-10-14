@@ -204,7 +204,7 @@ export abstract class AxiosPrometheus extends Axios {
       [],
     );
     for (const item of excluded) {
-      if (typeof item === 'string' && url.startsWith(item)) return false;
+      if (typeof item === 'string' && url.includes(item)) return false;
       if (item instanceof RegExp && item.test(url)) return false;
     }
     return true;
@@ -214,6 +214,60 @@ export abstract class AxiosPrometheus extends Axios {
    */
   protected fullUrl(params?: IAxiosFetchOptions) {
     return params?.baseURL ?? '' + params?.url ?? '';
+  }
+  /**
+   * @description Aliases accepted in `tracing.excludedAttributes` for aspect matching
+   */
+  protected static aspectAliases: Record<string, string> = {
+    'request.url': 'url',
+    'request.method': 'method',
+    'request.headers': 'headers',
+    'request.body': 'body',
+    'request.params': 'params',
+    'request.query': 'query',
+    statusCode: 'response.statusCode',
+    data: 'response.data',
+  };
+  /**
+   * @description Normalize an aspect name to its canonical form
+   */
+  protected static normalizeAspect(name: string) {
+    const aliased = get(AxiosPrometheus.aspectAliases, name) as string | undefined;
+    if (aliased) return aliased;
+    if (name.startsWith('request.')) return name.slice('request.'.length);
+    return name;
+  }
+  /**
+   * @description Check need to trace a concrete span aspect
+   * (`AxiosPrometheus.tracing.excludedAttributes` globally and
+   * `AxiosPrometheus.tracing.excludedByURL` per-URL). An excluded item also
+   * matches aspect groups by prefix, e.g. `response` excludes
+   * `response.headers`, `response.statusCode` and `response.data`.
+   */
+  protected needAttribute(url: string, name: string) {
+    const aspect = AxiosPrometheus.normalizeAspect(name);
+    const match = (list: string[]) =>
+      list.some((item) => {
+        const target = AxiosPrometheus.normalizeAspect(item);
+        return aspect === target || aspect.startsWith(`${target}.`);
+      });
+    if (
+      match(this.config.get<string[]>('AxiosPrometheus.tracing.excludedAttributes', []))
+    )
+      return false;
+    const byUrl = this.config.get<{ url: string | RegExp; attributes: string[] }[]>(
+      'AxiosPrometheus.tracing.excludedByURL',
+      [],
+    );
+    for (const entry of byUrl) {
+      const hit =
+        typeof entry?.url === 'string'
+          ? url.includes(entry.url)
+          : entry?.url instanceof RegExp && entry.url.test(url);
+      if (!hit) continue;
+      if (match(entry?.attributes ?? [])) return false;
+    }
+    return true;
   }
 
   protected async before(params?: IAxiosFetchOptions, meta?: Record<string, unknown>) {
@@ -225,12 +279,18 @@ export abstract class AxiosPrometheus extends Axios {
         const url = this.fullUrl(params);
         if (!this.needTrace(url, span)) return void span.end();
         meta!.span = span;
-        span.setAttribute('outgoing.request.url', this.stringify(url));
-        span.setAttribute('outgoing.request.body', this.stringify(params?.data));
-        span.setAttribute('outgoing.request.headers', this.stringify(params?.headers));
-        span.setAttribute('outgoing.request.method', this.stringify(params?.method));
-        span.setAttribute('outgoing.request.params', this.stringify(params?.path));
-        span.setAttribute('outgoing.request.query', this.stringify(params?.params));
+        if (this.needAttribute(url, 'url'))
+          span.setAttribute('outgoing.request.url', this.stringify(url));
+        if (this.needAttribute(url, 'body'))
+          span.setAttribute('outgoing.request.body', this.stringify(params?.data));
+        if (this.needAttribute(url, 'headers'))
+          span.setAttribute('outgoing.request.headers', this.stringify(params?.headers));
+        if (this.needAttribute(url, 'method'))
+          span.setAttribute('outgoing.request.method', this.stringify(params?.method));
+        if (this.needAttribute(url, 'params'))
+          span.setAttribute('outgoing.request.params', this.stringify(params?.path));
+        if (this.needAttribute(url, 'query'))
+          span.setAttribute('outgoing.request.query', this.stringify(params?.params));
         span.setAttribute('SpanKind', 'CLIENT');
       },
     );
@@ -247,9 +307,12 @@ export abstract class AxiosPrometheus extends Axios {
     const span = <Span>meta?.span;
     const url = this.fullUrl(params);
     if (!this.needTrace(url, span)) return;
-    span.setAttribute('outgoing.response.headers', this.stringify(result.headers));
-    span.setAttribute('outgoing.response.statusCode', this.stringify(result.status));
-    span.setAttribute('outgoing.response.data', this.stringify(result.data));
+    if (this.needAttribute(url, 'response.headers'))
+      span.setAttribute('outgoing.response.headers', this.stringify(result.headers));
+    if (this.needAttribute(url, 'response.statusCode'))
+      span.setAttribute('outgoing.response.statusCode', this.stringify(result.status));
+    if (this.needAttribute(url, 'response.data'))
+      span.setAttribute('outgoing.response.data', this.stringify(result.data));
   }
 
   protected async catch(
@@ -264,12 +327,18 @@ export abstract class AxiosPrometheus extends Axios {
     const span = <Span>meta?.span;
     const url = this.fullUrl(params);
     if (!this.needTrace(url, span)) return;
-    span.setAttribute('outgoing.response.headers', this.stringify(e!.response!.headers));
-    span.setAttribute(
-      'outgoing.response.statusCode',
-      this.stringify(e!.response!.status),
-    );
-    span.setAttribute('outgoing.response.data', this.stringify(e!.response!.data));
+    if (this.needAttribute(url, 'response.headers'))
+      span.setAttribute(
+        'outgoing.response.headers',
+        this.stringify(e!.response!.headers),
+      );
+    if (this.needAttribute(url, 'response.statusCode'))
+      span.setAttribute(
+        'outgoing.response.statusCode',
+        this.stringify(e!.response!.status),
+      );
+    if (this.needAttribute(url, 'response.data'))
+      span.setAttribute('outgoing.response.data', this.stringify(e!.response!.data));
   }
 
   protected async finally(

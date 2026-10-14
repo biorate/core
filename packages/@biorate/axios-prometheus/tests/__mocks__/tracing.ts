@@ -38,7 +38,19 @@ export class TestService extends AxiosPrometheus {
 }
 
 export function setTracingExcluded(patterns: (string | RegExp)[]) {
-  container.get<IConfig>(Types.Config).merge({
-    AxiosPrometheus: { tracing: { excluded: patterns } },
-  });
+  container.get<IConfig>(Types.Config).set('AxiosPrometheus.tracing.excluded', patterns);
+}
+
+export function setTracingExcludedAttributes(aspects: string[]) {
+  container
+    .get<IConfig>(Types.Config)
+    .set('AxiosPrometheus.tracing.excludedAttributes', aspects);
+}
+
+export function setTracingExcludedByUrl(
+  entries: { url: string | RegExp; attributes: string[] }[],
+) {
+  container
+    .get<IConfig>(Types.Config)
+    .set('AxiosPrometheus.tracing.excludedByURL', entries);
 }
