@@ -33,7 +33,7 @@ config.set('port', 3000);
 config.merge({ url: 'http://${host}:${port}/api' });
 
 console.log(config.get<string>('url')); // 'http://localhost:3000/api'
-console.log(config.has('host'));        // true
+console.log(config.has('host')); // true
 ```
 
 ## Module reference
@@ -48,18 +48,18 @@ Decorated with `@injectable()` for DI use.
 
 #### Static members
 
-| Member              | Signature                                      | Description                          |
-|---------------------|------------------------------------------------|--------------------------------------|
-| `Config.Template`   | `static Template: { string, link, regexp, function, empty }` | Toggle each template type (`true` by default). |
+| Member            | Signature                                                    | Description                                    |
+| ----------------- | ------------------------------------------------------------ | ---------------------------------------------- |
+| `Config.Template` | `static Template: { string, link, regexp, function, empty }` | Toggle each template type (`true` by default). |
 
 #### Instance members
 
-| Member     | Signature                                               | Description                                           |
-|------------|---------------------------------------------------------|-------------------------------------------------------|
-| `get<T>`   | `get<T = unknown>(path, def?): T`                       | Resolves path. Throws `UndefinedConfigPathError` if no `def`. String/object values are template-resolved. |
-| `has`      | `has(path): boolean`                                    | Checks if path exists in the data tree.               |
-| `set`      | `set(path, value): void`                                | Sets a value at the path (creates intermediates).      |
-| `merge`    | `merge(data): void`                                     | Deep merges data into the store via `lodash.merge`.    |
+| Member   | Signature                         | Description                                                                                               |
+| -------- | --------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `get<T>` | `get<T = unknown>(path, def?): T` | Resolves path. Throws `UndefinedConfigPathError` if no `def`. String/object values are template-resolved. |
+| `has`    | `has(path): boolean`              | Checks if path exists in the data tree.                                                                   |
+| `set`    | `set(path, value): void`          | Sets a value at the path (creates intermediates).                                                         |
+| `merge`  | `merge(data): void`               | Deep merges data into the store via `lodash.merge`.                                                       |
 
 `path` is of type `PropertyPath = string | string[]` — dot-separated or array paths.
 
@@ -68,11 +68,11 @@ Decorated with `@injectable()` for DI use.
 Configured per key by flag:
 
 ```ts
-Config.Template.string = false;    // disable ${...} / @{...} interpolation
-Config.Template.link = false;      // disable #{...} references
-Config.Template.regexp = false;    // disable R{/pattern/}  
-Config.Template.function = false;  // disable F{...} function creation
-Config.Template.empty = false;     // disable !{...} empty values
+Config.Template.string = false; // disable ${...} / @{...} interpolation
+Config.Template.link = false; // disable #{...} references
+Config.Template.regexp = false; // disable R{/pattern/}
+Config.Template.function = false; // disable F{...} function creation
+Config.Template.empty = false; // disable !{...} empty values
 ```
 
 ### `IConfig` — Interface
@@ -100,7 +100,15 @@ import { IResult } from '@biorate/config';
 
 ```ts
 type IResult = {
-  value: string | RegExp | (() => unknown) | unknown[] | unknown | Record<string, unknown> | null | undefined;
+  value:
+    | string
+    | RegExp
+    | (() => unknown)
+    | unknown[]
+    | unknown
+    | Record<string, unknown>
+    | null
+    | undefined;
 };
 ```
 
@@ -180,14 +188,14 @@ Arguments are comma-separated, body follows `=>`.
 
 ### Empty templates — `!{type}`
 
-| Template        | Result      |
-|-----------------|-------------|
-| `'!{object}'`   | `{}`        |
-| `'!{array}'`    | `[]`        |
-| `'!{void}'`     | `undefined` |
-| `'!{null}'`     | `null`      |
-| `'!{string}'`   | `""`        |
-| `'!{ }'`        | `null`      |
+| Template      | Result      |
+| ------------- | ----------- |
+| `'!{object}'` | `{}`        |
+| `'!{array}'`  | `[]`        |
+| `'!{void}'`   | `undefined` |
+| `'!{null}'`   | `null`      |
+| `'!{string}'` | `""`        |
+| `'!{ }'`      | `null`      |
 
 ## Architecture
 
@@ -210,7 +218,7 @@ Config implements IConfig
 │
 ├── has(path)                        lodash.has(data, path)
 ├── set(path, value)                 lodash.set(data, path, value)
-└── merge(data)                      lodash.merge(data, data)
+└── merge(data)                      lodash.merge(this.data, data)
 ```
 
 ### Learn

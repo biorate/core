@@ -30,9 +30,9 @@ const Namespace2 = create('Namespace2');
 
 Returns a `Proxy` object where every property access lazily creates and caches a unique `Symbol`.
 
-| Export  | Signature                              | Description                                       |
-|---------|----------------------------------------|---------------------------------------------------|
-| `create`| `(label: string) => Record<string, symbol>` | Creates a new isolated symbol namespace.     |
+| Export   | Signature                                   | Description                              |
+| -------- | ------------------------------------------- | ---------------------------------------- |
+| `create` | `(label: string) => Record<string, symbol>` | Creates a new isolated symbol namespace. |
 
 **Behaviour:**
 
@@ -40,11 +40,11 @@ Returns a `Proxy` object where every property access lazily creates and caches a
 const A = create('A');
 const B = create('B');
 
-A.foo === A.foo;   // true  — cached within the same namespace
-A.foo === B.foo;   // false — different namespaces are isolated
+A.foo === A.foo; // true  — cached within the same namespace
+A.foo === B.foo; // false — different namespaces are isolated
 ```
 
-Internally uses `ES2020` private class fields (`#map`) and `Proxy.get` / `Proxy.has` traps.
+Internally uses `ES2022` private class fields (`#map`) and `Proxy.get` / `Proxy.has` traps.
 
 ### `Global` — Global singleton registry
 
@@ -54,34 +54,34 @@ import { Global } from '@biorate/symbolic';
 
 A singleton `Proxy`-backed object that delegates to `Symbol.for()` for global symbol registration.
 
-| Export   | Signature                                      | Description                                   |
-|----------|------------------------------------------------|-----------------------------------------------|
+| Export   | Signature                                           | Description                                |
+| -------- | --------------------------------------------------- | ------------------------------------------ |
 | `Global` | `const Global: Proxify & { [key: string]: symbol }` | Global symbol registry via `Symbol.for()`. |
 
 **Direct access:**
 
 ```ts
-Global.Foo === Global.Foo;   // true — Symbol.for('Global.Foo')
-Global.Foo === Global.Bar;   // false
+Global.Foo === Global.Foo; // true — Symbol.for('Global.Foo')
+Global.Foo === Global.Bar; // false
 ```
 
 **Namespaced access** (callable):
 
 ```ts
 const MyNs = Global('MyNs');
-MyNs.Test === MyNs.Test;     // true — Symbol.for('MyNs.Test')
+MyNs.Test === MyNs.Test; // true — Symbol.for('MyNs.Test')
 ```
 
 The returned value is itself callable, allowing nested namespaces.
 
 ### Key differences
 
-| Aspect              | `create(label)`         | `Global`                    |
-|---------------------|-------------------------|-----------------------------|
-| Backend             | `Symbol()` (local)      | `Symbol.for()` (global)     |
-| Isolation           | Full — separate `Map`   | Global — shared across modules |
-| Collision risk      | None between creates    | Possible if same key in different modules |
-| Callable            | No                      | Yes — `Global('ns').Key`    |
+| Aspect         | `create(label)`       | `Global`                                  |
+| -------------- | --------------------- | ----------------------------------------- |
+| Backend        | `Symbol()` (local)    | `Symbol.for()` (global)                   |
+| Isolation      | Full — separate `Map` | Global — shared across modules            |
+| Collision risk | None between creates  | Possible if same key in different modules |
+| Callable       | No                    | Yes — `Global('ns').Key`                  |
 
 ## Usage patterns
 
@@ -127,7 +127,7 @@ Global
     ├── Proxy.get(target, key)
     │   └── Symbol.for(`Global.${key}`)
     └── Proxy.apply(target, thisArg, [namespace])
-        └── new Proxy({}, Proxify)  // with prefix = namespace
+        └── new Proxy(function(){}, Proxify)  // with prefix = namespace
             └── get → Symbol.for(`${namespace}.${key}`)
 ```
 

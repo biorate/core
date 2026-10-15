@@ -1,15 +1,13 @@
 # @biorate/vault
 
-Vault connector — wraps the HashiCorp Vault HTTP API for secrets management, authentication, and related entities.
+Vault connector — wraps the `node-vault` client for HashiCorp Vault secrets management and authentication.
 
 ## Features
 
-- **Auto-connect** — creates an Axios-based Vault API client on `@init()` via config namespace `Vault`.
-- **Secrets API** — read, write, list, delete secrets at a path.
-- **Auth API** — token-based authentication (login, lookup, renew, revoke).
-- **Related entities** — wraps multiple sub-APIs: `alembic`, `cubbyhole`, `database`, `identity`, `ldap`, `pki`, `rabbitmq`, `totp`, `transit`.
-- **Typed errors** — `VaultCantConnectError`, `VaultRequestError`.
-- **Configurable HTTP client** — baseURL, token, auth, TLS via Axios.
+- **Auto-connect** — creates a `node-vault` client on `@init()` via config namespace `Vault`.
+- **AppRole login** — `auth` performs an `approleLogin` and injects the resulting token.
+- **Flat API** — the connection exposes `write`/`read`/`delete` plus the generated `node-vault` commands (e.g. `approleLogin`, `encryptData`, `tokenLookup`).
+- **Typed errors** — `VaultCantConnectError` on connection failure.
 
 ## Installation
 
@@ -17,7 +15,7 @@ Vault connector — wraps the HashiCorp Vault HTTP API for secrets management, a
 pnpm add @biorate/vault
 ```
 
-Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/axios`.
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/errors`, `node-vault@0.10.9`.
 
 ## Quick start
 
@@ -35,22 +33,29 @@ container.bind<VaultConnector>(VaultConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Vault: [{
-    name: 'connection',
-    options: {
-      baseURL: 'http://localhost:8200',
-      token: 'root-token',
+  Vault: [
+    {
+      name: 'connection',
+      auth: {
+        type: 'approleLogin',
+        responseTokenPath: 'auth.client_token',
+        args: [{ role_id: 'role-id', secret_id: 'secret-id' }],
+      },
+      options: {
+        apiVersion: 'v1',
+        endpoint: 'http://localhost:8200',
+      },
     },
-  }],
+  ],
 });
 
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-  await root.connector.current!.secrets.write('secret/data/test', { data: { foo: 'bar' } });
-  const data = await root.connector.current!.secrets.read('secret/data/test');
+  await root.connector.current!.write('secret/data/test', { data: { foo: 'bar' } });
+  const data = await root.connector.current!.read('secret/data/test');
   console.log(data.data.data); // { foo: 'bar' }
-  await root.connector.current!.secrets.delete('secret/data/test');
+  await root.connector.current!.delete('secret/data/test');
 })();
 ```
 
@@ -58,50 +63,35 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `VaultConnector`
 
-| Member           | Type                                      | Description                              |
-|------------------|-------------------------------------------|------------------------------------------|
-| `namespace`      | `'Vault'`                                 | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<IVaultConnection>`   | Creates Axios instance for Vault API.    |
+| Member            | Type                                    | Description                            |
+| ----------------- | --------------------------------------- | -------------------------------------- |
+| `namespace`       | `'Vault'`                               | Config key for connection definitions. |
+| `connect(config)` | `(config) => Promise<IVaultConnection>` | Creates the `node-vault` client.       |
 
-### Connection sub-APIs
-
-The connection exposes these API groups:
-
-| Property     | Methods                                           | Description            |
-|--------------|---------------------------------------------------|------------------------|
-| `secrets`    | `read`, `write`, `list`, `delete`                 | KV Secrets Engine.     |
-| `auth`       | `login`, `lookup`, `renew`, `revoke`              | Token auth.            |
-| `alembic`    | `configure`, `status`, `rollback` (DB migrations) | (if configured)        |
-| `cubbyhole`  | `read`, `write`, `list`, `delete`                 | Cubbyhole secrets.     |
-| `database`   | `configure`, `creds`, `rotate`                    | Database secrets.      |
-| `identity`   | CRUD for entities/groups/aliases                  | Identity engine.       |
-| `ldap`       | `login`, `configure`, `groups`, `users`           | LDAP auth.             |
-| `pki`        | `issue`, `sign`, `revoke`, `crl`, `configure`     | PKI engine.            |
-| `rabbitmq`   | `configure`, `creds`                              | RabbitMQ secrets.      |
-| `totp`       | `generate`, `validate`, `configure`               | TOTP engine.           |
-| `transit`    | `encrypt`, `decrypt`, `sign`, `verify`            | Transit engine.        |
+The connection is a `node-vault` `client`. It exposes the flat `write`/`read`/`delete` methods, plus the commands generated from the `node-vault` API (e.g. `approleLogin`, `encryptData`, `tokenLookup`).
 
 ### Config
 
 ```ts
 interface IVaultConfig extends IConnectorConfig {
-  options: IVaultConfigOptions;
+  options: VaultOptions; // endpoint, apiVersion, namespace, token
+  auth: IAuthType; // required; performs approleLogin
 }
 
-interface IVaultConfigOptions {
-  baseURL: string;     // http://vault:8200
-  token?: string;       // static Vault token
-  auth?: AxiosRequestConfig['auth']; // basic auth
-  httpsAgent?: any;     // TLS agent
-}
+type IAuthType = {
+  type: 'approleLogin';
+  responseTokenPath: 'auth.client_token';
+  args: [{ role_id: string; secret_id: string }];
+};
 ```
+
+The `options` object is built from `node-vault` options — the server address is the `endpoint` property, plus optional `apiVersion`, `namespace`, `token`.
 
 ### Errors
 
-| Error                    | Condition                                    |
-|--------------------------|----------------------------------------------|
-| `VaultCantConnectError`  | Axios instance creation fails.               |
-| `VaultRequestError`      | API response indicates failure.              |
+| Error                   | Condition                               |
+| ----------------------- | --------------------------------------- |
+| `VaultCantConnectError` | Client creation or AppRole login fails. |
 
 ## Architecture
 
@@ -109,21 +99,11 @@ interface IVaultConfigOptions {
 VaultConnector extends Connector<IVaultConfig, IVaultConnection>
 │
 ├── namespace = 'Vault'
-├── connect(config) → new VaultClient(config)
-│
-├── VaultClient
-│   ├── raw: AxiosInstance (baseURL + token/headers)
-│   ├── secrets.read/write/list/delete
-│   ├── auth.login/lookup/renew/revoke
-│   ├── cubbyhole.read/write/list/delete
-│   ├── database.configure/creds/rotate
-│   ├── identity.*
-│   ├── ldap.login/configure/groups/users
-│   ├── pki.issue/sign/revoke/crl/configure
-│   ├── rabbitmq.configure/creds
-│   ├── totp.generate/validate/configure
-│   ├── transit.encrypt/decrypt/sign/verify
-│   └── alembic.configure/status/rollback
+├── connect(config)
+│   ├── client = Client(pick(options, apiVersion, endpoint, namespace, token))
+│   ├── if (auth) → client = Client({ token: approleLogin(...), ...options })
+│   └── returns the node-vault client
+└── connection exposes flat write / read / delete + generated commands
 ```
 
 ### Learn

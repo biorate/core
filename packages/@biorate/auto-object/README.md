@@ -2,9 +2,21 @@
 
 Auto initialized object
 
+## Installation
+
+```bash
+pnpm add @biorate/auto-object
+```
+
+Requires `lodash-es` and `reflect-metadata` peer dependencies.
+
 ### Examples:
 
 ```ts
+import { IsString, IsNumber, IsArray, IsInt, IsObject } from 'class-validator';
+import { Type } from 'class-transformer';
+import { AutoObject, Getter } from '@biorate/auto-object';
+
 class Geo extends Array<number> {}
 
 class Address extends AutoObject<Address> {
@@ -41,7 +53,7 @@ class User extends AutoObject<User> {
   public lastName: string;
 
   @IsObject()
-  @ValueObject(Address)
+  @Type(() => Address)
   public address: Address;
 }
 

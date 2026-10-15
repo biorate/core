@@ -14,7 +14,8 @@ import { AxiosRequestError, UnsupportedProtocolError } from '../errors';
 /**
  * @description
  * Global exception filter that catches all exceptions and returns a structured JSON response
- * with status, code, hint, path, and meta fields. Supports HTTP, WebSocket, and RPC transports.
+ * with status, code, hint, path, and meta fields. Supports HTTP and WebSocket transports; RPC is
+ * unsupported and throws {@link UnsupportedProtocolError}.
  *
  * @example
  * ```ts

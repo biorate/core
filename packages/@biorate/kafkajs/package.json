@@ -58,5 +58,8 @@
     "@biorate/prometheus": "workspace:*",
     "@biorate/tools": "workspace:*",
     "kafkajs": "^2.2.3"
+  },
+  "peerDependencies": {
+    "lodash-es": ">=4.18.1"
   }
 }

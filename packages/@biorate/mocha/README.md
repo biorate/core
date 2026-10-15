@@ -16,18 +16,19 @@ documentation should be almost the same
 
 ```ts
 import { suite, parallel, test } from '@biorate/mocha';
+import { expect } from 'chai';
 
 @suite
 @parallel(true)
 class Test {
   @test
   first() {
-    expect(false).toBe(true);
+    expect(false).to.be.true;
   }
 
   @test
   second() {
-    expect(false).toBe(true);
+    expect(false).to.be.true;
   }
 }
 ```

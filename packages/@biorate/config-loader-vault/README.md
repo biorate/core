@@ -23,7 +23,10 @@ Requires `@biorate/config`, `@biorate/config-loader`, `@biorate/errors`, `@biora
 ```ts
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { ConfigLoaderVault, ConfigLoaderVaultActions } from '@biorate/config-loader-vault';
+import {
+  ConfigLoaderVault,
+  ConfigLoaderVaultActions,
+} from '@biorate/config-loader-vault';
 import { VaultConnector } from '@biorate/vault';
 
 class Root extends Core() {
@@ -36,9 +39,16 @@ container.bind<VaultConnector>(VaultConnector).toSelf().inSingletonScope();
 container.bind<ConfigLoaderVault>(ConfigLoaderVault).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Vault: [{ name: 'primary', options: { baseURL: 'http://localhost:8200', token: 'root' } }],
+  Vault: [
+    { name: 'primary', options: { baseURL: 'http://localhost:8200', token: 'root' } },
+  ],
   ConfigLoaderVault: [
-    { action: ConfigLoaderVaultActions.Merge, path: 'secret/data/config', connection: 'primary', cache: true },
+    {
+      action: ConfigLoaderVaultActions.Merge,
+      path: 'secret/data/config',
+      connection: 'primary',
+      cache: true,
+    },
   ],
 });
 
@@ -59,14 +69,14 @@ import { ConfigLoaderVault } from '@biorate/config-loader-vault';
 
 Extends `ConfigLoader` (from `@biorate/config-loader`).
 
-| Member              | Visibility    | Signature                                      | Description                       |
-|---------------------|---------------|------------------------------------------------|-----------------------------------|
-| `vault`             | `protected readonly` | `IVaultConnector`                        | Injected Vault connector.         |
-| `initialize`        | `@init() protected` | `(): Promise<void>`                  | Read options from config, execute actions. |
-| `read`              | `protected`   | `(option): Promise<Record<string, unknown>>`   | Read from cache or Vault.         |
-| `cache`             | `protected`   | `(option, data): Promise<void>`               | Write JSON cache file.            |
-| `[Merge]`           | `protected`   | `(data, option): Promise<void>`               | Merge data into config.           |
-| `[Download]`        | `protected`   | `(data, option): Promise<void>`               | Merge + write files to disk.      |
+| Member       | Visibility           | Signature                                    | Description                                |
+| ------------ | -------------------- | -------------------------------------------- | ------------------------------------------ |
+| `vault`      | `protected readonly` | `IVaultConnector`                            | Injected Vault connector.                  |
+| `initialize` | `@init() protected`  | `(): Promise<void>`                          | Read options from config, execute actions. |
+| `read`       | `protected`          | `(option): Promise<Record<string, unknown>>` | Read from cache or Vault.                  |
+| `cache`      | `protected`          | `(option, data): Promise<void>`              | Write JSON cache file.                     |
+| `[Merge]`    | `protected`          | `(data, option): Promise<void>`              | Merge data into config.                    |
+| `[Download]` | `protected`          | `(data, option): Promise<void>`              | Merge + write files to disk.               |
 
 ### `ConfigLoaderVaultActions` — Enum
 
@@ -82,19 +92,19 @@ enum ConfigLoaderVaultActions {
 ```ts
 type IConfigLoaderVaultOption = {
   action: ConfigLoaderVaultActions;
-  path: string;                             // Vault secret path
-  connection: string;                       // Named Vault connection
-  cache?: boolean;                          // Enable JSON cache (default false)
-  directory?: string;                       // Download directory (default 'downloads')
-  required?: boolean;                       // Fail on error (default true)
+  path: string; // Vault secret path
+  connection: string; // Named Vault connection
+  cache?: boolean; // Enable JSON cache (default false)
+  directory?: string; // Download directory (default 'downloads')
+  required?: boolean; // Fail on error (default true)
 };
 ```
 
 ### Errors
 
-| Error                                  | Condition                             |
-|----------------------------------------|---------------------------------------|
-| `ConfigLoaderVaultUnknownCacheError`   | Filesystem error during cache write (logged as warn). |
+| Error                                | Condition                                             |
+| ------------------------------------ | ----------------------------------------------------- |
+| `ConfigLoaderVaultUnknownCacheError` | Filesystem error during cache write (logged as warn). |
 
 ## Actions
 

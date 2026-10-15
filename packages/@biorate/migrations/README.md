@@ -32,8 +32,10 @@ Requires the underlying engine packages (`@biorate/sequelize`, `@biorate/mongodb
 Run with environment config:
 
 ```bash
-MIGRATIONS_CONFIG=./config.ts npm run migrations
+MIGRATIONS_CONFIG=/path/to/config.ts npm run migrations
 ```
+
+`MIGRATIONS_CONFIG` is prepended with `process.cwd()` in `src/index.ts` (string concatenation, not a path join), so it must be an absolute path — a relative value like `./config.ts` will not resolve to the intended file.
 
 ## Module reference
 
@@ -44,11 +46,9 @@ MIGRATIONS_CONFIG=./config.ts npm run migrations
 ```ts
 import { Root } from '@biorate/migrations';
 
-// Root is auto-instantiated on package import.
-// Manually:
-import { container } from '@biorate/inversion';
-const root = container.get<Root>(Root);
-await root.$run();
+// Root is auto-instantiated on package import — that is the only supported entry
+// point. You cannot await it manually: resolving it from the DI container triggers
+// its `@init()`, which calls `process.exit(0)` (`src/root.ts`) and exits the process.
 ```
 
 ### `Migration` — Abstract base
@@ -59,18 +59,18 @@ import { Migration } from '@biorate/migrations';
 
 Abstract base class for all migration types. Provides:
 
-| Member             | Signature                                      | Description                                   |
-|--------------------|------------------------------------------------|-----------------------------------------------|
-| `config`           | `protected config: IConfig`                    | Injected config service.                      |
-| `connector`        | `protected abstract connector: IConnector`     | Engine connector (must be overridden).        |
-| `type`             | `protected get type(): string`                 | `this.constructor.name.toLowerCase()`.        |
-| `scan(...args)`    | `async scan(...paths): Promise<string[]>`      | Scans migration directory, returns file paths.|
-| `path(...args)`    | `path(...segments): string`                    | Builds path: `cwd/migrations/{type}/{...}`.   |
-| `log(...args)`     | `log(...msg): void`                            | Console logging with type prefix.             |
-| `forEach(namespace, callback)` | `async forEach<T, C>(ns, fn)` | Iterates config entries and connections.      |
-| `forEachPath(paths, callback)`  | `async forEachPath(paths, fn)`   | Iterates files in a path list.                |
-| `process()`        | `protected abstract process(): Promise<void>`  | Override with migration logic.                |
-| `initialize()`     | `@init() protected async initialize()`         | Calls `this.process()` on lifecycle init.     |
+| Member                         | Signature                                           | Description                                      |
+| ------------------------------ | --------------------------------------------------- | ------------------------------------------------ |
+| `config`                       | `protected config: IConfig`                         | Injected config service.                         |
+| `connector`                    | `protected abstract connector: IConnector`          | Engine connector (must be overridden).           |
+| `type`                         | `protected get type(): string`                      | `this.constructor.name.toLowerCase()`.           |
+| `scan(...args)`                | `protected async scan(...paths): Promise<string[]>` | Scans migration directory, returns file paths.   |
+| `path(...args)`                | `protected path(...segments): string`               | Builds path: `cwd/migrations/{type}/{...}`.      |
+| `log(...args)`                 | `protected log(...msg): void`                       | Console logging with type prefix; appends `up!`. |
+| `forEach(namespace, callback)` | `protected async forEach<T, C>(ns, fn)`             | Iterates config entries and connections.         |
+| `forEachPath(paths, callback)` | `protected async forEachPath(paths, fn)`            | Iterates files in a path list.                   |
+| `process()`                    | `protected abstract process(): Promise<void>`       | Override with migration logic.                   |
+| `initialize()`                 | `@init() protected async initialize()`              | Calls `this.process()` on lifecycle init.        |
 
 ### `Sequelize` — RDBMS migrations
 
@@ -150,14 +150,14 @@ Loads and executes JS scripts (`module.exports = async (channel, connection, con
 import { SchemaRegistry } from '@biorate/migrations';
 ```
 
-Reads `.avsc.json` / `.json` files named `00001_subjectname.avsc.json` from `migrations/schema-registry/`. Each file is registered as a new subject or a new version of an existing subject on the Schema Registry.
+Reads `.avsc.json` files named `00001_{subject}.avsc.json` from `migrations/schema-registry/`. The registered subject name is the part after the first `_` with the `.json` extension removed, i.e. `{subject}.avsc`. Each file is registered as a new subject or a new version of an existing subject on the Schema Registry.
 
-| Feature              | Description                                            |
-|----------------------|--------------------------------------------------------|
-| File pattern         | `00001_{subject}.avsc.json`                            |
-| Compatibility        | Set via config, defaults to `FORWARD`                  |
-| On conflict          | Registers a new version for the subject                |
-| Errors               | `SchemaRegistryWrongFileNameError` if pattern mismatch |
+| Feature       | Description                                             |
+| ------------- | ------------------------------------------------------- |
+| File pattern  | `00001_{subject}.avsc.json` -> subject `{subject}.avsc` |
+| Compatibility | Set via config, defaults to `FORWARD`                   |
+| On conflict   | Registers a new version for the subject                 |
+| Errors        | `SchemaRegistryWrongFileNameError` if pattern mismatch  |
 
 **Config namespace:** `SchemaRegistry` (from `@biorate/schema-registry` base config).
 
@@ -165,8 +165,8 @@ Reads `.avsc.json` / `.json` files named `00001_subjectname.avsc.json` from `mig
 
 ### Errors
 
-| Error                              | Context                              |
-|------------------------------------|--------------------------------------|
+| Error                              | Context                                                                            |
+| ---------------------------------- | ---------------------------------------------------------------------------------- |
 | `SchemaRegistryWrongFileNameError` | Schema Registry migration file name does not match `00001_name.avsc.json` pattern. |
 
 ## Config structure

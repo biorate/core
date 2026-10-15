@@ -9,7 +9,6 @@ TCP proxy connector — lightweight, configurable TCP load balancer with livenes
 - **Health checks** — periodic liveness polling; switches upstream on failure.
 - **Unix socket support** — listen on Unix domain sockets.
 - **Stats page** — optional HTTP server with Pug-rendered connection statistics.
-- **@kill() destructor** — graceful cleanup on shutdown.
 
 ## Installation
 
@@ -41,7 +40,10 @@ class Root extends Core() {
     super();
     this.http = new HTTPServer();
     this.http.listen(httpPort);
-    this.http.on('request', (req, res) => { res.writeHead(200); res.end('1'); });
+    this.http.on('request', (req, res) => {
+      res.writeHead(200);
+      res.end('1');
+    });
     this.tcp = new TCPServer();
     this.tcp.listen(clientPort);
     this.tcp.on('connection', (socket) =>
@@ -55,15 +57,19 @@ container.bind<ProxyConnector>(ProxyConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Proxy: [{
-    name: 'connection',
-    retry: 10,
-    server: { address: { host: 'localhost', port: serverPort } },
-    clients: [{
-      liveness: `http://localhost:${httpPort}`,
-      address: { host: 'localhost', port: clientPort },
-    }],
-  }],
+  Proxy: [
+    {
+      name: 'connection',
+      retry: 10,
+      server: { address: { host: 'localhost', port: serverPort } },
+      clients: [
+        {
+          liveness: `http://localhost:${httpPort}`,
+          address: { host: 'localhost', port: clientPort },
+        },
+      ],
+    },
+  ],
 });
 
 (async () => {
@@ -81,29 +87,34 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `ProxyConnector`
 
-| Member              | Type                                      | Description                                   |
-|---------------------|-------------------------------------------|-----------------------------------------------|
-| `namespace`         | `'Proxy'`                                 | Config key for connection definitions.        |
-| `connect(config)`   | `(config) => Promise<IProxyConnection>`    | Creates `ProxyConnection` with client selection. |
-| `stats()`           | `() => void`                              | Starts optional HTTP stats server.            |
-| `getStatData()`     | `() => object[]`                           | Returns active connection stats for rendering. |
+| Member            | Type                                    | Description                                      |
+| ----------------- | --------------------------------------- | ------------------------------------------------ |
+| `namespace`       | `'Proxy'`                               | Config key for connection definitions.           |
+| `connect(config)` | `(config) => Promise<IProxyConnection>` | Creates `ProxyConnection` with client selection. |
+
+Protected members (not part of the public API):
+
+| Member          | Type             | Description                                                |
+| --------------- | ---------------- | ---------------------------------------------------------- |
+| `stats()`       | `() => void`     | Starts optional HTTP stats server (protected).             |
+| `getStatData()` | `() => object[]` | Returns active connection stats for rendering (protected). |
 
 ### Config
 
 ```ts
 interface IProxyConfig extends IConnectorConfig {
-  retry?: number;            // max retries for client selection (default 10)
-  timeout?: number;          // ms between selection attempts (default 1000)
-  checkInterval?: number;    // ms between health checks (< 0 = disabled)
+  retry?: number; // max retries for client selection (default 10)
+  timeout?: number; // ms between selection attempts (default 1000)
+  checkInterval?: number; // ms between health checks (< 0 = disabled)
   server: {
     options?: ServerOpts;
-    address: ListenOptions;  // { host, port } or { path: '/tmp/sock' }
+    address: ListenOptions; // { host, port } or { path: '/tmp/sock' }
   };
-  clients: IClientOption[];  // upstream backends
+  clients: IClientOption[]; // upstream backends
 }
 
 interface IClientOption {
-  liveness?: string;         // HTTP URL for health check
+  liveness?: string; // HTTP URL for health check
   address: TcpSocketConnectOpts;
   options?: SocketConstructorOpts;
 }
@@ -121,10 +132,10 @@ ProxyStats: {
 
 ### Errors
 
-| Error                          | Condition                                        |
-|--------------------------------|--------------------------------------------------|
-| `ProxyCantConnectError`        | Proxy connection creation fails.                 |
-| `ProxyConnectionTimeoutError`  | No healthy upstream selected within retry limit. |
+| Error                         | Condition                                        |
+| ----------------------------- | ------------------------------------------------ |
+| `ProxyCantConnectError`       | Proxy connection creation fails.                 |
+| `ProxyConnectionTimeoutError` | No healthy upstream selected within retry limit. |
 
 ## Architecture
 

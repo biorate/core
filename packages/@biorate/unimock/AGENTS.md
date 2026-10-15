@@ -26,29 +26,29 @@
 
 ## Ключевые файлы
 
-| Файл                          | Назначение                                                                                                                                                          |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src/mockable.ts`             | Декоратор `@Mockable()`, `mock()` (overloaded), `mockObject()`, `patchPrototype`, `resolveObjectName`                                                               |
-| `src/method-wrapper.ts`       | `MethodWrapper` (config-object), `wrapMethod`, `wrapGetter`, `replayCall`, `replayCallbacks`, `recordPrep`, `serializeArgs`, `wrapResult`, `hasMethods`              |
-| `src/statics.ts`              | `StaticReplayShape`, `STATIC_REPLAY_SHAPE`, `wrapStaticMethod`, `replayStaticCall`, `registerStaticRefs`, `rebuildInstance`, `recordStaticResult`, `toPlain`, `assignStaticRefs` |
-| `src/state.ts`                | Module-level state: `replayRebuilt`, `staticOriginals`, `reconstructionDepth` + `inReconstruction()`/`withReconstructionDepth()`                                      |
-| `src/mock-handler.ts`         | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.), private `#replayGet`/`#recordGet`                                           |
-| `src/sequelize.ts`            | `bindReplaySequelizeModels` — offline-binding Sequelize-моделей в replay (no-op вне replay, off-guard вокруг биндинга, вариадик-модели + опции)                                      |
-| `src/snapshot-store.ts`       | `SnapshotStore` — JSONL загрузка/сохранение (v2 header `_jsonl:2`, refs всегда явный), кэш stores, режимные гейты `record()`/`flush()`, `flushAllSnapshots()`, `isReplay()`, `isRecord()`, `isOff()` (internal, fast path) |
-| `src/serializer.ts`           | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey`                                                                                                 |
-| `src/utils.ts`                | `getOrAssignRefId`, `getRefId`, `setRefId`, `getUnimockRef`, `isPromiseLike`, `getReplayStaticEntry`, `recordError`                                                  |
-| `src/env.ts`                  | `parseUnimockMode()`, `resolveSnapshotDir()`                                                                                                                        |
-| `src/errors.ts`               | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockProxyTargetRequiredError`                                                                                |
-| `src/interfaces.ts`           | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode`                                                                                               |
-| `src/constants.ts`            | Постоянные: mode-строки, t/v теги, префиксы call-key, `POOL_THRESHOLD`, `JSONL_FORMAT_VERSION`                                                                      |
-| `src/index.ts`                | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF` |
-| `vitest/setup.ts`             | Хук `afterAll` для автоматического `flushAllSnapshots()`                                                                                                            |
-| `tests/unit/unimock.spec.ts`       | 47+ unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                     |
-| `tests/unit/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming)                                                                                                     |
-| `tests/e2e/sequelize.spec.ts`     | 4 интеграционных теста (+destroy: instance + static); instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                      |
-| `tests/e2e/clickhouse.spec.ts`    | 2 интеграционных теста с реальным Clickhouse (record + replay)                                                                                                      |
-| `tests/e2e/rdkafka.spec.ts`       | 1 интеграционный тест с реальным Kafka (record + replay в одном файле)                                                                                              |
-| `tests/unit/noop.spec.ts`          | 16 тестов для noop Proxy                                                                                                                                            |
+| Файл                               | Назначение                                                                                                                                                                                                                 |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/mockable.ts`                  | Декоратор `@Mockable()`, `mock()` (overloaded), `mockObject()`, `patchPrototype`, `resolveObjectName`                                                                                                                      |
+| `src/method-wrapper.ts`            | `MethodWrapper` (config-object), `wrapMethod`, `wrapGetter`, `replayCall`, `replayCallbacks`, `recordPrep`, `serializeArgs`, `wrapResult`, `hasMethods`                                                                    |
+| `src/statics.ts`                   | `StaticReplayShape`, `STATIC_REPLAY_SHAPE`, `wrapStaticMethod`, `replayStaticCall`, `registerStaticRefs`, `rebuildInstance`, `recordStaticResult`, `toPlain`, `assignStaticRefs`                                           |
+| `src/state.ts`                     | Module-level state: `replayRebuilt`, `staticOriginals`, `reconstructionDepth` + `inReconstruction()`/`withReconstructionDepth()`                                                                                           |
+| `src/mock-handler.ts`              | `MockHandler` (Proxy) — обёртка для connection-объектов с методами (query, json и т.д.), private `#replayGet`/`#recordGet`                                                                                                 |
+| `src/sequelize.ts`                 | `bindReplaySequelizeModels` — offline-binding Sequelize-моделей в replay (no-op вне replay, off-guard вокруг биндинга, вариадик-модели + опции)                                                                            |
+| `src/snapshot-store.ts`            | `SnapshotStore` — JSONL загрузка/сохранение (v2 header `_jsonl:2`, refs всегда явный), кэш stores, режимные гейты `record()`/`flush()`, `flushAllSnapshots()`, `isReplay()`, `isRecord()`, `isOff()` (internal, fast path) |
+| `src/serializer.ts`                | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey`                                                                                                                                                        |
+| `src/utils.ts`                     | `getOrAssignRefId`, `getRefId`, `setRefId`, `getUnimockRef`, `isPromiseLike`, `getReplayStaticEntry`, `recordError`                                                                                                        |
+| `src/env.ts`                       | `parseUnimockMode()`, `resolveSnapshotDir()`                                                                                                                                                                               |
+| `src/errors.ts`                    | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockProxyTargetRequiredError`                                                                                                                                       |
+| `src/interfaces.ts`                | Типы `SerializedValue`, `SnapshotCall`, `SnapshotFile`, `UnimockMode`                                                                                                                                                      |
+| `src/constants.ts`                 | Постоянные: mode-строки, t/v теги, префиксы call-key, `POOL_THRESHOLD`, `JSONL_FORMAT_VERSION`                                                                                                                             |
+| `src/index.ts`                     | Публичный API: `Mockable`, `mock`, `SnapshotStore`, `flushAllSnapshots`, `MockHandler`, `Unimock`, `isReplay`, `isRecord`, `MODE_RECORD`, `MODE_REPLAY`, `MODE_OFF`                                                        |
+| `vitest/setup.ts`                  | Хук `afterAll` для автоматического `flushAllSnapshots()`                                                                                                                                                                   |
+| `tests/unit/unimock.spec.ts`       | 47+ unit-тестов для ядра (включая off fast path, рекурсивный `toPlain`, replay-реконструкцию статиков, refId-scoping, reconstruction pass-through)                                                                         |
+| `tests/unit/comprehensive.spec.ts` | 14 тестов (10 старых + 4 новых: plain object mock, авто-naming)                                                                                                                                                            |
+| `tests/e2e/sequelize.spec.ts`      | 4 интеграционных теста (+destroy: instance + static); instance-returning statics (`toJSON`/`instanceof`/`get`) в record+replay                                                                                             |
+| `tests/e2e/clickhouse.spec.ts`     | 2 интеграционных теста с реальным Clickhouse (record + replay)                                                                                                                                                             |
+| `tests/e2e/rdkafka.spec.ts`        | 1 интеграционный тест с реальным Kafka (record + replay в одном файле)                                                                                                                                                     |
+| `tests/unit/noop.spec.ts`          | 16 тестов для noop Proxy                                                                                                                                                                                                   |
 
 ## Поток данных (sequence)
 
@@ -263,7 +263,7 @@ curl http://localhost:8123/ping  # → Ok.
 
 ## Снапшоты
 
-- Формат: `__snapshots__/<ClassName>.unimock.json` (или кастомный `snapshotDir`).
+- Формат: `__snapshots__/<ClassName>.unimock.snap` (или кастомный `snapshotDir`).
   Механизм: передача `importMeta: import.meta` в `@Mockable()` или `mock()`. Если `importMeta` не
   указан — используется `tests/__snapshots__/` (по умолчанию) или `UNIMOCK_SNAPSHOT_DIR`.
 - Формат файла: **streaming JSONL** (gzip по флагу). Три типа строк:
@@ -329,7 +329,7 @@ Snapshot-store кэшируется по ключу `"{className}::{snapshotDir}
 
 | Переменная                                                   | Описание                                                                                                          |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `UNIMOCK_GZIP=1`                                             | Gzip-компрессия `.unimock.json` при записи (~97% reduction на реальных данных). Чтение автоопределяет gzip-магию. |
+| `UNIMOCK_GZIP=1`                                             | Gzip-компрессия `.unimock.snap` при записи (~97% reduction на реальных данных). Чтение автоопределяет gzip-магию. |
 | `UNIMOCK_STRIP_REQUEST=1`                                    | Пропускать поле `request` у Axios-подобных ответов при сериализации (HTTP-интерны, ~40KB на entry).               |
 | `UNIMOCK_SKIP_PROXY_ARGS=1` (или `UNIMOCK_SKIP_CONN_ARGS=1`) | Не сериализовать `args` для `call:*` записей — они не используются в replay (только callKey нужен).               |
 | `UNIMOCK_SNAPSHOT_DIR`                                       | Кастомная папка снапшотов (fallback; игнорируется при `importMeta`).                                              |

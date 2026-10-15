@@ -27,7 +27,9 @@ import { CommonCommandSync } from '@biorate/command';
 
 class Echo extends CommonCommandSync {
   protected command = ['echo', '#{value}'];
-  protected get default() { return { value: 'hello' }; }
+  protected get default() {
+    return { value: 'hello' };
+  }
 }
 
 (async () => {
@@ -73,20 +75,20 @@ import { CommonCommand } from '@biorate/command';
 
 Extends `Singleton`. Provides the shared infrastructure.
 
-| Member            | Visibility    | Type / Signature                         | Description                            |
-|-------------------|---------------|------------------------------------------|----------------------------------------|
-| `.execute`        | `public static` | `(params?): Promise<Singleton>`       | Static entry: `instance().execute()`.  |
-| `command`         | `protected abstract` | `string[]`                      | Shell command segments (joined by space). |
-| `options`         | `protected`   | `ExecSyncOptions \| ExecOptions`         | Child process options.                 |
-| `params`          | `protected`   | `Record<string, any>`                    | Default parameters for templating.     |
-| `interpolate`     | `protected`   | `RegExp`                                 | Template regex (default: `/[#|$]{...}/g`). |
-| `name`            | `protected get`| `string`                               | `this.constructor.name`.               |
-| `default`         | `protected get`| `Record<string, unknown>`               | Default config values.                 |
-| `execute`         | `protected`   | `(params?): Promise<Buffer \| string>`   | Resolve config, template, run, format. |
-| `templatize`      | `protected`   | `(config): string`                       | Apply `lodash#template` interpolation on joined command. |
-| `format`          | `protected`   | `(result): string \| Buffer`            | Post-process output (default: identity). |
-| `log`             | `protected`   | `(status, time): void`                  | Log status and duration via `console.info`. |
-| `exec`            | `protected abstract` | `(config): Promise<string \| Buffer>` | Execute the command.                   |
+| Member        | Visibility           | Type / Signature                       | Description                                              |
+| ------------- | -------------------- | -------------------------------------- | -------------------------------------------------------- |
+| `.execute`    | `public static`      | `(params?): Promise<Buffer \| string>` | Static entry: `instance().execute()`.                    |
+| `command`     | `protected abstract` | `string[]`                             | Shell command segments (joined by space).                |
+| `options`     | `protected`          | `ExecSyncOptions \| ExecOptions`       | Child process options.                                   |
+| `params`      | `protected`          | `Record<string, any>`                  | Default parameters for templating.                       |
+| `interpolate` | `protected`          | `RegExp`                               | Template regex (default: `/[#\|$]{([\s\S]+?)}/g`).       |
+| `name`        | `protected get`      | `string`                               | `this.constructor.name`.                                 |
+| `default`     | `protected get`      | `Record<string, unknown>`              | Default config values.                                   |
+| `execute`     | `protected`          | `(params?): Promise<Buffer \| string>` | Resolve config, template, run, format.                   |
+| `templatize`  | `protected`          | `(config): string`                     | Apply `lodash#template` interpolation on joined command. |
+| `format`      | `protected`          | `(result): string \| Buffer`           | Post-process output (default: identity).                 |
+| `log`         | `protected`          | `(status, time): void`                 | Log status and duration via `console.info`.              |
+| `exec`        | `protected abstract` | `(config): Promise<string \| Buffer>`  | Execute the command.                                     |
 
 ### `CommonCommandSync` — Synchronous execution
 
@@ -104,9 +106,9 @@ import { CommonCommandAsync } from '@biorate/command';
 
 Uses `child_process.exec()` internally, wrapped in a Promise. Captures `stderr` (configurable via `stderr` property).
 
-| Member    | Visibility  | Type      | Default | Description         |
-|-----------|-------------|-----------|---------|---------------------|
-| `stderr`  | `protected` | `boolean` | `true`  | Append stderr to stdout. |
+| Member   | Visibility  | Type      | Default | Description               |
+| -------- | ----------- | --------- | ------- | ------------------------- |
+| `stderr` | `protected` | `boolean` | `true`  | Prepend stderr to stdout. |
 
 ## Usage patterns
 

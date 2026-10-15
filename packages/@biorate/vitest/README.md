@@ -21,7 +21,8 @@ pnpm i -D @biorate/vitest vitest allure-js-commons allure-vitest reflect-metadat
 ### Basic Test
 
 ```typescript
-import { suite, test, expect } from '@biorate/vitest';
+import { suite, test } from '@biorate/vitest';
+import { expect } from 'vitest';
 import 'reflect-metadata';
 
 @suite('My Test Suite')
@@ -36,13 +37,13 @@ class MyTest {
 ### Allure Annotations
 
 ```typescript
-import { 
-  suite, 
-  test, 
-  epic, 
-  feature, 
-  story, 
-  severity, 
+import {
+  suite,
+  test,
+  epic,
+  feature,
+  story,
+  severity,
   owner,
   label,
   tags,
@@ -185,8 +186,8 @@ class NonCITests {
 **Important:** When using `@onlyIfEnv` with `@suite`, place `@suite` first (further from the class), then `@onlyIfEnv`:
 
 ```typescript
-@suite('My Suite')  // First
-@onlyIfEnv('MY_VAR', 'value')  // Second
+@suite('My Suite') // First
+@onlyIfEnv('MY_VAR', 'value') // Second
 class MyTest {}
 ```
 
@@ -218,8 +219,8 @@ export class LoginScenario extends Scenario {
 class LoginTest {
   @test('should login successfully')
   async testLogin() {
-    await Context.run([LoginScenario], { 
-      page: this.page 
+    await Context.run([LoginScenario], {
+      page: this.page,
     });
   }
 }
@@ -268,10 +269,10 @@ class RetryTest {
   }
 }
 
-@suite('Full Options', { 
-  mode: 'serial', 
-  timeout: 10000, 
-  retries: 2 
+@suite('Full Options', {
+  mode: 'serial',
+  timeout: 10000,
+  retries: 2,
 })
 class FullOptionsTest {
   @test('test')
@@ -287,21 +288,21 @@ For smooth migration from `@biorate/mocha` to `@biorate/vitest`, we provide depr
 
 The following decorators are available for Mocha compatibility but are **deprecated**. Use the recommended alternatives:
 
-| Deprecated Decorator | Recommended Alternative | Description |
-|---------------------|------------------------|-------------|
-| `@retries(n)` | `@repeats(n, { mode: 'series' })` | Retry failed tests |
-| `@parallel(true)` | `@suite('name', { mode: 'parallel' })` | Enable parallel execution |
-| `@slow(ms)` | `@timeout(ms)` | Mark slow tests |
-| `@pending()` | `@skip()` or `@todo()` | Mark test as pending |
-| `@params(...)` | Use Vitest's native parameterized tests | Parameterized tests |
-| `context` (symbol) | Use Vitest's test context directly | Test context symbol |
-| `@allureStep(name)` | Use `allure.step()` directly | Allure step decorator |
-| `@attachment(name, content, type)` | Use `allure.attachment()` directly | Allure attachment decorator |
-| `@testCaseId(id)` | `@id(id)` | Test case ID decorator |
-| `@data(params, name?)` | Use Vitest's native parameterized tests | Parameterized test data |
-| `decorate(instance)` | Use Allure API directly | Decorate Allure instance |
-| `assignPmsUrl(url)` | Use environment variables | Assign PMS URL |
-| `assignTmsUrl(url)` | Use environment variables | Assign TMS URL |
+| Deprecated Decorator               | Recommended Alternative                 | Description                 |
+| ---------------------------------- | --------------------------------------- | --------------------------- |
+| `@retries(n)`                      | `@repeats(n, { mode: 'series' })`       | Retry failed tests          |
+| `@parallel(true)`                  | `@suite('name', { mode: 'parallel' })`  | Enable parallel execution   |
+| `@slow(ms)`                        | `@timeout(ms)`                          | Mark slow tests             |
+| `@pending()`                       | `@skip()` or `@todo()`                  | Mark test as pending        |
+| `@params(...)`                     | Use Vitest's native parameterized tests | Parameterized tests         |
+| `context` (symbol)                 | Use Vitest's test context directly      | Test context symbol         |
+| `@allureStep(name)`                | Use `allure.step()` directly            | Allure step decorator       |
+| `@attachment(name, content, type)` | Use `allure.attachment()` directly      | Allure attachment decorator |
+| `@testCaseId(id)`                  | `@id(id)`                               | Test case ID decorator      |
+| `@data(params, name?)`             | Use Vitest's native parameterized tests | Parameterized test data     |
+| `decorate(instance)`               | Use Allure API directly                 | Decorate Allure instance    |
+| `assignPmsUrl(url)`                | Use environment variables               | Assign PMS URL              |
+| `assignTmsUrl(url)`                | Use environment variables               | Assign TMS URL              |
 
 ### Deprecation Warnings
 
@@ -316,6 +317,7 @@ This helps you identify which decorators need to be updated during migration.
 ### Migration Example
 
 **Before (Mocha):**
+
 ```typescript
 import { suite, parallel, retries, test } from '@biorate/mocha';
 
@@ -331,6 +333,7 @@ class MyTest {
 ```
 
 **After (Vitest):**
+
 ```typescript
 import { suite, repeats, test } from '@biorate/vitest';
 
@@ -368,10 +371,12 @@ class MyTest {
 ### Decorators
 
 #### Test Definition
+
 - `@suite(name?, options?)` - Define a test suite class
 - `@test(name?)` - Define a test method
 
 #### Modifiers
+
 - `@skip()` - Skip test/suite
 - `@only()` - Run only this test/suite
 - `@todo()` - Mark as TODO
@@ -380,6 +385,7 @@ class MyTest {
 - `@onlyIfEnv(variableName, expectedValue)` - Run test/suite only if environment variable matches
 
 #### Allure
+
 - `@epic(name)` - Set epic
 - `@feature(name)` - Set feature
 - `@story(name)` - Set story
@@ -405,10 +411,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    reporter: [
-      'default',
-      ['allure-vitest', { outputFolder: 'allure-results' }],
-    ],
+    reporter: ['default', ['allure-vitest', { outputFolder: 'allure-results' }]],
   },
 });
 ```

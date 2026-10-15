@@ -48,7 +48,7 @@ export { Getter, Setter, PropertiesOnly } from './interfaces';
  *   public lastName: string;
  *
  *   @IsObject()
- *   @ValueObject(Address)
+ *   @Type(() => Address)
  *   public address: Address;
  * }
  *

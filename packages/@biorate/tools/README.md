@@ -30,10 +30,10 @@ pnpm add @biorate/tools
 import { env } from '@biorate/tools';
 ```
 
-| Export       | Type      | Description                                                                 |
-|--------------|-----------|-----------------------------------------------------------------------------|
-| `globalThis` | `any`     | Polyfill — resolved via `Function('return this')()`.                        |
-| `isServer`   | `boolean` | `true` if `globalThis.window !== globalThis` (i.e. not a browser).          |
+| Export       | Type      | Description                                                        |
+| ------------ | --------- | ------------------------------------------------------------------ |
+| `globalThis` | `any`     | Polyfill — resolved via `Function('return this')()`.               |
+| `isServer`   | `boolean` | `true` if `globalThis.window !== globalThis` (i.e. not a browser). |
 
 **Example:**
 
@@ -56,10 +56,13 @@ import { define } from '@biorate/tools';
 Shorthand for `Object.defineProperty`. Both `prop` and `accessor` accept a **`cwe` modifier string**:
 
 | Char | Flag           |
-|------|----------------|
+| ---- | -------------- |
 | `c`  | `configurable` |
 | `w`  | `writable`     |
 | `e`  | `enumerable`   |
+
+For accessors (`define.accessor`) only `c` and `e` apply — the `w` flag is ignored, since
+getters/setters have no `writable` attribute (`src/define.ts:97-100`).
 
 #### `define.prop(context, field?, value?, mods?)`
 
@@ -68,9 +71,22 @@ Returns a chainable function when partially applied.
 ```ts
 const obj = {};
 
-define.prop(obj, 'a', 1, 'cwe')  // configurable + writable + enumerable
-       ('b', 2, 'c')             // configurable only
-       ('c', 3, '');             // none
+define.prop(
+  obj,
+  'a',
+  1,
+  'cwe',
+)(
+  // configurable + writable + enumerable
+  'b',
+  2,
+  'c',
+)(
+  // configurable only
+  'c',
+  3,
+  '',
+); // none
 
 console.log(obj); // { a: 1 }
 
@@ -91,10 +107,19 @@ Same curried pattern for getters/setters.
 ```ts
 const obj = { _value: 0 };
 
-define.accessor(obj, 'value', {
-  get() { return this._value; },
-  set(v: number) { this._value = v; },
-}, 'cw');
+define.accessor(
+  obj,
+  'value',
+  {
+    get() {
+      return this._value;
+    },
+    set(v: number) {
+      this._value = v;
+    },
+  },
+  'ce',
+);
 
 Object.getOwnPropertyDescriptor(obj, 'value');
 // { get: [Function], set: [Function], enumerable: false, configurable: true }
@@ -113,7 +138,11 @@ import { object } from '@biorate/tools';
 Checks if a property is defined via getter/setter.
 
 ```ts
-const obj = { get x() { return 1; } };
+const obj = {
+  get x() {
+    return 1;
+  },
+};
 console.log(object.isAccessor(obj, 'x')); // true
 console.log(object.isAccessor(obj, 'y')); // false
 ```
@@ -128,6 +157,7 @@ class B extends A {}
 class C extends B {}
 
 object.walkProto(new C(), console.log);
+// C {}
 // B {}
 // A {}
 ```
@@ -149,20 +179,20 @@ console.log(object.kSort({ b: 1, a: 2, d: 3, c: 4 }));
 import { path } from '@biorate/tools';
 ```
 
-| Function    | Signature                        | Description                                    |
-|-------------|----------------------------------|------------------------------------------------|
-| `dirname`   | `(filepath, full?)`              | Last directory component (`full=true` → full path). |
-| `basename`  | `(filepath, ext?)`               | File name, strips `.js` by default.            |
-| `extname`   | `(filepath)`                     | File extension (e.g. `.html`).                 |
-| `create`    | `(...args)`                      | `path.join` + `normalize`.                     |
+| Function   | Signature           | Description                                         |
+| ---------- | ------------------- | --------------------------------------------------- |
+| `dirname`  | `(filepath, full?)` | Last directory component (`full=true` → full path). |
+| `basename` | `(filepath, ext?)`  | File name, strips `.js` by default.                 |
+| `extname`  | `(filepath)`        | File extension (e.g. `.html`).                      |
+| `create`   | `(...args)`         | `path.join` + `normalize`.                          |
 
 ```ts
-console.log(path.dirname('/www/root/index.html'));        // root
-console.log(path.dirname('/www/root/index.html', true));  // /www/root
-console.log(path.basename('/www/root/index.js'));         // index
-console.log(path.basename('/www/root/index.html'));       // index.html  (no .html to strip)
+console.log(path.dirname('/www/root/index.html')); // root
+console.log(path.dirname('/www/root/index.html', true)); // /www/root
+console.log(path.basename('/www/root/index.js')); // index
+console.log(path.basename('/www/root/index.html')); // index.html  (no .html to strip)
 console.log(path.basename('/www/root/index.html', '.html')); // index
-console.log(path.extname('/www/root/index.html'));        // .html
+console.log(path.extname('/www/root/index.html')); // .html
 console.log(path.create('www', 'root/a/b/', '/c/', '', '/index.js'));
 // www/root/a/b/c/index.js
 ```
@@ -175,16 +205,16 @@ console.log(path.create('www', 'root/a/b/', '/c/', '', '/index.js'));
 import { timer } from '@biorate/tools';
 ```
 
-| Export      | Signature             | Description                                  |
-|-------------|-----------------------|----------------------------------------------|
-| `wait`      | `(timeout?)`          | Resolves after `timeout` ms (`setTimeout`).  |
-| `tick`      | `()`                  | Resolves on next tick (`process.nextTick`).  |
-| `immediate` | `()`                  | Resolves via `setImmediate`.                 |
+| Export      | Signature    | Description                                 |
+| ----------- | ------------ | ------------------------------------------- |
+| `wait`      | `(timeout?)` | Resolves after `timeout` ms (`setTimeout`). |
+| `tick`      | `()`         | Resolves on next tick (`process.nextTick`). |
+| `immediate` | `()`         | Resolves via `setImmediate`.                |
 
 ```ts
-await timer.wait(1000);   // wait 1 second
-await timer.tick();       // yield to next tick
-await timer.immediate();  // yield to check phase
+await timer.wait(1000); // wait 1 second
+await timer.tick(); // yield to next tick
+await timer.immediate(); // yield to check phase
 ```
 
 ---
@@ -211,7 +241,7 @@ console.log(elapsed()); // cumulative, growing
 Converts milliseconds to another unit. Round if `digits >= 0`.
 
 | Format | Unit         |
-|--------|--------------|
+| ------ | ------------ |
 | `'µs'` | Microseconds |
 | `'ms'` | Milliseconds |
 | `'s'`  | Seconds      |
@@ -220,9 +250,9 @@ Converts milliseconds to another unit. Round if `digits >= 0`.
 | `'d'`  | Days         |
 
 ```ts
-console.log(time.msTo(1500, 's'));       // 1.5
-console.log(time.msTo(86400000, 'd'));   // 1
-console.log(time.msTo(1234, 's', 2));    // 1.23
+console.log(time.msTo(1500, 's')); // 1.5
+console.log(time.msTo(86400000, 'd')); // 1
+console.log(time.msTo(1234, 's', 2)); // 1.23
 ```
 
 Throws `TimeIncorrectFormatError` on unknown format.
@@ -262,22 +292,22 @@ import { buffer } from '@biorate/tools';
 
 Implements the AMF0/AMF3 UInt29 wire format (used in Adobe Flash protocols).
 
-| Export                 | Type         | Description                                       |
-|------------------------|--------------|---------------------------------------------------|
-| `MAX_UINT29`           | `536870911`  | `(1 << 29) - 1`                                   |
-| `MIN_UINT29`           | `0`          | Minimum value.                                    |
-| `writeUInt29`          | `(buf, val, offset?) => number` | Encodes `val` at `offset`, returns new offset. |
-| `readUInt29`           | `(buf, offset?) => number`      | Decodes value from `offset`.              |
-| `uInt29BytesLength`    | `(val) => number`               | Bytes needed to encode (1–4).             |
+| Export              | Type                            | Description                                    |
+| ------------------- | ------------------------------- | ---------------------------------------------- |
+| `MAX_UINT29`        | `536870911`                     | `(1 << 29) - 1`                                |
+| `MIN_UINT29`        | `0`                             | Minimum value.                                 |
+| `writeUInt29`       | `(buf, val, offset?) => number` | Encodes `val` at `offset`, returns new offset. |
+| `readUInt29`        | `(buf, offset?) => number`      | Decodes value from `offset`.                   |
+| `uInt29BytesLength` | `(val) => number`               | Bytes needed to encode (1–4).                  |
 
 **Encoding** produces 1–4 bytes depending on value range:
 
-| Range             | Bytes |
-|-------------------|-------|
-| `0`–`0x7F`        | 1     |
-| `0x80`–`0x3FFF`   | 2     |
-| `0x4000`–`0x1FFFFF` | 3   |
-| `0x200000`–`0x1FFFFFFF` | 4 |
+| Range                   | Bytes |
+| ----------------------- | ----- |
+| `0`–`0x7F`              | 1     |
+| `0x80`–`0x3FFF`         | 2     |
+| `0x4000`–`0x1FFFFF`     | 3     |
+| `0x200000`–`0x1FFFFFFF` | 4     |
 
 **Throws** `UInt29OutOfBoundsError` if value is outside `[0, 536870911]`.
 
@@ -286,14 +316,14 @@ import { buffer } from '@biorate/tools';
 
 const buf = Buffer.alloc(4);
 const end = buffer.writeUInt29(buf, 300);
-console.log(end);        // 2
-console.log(buf);        // <82 ac>  (two bytes)
+console.log(end); // 2
+console.log(buf); // <82 2c>  (two bytes)
 
 const val = buffer.readUInt29(buf);
-console.log(val);        // 300
+console.log(val); // 300
 
-console.log(buffer.uInt29BytesLength(300));   // 2
-console.log(buffer.uInt29BytesLength(0x7F));  // 1
+console.log(buffer.uInt29BytesLength(300)); // 2
+console.log(buffer.uInt29BytesLength(0x7f)); // 1
 console.log(buffer.uInt29BytesLength(536870911)); // 4
 ```
 
@@ -343,10 +373,10 @@ Throws `TypeError` if a function is not resolved within `maxDepth` iterations (d
 import { UInt29OutOfBoundsError, TimeIncorrectFormatError } from '@biorate/tools';
 ```
 
-| Error                       | Thrown by                        | Message                                           |
-|-----------------------------|----------------------------------|---------------------------------------------------|
-| `UInt29OutOfBoundsError`    | `buffer.writeUInt29`, `uInt29BytesLength` | `UInt29 value is out of bounds [0], shoud be >= [0], and <= [536870911]` |
-| `TimeIncorrectFormatError`  | `time.msTo`                      | `Time incorrect format: [xyz]`                    |
+| Error                      | Thrown by                                 | Message                                                                        |
+| -------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------ |
+| `UInt29OutOfBoundsError`   | `buffer.writeUInt29`, `uInt29BytesLength` | `UInt29 value is out of bounds [<value>], shoud be >= [0], and <= [536870911]` |
+| `TimeIncorrectFormatError` | `time.msTo`                               | `Time incorrect format: [xyz]`                                                 |
 
 Both extend `BaseError` from `@biorate/errors`.
 
@@ -354,24 +384,24 @@ Both extend `BaseError` from `@biorate/errors`.
 
 ## Module index
 
-| Export          | Source        | Description                             |
-|-----------------|---------------|-----------------------------------------|
-| **Flat**        |               |                                         |
-| `unwrapCjsDefaultExport` | `import.ts` | CJS default‑export unwrapping.        |
-| `UInt29OutOfBoundsError` | `errors.ts` | Buffer range error.                   |
-| `TimeIncorrectFormatError` | `errors.ts` | Time format error.                   |
-| `IDefine`       | `interfaces.ts` | `Mods` union & `Accessor` descriptor. |
-| `IEventLike`    | `interfaces.ts` | EventEmitter duck-type.               |
-| **Namespaced**  |               |                                         |
-| `env`           | `env.ts`      | `globalThis`, `isServer`.               |
-| `define`        | `define.ts`   | `prop`, `accessor`.                     |
-| `object`        | `object.ts`   | `isAccessor`, `walkProto`, `kSort`.     |
-| `path`          | `path.ts`     | `dirname`, `basename`, `extname`, `create`. |
-| `timer`         | `timer.ts`    | `wait`, `tick`, `immediate`.            |
-| `time`          | `time.ts`     | `diff`, `msTo`.                         |
-| `events`        | `events.ts`   | `once`.                                 |
-| `buffer`        | `buffer.ts`   | `MAX_UINT29`, `MIN_UINT29`, `writeUInt29`, `readUInt29`, `uInt29BytesLength`. |
-| `stream`        | `stream.ts`   | `load`.                                 |
+| Export                     | Source          | Description                                                                   |
+| -------------------------- | --------------- | ----------------------------------------------------------------------------- |
+| **Flat**                   |                 |                                                                               |
+| `unwrapCjsDefaultExport`   | `import.ts`     | CJS default‑export unwrapping.                                                |
+| `UInt29OutOfBoundsError`   | `errors.ts`     | Buffer range error.                                                           |
+| `TimeIncorrectFormatError` | `errors.ts`     | Time format error.                                                            |
+| `IDefine`                  | `interfaces.ts` | `Mods` union & `Accessor` descriptor.                                         |
+| `IEventLike`               | `interfaces.ts` | EventEmitter duck-type.                                                       |
+| **Namespaced**             |                 |                                                                               |
+| `env`                      | `env.ts`        | `globalThis`, `isServer`.                                                     |
+| `define`                   | `define.ts`     | `prop`, `accessor`.                                                           |
+| `object`                   | `object.ts`     | `isAccessor`, `walkProto`, `kSort`.                                           |
+| `path`                     | `path.ts`       | `dirname`, `basename`, `extname`, `create`.                                   |
+| `timer`                    | `timer.ts`      | `wait`, `tick`, `immediate`.                                                  |
+| `time`                     | `time.ts`       | `diff`, `msTo`.                                                               |
+| `events`                   | `events.ts`     | `once`.                                                                       |
+| `buffer`                   | `buffer.ts`     | `MAX_UINT29`, `MIN_UINT29`, `writeUInt29`, `readUInt29`, `uInt29BytesLength`. |
+| `stream`                   | `stream.ts`     | `load`.                                                                       |
 
 ## Architecture
 

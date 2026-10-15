@@ -17,7 +17,7 @@ export * from './interfaces';
  * ```
  * import { inject, container, Types, Core } from '@biorate/inversion';
  * import { IConfig, Config } from '@biorate/config';
- * import { ClickhouseConnector, ClickhouseConfig } from '@biorate/clickhouse';
+ * import { ClickhouseConnector, IClickhouseConfig } from '@biorate/clickhouse';
  *
  * class Root extends Core() {
  *   @inject(ClickhouseConnector) public connector: ClickhouseConnector;

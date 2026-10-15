@@ -35,6 +35,7 @@ container.get<IConfig>(Types.Config).merge({
   Minio: [
     {
       name: 'storage',
+      host: 'localhost',
       options: {
         endPoint: 'localhost',
         port: 9000,
@@ -51,7 +52,9 @@ container.get<IConfig>(Types.Config).merge({
   await root.$run();
   await root.connector.current!.makeBucket('test', 'test');
   await root.connector.current!.putObject(
-    'test', 'hello.txt', Buffer.from('Hello world!'),
+    'test',
+    'hello.txt',
+    Buffer.from('Hello world!'),
   );
   root.connector.current!.getObject('test', 'hello.txt', (_e, stream) => {
     let data = '';
@@ -65,24 +68,25 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `MinioConnector`
 
-| Member           | Type                                      | Description                              |
-|------------------|-------------------------------------------|------------------------------------------|
-| `namespace`      | `'Minio'`                                 | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<IMinioConnection>`   | Creates `Client` and verifies connectivity. |
+| Member            | Type                                    | Description                                 |
+| ----------------- | --------------------------------------- | ------------------------------------------- |
+| `namespace`       | `'Minio'`                               | Config key for connection definitions.      |
+| `connect(config)` | `(config) => Promise<IMinioConnection>` | Creates `Client` and verifies connectivity. |
 
 ### Config
 
 ```ts
 interface IMinioConfig extends IConnectorConfig {
-  options: ClientOptions;  // endPoint, port, accessKey, secretKey, useSSL, region, etc.
+  host: string;
+  options: ClientOptions; // endPoint, port, accessKey, secretKey, useSSL, region, etc.
 }
 ```
 
 ### Errors
 
-| Error                        | Condition                                    |
-|------------------------------|----------------------------------------------|
-| `MinioCantConnectError`      | `new Client()` or `listBuckets()` fails.     |
+| Error                   | Condition                                |
+| ----------------------- | ---------------------------------------- |
+| `MinioCantConnectError` | `new Client()` or `listBuckets()` fails. |
 
 ## Architecture
 

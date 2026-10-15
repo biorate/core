@@ -48,7 +48,7 @@ export class BitArray {
    */
   public static bits(value: number) {
     let result = [];
-    for (let i = 0; i < BitArray.#maxIndex; i++) if (value & (1 << i)) result.push(i);
+    for (let i = 0; i <= BitArray.#maxIndex; i++) if (value & (1 << i)) result.push(i);
     return result;
   }
   /**
@@ -109,7 +109,7 @@ export class BitArray {
     return this.#value.toString(2);
   }
   /**
-   * @description Format to integer string
+   * @description Format to integer value
    */
   public toInt() {
     return this.#value;

@@ -7,7 +7,7 @@ export type ISchemaRegistryConnection = ReturnType<typeof create>;
 /** @description Configuration interface for schema registry connector */
 export interface ISchemaRegistryConfig extends IConnectorConfig {
   baseURL: string;
-  headers: Record<string, string>;
+  headers?: Record<string, string>;
 }
 
 /** @description Schema registry connector type combining config and connection */

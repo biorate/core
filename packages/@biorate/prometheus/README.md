@@ -40,34 +40,34 @@ s.inc();
 
 ### Decorators
 
-| Decorator      | Metric type         | Config interface                |
-|----------------|---------------------|---------------------------------|
-| `@counter`     | `Counter<string>`   | `CounterConfiguration & IdefaultSettings` |
-| `@gauge`       | `Gauge<string>`     | `GaugeConfiguration & IdefaultSettings`    |
-| `@histogram`   | `Histogram<string>` | `HistogramConfiguration & IdefaultSettings`|
-| `@summary`     | `Summary<string>`   | `SummaryConfiguration & IdefaultSettings`  |
+| Decorator    | Metric type         | Config interface                            |
+| ------------ | ------------------- | ------------------------------------------- |
+| `@counter`   | `Counter<string>`   | `CounterConfiguration & IdefaultSettings`   |
+| `@gauge`     | `Gauge<string>`     | `GaugeConfiguration & IdefaultSettings`     |
+| `@histogram` | `Histogram<string>` | `HistogramConfiguration & IdefaultSettings` |
+| `@summary`   | `Summary<string>`   | `SummaryConfiguration & IdefaultSettings`   |
 
 All decorators accept an additional `IdefaultSettings` field:
 
 ```ts
 interface IdefaultSettings {
-  name: string;     // metric name (required)
-  help: string;     // help text (required)
+  name: string; // metric name (required)
+  help: string; // help text (required)
   override?: boolean; // re‑create if already exists (default false)
 }
 ```
 
 ### `Prometheus` class
 
-| Member               | Description                                         |
-|----------------------|-----------------------------------------------------|
-| `Prometheus.registry`| Shared `Registry` instance (static).                |
-| `counter()`          | Static factory — same as `@counter` decorator.      |
-| `gauge()`            | Static factory — same as `@gauge` decorator.        |
-| `histogram()`        | Static factory — same as `@histogram` decorator.    |
-| `summary()`          | Static factory — same as `@summary` decorator.      |
-| `this.registry`      | Instance getter returning `Prometheus.registry`.    |
-| `initialize()`       | `@init()` — calls `collectDefaultMetrics` if config `prometheus.collectDefaultMetrics` is true. |
+| Member                | Description                                                                                     |
+| --------------------- | ----------------------------------------------------------------------------------------------- |
+| `Prometheus.registry` | Shared `Registry` instance (static).                                                            |
+| `counter()`           | Static factory — same as `@counter` decorator.                                                  |
+| `gauge()`             | Static factory — same as `@gauge` decorator.                                                    |
+| `histogram()`         | Static factory — same as `@histogram` decorator.                                                |
+| `summary()`           | Static factory — same as `@summary` decorator.                                                  |
+| `this.registry`       | Instance getter returning `Prometheus.registry`.                                                |
+| `initialize()`        | `@init()` — calls `collectDefaultMetrics` if config `prometheus.collectDefaultMetrics` is true. |
 
 ## Usage patterns
 
@@ -103,8 +103,12 @@ class Service {
   })
   protected gauge: Gauge;
 
-  public add(n = 1) { this.gauge.labels({ pool: 'main' }).inc(n); }
-  public remove(n = 1) { this.gauge.labels({ pool: 'main' }).dec(n); }
+  public add(n = 1) {
+    this.gauge.labels({ pool: 'main' }).inc(n);
+  }
+  public remove(n = 1) {
+    this.gauge.labels({ pool: 'main' }).dec(n);
+  }
 }
 ```
 
@@ -150,7 +154,7 @@ class Service {
 ### With DI container
 
 ```ts
-import { Core, inject, container, Types } from '@biorate/inversion';
+import { Core, inject, container, Types, injectable } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { Prometheus, counter, Counter } from '@biorate/prometheus';
 

@@ -384,14 +384,17 @@ export class PlayWright {
   }
 
   /**
-   * @description Register `beforeAll` hook from static class method.
+   * @description Register the static `before` class method as a `beforeAll` hook.
    */
   protected beforeAll(Class: any) {
     if (Class.before) t.beforeAll(wrapAll(Class.before.bind(Class)));
   }
 
   /**
-   * @description Register `afterAll` hook from static class method.
+   * @description Register the static `after` class method. It is registered as
+   * an additional `beforeAll` (not an `afterAll`), so it runs before the tests.
+   * The guard reads `Class.before`, so a static `after` is only registered when
+   * a static `before` is also present.
    */
   protected afterAll(Class: any) {
     if (Class.before) t.beforeAll(wrapAll(Class.after.bind(Class)));

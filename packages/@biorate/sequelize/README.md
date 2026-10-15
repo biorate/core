@@ -4,11 +4,11 @@ Sequelize ORM connector — connection manager for Sequelize with model auto-loa
 
 ## Features
 
-- **Auto-connect** — creates Sequelize instance on `@init()` via config namespace `Sequelize`.
-- **Model auto-loading** — `add()` registers models; `load()` attaches them to all connections.
+- **Auto-connect** — creates a Sequelize instance on `@init()` via the config namespace `Sequelize`.
+- **Model auto-loading** — declare models in a `protected readonly models` map on a connector subclass; they are attached to the matching named connection.
 - **Connection verification** — calls `authenticate()` after initialisation.
-- **Multi-connection** — named connections with model-copy per connection.
-- **Typed errors** — `SequelizeCantConnectError` on failure.
+- **Multi-connection** — named connections, each with its own model list.
+- **Typed errors** — `SequelizeCantConnectError`, `UndefinedConnectionError`.
 
 ## Installation
 
@@ -16,58 +16,62 @@ Sequelize ORM connector — connection manager for Sequelize with model auto-loa
 pnpm add @biorate/sequelize
 ```
 
-Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `sequelize`.
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, and the peer dependencies `sequelize` (`6.37.3`) and `sequelize-typescript` (`2.1.6`).
 
 ## Quick start
 
 ```ts
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
-import { SequelizeConnector } from '@biorate/sequelize';
-import { Sequelize, DataTypes, Model } from 'sequelize';
+import { SequelizeConnector, Table, Column, Model, DataType } from '@biorate/sequelize';
 
-class User extends Model {}
+@Table({ tableName: 'users', timestamps: false })
+export class User extends Model {
+  @Column({ type: DataType.STRING, primaryKey: true })
+  key: string;
 
-const attributes = {
-  firstName: { type: DataTypes.STRING, allowNull: false },
-  lastName: { type: DataTypes.STRING, allowNull: false },
-};
+  @Column(DataType.INTEGER)
+  value: number;
+}
+
+// Declare the models for each named connection.
+class AppSequelizeConnector extends SequelizeConnector {
+  protected readonly models = { connection: [User] };
+}
 
 class Root extends Core() {
-  @inject(SequelizeConnector) public connector: SequelizeConnector;
-  protected constructor() {
-    super();
-    this.connector.add(User, { tableName: 'users' }, attributes);
-  }
+  @inject(AppSequelizeConnector) public connector: AppSequelizeConnector;
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<SequelizeConnector>(SequelizeConnector).toSelf().inSingletonScope();
+container.bind<AppSequelizeConnector>(AppSequelizeConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Sequelize: [{
-    name: 'connection',
-    options: {
-      dialect: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'postgres',
+  Sequelize: [
+    {
+      name: 'connection',
+      options: {
+        dialect: 'sqlite',
+        storage: ':memory:',
+        logging: false,
+      },
     },
-  }],
+  ],
 });
 
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-  root.connector.load('connection');  // attaches User model to 'connection'
-  await root.connector.current!.sync();
-  const user = await root.connector.current!.model('User').create({
-    firstName: 'Vasya', lastName: 'Pupkin',
-  });
-  console.log(user.toJSON());
+
+  await User.sync();
+  await User.create({ key: 'test', value: 1 });
+
+  const [row] = await root.connector.query<{ result: number }>(
+    'SELECT $first + $second AS result',
+    { bind: { first: 2, second: 2 } },
+  );
+  console.log(row); // { result: 4 }
 })();
 ```
 
@@ -75,26 +79,43 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `SequelizeConnector`
 
-| Member           | Type                                        | Description                              |
-|------------------|---------------------------------------------|------------------------------------------|
-| `namespace`      | `'Sequelize'`                               | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<ISequelizeConnection>` | Creates Sequelize instance and authenticates. |
-| `add(model, options?, attributes?, indexes?)` | `(...) => void` | Register a model class for later loading. |
-| `load(name)`     | `(name) => void`                            | Copies all registered models into a named connection. |
+| Member                 | Type                                        | Description                                                                                    |
+| ---------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `namespace`            | `'Sequelize'`                               | Config key for connection definitions.                                                         |
+| `models`               | `{ [name: string]: IModels }`               | Map of connection name → model list. Declared in a subclass.                                   |
+| `connect(config)`      | `(config) => Promise<ISequelizeConnection>` | Creates a Sequelize instance and authenticates; throws `SequelizeCantConnectError` on failure. |
+| `query(sql, options?)` | `(sql, options?) => Promise<T[]>`           | Executes a raw query on the current (or named) connection.                                     |
+
+`IModels` is `string[] | ModelCtor[]`.
+
+### `query()`
+
+```ts
+public async query<T = unknown>(
+  sql: string | { query: string; values: unknown[] },
+  options?: (QueryOptions | QueryOptionsWithType<QueryTypes.RAW>) & {
+    connection?: string;
+  },
+): Promise<T[]>
+```
+
+Runs the query on the connection named by `options.connection`, or on `current` when omitted. Throws `UndefinedConnectionError` when the referenced connection does not exist.
 
 ### Config
 
 ```ts
 interface ISequelizeConfig extends IConnectorConfig {
-  options: SequelizeOptions;  // dialect, host, port, username, password, database, etc.
+  host: string;
+  options: Options & { models?: IModels }; // dialect, host, port, username, password, database, storage, ...
 }
 ```
 
 ### Errors
 
-| Error                          | Condition                                    |
-|--------------------------------|----------------------------------------------|
-| `SequelizeCantConnectError`    | `new Sequelize()` or `authenticate()` fails. |
+| Error                       | Condition                                              |
+| --------------------------- | ------------------------------------------------------ |
+| `SequelizeCantConnectError` | `new Sequelize()` or `authenticate()` fails.           |
+| `UndefinedConnectionError`  | `query()` references a connection that does not exist. |
 
 ## Architecture
 
@@ -102,17 +123,14 @@ interface ISequelizeConfig extends IConnectorConfig {
 SequelizeConnector extends Connector<ISequelizeConfig, ISequelizeConnection>
 │
 ├── namespace = 'Sequelize'
-├── connect(config) → new Sequelize(config.options)
+├── models = { [name]: IModels }   // declared in a subclass
+├── connect(config) → new Sequelize({ ...config.options, models })
 │   └── await connection.authenticate()
 │
-├── add(Model, options?, attributes?, indexes?)
-│   └── stores model definition in internal registry
+├── query(sql, options?) → connection.query(...)
+│   └── throws UndefinedConnectionError for an unknown connection name
 │
-├── load(name)
-│   ├── get connection(name)
-│   └── for each registered model → connection.define(...)
-│
-└── connection is a Sequelize instance with attached model classes
+└── connection is a Sequelize instance (sequelize-typescript) with the declared models attached
 ```
 
 ### Learn

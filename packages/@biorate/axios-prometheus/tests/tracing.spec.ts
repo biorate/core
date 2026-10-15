@@ -30,7 +30,7 @@ describe('@biorate/axios-prometheus / tracing', () => {
     const spans = exporter.getFinishedSpans();
     expect(spans).toHaveLength(1);
     const attrs = spans[0].attributes;
-    expect(attrs['outgoing.request.url']).toBe(URL);
+    expect(attrs['outgoing.request.url']).toBe(URL + '/');
     expect(attrs['outgoing.request.method']).toBe('get');
     expect(attrs['SpanKind']).toBe('CLIENT');
   });

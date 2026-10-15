@@ -56,7 +56,8 @@
     "@biorate/inversion": "workspace:*",
     "@biorate/tools": "workspace:*"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "peerDependencies": {
     "redis": ">=4.4.0"
   }
 }

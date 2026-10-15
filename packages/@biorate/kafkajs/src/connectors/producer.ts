@@ -35,6 +35,7 @@ import { LogCreator } from '../logger';
  *     {
  *       name: 'producer',
  *       global: '#{KafkaJSGlobal}',
+ *       options: {},
  *     },
  *   ],
  * });

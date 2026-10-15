@@ -11,7 +11,7 @@ export * from './interfaces';
  *
  * @example
  * ```ts
- * import {} from '@biorate/cleanup';
+ * import { cleanup } from '@biorate/cleanup';
  *
  * (async () => await cleanup('./tests/dir'))();
  * ```

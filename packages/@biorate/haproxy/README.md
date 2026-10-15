@@ -6,7 +6,7 @@ HAProxy connector — programmatic HAProxy lifecycle management via the `haproxy
 
 - **Config generation** — creates HAProxy config files from a structured TypeScript config.
 - **Full lifecycle** — `start()`, `stop()`, `softstop()`, `reload()`, `verify()`, `running()`.
-- **Readiness checks** — polls HAProxy stats until all nodes report `UP`.
+- **Readiness checks** — polls HAProxy stats until one configured node reports `UP`.
 - **Auto-cleanup** — removes socket, PID, and config files on shutdown.
 - **Promisified API** — all HAProxy methods wrapped with `util.promisify`.
 - **@kill() destructor** — stops all connections on process exit.
@@ -17,7 +17,7 @@ HAProxy connector — programmatic HAProxy lifecycle management via the `haproxy
 pnpm add @biorate/haproxy
 ```
 
-Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/tools`, `haproxy`.
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/tools`, `@biorate/errors`, `haproxy`.
 
 ## Quick start
 
@@ -45,10 +45,7 @@ container.get<IConfig>(Types.Config).merge({
         delay: 1000,
       },
       config: {
-        global: [
-          'maxconn 100',
-          'stats socket {{stat_socket_path}} mode 660 level admin',
-        ],
+        global: ['maxconn 100', 'stats socket {{stat_socket_path}} mode 660 level admin'],
         defaults: ['timeout client 30m', 'timeout connect 4s', 'timeout server 30m'],
         'listen postgres': [
           'mode tcp',
@@ -72,27 +69,27 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `HaproxyConnector`
 
-| Member            | Type                                    | Description                                       |
-|-------------------|-----------------------------------------|---------------------------------------------------|
-| `namespace`       | `'Haproxy'`                             | Config key.                                       |
-| `connect(config)` | `(config) => Promise<IHaproxyConnection>` | Creates config file, starts HAProxy, waits for readiness. |
-| `@kill()` destructor | `() => Promise<void>`                  | Stops all connections and cleans up files.        |
+| Member               | Type                                      | Description                                               |
+| -------------------- | ----------------------------------------- | --------------------------------------------------------- |
+| `namespace`          | `'Haproxy'`                               | Config key.                                               |
+| `connect(config)`    | `(config) => Promise<IHaproxyConnection>` | Creates config file, starts HAProxy, waits for readiness. |
+| `@kill()` destructor | `() => Promise<void>`                     | Stops all connections and cleans up files.                |
 
 ### Connection (promisified HAProxy API)
 
-| Method        | Description                                  |
-|---------------|----------------------------------------------|
-| `start()`     | Start HAProxy process.                       |
-| `stop()`      | Stop HAProxy.                                |
-| `softstop()`  | Graceful stop (existing connections drain).  |
-| `reload()`    | Reload configuration.                        |
-| `verify()`    | Verify config file syntax.                   |
-| `running()`   | Check if HAProxy is running.                 |
-| `disable()`   | Disable a server in a backend.               |
-| `enable()`    | Enable a server in a backend.                |
-| `stat()`      | Get stats table.                             |
-| `info()`      | Get HAProxy info.                            |
-| ...           | Full list in `IHaproxyConnection` interface. |
+| Method       | Description                                  |
+| ------------ | -------------------------------------------- |
+| `start()`    | Start HAProxy process.                       |
+| `stop()`     | Stop HAProxy.                                |
+| `softstop()` | Graceful stop (existing connections drain).  |
+| `reload()`   | Reload configuration.                        |
+| `verify()`   | Verify config file syntax.                   |
+| `running()`  | Check if HAProxy is running.                 |
+| `disable()`  | Disable a server in a backend.               |
+| `enable()`   | Enable a server in a backend.                |
+| `stat()`     | Get stats table.                             |
+| `info()`     | Get HAProxy info.                            |
+| ...          | Full list in `IHaproxyConnection` interface. |
 
 ### Config
 
@@ -102,20 +99,20 @@ interface IHaproxyConfig extends IConnectorConfig {
     [section: string]: string[] | { [key: string]: string | number };
   };
   readiness?: {
-    nodes?: string[];      // server names to wait for
-    retries?: number;       // default 10
-    delay?: number;         // ms between polls, default 1000
+    nodes?: string | string[]; // server names for readiness polling (`.includes()`/`.length`)
+    retries?: number; // default 1
+    delay?: number; // ms between polls, default 1000
   };
-  debug?: boolean;          // print generated config
+  debug?: boolean; // print generated config
 }
 ```
 
 ### Errors
 
-| Error                          | Condition                                        |
-|--------------------------------|--------------------------------------------------|
-| `HaproxyCantConnectError`      | HAProxy process fails to start.                  |
-| `HaproxyConnectionTimeoutError`| Readiness nodes did not reach `UP` in time.      |
+| Error                           | Condition                                                         |
+| ------------------------------- | ----------------------------------------------------------------- |
+| `HaproxyCantConnectError`       | Any failure during connect() (config creation, start, readiness). |
+| `HaproxyConnectionTimeoutError` | Readiness nodes did not reach `UP` in time.                       |
 
 ## Architecture
 
@@ -130,7 +127,7 @@ HaproxyConnector extends Connector<IHaproxyConfig, IHaproxyConnection>
 │   ├── new HAProxy(sockPath, { pidFile, config })
 │   ├── promisify all methods
 │   ├── connection.start()
-│   ├── readiness() — poll stat() until all nodes UP
+│   ├── readiness() — poll stat() until one node is UP
 │   └── store config in WeakMap for cleanup
 │
 ├── @kill() destructor

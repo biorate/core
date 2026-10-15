@@ -8,6 +8,7 @@ import { IConfigLoaderVaultOption, ConfigLoaderVaultActions } from './interfaces
 import { ConfigLoaderVaultUnknownCacheError } from './errors';
 
 export * from './errors';
+export * from './interfaces';
 
 /**
  * @description Vault config loader

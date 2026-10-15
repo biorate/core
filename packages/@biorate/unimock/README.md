@@ -49,7 +49,7 @@ class MockedService extends TestService {}
 
 const service = new MockedService();
 console.log(await service.query('SELECT 1')); // { data: [1, 2, 3] } — real call
-flushAllSnapshots(); // writes tests/__snapshots__/MockedService.unimock.json (next to test file)
+flushAllSnapshots(); // writes tests/__snapshots__/MockedService.unimock.snap (next to test file)
 
 // Replay phase (no live service needed)
 SnapshotStore.setMode('replay');
@@ -298,7 +298,7 @@ These functions always read the current global mode — they work correctly afte
 
 ### Mode contract and snapshot lifecycle (Контракт режимов и жизненный цикл снапшотов)
 
-Snapshot files follow a strict mode contract. It is enforced at three levels: the `@Mockable()` wrappers (they never touch the store outside record mode), the store API itself, and the contract tests (`tests/mode-guards.spec.ts`, `tests/record-session.spec.ts`).
+Snapshot files follow a strict mode contract. It is enforced at three levels: the `@Mockable()` wrappers (they never touch the store outside record mode), the store API itself, and the contract tests (`tests/unit/mode-guards.spec.ts`, `tests/unit/record-session.spec.ts`).
 
 1. **Only record mode writes.** `SnapshotStore.record()` and `store.flush()` are no-ops outside record mode (defense in depth: the wrappers already skip them, and the guards also cover direct API calls). `flushAllSnapshots()` is guarded the same way.
 
@@ -358,7 +358,7 @@ Example:
 ### Always-on optimisations
 
 - **refId caching** — `WeakMap<object, string>` deduplicates `call:ref_X:method:hash` entries when the same connection object is returned by `.get()`.
-- **String pool** — strings >500 B are moved to a shared dictionary (`strings:` key in the JSON file) and transparently expanded back on read.
+- **String pool** — strings >500 characters are moved to a shared dictionary (`strings:` key in the JSON file) and transparently expanded back on read.
 
 ## Vitest setup
 
@@ -392,23 +392,25 @@ UNIMOCK=record UNIMOCK_GZIP=1 UNIMOCK_STRIP_REQUEST=1 pnpm --filter @biorate/sch
 
 ## Snapshot file format
 
-Snapshot files are stored in `__snapshots__/<ClassName>.unimock.json` — one directory level above the test file when using `importMeta: import.meta`, or under `tests/__snapshots__/` by default.
+Snapshot files are stored in `__snapshots__/<ClassName>.unimock.snap`. When `importMeta: import.meta` is passed, the `__snapshots__` directory is created **inside** the directory that also contains the test file (`resolve(dirname(testFilePath), '__snapshots__')`); otherwise the default is `tests/__snapshots__/` (or `UNIMOCK_SNAPSHOT_DIR`). The extension is configurable via `snapshotExt`/`SNAPSHOT_EXT` (default `.snap`).
+
+Each file is a **streaming JSONL (v2)** document written line by line. The first line is the header:
 
 ```json
-{
-  "version": 1,
-  "className": "MockedService",
-  "calls": {
-    "query:a1b2c3d4": {
-      "args": [{ "t": "string", "v": "SELECT 1" }],
-      "result": { "t": "object", "v": [{ "k": "data", "v": { "t": "array", ... } }] }
-    }
-  },
-  "strings": {
-    "$0": "a very long repeated string..."
-  }
-}
+{ "_jsonl": 2, "className": "MockedService" }
 ```
+
+The following lines belong to one of three forms:
+
+- `_t:'s'` — string-pool entry: `{ "_t": "s", "ref": "$0", "val": "<long string>" }`. Strings longer than `POOL_THRESHOLD` (500 characters) are deduplicated here and referenced inline.
+- `_t:'v'` — value-pool entry: `{ "_t": "v", "ref": "$0", "val": [ ... ] }` for shared arrays/objects.
+- `_t:'c'` — call record: `{ "_t": "c", "key": "query:a1b2c3d4", "call": { "args": [ ... ], "result": { ... }, "error": { ... }?, "refs": null } }`. Every `_t:'c'` line carries a `refs` field (`null` when the result held no model instance).
+
+Values are serialized in the `{ t, v }` tagged format (`'string'`, `'number'`, `'object'`, `'array'`, `'ref'`, …).
+
+When compression is enabled (`UNIMOCK_GZIP=1`), each batch of ~500 lines is written as a separate gzip member (`gzipSync`, level 9); on read, gzip is auto-detected via the `0x1f 0x8b` magic bytes.
+
+The legacy v1 format — a single JSON object `{ version, className, calls }` (including the older `.fmt` files) — is still read, but is no longer written.
 
 ### Migration note
 

@@ -184,9 +184,9 @@ function decorator(type: number) {
  * // Uno init
  * // Dos init
  * // Tres init
- * // Uno kill
- * // Dos kill
- * // Tres kill
+ *
+ * // kill output is not printed here — `@kill()` methods run only at
+ * // process shutdown via ShutdownHook, not at the end of lifecycled().
  * ```
  */
 export function lifecycled(

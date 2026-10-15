@@ -6,9 +6,17 @@ OOP test decorators for Playwright with Allure integration.
 
 - OOP-style tests with `@suite` / `@test` decorators
 - Full Allure reporting support (`@epic`, `@feature`, `@story`, `@severity`, etc.)
-- Scenario pattern with `@Step` decorator
+- Scenario pattern — run `Scenario` classes via `@biorate/run-context`'s `Context.run` (see notes below on `@Step`)
 - Test modifiers: `@skip`, `@only`, `@slow`
 - Fixture extension via `@extend`
+
+### Peer dependencies
+
+```bash
+pnpm add -D @playwright/test playwright allure-js-commons allure-playwright reflect-metadata
+```
+
+`@biorate/playwright` declares `@playwright/test`, `playwright`, `allure-js-commons`, `allure-playwright` and `reflect-metadata` as peer dependencies.
 
 ### Examples:
 
@@ -39,40 +47,44 @@ class LoginTest {
     await page.click('button[type=submit]');
   }
 }
+```
 
-// Suite-level hooks
+### Suite-level hooks
+
+Lifecycle hooks are named `before` and `after`. The library reads the **static** `before` / `after` for suite-level hooks and the **instance** `before` / `after` for per-test hooks.
+
+```ts
 @suite('With Hooks')
 class HooksTest {
-  protected static async beforeAll({ browser }: TestArgs) {
-    // runs once before all tests
-  }
+  // suite-level hook: registered as test.beforeAll
+  protected static async before({ browser, browserName, request }: TestArgs) {}
 
-  protected async before({ page }: TestArgs) {
-    // runs before each test
-  }
+  // per-test hook: registered as test.beforeEach
+  protected async before({ page }: TestArgs) {}
 
-  protected async after({ page }: TestArgs) {
-    // runs after each test
-  }
-
-  protected static async afterAll({ browser }: TestArgs) {
-    // runs once after all tests
-  }
+  // per-test hook: registered as test.afterEach
+  protected async after({ page }: TestArgs) {}
 
   @test('test')
   async test({ page }: TestArgs) {}
 }
+```
 
-// Scenario pattern
-import { Scenario, Step, Context } from '@biorate/playwright';
+Known issue: the static `after` hook is **not** registered as an `afterAll`. The implementation registers both static `before` and static `after` as `beforeAll` hooks, so the static `after` runs _before_ the tests. A static `afterAll` method is never invoked. The static `after` hook is also only registered when a static `before` hook is present (the guard checks `Class.before`). If you need a run-after-all hook, it is not supported reliably by this version.
+
+### Scenario pattern
+
+```ts
+import { Scenario } from '@biorate/playwright'; // provides this.page
+import { Context, step } from '@biorate/run-context';
 
 class LoginScenario extends Scenario {
-  @Step('Open login page')
+  @step('Open login page')
   async open() {
     await this.page.goto('/login');
   }
 
-  @Step('Submit form')
+  @step('Submit form')
   async submit() {
     await this.page.fill('#username', 'user');
     await this.page.click('button[type=submit]');
@@ -87,6 +99,8 @@ class ScenarioTest {
   }
 }
 ```
+
+Known issue: the `@Step` decorator exported by `@biorate/playwright` currently does **not** register steps with `Context.run` — its metadata is attached to the prototype while `Context.run` reads it from the method descriptor, so no steps are executed. Use the `step` decorator from `@biorate/run-context` (as shown above), which is the working pattern.
 
 ### Learn
 

@@ -21,7 +21,7 @@ export * from './interfaces';
  * ```
  * import { inject, container, Types, Core } from '@biorate/inversion';
  * import { IConfig, Config } from '@biorate/config';
- * import { HaproxyConnector, HaproxyConfig } from '@biorate/haproxy';
+ * import { HaproxyConnector, IHaproxyConfig } from '@biorate/haproxy';
  *
  * class Root extends Core() {
  *   @inject(HaproxyConnector) public connector: HaproxyConnector;

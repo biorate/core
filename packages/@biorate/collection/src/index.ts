@@ -7,3 +7,4 @@ export * from './observable.list';
 export * from './observable.item';
 export * from './decorators';
 export * from './enums';
+export * from './errors';

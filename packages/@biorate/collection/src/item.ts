@@ -319,12 +319,12 @@ export abstract class Item<P = { parent?: any }> {
    * import * as collection from '@biorate/collection';
    *
    * class Item extends collection.Item {
-   *   @embed(Nested.Int) public int: number = null;
-   *   @embed(Nested.String) public string: string = null;
+   *   @embed(Item.Int) public int: number = null;
+   *   @embed(Item.String) public string: string = null;
    * }
    *
-   * const item = new Item().initialize({ int: 1, string: 'test' }});
-   * item.set({ int: 2, string: 'hello' }});
+   * const item = new Item().initialize({ int: 1, string: 'test' });
+   * item.set({ int: 2, string: 'hello' });
    * console.log(item); // Item { int: 2, string: 'hello' }
    * ```
    */

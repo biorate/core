@@ -15,8 +15,9 @@ Mocha Spec abstract helper class
 
 ```ts
 import { suite, test } from '@biorate/mocha';
-import { IsNumber, IsString, IsBoolean } from 'class-validator';
+import { IsNumber, IsString, IsBoolean, isBoolean } from 'class-validator';
 import { Spec } from '@biorate/mocha-spec';
+import { validate, exactly } from '@biorate/mocha-spec';
 
 // Extend Spec to get access to helpers
 class MySpec extends Spec {
@@ -35,7 +36,8 @@ class ApiTest extends MySpec {
       @IsString() public c: string;
       @IsBoolean() public d: boolean;
     }
-    await this.api('/api')
+    // absolute base URL, host is matched by nock stub
+    await this.api('http://test.local')
       .post('/')
       .send({ b: 1 })
       .expect(200)

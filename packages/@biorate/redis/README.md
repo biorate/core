@@ -1,11 +1,11 @@
 # @biorate/redis
 
-Redis connector — connection manager for `ioredis` with multi-connection support.
+Redis connector — connection manager for `node-redis` with multi-connection support.
 
 ## Features
 
-- **Auto-connect** — creates `ioredis.Redis` client on `@init()` via config namespace `Redis`.
-- **Full Redis API** — all 5.x commands via the standard `ioredis` interface.
+- **Auto-connect** — creates a `node-redis` client via `createClient()` on `@init()` through config namespace `Redis`.
+- **Full Redis API** — the connection exposes the `node-redis` client directly (v4+ command interface).
 - **Multi-connection** — named connection support.
 - **Typed errors** — `RedisCantConnectError` on connection failure.
 
@@ -15,7 +15,7 @@ Redis connector — connection manager for `ioredis` with multi-connection suppo
 pnpm add @biorate/redis
 ```
 
-Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `ioredis@5`.
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/errors`, `@biorate/tools`.
 
 ## Quick start
 
@@ -33,10 +33,14 @@ container.bind<RedisConnector>(RedisConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Redis: [{
-    name: 'connection',
-    options: { host: 'localhost', port: 6379 },
-  }],
+  Redis: [
+    {
+      name: 'connection',
+      options: {
+        url: 'redis://localhost:6379',
+      },
+    },
+  ],
 });
 
 (async () => {
@@ -48,37 +52,50 @@ container.get<IConfig>(Types.Config).merge({
 })();
 ```
 
+The `options` object accepts the `node-redis` `RedisClientOptions` shape — either a `url` string or the v4 `socket` options:
+
+```ts
+options: {
+  socket: { host: 'localhost', port: 6379 },
+},
+```
+
 ## API Reference
 
 ### `RedisConnector`
 
-| Member           | Type                                      | Description                              |
-|------------------|-------------------------------------------|------------------------------------------|
-| `namespace`      | `'Redis'`                                 | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<Redis>`             | Creates `new Redis(config.options)`.     |
+| Member            | Type                                    | Description                            |
+| ----------------- | --------------------------------------- | -------------------------------------- |
+| `namespace`       | `'Redis'`                               | Config key for connection definitions. |
+| `connect(config)` | `(config) => Promise<IRedisConnection>` | Creates `createClient()` and connects. |
+
+The `current`/`connection()` accessors return the `node-redis` client (`IRedisConnection`).
 
 ### Config
 
 ```ts
 interface IRedisConfig extends IConnectorConfig {
-  options: RedisOptions;  // host, port, password, db, etc.
+  host: string;
+  options: RedisClientOptions; // url or node-redis v4 socket/options
 }
+
+type IRedisConnection = ReturnType<typeof createClient>;
 ```
 
 ### Errors
 
-| Error                    | Condition                                    |
-|--------------------------|----------------------------------------------|
-| `RedisCantConnectError`  | `new Redis()` or initial connection fails.   |
+| Error                   | Condition                                     |
+| ----------------------- | --------------------------------------------- |
+| `RedisCantConnectError` | `createClient()` or initial connection fails. |
 
 ## Architecture
 
 ```
-RedisConnector extends Connector<IRedisConfig, Redis>
+RedisConnector extends Connector<IRedisConfig, IRedisConnection>
 │
 ├── namespace = 'Redis'
-├── connect(config) → new Redis(config.options)
-└── connection is an ioredis.Redis instance
+├── connect(config) → createClient(config.options) + await connection.connect()
+└── connection is a node-redis client instance
 ```
 
 ### Learn

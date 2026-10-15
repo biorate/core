@@ -16,7 +16,7 @@ Redact sensitive information in strings and JSON objects via configurable maskin
 pnpm add @biorate/masquerade
 ```
 
-Requires `maskdata`, `@biorate/config`, `@biorate/inversion`, `@biorate/tools`.
+Requires `maskdata`, `lodash-es`, `@biorate/config`, `@biorate/inversion`, `@biorate/tools`.
 
 ## Quick start
 
@@ -42,28 +42,28 @@ const result = Masquerade.processString(
   `user@example.com, +79231231224, 4111 1111 1111 1111 (Visa)`,
 );
 console.log(result);
-// u***@**********m, +*******1224, **** **** **** 1111 (Visa)
+// u***@**********m, +*******1224, 4111 11** **** 1111 (Visa)
 ```
 
 ## API Reference
 
 ### `Masquerade` class
 
-| Method              | Description                                          |
-|---------------------|------------------------------------------------------|
-| `configure(config)` | Merge global config (accepts `null` to no‑op).       |
-| `use(Mask)`         | Register a string mask (chainable).                  |
-| `unuse(Mask)`       | Remove a string mask.                                |
-| `processJSON(data)` | Apply `maskdata.maskJSON2` on an object.             |
-| `processString(str)`| Run all registered string masks on text.             |
+| Method               | Description                                    |
+| -------------------- | ---------------------------------------------- |
+| `configure(config)`  | Merge global config (accepts `null` to no‑op). |
+| `use(Mask)`          | Register a string mask (chainable).            |
+| `unuse(Mask)`        | Remove a string mask.                          |
+| `processJSON(data)`  | Apply `maskdata.maskJSON2` on an object.       |
+| `processString(str)` | Run all registered string masks on text.       |
 
 ### Built‑in masks
 
-| Mask         | Pattern                                          | Default behaviour                          |
-|--------------|--------------------------------------------------|---------------------------------------------|
-| `EmailMask`  | `/\b[\w.%+-]+@[\w.-]+\.[a-z]{2,}\b/gi`         | Preserves first 1 + last 1 char of domain.  |
-| `PhoneMask`  | Russian phone number patterns (`+7`/`8`)        | Preserves last 4 digits.                    |
-| `CardMask`   | 13–19 digit sequences                           | Preserves first 6 + last 4 digits.          |
+| Mask        | Pattern                                  | Default behaviour                                                                      |
+| ----------- | ---------------------------------------- | -------------------------------------------------------------------------------------- |
+| `EmailMask` | `/\b[\w.%+-]+@[\w.-]+\.[a-z]{2,}\b/gi`   | Preserves first 1 char of the local part + last 1 char of the domain (part after `@`). |
+| `PhoneMask` | Russian phone number patterns (`+7`/`8`) | Preserves last 4 digits.                                                               |
+| `CardMask`  | 16–19 digit sequences                    | Preserves first 6 + last 4 digits.                                                     |
 
 ### Mask options
 
@@ -71,8 +71,8 @@ All masks accept these common options via `IMaskOptions`:
 
 ```ts
 interface IMaskOptions {
-  maskChar?: string;  // default '*'
-  enabled?: boolean;  // default true
+  maskChar?: string; // default '*'
+  enabled?: boolean; // default true
 }
 ```
 
@@ -80,18 +80,18 @@ Per‑mask options:
 
 ```ts
 interface IEmailMaskOptions extends IMaskOptions {
-  unmaskedStartChars?: number;  // default 1 — visible chars before @ in local part
-  unmaskedEndChars?: number;    // default 1 — visible chars at end of domain
+  unmaskedStartChars?: number; // default 1 — visible chars before @ in local part
+  unmaskedEndChars?: number; // default 1 — visible chars at end of domain
 }
 
 interface IPhoneMaskOptions extends IMaskOptions {
-  minDigits?: number;           // default 7 — min digits to mask
-  preserveCount?: number;       // default 4 — visible trailing digits
+  minDigits?: number; // default 7 — min digits to mask
+  preserveCount?: number; // default 4 — visible trailing digits
 }
 
 interface ICardMaskOptions extends IMaskOptions {
-  firstDigits?: number;         // default 6 — visible leading digits
-  lastDigits?: number;          // default 4 — visible trailing digits
+  firstDigits?: number; // default 6 — visible leading digits
+  lastDigits?: number; // default 4 — visible trailing digits
 }
 ```
 
@@ -133,9 +133,7 @@ class SsnMask extends CommonMask {
   protected regexp = /\b\d{3}-\d{2}-\d{4}\b/g;
 
   protected parse(text: string) {
-    return text.replace(this.regexp, (match) =>
-      '***-**-' + match.slice(-4),
-    );
+    return text.replace(this.regexp, (match) => '***-**-' + match.slice(-4));
   }
 }
 
@@ -147,8 +145,7 @@ console.log(Masquerade.processString('My SSN is 123-45-6789'));
 ### Chaining with both modes
 
 ```ts
-Masquerade
-  .use(EmailMask)
+Masquerade.use(EmailMask)
   .use(PhoneMask)
   .use(CardMask)
   .configure({

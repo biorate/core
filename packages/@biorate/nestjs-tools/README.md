@@ -8,7 +8,7 @@ Production‑grade middleware, guards, interceptors, filters, decorators, and HT
 - **Response time** — Prometheus histogram + `x-response-time` header.
 - **HTTP proxy** — Prometheus‑instrumented `http-proxy-middleware` wrapper.
 - **Tracing** — OpenTelemetry span attributes for incoming requests.
-- **Exception filter** — structured JSON error responses for HTTP, WS, and RPC.
+- **Exception filter** — structured JSON error responses for HTTP and WebSocket transports (RPC is unsupported).
 - **Auth** — `@AuthBasic()` decorator + `AuthGuardProvider`.
 - **Roles** — `@Roles()` decorator + `RolesGuardProvider`.
 - **CORS** — config‑driven origin validation.
@@ -144,7 +144,7 @@ Catches all exceptions and returns a structured JSON response:
 }
 ```
 
-Supports HTTP, WebSocket, and RPC transport types. Maps `meta.status` from `@biorate/errors` to HTTP status codes.
+Supports HTTP and WebSocket transports; RPC is unsupported and throws `UnsupportedProtocolError`. Maps `meta.status` from `@biorate/errors` to HTTP status codes.
 
 ```ts
 app.useGlobalFilters(new AllExceptionsFilter());
@@ -271,15 +271,18 @@ In non‑debug environments, validates the origin against `ALLOWED_ORIGIN` confi
 
 ## HTTP controllers
 
+> The `MetricsController`, `ProbeController`, and `LocalesController` in `src/http/controllers` are marked `@deprecated`. Their hexagonal replacements live in `src/app/infrastructure/controllers/` and are **not** exported individually at the package top level — `src/app/infrastructure/index.ts` re-exports them only as the `controllers` namespace (`export * as controllers from './controllers'`), so reach them as `import { controllers } from '@biorate/nestjs-tools'` (e.g. `controllers.MetricsController`).
+
 ### `MetricsController`
 
 Exposes `GET /metrics` with Prometheus metrics from the shared registry.
 
 ### `ProbeController`
 
-| Route        | Purpose            |
-| ------------ | ------------------ |
-| `GET /probe` | Liveness/readiness |
+| Route                  | Purpose         |
+| ---------------------- | --------------- |
+| `GET /probe/readiness` | Readiness probe |
+| `GET /probe/healthz`   | Healthz probe   |
 
 ### `LocalesController`
 

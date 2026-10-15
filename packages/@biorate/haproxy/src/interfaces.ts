@@ -34,7 +34,7 @@ export interface IHaproxyConfig extends IConnectorConfig {
       | string[];
   };
   readiness?: {
-    nodes?: string;
+    nodes?: string | string[];
     retries?: number;
     delay?: number;
   };

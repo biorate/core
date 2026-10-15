@@ -11,7 +11,8 @@ Two decorators provide declarative tracing:
 - **`@scope()`** — class-level decorator: assigns an OpenTelemetry `Tracer` to the class via Reflect metadata.
 - **`@span()`** — method-level decorator: wraps a method in an active span, recording `class`, `method`, `arguments`, and `result` as span attributes. Arguments and result are serialised via `json-stringify-safe`.
 
-A custom `DataMaskingProcessor` (extends `SimpleSpanProcessor`) applies two layers of redaction before span export:
+A custom `DataMaskingProcessor` (implements `SpanProcessor`, wrapping an inner processor via `delegate`) applies two layers of redaction before span export:
+
 1. **String-level masking** — regex-based (email, phone, card numbers via `@biorate/masquerade`).
 2. **JSON-level masking** — parsed JSON attributes are run through `maskdata` rules (field-name‑based).
 
@@ -51,13 +52,13 @@ svc.greet('world');
 
 The exported span will contain the following attributes:
 
-| Attribute     | Value                           |
-| ------------- | ------------------------------- |
-| `class`       | `"MyService"`                   |
-| `method`      | `"greet"`                       |
-| `arguments`   | `'["world"]'`                   |
-| `result`      | `'"Hello, world!"'`             |
-| `SpanKind`    | `"SERVER"`                      |
+| Attribute   | Value               |
+| ----------- | ------------------- |
+| `class`     | `"MyService"`       |
+| `method`    | `"greet"`           |
+| `arguments` | `'["world"]'`       |
+| `result`    | `'"Hello, world!"'` |
+| `SpanKind`  | `"SERVER"`          |
 
 ### @scope — assigning a tracer
 
@@ -108,14 +109,14 @@ The `exclude` option accepts an array of **JSON path patterns** that prevent mat
 
 Patterns are relative to the span attribute name (`arguments` or `result`):
 
-| Pattern | Effect |
-| ------- | ------ |
-| `'arguments'` | Entire `arguments` attribute is omitted |
-| `'arguments.0.password'` | `password` field of the first argument is removed |
+| Pattern                    | Effect                                                                        |
+| -------------------------- | ----------------------------------------------------------------------------- |
+| `'arguments'`              | Entire `arguments` attribute is omitted                                       |
+| `'arguments.0.password'`   | `password` field of the first argument is removed                             |
 | `'arguments.*.creditCard'` | `creditCard` field at any argument is removed (`*` — single segment wildcard) |
-| `'arguments.**.token'` | `token` at any nesting depth is removed (`**` — multi‑level globstar) |
-| `'result'` | Entire `result` attribute is omitted |
-| `'result.token'` | `token` field in the result is removed |
+| `'arguments.**.token'`     | `token` at any nesting depth is removed (`**` — multi‑level globstar)         |
+| `'result'`                 | Entire `result` attribute is omitted                                          |
+| `'result.token'`           | `token` field in the result is removed                                        |
 
 The original method arguments and return value are **not mutated** — filtering is applied on a deep clone.
 
@@ -228,12 +229,12 @@ Batch export improves throughput but introduces two risks:
 
 Batch processor tuning (batch mode only):
 
-| Variable | Default | Description |
-| -------- | ------- | ----------- |
-| `OTEL_BSP_SCHEDULE_DELAY` | `5000` | Delay between consecutive exports (ms) |
-| `OTEL_BSP_MAX_QUEUE_SIZE` | `2048` | Maximum queue size (spans beyond it are dropped) |
-| `OTEL_BSP_MAX_EXPORT_BATCH_SIZE` | `512` | Maximum batch size per export |
-| `OTEL_BSP_EXPORT_TIMEOUT` | `30000` | Export timeout (ms) |
+| Variable                         | Default | Description                                      |
+| -------------------------------- | ------- | ------------------------------------------------ |
+| `OTEL_BSP_SCHEDULE_DELAY`        | `5000`  | Delay between consecutive exports (ms)           |
+| `OTEL_BSP_MAX_QUEUE_SIZE`        | `2048`  | Maximum queue size (spans beyond it are dropped) |
+| `OTEL_BSP_MAX_EXPORT_BATCH_SIZE` | `512`   | Maximum batch size per export                    |
+| `OTEL_BSP_EXPORT_TIMEOUT`        | `30000` | Export timeout (ms)                              |
 
 ### Attribute truncation
 
@@ -247,19 +248,19 @@ Set `OTEL_SPAN_PROCESSOR=simple` in the deployment to restore the previous synch
 
 ### OpenTelemetry environment variables
 
-| Variable | Default | Description |
-| -------- | ------- | ----------- |
-| `OTEL_SERVICE_NAME` | — | Logical service name (resource attribute) |
-| `OTEL_TRACES_SAMPLER` | — | Sampler: `always_on`, `always_off`, `traceidratio`, `parentbased_traceidratio` |
-| `OTEL_TRACES_SAMPLER_ARG` | — | Sampler argument (e.g. ratio for `traceidratio`) |
-| `OTEL_PROPAGATORS` | `'tracecontext,baggage'` | Propagators list |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | — | OTLP gRPC endpoint for traces and metrics |
-| `OTEL_LOG_LEVEL` | — | OpenTelemetry log level |
-| `OTEL_METRICS_EXPORTER` | `'none'` | Metrics exporter: `otlp`, `prometheus`, `console`, `none` |
-| `OTEL_SPAN_PROCESSOR` | `'batch'` | Span processor mode: `batch`, `simple`, `console`; unknown/empty falls back to `batch` |
-| `OTEL_BSP_SCHEDULE_DELAY` | `5000` | Batch span processor schedule delay (ms) |
-| `OTEL_BSP_EXPORT_TIMEOUT` | `30000` | Batch span processor export timeout (ms) |
-| `OTEL_EXCLUDED_DETECTORS` | — | Comma-separated resource detector names to skip |
+| Variable                      | Default                  | Description                                                                            |
+| ----------------------------- | ------------------------ | -------------------------------------------------------------------------------------- |
+| `OTEL_SERVICE_NAME`           | —                        | Logical service name (resource attribute)                                              |
+| `OTEL_TRACES_SAMPLER`         | —                        | Sampler: `always_on`, `always_off`, `traceidratio`, `parentbased_traceidratio`         |
+| `OTEL_TRACES_SAMPLER_ARG`     | —                        | Sampler argument (e.g. ratio for `traceidratio`)                                       |
+| `OTEL_PROPAGATORS`            | `'tracecontext,baggage'` | Propagators list                                                                       |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | —                        | OTLP gRPC endpoint for traces and metrics                                              |
+| `OTEL_LOG_LEVEL`              | —                        | OpenTelemetry log level                                                                |
+| `OTEL_METRICS_EXPORTER`       | `'none'`                 | Metrics exporter: `otlp`, `prometheus`, `console`, `none`                              |
+| `OTEL_SPAN_PROCESSOR`         | `'batch'`                | Span processor mode: `batch`, `simple`, `console`; unknown/empty falls back to `batch` |
+| `OTEL_BSP_SCHEDULE_DELAY`     | `5000`                   | Batch span processor schedule delay (ms)                                               |
+| `OTEL_BSP_EXPORT_TIMEOUT`     | `30000`                  | Batch span processor export timeout (ms)                                               |
+| `OTEL_EXCLUDED_DETECTORS`     | —                        | Comma-separated resource detector names to skip                                        |
 
 ### Resource detectors
 
@@ -271,17 +272,17 @@ OTEL_EXCLUDED_DETECTORS=gcpDetector,alibabaCloudEcsDetector
 
 Available detectors:
 
-| Name | Source |
-| ---- | ------ |
-| `containerDetector` | Container metadata |
-| `envDetector` | OTEL_RESOURCE_ATTRIBUTES |
-| `hostDetector` | Host info |
-| `osDetector` | OS info |
-| `processDetector` | Process info |
-| `alibabaCloudEcsDetector` | Alibaba Cloud ECS |
-| `awsEksDetector` | AWS EKS |
-| `awsEc2Detector` | AWS EC2 |
-| `gcpDetector` | GCP |
+| Name                      | Source                   |
+| ------------------------- | ------------------------ |
+| `containerDetector`       | Container metadata       |
+| `envDetector`             | OTEL_RESOURCE_ATTRIBUTES |
+| `hostDetector`            | Host info                |
+| `osDetector`              | OS info                  |
+| `processDetector`         | Process info             |
+| `alibabaCloudEcsDetector` | Alibaba Cloud ECS        |
+| `awsEksDetector`          | AWS EKS                  |
+| `awsEc2Detector`          | AWS EC2                  |
+| `gcpDetector`             | GCP                      |
 
 ### Resource attributes (Kubernetes example)
 
@@ -303,25 +304,25 @@ OTEL_RESOURCE_ATTRIBUTES='
 
 Every method decorated with `@span()` produces a span with the following attributes (unless excluded):
 
-| Attribute    | Type     | Description |
-| ------------ | -------- | ----------- |
-| `class`      | `string` | Decorated class name (`target.constructor.name`) |
-| `method`     | `string` | Method name (`propertyKey`) |
-| `arguments`  | `string` | `JSON.stringify`-safe serialisation of all arguments |
-| `result`     | `string` | `JSON.stringify`-safe serialisation of the return value |
-| `SpanKind`   | `string` | Kind hint: `SERVER`, `CLIENT`, `PRODUCER`, `CONSUMER`, `INTERNAL` |
+| Attribute   | Type     | Description                                                       |
+| ----------- | -------- | ----------------------------------------------------------------- |
+| `class`     | `string` | Decorated class name (`target.constructor.name`)                  |
+| `method`    | `string` | Method name (`propertyKey`)                                       |
+| `arguments` | `string` | `JSON.stringify`-safe serialisation of all arguments              |
+| `result`    | `string` | `JSON.stringify`-safe serialisation of the return value           |
+| `SpanKind`  | `string` | Kind hint: `SERVER`, `CLIENT`, `PRODUCER`, `CONSUMER`, `INTERNAL` |
 
 ## Exclude pattern reference
 
 Pattern matching uses [`micromatch`](https://github.com/micromatch/micromatch) with `/` as path separator.
 
-| Wildcard | Meaning |
-| -------- | ------- |
-| `*` | Matches any single path segment |
-| `**` | Matches zero or more path segments |
-| `?(...)` | Matches zero or one of the given patterns |
-| `+(...)` | Matches one or more of the given patterns |
-| `@(...)` | Matches exactly one of the given patterns |
+| Wildcard | Meaning                                           |
+| -------- | ------------------------------------------------- |
+| `*`      | Matches any single path segment                   |
+| `**`     | Matches zero or more path segments                |
+| `?(...)` | Matches zero or one of the given patterns         |
+| `+(...)` | Matches one or more of the given patterns         |
+| `@(...)` | Matches exactly one of the given patterns         |
 | `!(...)` | Matches anything except one of the given patterns |
 
 For full glob syntax see the [micromatch documentation](https://github.com/micromatch/micromatch#matching-features).
@@ -349,16 +350,19 @@ Import @biorate/opentelemetry
 DataMaskingProcessor.onEnd(span)
   ├─ forEach attribute: Masquerade.processString (regex masking)
   ├─ if maskJSON2 enabled: Masquerade.processJSON (field-name masking)
-  └─ super.onEnd(span) → export
+  └─ this.delegate.onEnd(span) → export
 ```
 
 ### Learn
-* Documentation can be found here - [docs](https://biorate.github.io/core/modules/opentelemetry.html).
+
+- Documentation can be found here - [docs](https://biorate.github.io/core/modules/opentelemetry.html).
 
 ### Release History
+
 See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40biorate/opentelemetry/CHANGELOG.md)
 
 ### License
+
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/opentelemetry/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)

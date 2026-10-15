@@ -22,8 +22,10 @@ export const diff = () => {
  * Conver milliseconds to microsecoonds (µs), milliseconds (ms), seconds (s), minutes (m), hours (h), days (d)
  * @example
  * ```ts
- *   const time = time.diff();
- *   console.log(time());
+ *   import { time } from '@biorate/tools';
+ *
+ *   console.log(time.msTo(1500, 's')); // 1.5
+ *   console.log(time.msTo(86400000, 'd')); // 1
  * ```
  */
 export const msTo = (

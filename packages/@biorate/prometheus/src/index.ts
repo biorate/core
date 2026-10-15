@@ -190,7 +190,7 @@ export const histogram = (settings: HistogramConfiguration<string> & IdefaultSet
  * import { summary, Summary } from '@biorate/prometheus';
  *
  * class Test {
- *   @histogram({
+ *   @summary({
  *     name: 'test_summary',
  *     help: 'Test summary',
  *     labelNames: ['label1', 'label2'],

@@ -17,7 +17,7 @@ export * from './interfaces';
  * ```
  * import { inject, container, Types, Core } from '@biorate/inversion';
  * import { IConfig, Config } from '@biorate/config';
- * import { IORedisConnector, IORedisConfig } from '@biorate/ioredis';
+ * import { IORedisConnector, IIORedisConfig } from '@biorate/ioredis';
  *
  * class Root extends Core() {
  *   @inject(IORedisConnector) public connector: IORedisConnector;

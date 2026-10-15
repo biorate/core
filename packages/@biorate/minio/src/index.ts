@@ -17,7 +17,7 @@ export * from './interfaces';
  * ```
  * import { inject, container, Types, Core } from '@biorate/inversion';
  * import { IConfig, Config } from '@biorate/config';
- * import { MinioConnector, MinioConfig } from '@biorate/minio';
+ * import { MinioConnector, IMinioConfig } from '@biorate/minio';
  *
  * class Root extends Core() {
  *   @inject(MinioConnector) public connector: MinioConnector;
@@ -50,13 +50,13 @@ export * from './interfaces';
  *     'test',
  *     'test.file',
  *     Buffer.from('Hello world!'),
- *   ));
+ *   );
  *   root.connector!.current!.getObject('test', 'test.file', (e, stream) => {
  *     let data = '';
  *     stream
  *       .on('data', (chunk) => (data += chunk.toString('utf8')))
  *       .on('end', () => console.log(data)); // 'Hello world!'
- *    });
+ *   });
  * })();
  * ```
  */

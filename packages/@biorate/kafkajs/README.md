@@ -31,12 +31,15 @@ class Root extends Core() {
 }
 
 container.bind<IConfig>(Types.Config).to(Config).inSingletonScope();
-container.bind<KafkaJSProducerConnector>(KafkaJSProducerConnector).toSelf().inSingletonScope();
+container
+  .bind<KafkaJSProducerConnector>(KafkaJSProducerConnector)
+  .toSelf()
+  .inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
   KafkaJSGlobal: { brokers: ['localhost:9092'], clientId: 'test-app', logLevel: 1 },
-  KafkaJSProducer: [{ name: 'producer', global: '#{KafkaJSGlobal}' }],
+  KafkaJSProducer: [{ name: 'producer', global: '#{KafkaJSGlobal}', options: {} }],
 });
 
 (async () => {
@@ -53,25 +56,25 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `KafkaJSProducerConnector`
 
-| Member           | Type                                            | Description                              |
-|------------------|-------------------------------------------------|------------------------------------------|
-| `namespace`      | `'KafkaJSProducer'`                             | Config key.                              |
-| `send(name, record)` | `(string, ProducerRecord) => Promise`       | Send messages with Prometheus tracking.  |
-| `transaction(name, record)` | `(string, ProducerRecord) => Promise`  | Send within a transaction (commit/abort on error). |
+| Member                      | Type                                  | Description                                        |
+| --------------------------- | ------------------------------------- | -------------------------------------------------- |
+| `namespace`                 | `'KafkaJSProducer'`                   | Config key.                                        |
+| `send(name, record)`        | `(string, ProducerRecord) => Promise` | Send messages with Prometheus tracking.            |
+| `transaction(name, record)` | `(string, ProducerRecord) => Promise` | Send within a transaction (commit/abort on error). |
 
 ### `KafkaJSConsumerConnector`
 
-| Member              | Type                                                  | Description                                       |
-|---------------------|-------------------------------------------------------|---------------------------------------------------|
-| `namespace`         | `'KafkaJSConsumer'`                                    | Config key.                                       |
+| Member                     | Type                                           | Description                                        |
+| -------------------------- | ---------------------------------------------- | -------------------------------------------------- |
+| `namespace`                | `'KafkaJSConsumer'`                            | Config key.                                        |
 | `subscribe(name, handler)` | `(string, (messages, batch) => Promise<void>)` | Subscribe to topics with chunked batch processing. |
-| `unsubscribe(name)` | `(string) => Promise<void>`                           | Disconnect consumer.                              |
+| `unsubscribe(name)`        | `(string) => Promise<void>`                    | Disconnect consumer.                               |
 
 ### `KafkaJSAdminConnector`
 
-| Member       | Type                                   | Description        |
-|--------------|----------------------------------------|--------------------|
-| `namespace`  | `'KafkaJSAdmin'`                       | Config key.        |
+| Member      | Type             | Description |
+| ----------- | ---------------- | ----------- |
+| `namespace` | `'KafkaJSAdmin'` | Config key. |
 
 ### Config
 
@@ -86,7 +89,7 @@ interface KafkaJSGlobal {
 // Producer
 type IKafkaJSProducerConfig = IConnectorConfig & {
   global: KafkaConfig;
-  options?: ProducerConfig;
+  options: ProducerConfig;
   partitioner?: 'LegacyPartitioner' | 'DefaultPartitioner';
 };
 
@@ -102,26 +105,26 @@ type IKafkaJSConsumerConfig = IConnectorConfig & {
 // Admin
 type IKafkaJSAdminConfig = IConnectorConfig & {
   global: KafkaConfig;
-  options?: AdminConfig;
+  options: AdminConfig;
 };
 ```
 
 ### Metrics
 
-| Metric                              | Type      | Labels                                              |
-|-------------------------------------|-----------|-----------------------------------------------------|
-| `kafka_producer_seconds_count`       | Counter   | `topic`, `status`                                   |
-| `kafka_producer_seconds`             | Histogram | `topic`, `status`                                   |
-| `kafka_consumer_count`               | Counter   | `topic`, `status`, `group`, `partition`             |
-| `kafka_consumer_seconds`             | Histogram | `topic`, `status`, `group`, `partition`             |
+| Metric                         | Type      | Labels                                  |
+| ------------------------------ | --------- | --------------------------------------- |
+| `kafka_producer_seconds_count` | Counter   | `topic`, `status`                       |
+| `kafka_producer_seconds`       | Histogram | `topic`, `status`                       |
+| `kafka_consumer_count`         | Counter   | `topic`, `status`, `group`, `partition` |
+| `kafka_consumer_seconds`       | Histogram | `topic`, `status`, `group`, `partition` |
 
 ### Errors
 
-| Error                              | Condition                                 |
-|------------------------------------|-------------------------------------------|
-| `KafkaJSProducerCantConnectError`  | Producer connection fails.                |
-| `KafkaJSConsumerCantConnectError`  | Consumer connection fails.                |
-| `KafkaJSAdminCantConnectError`     | Admin client connection fails.            |
+| Error                             | Condition                      |
+| --------------------------------- | ------------------------------ |
+| `KafkaJSProducerCantConnectError` | Producer connection fails.     |
+| `KafkaJSConsumerCantConnectError` | Consumer connection fails.     |
+| `KafkaJSAdminCantConnectError`    | Admin client connection fails. |
 
 ## Architecture
 

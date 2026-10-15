@@ -31,7 +31,7 @@ export function isAccessor(object: any, field: string) {
 /**
  * @description
  * Walk all object prototypes
- * @param object - Object to key-sort
+ * @param object - Object to walk prototypes
  * @param callback - Callback on prototype walk
  * @example
  * ```ts

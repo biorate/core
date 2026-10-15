@@ -15,7 +15,7 @@ Proxy connector with Prometheus metrics — extends `@biorate/proxy` with gauges
 pnpm add @biorate/proxy-prometheus
 ```
 
-Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/prometheus`, `@biorate/proxy`.
+Requires `@biorate/connector` (transitively via `@biorate/proxy`), `@biorate/inversion`, `@biorate/config`, `@biorate/prometheus`, `@biorate/proxy`.
 
 ## Quick start
 
@@ -32,11 +32,11 @@ Same as `@biorate/proxy` `ProxyConnector` with added metrics.
 
 ### Metrics
 
-| Metric                        | Type    | Labels                                | Description             |
-|-------------------------------|---------|---------------------------------------|-------------------------|
-| `proxy_connector_write_bytes` | Gauge   | `connection`, `host`                  | Bytes written upstream. |
-| `proxy_connector_read_bytes`  | Gauge   | `connection`, `host`                  | Bytes read from upstream. |
-| `proxy_connector_active`      | Gauge   | `connection`, `host`                  | 1 if client is active.  |
+| Metric                        | Type  | Labels               | Description               |
+| ----------------------------- | ----- | -------------------- | ------------------------- |
+| `proxy_connector_write_bytes` | Gauge | `connection`, `host` | Bytes written upstream.   |
+| `proxy_connector_read_bytes`  | Gauge | `connection`, `host` | Bytes read from upstream. |
+| `proxy_connector_active`      | Gauge | `connection`, `host` | 1 if client is active.    |
 
 ### Config
 

@@ -17,7 +17,7 @@ export * from './interfaces';
  * ```
  * import { inject, container, Types, Core } from '@biorate/inversion';
  * import { IConfig, Config } from '@biorate/config';
- * import { RedisConnector, RedisConfig } from '@biorate/redis';
+ * import { RedisConnector, IRedisConfig } from '@biorate/redis';
  *
  * class Root extends Core() {
  *   @inject(RedisConnector) public connector: RedisConnector;

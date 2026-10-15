@@ -15,8 +15,9 @@ Vitest Spec abstract helper class
 
 ```ts
 import { suite, test } from '@biorate/vitest';
-import { IsNumber, IsString, IsBoolean } from 'class-validator';
+import { IsNumber, IsString, IsBoolean, isBoolean } from 'class-validator';
 import { Spec } from '@biorate/vitest-spec';
+import { validate, exactly } from '@biorate/vitest-spec';
 
 // Extend Spec to get access to helpers
 class MySpec extends Spec {
@@ -35,7 +36,7 @@ class ApiTest extends MySpec {
       @IsString() public c: string;
       @IsBoolean() public d: boolean;
     }
-    await this.api('/api')
+    await this.api('http://test.local') // absolute URL — base for supertest
       .post('/')
       .send({ b: 1 })
       .expect(200)

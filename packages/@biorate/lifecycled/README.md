@@ -5,10 +5,10 @@ Decorator‑driven async lifecycle manager for object trees. Recursively scans a
 ## Features
 
 - **`@init()`** — async initializer; runs during `lifecycled(root)`.
-- **`@kill()`** — async destructor; runs on `lifecycled` phase‑2 or process shutdown via `@biorate/shutdown-hook`.
+- **`@kill()`** — async destructor; runs only on process shutdown via `@biorate/shutdown-hook`.
 - **`@on(event)`** — event handler binder (calls `object.on(event, handler)`).
 - **Recursive scan** — walks all nested object properties (prototype‑aware, skips accessors, RegExp, self‑references, and already‑processed cycles).
-- **Topological order** — deepest objects initialize first; destruct in reverse.
+- **Topological order** — deepest objects initialize first; destructors fire in the same traversal order at process shutdown.
 - **`processed` guard** — `Symbol.for('lifecycled.processed')` prevents double‑processing.
 - **Event hooks** — `onInit` / `onKill` callbacks per object.
 
@@ -53,8 +53,8 @@ class App {
 await lifecycled(new App());
 // DB connected
 // Server started
-// Server stopped
-// DB disconnected
+// (kill output — "Server stopped", "DB disconnected" — appears only at process
+//  shutdown via ShutdownHook, not at the end of lifecycled())
 ```
 
 ## API Reference
@@ -73,11 +73,11 @@ Scans `root` and all nested objects for `@init` / `@kill` methods, invokes `@ini
 
 ### Decorators
 
-| Decorator     | Target         | Behaviour                                              |
-|---------------|----------------|--------------------------------------------------------|
-| `@init()`     | Method         | Called during `lifecycled()` — async initializer.      |
-| `@kill()`     | Method         | Called on process shutdown via `ShutdownHook` — async cleanup.|
-| `@on(event)`  | Method         | Binds to `object.on(event, handler)` at scan time.     |
+| Decorator    | Target | Behaviour                                                      |
+| ------------ | ------ | -------------------------------------------------------------- |
+| `@init()`    | Method | Called during `lifecycled()` — async initializer.              |
+| `@kill()`    | Method | Called on process shutdown via `ShutdownHook` — async cleanup. |
+| `@on(event)` | Method | Binds to `object.on(event, handler)` at scan time.             |
 
 ## Usage patterns
 
@@ -85,28 +85,36 @@ Scans `root` and all nested objects for `@init` / `@kill` methods, invokes `@ini
 
 ```ts
 class Database {
-  @init() public async connect() { /* … */ }
-  @kill() public async close() { /* … */ }
+  @init() public async connect() {
+    /* … */
+  }
+  @kill() public async close() {
+    /* … */
+  }
 }
 
 class Cache {
-  @init() public async warm() { /* … */ }
-  @kill() public async flush() { /* … */ }
+  @init() public async warm() {
+    /* … */
+  }
+  @kill() public async flush() {
+    /* … */
+  }
 }
 
 class Api {
   db = new Database();
   cache = new Cache();
 
-  @init() public async start() { /* … */ }
+  @init() public async start() {
+    /* … */
+  }
 }
 ```
 
-### Child override via `override: true`
+### Wrap-up
 
-Children marked with `override: true` replace parent methods with the same lifecycle key:
-
-*(Note: `override` and `undeclared` are metadata options passed to `@init` / `@kill` — see source for full details.)*
+There is no `override` option: `@init` / `@kill` metadata is deduplicated per object by field name (`uniqBy(items, 'field')` in `src/index.ts`), and a child method with the same name shadows the inherited parent method on the prototype chain.
 
 ### Event binding with `@on`
 
@@ -140,12 +148,13 @@ await lifecycled(emitter);
 └──────────────────┘
 ```
 
-Init order: `Database` → `Cache` → `App`. Kill order: `App` → `Cache` → `Database`.
+Init order: `Database` → `Cache` → `App`. Kill order is the same (the destructor queue is filled in the same traversal order and runs as a whole at process shutdown): `Database` → `Cache` → `App`.
 
 ### With logging callbacks
 
 ```ts
-await lifecycled(app,
+await lifecycled(
+  app,
   (obj) => console.log(`✅ ${obj.constructor.name} initialized`),
   (obj) => console.log(`🛑 ${obj.constructor.name} destroyed`),
 );
@@ -156,7 +165,9 @@ await lifecycled(app,
 ```ts
 import { Core, container } from '@biorate/inversion';
 
-class App extends Core() { /* … */ }
+class App extends Core() {
+  /* … */
+}
 const app = container.get(App);
 await app.$run(); // calls lifecycled internally
 ```

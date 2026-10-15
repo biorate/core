@@ -213,7 +213,7 @@ export abstract class AxiosPrometheus extends Axios {
    * @description Get full url = baseURL + url
    */
   protected fullUrl(params?: IAxiosFetchOptions) {
-    return params?.baseURL ?? '' + params?.url ?? '';
+    return (params?.baseURL ?? '') + (params?.url ?? '');
   }
   /**
    * @description Aliases accepted in `tracing.excludedAttributes` for aspect matching

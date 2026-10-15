@@ -35,6 +35,7 @@ container.get<IConfig>(Types.Config).merge({
   Clickhouse: [
     {
       name: 'connection',
+      host: 'http://localhost:8123', // required by IClickhouseConfig; connect() itself uses only `options`
       options: {
         host: 'http://localhost:8123',
         username: 'default',
@@ -61,24 +62,25 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `ClickhouseConnector`
 
-| Member           | Type                                          | Description                              |
-|------------------|-----------------------------------------------|------------------------------------------|
-| `namespace`      | `'Clickhouse'`                                | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<IClickhouseConnection>`  | Creates `ClickHouseClient` via `createClient`. |
+| Member            | Type                                         | Description                                    |
+| ----------------- | -------------------------------------------- | ---------------------------------------------- |
+| `namespace`       | `'Clickhouse'`                               | Config key for connection definitions.         |
+| `connect(config)` | `(config) => Promise<IClickhouseConnection>` | Creates `ClickHouseClient` via `createClient`. |
 
 ### Config
 
 ```ts
 interface IClickhouseConfig extends IConnectorConfig {
+  host: string;
   options: NodeClickHouseClientConfigOptions;
 }
 ```
 
 ### Errors
 
-| Error                          | Condition                                      |
-|--------------------------------|------------------------------------------------|
-| `ClickhouseCantConnectError`   | `createClient()` or `SELECT 1` verification fails. |
+| Error                        | Condition                                          |
+| ---------------------------- | -------------------------------------------------- |
+| `ClickhouseCantConnectError` | `createClient()` or `SELECT 1` verification fails. |
 
 ## Architecture
 

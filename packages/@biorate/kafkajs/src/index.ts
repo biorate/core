@@ -17,7 +17,7 @@
  *
  * container.get<IConfig>(Types.Config).merge({
  *   KafkaJSGlobal: { brokers: ['localhost:9092'], clientId: 'test-app', logLevel: 1 },
- *   KafkaJSProducer: [{ name: 'producer', global: '#{KafkaJSGlobal}' }],
+ *   KafkaJSProducer: [{ name: 'producer', global: '#{KafkaJSGlobal}', options: {} }],
  * });
  *
  * (async () => {

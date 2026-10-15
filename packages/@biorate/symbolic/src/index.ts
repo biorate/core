@@ -11,10 +11,10 @@
  * const Namespace2 = create('Namespace2');
  *
  * // auto-create symbol on property call
- * console.log(Namespace1.Test1); // Symbol(Namespace1.Test)
+ * console.log(Namespace1.Test1); // Symbol(Namespace1.Test1)
  * console.log(Namespace1.Test1 === Namespace1.Test1); // true
  *
- * console.log(Namespace1.Test2); // Symbol(Namespace1.Test)
+ * console.log(Namespace1.Test2); // Symbol(Namespace1.Test2)
  * console.log(Namespace1.Test1 === Namespace1.Test2); // false
  *
  * // namespace isolation
@@ -90,6 +90,7 @@ export const Global = (() => {
     }
   }
   // @ts-ignore
-  return new Proxy(function (namespace: string): { [key: string]: symbol } {},
-  new Proxify());
+  return new Proxy(function (namespace: string): {
+    [key: string]: symbol;
+  } {}, new Proxify());
 })();

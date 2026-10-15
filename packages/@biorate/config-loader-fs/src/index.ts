@@ -6,6 +6,7 @@ import { IConfigLoaderFsOption } from './interfaces';
 import { ConfigLoaderFsFileNotLoadedError } from './errors';
 
 export * from './errors';
+export * from './interfaces';
 
 /**
  * @description File-based config loader

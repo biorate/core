@@ -8,7 +8,7 @@ Axios OOP static interface — extends `axios` with lifecycle hooks, stubbing, m
 - **Lifecycle hooks** — `before()`, `after()`, `catch()`, `finally()` for request/response interception.
 - **Static `fetch()`** — convenient static entry point (no instance required).
 - **Stubbing** — `stub()` / `unstub()` for deterministic tests without network.
-- **Mock mode** — `useMock()` caches GET responses and returns them on repeat requests.
+- **Mock mode** — `useMock()` enables mock mode; response caching is provided by subclasses that override `getMock()`/`setMock()` (the base class caches nothing).
 - **Re-exports `axios`** — all `axios` types, classes, and helpers available from the same import.
 
 ## Installation
@@ -17,7 +17,7 @@ Axios OOP static interface — extends `axios` with lifecycle hooks, stubbing, m
 pnpm add @biorate/axios
 ```
 
-Requires `@biorate/inversion`, `axios` (peer).
+Peer dependencies: `lodash-es`. `axios` is a regular dependency, `@biorate/singleton` a runtime dependency, and `@biorate/inversion` a dev dependency.
 
 ## Quick start
 
@@ -32,7 +32,7 @@ class Yandex extends Axios {
 (async () => {
   const response = await Yandex.fetch<string>();
   console.log(response.status); // 200
-  console.log(response.data);   // <!DOCTYPE html>...
+  console.log(response.data); // <!DOCTYPE html>...
 })();
 ```
 
@@ -48,32 +48,32 @@ Extends `Singleton` from `@biorate/singleton`.
 
 #### Static methods
 
-| Method            | Signature                                                  | Description                                   |
-|-------------------|------------------------------------------------------------|-----------------------------------------------|
-| `fetch<T, D>`     | `static async fetch<T, D>(options?): Promise<AxiosResponse<T, D>>` | Makes an HTTP request (uses `axios.request`). |
-| `stub`            | `static stub(params: IStubParam, persist?: boolean): void` | Replaces `fetch` with a fake response for testing. |
-| `unstub`          | `static unstub(): void`                                    | Restores the original `fetch` implementation. |
-| `useMock`         | `static useMock(): void`                                   | Enables mock mode — caches successful GET responses. |
-| `defaults`        | `static get defaults()`                                    | Delegates to `axios.defaults`.                |
+| Method     | Signature                                                  | Description                                                    |
+| ---------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+| `fetch`    | `public static fetch(options?: any)`                       | Makes an HTTP request (delegates to `protected _fetch<T, D>`). |
+| `stub`     | `static stub(params: IStubParam, persist?: boolean): void` | Replaces `fetch` with a fake response for testing.             |
+| `unstub`   | `static unstub(): void`                                    | Restores the original `fetch` implementation.                  |
+| `useMock`  | `static useMock(): void`                                   | Enables mock mode — caches successful GET responses.           |
+| `defaults` | `static get defaults()`                                    | Delegates to `axios.defaults`.                                 |
 
 #### Instance hooks
 
 Override these in subclasses to add custom logic:
 
-| Hook              | Signature                                                           | When called                     |
-|-------------------|---------------------------------------------------------------------|---------------------------------|
-| `before`          | `protected async before(params?: IAxiosFetchOptions): Promise<void>`| Before request.                 |
-| `after`           | `protected async after<T>(result, startTime, params?): Promise<void>`| After successful response.      |
-| `catch`           | `protected async catch(e, startTime, params?): Promise<void>`       | On error.                       |
-| `finally`         | `protected async finally(startTime, params?): Promise<void>`        | Always after request completes. |
-| `getStartTime`    | `protected getStartTime(): [number, number]`                        | Returns `[Date.now(), 0]`.      |
+| Hook           | Signature                                                                                            | When called                     |
+| -------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `before`       | `protected async before(params?: IAxiosFetchOptions, meta?: Record<string, unknown>): Promise<void>` | Before request.                 |
+| `after`        | `protected async after<T, D>(result: AxiosResponse<T, D>, startTime, params?, meta?): Promise<void>` | After successful response.      |
+| `catch`        | `protected async catch(e, startTime, params?, meta?): Promise<void>`                                 | On error.                       |
+| `finally`      | `protected async finally(startTime, params?, meta?): Promise<void>`                                  | Always after request completes. |
+| `getStartTime` | `protected getStartTime(): [number, number]`                                                         | Returns `[Date.now(), 0]`.      |
 
 #### Instance properties
 
-| Property         | Type     | Default  | Description            |
-|------------------|----------|----------|------------------------|
-| `timeout`        | `number` | `15000`  | Request timeout in ms. |
-| `baseURL`        | `string` | —        | Base URL for requests. |
+| Property  | Type     | Default | Description            |
+| --------- | -------- | ------- | ---------------------- |
+| `timeout` | `number` | `15000` | Request timeout in ms. |
+| `baseURL` | `string` | —       | Base URL for requests. |
 
 ### Types
 
@@ -81,10 +81,10 @@ Override these in subclasses to add custom logic:
 import { IAxiosFetchOptions, IStubParam } from '@biorate/axios';
 ```
 
-| Export               | Signature                                                            | Description                                     |
-|----------------------|----------------------------------------------------------------------|-------------------------------------------------|
-| `IAxiosFetchOptions` | `type = AxiosRequestConfig & { path?: Record<string, string\|number>; retry?: boolean }` | Extended request config with path params. |
-| `IStubParam`         | `type = { data, status?, statusText?, headers?, config? }`          | Parameters for `Axios.stub()` fake response.     |
+| Export               | Signature                                                                                | Description                                  |
+| -------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------- |
+| `IAxiosFetchOptions` | `type = AxiosRequestConfig & { path?: Record<string, string\|number>; retry?: boolean }` | Extended request config with path params.    |
+| `IStubParam`         | `type = { data, status?, statusText?, headers?, config? }`                               | Parameters for `Axios.stub()` fake response. |
 
 ### Re-exports from `axios`
 
@@ -134,10 +134,37 @@ Axios.unstub();
 
 ### Mock mode
 
+`Axios.useMock()` only flips a flag on the class — the base `Axios` caches **nothing**: its `getMock()` returns `undefined` and `setMock()` has an empty body (`src/index.ts:97-110`). Response caching must be implemented in a subclass that overrides both:
+
 ```ts
-Axios.useMock();
-// First call hits the network, subsequent identical GET calls return cached response.
+import { Axios, IAxiosFetchOptions } from '@biorate/axios';
+import { AxiosResponse } from 'axios';
+import { get, set } from 'lodash-es';
+
+class CachedClient extends Axios {
+  public static store: Record<string, any> = {};
+
+  protected static getMock<T = any, D = any>(
+    instance: Axios,
+    options?: IAxiosFetchOptions,
+  ): undefined | AxiosResponse<T, D> {
+    return get(this.store, `${instance.constructor.name}.${JSON.stringify(options)}`);
+  }
+
+  protected static setMock<T = any, D = any>(
+    instance: Axios,
+    result: AxiosResponse<T, D>,
+    options?: IAxiosFetchOptions,
+  ) {
+    set(this.store, `${instance.constructor.name}.${JSON.stringify(options)}`, result);
+  }
+}
+
+CachedClient.useMock();
+// First call hits the network, subsequent identical calls return the cached response.
 ```
+
+On the base class, `useMock()` therefore has no effect on repeat requests — every call goes to the network.
 
 ## Architecture
 
@@ -146,15 +173,15 @@ Axios (extends Singleton)
 │
 ├── static fetch(options)
 │   ├── lookup mock cache (if useMock enabled)
-│   └── → instance.before()
+│   └── → instance.before(params, meta)
 │       → instance.fetch() → axios.request(...)
-│       → instance.after()  or  instance.catch()
-│       → instance.finally()
+│       → instance.after(result, startTime, params, meta)  or  instance.catch(e, startTime, params, meta)
+│       → instance.finally(startTime, params, meta)
 │   └── set mock cache (if useMock enabled)
 │
 ├── static stub(params)        Replace implementation with FakeResponse
 ├── static unstub()            Restore original implementation
-├── static useMock()           Enable GET response caching
+├── static useMock()           Enable mock mode (caching via subclass getMock/setMock)
 │
 └── Stubs (internal)
     └── FakeResponse implements AxiosResponse

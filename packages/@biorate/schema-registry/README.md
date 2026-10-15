@@ -4,11 +4,10 @@ Schema Registry connector — wraps the Confluent Schema Registry REST API for A
 
 ## Features
 
-- **Auto-connect** — creates HTTP client on `@init()` via config namespace `SchemaRegistry`.
-- **CRUD for subjects** — register, save, query schemas and subjects.
-- **Compatibility check** — test schema compatibility against a subject.
-- **Typed errors** — `SchemaRegistryCantConnectError`, `SchemaRegistryRequestError`.
-- **Axios-based** — configurable HTTP client with auth and TLS.
+- **Auto-connect** — creates the API client on `@init()` via the config namespace `SchemaRegistry`.
+- **Typed endpoint client** — a custom API object with dedicated methods per Schema Registry endpoint (`getSubjects`, `postSubjects`, `putConfig`, `encode`, `decode`, ...), not a raw `AxiosInstance`.
+- **Avro encode / decode** — binary serialisation helpers that read schema from the registry.
+- **Typed errors** — `SchemaRegistryCantConnectError`, `SchemaRegistryAvroSchemaParseError`.
 
 ## Installation
 
@@ -16,7 +15,7 @@ Schema Registry connector — wraps the Confluent Schema Registry REST API for A
 pnpm add @biorate/schema-registry
 ```
 
-Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/axios`.
+Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorate/axios-prometheus`.
 
 ## Quick start
 
@@ -34,16 +33,21 @@ container.bind<SchemaRegistryConnector>(SchemaRegistryConnector).toSelf().inSing
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  SchemaRegistry: [{
-    name: 'connection',
-    options: { baseURL: 'http://localhost:8081' },
-  }],
+  SchemaRegistry: [
+    {
+      name: 'connection',
+      baseURL: 'http://localhost:8081',
+    },
+  ],
 });
 
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-  console.log(await root.connector.current!.subjects()); // ['test-value', ...]
+
+  const { getSubjects, postSubjectsVersions } = root.connector.connection('connection');
+  console.log(await getSubjects()); // ['test-value', ...]
+  console.log(await postSubjectsVersions({ subject: 'test-value', schema: { ... } })); // { id: 1 }
 })();
 ```
 
@@ -51,46 +55,62 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `SchemaRegistryConnector`
 
-| Member           | Type                                      | Description                              |
-|------------------|-------------------------------------------|------------------------------------------|
-| `namespace`      | `'SchemaRegistry'`                        | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<AxiosInstance>`     | Creates an Axios instance for the API.   |
+| Member            | Type                                             | Description                                                                                    |
+| ----------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `namespace`       | `'SchemaRegistry'`                               | Config key for connection definitions.                                                         |
+| `connect(config)` | `(config) => Promise<ISchemaRegistryConnection>` | Creates the API client and calls `ping()`; throws `SchemaRegistryCantConnectError` on failure. |
 
-### Connection methods (via `axios`)
+### Connection methods
 
-The connection is an `AxiosInstance` configured with `baseURL` from config. Use its `.get()`, `.post()`, `.put()`, `.delete()` for Schema Registry endpoints:
+`connection(name?)` returns the API object created by `create(config)` — a namespace of bound endpoint methods. Each endpoint returns an `AxiosResponse` whose `.data` carries the payload.
 
-| Endpoint                     | Method    | Description                |
-|------------------------------|-----------|----------------------------|
-| `/subjects`                  | GET       | List all subjects.         |
-| `/subjects/:subject/versions`| GET       | List versions.             |
-| `/subjects/:subject/versions/:version` | GET | Fetch schema.    |
-| `/subjects/:subject`         | POST      | Register new schema.       |
-| `/compatibility/subjects/:subject/versions/:version` | POST | Check compatibility. |
+| Method                                                                           | Endpoint                                      | HTTP   | `data` shape                                                                     |
+| -------------------------------------------------------------------------------- | --------------------------------------------- | ------ | -------------------------------------------------------------------------------- |
+| `ping()`                                                                         | `/`                                           | GET    | `Record<string, unknown>`                                                        |
+| `getSubjects()`                                                                  | `/subjects`                                   | GET    | `string[]`                                                                       |
+| `postSubjects({ subject, schema, schemaType?, reference?, normalize? })`         | `/subjects/:subject`                          | POST   | `{ subject, id, version, schema }`                                               |
+| `postSubjectsVersions({ subject, schema, schemaType?, reference?, normalize? })` | `/subjects/:subject/versions`                 | POST   | `{ id }`                                                                         |
+| `getSubjectsVersions(subject)`                                                   | `/subjects/:subject/versions`                 | GET    | `number[]`                                                                       |
+| `getSubjectsByVersion({ subject, version })`                                     | `/subjects/:subject/versions/:version`        | GET    | `{ subject, id, version, schemaType, schema }`                                   |
+| `getSchemaBySubjectsAndVersion({ subject, version })`                            | `/subjects/:subject/versions/:version/schema` | GET    | `unknown`                                                                        |
+| `getSchemasById(id)`                                                             | `/schemas/ids/:id`                            | GET    | `{ schema }`                                                                     |
+| `getSchemasVersionsById(id)`                                                     | `/schemas/ids/:id/versions`                   | GET    | `{ subject, version }[]`                                                         |
+| `getSchemasTypes()`                                                              | `/schemas/types`                              | GET    | `string[]`                                                                       |
+| `deleteSubjects({ subject, permanent? })`                                        | `/subjects/:subject`                          | DELETE | `number[]`                                                                       |
+| `putConfig({ subject, compatibility })`                                          | `/config/:subject`                            | PUT    | `{ compatibility }`                                                              |
+| `encode(subject, data, version?)`                                                | —                                             | —      | `Buffer` (validates against schema; throws `SchemaRegistryAvroSchemaParseError`) |
+| `decode(buffer)`                                                                 | —                                             | —      | decoded Avro value                                                               |
+
+`compatibility` is one of `ICompatibilities`: `BACKWARD`, `BACKWARD_TRANSITIVE`, `FORWARD`, `FORWARD_TRANSITIVE`, `FULL`, `FULL_TRANSITIVE`, `NONE`.
 
 ### Config
 
 ```ts
 interface ISchemaRegistryConfig extends IConnectorConfig {
-  options: AxiosRequestConfig;  // baseURL, headers, auth, httpsAgent, etc.
+  baseURL: string;
+  headers?: Record<string, string>;
 }
 ```
 
+There is no `options` object — `baseURL` and `headers` sit at the top level of each connection definition.
+
 ### Errors
 
-| Error                              | Condition                                    |
-|------------------------------------|----------------------------------------------|
-| `SchemaRegistryCantConnectError`   | Axios instance creation fails.              |
-| `SchemaRegistryRequestError`       | API response indicates failure.             |
+| Error                                | Condition                                                                                           |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| `SchemaRegistryCantConnectError`     | `connect()` fails (the `ping()` request to the registry fails).                                     |
+| `SchemaRegistryAvroSchemaParseError` | `encode()` validation fails — the payload does not match the registered schema (HTTP status `400`). |
 
 ## Architecture
 
 ```
-SchemaRegistryConnector extends Connector<ISchemaRegistryConfig, AxiosInstance>
+SchemaRegistryConnector extends Connector<ISchemaRegistryConfig, ISchemaRegistryConnection>
 │
 ├── namespace = 'SchemaRegistry'
-├── connect(config) → axios.create(config.options)
-└── connection is an AxiosInstance
+├── connect(config) → create(config)  // builds the endpoint client from api.ts
+│   └── await connection.ping()       // throws SchemaRegistryCantConnectError on failure
+│
+└── connection is the API object: { ping, getSubjects, postSubjects, ..., encode, decode }
 ```
 
 ### Learn
