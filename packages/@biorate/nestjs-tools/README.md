@@ -25,14 +25,14 @@ Peer dependencies: `@nestjs/common`, `@nestjs/core`, `@nestjs/swagger`, `class-v
 
 ## Quick start
 
+`main.ts`:
+
 ```ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {
   AllExceptionsFilter,
-  BootstrapProvider,
-  RequestCountMiddleware,
-  ResponseTimeMiddleware,
+  RoutesInterceptor,
   TracingInterceptor,
 } from '@biorate/nestjs-tools';
 
@@ -40,16 +40,37 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   app.useGlobalFilters(new AllExceptionsFilter());
-  app.useGlobalInterceptors(new TracingInterceptor());
-
-  // Middleware
-  app.use(BootstrapProvider.create());
-  app.use(RequestCountMiddleware.create());
-  app.use(ResponseTimeMiddleware.create());
+  app.useGlobalInterceptors(new RoutesInterceptor(), new TracingInterceptor());
 
   await app.listen(3000);
 }
+
+bootstrap();
 ```
+
+`app.module.ts`:
+
+```ts
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  RequestCountMiddleware,
+  ResponseTimeMiddleware,
+} from '@biorate/nestjs-tools';
+
+@Module({ imports: [...] })
+export class AppModule implements NestModule {
+  public configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(RequestCountMiddleware, ResponseTimeMiddleware)
+      .forRoutes('*');
+  }
+}
+```
+
+> Middleware and interceptor classes use `@inject(Types.Config)` from the global
+> `@biorate/inversion` container — bootstrap the app via the `@biorate/launcher`
+> lifecycle with `Types.Config` bound, otherwise requests will fail with
+> `InversionInjectionIsUndefinedError`.
 
 ## Middlewares
 
@@ -59,8 +80,6 @@ Prometheus counter `http_server_requests_seconds_count` with labels `method`, `u
 
 ```ts
 consumer.apply(RequestCountMiddleware).forRoutes('*');
-// or via BootstrapProvider
-app.use(RequestCountMiddleware.create());
 ```
 
 Uses `RoutesInterceptor` to resolve the actual route path (e.g. `/api/users/:id` instead of `/api/users/123`).
@@ -72,7 +91,7 @@ Config option: `app.middleware.RequestCountMiddleware.log-base-url` (boolean, de
 Prometheus histogram `http_server_requests_seconds` + `x-response-time` header.
 
 ```ts
-app.use(ResponseTimeMiddleware.create());
+consumer.apply(ResponseTimeMiddleware).forRoutes('*');
 ```
 
 Config options:
@@ -181,7 +200,7 @@ Granular control over which span attributes are written:
 
 Resolves the full route path (controller + handler) and stores it in a `WeakMap<Request, { path }>` for use by `RequestCountMiddleware` and `ResponseTimeMiddleware`.
 
-Applied automatically when using the count/time middlewares.
+Not applied automatically: when using the count/time middlewares, register it globally via `app.useGlobalInterceptors(new RoutesInterceptor())` — otherwise they won't see the resolved route path and metrics fall back to `/`.
 
 ## Providers (Guards)
 
@@ -231,14 +250,6 @@ export class CustomRolesGuard extends RolesGuardProvider {
     return user;
   }
 }
-```
-
-### `BootstrapProvider`
-
-Convenience middleware that initializes the `@biorate/inversion` container lifecycle:
-
-```ts
-app.use(BootstrapProvider.create());
 ```
 
 ## Decorators
@@ -296,13 +307,11 @@ src/app/
 └──────────┬───────────────────────────────────────────┘
            │
 ┌──────────▼───────────────────────────────────────────┐
-│ BootstrapProvider (DI lifecycle init)                 │
+│ RoutesInterceptor (path resolution)                   │
 ├──────────────────────────────────────────────────────┤
 │ RequestCountMiddleware (counter)                      │
 ├──────────────────────────────────────────────────────┤
 │ ResponseTimeMiddleware (histogram + header)           │
-├──────────────────────────────────────────────────────┤
-│ RoutesInterceptor (path resolution)                   │
 ├──────────────────────────────────────────────────────┤
 │ TracingInterceptor (OpenTelemetry span attrs)         │
 ├──────────────────────────────────────────────────────┤
