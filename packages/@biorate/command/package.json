@@ -1,6 +1,6 @@
 {
   "name": "@biorate/command",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Command executor",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

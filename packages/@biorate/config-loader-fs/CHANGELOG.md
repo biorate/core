@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/biorate/core/compare/%40biorate%2Fconfig-loader-fs%402.1.4...%40biorate%2Fconfig-loader-fs%402.1.5) (2026-10-15)
+
+### Bug Fixes
+
+- doc ([16f2ede](https://github.com/biorate/core/commit/16f2ede9347ab84689a72f4cc6fdb38687142c25))
+
 ## [2.1.4](https://github.com/biorate/core/compare/@biorate/config-loader-fs@2.1.3...@biorate/config-loader-fs@2.1.4) (2026-06-26)
 
 ### Bug Fixes

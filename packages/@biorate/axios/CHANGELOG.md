@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/biorate/core/compare/%40biorate%2Faxios%403.4.0...%40biorate%2Faxios%403.4.1) (2026-10-15)
+
+### Bug Fixes
+
+- doc ([16f2ede](https://github.com/biorate/core/commit/16f2ede9347ab84689a72f4cc6fdb38687142c25))
+
 # [3.4.0](https://github.com/biorate/core/compare/@biorate/axios@3.3.4...@biorate/axios@3.4.0) (2026-09-01)
 
 ### Features

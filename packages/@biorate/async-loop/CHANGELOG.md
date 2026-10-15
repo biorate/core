@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/biorate/core/compare/%40biorate%2Fasync-loop%402.1.3...%40biorate%2Fasync-loop%402.1.4) (2026-10-15)
+
+**Note:** Version bump only for package @biorate/async-loop
+
 ## [2.1.3](https://github.com/biorate/core/compare/@biorate/async-loop@2.1.2...@biorate/async-loop@2.1.3) (2026-06-26)
 
 ### Bug Fixes

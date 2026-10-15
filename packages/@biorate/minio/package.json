@@ -1,6 +1,6 @@
 {
   "name": "@biorate/minio",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Minio connector",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
