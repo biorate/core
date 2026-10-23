@@ -42,11 +42,11 @@ if (!container.isBound(Types.Config))
 
 ## Режимы
 
-| `UNIMOCK` | Поведение |
-| --------- | --------- |
-| _(не задан)_ / `off` | Мокирование выключено — zero-overhead pass-through, снапшоты не читаются и не пишутся |
-| `record` / `update` / `1` / `true` | Реальный вызов + запись снапшота на `flush()` |
-| `replay` | Воспроизведение из снапшота; промах → `UnimockReplayMissError` |
+| `UNIMOCK`                          | Поведение                                                                             |
+| ---------------------------------- | ------------------------------------------------------------------------------------- |
+| _(не задан)_ / `off`               | Мокирование выключено — zero-overhead pass-through, снапшоты не читаются и не пишутся |
+| `record` / `update` / `1` / `true` | Реальный вызов + запись снапшота на `flush()`                                         |
+| `replay`                           | Воспроизведение из снапшота; промах → `UnimockReplayMissError`                        |
 
 ```bash
 # запись снапшотов (нужна живая инфраструктура)
@@ -73,13 +73,13 @@ if (!isRecord()) {
 
 ## Флаги оптимизации снапшотов
 
-| Переменная | Описание |
-| ---------- | -------- |
-| `UNIMOCK_GZIP=1` | Gzip-компрессия `.unimock.json` (~97% reduction). Чтение автоопределяет gzip |
-| `UNIMOCK_STRIP_REQUEST=1` | Пропускать поле `request` у Axios-подобных ответов |
-| `UNIMOCK_SKIP_PROXY_ARGS=1` (`UNIMOCK_SKIP_CONN_ARGS=1`) | Не сериализовать `args` для `call:*` |
-| `UNIMOCK_SNAPSHOT_DIR` | Кастомная папка снапшотов (fallback; игнорируется при `importMeta`) |
-| `SNAPSHOT_EXT` | Расширение файла снапшота (default: `.snap`). Имя: `{ClassName}.unimock{ext}` |
+| Переменная                                               | Описание                                                                      |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `UNIMOCK_GZIP=1`                                         | Gzip-компрессия `.unimock.json` (~97% reduction). Чтение автоопределяет gzip  |
+| `UNIMOCK_STRIP_REQUEST=1`                                | Пропускать поле `request` у Axios-подобных ответов                            |
+| `UNIMOCK_SKIP_PROXY_ARGS=1` (`UNIMOCK_SKIP_CONN_ARGS=1`) | Не сериализовать `args` для `call:*`                                          |
+| `UNIMOCK_SNAPSHOT_DIR`                                   | Кастомная папка снапшотов (fallback; игнорируется при `importMeta`)           |
+| `SNAPSHOT_EXT`                                           | Расширение файла снапшота (default: `.snap`). Имя: `{ClassName}.unimock{ext}` |
 
 ## Контракт режимов (коротко)
 
@@ -87,6 +87,44 @@ if (!isRecord()) {
 - **Record-сессия начинается с чистого листа**: файл перезаписывается целиком; межпрогонные дубли одной строки невозможны.
 - **Replay/off не трогают файлы**: байт-в-байт неизменность коммиченных снапшотов.
 - **Edge**: если record-сессия ни разу не флашится, файл на диске остаётся устаревшим (витest-setup флашит за вас).
+
+## Дисциплина больших прогонов (FIFO)
+
+Для e2e-прогонов целого приложения порядок вызовов — часть контракта снапшота
+(повторные вызовы одного ключа реплеятся FIFO; исчерпанный катч деградирует до last-wins
+с warning). Правила:
+
+```ts
+// vitest.e2e.config.mjs
+export default defineConfig({
+  test: {
+    pool: 'threads',
+    maxWorkers: 1, // FIFO — состояние процесса; параллельные файлы запрещены
+    fileParallelism: false,
+    isolate: false, // ускорение; требует boot-once (ниже)
+    setupFiles: ['@biorate/unimock/vitest/setup'],
+  },
+});
+```
+
+```ts
+// tests/e2e/setup.ts — boot приложения ОДИН раз на процесс
+let booted = false;
+beforeAll(async () => {
+  // Повторный boot при isolate:false сбивает FIFO-счётчики unimock.
+  if (booted) return;
+  booted = true;
+  await container.get<Root>(Root).$run();
+}, 120_000);
+```
+
+- Файлы спеков должны идти в **детерминированном порядке** (свой sequencer или алфавитный) —
+  одинаковом в record и replay.
+- В `globalSetup` используйте `isReplay()` для пропуска миграций/подготовки инфраструктуры:
+  реплей не нуждается в записи, только в коммиченных снапшотах.
+- Транзакции требуют уникальных меток call-site — см.
+  [transactions.md](transactions.md); полный чеклист — в
+  [Best practices README](../README.md#best-practices-for-building-tests-with-unimock).
 
 ## Где живут снапшоты
 

@@ -136,6 +136,12 @@ new MockHandler(target, refId, store) → Proxy
 - `'then'`, `'constructor'`, `__unimock_ref__`, `#` → спецобработка (избегаем thenable, даём доступ к refId).
 - `wrapNested` возвращает `{ wrapped, serialized }` — MockHandler + `{t:'ref', v: refId}`.
 - **Double-wrap guard**: `wrapResult` (method-wrapper.ts) и `wrapNested` (mock-handler.ts) проверяют `__unimock_ref__` на result. Если объект уже обёрнут в MockHandler — переиспользуют существующий refId и не создают новый. Это позволяет вызывать `get()` (или `connection()`) многократно: все возвращают один и тот же MockHandler с одинаковым refId, и записи `call:{refId}:*` не дублируются.
+- **Колбэки через MockHandler в replay НЕ вызываются**: `#replayGet` возвращает callable,
+  consume-ящий запись и возвращающий `deserialize(entry.result)`; `replayCallbacks` есть
+  только в method-wrapper (прототип-обёрнутые методы). Отсюда атомарный replay транзакций:
+  тело колбэка не исполняется, side-эффекты на замыкания не происходят. Практика —
+  уникальная метка call-site в опциях транзакции (см. `examples/transactions.md`,
+  паттерн `{ flow: 'site' }` из family-tree).
 
 ## Обёртка статических методов и replay-реконструкция (1.9.0)
 
@@ -202,6 +208,29 @@ new MockHandler(target, refId, store) → Proxy
 
 `stableHash` — детерминированный MD5-like хеш для аргументов. `makeCallKey(prefix, name, args)` = `prefix + name + ':' + stableHash(args)`.
 
+### Нормализация аргументов в хеше (`makeCallKey`)
+
+Хеш считается по **сырым аргументам до стрипа** (`UNIMOCK_SKIP_PROXY_ARGS=1` влияет только на
+записанное поле `args`, не на ключ). Нормализация:
+
+- `Date` → маркер `'__DATE__'`; функции → `'<callback>'`; ref-зарегистрированные объекты →
+  `'@{refId}'`;
+- ключи-шумы **исключаются из хеша** — `HASH_IGNORED_KEYS` (`src/serializer.ts`):
+  `transaction`, `session_id`, `uuid`, `transaction_id`, `last_stamp`, `creation`;
+- всё остальное — часть хеша: недетерминированные значения (uuid, токены, числовые
+  таймстампы вне `Date`) меняют ключ между record и replay → детерминизм обязан
+  обеспечиваться на стороне приложения в тестах.
+
+### FIFO-семантика реплея (`nextReplayEntry` / `nextStaticReplayEntry`)
+
+`SnapshotStore` хранит ordered-историю `callSeq` alongside last-wins `data.calls`:
+
+- replay consume-ит вхождения ключа по порядку файла (`staticReplayCounters`);
+- **исчерпанный катч НЕ бросает ошибку** — one-time `console.warn` + last-wins
+  (последняя записанная запись); промах (0 записей) → `UnimockReplayMissError`;
+- следствие: расхождение порядка вызовов между record/replay может **молча** подсовывать
+  чужие записанные результаты — дисциплина прогона (1 worker, boot-once) обязательна.
+
 ## Известные ограничения
 
 1. **`@init()` из `@biorate/lifecycled` не проходит через `wrapMethod`**. `@init()` хранит оригинальный PropertyDescriptor в metadata конструктора. `Lifecycled.call()` читает дескриптор из metadata, а не с инстанса. Поэтому `initialize()` в replay-режиме всё равно выполняется (создаёт реальное соединение). Это не ломает replay (get/query идут из снапшота), но требует live-инфраструктуры.
@@ -219,7 +248,9 @@ new MockHandler(target, refId, store) → Proxy
 
 6. **Невызывавшийся в record instance-метод бросает `UnimockReplayMissError` в replay.** Если метод не вызывался на данном инстансе в record-фазе — в replay его вызов промахнётся (by design, семантика replay).
 
-7. **Replay-инстансы реконструируются оригинальным статик-`build` самой модели** — класс модели должен быть импортируем и инициализирован в replay-среде (для Sequelize: связан с инстансом `Sequelize`, иначе `build` упадёт с `ModelNotInitializedError`). Для этого есть публичный хелпер `bindReplaySequelizeModels(...models)` (`src/sequelize.ts`): offline-binding без I/O, no-op вне replay, внутри временно переключает режим в off (wrapped-статики вроде `getTableName` не уходят в replay-lookup). Используется в `tests/e2e/sequelize.spec.ts`; юнит-спеки android (`association-replay`, `aggregate-replay`) биндят безусловно вручную (нужны вне replay тоже).
+7. **Транзакции через MockHandler-соединения реплеятся атомарно, колбэк не вызывается.** Все `.transaction()` без различий в аргументах делят один FIFO-ключ → глобальная очередь на весь прогон; расхождение порядка подсовывает чужие результаты молча (last-wins деградация). Воркараунд — уникальная метка call-site в опциях (`{ flow: 'site' } as never`); чистые альтернативы — в `examples/transactions.md`.
+
+8. **Replay-инстансы реконструируются оригинальным статик-`build` самой модели** — класс модели должен быть импортируем и инициализирован в replay-среде (для Sequelize: связан с инстансом `Sequelize`, иначе `build` упадёт с `ModelNotInitializedError`). Для этого есть публичный хелпер `bindReplaySequelizeModels(...models)` (`src/sequelize.ts`): offline-binding без I/O, no-op вне replay, внутри временно переключает режим в off (wrapped-статики вроде `getTableName` не уходят в replay-lookup). Используется в `tests/e2e/sequelize.spec.ts`; юнит-спеки android (`association-replay`, `aggregate-replay`) биндят безусловно вручную (нужны вне replay тоже).
 
 ## Callback-механизм
 
@@ -290,6 +321,10 @@ curl http://localhost:8123/ping  # → Ok.
 - Контракт зафиксирован тестами: `tests/unit/mode-guards.spec.ts` (4 теста: replay/off не создают файл; replay не меняет существующий байт-в-байт; record happy-path) и `tests/unit/record-session.spec.ts` (5 тестов: чистая сессия, отсутствие межпрогонных дублей, инвариант повторного `setMode`, in-process record→flush→replay, fresh-конструктор).
 
 ## devDependencies для интеграционных тестов
+
+> **Roadmap:** курируемый список кандидатов на улучшение (и отклонённые идеи, которые
+> не надо пере-предлагать) — в README, секция
+> [«Roadmap — improvement candidates»](README.md#roadmap--improvement-candidates).
 
 `package.json`:
 
