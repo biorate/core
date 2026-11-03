@@ -1,6 +1,6 @@
 {
   "name": "@biorate/migrations",
-  "version": "2.2.16",
+  "version": "2.2.17",
   "description": "Migrations tools",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -62,7 +62,7 @@
     "@biorate/kafkajs": "^2.2.4",
     "@biorate/minio": "^2.1.4",
     "@biorate/mongodb": "^2.1.4",
-    "@biorate/proxy": "^2.1.7",
+    "@biorate/proxy": "^2.2.0",
     "@biorate/schema-registry": "^3.1.14",
     "@biorate/sequelize": "^2.3.1",
     "@biorate/tools": "^3.1.3",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/biorate/core/compare/%40biorate%2Fproxy%402.1.7...%40biorate%2Fproxy%402.2.0) (2026-11-03)
+
+### Features
+
+- **proxy:** add livenessOptions to client and config ([aba0528](https://github.com/biorate/core/commit/aba05283e1fecc919d1dcc0bb07033bb83ccb5af))
+
 ## [2.1.7](https://github.com/biorate/core/compare/%40biorate%2Fproxy%402.1.6...%40biorate%2Fproxy%402.1.7) (2026-10-15)
 
 ### Bug Fixes
