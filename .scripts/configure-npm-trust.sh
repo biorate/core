@@ -22,6 +22,9 @@
 #   bash .scripts/configure-npm-trust.sh             # реальный прогон (2FA на первом пакете)
 #   VERIFY=1 bash .scripts/configure-npm-trust.sh    # проверка после прогона: OK: 55/55
 #
+# Если в npm нет активной сессии, скрипт сам запускает интерактивный
+# 'npm login' и продолжает после успешной авторизации.
+#
 # Переменные окружения:
 #   NPM_TRUST_REPO (по умолчанию biorate/core)
 #   NPM_TRUST_WORKFLOW_FILE (по умолчанию publish.yml)
@@ -68,9 +71,12 @@ preflight() {
 
   # Только после всех локальных проверок — сетевой вызов.
   if ! npm whoami; then
-    echo "ERROR: not authenticated to the npm registry." >&2
-    echo "Hint: run 'npm login', then re-run this script." >&2
-    exit 1
+    echo "WARN: not authenticated to the npm registry, launching interactive 'npm login'..." >&2
+    npm login
+    if ! npm whoami; then
+      echo "ERROR: still not authenticated after 'npm login'." >&2
+      exit 1
+    fi
   fi
 }
 
