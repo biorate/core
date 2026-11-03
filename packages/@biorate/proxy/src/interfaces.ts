@@ -1,4 +1,5 @@
 import { IConnectorConfig, IConnector } from '@biorate/connector';
+import { IAxiosFetchOptions } from '@biorate/axios';
 import {
   ServerOpts,
   ListenOptions,
@@ -10,6 +11,7 @@ import { ProxyConnection } from './connection';
 /** @description Proxy client connection options. */
 export type IClientOption = {
   liveness?: string;
+  livenessOptions?: IAxiosFetchOptions;
   address: TcpSocketConnectOpts;
   options?: SocketConstructorOpts;
 };
@@ -22,6 +24,8 @@ export interface IProxyConfig extends IConnectorConfig {
   retry?: number;
   timeout?: number;
   checkInterval?: number;
+  /** @description Default liveness options for all clients (overridden per-client via {@link IClientOption.livenessOptions}). */
+  livenessOptions?: IAxiosFetchOptions;
   server: {
     options?: ServerOpts;
     address: ListenOptions;

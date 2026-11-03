@@ -106,6 +106,7 @@ interface IProxyConfig extends IConnectorConfig {
   retry?: number; // max retries for client selection (default 10)
   timeout?: number; // ms between selection attempts (default 1000)
   checkInterval?: number; // ms between health checks (< 0 = disabled)
+  livenessOptions?: IAxiosFetchOptions; // default axios options for liveness probes (e.g. { timeout: 2000 })
   server: {
     options?: ServerOpts;
     address: ListenOptions; // { host, port } or { path: '/tmp/sock' }
@@ -115,9 +116,29 @@ interface IProxyConfig extends IConnectorConfig {
 
 interface IClientOption {
   liveness?: string; // HTTP URL for health check
+  livenessOptions?: IAxiosFetchOptions; // per-client axios options for the health probe (overrides livenessOptions)
   address: TcpSocketConnectOpts;
   options?: SocketConstructorOpts;
 }
+```
+
+The `livenessOptions` accept any [axios request config](https://axios-http.com/docs/req_config) and are merged over the default `Ping` timeout of `15s` (client-level options override config-level ones):
+
+```ts
+Proxy: [
+  {
+    name: 'connection',
+    livenessOptions: { timeout: 2000 }, // applies to every client below
+    server: { address: { host: 'localhost', port: serverPort } },
+    clients: [
+      {
+        liveness: `http://localhost:${httpPort}`,
+        livenessOptions: { timeout: 500 }, // overrides the config default for this client
+        address: { host: 'localhost', port: clientPort },
+      },
+    ],
+  },
+],
 ```
 
 Additional `ProxyStats` config:

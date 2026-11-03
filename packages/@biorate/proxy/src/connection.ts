@@ -65,8 +65,10 @@ export class ProxyConnection {
       for (const client of this.config.clients) {
         let status: number;
         try {
-          if (client.liveness) ({ status } = await Ping.fetch(client.liveness));
-          else status = 200;
+          if (client.liveness) {
+            const options = { ...this.config.livenessOptions, ...client.livenessOptions };
+            ({ status } = await Ping.fetch(client.liveness, options));
+          } else status = 200;
         } catch {
           continue;
         }
