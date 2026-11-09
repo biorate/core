@@ -8,6 +8,7 @@ import {
   HttpException,
   HttpStatus,
   BadRequestException,
+  ContextType,
 } from '@nestjs/common';
 import { AxiosRequestError, UnsupportedProtocolError } from '../errors';
 
@@ -24,52 +25,58 @@ import { AxiosRequestError, UnsupportedProtocolError } from '../errors';
  */
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
+  protected type: ContextType;
+
+  protected exception: Error;
+
+  protected host: ArgumentsHost;
+
   public catch(exception: Error, host: ArgumentsHost) {
-    const type = host.getType();
-    const method = <`_${typeof type}`>`_${type}`;
-    if (!this[method]) throw new UnsupportedProtocolError(host.getType());
-    this[method](exception, host);
+    this.type = host.getType();
+    this.exception = exception;
+    this.host = host;
+    const method = <`_${typeof this.type}`>`_${this.type}`;
+    if (!this[method]) throw new UnsupportedProtocolError(this.type);
+    this[method]();
   }
 
-  private _http(exception: Error, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
+  private _http() {
+    const ctx = this.host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
-    const meta = (exception as BaseError)?.meta;
+    const meta = (this.exception as BaseError)?.meta;
     const status =
-      exception instanceof HttpException
-        ? exception.getStatus()
+      this.exception instanceof HttpException
+        ? this.exception.getStatus()
         : meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
-    this.log(exception);
-    response.status(status).json({
-      status,
-      code: this.code(exception),
-      hint: this.hint(exception),
-      path: request.url,
-      meta: meta?.meta,
-    });
-  }
-
-  private _ws(exception: Error, host: ArgumentsHost) {
-    const ctx = host.switchToWs();
-    const socket = ctx.getClient<WebSocket>();
-    const meta = (exception as BaseError)?.meta;
-    const status = meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
-    this.log(exception);
-    socket.send(
-      JSON.stringify({
-        event: 'error',
-        data: {
-          status,
-          code: this.code(exception),
-          hint: this.hint(exception),
-          meta: meta?.meta,
-        },
+    this.log(this.exception);
+    response.status(status).json(
+      this.format({
+        status,
+        path: request.url,
+        meta: meta?.meta,
       }),
     );
   }
 
-  private _rpc(exception: Error, host: ArgumentsHost) {
+  private _ws() {
+    const ctx = this.host.switchToWs();
+    const socket = ctx.getClient<WebSocket>();
+    const meta = (this.exception as BaseError)?.meta;
+    const status = meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
+    this.log(this.exception);
+    socket.send(
+      JSON.stringify({
+        event: 'error',
+        data: this.format({
+          status,
+          meta: meta?.meta,
+        }),
+      }),
+    );
+  }
+
+  private _rpc() {
     throw new UnsupportedProtocolError('rpc');
   }
 
@@ -85,6 +92,14 @@ export class AllExceptionsFilter implements ExceptionFilter {
         }
       )?.message ?? (<BaseError>exception).message
     );
+  }
+
+  protected format(data: Record<string, unknown>) {
+    return {
+      code: this.code(this.exception),
+      hint: this.hint(this.exception),
+      ...data,
+    };
   }
 
   protected log(exception: Error) {
