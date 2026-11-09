@@ -44,11 +44,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const ctx = this.host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
-    const meta = (this.exception as BaseError)?.meta;
-    const status =
-      this.exception instanceof HttpException
-        ? this.exception.getStatus()
-        : meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
+    const meta = (<BaseError>this.exception)?.meta;
+    const status = this.httpStatus;
     this.log(this.exception);
     response.status(status).json(
       this.format({
@@ -62,14 +59,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
   private _ws() {
     const ctx = this.host.switchToWs();
     const socket = ctx.getClient<WebSocket>();
-    const meta = (this.exception as BaseError)?.meta;
-    const status = meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
+    const meta = (<BaseError>this.exception)?.meta;
     this.log(this.exception);
     socket.send(
       JSON.stringify({
         event: 'error',
         data: this.format({
-          status,
+          status: this.wsStatus,
           meta: meta?.meta,
         }),
       }),
@@ -92,6 +88,16 @@ export class AllExceptionsFilter implements ExceptionFilter {
         }
       )?.message ?? (<BaseError>exception).message
     );
+  }
+
+  protected get httpStatus() {
+    return this.exception instanceof HttpException
+      ? this.exception.getStatus()
+      : (<BaseError>this.exception)?.meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
+  }
+
+  protected get wsStatus() {
+    return (<BaseError>this.exception)?.meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
   }
 
   protected format(data: Record<string, unknown>) {
