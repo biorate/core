@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/biorate/core/compare/%40biorate%2Fnestjs-tools%402.5.2...%40biorate%2Fnestjs-tools%402.6.0) (2026-11-09)
+
+### Features
+
+- **nestjs-tools:** all-exceptions-filter format method added ([2b6e9b2](https://github.com/biorate/core/commit/2b6e9b2405417b4bc5dcc852784d6ba4bb838472))
+
 ## [2.5.2](https://github.com/biorate/core/compare/%40biorate%2Fnestjs-tools%402.5.1...%40biorate%2Fnestjs-tools%402.5.2) (2026-10-15)
 
 ### Bug Fixes
