@@ -100,7 +100,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     return (<BaseError>this.exception)?.meta?.status ?? HttpStatus.INTERNAL_SERVER_ERROR;
   }
 
-  protected format(data: Record<string, unknown>) {
+  protected format(data: Record<string, unknown>): Record<string, unknown> {
     return {
       code: this.code(this.exception),
       hint: this.hint(this.exception),
