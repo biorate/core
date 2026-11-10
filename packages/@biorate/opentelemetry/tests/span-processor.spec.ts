@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {
-  BasicTracerProvider,
+  TracerProvider,
   BatchSpanProcessor,
   SimpleSpanProcessor,
-} from '@opentelemetry/sdk-trace-base';
+} from '@opentelemetry/sdk-trace';
 import {
   CARD,
   CARD_MASKED,
@@ -51,7 +51,7 @@ describe('@biorate/opentelemetry / data-masking-processor', () => {
 
     it('should accept non-primitive attribute objects without casts (consumer scenario)', () => {
       const result = truncateAttributes(
-        <never>{ num: 1, obj: { a: 1 }, long: 'x'.repeat(30) },
+        { num: 1, obj: { a: 1 }, long: 'x'.repeat(30) },
         10,
       );
       expect(result.num).toBe(1);
@@ -61,7 +61,7 @@ describe('@biorate/opentelemetry / data-masking-processor', () => {
 
     it('should not touch non-string attributes', () => {
       const attributes = { num: 42, obj: { a: 1 }, long: 'x'.repeat(3000) };
-      const result = truncateAttributes(<never>attributes);
+      const result = truncateAttributes(attributes);
       expect(result.num).toBe(42);
       expect(result.obj).toEqual({ a: 1 });
       expect(result.long).toHaveLength(2048);
@@ -121,8 +121,8 @@ describe('@biorate/opentelemetry / data-masking-processor', () => {
     });
 
     it('SimpleSpanProcessor mode should export synchronously after span.end()', () => {
-      const provider = new BasicTracerProvider({
-        spanProcessors: [new DataMaskingProcessor(new SimpleSpanProcessor(exporter))],
+      const provider = new TracerProvider({
+        spanProcessors: [new DataMaskingProcessor(new SimpleSpanProcessor({ exporter }))],
       });
       const tracer = provider.getTracer('test');
       const span = tracer.startSpan('simple-mode');
@@ -135,8 +135,8 @@ describe('@biorate/opentelemetry / data-masking-processor', () => {
     });
 
     it('BatchSpanProcessor mode should export only after forceFlush', async () => {
-      const processor = new DataMaskingProcessor(new BatchSpanProcessor(exporter));
-      const provider = new BasicTracerProvider({ spanProcessors: [processor] });
+      const processor = new DataMaskingProcessor(new BatchSpanProcessor({ exporter }));
+      const provider = new TracerProvider({ spanProcessors: [processor] });
       const tracer = provider.getTracer('test');
       const span = tracer.startSpan('batch-mode');
       span.setAttribute('card', CARD);

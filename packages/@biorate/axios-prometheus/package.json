@@ -52,15 +52,16 @@
     "@biorate/axios": "workspace:*",
     "@biorate/config": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "@biorate/opentelemetry": "workspace:*",
     "@biorate/prometheus": "workspace:*",
     "@biorate/tools": "workspace:*",
     "json-stringify-safe": "5.0.1"
   },
   "devDependencies": {
-    "@opentelemetry/api": "1.9.0",
-    "@opentelemetry/sdk-trace-base": "2.6.0",
+    "@biorate/opentelemetry": "workspace:*",
     "@types/json-stringify-safe": "5.0.3",
     "nock": "14.0.10"
+  },
+  "peerDependencies": {
+    "@biorate/opentelemetry": ">=2.4.0"
   }
 }

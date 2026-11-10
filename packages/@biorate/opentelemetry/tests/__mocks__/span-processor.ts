@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { ReadableSpan, SpanExporter } from '@opentelemetry/sdk-trace-base';
+import { ReadableSpan, SpanExporter } from '@opentelemetry/sdk-trace';
 import { Masquerade, CardMask, PhoneMask, EmailMask } from '@biorate/masquerade';
 
 export const CARD = '4500-5435-3213-2323';

@@ -15,9 +15,8 @@ import {
   resetTracingConfig,
 } from './__mocks__/tracing-interceptor';
 
-// Suppress @biorate/opentelemetry side effect (NodeSDK.start with gRPC exporter):
-// replace the module with a clean re-export of @opentelemetry/api.
-vi.mock('@biorate/opentelemetry', async () => await import('@opentelemetry/api'));
+// NodeSDK.start() is neutralized via OTEL_SDK_DISABLED=true (see "test" script);
+// the real module exports (api re-exports + sdk classes) are used directly.
 
 const tracer = provider.getTracer('test');
 

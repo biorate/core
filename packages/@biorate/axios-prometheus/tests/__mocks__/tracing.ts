@@ -1,9 +1,9 @@
 import {
-  BasicTracerProvider,
+  TracerProvider,
   InMemorySpanExporter,
   SimpleSpanProcessor,
-} from '@opentelemetry/sdk-trace-base';
-import { trace } from '@opentelemetry/api';
+} from '@biorate/opentelemetry';
+import { trace } from '@biorate/opentelemetry';
 import { container, Types } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import { AxiosPrometheus } from '../../src';
@@ -12,8 +12,8 @@ export const exporter = new InMemorySpanExporter();
 
 export const URL = 'https://google.com';
 
-const provider = new BasicTracerProvider({
-  spanProcessors: [new SimpleSpanProcessor(exporter)],
+const provider = new TracerProvider({
+  spanProcessors: [new SimpleSpanProcessor({ exporter })],
 });
 
 export function enableInMemoryTracing() {

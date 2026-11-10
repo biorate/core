@@ -1,4 +1,4 @@
-import { SpanProcessor, Span, ReadableSpan } from '@opentelemetry/sdk-trace-base';
+import { SpanProcessor, Span, ReadableSpan } from '@opentelemetry/sdk-trace';
 import { Context } from '@opentelemetry/api';
 import { Masquerade } from '@biorate/masquerade';
 import { deepJsonParse, truncateAttributes } from './utils';

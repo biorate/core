@@ -14,7 +14,26 @@ import {
 if (!process.env.METADATA_SERVER_DETECTION)
   process.env.METADATA_SERVER_DETECTION = 'none';
 
-export * from '@opentelemetry/api';
+export * from '@opentelemetry/sdk-trace';
+// Re-export the api `Span` interface explicitly: consumers must see the
+// interface (tracer.startActiveSpan returns it), not the sdk-trace class.
+export type { Span } from '@opentelemetry/api';
+export {
+  context,
+  diag,
+  metrics,
+  propagation,
+  trace,
+  SpanStatusCode,
+  SpanKind,
+  type Context,
+  type SpanOptions,
+  type Attributes,
+  type AttributeValue,
+  type Tracer,
+  type TextMapPropagator,
+  type Exception,
+} from '@opentelemetry/api';
 export * from './decorators';
 /**
  * @description
@@ -61,7 +80,7 @@ export const sdk = new NodeSDK({
       ),
     ),
   ],
-  metricReader: getMetricReader(),
+  metricReaders: [getMetricReader()].filter((r): r is NonNullable<typeof r> => r != null),
   resourceDetectors,
 });
 

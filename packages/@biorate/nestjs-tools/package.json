@@ -30,7 +30,7 @@
     "lint": "eslint src --ext .ts",
     "format:fix": "prettier --write src",
     "lint:fix": "eslint src --ext .ts --fix",
-    "test": "npx vitest run --coverage",
+    "test": "OTEL_SDK_DISABLED=true npx vitest run --coverage",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {
@@ -47,6 +47,7 @@
   "license": "MIT",
   "gitHead": "daa33b049c366a21030eb5cfae0fe3148f60693a",
   "peerDependencies": {
+    "@biorate/opentelemetry": ">=2.4.0",
     "@nestjs/common": ">=10.4.15",
     "@nestjs/core": ">=10.4.15",
     "@nestjs/swagger": ">=8.1.0",
@@ -63,17 +64,15 @@
     "@biorate/config": "workspace:*",
     "@biorate/errors": "workspace:*",
     "@biorate/inversion": "workspace:*",
-    "@biorate/opentelemetry": "workspace:*",
     "@biorate/prometheus": "workspace:*",
     "@biorate/tools": "workspace:*",
     "http-proxy": "1.18.1",
-    "http-proxy-middleware": "2.0.6",
+    "http-proxy-middleware": "2.0.10",
     "json-stringify-safe": "5.0.1",
-    "on-headers": "1.0.2"
+    "on-headers": "1.1.0"
   },
   "devDependencies": {
-    "@opentelemetry/api": "1.9.0",
-    "@opentelemetry/sdk-trace-base": "2.6.0",
+    "@biorate/opentelemetry": "workspace:*",
     "@types/json-stringify-safe": "5.0.3"
   }
 }

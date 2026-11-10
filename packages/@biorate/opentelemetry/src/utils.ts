@@ -21,12 +21,12 @@ import {
 } from '@opentelemetry/sdk-metrics';
 import {
   BatchSpanProcessor,
-  BufferConfig,
+  BatchSpanProcessorOptions,
   ConsoleSpanExporter,
   SimpleSpanProcessor,
   SpanExporter,
   SpanProcessor,
-} from '@opentelemetry/sdk-trace-base';
+} from '@opentelemetry/sdk-trace';
 import { OTELMetricsExporterError } from './errors';
 
 const SEP = '/';
@@ -134,7 +134,7 @@ const intFromEnv = (name: string, fallback: number): number => {
   return Number.isNaN(value) ? fallback : value;
 };
 
-export const bspConfig: BufferConfig = {
+export const bspConfig: Omit<BatchSpanProcessorOptions, 'exporter'> = {
   scheduledDelayMillis: intFromEnv('OTEL_BSP_SCHEDULE_DELAY', 5000),
   maxQueueSize: intFromEnv('OTEL_BSP_MAX_QUEUE_SIZE', 2048),
   maxExportBatchSize: intFromEnv('OTEL_BSP_MAX_EXPORT_BATCH_SIZE', 512),
@@ -187,8 +187,8 @@ export const spanProcessorFactories: Record<
   SpanProcessorMode,
   (e: SpanExporter) => SpanProcessor
 > = {
-  batch: (e) => new BatchSpanProcessor(e, bspConfig),
-  simple: (e) => new SimpleSpanProcessor(e),
+  batch: (e) => new BatchSpanProcessor({ ...bspConfig, exporter: e }),
+  simple: (e) => new SimpleSpanProcessor({ exporter: e }),
   // console mode ignores the OTLP exporter and prints spans to stdout (debug).
-  console: () => new SimpleSpanProcessor(new ConsoleSpanExporter()),
+  console: () => new SimpleSpanProcessor({ exporter: new ConsoleSpanExporter() }),
 };

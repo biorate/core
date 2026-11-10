@@ -1,8 +1,8 @@
 import {
-  BasicTracerProvider,
+  TracerProvider,
   InMemorySpanExporter,
   SimpleSpanProcessor,
-} from '@opentelemetry/sdk-trace-base';
+} from '@biorate/opentelemetry';
 import { Config } from '@biorate/config';
 import type { IConfig } from '@biorate/config';
 import { container, Types } from '@biorate/inversion';
@@ -41,8 +41,8 @@ export function resetTracingConfig() {
 
 export const exporter = new InMemorySpanExporter();
 
-export const provider = new BasicTracerProvider({
-  spanProcessors: [new SimpleSpanProcessor(exporter)],
+export const provider = new TracerProvider({
+  spanProcessors: [new SimpleSpanProcessor({ exporter })],
 });
 
 export const makeContext = (type: string, url = '/test') => <ExecutionContext>(<unknown>{

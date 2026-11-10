@@ -1,16 +1,16 @@
 import {
-  BasicTracerProvider,
+  TracerProvider,
   InMemorySpanExporter,
   SimpleSpanProcessor,
-} from '@opentelemetry/sdk-trace-base';
+} from '@opentelemetry/sdk-trace';
 import { trace } from '@opentelemetry/api';
 import { setTimeout } from 'timers/promises';
 import { scope, span } from '../../src/decorators';
 
 export const exporter = new InMemorySpanExporter();
 
-const provider = new BasicTracerProvider({
-  spanProcessors: [new SimpleSpanProcessor(exporter)],
+const provider = new TracerProvider({
+  spanProcessors: [new SimpleSpanProcessor({ exporter })],
 });
 
 trace.setGlobalTracerProvider(provider);
