@@ -180,11 +180,11 @@ importers:
         specifier: 7.8.2
         version: 7.8.2
       sequelize:
-        specifier: 6.37.3
-        version: 6.37.3
+        specifier: 6.37.8
+        version: 6.37.8(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.8)
       sinon:
         specifier: 21.0.1
         version: 21.0.1
@@ -1495,7 +1495,7 @@ importers:
         version: 6.37.8(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.8(sqlite3@5.0.7(encoding@0.1.13)))
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.8)
     devDependencies:
       sqlite3:
         specifier: 5.0.7
@@ -9732,39 +9732,6 @@ packages:
       '@types/validator': '*'
       reflect-metadata: '*'
       sequelize: '>=6.20.1'
-
-  sequelize@6.37.3:
-    resolution: {integrity: sha512-V2FTqYpdZjPy3VQrZvjTPnOoLm0KudCRXfGWp48QwhyPPp2yW8z0p0sCYZd/em847Tl2dVxJJ1DR+hF+O77T7A==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      ibm_db: '*'
-      mariadb: '*'
-      mysql2: '*'
-      oracledb: '*'
-      pg: '*'
-      pg-hstore: '*'
-      snowflake-sdk: '*'
-      sqlite3: '*'
-      tedious: '*'
-    peerDependenciesMeta:
-      ibm_db:
-        optional: true
-      mariadb:
-        optional: true
-      mysql2:
-        optional: true
-      oracledb:
-        optional: true
-      pg:
-        optional: true
-      pg-hstore:
-        optional: true
-      snowflake-sdk:
-        optional: true
-      sqlite3:
-        optional: true
-      tedious:
-        optional: true
 
   sequelize@6.37.8:
     resolution: {integrity: sha512-HJ0IQFqcTsTiqbEgiuioYFMSD00TP6Cz7zoTti+zVVBwVe9fEhev9cH6WnM3XU31+ABS356durAb99ZuOthnKw==}
@@ -20740,42 +20707,13 @@ snapshots:
 
   sequelize-pool@7.1.0: {}
 
-  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3):
-    dependencies:
-      '@types/node': 24.10.12
-      '@types/validator': 13.15.10
-      glob: 7.2.0
-      reflect-metadata: 0.2.2
-      sequelize: 6.37.3
-
-  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.8(sqlite3@5.0.7(encoding@0.1.13))):
+  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.8):
     dependencies:
       '@types/node': 24.10.12
       '@types/validator': 13.15.10
       glob: 7.2.0
       reflect-metadata: 0.2.2
       sequelize: 6.37.8(sqlite3@5.0.7(encoding@0.1.13))
-
-  sequelize@6.37.3:
-    dependencies:
-      '@types/debug': 4.1.13
-      '@types/validator': 13.15.10
-      debug: 4.4.3(supports-color@8.1.1)
-      dottie: 2.0.7
-      inflection: 1.13.4
-      lodash: 4.18.1
-      moment: 2.31.0
-      moment-timezone: 0.5.48
-      pg-connection-string: 2.14.1
-      retry-as-promised: 7.1.1
-      semver: 7.8.5
-      sequelize-pool: 7.1.0
-      toposort-class: 1.0.1
-      uuid: 8.3.2
-      validator: 13.15.35
-      wkx: 0.5.0
-    transitivePeerDependencies:
-      - supports-color
 
   sequelize@6.37.8(sqlite3@5.0.7(encoding@0.1.13)):
     dependencies:
