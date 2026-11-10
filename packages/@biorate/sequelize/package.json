@@ -50,7 +50,7 @@
   "license": "MIT",
   "gitHead": "fdd6dbd61368f7a9f9deb3b72243b19ecb3767a6",
   "peerDependencies": {
-    "sequelize": "6.37.3",
+    "sequelize": "6.37.8",
     "sequelize-typescript": "2.1.6"
   },
   "dependencies": {

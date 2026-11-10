@@ -181,7 +181,7 @@ importers:
         version: 7.8.2
       sequelize:
         specifier: 6.37.3
-        version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
+        version: 6.37.3
       sequelize-typescript:
         specifier: 2.1.6
         version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
@@ -1491,11 +1491,11 @@ importers:
         specifier: workspace:*
         version: link:../inversion
       sequelize:
-        specifier: 6.37.3
-        version: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
+        specifier: 6.37.8
+        version: 6.37.8(sqlite3@5.0.7(encoding@0.1.13))
       sequelize-typescript:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.3)
+        version: 2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.8(sqlite3@5.0.7(encoding@0.1.13)))
     devDependencies:
       sqlite3:
         specifier: 5.0.7
@@ -9766,6 +9766,39 @@ packages:
       tedious:
         optional: true
 
+  sequelize@6.37.8:
+    resolution: {integrity: sha512-HJ0IQFqcTsTiqbEgiuioYFMSD00TP6Cz7zoTti+zVVBwVe9fEhev9cH6WnM3XU31+ABS356durAb99ZuOthnKw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      ibm_db: '*'
+      mariadb: '*'
+      mysql2: '*'
+      oracledb: '*'
+      pg: '*'
+      pg-hstore: '*'
+      snowflake-sdk: '*'
+      sqlite3: '*'
+      tedious: '*'
+    peerDependenciesMeta:
+      ibm_db:
+        optional: true
+      mariadb:
+        optional: true
+      mysql2:
+        optional: true
+      oracledb:
+        optional: true
+      pg:
+        optional: true
+      pg-hstore:
+        optional: true
+      snowflake-sdk:
+        optional: true
+      sqlite3:
+        optional: true
+      tedious:
+        optional: true
+
   serialize-javascript@5.0.1:
     resolution: {integrity: sha512-SaaNal9imEO737H2c05Og0/8LUXG7EnsZyMa8MzkmuHoELfT6txuj0cMqRj6zfPKnmQ1yasR4PCJc8x+M4JSPA==}
 
@@ -12563,7 +12596,7 @@ snapshots:
       proggy: 3.0.0
       promise-all-reject-late: 1.0.1
       promise-call-limit: 3.0.2
-      semver: 7.7.2
+      semver: 7.8.5
       ssri: 12.0.0
       treeverse: 3.0.0
       walk-up-path: 4.0.0
@@ -12578,11 +12611,11 @@ snapshots:
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.5
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.5
 
   '@npmcli/git@6.0.3':
     dependencies:
@@ -12592,7 +12625,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.2
+      semver: 7.8.5
       which: 5.0.0
 
   '@npmcli/git@7.0.2':
@@ -12603,7 +12636,7 @@ snapshots:
       lru-cache: 11.5.3
       npm-pick-manifest: 11.0.3
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.5
       which: 6.0.1
 
   '@npmcli/installed-package-contents@3.0.0':
@@ -12629,7 +12662,7 @@ snapshots:
       json-parse-even-better-errors: 5.0.0
       pacote: 21.5.1
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
 
@@ -12654,7 +12687,7 @@ snapshots:
       hosted-git-info: 9.0.3
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.5
       validate-npm-package-license: 3.0.4
 
   '@npmcli/promise-spawn@8.0.3':
@@ -12695,7 +12728,7 @@ snapshots:
       ejs: 5.0.1
       minimatch: 10.2.5
       nx: 23.3.0
-      semver: 7.7.2
+      semver: 7.8.5
       tslib: 2.8.1
       yargs-parser: 21.1.1
 
@@ -17304,7 +17337,7 @@ snapshots:
       npm-package-arg: 13.0.1
       promzard: 2.0.0
       read: 4.1.0
-      semver: 7.7.2
+      semver: 7.8.5
       validate-npm-package-license: 3.0.4
       validate-npm-package-name: 6.0.2
 
@@ -18154,7 +18187,7 @@ snapshots:
       npm-package-arg: 13.0.1
       npm-registry-fetch: 19.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.5
       sigstore: 4.1.1
       ssri: 12.0.0
     transitivePeerDependencies:
@@ -18871,7 +18904,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.5
       tar: 7.5.22
       tinyglobby: 0.2.12
       undici: 6.29.0
@@ -18955,11 +18988,11 @@ snapshots:
 
   npm-install-checks@7.1.2:
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.5
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.5
 
   npm-normalize-package-bin@4.0.0: {}
 
@@ -18969,14 +19002,14 @@ snapshots:
     dependencies:
       hosted-git-info: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.5
       validate-npm-package-name: 6.0.2
 
   npm-package-arg@13.0.1:
     dependencies:
       hosted-git-info: 9.0.3
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.5
       validate-npm-package-name: 6.0.2
 
   npm-packlist@10.0.3:
@@ -18989,14 +19022,14 @@ snapshots:
       npm-install-checks: 7.1.2
       npm-normalize-package-bin: 4.0.0
       npm-package-arg: 12.0.2
-      semver: 7.7.2
+      semver: 7.8.5
 
   npm-pick-manifest@11.0.3:
     dependencies:
       npm-install-checks: 8.0.0
       npm-normalize-package-bin: 5.0.0
       npm-package-arg: 13.0.1
-      semver: 7.7.2
+      semver: 7.8.5
 
   npm-registry-fetch@19.1.0:
     dependencies:
@@ -20713,9 +20746,38 @@ snapshots:
       '@types/validator': 13.15.10
       glob: 7.2.0
       reflect-metadata: 0.2.2
-      sequelize: 6.37.3(sqlite3@5.0.7(encoding@0.1.13))
+      sequelize: 6.37.3
 
-  sequelize@6.37.3(sqlite3@5.0.7(encoding@0.1.13)):
+  sequelize-typescript@2.1.6(@types/node@24.10.12)(@types/validator@13.15.10)(reflect-metadata@0.2.2)(sequelize@6.37.8(sqlite3@5.0.7(encoding@0.1.13))):
+    dependencies:
+      '@types/node': 24.10.12
+      '@types/validator': 13.15.10
+      glob: 7.2.0
+      reflect-metadata: 0.2.2
+      sequelize: 6.37.8(sqlite3@5.0.7(encoding@0.1.13))
+
+  sequelize@6.37.3:
+    dependencies:
+      '@types/debug': 4.1.13
+      '@types/validator': 13.15.10
+      debug: 4.4.3(supports-color@8.1.1)
+      dottie: 2.0.7
+      inflection: 1.13.4
+      lodash: 4.18.1
+      moment: 2.31.0
+      moment-timezone: 0.5.48
+      pg-connection-string: 2.14.1
+      retry-as-promised: 7.1.1
+      semver: 7.8.5
+      sequelize-pool: 7.1.0
+      toposort-class: 1.0.1
+      uuid: 8.3.2
+      validator: 13.15.35
+      wkx: 0.5.0
+    transitivePeerDependencies:
+      - supports-color
+
+  sequelize@6.37.8(sqlite3@5.0.7(encoding@0.1.13)):
     dependencies:
       '@types/debug': 4.1.13
       '@types/validator': 13.15.10
@@ -22347,7 +22409,7 @@ snapshots:
 
   wkx@0.5.0:
     dependencies:
-      '@types/node': 24.10.12
+      '@types/node': 16.18.126
 
   word-wrap@1.2.5: {}
 
