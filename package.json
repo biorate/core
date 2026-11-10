@@ -21,7 +21,8 @@
     "cleanup:node_modules": "npx cleanup '**/node_modules'",
     "cleanup:all": "pnpm run cleanup:node_modules './packages/**/{dist,.nyc_output,coverage,allure-results}'",
     "import-test:cjs": "pnpm --filter @biorate-tools/import-test run test:cjs",
-    "import-test:esm": "pnpm --filter @biorate-tools/import-test run test:esm"
+    "import-test:esm": "pnpm --filter @biorate-tools/import-test run test:esm",
+    "prepare": "husky"
   },
   "engines": {
     "pnpm": ">=10",
@@ -39,6 +40,8 @@
   },
   "devDependencies": {
     "@biorate/cleanup": "1.169.1",
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@nestjs/common": "10.4.16",
     "@nestjs/core": "10.4.16",
@@ -72,10 +75,12 @@
     "file-loader": "6.2.0",
     "http-proxy": "1.18.1",
     "http-proxy-middleware": "2.0.6",
+    "husky": "9.1.7",
     "jest-resolve": "27.4.6",
     "lerna": "10.0.1",
     "less": "4.1.1",
     "less-loader": "9.0.0",
+    "lint-staged": "17.6.0",
     "lodash-es": "4.18.1",
     "mini-css-extract-plugin": "1.6.0",
     "minimist": "1.2.8",
@@ -117,5 +122,18 @@
     "webpack-dev-server": "5.2.3",
     "webpack-merge": "5.7.3",
     "ws": "8.18.0"
+  },
+  "lint-staged": {
+    "*.{ts,js,mjs,cjs,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,less,scss}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
