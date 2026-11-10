@@ -950,7 +950,7 @@ importers:
         specifier: ^3.1.14
         version: link:../schema-registry
       '@biorate/sequelize':
-        specifier: ^2.3.1
+        specifier: ^2.3.2
         version: link:../sequelize
       '@biorate/tools':
         specifier: ^3.1.3
@@ -1533,7 +1533,7 @@ importers:
         specifier: ^3.2.4
         version: link:../lifecycled
       '@biorate/sequelize':
-        specifier: ^2.3.1
+        specifier: ^2.3.2
         version: link:../sequelize
       lodash-es:
         specifier: '>=4.18.1'
