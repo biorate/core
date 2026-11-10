@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/biorate/core/compare/%40biorate%2Faxios-prometheus%402.4.1...%40biorate%2Faxios-prometheus%402.5.0) (2026-11-10)
+
+### Features
+
+- vulnerabilities fix ([5575f2e](https://github.com/biorate/core/commit/5575f2eb7329e574e7ace4e983f8992602cf216d))
+
 ## [2.4.1](https://github.com/biorate/core/compare/%40biorate%2Faxios-prometheus%402.4.0...%40biorate%2Faxios-prometheus%402.4.1) (2026-10-15)
 
 ### Bug Fixes
