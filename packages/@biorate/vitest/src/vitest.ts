@@ -490,7 +490,8 @@ export class Vitest {
     if (!allureMethods) return;
 
     for (const [methodName, params] of Object.entries(allureMethods)) {
-      const allureFn = (allure as any)[methodName];
+      // The @id decorator stores 'id', but allure-js-commons exports it as 'allureId'
+      const allureFn = (allure as any)[methodName === 'id' ? 'allureId' : methodName];
       if (!allureFn) continue;
 
       const paramSets = Array.isArray(params[0]) ? params : [params];
