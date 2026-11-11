@@ -22,6 +22,13 @@ const resolve = (
   ].find((_) => _ && fs.existsSync(_));
 };
 
+/**
+ * @description Resolves the effective `RunnerConfig`: computes the templates
+ * directory (honouring `templatesOverride`, `HYGEN_TMPLS`, the default
+ * `_templates` folder and `templates`) and merges any nearest `.hygen.js`.
+ * @param config - The user-supplied runner configuration.
+ * @returns A fully resolved runner configuration ready for the engine.
+ * */
 export default async (config: RunnerConfig): Promise<RunnerConfig> => {
   const { cwd, templates: defaultTemplates, templatesOverride } = config;
 

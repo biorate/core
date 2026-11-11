@@ -1,22 +1,24 @@
 import fs from 'fs-extra';
 import type { ActionResult, RunnerConfig } from './types';
 import params from './params';
-import { ShowHelpError, TemplateNotFoundError } from './errors';
+import { ShowHelpError } from './errors';
+import { isHelpFlag, printUsage } from './cli-help';
 
+/**
+ * @description The validation + render&rarr;execute pipeline. Parses arguments,
+ * validates that a generator/action and its folder exist (throwing
+ * `ShowHelpError` when they do not), then renders and executes the actions.
+ * @param argv - The CLI-style arguments.
+ * @param config - The resolved runner configuration.
+ * @returns The executed operation outcomes.
+ * */
 const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResult[]> => {
   const { cwd, templates, logger } = config;
   const args = Object.assign(await params(config, argv), { cwd });
   const { generator, action, actionfolder } = args;
 
-  if (['-h', '--help'].includes(argv[0])) {
-    logger.log(`
-Usage:
-  hygen [option] GENERATOR ACTION [--name NAME] [data-options]
-
-Options:
-  -h, --help # Show this message and quit
-  --dry      # Perform a dry run.  Files will be generated but not saved.`);
-    process.exit(0);
+  if (isHelpFlag(argv)) {
+    printUsage(logger);
   }
 
   logger.log(args.dry ? '(dry mode)' : '');
@@ -42,10 +44,9 @@ Options:
 
   // lazy loading these dependencies gives a better feel once
   // a user is exploring hygen (not specifying what to execute)
-  const execute = (await import('./execute')).default;
-  const render = (await import('./render')).default;
+  const execute = (await import('./execute')).execute;
+  const render = (await import('./render')).render;
   return execute(await render(args, config), args, config);
 };
 
-export { ShowHelpError };
-export default engine;
+export { engine, ShowHelpError };

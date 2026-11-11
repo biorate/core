@@ -1,16 +1,21 @@
-Redux is the posterchild of `hygen`. It doesn't matter what level of granularity you select for your Redux architecture, you're still going to end up with a lot of boilerplate.
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream Redux (ducks) example](https://github.com/jondot/hygen/blob/master/docs/redux.md)
 
-For my app architecture I mostly choose [ducks](https://github.com/erikras/ducks-modular-redux), which helps remove a little bit of boilerplate and have modularity baked in.
+# Redux (ducks) example
 
-My typical Redux architecture would look like this:
+Redux is the poster child of `hygen`. No matter the granularity you select for your Redux
+architecture, you still end up with a lot of boilerplate.
 
-```bash{6,15-18}
+A typical [ducks](https://github.com/erikras/ducks-modular-redux) architecture:
+
+```bash
 app/
   components/
     icon.js
     avatar.js
   modules/
-    boot.js     <---- glues modules together, requires chat, app, and auth.
+    boot.js      <-- glues modules together: requires chat, app, and auth.
     app/
       index.js
       view.js
@@ -19,29 +24,24 @@ app/
       index.js
       view.js
       state.js
-    chat/
-      index.js  <---- the 'connect' bit for Redux.
-      view.js   <---- the view, separated, for testing.
-      state.js  <---- reducer, actions, types, selectors.
 ```
 
-## Adding a Module
+Adding a module means adding a folder, the `index`/`view`/`state` files, and wiring the
+`reducer`, exported `actions` and more into `boot.js`.
 
-Being a modular architecture, there's a huge plus for adding a module. It just means adding a folder, and `index`, `view`, `state`, perhaps a default `component`, a storybook `story`, and wiring every thing togather such as a `reducer`, exported `actions` and more in `boot.js`. Fun.
+The generator layout:
 
-Should be a breeze with `hygen`. Here's how your templates look like:
-
-```bash{7}
+```bash
 _templates/
   module/
     new/
       index.ejs.t
       view.ejs.t
       state.ejs.t
-      inject_boot.ejs.t   <--- adds a 'require' clause to boot.js
+      inject_boot.ejs.t   <-- adds a 'require' clause to boot.js
 ```
 
-Here's how `index` looks like:
+Here's `index`:
 
 ```javascript
 ---
@@ -53,23 +53,20 @@ to: app/modules/<%= name %>/index.js
 export default connect(...)(<%= Name %>)
 ```
 
-A similar trick would do for `view` and `state`.
+A similar trick applies to `view` and `state`.
 
-How would we add a require line given that `boot.js` looks like this?
+Now add a `require` line to `boot.js`, which looks like this:
 
-```javascript{3}
+```javascript
 // ... some bootstrapping code ...
 
-const modules = [
-  //     `--- we want to inject "after" this
-  require('auth').default,
-  require('app').default
-]
+const modules = [require('auth').default, require('app').default];
 
 // ... rest of bootstrapping code ...
 ```
 
-Let's build `inject_boot.ejs.t`. We have to use `inject: true` because this is an inject template and to locate our injected line after `const modules =...`:
+Let's build `inject_boot.ejs.t`. We use `inject: true`, and locate our injected line after
+`const modules =[`:
 
 ```javascript
 ---
@@ -78,25 +75,39 @@ inject: true
 skip_if: <%= name %>
 after: "const modules = ["
 ---
-require('./<%= name %>).default,
+require('./<%= name %>').default,
 ```
 
-After running it, we end up with this:
+Anchoring `after` to `"const modules = ["` (a regex) locates the array opening. The
+`skip_if: <%= name %>` guard keeps the module from being required more than once for the
+same `name`.
 
-```javascript{4}
+After running it:
+
+```javascript
 // ... some bootstrapping code ...
 
 const modules = [
-  require('chat').default
+  require('chat').default,
   require('auth').default,
-  require('app').default
-]
+  require('app').default,
+];
 
 // ... rest of bootstrapping code ...
 ```
 
-And we're done! Generating a new module is saying this:
+Generate a new module with:
 
+```bash
+hygen module new --name settings
 ```
-$ hygen module new --name settings
-```
+
+If the `before`/`after` anchor does not match `boot.js`, this fork raises
+`InjectionAnchorNotFoundError` and leaves the file untouched — see
+[Injection](./templates#injection) and [Errors](./faq#errors-and-troubleshooting).
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

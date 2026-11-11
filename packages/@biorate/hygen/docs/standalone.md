@@ -1,26 +1,57 @@
-If you don't have Node.js installed you can install the `hygen` binary in standalone mode. Depending on your operating system, you have a few options.
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream standalone guide](https://github.com/jondot/hygen/blob/master/docs/standalone.md)
 
-## MacOS
+# Standalone distribution
 
-You can install via Homebrew:
+The upstream `hygen` project ships standalone binaries (Homebrew taps, GitHub release
+binaries) for environments without Node.js. **This fork does not build standalone
+binaries** — see [Differences from upstream](../README.md#differences-from-upstream). It is
+distributed as an npm package, so Node.js is the runtime.
 
+## Running the CLI
+
+Install globally for a project-wide `hygen` binary:
+
+```bash
+npm i -g @biorate/hygen
 ```
-$ brew tap jondot/tap
-$ brew install hygen
+
+Or run without installing, using `npx`:
+
+```bash
+npx @biorate/hygen ...
 ```
 
-## Linux, Windows, MacOS (Non-homebrew)
+For a shared toolchain, add it as a dev dependency in your project and invoke it via your
+package manager's script runner:
 
-You can download a binary for your operating system [on the Github releases page](https://github.com/jondot/hygen/releases). Binaries are updated and pushed automatically with every new version.
+```bash
+pnpm add -D @biorate/hygen
+pnpm hygen generator new --name mailer
+```
 
-After downloading the tarball, place it in your preferred operating system `bin` path.
+## Embedding in your own tooling
 
-## Why Standalone?
+If you are packaging `hygen` into your own software, a Docker image, or re-distributing it,
+the recommended route is the embeddable `runner()` API rather than a standalone binary. See
+[extensibility](./extensibility) for a `runner()` example, or consume it as an ordinary
+npm dependency in your own CLI:
 
-There are a few reasons to want to run `hygen` as standalone:
+```bash
+pnpm add @biorate/hygen
+```
 
-- You're not familiar with Node.js or don't want to have it installed.
-- You prefer a global binary to avoid installing the same binary over and over.
-- You're packing `hygen` into your own software, Docker image, or re-distributing it.
-- You're building tooling _over_ `hygen` and need a maleable binary to execute.
-- The standalone package is a little bit faster (because it snapshots code). You want that extra speed.
+## Upstream binary releases
+
+The upstream project publishes pre-built binaries on the GitHub releases page for each major
+platform. Those binaries are not produced by this fork; if you need a binary-only
+distribution, build against the upstream `jondot/hygen` package instead. This page is kept
+as a fork of the upstream [standalone](https://github.com/jondot/hygen/blob/master/docs/standalone.md)
+guide for provenance and for users who migrate from upstream.
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

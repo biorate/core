@@ -1,56 +1,82 @@
-Maintaining code generators over time can be a challenge in some cases. If you have a bug in the generator, you need to modify your templates, run the modified generator, and then manually import your changes back into the templates while remembering to replace keywords with ejs placeholders.
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream hygen-create guide](https://github.com/jondot/hygen/blob/master/docs/create.md)
 
-[`hygen-create`](https://github.com/ronp001/hygen-create) offers an approach to creating new generators: take an existing piece of code and automatically transform it into a generator.
+# Creating generators from existing code
 
-To create a generator using [`hygen-create`](https://github.com/ronp001/hygen-create):
+Hand-authoring generators is straightforward: copy an existing file into an action folder
+and replace the variable bits with EJS placeholders (see [generators](./generators) and
+[templates](./templates)).
 
-- Start a [`hygen-create`](https://github.com/ronp001/hygen-create) session
-- Select files to include in the generator
-- Specify a string to automatically turn into ejs snippets in the resulting templates
-- Run [`$ hygen-create generate`](https://github.com/ronp001/hygen-create)
+The upstream ecosystem offers `hygen-create`, a tool that takes an existing piece of code and
+automatically transforms it into a generator — a quicker path when you have a lot of
+existing boilerplate to generalize. `hygen-create` is an **upstream/community tool and is not
+bundled with this fork**; below is how it works upstream so you can adopt it outside the fork
+if you find it useful.
 
-That's it! Your new `hygen` generator is ready, and you can use it to create new "instances" of the code you generalized. If something's not right, you can fix the problem directly in the generated code, then run [`hygen-create`](https://github.com/ronp001/hygen-create) on the modified code to update the generator with your fix. It even remembers which files were originally included in the generator, so you don't have to select files all over again.
+## How it works upstream
 
-For more details see [`https://github.com/ronp001/hygen-create`](https://github.com/ronp001/hygen-create)
+To create a generator using `hygen-create`:
 
-## Installation
+- Start a `hygen-create` session.
+- Select files to include in the generator.
+- Specify a string to turn into EJS snippets in the resulting templates.
+- Run `hygen-create generate`.
+
+Your new `hygen` generator is ready, and you can use it to create new "instances" of the
+code you generalized. If something is not right, fix the problem directly in the generated
+code, then run `hygen-create` on it again to update the generator with your fix. It remembers
+which files were originally included, so you do not have to select them again.
+
+## Key features
+
+- String variations (UPPERCASED, CamelCased, etc.) are recognized automatically. For example,
+  generating from a `package.json` with `MyPackage` as the templatization string:
+
+  ```json
+  { "name": "MyPackage", "index": "my-package/bin/my_package.js" }
+  ```
+
+  becomes a generator that, with `--name NewUnit`, creates:
+
+  ```json
+  { "name": "NewUnit", "index": "new-unit/bin/new_unit.js" }
+  ```
+
+- Directory hierarchy is maintained.
+- Gradually add files to the generator in a git-like fashion.
+- Review auto-inserted EJS placeholders with a built-in colorized diff.
+
+## Authoring generators by hand
+
+Everything `hygen-create` automates can be done by hand, which is the fork's primary path:
 
 ```bash
-$ yarn global add hygen-create
+mkdir -p _templates/unit/new
+cp my-unit.js _templates/unit/new/unit.ejs.t
 ```
 
-or
+Then edit `unit.ejs.t` to replace the variable parts with EJS placeholders:
 
-```bash
-$ npm install --global hygen-create
-```
-
-## Key Features
-
-- String variations (UPPERCASED, CamelCased, etc.) are automatically recognized. For example:
-
-```json
-// if the following 'package.json' is used as a generator source
-// with 'MyPackage' as the templatization string:
-{
-  "name": "MyPackage",
-  "index": "my-package/bin/my_package.js"
+```ejs
+---
+to: app/units/<%= name %>.js
+---
+export default class <%= h.changeCase.pascal(name) %> {
+  // ...
 }
 ```
 
-```json
-// the resulting generator with '--name NewUnit' will create:
-{
-  "name": "NewUnit",
-  "index": "new-unit/bin/new_unit.js"
-}
+Run it:
+
+```bash
+hygen unit new --name identity
 ```
 
-- Directory hierarchy is maintained
-- Gradually add files to the generator in a git-like fashion
-- Review auto-inserted ejs placeholders with a built-in colorized diff
-- Iteratively author generators by running [`hygen-create`](https://github.com/ronp001/hygen-create) again on the code created by the generator.
+## Attribution
 
-## GitHub Project
-
-[`https://github.com/ronp001/hygen-create`](https://github.com/ronp001/hygen-create)
+This page is the fork's adaptation of the upstream [create](https://github.com/jondot/hygen/blob/master/docs/create.md)
+guide; `hygen-create` is an upstream/community tool and is **not** shipped with this fork.
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT);
+original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

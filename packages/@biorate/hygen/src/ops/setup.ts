@@ -20,20 +20,30 @@ XXX:
 */
 
 const notEmpty = (x: string) => x && x.length > 0;
+/**
+ * @description Clones a repository into the target path via `degit` for a
+ * `setup` attribute. Honors `--dry`; the `mode`/`verbose`/`force` options are
+ * forwarded to degit. Throws `SetupRepositoryError` when `setup` has no slash.
+ * @param action - The rendered action carrying the `setup` attribute.
+ * @param args - The run arguments (`dry`, `to`, `force`).
+ * @param config - The runner configuration.
+ * @returns The operation outcome.
+ * */
 const setup = async (
   { attributes: { setup, mode, verbose, force } }: RenderedAction,
   args: Record<string, any>,
   { logger, cwd }: RunnerConfig,
 ): Promise<ActionResult> => {
   const result = createResult('setup', setup);
-  if (notEmpty(setup)) {
-    if (!setup.includes('/')) {
-      throw new SetupRepositoryError(setup);
+  const setupStr = setup as string;
+  if (notEmpty(setupStr)) {
+    if (!setupStr.includes('/')) {
+      throw new SetupRepositoryError(setupStr);
     }
     const to = args.to || '.';
     const payload = {
-      setup,
-      mode: mode || 'tar',
+      setup: setupStr,
+      mode: (mode as string) || 'tar',
       verbose: !!verbose,
       force: !!args.force || !!force,
       to: path.resolve(cwd, to),
@@ -41,7 +51,7 @@ const setup = async (
     if (!args.dry) {
       try {
         debug('exec %o %o', setup, payload);
-        const d = degit(setup, {
+        const d = degit(setupStr, {
           mode: payload.mode,
           force: payload.force,
           verbose: payload.verbose,

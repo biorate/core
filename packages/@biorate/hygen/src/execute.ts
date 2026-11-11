@@ -3,7 +3,15 @@ import resolve from './ops';
 import type { ActionResult, RenderedAction, RunnerConfig } from './types';
 const debug = createDebug('hygen:execute');
 
-const execute = async (
+/**
+ * @description Runs a rendered action through its resolved operations, collecting
+ * every outcome and printing any accumulated `message` attributes.
+ * @param renderedActions - The rendered action items to execute.
+ * @param args - The run arguments.
+ * @param config - The runner configuration.
+ * @returns The concatenated operation outcomes.
+ * */
+export const execute = async (
   renderedActions: RenderedAction[],
   args: Record<string, any>,
   config: RunnerConfig,
@@ -30,5 +38,3 @@ const execute = async (
 
   return results;
 };
-
-export default execute;

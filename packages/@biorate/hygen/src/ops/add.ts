@@ -4,6 +4,15 @@ import { red } from 'chalk';
 import type { ActionResult, RenderedAction, RunnerConfig } from '../types';
 import createResult from './result';
 
+/**
+ * @description Writes a rendered action body to its `to` target. Honors
+ * `unless_exists`, overwrite confirmation via the prompter, `from` copy source
+ * and the `--dry` mode; returns an `added`/`skipped`/`ignored` result.
+ * @param action - The rendered action to apply.
+ * @param args - The run arguments (`templates`, `dry`, etc.).
+ * @param config - The runner configuration.
+ * @returns The operation outcome.
+ * */
 const add = async (
   action: RenderedAction,
   args: Record<string, any>,
@@ -20,7 +29,7 @@ const add = async (
   if (!to || inject) {
     return result('ignored');
   }
-  const absTo = path.resolve(cwd, to);
+  const absTo = path.resolve(cwd, to as string);
   const shouldNotOverwrite =
     !force && unless_exists !== undefined && unless_exists === true;
   const fileExists = await fs.pathExists(absTo);
@@ -52,7 +61,7 @@ const add = async (
   }
 
   if (from) {
-    const from_path = path.join(args.templates, from);
+    const from_path = path.join(args.templates, from as string);
     const file = fs.readFileSync(from_path).toString();
     action.body = file;
   }

@@ -1,64 +1,13 @@
-With `hygen`, every time you spot a repetitive task, or a hidden structure in files you're editing, you'll quickly make a new generator.
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream generators guide](https://github.com/jondot/hygen/blob/master/docs/generators.md)
 
-```lua{1,5,15}
-$ hygen generator new --name mailer
-                              `-------- just a name you pick.
+# Generators
 
-Loaded templates: _templates
-       added: _templates/mailer/new/hello.ejs.t
-                                       `------ your template file.
-
-
-$ hygen
-
-Error: please specify a generator.
-
-Available actions:
-generator: new, with-prompt
-mailer: new
-    \
-     `----------- your new generator is already here!
-```
-
-The moment we add a generator under `_templates`, it's ready to use. Here's `hello.ejs.t` that was placed in the template folder for you:
-
-```javascript
----
-to: app/hello.js
----
-const hello = `
-Hello!
-This is your first hygen template.
-
-Learn what it can do here:
-
-https://github.com/jondot/hygen
-`
-
-console.log(hello)
-```
-
-To make real mailer, let's copy this file and rename it a bit:
-
-```bash
-$ mv _templates/mailer/new/{hello.js,html.ejs.t}
-$ cp _templates/mailer/new/{html.ejs.t,text.ejs.t}
-```
-
-We use a `.t` suffix because it disables our editor trying to be smart - use what ever you like. For this example these files represent the HTML and text forms of an email sender.
-
-:::info
-| ###### Creative Freedom
-| hygen doesn't care about file names or file types in your generator folders. It only cares about folder structure and the _contents_ of your files.
-
-Also note that each template has a _frontmatter_ delimited by a pair of `---`'s. In our example, we have a special `to:` property which tells `hygen` where to put the generated file. We'll see more of these in [templates](./templates).
-:::
-
-<br />
+A generator is a folder under `_templates`. The folder structure maps to the command
+structure, so building a new generator is just creating a folder and a template file.
 
 ## Structure
-
-Let's look at our folder structure:
 
 ```
 _templates/
@@ -66,36 +15,41 @@ _templates/
     new/
       html.ejs.t
       text.ejs.t
-app/
-  index.js
-package.json
+  route/
+    new/
+      handler.ejs.t
+      inject_handler.ejs.t
 ```
 
-Every time you call it, `hygen mailer new` automagically picks up the closest `_templates` folder, and renders all files in `mailer/new`. In this case it's `html.ejs.t` and `text.ejs.t`.
+`hygen mailer new` renders every file in `_templates/mailer/new/` (`html.ejs.t` and
+`text.ejs.t`). `hygen` walks the template folder recursively, so you can nest generators as
+elaborately as you like; the command still applies to the whole action folder.
 
-As of [PR 102](https://github.com/jondot/hygen/pull/102) Hygen will recursively walk your template folder, so that you can structure your generators as elaborately as you wish.
+Each template file begins with a `---` frontmatter block (see [templates](./templates) for
+the full reference). The `.t` suffix keeps your editor from treating it as an already
+compiled file — `hygen` does not care about file names or types, only the folder structure
+and the contents.
 
-:::info
-|###### Hygen is Contextual
-|`hygen` simplifies things by asserting "command structure is folder structure".
-|
-|
-|`hygen` will pick up the `_templates` in your current working directory.
-:::
+## Creating a generator
 
-<br />
+`hygen generator new` (from the starter templates copied by `hygen init self`) scaffolds a
+generator for you:
 
-## CLI Arguments
-
-To give `hygen` arguments via CLI, we follow this pattern:
-
-```
-$ hygen mailer new --name foobar --message hello --version 1
+```bash
+hygen generator new --name mailer
+#       added: _templates/mailer/new/hello.ejs.t
 ```
 
-Any double-dash (`--`) argument becomes a variable we can use later in our templates. In the example above we can use `name`, `message` and `version`.
+The scaffolding template lives in your project (`_templates/generator/new/hello.ejs.t`), so
+you can change how `hygen` generates generators for your team.
 
-Here's the contents of the template `html.ejs.t` with the variables in place:
+## CLI arguments
+
+Any double-dash (`--`) argument becomes a template variable:
+
+```bash
+hygen mailer new --name foobar --message hello --version 1
+```
 
 ```yaml
 ---
@@ -106,22 +60,20 @@ to: app/emails/<%= name %>.html
 (version <%= version %>)
 ```
 
-Try making the text variant yourself by editing `text.ejs.t`. Note: you want to put it in the correct place with `to:`.
+## Interactive prompts
 
-## Interactive Prompt
+Add a `prompt.js` to the action folder to collect values interactively before rendering:
 
-To create an interactive generator, add `prompt.js` file to the generator root directory.
-
-```bash{3,4}
+```
 _templates/
   mailer/
-    new/           <-- the mailer new generator
-      prompt.js    <-- your prompt file!
+    new/           <- the mailer new generator
+      prompt.js    <- your prompt file!
       html.ejs.t
       text.ejs.t
 ```
 
-For example, to ask for the `message` input variable, add to `prompt.js`:
+For example, to ask for `message`:
 
 ```javascript
 module.exports = [
@@ -133,42 +85,42 @@ module.exports = [
 ];
 ```
 
-The format is based on [enquirer](https://github.com/enquirer/enquirer#prompt-options). Let's use the `message` variable now:
+The prompt format is [enquirer](https://github.com/enquirer/enquirer#prompt-options). The
+answers become template variables:
 
-```html{4}
+```html
 ---
 to: app/emails/<%= name %>.txt
 ---
+
 <%= message %>
 ```
 
-Note that the `name` variable has to come from the CLI. To generate, we'll do this:
+The `name` variable still comes from the CLI:
+
+```bash
+hygen mailer new --name fancy-mailer
+```
+
+Templates within an action folder are applied in `localeCompare` order.
+
+## Advanced prompts (`index.js`)
+
+Replace `prompt.js` with an `index.js` in the action folder to build a multi-step flow, skip
+prompting conditionally, or reshape CLI arguments in a central place:
 
 ```
-$ hygen mailer new --name fancy-mailer
-```
-
-Which will ask the user for the `message`, and generate all contents.
-
-## Advanced Interactive Prompt
-
-It's possible to create a a multi-step prompt where you ask some questions, run some computation and ask some more questions.
-
-In addition, it's possible to skip prompting, or re-shape parameters that were given to you from either CLI or prompt, so that you can do it in a central place.
-
-You can "enable" advanced params and prompting by replacing your `prompt.js` file with an `index.js` file in your action:
-
-```
-my-generator
+my-generator/
   my-action/
     index.js
     template1.ejs.t
     template2.ejs.t
 ```
 
-Here's how you can use `index.js` to build a two-step prompting flow. Instead of exporting an array of question types as with the `prompt.js` file, you now need to export an object with a function called `prompt`:
+Instead of exporting an array, export an object with a `prompt` function (and an optional
+`params` function):
 
-```javascript{3}
+```javascript
 // my-generator/my-action/index.js
 module.exports = {
   prompt: ({ prompter, args }) =>
@@ -176,76 +128,34 @@ module.exports = {
       .prompt({
         type: 'input',
         name: 'email',
-        message: "What's your email?"
+        message: "What's your email?",
       })
       .then(({ email }) =>
         prompter.prompt({
           type: 'input',
           name: 'emailConfirmation',
-          message: `Please type your email [${email}] again:`
-        })
-      )
-}
+          message: `Please type your email [${email}] again:`,
+        }),
+      ),
+};
 ```
 
-The `prompt` function gets a data structure with an `prompter` field you can use.
+The `prompt` function receives a structure with a `prompter` field. `params` reshapes CLI
+arguments into new variables:
 
-For completeness, here is a [a more elaborate use of prompts](https://github.com/jondot/hygen/issues/35) (thanks [@jaykoontz](https://github.com/jaykoontz)).
-
-You can skip prompting conditionally using custom logic:
-
-```javascript{4,6}
-// my-generator/my-action/index.js
-module.exports = {
-  prompt: ({ prompter, args }) => {
-    if (args.age > 18) {
-      return Promise.resolve({ allow: true })
-    }
-    return prompter.prompt({
-      type: 'input',
-      name: 'age',
-      message: 'whats your age?'
-    })
-  }
-}
-```
-
-You can skip _physically_ prompting and use `params` to build more sophisticated parameters out of your CLI parameters:
-
-```javascript{2}
+```javascript
 // my-generator/my-action/index.js
 module.exports = {
   params: ({ args }) => {
-    return { moreConvenientName: args.foobamboozle }
-  }
-}
+    return { moreConvenientName: args.foobamboozle };
+  },
+};
 ```
 
-:::info
-| ###### Params and Prompts are The Same
-| If you think about it, prompting for variables or reshaping CLI arguments lead to the same goal: new parameters. But to make a future-proof API, we've separated the two intents to the `prompt` and `params` functions.
-:::
+## Documenting generators
 
-<br />
-
-## Documenting Your Generators
-
-Since there's a special `message` prop you can use in any template, you can use that to build generator help screens. Ultimately, your generator should be documenting itself.
-
-Looking at our generator layout from before, we add a `help` action:
-
-```bash{3,4}
-_templates/
-  mailer/
-    help/
-      index.ejs.t
-    new/
-      prompt.js
-      html.ejs.t
-      text.ejs.t
-```
-
-Our `index.ejs.t` is simply a blank template, with just a `message:` prop:
+The `message` frontmatter prop builds generator help screens. A `help` action with a blank
+template and a `message:` renders as the help text:
 
 ```yaml
 ---
@@ -254,11 +164,7 @@ message: |
 ---
 ```
 
-The special `|` annotation is a YAML literal block. Should you need it, [here's a quick YAML refresher](https://learnxinyminutes.com/docs/yaml/).
-
-Note that in `message` you can have a special coloring syntax, which can spice up your self-documenting generators.
-
-Here's a few examples:
+The `|` annotation is a YAML literal block. `message:` supports chalk-style coloring:
 
 ```javascript
 {bold mailer}
@@ -267,34 +173,37 @@ Here's a few examples:
 {green mailer}
 ```
 
-For more styles [check out chalk](https://github.com/chalk/chalk#styles).
+## Selecting parts of a generator
 
-## Selecting Parts of a Generator
+`hygen GENERATOR ACTION:SUBACTION` selects a subset of a generator's files, where
+`SUBACTION` is a string or regular expression matched against the file name:
 
-In addition to what we've seen until now, `hygen` lets the user select parts of a generator.
+```bash
+hygen mailer new:text --name textual-mailer
+# renders only text.ejs.t
 
-The complete form is:
-
-```
-$ hygen GENERATOR ACTION:SUBACTION
-```
-
-Where `SUBACTION` is a regular expression or a simple string `hygen` uses to pick up the subset of templates you want from a generator.
-
-Using our mailer example, this generates only the text part:
-
-```
-$ hygen mailer new:text --name textual-mailer
+hygen mailer new:.*xt --name textual-mailer
+# same, via regular expression
 ```
 
-Because we have a file named `text.ejs.t`, the string `text` in `new:text` will match it.
+## Templates location
 
-In the same way we could have used a proper regular expression:
+`hygen` finds `_templates` by walking up the directory tree from the working directory and
+using the first one it finds. The `HYGEN_TMPLS` environment variable overrides local lookup
+(and takes priority over it), which is useful for scripting or pointing at a shared template
+root:
 
+```bash
+HYGEN_TMPLS=/path/to/other/templates hygen mailer new --name x
 ```
-$ hygen mailer new:.*xt --name textual-mailer
-```
 
-That's about it for generators.
+In the embeddable API, the location is set via `RunnerConfig.templates` (and
+`templatesOverride`); see [extensibility](./extensibility).
 
-That's it for now, you're invited to take a look at the [FAQ](./faq), and [Packages](./packages).
+That's it for generators. Next: the [FAQ](./faq) and [extensibility](./extensibility).
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

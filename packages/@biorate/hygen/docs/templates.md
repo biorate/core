@@ -1,35 +1,38 @@
-A `hygen` template is a header of a markdown-like [frontmatter](#all-frontmatter-properties) and a body of an ejs templating engine.
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream templates reference](https://github.com/jondot/hygen/blob/master/docs/templates.md)
+
+# Templates
+
+A `hygen` template is a YAML [frontmatter](#frontmatter) header plus an [EJS](https://github.com/mde/ejs)
+body. The frontmatter describes _what to do_ (write, inject, run a shell command); the body
+is the content that gets rendered and applied.
 
 ```yaml
----                            <----- frontmatter section
+---
 to: app/emails/<%= name %>.html
 ---
-
 Hello <%= name %>,
-<%= message %>                 <----- body, ejs
+<%= message %>
 (version <%= version %>)
 ```
 
+Because both the frontmatter and the body are rendered by the same EJS engine, the `to:`
+path, the values and the content can all be interpolated.
+
 ## Frontmatter
 
-The frontmatter is delimited by a matching `---` top and bottom with `yaml` in it, where we define the template metadata.
+The frontmatter is delimited by a matching `---` top and bottom with YAML in it. It is
+rendered first, so it can reference the same variables the body uses:
 
-Templates are also rendered, so if we have this in the file `_templates/mailer/campaign/emails.ejs.t`:
-
-```yaml{1,4}
+```yaml
 ---
-to: app/<%=section%>/emails.js
+to: app/<%= section %>/emails.js
 foo: <%= bar %>
 ---
 ```
 
-And this command:
-
-```
-$ hygen mailer campaign --section weekend --bar ping
-```
-
-It builds this frontmatter, behind the scenes:
+Given the following command, the frontmatter builds _behind the scenes_ into:
 
 ```yaml
 ---
@@ -38,93 +41,107 @@ foo: ping
 ---
 ```
 
-:::info
+```bash
+hygen mailer campaign --section weekend --bar ping
+```
 
-###### Frontmatter cleans up our act
+## Escaping semantics
 
-While other generator engines use the file names, folder structure, or arbitrary configuration files to store metadata, `hygen` uses the frontmatter.
+**This is the single most important difference from upstream.** In this fork, the `<%= expr %>`
+interpolation does **not** HTML-escape: the EJS `escape` option is the identity
+(`(s) => s`). The tool generates source code, not markup, so code passages survive verbatim:
 
-This makes templating and generators clean and maintainable and meta data lives directly in the template it refers to.
-:::
-
-## Template Body
-
-Let's recall how a template looks like. Templates bodies are [ejs](https://github.com/tj/ejs):
-
-```javascript
+```yaml
 ---
-to: app/workers/<%=name%>.js
+to: app/compare.js
 ---
+const cmp = <%= expr %>;
+```
 
+```bash
+hygen sink new --expr 'a > b && c < d'
+# writes: const cmp = a > b && c < d;   (no &gt; / &amp;)
+```
+
+The `<%- expr %>` tag still works and is a raw (unescaped) interpolation; in this fork
+`<%= %>` and `<%- %>` therefore produce the same output. Escaping is the identity for
+both — there is no upstream advice to "use `<%- %>` to avoid HTML escaping", because there
+is nothing to escape.
+
+## Template body
+
+Template bodies are [EJS](https://github.com/mde/ejs):
+
+```ejs
+---
+to: app/workers/<%= name %>.js
+---
 class <%= Name %> {
-    work(){
-        // your code here!
-    }
+  work() {
+    // your code here!
+  }
 }
 ```
 
-In `hygen`, the variable `name` is blessed, because you can get a capitalized version of it for free, by saying `Name`. There will be a growing list of variables that are special, where you get 'free' version of them to save some time, but currently it's only that one.
+The variable `name` is blessed: you get a capitalized version for free as `Name`. You can
+also compute derived variables inline with a `<% %>` scriptlet:
 
-If we wanted to capitalize some other variable then we could do this:
-
-```javascript{4-6}
+```ejs
 ---
-to: app/workers/<%=name%>.js
+to: app/workers/<%= name %>.js
 ---
 <%
- Message = message.toUpperCase()
+  Message = message.toUpperCase()
 %>
-
 class <%= Name %> {
-    work(){
-        return "<%= Message %>"
-    }
+  work() {
+    return "<%= Message %>";
+  }
 }
 ```
 
-## Helpers and Inflections
+The same EJS engine renders both the body and the `to:` path.
 
-You can also use the built-in helpers by accessing `h`:
+## Helpers and inflections
 
-```javascript{3}
+The special object `h` hosts built-in helpers. `h.capitalize` uppercases the first
+character; `h.inflection` pluralizes and singularizes, and includes the fork's
+`undasherize` (kebab/snake case to `KebabCase`):
+
+```ejs
 class <%= Name %> {
-    work(){
-        return "<%= h.capitalize(message) %>"
-    }
+  work() {
+    return "<%= h.capitalize(message) %>";
+  }
 }
 ```
 
-The special helper object `h` also hosts _inflections_. With these you can pluralize, singularize and more:
-
-```
-// example: <%= h.inflection.pluralize(name) %>
-
-pluralize( str, plural )
-singularize( str, singular )
-inflect( str, count, singular, plural )
-camelize( str, low_first_letter )
-underscore( str, all_upper_case )
-humanize( str, low_first_letter )
-capitalize( str )
-dasherize( str )
-titleize( str )
-demodulize( str )
-tableize( str )
-classify( str )
-foreign_key( str, drop_id_ubar )
-ordinalize( str )
-transform( str, arr )
+```ejs
+<%= h.inflection.pluralize(name) %>
+<%= h.inflection.undasherize('my-module') %><!-- MyModule -->
 ```
 
-You can see the full list [here](https://github.com/dreamerslab/node.inflection). With time, we'll add more utilities onto `h`.
+`h.inflection` exposes:
 
-## Change case helpers
+```
+pluralize(str, plural)
+singularize(str, singular)
+inflect(str, count, singular, plural)
+camelize(str, low_first_letter)
+underscore(str, all_upper_case)
+humanize(str, low_first_letter)
+capitalize(str)
+dasherize(str)
+titleize(str)
+undasherize(str)          <- fork-specific
+```
 
-`hygen` provides ability to semantic case changing with `change-case` library, it's simple to use and very easy to understand:
+## Change-case helpers
+
+`h.changeCase` is the [change-case](https://github.com/blakeembrey/change-case) library:
 
 ```js
 // example: <%= h.changeCase.camel(name) %>
-
 camel(str);
 constant(str);
 dot(str);
@@ -144,7 +161,7 @@ title(str);
 upper(str);
 ```
 
-There is a usecase for react based components generation:
+A typical React component generator:
 
 ```yaml
 ---
@@ -153,78 +170,63 @@ to: components/<%= name %>/index.jsx
 import React from 'react'
 
 export const <%= name %> = ({ children }) => (
-<div className="<%= h.changeCase.paramCase(name) %>">{children}</div>"
+<div className="<%= h.changeCase.paramCase(name) %>">{children}</div>
 )
 ```
 
-With name `HelloWorld` will be compiled to:
+With `name=HelloWorld` this compiles to a `<div className="hello-world">` element.
 
-```js
-import React from 'react'
+`h.path` is the Node [`path`](https://nodejs.org/api/path.html) module, so you can join and
+resolve paths inside templates.
 
-export const HelloWorld = ({ children }) => (
-  <div className="hello-world">{children}</div>"
-)
-```
+## Local variables
 
-You can see the full list [here](https://github.com/blakeembrey/change-case).
+Any CLI argument, positional or prompt result automatically becomes a local variable. There
+are two ways to refer to them:
 
-## Local Variables
-
-As we saw earlier, any CLI argument or prompt parameter automatically becomes a local variable in your templates.
-
-There are two ways to refer to variables:
-
-```javascript
+```ejs
 Hello <%= message %>
 ```
 
-This way refers to the `message` CLI argument or prompt parameter, in its bare form. This also means this parameter cannot be optional (otherwise a reference error is thrown).
+The bare form refers to `message`; a missing value throws a reference error.
 
-```javascript
+```ejs
 Hello <%= locals.message %>
 ```
 
-This way refers to the `message` CLI argument or prompt parameter, through the `locals` object. This is great if you want to check a variable for existance before using it like so:
+The `locals` form lets you test for existence before use:
 
-```javascript
-<% if(locals.message){ -%>
-    message: <%= message %>
+```ejs
+<% if (locals.message) { -%>
+  message: <%= message %>
 <% } -%>
 ```
 
-There's a small gem here, in the form of `-%>`. This will slurp the last newline, so that the `if(..){` clause won't generate garbage newlines into our final output.
+The `-%>` slurps the trailing newline so an `if` clause does not leave blank lines in the
+output.
 
-For more of how `EJS` works [take a look here](https://github.com/mde/ejs).
+## Predefined variables
 
-## Predefined Variables
+A command like `hygen component new:story` places these values into special variables:
 
-If you look at the following command:
+| Variable       | Content                   | Example              |
+| -------------- | ------------------------- | -------------------- |
+| `templates`    | Templates path (absolute) | /project/\_templates |
+| `actionfolder` | Action path               | /.../component/new   |
+| `generator`    | Generator name            | `component`          |
+| `action`       | Action name               | `new`                |
+| `subaction`    | Sub-action name           | `story`              |
+| `cwd`          | Process working directory | /project             |
 
-```
-hygen component new:story
-```
-
-`hygen` will break it up for you and place certain values in special variables that are automatically available in your templates:
-
-| Variable       | Content                   | Example                       |
-| -------------- | ------------------------- | ----------------------------- |
-| `templates`    | Templates path (absolute) | /User/.../project/\_templates |
-| `actionfolder` | Action path               | /.../component/new            |
-| `generator`    | Generator name            | `component`                   |
-| `action`       | Action name               | `new`                         |
-| `subaction`    | Sub-action name           | `story`                       |
-| `cwd`          | Process working directory | /User/.../project             |
-
-For example to use `actionfolder` say:
-
-```javascript
+```ejs
 <%= actionfolder %>
 ```
 
-## Addition
+## Addition (`add`)
 
-By default templates are 'added' to your project as a new target file. By specifying a `to:` frontmatter property, we're telling `hygen` where to put it. `force: true` will tell `hygen` to overwrite an existing file without prompting the user ( default is `force: false` ).
+By default templates are _added_ as a new target file. The `to:` property tells `hygen`
+where to put it; nested directories are created automatically. `force: true` overwrites an
+existing file without prompting (the default is to prompt for confirmation).
 
 ```yaml
 ---
@@ -234,7 +236,7 @@ force: true
 console.log('this is index!')
 ```
 
-If a target file already exists, and you don't want to overwrite it, you can use `unless_exists` (here's the [pull request](https://github.com/jondot/hygen/pull/27) for more).
+To leave an existing file alone, use `unless_exists: true`:
 
 ```yaml
 ---
@@ -244,9 +246,10 @@ unless_exists: true
 will not render if target exists
 ```
 
-## From & Shared Templates
+## From & shared templates
 
-By default the body of the template is used as input to create the target file. By specifying a `from:` frontmatter property, we're telling `hygen` from which external file to load the body from. E.g. `from: shared/docs/readme.md` will tell `hygen` to load the body from `_templates/shared/docs/readme.md`. The body of this template is ignored:
+`from:` loads the body from another template instead of the body of the current file. The
+body of the current template is ignored:
 
 ```yaml
 ---
@@ -256,13 +259,16 @@ from: shared/docs/readme.md
 THIS BODY IS IGNORED !!!
 ```
 
+`from: shared/docs/readme.md` loads `_templates/shared/docs/readme.md` as the body of
+`app/readme.md`.
+
 ## Injection
 
-You can also choose to inject a template _into_ an existing target file.
+To inject a template _into_ an existing file, set `inject: true` plus exactly one anchor.
+The body is inserted at the resolved position. The most common guard, `skip_if`, prevents
+double injection:
 
-For this to work, you need to use `inject: true` with the accompanied inject-specific props.
-
-```yaml{2}
+```yaml
 ---
 inject: true
 to: package.json
@@ -272,31 +278,54 @@ skip_if: react-native-fs
 "react-native-fs":"*",
 ```
 
-The new props to notice here are `after` and `skip_if`. This template will add the `react-native-fs` dependency into a `package.json` file, but it will not add it twice (because of `skip_if`).
+This adds the `react-native-fs` dependency to `package.json`, but only once (the `skip_if`)
+guard sees the text already present and skips).
 
-:::info
+`after: dependencies` is a regular expression, so it matches the `"dependencies": {` block
+in a `package.json`.
 
-###### Regular expressions everywhere promote flexibility
+### Anchors (mutually exclusive)
 
-In `after: dependencies`, 'dependencies' is actually a regular expression, so it'll find the `"dependencies":{` block in a `package.json` file
-:::
+Exactly one of these anchor options is used per template:
 
-Here are the available properties for an `inject: true` template:
+- `before` / `after` — a regular expression of text to locate. The inject line appears
+  _before_ or _after_ the located line. These support multi-line matches: a single-line
+  match is tried across each line first; if none is found, a multi-line match across the
+  whole file is attempted.
+- `prepend` / `append` — boolean; add the body to the start or end of the file, respectively.
+- `at_line` — a numeric line index (0-based) at which the body is inserted. It is a line
+  index, so it always matches.
 
-- `before` or `after` which contain a regular expression of text to locate. The inject line will appear `before` or `after` the located line.
-- `prepend` or `append`, when true, add a line to start or end of file respectively.
-- `at_line` which contains a line number will add a line at this exact line number.
+```yaml
+---
+inject: true
+to: config.js
+before: '// config'
+---
+custom-feature = true;
+```
 
-In almost all cases you want to ensure you're not injecting content twice:
+### Anchor not found fails the run
 
-- `skip_if` which contains a regular expression / text. If exists, injection is skipped.
-- `skip_if_not` which inverts `skip_if`: when `true`, injection runs only when the `skip_if` text/regex **is** present (and is skipped when it is absent). Use it to inject a block into a file that already contains a marker.
+If a `before`/`after` anchor does not match (neither a single line nor the whole text), the
+injection throws `InjectionAnchorNotFoundError`, the run reports `success: false`, and the
+target file is left **untouched**. Unlike upstream (which silently no-ops and can even
+misplace the content), this fork surfaces the failure. `prepend`/`append`/`at_line` always
+have a position, so they cannot "not match".
 
-Let's see how these play out in the [Redux](./redux) use case.
+### Guarding against double injection
 
-#### Creating a missing target
+- `skip_if` — a regular expression / text. If it is present in the file, the injection is
+  skipped.
+- `skip_if_not: true` — the pure inversion of `skip_if`: the injection runs **only when** the
+  `skip_if` text/regex **is** present (and is skipped when it is absent). Use it to inject a
+  block into a file that already contains a marker.
 
-By default injecting into a file that doesn't exist is an error. Set `create_if_missing: true` to create the target (empty, with parent folders) and then inject the body into it:
+### Creating a missing target
+
+By default, injecting into a file that does not exist is an error
+(`InjectionTargetNotFoundError`). Set `create_if_missing: true` to create the target (with
+parent folders) and then inject the body into it:
 
 ```yaml
 ---
@@ -308,9 +337,15 @@ append: true
 { 'key': 'value' }
 ```
 
-#### Replacement by anchor
+### Replacement by anchor
 
-`replace: true` switches the inject-family operation from insert to replace: the first fragment matched by the `before`/`after` anchor (a line or full-text regex) is replaced by the body, and the rest of the file is preserved. It is mutually exclusive with `inject` (using both is a configuration error), and only the `before`/`after` anchors support it:
+`replace: true` switches an inject-family operation from insert to replace: the first
+fragment matched by the `before`/`after` anchor is replaced by the body and the rest of the
+file is preserved. `$` in the body is treated literally.
+
+`replace` is mutually exclusive with `inject` (using both throws `TemplateConfigError`), and
+only `before`/`after` anchors support it (`prepend`/`append`/`at_line` with `replace` is
+also a `TemplateConfigError`). An unmatched anchor raises `InjectionAnchorNotFoundError`.
 
 ```yaml
 ---
@@ -321,15 +356,16 @@ after: '"version": ".*"'
 "version": "2.0.0",
 ```
 
+### Line-ending control (`eof_last`)
+
+`eof_last` tunes the trailing newline of an injected body. When `true`, a body without a
+trailing newline gets one; when `false`, a body with a trailing newline has it removed.
+
 ## Shell
 
-Shell actions give you the ability to trigger any shell commands. You can do things such as:
-
-- Copy a resource or an asset from a template into a target folder
-- Pipe the output of a template into a shell command
-- Perform any other side-effect - touch files, restart processes, trigger a `yarn install` or what have you.
-
-Here's how to pipe a generator's output into a shell command:
+A template with `sh:` runs a shell command after the other actions of the run. The command
+is executed via the configured `exec` hook (`execa.shell` by default), with the template
+body piped to the command's stdin when a body is present. The `cwd` variable is available:
 
 ```yaml
 ---
@@ -338,13 +374,8 @@ sh: 'mkdir -p <%= cwd %>/given/app/shell && cat > <%= cwd %>/given/app/shell/hel
 hello, this was piped!
 ```
 
-Using just the `sh:` property, `hygen` will understand this is a shell action. Note that you have the `cwd` variable pre-available to you to indicate the current working directory.
-
-This generator will _pipe_ its output into the shell command, so you can assume it happens - note that `cat` is expecting someone to give it `STDIN`.
-
-Some times you want to run a generator and just invoke an additional command. This means the shell action can be added to what ever action you wanted to perform (inject or addition).
-
-Here's a common task: add a dependency and then run `yarn install`.
+A shell action can be combined with an `add` or `inject` in the same template — for example,
+add a dependency and then run the install:
 
 ```yaml
 ---
@@ -352,14 +383,17 @@ inject: true
 to: package.json
 after: dependencies
 skip_if: lodash
-sh: cd <%= cwd %> && yarn install
+sh: cd <%= cwd %> && npm install
 ---
 "lodash":"*",
 ```
 
-## Conditional Rendering
+The body is not piped when it is absent. `sh_ignore_exit: true` ignores a non-zero exit;
+`spinner: true` shows a spinner during the command.
 
-If you'd like to render a certain template based on the value of a variable, then you can do something like this:
+## Conditional rendering
+
+Render a template conditionally by giving `to:` a value that resolves to `null`:
 
 ```yaml
 ---
@@ -368,27 +402,35 @@ to: '<%= message ? `where/to/render/${name}.js` : null %>'
 conditionally rendering template
 ```
 
-When `hygen` meets a `to:` value that is `null`, it will skip the output of that template, meaning it won't get rendered at all.
+When `hygen` sees a `to:` value of `null`, it skips the output of that template entirely.
 
-Next up, we'll move on to [generators](./generators).
+Next up: [generators](./generators).
 
-## All Frontmatter Properties
+## All frontmatter properties
 
-| Property                           | Type         | Default   | Example                                |
-| ---------------------------------- | ------------ | --------- | -------------------------------------- |
-| [`to:`](#addition)                 | String (url) | undefined | my-project/readme.md                   |
-| [`from:`](#from--shared-templates) | String (url) | undefined | shared/docs/readme.md                  |
-| [`force:`](#addition)              | Boolean      | false     | true                                   |
-| [`unless_exists:`](#addition)      | Boolean      | false     | true                                   |
-| [`inject:`](#injection)            | Boolean      | false     | true                                   |
-| [`before:`](#injection)            | Regex        | undefined | devDependencies                        |
-| [`after:`](#injection)             | Regex        | undefined | devDependencies                        |
-| [`prepend:`](#injection)           | Boolean      | undefined | true                                   |
-| [`append:`](#injection)            | Boolean      | undefined | true                                   |
-| [`at_line:`](#injection)           | Number       | undefined | 123                                    |
-| [`eof_last:`](#injection)          | Boolean      | undefined | true                                   |
-| [`skip_if:`](#injection)           | Regex        | undefined | myPackage                              |
-| [`skip_if_not:`](#injection)       | Boolean      | undefined | true                                   |
-| [`create_if_missing:`](#injection) | Boolean      | false     | true                                   |
-| [`replace:`](#injection)           | Boolean      | false     | true                                   |
-| [`sh:`](#shell)                    | String       | undefined | echo: "Hello this is a shell command!" |
+| Property                                             | Type         | Default   | Example                                |
+| ---------------------------------------------------- | ------------ | --------- | -------------------------------------- |
+| [`to:`](#addition-add)                               | String (url) | undefined | my-project/readme.md                   |
+| [`from:`](#from--shared-templates)                   | String (url) | undefined | shared/docs/readme.md                  |
+| [`force:`](#addition-add)                            | Boolean      | false     | true                                   |
+| [`unless_exists:`](#addition-add)                    | Boolean      | false     | true                                   |
+| [`inject:`](#injection)                              | Boolean      | false     | true                                   |
+| [`before:`](#anchors-mutually-exclusive)             | Regex        | undefined | devDependencies                        |
+| [`after:`](#anchors-mutually-exclusive)              | Regex        | undefined | devDependencies                        |
+| [`prepend:`](#anchors-mutually-exclusive)            | Boolean      | undefined | true                                   |
+| [`append:`](#anchors-mutually-exclusive)             | Boolean      | undefined | true                                   |
+| [`at_line:`](#anchors-mutually-exclusive)            | Number       | undefined | 123                                    |
+| [`eof_last:`](#line-ending-control-eof_last)         | Boolean      | undefined | true                                   |
+| [`skip_if:`](#guarding-against-double-injection)     | Regex        | undefined | myPackage                              |
+| [`skip_if_not:`](#guarding-against-double-injection) | Boolean      | undefined | true                                   |
+| [`create_if_missing:`](#creating-a-missing-target)   | Boolean      | false     | true                                   |
+| [`replace:`](#replacement-by-anchor)                 | Boolean      | false     | true                                   |
+| [`sh:`](#shell)                                      | String       | undefined | echo: "Hello this is a shell command!" |
+
+See [Errors and troubleshooting](./faq#errors-and-troubleshooting) for the error classes these options can raise.
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

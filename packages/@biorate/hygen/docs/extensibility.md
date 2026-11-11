@@ -1,26 +1,30 @@
-You can extend these properties of Hygen, using a special `.hygen.js` file:
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream extensibility](https://github.com/jondot/hygen/blob/master/docs/extensibility.md)
 
-- Helper functions in templates.
-- Customizing logger, template location and shell executor.
-- (_WIP_) Custom generator operations in addition to the built-in `add`, `inject`, `shell`
+# Extensibility
 
-# .hygen.js
+`hygen` is extensible via a `.hygen.js` file (helpers, logger, template location, shell
+executor) and, programmatically, via the embeddable `runner()` API.
 
-Hygen supports a bubbling-up mechanism for searching a `.hygen.js` file and loading it. Where ever you run `hygen` from, it will start searching for this file upwards, and stop at the first one it finds.
+## `.hygen.js`
 
-This means:
+`hygen` looks for a `.hygen.js` file by walking up the directory tree from where you run
+`hygen` and stops at the first one it finds. This means:
 
-- You can set up a _single file_ per project.
-- For some special sub-projects, set a different file for a different behavior.
-- You can also set up one global file to use if you drop it in your user folder.
+- You can set up a single file per project.
+- Sub-projects can override behavior with their own file.
+- You can drop one in your directory for a global default.
 
-_Note:_ The current strategy when there are two or more `.hygen.js` files in the path upwards is to _take the first one_ and ignore the rest.
+When two or more `.hygen.js` files exist on the way up, the first one found is used and the
+rest are ignored.
 
-# Helpers
+## Helpers
 
-Here's a template that uses a function that doesn't exist in the helper accessor `h`. This function is plainly called `extended`, for lack of a better name.
+Add functions to the `h` helper namespace from `.hygen.js`. A template that uses a function
+called `extended`:
 
-```yaml{5}
+```yaml
 ---
 to: given/hygen-js/new.md
 ---
@@ -28,22 +32,92 @@ this demonstrates hygen loaded up .hygen.js and extended helpers.
 <%= h.extended('hello') %>
 ```
 
-In order to add the function `extended` to the standard `hygen` helpers collection, we'll create a `.hygen.js` file at the root of our project:
+Define it in a project-root `.hygen.js`:
 
-```
-src/
-package.json
-.hygen.js
-```
-
-This `.hygen.js` file will be the home of all of our extension points. For this example, we'll use the following content:
-
-```javascript{3}
+```javascript
 module.exports = {
-    helpers: {
-        extended: s => s.toUpperCase()
-    }
-}
+  helpers: {
+    extended: (s) => s.toUpperCase(),
+  },
+};
 ```
 
-Note that beyond inlining a utility function like in this example, you can require and use any piece of code in your project here and export it for Hygen to use.
+Beyond inlining a utility, you can `require` any code in your project and export it for
+`hygen` to use.
+
+## Customizing logger, template location and shell executor
+
+The same `.hygen.js` file can customize the logger, the templates folder, and the shell
+executor:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  templates: `${__dirname}/_templates`,
+  logger: {
+    ok: (msg) => process.stdout.write(msg),
+    notice: (msg) => process.stdout.write(msg),
+    warn: (msg) => process.stderr.write(msg),
+    err: (msg) => process.stderr.write(msg),
+    log: (msg) => process.stdout.write(msg),
+    colorful: (msg) => process.stdout.write(msg),
+  },
+  exec: (sh, body) => {
+    console.log(`[dry exec] ${sh}`);
+  },
+};
+```
+
+## Embeddable `runner()` API
+
+The same pipeline the CLI uses is available programmatically as `runner(argv, config)` from
+the package entry point. It is useful for building your own binary, test harness, or tool
+over `hygen`:
+
+```ts
+import { runner } from '@biorate/hygen';
+import * as path from 'path';
+
+async function main() {
+  const result = await runner(['mailer', 'new', '--name', 'autumn-newsletter'], {
+    cwd: process.cwd(),
+    templates: path.join(process.cwd(), 'templates'),
+    logger: {
+      ok: (msg: string) => console.log(msg),
+      notice: (msg: string) => console.log(msg),
+      warn: (msg: string) => console.warn(msg),
+      err: (msg: string) => console.error(msg),
+      log: (msg: string) => console.log(msg),
+      colorful: (msg: string) => console.log(msg),
+    },
+    createPrompter: <Q, T>() => ({
+      prompt: async (_arg0: Q) => ({} as T),
+    }),
+    exec: (sh: string, body: string) => {
+      void sh;
+      void body;
+    },
+  });
+
+  if (!result.success) {
+    console.error(result.failure?.message);
+    process.exit(1);
+  }
+}
+
+void main();
+```
+
+`RunnerConfig` requires `cwd`, `logger` (a `Logger`-shaped object), `createPrompter`, and
+`exec`. Everything else — `templates`, `templatesOverride`, `helpers`, `localsDefaults`,
+`debug` — is optional. The result (`RunnerResult`) exposes `success`, `time`, `actions`, and
+a `failure` block when the run fails.
+
+For the full API reference see the [typedoc](https://biorate.github.io/core/modules/hygen.html).
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

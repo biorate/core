@@ -4,6 +4,15 @@ import type { Prompter } from './types';
 import helpers from './helpers';
 
 const hooksfiles = ['index.js', 'index.ts', 'prompt.cjs', 'prompt.js', 'prompt.ts'];
+/**
+ * @description Runs the prompt hook for an action folder (if present) or falls
+ * back to prompting for any unknown/empty params via the prompter. TypeScript
+ * hook files are transpiled on the fly with `ts-node`.
+ * @param createPrompter - Factory producing the prompter to use.
+ * @param actionfolder - The action folder to inspect for a prompt hook.
+ * @param args - The CLI-supplied arguments used to skip already-provided params.
+ * @returns The prompt answers (or the resolved hook params), an object when no hook/prompt applies.
+ * */
 const prompt = async <Q, T>(
   createPrompter: () => Prompter<Q, T>,
   actionfolder: string,

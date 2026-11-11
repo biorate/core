@@ -1,52 +1,76 @@
-Sharing generators cross-projects and cross-teams can be done simply by copying or any custom tooling your teams come up with that perfectly fits your workflow.
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream packages guide](https://github.com/jondot/hygen/blob/master/docs/packages.md)
 
-The `hygen-add` tool offers a streamlined way to do this by introducing _Packages_. Packages are a compiled set of generators which are published as a node module that you can install and share with others.
+# Packages
 
-## Popular Packages
+Sharing generators across projects and across teams can be done simply by copying your
+`_templates` folder wherever you need it. Because `hygen` templates are checked in and
+collaborate like code, this is the most robust form of sharing — the templates live next to
+the code that consumes them and evolve in the same branch.
 
-- [hygen-cra (create-react-app)](https://github.com/jondot/hygen-CRA) - generate a full set of component, storybook and test for your [Create React App](https://github.com/facebook/create-react-app) project.
+The upstream ecosystem also offers a _package_ mechanism: a compiled set of generators
+published as a node module that you install and share. The `hygen-add` tool (part of the
+upstream `hygen` toolbelt, **not** bundled in this fork) reads a package and copies its
+generators into your local `_templates` directory.
 
-## Installing a Package
+## Sharing in the monorepo
 
-First, you need to install the `hygen-add` tool, it's one of the tools in the `hygen` toolbelt.
+For `@biorate/*` and the monorepo, the idiomatic approach is to keep generators in a
+project-local `_templates` folder and either:
 
-```bash
-$ yarn global add hygen-add
-```
+- **Copy the folder** — pull a team's `_templates` into your project and commit it; you can
+  tweak the generator to your team's preference.
+- **Point `HYGEN_TMPLS` at a shared folder** — [templates location](./generators#templates-location)
+  lets a script reference a shared template root without copying.
 
-Now pick [a published module](https://www.npmjs.com/search?q=hygen-) on `npm` and install it. For a module called `hygen-acme-generators`, run this, without the prefix `hygen-`:
+## Installing an upstream package
 
-```bash
-$ hygen-add acme-generators
-```
-
-This installs the `acme-generators` package with the embedded `yarn` so it's versioned and locked, and adds the generators to your current project. Technically, it will _copy_ the generators to your local `_templates` directory, because copying is more resilient and robust rather than referencing something that can change unexpectedly.
-
-Once that's done, you can remove `acme-generators` using `yarn`, or leave it if you'd like to sync your templates once in a while.
-
-## Installing from Github
-
-`hygen-add` supports installing from Github, in the same way `yarn` supports it because it uses `yarn` under the hood. It will try to infer the package name from the Github repo URL.
-
-Running this:
+`hygen-add` installs a published `hygen-<name>` module. Install the tool first:
 
 ```bash
-$ hygen-add https://github.com/acme/acme-generators
+npm install -g hygen-add
 ```
 
-Will install the package `acme-generators`. The package name `acme-generators` was parsed out of the Github URL.
-
-If for some reason your Github URL doesn't reveal anything about the package name, you can manually specify the package name (remember: the package name is the `name` property in the package project's `package.json` file).
+Then, for a module called `hygen-acme-generators`, run it without the `hygen-` prefix:
 
 ```bash
-$ hygen-add https://github.com/acme/archive --name acme-generators
+hygen-add acme-generators
 ```
 
-## Name Clashes
+This installs the `acme-generators` package, pins it, and copies its generators into your
+current project's `_templates` directory. Copying is deliberate: it is more resilient than
+referencing something that can change unexpectedly.
 
-If you want to install a `react` package from both `acme` and `awesome`, you can prefix one of those, or both, to avoid name clashes:
+## Installing from GitHub
+
+`hygen-add` can install directly from a GitHub URL, inferring the package name from the
+repository URL:
 
 ```bash
-$ hygen-add acme-react
-$ hygen-add awesome-react --prefix awsm
+hygen-add https://github.com/acme/acme-generators
 ```
+
+If the URL does not reveal the name, specify it manually (the package `name` in its
+`package.json`):
+
+```bash
+hygen-add https://github.com/acme/archive --name acme-generators
+```
+
+## Name clashes
+
+Prefix packages to avoid clashes:
+
+```bash
+hygen-add acme-react
+hygen-add awesome-react --prefix awsm
+```
+
+## Attribution
+
+This page is the fork's adaptation of the upstream [packages](https://github.com/jondot/hygen/blob/master/docs/packages.md)
+guide; `hygen-add` and `hygen-create` are upstream ecosystem tools and are **not** shipped
+with this fork. `@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen)
+(v6.2.11, MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

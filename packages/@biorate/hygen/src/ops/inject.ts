@@ -4,6 +4,16 @@ import type { ActionResult, RenderedAction, RunnerConfig } from '../types';
 import createResult from './result';
 import injector from './injector';
 
+/**
+ * @description Injects a rendered action body into its target file. Honors
+ * `inject`, `replace`, `create_if_missing` and `--dry`. When the target file is
+ * missing and `create_if_missing` is unset, returns an `error` result instead of
+ * throwing.
+ * @param action - The rendered action to apply.
+ * @param args - The run arguments (`dry`).
+ * @param config - The runner configuration.
+ * @returns The operation outcome.
+ * */
 const injectOp = async (
   action: RenderedAction,
   args: Record<string, any>,
@@ -19,7 +29,7 @@ const injectOp = async (
     return result('ignored');
   }
 
-  const absTo = path.resolve(cwd, to);
+  const absTo = path.resolve(cwd, to as string);
 
   if (!(await fs.pathExists(absTo))) {
     if (create_if_missing) {
@@ -35,7 +45,7 @@ const injectOp = async (
   }
 
   const content = (await fs.readFile(absTo)).toString();
-  const injectResult = injector(action, content, to);
+  const injectResult = injector(action, content, to as string);
 
   if (!args.dry) {
     await fs.writeFile(absTo, injectResult);

@@ -29,13 +29,26 @@ const readVersion = (): string => {
   return 'unknown';
 };
 
+/**
+ * @description The running package version, resolved by walking up to the nearest
+ * `package.json` that carries a real version.
+ * */
 const VERSION = readVersion();
 
 // Detects the `--version`/`-v` CLI switch. Parsed in bin.ts (not params.ts) so the
 // argument parser shape stays untouched; the CLI prints the version and exits 0 early.
+/**
+ * @description True when the given args include the `--version`/`-v` switch.
+ * */
 const isVersionFlag = (args: string[]) =>
   args.includes('--version') || args.includes('-v');
 
+/**
+ * @description Lists, per generator directory, the actions available under the
+ * given templates root.
+ * @param templates - The templates directory to inspect.
+ * @returns A map of generator name to its action names.
+ * */
 const availableActions = (templates: string) => {
   const generators = fs
     .readdirSync(templates)
@@ -47,6 +60,12 @@ const availableActions = (templates: string) => {
   }, {});
 };
 
+/**
+ * @description Prints the `Hygen v{VERSION}` banner and the available actions,
+ * or a getting-started hint when the templates directory is absent.
+ * @param templates - The templates directory (or `undefined` when unresolved).
+ * @param logger - The logger used to print the help text.
+ * */
 const printHelp = (templates: string | undefined, logger: Logger) => {
   logger.log(`Hygen v${VERSION}`);
   logger.log('\nAvailable actions:');

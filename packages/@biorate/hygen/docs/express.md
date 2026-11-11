@@ -1,8 +1,14 @@
-[Express.js](https://expressjs.com/) is arguably the most popular web framework for Node.js
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream Express.js example](https://github.com/jondot/hygen/blob/master/docs/express.md)
 
-A typical app structure for express celebrates the notion of `routes` and `handlers`, while views and data are left for interpretation (probably because the rise of microservices and client-side apps).
+# Express.js example
 
-So an app structure may look like this:
+[Express.js](https://expressjs.com/) is arguably the most popular web framework for Node.js.
+A typical app structure celebrates `routes` and `handlers`; views and data are left for
+interpretation (probably because of the rise of microservices and client-side apps).
+
+An app structure may look like this:
 
 ```
 app/
@@ -24,17 +30,16 @@ app.post('/shazam', shazam);
 module.exports = app;
 ```
 
-Unlike React Native, you could dynamically load modules here. However, there's still a need for judgement when constructing the routes (`app.get/post` part).
+Unlike React Native, you can load modules dynamically here. There is still a need for
+judgement when constructing the routes (`app.get/post` part).
 
-Using `hygen` let's see how we could build something like this:
+Using `hygen`, build this with a generator:
 
+```bash
+hygen route new --method post --name auth
 ```
-$ hygen route new --method post --name auth
-```
 
-Since we've been through a few templates as with [previous](./redux) [use cases](./react-native), let's jump straight to the interesting part, the inject part.
-
-So let's say our generator is structured like this:
+The interesting part is the injection. Let's say the generator is structured as:
 
 ```
 _templates/
@@ -44,7 +49,7 @@ _templates/
       inject_handler.ejs.t
 ```
 
-Then `inject_handler` looks like this:
+`inject_handler` looks like this:
 
 ```yaml
 ---
@@ -56,4 +61,17 @@ before: 'module.exports = app'
 app.<%= method %>('/<%= name %>', <%= name %>)
 ```
 
-Note how we're anchoring this inject to `before: "module.exports = app"`. If in previous occasions we appended content to a given line, we're now prepending it.
+We anchor this inject to `before: "module.exports = app"`: instead of appending content to
+a given line, we prepend (insert before) it. The `skip_if: <%= name %>` guard keeps the
+route from being registered twice.
+
+If `before`/`after` does not match the file, the injection raises
+`InjectionAnchorNotFoundError` and the run fails (`success: false`, file untouched) — this
+fork does not silently no-op. See [Injection](./templates#injection) and
+[Errors](./faq#errors-and-troubleshooting).
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

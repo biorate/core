@@ -4,6 +4,7 @@ import fs from 'fs-extra';
 import type { ParamsResult, RunnerConfig } from './types';
 
 import prompt from './prompt';
+/** @description The default action folder name used when no action is specified. */
 export const DEFAULT_ACTION = '_default';
 
 const resolvePositionals = async (templates: string, args: string[]) => {
@@ -44,6 +45,15 @@ const resolvePositionals = async (templates: string, args: string[]) => {
   return [generator, action, name];
 };
 
+/**
+ * @description Resolves the run arguments from the CLI-style argv: determines the
+ * generator/action/name positionals (flexibly resolving `[gen] [NAME]` and
+ * `[gen] [action] [NAME]`), parses data options, runs any prompt hook, and merges
+ * everything into a `ParamsResult`.
+ * @param config - The runner configuration (provides `templates`/`createPrompter`).
+ * @param externalArgv - The CLI-style argument array.
+ * @returns The resolved run parameters.
+ * */
 const params = async (
   { templates, createPrompter }: RunnerConfig,
   externalArgv: string[],

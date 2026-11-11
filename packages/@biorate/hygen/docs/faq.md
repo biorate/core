@@ -1,19 +1,30 @@
-## Why Should I use Hygen?
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream FAQ](https://github.com/jondot/hygen/blob/master/docs/faq.md)
 
-There's a few generator toolkit right now, arguably Yeoman is the most popular. To understand why to use Hygen over anything else, first -- some context.
+# FAQ
 
-Hygen was born to solve developer effectiveness in a multi-team, multi-module monorepo containing frontend (React, Redux) and backend (Node.js) projects. Every team had its nuances, ceremonies and how it kept itself effective. Every project had those as well.
+## Why should I use hygen?
 
-Using Hygen, developers could create many different generators, suiting any kind of development workflow, and they could change, evolve, improve and adapt their generators to their ever evolving project and workflow.
-When this is the reality, you also want to keep your generator code as close to your actual code as possible. For example, you want to include generator changes in the same PR as your code for it to be reviewed.
+There are a few generator toolkits; arguably Yeoman is the most popular. Hyggen was born to
+solve developer effectiveness in a multi-team, multi-module monorepo containing frontend
+(React, Redux) and backend (Node.js) projects. Every team had its nuances, ceremonies and
+ways of staying effective, and every project had those as well. With hygen, developers can
+create many different generators, suited to any kind of development workflow, and evolve,
+improve and adapt them as the project and workflow change.
 
-Using Yeoman, you focus on consuming _community generators_ rather than producing your own. And in the context that we've described, it would be like hitting a brick wall. You can't build Yeoman generators fast enough. More over, you can't keep them close to your codebase because they need to be independent projects, and you need to develop the skillset, and every time you want to tweak something, you need to call your Yeoman expert.
+This is also why `hygen` keeps generator code as close to your actual code as possible: you
+include generator changes in the same PR as your code, for it to be reviewed by the same
+people.
 
-While Yeoman is great for building self-sufficient, whole-sale generator for a specific problem by a person that's passionate about it -- with Hygen, your _team_ builds generators, all the time, collaboratively.
+Whereas Yeoman is great for building self-sufficient, wholesale generators for a specific
+problem by one person passionate about it, with hygen your _team_ builds generators, all the
+time, collaboratively.
 
 ## How do I lowercase, uppercase or transform variables?
 
-`ejs` lets you use Javascript, so plenty of what you know is already available. You can transform text inline and make new variables in code blocks on template body on the fly.
+`EJS` lets you use JavaScript, so plenty of what you know is already available. Transform
+text inline and make new variables in code blocks on the fly:
 
 ```yaml
 ---
@@ -25,122 +36,142 @@ defaulted = reducer || 'my-reducer'
 Hello <%= defaulted %>.
 ```
 
-## Can I inject using regular expressions that span across newlines in the target file?
+## Can I inject using regular expressions that span across newlines?
 
-`hygen` is designed to work on a line-by-line basis. Injection inserts the _lines_ of the template _between lines_ (by `\n`) of the target file according to the expression supplied.
+`hygen` works on a line-by-line basis: injection inserts the _lines_ of the template
+_between lines_ (by `\n`) of the target file according to the expression supplied.
 
-However, as of v2.1.2 or later, `hygen` supports multi-line regular expressions in the `before`, `after`, and `skip_if` injection properties. This works in the following ways:
+The `before`, `after`, and `skip_if` injection properties support multi-line regular
+expressions:
 
-- `skip-if` is now always evaluated as a potentially multi-line expression across the entire target file.
+- `skip_if` is always evaluated as a potentially multi-line expression across the entire
+  target file.
+- `before` and `after` first try to match the expression within any single line of the
+  target file; if no match is found, they then attempt a multi-line match.
+- `before` injects before the line on which the match began, and `after` injects after the
+  line on which the match ended.
 
-- `before` and `after` first try to match the expression within any single line of the target file. If no match is found, they then attempt a multi-line match.
+If a `before`/`after` anchor still does not match (neither a single line nor the whole
+text), the injection **fails** with `InjectionAnchorNotFoundError` and the file is left
+untouched — see [errors](#errors-and-troubleshooting).
 
-- `before` will inject before the line on which the match began, and `after` will inject after the line on which the match ended.
+## Can I inject multiple times into the same file?
 
-## I Want To Use Generators From a Single Place
-
-If you have several `_templates` locations throughout a project (let's say for a server and client), you might usually `cd` into each sub-project to use hygen like so:
+Yes! Use multiple template files, each responsible for a different part of the injection:
 
 ```
+my-generator/
+  new/
+    index.js.t
+    add-redux-to-package.json.t    <- injects to package.json
+    add-lodash-to-package.json.t   <- injects to package.json
+```
+
+`hygen` parallelizes most of its book-keeping for speed, but file operations are executed
+serially to avoid operations stepping on each other.
+
+## I want to use generators from a single place
+
+If you have several `_templates` locations within a project (say for a server and a client),
+you usually `cd` into each sub-project to use hygen:
+
+```bash
 [src/] $ cd server
 [server/] $ hygen route new --name authentication
 [server/] $ cd ../client
 [client/] $ hygen page new --name authentication
 ```
 
-Hygen was built to this kind of workflow.
+`hygen` does not discover templates down the folder tree out of the box. But it is flexible
+about template location, so point `HYGEN_TMPLS` at the right root via your `package.json`
+scripts:
 
-But it may be that you want to run those from your top `src/` vantage point and not dive into each subfolder:
-
-```
-[src/] $ hygen route new --name authentication
-[src/] $ hygen page new --name authentication
-```
-
-Hygen doesn't support discovering templates down the folder trees out of the box because currently there isn't a good idea for how to do this without compromising the superfast performance Hygen holds.
-
-However Hygen is super flexible with regards to template location, so here's how to achieve this goal with little effort, by dropping these into the scripts of your `package.json` file:
-
-```
-    "g:client":
-      "HYGEN_TMPLS=src/client/_templates hygen",
-    "g:server":
-      "HYGEN_TMPLS=src/server/_templates hygen",
-```
-
-And now your flow is simply:
-
-```
-[src/] $ yarn g:client page new --name authentication
-[src/] $ yarn g:server page new --name authentication
-```
-
-A nice bonus is that this streamlines into your `yarn` workflow and you can change and improve it as you go.
-
-This was inspired by a community contributed solution, [see here for more](https://github.com/jondot/hygen/issues/24).
-
-## Should I Check In My Templates?
-
-Yes and yes!. One of the critical points with the `hygen` approach is that templates and generators are co-located with a project, to a team, to a branch. A team can also review templates in the same way they do their code.
-
-## Isn't generating code counteracting DRY (don't repeat yourself)
-
-Not in this case. `hygen` is build for modern app architectures, which demand modularity, clean code, and high maintainability and that are already DRY. This means there will be multiple tools requiring various ceremonies (most trivially - tests), that are set up by hand or by a combination of shortcuts. `hygen` wants to streamline all these, and give you the tools to save yourself some time.
-
-## What's the difference from generator X/Y/Z?
-
-First, it's not hard to start building the intuition by trying it out. Here's the short answer based on comparison with `plop`. See the full discussion [here](https://github.com/jondot/hygen/issues/1)
-
-- Hygen was built to support a large number of teams, large number of developers and/or a big code base, so that it scales and evolves with your project and team. One difference between the two is that plop will make all these people, and activity share a single file which is a pain in merges, conflicts and code reviews. In addition hygen is contextual, so it will automatically understand where it is in your code base and what generators are relevant for each part (think about monorepos) and use only those.
-
-- A design goal for hygen is to be instinctive - the amount of effort to make a generator and meet your goal from a developer experience perspective should always go to zero. So then you have generator generators, helpers, a familiar logic-full templating engine, and maybe a little bit surprising, but I think attention for details is super important - for example, there's someone (me) watching your back and making sure hygen is always fast.
-
-## Can I Inject Multiple Times for the Same File?
-
-Yes! Have multiple template files, each responsible to a different part
-of the injection:
-
-```
-my-generator/
-  new/
-    index.js.t
-    add-redux-to-package.json.t   <-- injects to package.json
-    add-lodash-to-package.json.t  <-- injects to package.json
-```
-
-Hygen will parallelize most of its book-keeping to gain speed, but file operations _are serially executed_ to avoid operations stepping on eachother's toes.
-
-## Generating from a deep directory and inject to an upper one
-
-This is possible with adding a helper to `.hygen.js`:
-
-```javascript{6}
-//.hygen.js
-module.exports = {
-  templates: `${__dirname}/_templates`,
-  helpers: {
-    relative: (from, to) => path.relative(from, to),
-    src: ()=> __dirname
+```json
+{
+  "scripts": {
+    "g:client": "HYGEN_TMPLS=src/client/_templates hygen",
+    "g:server": "HYGEN_TMPLS=src/server/_templates hygen"
   }
 }
 ```
 
-And use it:
+Then run from the top `src/` vantage point:
 
-```yaml
----
-to: '<%= h.src() %>/src/index.js'
----
+```bash
+[src/] $ yarn g:client page new --name authentication
+[src/] $ yarn g:server page new --name authentication
 ```
 
-See [this discussion](https://github.com/jondot/hygen/issues/49) for more.
+## Should I check in my templates?
 
-## Can I Force Hygen to always Overwrite? (e.g. --force)
+Yes. A critical point of the hygen approach is that templates and generators are co-located
+with a project, a team, a branch. A team can review templates in the same way they review
+their code.
 
-To avoid prompts, and force overwrites you can use the `HYGEN_OVERWRITE` environment flag.
+## Isn't generating code counteracting DRY (don't repeat yourself)?
 
+Not in this case. `hygen` is built for modern app architectures that demand modularity,
+clean code and high maintainability and are already DRY. There are still multiple tools
+requiring various ceremonies (most trivially, tests) that are set up by hand or by a
+combination of shortcuts. `hygen` streamlines all these, giving you the tools to save time.
+
+## What's the difference from generator X/Y/Z?
+
+Compared with `plop`: hygen was built to support a large number of teams, developers, and/or
+a big code base, so it scales and evolves with your project and team. Plop makes all these
+people and activity share a single file, which is a pain in merges, conflicts and code
+reviews. `hygen` is contextual: it automatically understands where it is in your code base
+and what generators are relevant for each part (think monorepos) and uses only those.
+
+A design goal for hygen is to be _instinctive_: the effort to make a generator and meet your
+goal should always go toward zero. Hence generator-generators, helpers, a familiar
+logic-full templating engine, and attention to speed.
+
+## Can I force hygen to always overwrite (e.g. `--force`)?
+
+To avoid prompts and force overwrites, use the `HYGEN_OVERWRITE` environment flag:
+
+```bash
+HYGEN_OVERWRITE=1 hygen generator new --name foobar
 ```
-$ HYGEN_OVERWRITE=1 hygen generator new --name foobar
-```
 
-If you use this, Hygen will always write out content without asking even if the file already exists.
+With this set, `hygen` always writes content without asking, even if the file already
+exists.
+
+## Escaping and HTML
+
+In this fork, `<%= %>` does **not** HTML-escape (the EJS `escape` option is the identity),
+because the tool generates code, not markup. Both `<%= %>` and `<%- %>` are raw
+interpolations, so `a > b && c < d` is written to the target file verbatim (no `&gt;` /
+`&amp;`). See [Escaping semantics](./templates#escaping-semantics).
+
+## Errors and troubleshooting
+
+All runtime errors in this fork are `BaseError` subclasses from the monorepo error standard
+(`@biorate/errors`). They are exported from the package as `errors` and have parameterized
+messages. When a run fails, `success` is `false`, the file is untouched, and the process
+exits non-zero (in the embeddable API, `run result.failure` carries the error).
+
+| Error class                    | Thrown when                                                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| `TemplateRenderError`          | An EJS template or its frontmatter fails to render (e.g. a syntax error).                                                 |
+| `TemplateNotFoundError`        | The action folder for a generator does not exist.                                                                         |
+| `InjectionTargetNotFoundError` | An inject target file does not exist and `create_if_missing` is not set.                                                  |
+| `InjectionAnchorNotFoundError` | An inject `before`/`after` anchor is not found; the inject operation fails and the file is untouched.                     |
+| `TemplateConfigError`          | Inject-family options are used together incorrectly (`inject`+`replace`, or `replace` with `prepend`/`append`/`at_line`). |
+| `ShellCommandError`            | A shell command fails and its exit code is not ignored.                                                                   |
+| `ShowHelpError`                | The user did not specify a generator/action, or the action folder was not found; the CLI prints help.                     |
+| `SetupRepositoryError`         | A `setup` frontmatter value is not a valid repository.                                                                    |
+
+`ShowHelpError` is what triggers the CLI's help output when you run `hygen` with no
+arguments or an unknown generator/action. (`ShellCommandError` is raised by the default
+`exec` hook; the exact set and messages are defined in `src/errors.ts`.)
+
+See [Injection](./templates#injection) for the inject-family error behavior, and
+[extensibility](./extensibility) for the embeddable `runner()` API's `failure` result.
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

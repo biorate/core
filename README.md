@@ -49,6 +49,7 @@
 - [async-loop](https://biorate.github.io/core/modules/async-loop.html)
 - [singleton](https://biorate.github.io/core/modules/singleton.html)
 - [command](https://biorate.github.io/core/modules/command.html)
+- [hygen](https://biorate.github.io/core/modules/hygen.html)
 - [opentelemetry](https://biorate.github.io/core/modules/opentelemetry.html)
 - [auto-object](https://biorate.github.io/core/modules/auto_object.html)
 - [masquerade](https://biorate.github.io/core/modules/masquerade.html)

@@ -57,7 +57,16 @@ async function getFiles(dir: string): Promise<string[]> {
   return files;
 }
 
-const render = async (
+/**
+ * @description Renders every file in an action folder into `RenderedAction` items:
+ * reads and sorts the files, parses frontmatter and renders both the attributes
+ * and the body with EJS. The `<%= %>` escape is a no-op so generated code is not
+ * HTML-escaped.
+ * @param args - The parsed run arguments (must include `actionfolder`).
+ * @param config - A (partial) runner configuration for the template context.
+ * @returns The fully rendered action items, one per template file.
+ * */
+export const render = async (
   args: Record<string, any>,
   config: Partial<RunnerConfig>,
 ): Promise<RenderedAction[]> =>
@@ -118,5 +127,3 @@ const render = async (
         },
       ),
     );
-
-export default render;

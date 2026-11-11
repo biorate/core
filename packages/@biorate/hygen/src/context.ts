@@ -1,4 +1,4 @@
-import type { RunnerConfig } from './types';
+import type { RunnerConfig, Helpers } from './types';
 import helpers from './helpers';
 
 const localsToCapitalize = ['name'];
@@ -27,16 +27,25 @@ const processLocals = (hsh: Record<string, any>, [key, value]: [string, any]) =>
 const processedLocals = (locals: Record<string, any>) =>
   Object.entries(locals).reduce(processLocals, {} as Record<string, any>);
 
+/**
+ * @description Builds the template context object: `locals` merged with the
+ * configured defaults and derive{{}}-style derived keys (capitalized and
+ * pluralized `name`), plus an `h` namespace binding built-in and configured
+ * helpers together.
+ * @param locals - The key/value locals supplied to the template.
+ * @param config - A (partial) runner configuration used for helpers/defaults.
+ * @returns The merged context object handed to EJS/templates.
+ * */
 const context = (locals: Record<string, any>, config: Partial<RunnerConfig> = {}) => {
   const localsWithDefaults = {
     ...localsDefaults,
     ...config.localsDefaults,
     ...locals,
   };
-  const configHelpers =
-    (typeof config.helpers === 'function'
+  const configHelpers: Helpers =
+    typeof config.helpers === 'function'
       ? config.helpers(locals, config)
-      : config.helpers) || {};
+      : config.helpers ?? {};
   return Object.assign(localsWithDefaults, processedLocals(localsWithDefaults), {
     h: { ...helpers, ...configHelpers },
   });

@@ -1,151 +1,134 @@
-You can have plenty of ways to run `hygen`. Pick one of the following:
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+>
+> Based on: [Upstream quick start](https://github.com/jondot/hygen/blob/master/docs/quick-start.md)
 
-On macOS and Homebrew:
+# Quick start
 
-```
-$ brew tap jondot/tap
-$ brew install hygen
-```
+`hygen` is a project-local code generator: it turns files in a `_templates` folder into
+generated output (new files, injections into existing files, shell commands). This page
+covers installing the CLI, bootstrapping a project and generating your first output; the
+full template reference is in [templates](./templates).
 
-Globally with npm (or yarn):
+## Installing the CLI
 
-```
-$ npm i -g hygen
-```
-
-Or, if you like a no-strings-attached approach, use
-with [`npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)
-
-```
-$ npx hygen ...
-```
-
-Should any of these be confusing to you, check out the [binary releases](https://github.com/jondot/hygen/releases) where you'll find a binary for every major platform.
-
-With this done, let's use a `hygen` generator.
-
-To use a generator, we supply a `GENERATOR ACTION` pair like so (here `mailer` and `new` are examples).
-
-```
-$ hygen mailer new [NAME]
-         |      ^----- action
-         `------------ generator
-```
-
-:::info
-New in hygen 4.0.0: a positional `NAME` parameter to save a bit of typing. With versions prior to 4.0.0 you still have to use `--name NAME`.
-:::
-
-Here's a quick run-down to get to your own generator:
+The fork is published on npm as `@biorate/hygen`. Install it globally, or run it without
+installing:
 
 ```bash
-$ hygen init self
-$ hygen generator new awesome-generator
-$ hygen awesome-generator new hello
+npm i -g @biorate/hygen
+# or, without installing
+npx @biorate/hygen ...
 ```
 
-To see the `generator` help, you could always do:
+The binary is named `hygen`. When installed globally it is on your `PATH`; when run via
+`npx` you use the full package name.
+
+## Running a generator
+
+A generator is invoked with a `GENERATOR ACTION` pair. The folder in `_templates` maps to
+the command: `_templates/mailer/new/` is the `mailer new` generator.
 
 ```bash
-$ hygen generator help
-
-Loaded templates: _templates
-help:
-hygen generator new [NAME] --action [ACTION]
-hygen generator with-prompt [NAME] --action [ACTION]
+hygen mailer new [NAME]
+      |      ^ action
+      `------- generator
 ```
 
-Finally, use `--dry` to do a test-run of your generators.
-
-To check the installed `hygen` version, use `--version` (or its shorthand `-v`). It prints
-`Hygen v<version>` and exits without touching any generator:
+A positional `NAME` is shorthand for `--name NAME`:
 
 ```bash
-$ hygen --version
-Hygen v6.2.11
-$ hygen -v
-Hygen v6.2.11
+hygen mailer new --name autumn-newsletter
+# equivalent:
+hygen mailer new autumn-newsletter
 ```
 
-Congratz! you've made a new generator called `awesome-generator`!
+## Bootstrapping your project
 
-Let's walk through what we just did.
+`hygen init self` copies two starter generators (`generator new` and
+`generator with-prompt`) into a project-local `_templates` folder:
 
-:::info
-| You can also install `hygen` from Homebrew or download a standalone binary. For more, see [standalone](./standalone).
-:::
-
-<br />
-
-## Bootstrapping Your Project
-
-Use `hygen init self` to start using it in your own project. `hygen` comes with two pre-built generators that helps you build your own - although it was built to ease the boilerplate fatigue for React, Redux, and Node.js it can be use for any technology really.
-
-```yaml{2}
-$ cd your-project
-$ hygen init self
-
-Loaded templates: src/templates
-       added: _templates/generator/with-prompt/hello.ejs.t
-       added: _templates/generator/with-prompt/prompt.js
-       added: _templates/generator/new/hello.ejs.t
+```bash
+cd your-project
+hygen init self
+#       added: _templates/generator/with-prompt/hello.ejs.t
+#       added: _templates/generator/with-prompt/prompt.js
+#       added: _templates/generator/new/hello.ejs.t
 ```
 
-This creates a project-local `_templates` folder for you at your source root with two helper generators that saves you time:
+With the starter generators in place, create and use your own:
 
-- `hygen generator new generatorName` - builds a new generator for you
-- `hygen generator with-prompt generatorName` - the same as before, only this one will be prompt driven.
+```bash
+hygen generator new mygen
+#       added: _templates/mygen/new/hello.ejs.t
 
-:::info
-
-###### Template Locality
-
-On multi-team projects, each team can have their own templates right there in the shared repo.
-:::
-
-Still in your project root, let's create a new generator now:
-
-```yaml
-$ hygen generator new mygen
-Loaded templates: _templates
-       added: _templates/mygen/new/hello.ejs.t
+hygen mygen new
+#       added: app/hello.js
 ```
 
-And let's use it:
+The starter `generator new` template is itself copied into your project (not bundled), so
+you can tweak how new generators are created for your team. Because templates are
+generated by `hygen`, they are checked in and reviewed like any other code.
 
-```yaml{4}
-$ hygen mygen new
+## Testing a run dry
 
-Loaded templates: _templates
-       added: app/hello.js
+`--dry` renders and validates every action but saves nothing (and runs no shell command).
+Use it to preview what a generator will do before committing it:
+
+```bash
+hygen mailer new --name test --dry
+# [no files written, no shell commands run]
 ```
 
-:::info
+## Checking the version
 
-###### Did You Notice?
+`--version` (or `-v`) prints `Hygen v<version>` and exits `0` without needing a generator
+or action:
 
-Instead of bundling the `hygen generator new` command in `hygen`, we chose to _copy_ it to your local templates folder.
+```bash
+hygen --version
+Hygen v0.0.1
 
-In this way you can even tweak the way `hygen` generates new generators. It scales to a set up with different teams, each with its own preference.
-:::
-
-That's it! we've done a basic walkthrough of `hygen`. Next up is a detailed overview of [templates](./templates) and [generators](./generators).
-
-## Invoking Generators
-
-There are more ways to play with a generator after you've built it:
-
-```perl
-# generate all files, with a 'name' variable
-$ hygen example-prompt new reporter
-
-
-# generate one specific file, picked up based on the substring 'mailer'
-$ hygen example-prompt new:mailer reporter
-
-
-# generate all resources that correspond to a regular expression
-$ hygen example-prompt 'new:.*html' reporter
+hygen -v
+Hygen v0.0.1
 ```
 
-You made it to the end! nice! Now check out [templates](./templates) and [generators](./generators).
+## Getting help
+
+With no arguments, or with an unknown generator/action, the CLI prints the available
+actions and exits non-zero:
+
+```bash
+hygen
+# Hygen v0.0.1
+# Available actions:
+# generator: new, with-prompt
+# mailer: new
+```
+
+`-h` / `--help` prints the usage text:
+
+```bash
+hygen -h
+# Usage:
+#   hygen [option] GENERATOR ACTION [--name NAME] [data-options]
+#
+# Options:
+#   -h, --help # Show this message and quit
+#   --dry      # Perform a dry run.  Files will be generated but not saved.
+```
+
+## Templates location
+
+Templates are found by walking up the directory tree from the current working directory
+for a `_templates` folder. The `HYGEN_TMPLS` environment variable overrides local lookup
+(see [templates location](./generators#templates-location)); in the embeddable API the
+location is set via the `RunnerConfig` (see [extensibility](./extensibility)).
+
+That's the 30-second tour. Continue with the full reference in [templates](./templates) and
+[generators](./generators).
+
+## Attribution
+
+`@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
+MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
+[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).

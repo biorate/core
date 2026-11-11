@@ -1,12 +1,23 @@
 import type { ActionResult, RenderedAction, RunnerConfig } from '../types';
 
+/**
+ * @description A single operation applied to one rendered action. Receives the
+ * rendered action, the run's arguments and the runner configuration, and
+ * resolves to the operation outcome. */
 export type Op = (
   action: RenderedAction,
-  args: Record<string, any>,
+  args: Record<string, unknown>,
   config: RunnerConfig,
 ) => Promise<ActionResult>;
 
-const resolve = async (attributes: Record<string, any>): Promise<Op[]> => {
+/**
+ * @description Resolves which operations to run for a rendered action based on
+ * its attributes (`to`, `echo`, `sh`, `setup`, …). Operations are lazily
+ * imported so only the executed ones are loaded.
+ * @param attributes - The rendered action attributes.
+ * @returns The ordered list of operations to execute.
+ * */
+const resolve = async (attributes: Record<string, unknown>): Promise<Op[]> => {
   const ops: Op[] = [];
   if (attributes.to && !attributes.inject && !attributes.replace) {
     const add = (await import('./add')).default;
