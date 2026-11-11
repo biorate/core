@@ -2,47 +2,47 @@
 
 ## Context
 
-Upstream `jondot/hygen` v6.2.11 (MIT): ~24 файла в `src/` (функциональный стиль — параметры на входе, файлы на выходе), встроенные шаблоны `src/templates/`, тесты Jest в `src/__tests__/` (117 файлов, в основном фикстуры), docs — 11 markdown-страниц внутри сайта docusaurus `hygen.io/docs/`. Монорепо — 55+ библиотечных пакетов `@biorate/*` с единым шаблоном сборки (см. proposal.md — What Changes); это будет первый CLI-пакет в scope. Конвенции сняты с `@biorate/config`, `@biorate/errors`, `@biorate/migrations`.
+Upstream `jondot/hygen` v6.2.11 (MIT): ~24 files in `src/` (functional style — parameters in, files out), built-in templates in `src/templates/`, Jest tests in `src/__tests__/` (117 files, mostly fixtures), docs — 11 markdown pages inside the docusaurus site `hygen.io/docs/`. The monorepo is 55+ `@biorate/*` library packages with a single build template (see proposal.md — What Changes); this will be the first CLI package in the scope. Conventions taken from `@biorate/config`, `@biorate/errors`, `@biorate/migrations`.
 
 ## Goals / Non-Goals
 
 **Goals:**
 
-- Минимально инвазивный перенос: код и семантика upstream сохраняются, отличия — только требуемые стандартом монорепо (сборка, версии, ошибки, Vitest).
-- Работоспособный CLI + встраиваемый `runner()`.
-- Юнит-покрытие, достаточное для уверенного форка (без metaverse).
+- A minimally invasive port: upstream code and semantics preserved; differences limited to what the monorepo standard requires (build, versions, errors, Vitest).
+- A working CLI + an embeddable `runner()`.
+- Unit coverage sufficient for a confident fork (no metaverse).
 
 **Non-Goals:**
 
-- Поддержка standalone-бинарников (`pkg`, Homebrew tap) — установка через npm/npx.
-- Benchmark скорости старта (`bin.timed`) и его тесты.
-- Модернизация зависимостей сверх необходимого (ejs 3, enquirer 2 — оставляем).
-- Синхронизация с upstream-изменениями (одноразовый импорт; при необходимости будущий merge — отдельная задача).
+- Standalone binaries (`pkg`, Homebrew tap) — installation via npm/npx.
+- The startup-speed benchmark (`bin.timed`) and its tests.
+- Dependency modernization beyond necessity (ejs 3, enquirer 2 — kept).
+- Syncing with upstream changes (one-time import; a future merge, if needed, is a separate task).
 
 ## Decisions
 
-1. **Одноразовый импорт без сохранения merge-совместимости.** Рефакторинг ошибок и структуры делает диффы с upstream неизбежно глубокими; дешевле держать это как свой пакет. Альтернатива — «тонкий» форк с патчами поверх upstream — отвергнута: конфликтует со стандартом ошибок и сборкой.
-2. **Ошибки: `src/errors.ts` с классами на `BaseError`.** Предположительный набор: `TemplateRenderError`, `InjectionTargetNotFoundError`, `ShellCommandError`, `TemplateNotFoundError`, `PromptError`. Точный состав уточняется при переносе по местам `throw` в `src/ops/*` и `engine.ts`.
-3. **Тесты: `tests/` в корне пакета, Vitest.** Перенос спеков upstream (без `metaverse*`), фикстуры — в `tests/fixtures/`. Механические замены `jest.fn`→`vi.fn`, `jest.mock`→`vi.mock`, `jest.spyOn`→`vi.spyOn`. Локальный `vitest.config.ts` через `mergeConfig` корневого — по образцу `@biorate/migrations` (нужен, если спеки тянут алиасы/фикстуры с путями).
-4. **CLI: публикуем бинарь `hygen`.** Поле `bin: { hygen: "./dist/cjs/bin.js" }`; в `exports` добавляется соответствующий путь. Это допущение (автор не подтвердил явно); обратный ход — убрать `bin`, пакет останется встраиваемой библиотекой, ничего в specs не меняется (требование CLI уже зафиксировано отдельным требованием).
-5. **Точка входа: корневой `index.ts`-шим** (`export * from './src'`) — конвенция всех пакетов; публичный API — `runner`, `Logger`.
-6. **Docs: `docs/` в корне пакета, вне `files`.** Страницы `hygen.io/docs/*.md` уже markdown; чистка — убрать docusaurus-frontmatter (`sidebar_*`, `title`-метки), абсолютные ссылки `https://hygen.io/docs/...` → относительные `./quick-start.md`. README пакета — краткий, со ссылкой на docs и пометкой «форк jondot/hygen, MIT».
-7. **Зависимости: распиновать `^` → точные версии из upstream-фиксации** (правило монорепо; для hygen — версии его yarn.lock на момент импорта). `@types/node` и прочие `@types/*` — в devDependencies.
-8. **`require-cjs/require-esm` не нужен на старте**: зависимости hygen — обычные CJS-пакеты, двойная сборка решается стандартными тремя tsconfig-профилями. Шаблон migrations (`require-cjs.ts`) держим в уме, если Vitest столкнётся с dual-package артефактами.
+1. **One-time import without maintaining merge compatibility.** The error and structure refactoring makes diffs vs upstream inevitably deep; keeping it as our own package is cheaper. The alternative — a "thin" fork with patches over upstream — is rejected: it conflicts with the error standard and the build.
+2. **Errors: `src/errors.ts` with `BaseError`-derived classes.** Expected set: `TemplateRenderError`, `InjectionTargetNotFoundError`, `ShellCommandError`, `TemplateNotFoundError`, `PromptError`. The exact set is finalized during the port, at the `throw` sites in `src/ops/*` and `engine.ts`.
+3. **Tests: `tests/` at the package root, Vitest.** Port upstream specs (without `metaverse*`), fixtures into `tests/fixtures/`. Mechanical replacements `jest.fn`→`vi.fn`, `jest.mock`→`vi.mock`, `jest.spyOn`→`vi.spyOn`. A local `vitest.config.ts` via `mergeConfig` with the root one — following `@biorate/migrations` (needed if specs pull aliases/fixtures with paths).
+4. **CLI: we publish the `hygen` binary.** `bin: { hygen: "./dist/cjs/bin.js" }`; the corresponding path is added to `exports`. This is an assumption (the author did not confirm explicitly); the rollback is to drop `bin` and the package stays an embeddable library — nothing in specs changes (the CLI requirement is already captured as a separate requirement).
+5. **Entry point: the root `index.ts` shim** (`export * from './src'`) — the convention of all packages; the public API is `runner`, `Logger`.
+6. **Docs: `docs/` at the package root, outside `files`.** The `hygen.io/docs/*.md` pages are already markdown; cleanup — remove docusaurus frontmatter (`sidebar_*`, `title` labels) and rewrite absolute `https://hygen.io/docs/...` links to relative `./quick-start.md`. The package README is brief, linking to docs and noting "fork of jondot/hygen, MIT".
+7. **Dependencies: un-pin `^` → exact versions from the upstream commit** (monorepo rule; for hygen — the versions of its yarn.lock at import time). `@types/node` and other `@types/*` go to devDependencies.
+8. **`require-cjs/require-esm` is not needed at the start**: hygen's dependencies are ordinary CJS packages; dual build is handled by the standard three tsconfig profiles. Keep the migrations template (`require-cjs.ts`) in mind in case Vitest hits dual-package artifacts.
 
 ## Risks / Trade-offs
 
-- [EJS исполняет произвольный код шаблонов] → не усиливаем риск: поведение как в upstream; документируем в README, что шаблоны — код из репозитория.
-- [Первый CLI-пакет: риск протечки в npm лишних файлов] → `files: ["dist/**", "README.md", "LICENSE"]` + `bin` только на `dist/cjs/bin.js`; проверка `pnpm pack --dry-run` в верификации.
-- [Перенос 100+ файлов тестов Jest→Vitest] → metaverse исключён; оставшиеся спеки переносим пакетно, локальный запуск после каждой партии; при упорных спеках на jest-специфику — перезапись под Vitest, не сохранение jest-синтаксиса.
-- [Глубокий рефакторинг throw'ов может изменить тексты ошибок, на которые завязаны upstream-тесты] → тесты правим вместе с кодом; тексты сообщений не считаем контрактом.
-- [12 рантайм-зависимостей утяжеляют установку] → осознанно: альтернатива (переписать на меньше зависимостей) — отдельная задача, не в этом change.
+- [EJS executes arbitrary template code] → we do not amplify the risk: behavior as in upstream; the README documents that templates are code from the repository.
+- [First CLI package: risk of leaking extra files to npm] → `files: ["dist/**", "README.md", "LICENSE"]` + `bin` pointing only to `dist/cjs/bin.js`; verified with `pnpm pack --dry-run`.
+- [Porting 100+ Jest test files to Vitest] → metaverse excluded; remaining specs ported in batches with a local run after each batch; for specs stubbornly tied to jest specifics — rewrite for Vitest rather than preserving jest syntax.
+- [Deep throw refactoring may change error texts that upstream tests depend on] → tests are updated together with the code; message texts are not considered a contract.
+- [12 runtime dependencies weigh on installation] → deliberate: the alternative (rewriting on fewer dependencies) is a separate task, not in this change.
 
 ## Migration Plan
 
-Добавление нового пакета — миграции не требует. Откат: удалить `packages/@biorate/hygen/` до публикации; после публикации — deprecate на npm.
+Adding a new package requires no migration. Rollback: delete `packages/@biorate/hygen/` before publishing; after publishing — deprecate on npm.
 
 ## Open Questions
 
-- (разрешены ранее) metaverse-тесты — не переносим; имя пакета — `@biorate/hygen`.
-- Точный состав классов ошибок финализируется при переносе — не влияет на specs и разбиение задач.
+- (resolved earlier) metaverse tests — not ported; package name — `@biorate/hygen`.
+- The exact set of error classes is finalized during the port — does not affect specs or task breakdown.

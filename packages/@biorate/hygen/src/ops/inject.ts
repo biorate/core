@@ -10,26 +10,32 @@ const injectOp = async (
   { logger, cwd }: RunnerConfig,
 ): Promise<ActionResult> => {
   const {
-    attributes: { to, inject },
+    attributes: { to, inject, replace, create_if_missing },
   } = action;
 
   const result = createResult('inject', to);
 
-  if (!(inject && to)) {
+  if (!((inject || replace) && to)) {
     return result('ignored');
   }
 
   const absTo = path.resolve(cwd, to);
 
   if (!(await fs.pathExists(absTo))) {
-    logger.err(`Cannot inject to ${to}: doesn't exist.`);
-    return result('error', {
-      error: `Cannot inject to ${to}: doesn't exist.`,
-    });
+    if (create_if_missing) {
+      // create the empty skeleton (and parent dirs); the body is then injected
+      // into it below (create_if_missing requires an anchor such as `append`).
+      await fs.ensureFile(absTo);
+    } else {
+      logger.err(`Cannot inject to ${to}: doesn't exist.`);
+      return result('error', {
+        error: `Cannot inject to ${to}: doesn't exist.`,
+      });
+    }
   }
 
   const content = (await fs.readFile(absTo)).toString();
-  const injectResult = injector(action, content);
+  const injectResult = injector(action, content, to);
 
   if (!args.dry) {
     await fs.writeFile(absTo, injectResult);

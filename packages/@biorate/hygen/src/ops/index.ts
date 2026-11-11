@@ -8,11 +8,11 @@ export type Op = (
 
 const resolve = async (attributes: Record<string, any>): Promise<Op[]> => {
   const ops: Op[] = [];
-  if (attributes.to && !attributes.inject) {
+  if (attributes.to && !attributes.inject && !attributes.replace) {
     const add = (await import('./add')).default;
     ops.push(add);
   }
-  if (attributes.to && attributes.inject) {
+  if (attributes.to && (attributes.inject || attributes.replace)) {
     const inject = (await import('./inject')).default;
     ops.push(inject);
   }

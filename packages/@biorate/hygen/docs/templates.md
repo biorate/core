@@ -290,8 +290,36 @@ Here are the available properties for an `inject: true` template:
 In almost all cases you want to ensure you're not injecting content twice:
 
 - `skip_if` which contains a regular expression / text. If exists, injection is skipped.
+- `skip_if_not` which inverts `skip_if`: when `true`, injection runs only when the `skip_if` text/regex **is** present (and is skipped when it is absent). Use it to inject a block into a file that already contains a marker.
 
 Let's see how these play out in the [Redux](./redux) use case.
+
+#### Creating a missing target
+
+By default injecting into a file that doesn't exist is an error. Set `create_if_missing: true` to create the target (empty, with parent folders) and then inject the body into it:
+
+```yaml
+---
+to: config/new.json
+inject: true
+create_if_missing: true
+append: true
+---
+{ 'key': 'value' }
+```
+
+#### Replacement by anchor
+
+`replace: true` switches the inject-family operation from insert to replace: the first fragment matched by the `before`/`after` anchor (a line or full-text regex) is replaced by the body, and the rest of the file is preserved. It is mutually exclusive with `inject` (using both is a configuration error), and only the `before`/`after` anchors support it:
+
+```yaml
+---
+to: package.json
+replace: true
+after: '"version": ".*"'
+---
+"version": "2.0.0",
+```
 
 ## Shell
 
@@ -360,4 +388,7 @@ Next up, we'll move on to [generators](./generators).
 | [`at_line:`](#injection)           | Number       | undefined | 123                                    |
 | [`eof_last:`](#injection)          | Boolean      | undefined | true                                   |
 | [`skip_if:`](#injection)           | Regex        | undefined | myPackage                              |
+| [`skip_if_not:`](#injection)       | Boolean      | undefined | true                                   |
+| [`create_if_missing:`](#injection) | Boolean      | false     | true                                   |
+| [`replace:`](#injection)           | Boolean      | false     | true                                   |
 | [`sh:`](#shell)                    | String       | undefined | echo: "Hello this is a shell command!" |

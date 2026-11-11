@@ -57,6 +57,16 @@ hygen generator with-prompt [NAME] --action [ACTION]
 
 Finally, use `--dry` to do a test-run of your generators.
 
+To check the installed `hygen` version, use `--version` (or its shorthand `-v`). It prints
+`Hygen v<version>` and exits without touching any generator:
+
+```bash
+$ hygen --version
+Hygen v6.2.11
+$ hygen -v
+Hygen v6.2.11
+```
+
 Congratz! you've made a new generator called `awesome-generator`!
 
 Let's walk through what we just did.

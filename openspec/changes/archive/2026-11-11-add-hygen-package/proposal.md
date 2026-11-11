@@ -2,31 +2,31 @@
 
 ## Why
 
-Монорепо `biorate/core` не имеет инструмента генерации кода по шаблонам: типовые артефакты (пакеты, миграции, конфиги) создаются вручную. Форк проверенного генератора [hygen](https://github.com/jondot/hygen) (v6.2.11, MIT) даёт генераторы, живущие в самом проекте: шаблоны хранятся в `_templates` и ревьюятся в тех же PR, что и код. Перенос в стандарт пакета монорепо делает инструмент поддерживаемым и публикуемым как `@biorate/hygen`.
+The `biorate/core` monorepo has no template-based code generation tool: typical artifacts (packages, migrations, configs) are created manually. Forking the proven [hygen](https://github.com/jondot/hygen) generator (v6.2.11, MIT) gives us generators living inside the project itself: templates are stored in `_templates` and reviewed in the same PRs as the code. Porting it into the monorepo package standard makes the tool maintainable and publishable as `@biorate/hygen`.
 
 ## What Changes
 
-- Новый пакет `packages/@biorate/hygen/`: исходный код upstream `src/` (ядро + `ops/`: add, inject, shell, echo, setup) и встроенные шаблоны `src/templates/`.
-- Перенос тестов upstream (Jest → Vitest), **без** metaverse-тестов (хрупкие, тянут внешние репозитории).
-- Перенос документации `hygen.io/docs/*.md` (11 страниц) в `packages/@biorate/hygen/docs/` в чистом markdown, ссылки переписаны на локальные.
-- Рантайм-ошибки приведены к стандарту монорепо: классы на `BaseError` (`@biorate/errors: workspace:*`) вместо сырых `Error`.
-- Пакет оформлен по конвенциям монорепо: корневой `index.ts`-шим, три прохода сборки (`dist/cjs|esm|types`), `exports`, точные версии зависимостей, `.npmignore`, `prepublishOnly`.
-- CLI-бинарь `hygen` (поле `bin`) — публикация как глобально устанавливаемой команды; **допущение**, не оспоренное автором (см. design.md, «Открытые решения»).
-- Не переносим: `dist/`, `lib/`, сайт docusaurus (`hygen.io/`), `media/`, standalone-сборку через `pkg`, benchmark `bin.timed`, CI upstream, `yarn.lock`.
+- A new package `packages/@biorate/hygen/`: upstream `src/` source (core + `ops/`: add, inject, shell, echo, setup) and the built-in templates `src/templates/`.
+- Port of upstream tests (Jest → Vitest), **without** the metaverse tests (fragile, pull external repositories).
+- Port of the `hygen.io/docs/*.md` documentation (11 pages) into `packages/@biorate/hygen/docs/` as plain markdown, with links rewritten to local ones.
+- Runtime errors aligned with the monorepo standard: `BaseError`-derived classes (`@biorate/errors: workspace:*`) instead of raw `Error`.
+- The package follows monorepo conventions: root `index.ts` shim, triple build (`dist/cjs|esm|types`), `exports`, exact dependency versions, `.npmignore`, `prepublishOnly`.
+- The `hygen` CLI binary (`bin` field) — published as a globally installable command; an assumption not challenged by the author (see design.md, "Open Questions").
+- Not ported: `dist/`, `lib/`, the docusaurus site (`hygen.io/`), `media/`, the standalone `pkg` build, the `bin.timed` benchmark, upstream CI, `yarn.lock`.
 
 ## Capabilities
 
 ### New Capabilities
 
-- `hygen-generator`: поведение пакета `@biorate/hygen` как генератора кода — резолвинг шаблонов (`_templates`, `HYGEN_TMPLS`), рендеринг EJS с frontmatter, операции add/inject/shell, промпты, CLI-интерфейс.
+- `hygen-generator`: the behavior of the `@biorate/hygen` package as a code generator — template resolution (`_templates`, `HYGEN_TMPLS`), EJS rendering with frontmatter, add/inject/shell operations, prompts, CLI interface.
 
 ### Modified Capabilities
 
-- (пусто — новых требований к существующим пакетам нет; `@biorate/errors` используется как есть)
+- (none — no new requirements for existing packages; `@biorate/errors` is used as is)
 
 ## Impact
 
-- **Новые файлы:** `packages/@biorate/hygen/**` (код, тесты, docs, конфиги сборки).
-- **Зависимости:** 12 рантайм-deps upstream (`ejs`, `enquirer`, `chalk`, `yargs-parser`, `fs-extra`, `execa`, `front-matter`, `change-case`, `inflection`, `debug`, `ora`, `ignore-walk`) — точные версии; `@types/*` в devDeps.
-- **Существующие пакеты:** не затрагиваются; `@biorate/errors` — новая входящая workspace-зависимость.
-- **Риски:** EJS-шаблоны исполняют произвольный код шаблона (как в upstream, риск не усиливается); CLI в монорепо библиотечных пакетов — первый, проверять `files`/`bin`, чтобы в npm не попали `src/`, `tests/`, `docs/`.
+- **New files:** `packages/@biorate/hygen/**` (code, tests, docs, build configs).
+- **Dependencies:** 12 upstream runtime deps (`ejs`, `enquirer`, `chalk`, `yargs-parser`, `fs-extra`, `execa`, `front-matter`, `change-case`, `inflection`, `debug`, `ora`, `ignore-walk`) — exact versions; `@types/*` in devDeps.
+- **Existing packages:** untouched; `@biorate/errors` is a new incoming workspace dependency.
+- **Risks:** EJS templates execute arbitrary template code (as in upstream, risk not amplified); a CLI in a library monorepo package is a first — verify `files`/`bin` so that `src/`, `tests/`, `docs/` never reach npm.

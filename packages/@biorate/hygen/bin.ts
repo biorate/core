@@ -2,9 +2,18 @@
 
 import path from 'path';
 import Logger from './src/logger';
+import { isVersionFlag, VERSION } from './src/help';
 import { runner } from './index';
 
 const defaultTemplates = path.join(__dirname, 'templates');
+
+// #450: `--version`/`-v` is a CLI concern caught before any generator resolution; the
+// argument parser is untouched and the process exits successfully without running.
+if (isVersionFlag(process.argv.slice(2))) {
+  console.log(`Hygen v${VERSION}`); // eslint-disable-line no-console
+  process.exit(0);
+}
+
 runner(process.argv.slice(2), {
   templates: defaultTemplates,
   cwd: process.cwd(),

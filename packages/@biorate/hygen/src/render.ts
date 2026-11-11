@@ -41,7 +41,10 @@ const renderTemplate = (
 ) => {
   if (typeof tmpl !== 'string') return tmpl;
   try {
-    return ejs.render(tmpl, context(locals, config));
+    // `<%= %>` must not HTML-escape: the tool generates code, not HTML.
+    return ejs.render(tmpl, context(locals, config), {
+      escape: (s: string) => s,
+    });
   } catch (error) {
     throw new TemplateRenderError(file, error);
   }

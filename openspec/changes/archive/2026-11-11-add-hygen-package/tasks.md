@@ -1,40 +1,40 @@
 # Tasks
 
-## 1. Скелет пакета
+## 1. Package skeleton
 
-- [x] 1.1 Создать `packages/@biorate/hygen/` с `package.json` по шаблону `@biorate/config` (main/module/types/exports, `bin: { hygen: './dist/cjs/bin.js' }`, `files: ['dist/**','README.md','LICENSE']`, скрипты clean/build:cjs/build:esm/build:types/build/prepublishOnly, postbuild через `.scripts/write-package-type.js` и `tsc-esm-fix`); проверить: `pnpm i` в корне линкует пакет в workspace
-- [x] 1.2 Создать набор tsconfig (`tsconfig.json` strict + `tsconfig.build.json` + cjs/esm/types профили, корневой `index.ts`-шим `export * from './src'`) и `.npmignore`/`.gitignore` по образцу `@biorate/config`; проверить: пустая сборка `pnpm --filter @biorate/hygen run build` проходит без ошибок компиляции
-- [x] 1.3 Указать зависимости: 12 рантайм-deps точными версиями (ejs, enquirer, chalk, yargs-parser, fs-extra, execa, front-matter, change-case, inflection, debug, ora, ignore-walk), `@biorate/errors: workspace:*`, `@types/*` в devDeps; проверить: `pnpm i` устанавливает без предупреждений о peer-конфликтах
-- [x] 1.4 Скопировать `LICENSE` (MIT upstream-копирайт) и `CHANGELOG.md`; проверить: файлы присутствуют, лицензия указывает на оригинальный проект
+- [x] 1.1 Create `packages/@biorate/hygen/` with a `package.json` following the `@biorate/config` template (main/module/types/exports, `bin: { hygen: './dist/cjs/bin.js' }`, `files: ['dist/**','README.md','LICENSE']`, clean/build:cjs/build:esm/build:types/build/prepublishOnly scripts, postbuild via `.scripts/write-package-type.js` and `tsc-esm-fix`); verify: `pnpm i` at the root links the package into the workspace
+- [x] 1.2 Create the tsconfig set (`tsconfig.json` strict + `tsconfig.build.json` + cjs/esm/types profiles, the root `index.ts` shim `export * from './src'`) and `.npmignore`/`.gitignore` following `@biorate/config`; verify: an empty `pnpm --filter @biorate/hygen run build` passes without compilation errors
+- [x] 1.3 Declare dependencies: 12 runtime deps at exact versions (ejs, enquirer, chalk, yargs-parser, fs-extra, execa, front-matter, change-case, inflection, debug, ora, ignore-walk), `@biorate/errors: workspace:*`, `@types/*` in devDeps; verify: `pnpm i` installs without peer-conflict warnings
+- [x] 1.4 Copy `LICENSE` (MIT upstream copyright) and `CHANGELOG.md`; verify: the files exist, the license points to the original project
 
-## 2. Код
+## 2. Code
 
-- [x] 2.1 Перенести ядро `src/` upstream (engine, render, params, prompt, config, config-resolver, context, help, logger, newline, execute, types, index; без `bin.timed.ts`) с правкой импортов под двойную сборку; проверить: `pnpm --filter @biorate/hygen run build` собирает три выхода
-- [x] 2.2 Перенести `src/ops/` (add, inject, injector, shell, echo, setup, result, index) и `src/templates/` (встроенные шаблоны); проверить: сборка включает шаблоны в `dist`, `tsc -p tsconfig.build.types.json` без ошибок
-- [x] 2.3 Создать `src/errors.ts` с классами на `BaseError` (`TemplateRenderError`, `InjectionTargetNotFoundError`, `ShellCommandError`, `TemplateNotFoundError`, `PromptError` — состав уточнить по местам `throw`) и заменить сырые `Error` по коду; проверить: grep по `src/` не находит `throw new Error\(`/`new TypeError\(` вне `errors.ts`
-- [x] 2.4 Перенести `bin.ts` как CLI-точку (`dist/cjs/bin.js`), с shebang и без dist-относительных хаков upstream; проверить: `node packages/@biorate/hygen/dist/cjs/bin.js --help` выводит справку
+- [x] 2.1 Port the upstream core `src/` (engine, render, params, prompt, config, config-resolver, context, help, logger, newline, execute, types, index; without `bin.timed.ts`) with import fixes for the dual build; verify: `pnpm --filter @biorate/hygen run build` produces all three outputs
+- [x] 2.2 Port `src/ops/` (add, inject, injector, shell, echo, setup, result, index) and `src/templates/` (built-in templates); verify: the build includes templates in `dist`, `tsc -p tsconfig.build.types.json` without errors
+- [x] 2.3 Create `src/errors.ts` with `BaseError`-derived classes (`TemplateRenderError`, `InjectionTargetNotFoundError`, `ShellCommandError`, `TemplateNotFoundError`, `PromptError` — finalize the set at the `throw` sites) and replace raw `Error`s accordingly; verify: grep over `src/` finds no `throw new Error\(`/`new TypeError\(` outside `errors.ts`
+- [x] 2.4 Port `bin.ts` as the CLI entry (`dist/cjs/bin.js`), with a shebang and without upstream's dist-relative hacks; verify: `node packages/@biorate/hygen/dist/cjs/bin.js --help` prints help
 
-## 3. Тесты (Jest → Vitest)
+## 3. Tests (Jest → Vitest)
 
-- [x] 3.1 Создать `tests/` и (при необходимости) локальный `vitest.config.ts` через `mergeConfig` корневого, по образцу `@biorate/migrations`; проверить: `pnpm --filter @biorate/hygen run test` запускает пустой набор
-- [x] 3.2 Перенести юнит-спеки ядра (engine, render, params, config-resolver, newline, helpers) с заменами `jest.fn`→`vi.fn`, `jest.mock`→`vi.mock` и фикстурами в `tests/fixtures/`; проверить: перенесённые спеки зелёные
-- [x] 3.3 Перенести спеки ops (add, inject, injector, shell) и CLI-спеки; metaverse-тесты не переносить; проверить: `pnpm --filter @biorate/hygen run test` — весь набор зелёный
-- [x] 3.4 Убедиться, что тесты на тексты ошибок обновлены под классы `BaseError`; проверить: нет спеков, проверяющих `instanceof Error` от «сырых» классов
+- [x] 3.1 Create `tests/` and (if needed) a local `vitest.config.ts` via `mergeConfig` with the root one, following `@biorate/migrations`; verify: `pnpm --filter @biorate/hygen run test` runs an empty suite
+- [x] 3.2 Port the core unit specs (engine, render, params, config-resolver, newline, helpers) with `jest.fn`→`vi.fn`, `jest.mock`→`vi.mock` replacements and fixtures in `tests/fixtures/`; verify: the ported specs are green
+- [x] 3.3 Port the ops specs (add, inject, injector, shell) and CLI specs; do not port the metaverse tests; verify: `pnpm --filter @biorate/hygen run test` — the whole suite is green
+- [x] 3.4 Ensure error-text tests are updated for the `BaseError` classes; verify: no specs assert `instanceof Error` on "raw" classes
 
-## 4. Документация
+## 4. Documentation
 
-- [x] 4.1 Перенести 11 страниц `hygen.io/docs/*.md` в `packages/@biorate/hygen/docs/`, убрав docusaurus-frontmatter и переписав абсолютные ссылки `https://hygen.io/...` на относительные; проверить: ни одна ссылка в `docs/` не указывает на hygen.io, кроме явных упоминаний проекта
-- [x] 4.2 Написать `README.md` пакета: назначение, quick-start (`hygen init self`, `hygen generator new`), пометка «форк jondot/hygen (MIT)», ссылка на `docs/`; проверить: команды из README выполняются в песочнице `/tmp/opencode`
+- [x] 4.1 Port the 11 `hygen.io/docs/*.md` pages into `packages/@biorate/hygen/docs/`, removing docusaurus frontmatter and rewriting absolute `https://hygen.io/...` links to relative ones; verify: no link in `docs/` points to hygen.io except explicit project mentions
+- [x] 4.2 Write the package `README.md`: purpose, quick-start (`hygen init self`, `hygen generator new`), a "fork of jondot/hygen (MIT)" note, a link to `docs/`; verify: the README commands run in a `/tmp/opencode` sandbox
 
-## 5. Верификация
+## 5. Verification
 
-- [x] 5.1 Смоук-прогон CLI: в `/tmp/opencode/sandbox` выполнить `hygen init self` → `hygen generator new mygen` → `hygen mygen new`; проверить: создаются `_templates` и `app/hello.js`
-- [x] 5.2 Смоук-прогон инъекции: шаблон с `inject: true` + `skip_if` на `package.json` песочницы — дважды; проверить: вставка одна, повтор пропущен
-- [x] 5.3 `pnpm pack --dry-run` в пакете; проверить: в архив не попадают `src/`, `tests/`, `docs/`, конфиги
-- [x] 5.4 Прогон по монорепо: `pnpm run build` и `pnpm run test` затронутых соседей (`@biorate/errors` и зависимые от него) — зелёные; форматирование пакета под корневой `.prettierrc`
+- [x] 5.1 CLI smoke run: in `/tmp/opencode/sandbox` execute `hygen init self` → `hygen generator new mygen` → `hygen mygen new`; verify: `_templates` and `app/hello.js` are created
+- [x] 5.2 Injection smoke run: a template with `inject: true` + `skip_if` on the sandbox `package.json` — twice; verify: a single insertion, the repeat skipped
+- [x] 5.3 `pnpm pack --dry-run` in the package; verify: `src/`, `tests/`, `docs/`, and configs do not reach the archive
+- [x] 5.4 Monorepo pass: `pnpm run build` and `pnpm run test` for affected neighbors (`@biorate/errors` and its dependents) — green; package formatting per the root `.prettierrc`
 
 ## Workflow follow-up
 
-- Прогнать `openspec validate` перед apply.
-- Не коммитить и не публиковать без явного запроса автора (правила монорепо).
-- Архивировать change после прохождения ревью автора.
+- Run `openspec validate` before apply.
+- Do not commit or publish without an explicit request from the author (monorepo rules).
+- Archive the change after the author's review.

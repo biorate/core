@@ -38,10 +38,12 @@ hygen generator with-prompt mygen
 hygen mygen with-prompt
 ```
 
+Check the installed version with `hygen --version` (or `hygen -v`) — it prints `Hygen v<version>` and exits without running any generator.
+
 ## Key features
 
 - **Add** — templates create files (`to:` frontmatter, folders auto-created)
-- **Inject** — insert into existing files (`inject: true` + `before|after|prepend|append|line_at`, guarded by `skip_if`)
+- **Inject** — insert into existing files (`inject: true` + `before|after|prepend|append|line_at`, guarded by `skip_if`), create a missing target (`create_if_missing: true`), or replace the first anchor match (`replace: true`, mutually exclusive with `inject`)
 - **Shell** — run commands after generation (`sh:` frontmatter)
 - **Prompts** — interactive flows via `prompt.js` (enquirer)
 - **EJS + frontmatter** — metadata is rendered by the same engine; case helpers (`h.changeCase.*`)
@@ -79,9 +81,11 @@ Full list: `docs/`.
 - Errors follow the monorepo standard: `BaseError`-derived classes (`src/errors.ts`) instead of raw `Error`.
 - Strict TypeScript; Jest tests migrated to Vitest; metaverse tests not included.
 - CLI binary ships compiled templates (`dist/cjs/templates`); Homebrew/standalone binaries are not built.
+- `<%= %>` does not HTML-escape: the ejs `escape` option is set to the identity (`(s) => s`), since the tool generates code, not HTML. Use `<%- %>` semantics are unchanged.
+- Inject-family extensions on top of upstream: `create_if_missing: true` creates a missing target before injecting; `replace: true` replaces the first `before`/`after` anchor match with the body (mutually exclusive with `inject`); `skip_if_not: true` inverts the `skip_if` guard. Upstream treats these as plain template variables.
 
 > Note: templates are code — EJS renders arbitrary expressions, so only use templates from repositories you trust.
 
 ## License
 
-MIT — original work © Dotan Nahum (jondot/hygen), fork adaptations © biorate.
+MIT — original work © Dotan Nahum (jondot/hygen), fork adaptations © biorate. This is a fork of [jondot/hygen](https://github.com/jondot/hygen): the copyright was updated to the repository owner (Leonid Levkin) and the upstream copyright line is preserved in the `LICENSE` file.

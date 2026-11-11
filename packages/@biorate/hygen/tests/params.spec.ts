@@ -1,6 +1,7 @@
 import path from 'path';
 import Logger from '../src/logger';
 import params from '../src/params';
+import { isVersionFlag } from '../src/help';
 
 const fixture = (...segments: string[]) =>
   path.join(__dirname, 'fixtures', 'templates', ...segments);
@@ -58,5 +59,21 @@ describe('params', () => {
       templates: fixture('templates-override', '_templates'),
       ts: '1337',
     });
+  });
+
+  // Upstream bug #450 fixed: `--version`/`-v` is parsed in bin.ts before runner() and
+  // exits 0 without generator resolution, so params() never sees the flag. The detection
+  // lives in help.ts alongside VERSION and is unit-tested here.
+  it('detects the --version flag (bug #450)', () => {
+    expect(isVersionFlag(['--version'])).toBe(true);
+  });
+
+  it('detects the -v flag (bug #450)', () => {
+    expect(isVersionFlag(['-v'])).toBe(true);
+  });
+
+  it('does not treat ordinary args as a version flag (bug #450)', () => {
+    expect(isVersionFlag(['sink', 'new', '--name', 'Foo'])).toBe(false);
+    expect(isVersionFlag([])).toBe(false);
   });
 });

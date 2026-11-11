@@ -37,6 +37,25 @@ export class InjectionTargetNotFoundError extends BaseError {
 }
 
 /**
+ * @description Thrown when an inject `before`/`after` anchor cannot be found in
+ * the target file. The inject operation fails and the file is left untouched. */
+export class InjectionAnchorNotFoundError extends BaseError {
+  public constructor(anchor: string, to: string) {
+    super('Injection anchor [%s] not found in [%s]', [anchor, to]);
+  }
+}
+
+/**
+ * @description Thrown when inject-family frontmatter options are used together
+ * incorrectly: `inject` with `replace`, or `replace` with an anchor that does
+ * not support replacement (only `before`/`after` do). */
+export class TemplateConfigError extends BaseError {
+  public constructor(message: string) {
+    super('%s', [message]);
+  }
+}
+
+/**
  * @description Thrown when a shell command fails and exit code is not ignored. */
 export class ShellCommandError extends BaseError {
   public constructor(command: string, cause: unknown) {

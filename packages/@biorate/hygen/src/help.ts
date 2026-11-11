@@ -3,9 +3,38 @@ import path from 'path';
 import chalk from 'chalk';
 import type { Logger } from './types';
 import { DEFAULT_ACTION } from './params';
-const pkg = require('../package.json'); // eslint-disable-line @typescript-eslint/no-var-requires
 
-const VERSION = pkg.version;
+// The compiled output lives in dist/cjs/src, where a literal `require('../package.json')`
+// would resolve to the generated `{ "type": ... }` manifest (no `version`). Walk up to the
+// nearest package.json that carries a real version so `VERSION` is correct in both the
+// source tree and the built artifacts.
+const readVersion = (): string => {
+  let dir = __dirname;
+  while (true) {
+    const candidate = path.join(dir, 'package.json');
+    if (fs.existsSync(candidate)) {
+      try {
+        const pkg = JSON.parse(fs.readFileSync(candidate, 'utf8')) as {
+          version?: unknown;
+        };
+        if (typeof pkg.version === 'string' && pkg.version.length > 0) return pkg.version;
+      } catch {
+        // malformed manifest — keep walking up
+      }
+    }
+    const parent = path.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  return 'unknown';
+};
+
+const VERSION = readVersion();
+
+// Detects the `--version`/`-v` CLI switch. Parsed in bin.ts (not params.ts) so the
+// argument parser shape stays untouched; the CLI prints the version and exits 0 early.
+const isVersionFlag = (args: string[]) =>
+  args.includes('--version') || args.includes('-v');
 
 const availableActions = (templates: string) => {
   const generators = fs
@@ -53,4 +82,4 @@ const printHelp = (templates: string | undefined, logger: Logger) => {
   });
 };
 
-export { availableActions, printHelp, VERSION };
+export { availableActions, printHelp, VERSION, isVersionFlag };

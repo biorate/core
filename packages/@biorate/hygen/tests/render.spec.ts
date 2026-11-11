@@ -183,6 +183,23 @@ describe('render ng', () => {
     expect(actualBody).toMatch(expectedBody);
   });
 
+  // Fixes upstream bug #387: `<%= %>` renders verbatim — no HTML escaping, since the
+  // tool generates code, not HTML.
+  it('should not HTML-escape the expression (bug #387)', async () => {
+    const res = await render(
+      {
+        expr: 'a > b && c < d',
+        actionfolder: fixture('app', 'action-escape'),
+      },
+      {},
+    );
+    const body = res[0].body;
+    expect(body).toContain('const cmp = a > b && c < d;');
+    expect(body).not.toContain('&gt;');
+    expect(body).not.toContain('&amp;');
+    expect(body).not.toContain('&lt;');
+  });
+
   it('should use config.localsDefaults for not passed parameters', async () => {
     // setup
     const expectedFile = /full/;
