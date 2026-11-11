@@ -1,0 +1,80 @@
+{
+  "name": "@biorate/hygen",
+  "version": "0.0.1",
+  "description": "The scalable code generator that saves you time. Fork of jondot/hygen",
+  "keywords": [
+    "template",
+    "generator",
+    "hygen",
+    "boilerplate"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biorate/core.git",
+    "directory": "packages/@biorate/hygen"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://biorate.github.io/core",
+  "author": "llevkin",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
+    }
+  },
+  "bin": {
+    "hygen": "./dist/cjs/bin.js"
+  },
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "cleanup dist",
+    "build:cjs": "npx tsc -p ./tsconfig.build.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
+    "build:types": "npx tsc -p ./tsconfig.build.types.json",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
+    "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs && cp -r src/templates dist/cjs/templates",
+    "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module && cp -r src/templates dist/esm/templates",
+    "format": "prettier --check src",
+    "lint": "eslint src --ext .ts",
+    "format:fix": "prettier --write src",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "npx vitest run --coverage",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@biorate/errors": "workspace:*",
+    "chalk": "4.1.2",
+    "change-case": "3.1.0",
+    "debug": "4.3.3",
+    "degit": "2.8.4",
+    "ejs": "3.1.6",
+    "enquirer": "2.3.6",
+    "execa": "5.0.0",
+    "front-matter": "4.0.2",
+    "fs-extra": "10.0.0",
+    "ignore-walk": "4.0.1",
+    "inflection": "1.12.0",
+    "ora": "5.4.1",
+    "yargs-parser": "21.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "4.1.7",
+    "@types/ejs": "3.1.0",
+    "@types/fs-extra": "9.0.13",
+    "@types/ignore-walk": "4.0.3",
+    "@types/inflection": "1.13.0",
+    "@types/yargs-parser": "21.0.3"
+  }
+}
