@@ -62,7 +62,9 @@ to: app/emails/<%= name %>.html
 
 ## Interactive prompts
 
-Add a `prompt.js` to the action folder to collect values interactively before rendering:
+Add a `prompt.js` to the action folder to collect values interactively before rendering
+(the complete reference — file names, hook forms, filtering, TypeScript — lives in
+[prompts](./prompts)):
 
 ```
 _templates/
@@ -107,7 +109,8 @@ Templates within an action folder are applied in `localeCompare` order.
 ## Advanced prompts (`index.js`)
 
 Replace `prompt.js` with an `index.js` in the action folder to build a multi-step flow, skip
-prompting conditionally, or reshape CLI arguments in a central place:
+prompting conditionally, or reshape CLI arguments in a central place (the complete hook
+reference — lookup order, hook arguments, filtering — lives in [prompts](./prompts)):
 
 ```
 my-generator/
