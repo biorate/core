@@ -158,6 +158,14 @@ A design goal for hygen is to be _instinctive_: the effort to make a generator a
 goal should always go toward zero. Hence generator-generators, helpers, a familiar
 logic-full templating engine, and attention to speed.
 
+## Can I use lodash or other libraries in my templates?
+
+Yes. Expose any installed library to templates through `helpers` in the project config
+file (`.hygen.js` family) — it is merged into the `h` helper namespace, so a template can
+call it as `h.<namespace>`. This works for utility libraries like lodash, sibling
+`@biorate/*` packages in a monorepo, and your own modules. See
+[extensibility](./extensibility#external-libraries-as-helpers).
+
 ## Can I force hygen to always overwrite (e.g. `--force`)?
 
 To avoid prompts and force overwrites, use the `HYGEN_OVERWRITE` environment flag:

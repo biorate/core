@@ -87,6 +87,85 @@ module.exports = {
 Beyond inlining a utility, you can `require` any code in your project and export it for
 `hygen` to use.
 
+### External libraries as helpers
+
+Anything `require`-able in the project where you run `hygen` can be exposed to templates
+the same way — utility libraries, sibling packages in a monorepo, your own modules.
+
+> **Note:** the library must be an installed dependency of the project where `hygen`
+> runs. `hygen` resolves `require` from the running project, not from its own bundle —
+> a library that is not installed there will fail to load.
+
+#### Lodash (plain object form)
+
+Require the library at config load and bind it (whole or in wrappers) under a namespace:
+
+```javascript
+// .hygen.js
+const _ = require('lodash');
+
+module.exports = {
+  helpers: {
+    _: _,
+    slug: (s) => _.kebabCase(s),
+  },
+};
+```
+
+Use it in a template as `h.<namespace>`:
+
+```yaml
+---
+to: given/hygen-js/libraries.md
+---
+<%= h._.capitalize(name) %>
+<%= h.slug(name) %>
+```
+
+#### Sibling `@biorate/*` package (monorepo usage)
+
+The same mechanism works for sibling packages in the monorepo, as long as the running
+project depends on them:
+
+```javascript
+// .hygen.js
+const { changeCase } = require('@biorate/change-case');
+
+module.exports = {
+  helpers: { changeCase },
+};
+```
+
+```yaml
+<%= h.changeCase.paramCase(name) %>
+```
+
+#### Function form (lazy resolution with a friendly error)
+
+`helpers` can also be a function `(locals, config) => Helpers`, evaluated per run. This
+is the place for lazy resolution: wrap the `require` in `try/catch` and throw a friendly
+error instead of the raw `Cannot find module`:
+
+```javascript
+// .hygen.js
+module.exports = {
+  helpers: (locals, config) => {
+    let _;
+    try {
+      _ = require('lodash');
+    } catch (e) {
+      throw new Error(
+        `lodash is required by this generator's config — install it: npm i -D lodash`,
+      );
+    }
+    return {
+      _: _,
+      slug: (s) => _.kebabCase(s),
+    };
+  },
+};
+```
+
 ## Customizing logger, template location and shell executor
 
 The same `.hygen.js` file can customize the logger, the templates folder, and the shell
