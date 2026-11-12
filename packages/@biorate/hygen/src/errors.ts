@@ -1,4 +1,5 @@
 import { BaseError } from '@biorate/errors';
+import type { ActionResult, RunFailure } from './types';
 
 /**
  * @description Thrown when the user has not specified a generator or action,
@@ -6,6 +7,36 @@ import { BaseError } from '@biorate/errors';
 export class ShowHelpError extends BaseError {
   public constructor(message: string) {
     super('%s', [message]);
+  }
+}
+
+/**
+ * @description Thrown at the end of a `--keep-going` run when one or more
+ * `(name, action)` pairs failed. Carries the partial `results` (the successful
+ * operation outcomes that did run) and the structured `failures` list so the
+ * runner can surface them in `RunnerResult.failures` instead of discarding the
+ * partial work. Extends `ShowHelpError` so the CLI still prints help, matching
+ * the pre-existing keep-going failure reporting.
+ * */
+export class KeepGoingError extends ShowHelpError {
+  /** @description The operation outcomes that succeeded before the failures. */
+  public readonly results: ActionResult[];
+  /** @description The structured list of failed pairs. */
+  public readonly failures: RunFailure[];
+
+  public constructor(failures: RunFailure[], results: ActionResult[]) {
+    super(
+      `the run failed for ${failures.length} pair(s):\n${failures
+        .map(
+          (f) =>
+            `action '${f.action}'${
+              f.name !== undefined ? ` for name '${f.name}'` : ''
+            }: ${f.error}`,
+        )
+        .join('\n')}`,
+    );
+    this.results = results;
+    this.failures = failures;
   }
 }
 
@@ -84,5 +115,15 @@ export class ConfigTsNodeError extends BaseError {
 export class SetupRepositoryError extends BaseError {
   public constructor(setup: string) {
     super('[%s] must be a repo', [setup]);
+  }
+}
+
+/**
+ * @description Thrown when the CLI arguments are used incorrectly — for example the
+ * repeated `--name` flag, which is rejected in favour of a comma-separated positional
+ * list. */
+export class CliArgumentError extends BaseError {
+  public constructor(message: string) {
+    super('%s', [message]);
   }
 }

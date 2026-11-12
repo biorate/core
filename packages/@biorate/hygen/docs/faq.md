@@ -70,6 +70,37 @@ my-generator/
 `hygen` parallelizes most of its book-keeping for speed, but file operations are executed
 serially to avoid operations stepping on each other.
 
+## How do I generate for several names/actions in one command?
+
+Pass comma-separated **lists** to the action and/or name positionals:
+
+```bash
+hygen mailer new,html a,b
+```
+
+Actions run sequentially in list order; the name loop is name-outer (each name completes
+all its actions before the next starts). A multi-run is **fail-fast by default** — pass
+`--keep-going` to continue past a failing pair and collect every failure. Because a
+multi-run is sugar over sequential runs (no rollback), preview with `--dry` first. See
+[Multiple actions and names in one run](./generators#multiple-actions-and-names-in-one-run).
+
+## Why does my template without `to:` create nothing?
+
+Because a template with no `to:` is a **no-op by default** — hygen renders the body but
+does not write a file (this is the long-standing behavior for `sh`-only and un-targeted
+templates, and it is preserved to avoid silently creating files). If you want the output
+to mirror the template's location inside the action folder, opt in with `mirror: true`:
+
+```yaml
+---
+mirror: true
+---
+```
+
+The target path then mirrors the template's location (with the trailing `.t` suffix
+stripped) relative to the current directory. Explicit `to:` always wins over `mirror`, and
+`sh`-only templates never mirror. See [Mirroring the template layout](./templates#mirroring-the-template-layout-mirror).
+
 ## I want to use generators from a single place
 
 If you have several `_templates` locations within a project (say for a server and a client),

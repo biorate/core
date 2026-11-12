@@ -246,6 +246,46 @@ unless_exists: true
 will not render if target exists
 ```
 
+## Mirroring the template layout (`mirror`)
+
+A template with no `to:` is a **no-op** by default — it renders nothing and creates
+nothing. When you want the output path to mirror where the template lives inside the
+action folder, opt in with `mirror: true`:
+
+```yaml
+---
+mirror: true
+---
+// _templates/mailer/new/parts/header.ejs.t -> parts/header.ejs (relative to cwd)
+```
+
+Mirroring applies **only** when all three hold: `mirror: true` is present, there is no
+`to:`, and there is no `sh` attribute. The target path is the template's location inside
+the action folder, resolved relative to the current working directory; missing
+directories are created automatically.
+
+### Suffix rule
+
+The file-name suffix is stripped per this convention before the path is used:
+
+| Setting                     | Source suffix | Target example            |
+| --------------------------- | ------------- | ------------------------- |
+| default                     | `.t`          | `html.ejs.t` → `html.ejs` |
+| `HYGEN_MIRROR_EJS_SUFFIX=1` | `.ejs.t`      | `html.ejs.t` → `html`     |
+
+The default strips a single trailing `.t` (so the `.ejs` is kept). Setting
+`HYGEN_MIRROR_EJS_SUFFIX=1` strips the full `.ejs.t` instead.
+
+### Precedence and scope
+
+- **Explicit `to:` always wins** — a template declaring both `to:` and `mirror: true`
+  writes to the explicit `to:` target and ignores `mirror`.
+- **`sh`-only templates never mirror** — a template with a `sh:` attribute and no `to:`
+  stays a no-op (no file is created), regardless of `mirror`.
+- **Overwrite semantics are unchanged** — a mirrored target behaves like any `add`:
+  `force: true` overwrites, `unless_exists: true` leaves an existing file alone, and the
+  default is to prompt for confirmation (`HYGEN_OVERWRITE` disables the prompt).
+
 ## From & shared templates
 
 `from:` loads the body from another template instead of the body of the current file. The
@@ -411,6 +451,7 @@ Next up: [generators](./generators).
 | Property                                             | Type         | Default   | Example                                |
 | ---------------------------------------------------- | ------------ | --------- | -------------------------------------- |
 | [`to:`](#addition-add)                               | String (url) | undefined | my-project/readme.md                   |
+| [`mirror:`](#mirroring-the-template-layout-mirror)   | Boolean      | undefined | true                                   |
 | [`from:`](#from--shared-templates)                   | String (url) | undefined | shared/docs/readme.md                  |
 | [`force:`](#addition-add)                            | Boolean      | false     | true                                   |
 | [`unless_exists:`](#addition-add)                    | Boolean      | false     | true                                   |

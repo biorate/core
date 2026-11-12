@@ -19,7 +19,11 @@ export type Op = (
  * */
 const resolve = async (attributes: Record<string, unknown>): Promise<Op[]> => {
   const ops: Op[] = [];
-  if (attributes.to && !attributes.inject && !attributes.replace) {
+  // a file target exists either via explicit `to:` or opt-in mirroring
+  // (`mirror: true` with no `sh`); shell-only templates stay no-ops.
+  const isAddTarget =
+    Boolean(attributes.to) || (attributes.mirror === true && !attributes.sh);
+  if (isAddTarget && !attributes.inject && !attributes.replace) {
     const add = (await import('./add')).default;
     ops.push(add);
   }

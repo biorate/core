@@ -5,11 +5,38 @@ import type { ActionResult, RenderedAction, RunnerConfig } from '../types';
 import createResult from './result';
 
 /**
- * @description Writes a rendered action body to its `to` target. Honors
+ * @description Resolves the write target for a rendered action. An explicit
+ * `to:` always wins. When absent, opt-in mirroring (`mirror: true` and no
+ * `sh`) derives the target from the template file's path relative to the
+ * action folder, resolved against `cwd` (missing directories created via the
+ * existing `ensureDir`). The template suffix is stripped per convention: a
+ * single trailing `.t` by default (`html.ejs.t` → `html.ejs`), or the full
+ * `.ejs.t` when `HYGEN_MIRROR_EJS_SUFFIX=1` is set (`html.ejs.t` → `html`).
+ * Mirroring never applies with a `sh` attribute, so shell-only templates stay
+ * no-ops. Returns `undefined` when neither `to` nor mirroring applies.
+ * @param action - The rendered action (its `file` and `attributes`).
+ * @param actionfolder - The absolute path of the action folder.
+ * @returns The write target (relative to `cwd`), or `undefined`.
+ * */
+const targetPath = (action: RenderedAction, actionfolder: string): string | undefined => {
+  const { attributes } = action;
+  if (attributes.to) return attributes.to as string;
+  if (attributes.mirror !== true || attributes.sh !== undefined || !action.file) {
+    return undefined;
+  }
+  const rel = path.relative(actionfolder, action.file);
+  return process.env.HYGEN_MIRROR_EJS_SUFFIX === '1'
+    ? rel.replace(/\.ejs\.t$/, '')
+    : rel.replace(/\.t$/, '');
+};
+
+/**
+ * @description Writes a rendered action body to its `to` target (or its
+ * mirrored path when `to` is absent and `mirror: true` is set). Honors
  * `unless_exists`, overwrite confirmation via the prompter, `from` copy source
  * and the `--dry` mode; returns an `added`/`skipped`/`ignored` result.
  * @param action - The rendered action to apply.
- * @param args - The run arguments (`templates`, `dry`, etc.).
+ * @param args - The run arguments (`templates`, `dry`, `actionfolder`, etc.).
  * @param config - The runner configuration.
  * @returns The operation outcome.
  * */
@@ -19,8 +46,9 @@ const add = async (
   { logger, cwd, createPrompter }: RunnerConfig,
 ): Promise<ActionResult> => {
   const {
-    attributes: { to, inject, unless_exists, force, from, skip_if },
+    attributes: { inject, unless_exists, force, from, skip_if },
   } = action;
+  const to = targetPath(action, args.actionfolder);
   const result = createResult('add', to);
   const prompter = createPrompter<
     { prefix: string; type: string; name: string; message: string },
@@ -29,7 +57,7 @@ const add = async (
   if (!to || inject) {
     return result('ignored');
   }
-  const absTo = path.resolve(cwd, to as string);
+  const absTo = path.resolve(cwd, to);
   const shouldNotOverwrite =
     !force && unless_exists !== undefined && unless_exists === true;
   const fileExists = await fs.pathExists(absTo);

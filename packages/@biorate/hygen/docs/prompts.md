@@ -151,6 +151,41 @@ hygen mailer new --name fancy-mailer --message "Hello"
 In the `prompt`-function form filtering is **your** responsibility — the runner hands you
 `args` and you decide what to ask (or return early, as in the example above).
 
+## Hooks under lists
+
+When a run expands multiple actions and/or names (see [generators](./generators#multiple-actions-and-names-in-one-run)),
+the hook is **not** asked once for the whole run. The execution unit is one `(name, action)`
+pair, and each pair runs its own prompt hook before rendering:
+
+```bash
+hygen mailer new,html a,b
+# new for "a" -> new for "b" -> html for "a" -> html for "b"
+# the hook in _templates/mailer/new and the hook in _templates/mailer/html
+# both run once per (name x action) pair
+```
+
+So a `new` folder with several names gets its hook asked once per name, and each listed
+action's hook runs independently. This multiplies prompt interruptions exactly by the
+number of pairs. The sharing mechanism is **CLI flags**: supply a variable once on the
+command line and every pair starts with it — the declarative form already skips questions
+whose answers came from the CLI (see [filtering](#filtering-ask-only-whats-missing)), so an
+answered variable is never re-asked in a later pair.
+
+### `name` precedence
+
+The `name` variable follows a fixed precedence chain when several sources provide it:
+
+| Precedence  | Source               | Example                |
+| ----------- | -------------------- | ---------------------- |
+| 1 (highest) | prompt hook answer   | a `prompt.js` value    |
+| 2           | positional name list | `hygen mailer new a,b` |
+| 3 (lowest)  | `--name` flag        | `--name fancy`         |
+
+The hook's answer always wins; a positional element overrides the `--name` flag. When the
+run expands a name **list**, `name` is the scalar of the current expansion regardless of
+how it was arrived at. (A repeated `--name` flag is rejected — use a comma-separated
+positional name list instead.)
+
 ## Answers become template variables
 
 Everything the hook yields — question answers or the object returned from
@@ -174,6 +209,6 @@ a `prompt` function with a CLI shortcut and a defaulted question.
 
 ## See also
 
-- [generators](./generators) — organizing generators and actions
+- [generators](./generators) — organizing generators and actions, and running several actions/names in one command
 - [templates](./templates) — the frontmatter reference and helpers
 - [extensibility](./extensibility) — the project config file and embedding via `runner()`

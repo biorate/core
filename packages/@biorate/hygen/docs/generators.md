@@ -189,6 +189,73 @@ hygen mailer new:.*xt --name textual-mailer
 # same, via regular expression
 ```
 
+## Multiple actions and names in one run
+
+Both the action and the name positionals accept a comma-separated **list**, so one
+command can render several actions and/or several names:
+
+```bash
+# two actions, one name
+hygen mailer new,html my-mailer
+
+# one action, two names (name-outer: each name completes all its actions)
+hygen mailer new a,b
+
+# two actions AND two names
+hygen mailer model,controller a,b
+```
+
+### Action lists
+
+```bash
+hygen mailer new,html --name fancy-mailer
+```
+
+The listed actions run **sequentially in list order** — `new` completes fully before
+`html` starts. Each listed action runs its own prompt hook and its own render pipeline;
+shared values come from CLI flags (see [prompts](./prompts#hooks-under-lists)). A
+`ACTION:SUBACTION` selector applies within each listed action, so you can restrict every
+action in the list the same way (`hygen mailer new:text,html:text --name x`).
+
+### Name lists
+
+```bash
+hygen mailer new a,b
+```
+
+This renders `new` once per name. The loop is **name-outer**: each entity completes all
+its actions before the next entity starts. For `model,controller × a,b` the execution
+order is `(model,a)`, `(controller,a)`, `(model,b)`, `(controller,b)`. Inside templates,
+`name` is always a **scalar** — the current expansion's value — never an array.
+
+The bare variant works too: when the action folder does not exist, the second positional
+is treated as the (comma-list) name for the generator's `_default` action:
+`hygen crud a,b` — or, combined with an action list, `hygen crud new,html a,b`.
+
+### Fail fast vs `--keep-going`
+
+Failure policy is **fail-fast by default**: the first failing pair stops the run and the
+error names the specific action (and name) that failed. Set `--keep-going` to continue
+through the remaining pairs and collect every failure:
+
+```bash
+hygen mailer new,html a,b --keep-going
+```
+
+With `--keep-going`, the returned `RunnerResult` carries both the partial `actions` that
+did complete and a `failures` list — one entry per failed pair (`action`, optional `name`,
+`error`). Fail-fast pairs raise the error immediately (in the embeddable `runner()` API,
+`result.failure.message` names the pairing that went wrong, and any prior actions are
+already on disk).
+
+### No transactionality — use `--dry` first
+
+A multi-run is **sugar over sequential runs, not a transaction**: there is no rollback.
+If an early pair succeeds and a later one fails, the earlier output stays on disk. On
+fail-fast runs this leaves partial results. To preview what a multi-run would write, run
+with `--dry` (`hygen mailer new,html a,b --dry`) — files are generated but not saved —
+before committing to a real run.
+
 ## Templates location
 
 `hygen` finds `_templates` by walking up the directory tree from the working directory and

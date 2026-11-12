@@ -1,6 +1,6 @@
 import type { RunnerConfig, RunnerResult } from './types';
 import resolve from './config-resolver';
-import { engine, ShowHelpError } from './engine';
+import { engine, ShowHelpError, KeepGoingError } from './engine';
 import { printHelp } from './help';
 
 /**
@@ -42,7 +42,15 @@ const runner = async (argv: string[], config: RunnerConfig): Promise<RunnerResul
     if (err instanceof ShowHelpError) {
       printHelp(templates, logger);
     }
-    return { success: false, actions: [], time: 0 };
+    // keep-going collected failures: keep the partial actions and the failure list
+    // (fail-fast still returns an empty `actions` list as before).
+    const keepGoing = err instanceof KeepGoingError ? err : undefined;
+    return {
+      success: false,
+      actions: keepGoing ? keepGoing.results : [],
+      ...(keepGoing ? { failures: keepGoing.failures } : {}),
+      time: 0,
+    };
   }
 };
 

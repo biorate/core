@@ -97,9 +97,28 @@ export interface ResolverIO {
 
 /**
  * @description A single operation outcome produced by the runner. The shape is
- * intentionally open (user-defined keys), so values are `unknown`.
+ * intentionally open (user-defined keys), so values are `unknown`. When produced by
+ * an expansion run the outcome is additionally annotated with the source `action`
+ * and `name` of the pair that generated it.
  * */
-export type ActionResult = Record<string, unknown>;
+export type ActionResult = Record<string, unknown> & {
+  /** @description Source action (or comma-list element) that produced this outcome. */
+  action?: string;
+  /** @description Source name expansion that produced this outcome. */
+  name?: string;
+};
+
+/**
+ * @description A single failed `(name, action)` pair recorded during a
+ * `--keep-going` run. `name` is absent when the run expanded no name list. */
+export interface RunFailure {
+  /** @description The action (or comma-list element) that failed. */
+  action: string;
+  /** @description The name expansion that failed, when the run used name lists. */
+  name?: string;
+  /** @description The error message reported for the failing pair. */
+  error: string;
+}
 
 /**
  * @description The result returned by `runner()`. `actions` holds every
@@ -116,6 +135,9 @@ export interface RunnerResult {
     message: string;
     availableActions: string[];
   };
+  /** @description Set for a `--keep-going` run that hit failures: one entry per
+   *  failed pair, alongside the partial `actions` that did complete. */
+  failures?: RunFailure[];
 }
 
 /**
@@ -127,8 +149,8 @@ export type ParamsResult = {
   templates: string | undefined;
   /** @description Generator positional (e.g. `new`). */
   generator: string | undefined;
-  /** @description Action positional or resolved `_default` action. */
-  action: string | undefined;
+  /** @description Action positional or resolved `_default` action (legacy scalar; use `actions`). */
+  action?: string;
   /** @description Sub-action after a `:` separator, when present. */
   subaction?: string;
   /** @description Absolute path of the action folder being run. */
@@ -137,4 +159,14 @@ export type ParamsResult = {
   name?: string;
   /** @description Whether the run was performed in `--dry` mode. */
   dry?: boolean;
+  /** @description The comma-split action list for this run (single run = one element). */
+  actions?: string[];
+  /** @description The comma-split name list for this run (absent when no name supplied). */
+  names?: string[];
+  /** @description The CLI data options (yargs-parser output minus `_`), used to drive the per-pair prompt filter. */
+  cleanArgv?: Record<string, unknown>;
+  /** @description The CLI positional arguments (yargs-parser `_` output). */
+  _?: (string | number)[];
+  /** @description A unique timestamp for the run (from `HYGEN_TS` when set). */
+  ts?: string | number;
 } & object;

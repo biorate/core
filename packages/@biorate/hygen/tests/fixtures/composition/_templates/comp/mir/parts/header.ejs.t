@@ -1,0 +1,4 @@
+---
+mirror: true
+---
+header <%= name %>
