@@ -33,8 +33,9 @@ const targetPath = (action: RenderedAction, actionfolder: string): string | unde
 /**
  * @description Writes a rendered action body to its `to` target (or its
  * mirrored path when `to` is absent and `mirror: true` is set). Honors
- * `unless_exists`, overwrite confirmation via the prompter, `from` copy source
- * and the `--dry` mode; returns an `added`/`skipped`/`ignored` result.
+ * `unless_exists`, `skipIfExists`, overwrite confirmation via the prompter,
+ * `from` copy source and the `--dry` mode; returns an
+ * `added`/`skipped`/`ignored` result.
  * @param action - The rendered action to apply.
  * @param args - The run arguments (`templates`, `dry`, `actionfolder`, etc.).
  * @param config - The runner configuration.
@@ -46,7 +47,7 @@ const add = async (
   { logger, cwd, createPrompter }: RunnerConfig,
 ): Promise<ActionResult> => {
   const {
-    attributes: { inject, unless_exists, force, from, skip_if },
+    attributes: { inject, unless_exists, force, from, skip_if, skipIfExists },
   } = action;
   const to = targetPath(action, args.actionfolder);
   const result = createResult('add', to);
@@ -61,6 +62,13 @@ const add = async (
   const shouldNotOverwrite =
     !force && unless_exists !== undefined && unless_exists === true;
   const fileExists = await fs.pathExists(absTo);
+
+  // `skipIfExists` is a soft, non-failing skip: an existing target is left
+  // untouched and reported as skipped, never triggering the overwrite prompt.
+  if (skipIfExists === true && fileExists) {
+    logger.warn(`     skipped: ${to}`);
+    return result('skipped');
+  }
 
   if (shouldNotOverwrite && fileExists) {
     logger.warn(`     skipped: ${to}`);

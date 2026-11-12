@@ -399,3 +399,112 @@ libraries be installed dependencies of the project where the runner executes.
 
 - **WHEN** the documentation covers monorepo usage
 - **THEN** it shows a sibling `@biorate/*` package exposed as a helper namespace
+
+### Requirement: Glob-based batch file actions
+
+A template MAY declare a `glob:` frontmatter attribute selecting multiple template files, resolved relative to the template's generator directory. The glob action SHALL expand, at render time, into one rendered file action per matched file. Each matched file's relative path (after applying `base:` stripping and `stripExtensions:` removal) and its content SHALL be rendered with the template engine before being written.
+
+#### Scenario: Batch copy of a module directory
+
+- **WHEN** a template declares `glob: module/**/*` with `to: src/{{name}}/` and the glob matches `module/service.t`, `module/index.t`
+- **THEN** files `src/<name>/service.ts` and `src/<name>/index.ts` are created, each rendered from its matched template
+
+#### Scenario: base and stripExtensions shape destination paths
+
+- **WHEN** a glob action matches a file whose path is below the `base:` prefix and whose name ends with a listed `stripExtensions:` extension
+- **THEN** the rendered destination keeps only the path below `base` with the listed extension removed, and file-name EJS expressions are evaluated against the run locals
+
+#### Scenario: glob conflicts with mirroring
+
+- **WHEN** a template declares both `mirror: true` and a `glob:` attribute
+- **THEN** the run fails with a configuration error explaining the incompatibility
+
+#### Scenario: name lists multiply with glob matches
+
+- **WHEN** a glob action runs with a comma-separated name list of two names
+- **THEN** the glob is expanded once per name in the name-outer × action-inner order already defined for multi-action runs
+
+### Requirement: skipIfExists on file actions
+
+A file-creating action (`to:`-based, mirroring, or glob-expanded) MAY declare `skipIfExists: true`. When the destination file already exists, the action SHALL be skipped without failure and without modifying the existing file. Without the attribute, existing-file behavior remains as currently defined (overwrite for `to:` actions).
+
+#### Scenario: existing target with skipIfExists
+
+- **WHEN** a file action with `skipIfExists: true` targets an existing file
+- **THEN** the file is left untouched and the action outcome is reported as skipped, not failed
+
+#### Scenario: skipIfExists interacts with keep-going
+
+- **WHEN** a run with `--keep-going` contains a mix of skipped and successful file actions
+- **THEN** skipped actions do not appear in `RunnerResult.failures` and later actions still run
+
+### Requirement: Named content transforms
+
+The runner configuration MAY define named transforms — functions `(content, locals) => string | Promise<string>` — under a `transforms` namespace, resolved like `helpers`. A file action (add, mirroring, or inject) MAY declare a `transform:` frontmatter attribute naming one transform or several separated by `|`. Transforms SHALL be applied after template rendering and before any operation writes or injects content, applied in the declared order.
+
+#### Scenario: Prettier transform on a generated file
+
+- **WHEN** a `.hygen.js` registers `transforms: { prettier }` and a template declares `transform: prettier`
+- **THEN** the rendered file content is passed through the transform before being written
+
+#### Scenario: Chained transforms apply in order
+
+- **WHEN** a template declares `transform: stripLicense|prettier` with both names registered
+- **THEN** the transforms run sequentially, each receiving the previous output
+
+#### Scenario: Unknown transform name fails the action
+
+- **WHEN** a template declares `transform: nonexistent` and no such transform is registered
+- **THEN** the action fails with a typed error naming the missing transform and pointing to the `transforms` config
+
+### Requirement: Transforms apply only to file actions
+
+The `transform:` attribute SHALL be applied only to actions that produce or modify file content. A `sh:` action declaring `transform:` SHALL NOT have any transform applied; the runner SHALL emit a warning that the attribute is ignored for shell actions.
+
+#### Scenario: Transform on a shell action warns and is ignored
+
+- **WHEN** a template with `sh: some-command` also declares `transform: prettier`
+- **THEN** the command executes normally, no transform runs, and the run log contains a warning that `transform` is ignored for `sh:` actions
+
+#### Scenario: Transforms do not affect shell-only templates
+
+- **WHEN** a run consists only of `sh:` actions
+- **THEN** no transform resolution occurs and no warnings are emitted unless a `transform:` attribute is present
+
+### Requirement: Declarative conditional action skipping
+
+A template MAY declare a `skip:` frontmatter attribute. The attribute SHALL be rendered with the template engine like other attributes, using the run locals. Rendering yields strings, so the boolean spellings SHALL be recognised case-insensitively and whitespace-trimmed: a rendered value of empty string, `false`, or `'false'` is falsy and the action runs; `true`/`'true'` skips without a reason; any other non-empty value skips the action, no operations are executed for it, and that value is reported as the skip reason in the run log.
+
+#### Scenario: Conditional test file
+
+- **WHEN** a template declares `skip: <% if (wantTests) { %>false<% } else { %>no tests requested<% } %>` and the user answers `wantTests: false`
+- **THEN** no file is created and the run log reports the action as skipped with reason `no tests requested`
+
+#### Scenario: Rendered false runs the action
+
+- **WHEN** the rendered `skip:` value is empty, `false`, or the string `'false'`
+- **THEN** the action executes normally
+
+#### Scenario: Skip applies to all action kinds
+
+- **WHEN** a `skip:` attribute is declared on a `sh:` action or an inject action
+- **THEN** the shell command is not executed / no injection is performed, and the action is reported as skipped
+
+### Requirement: Three-state action outcome in the runner result
+
+Every executed action SHALL resolve to one of three statuses: `ok`, `skipped`, or `failed`. `RunnerResult` SHALL expose per-action statuses. Skipped actions SHALL NOT appear in `RunnerResult.failures`, SHALL NOT abort fail-fast runs, and SHALL NOT prevent later actions from running under `--keep-going`.
+
+#### Scenario: Skipped action does not fail the run
+
+- **WHEN** a run contains one skipped action and one successful action
+- **THEN** the run exits successfully, the result reports `skipped` for the first action and `ok` for the second, and `failures` is empty
+
+#### Scenario: Fail-fast ignores skipped actions
+
+- **WHEN** a skipped action precedes other actions in a default (fail-fast) run
+- **THEN** subsequent actions still execute
+
+#### Scenario: Failed and skipped are distinct
+
+- **WHEN** a run with `--keep-going` contains one failed and one skipped action
+- **THEN** `RunnerResult.failures` contains only the failed action, and the run summary distinguishes the two statuses

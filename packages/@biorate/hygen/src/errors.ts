@@ -1,5 +1,5 @@
 import { BaseError } from '@biorate/errors';
-import type { ActionResult, RunFailure } from './types';
+import type { ActionResult, ActionStatusEntry, RunFailure } from './types';
 
 /**
  * @description Thrown when the user has not specified a generator or action,
@@ -23,8 +23,17 @@ export class KeepGoingError extends ShowHelpError {
   public readonly results: ActionResult[];
   /** @description The structured list of failed pairs. */
   public readonly failures: RunFailure[];
+  /**
+   * @description Per-action three-state outcomes (ok / skipped / failed), one
+   * entry per rendered action, so the runner can surface `RunnerResult.statuses`
+   * for a `--keep-going` run that hit failures. */
+  public readonly statuses: ActionStatusEntry[];
 
-  public constructor(failures: RunFailure[], results: ActionResult[]) {
+  public constructor(
+    failures: RunFailure[],
+    results: ActionResult[],
+    statuses: ActionStatusEntry[] = [],
+  ) {
     super(
       `the run failed for ${failures.length} pair(s):\n${failures
         .map(
@@ -37,6 +46,7 @@ export class KeepGoingError extends ShowHelpError {
     );
     this.results = results;
     this.failures = failures;
+    this.statuses = statuses;
   }
 }
 
@@ -98,6 +108,23 @@ export class ShellCommandError extends BaseError {
 }
 
 /**
+ * @description Thrown when a template declares both `mirror: true` and a `glob:`
+ * attribute. Mirroring derives a single target path from the template file's own
+ * name, which is meaningless for a glob that expands into many files, so the
+ * combination is rejected as a configuration error rather than silently resolved.
+ */
+export class GlobMirrorConflictError extends BaseError {
+  public constructor(file: string) {
+    super(
+      'Template [%s] declares both `mirror: true` and `glob:`, which are incompatible: ' +
+        "mirroring derives a target path from the template's own name, but a glob " +
+        'expands into multiple files. Remove one of the two attributes.',
+      [file],
+    );
+  }
+}
+
+/**
  * @description Thrown when a `.hygen.ts` config file is resolved but `ts-node`
  * cannot be registered to transpile it on the fly (typically `ts-node` is not
  * installed in the project). */
@@ -107,6 +134,20 @@ export class ConfigTsNodeError extends BaseError {
       'TypeScript config [%s] requires ts-node: install it with `npm i -D ts-node` (error: [%s])',
       [file, (cause as Error)?.message ?? cause],
     );
+  }
+}
+
+/**
+ * @description Thrown when a template's `transform:` frontmatter attribute
+ * references a name that is not registered in the config's `transforms` map.
+ * Naming the missing transform and the config key makes the misconfiguration
+ * explicit rather than silently skipping the post-processing step.
+ */
+export class UnknownTransformError extends BaseError {
+  public constructor(name: string) {
+    super('Unknown transform [%s]: register it under the `transforms` config key', [
+      name,
+    ]);
   }
 }
 

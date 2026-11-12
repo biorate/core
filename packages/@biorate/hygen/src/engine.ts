@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
-import type { ActionResult, RunnerConfig, RunFailure } from './types';
+import type { ActionResult, ActionStatusEntry, RunnerConfig, RunFailure } from './types';
 import params from './params';
 import prompt from './prompt';
 import { ShowHelpError, KeepGoingError } from './errors';
@@ -16,9 +16,14 @@ import { isHelpFlag, printUsage } from './cli-help';
  * continues collecting failing pairs and reports them all at the end.
  * @param argv - The CLI-style arguments.
  * @param config - The resolved runner configuration.
- * @returns The executed operation outcomes, annotated with their source pair.
+ * @returns The executed operation outcomes, annotated with their source pair; the
+ * returned array additionally carries a `statuses` property with the per-action
+ * three-state outcomes (the existing array contract is preserved).
  * */
-const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResult[]> => {
+const engine = async (
+  argv: string[],
+  config: RunnerConfig,
+): Promise<ActionResult[] & { statuses: ActionStatusEntry[] }> => {
   const { cwd, templates, logger } = config;
   const base = Object.assign(await params(config, argv), { cwd });
   const { generator, actions, names } = base;
@@ -45,6 +50,7 @@ const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResul
 
   const failures: RunFailure[] = [];
   const results: ActionResult[] = [];
+  const statuses: ActionStatusEntry[] = [];
 
   // lazy loading these dependencies gives a better feel once
   // a user is exploring hygen (not specifying what to execute)
@@ -58,6 +64,10 @@ const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResul
       const pairLabel = `action '${action}'${
         name !== undefined ? ` for name '${name}'` : ''
       }`;
+      const statusPair = {
+        action,
+        ...(name !== undefined ? { name } : {}),
+      };
       const singleRun = nameList.length === 1 && actions.length === 1;
 
       if (!(await fs.pathExists(actionfolder))) {
@@ -78,6 +88,7 @@ const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResul
           ...(name !== undefined ? { name } : {}),
           error: err.message,
         });
+        statuses.push({ ...statusPair, status: 'failed' });
         continue;
       }
 
@@ -101,14 +112,15 @@ const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResul
           name ? { name } : {},
           promptArgs,
         );
-        const pairResults = await execute(await render(args, config), args, config);
-        for (const pairResult of pairResults) {
+        const el = await execute(await render(args, config), args, config);
+        for (const pairResult of el.results) {
           results.push({
             ...pairResult,
             action,
             ...(name !== undefined ? { name } : {}),
           });
         }
+        statuses.push(...el.statuses);
       } catch (err) {
         const e = err as Error;
         // byte-compatible single run: propagate the original error without a wrapper
@@ -121,17 +133,22 @@ const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResul
           ...(name !== undefined ? { name } : {}),
           error: e.message,
         });
+        statuses.push({ ...statusPair, status: 'failed' });
       }
     }
   }
 
   if (failures.length > 0) {
-    // keep-going collected failures: carry the partial results and the
-    // structured failure list so `runner` can surface them in `RunnerResult`.
-    throw new KeepGoingError(failures, results);
+    // keep-going collected failures: carry the partial results, the structured
+    // failure list and the per-action statuses so `runner` can surface them in
+    // `RunnerResult`.
+    throw new KeepGoingError(failures, results, statuses);
   }
 
-  return results;
+  // the engine's array return contract is retained (existing callers treat the
+  // result as a plain `ActionResult[]`); the per-action statuses are attached to
+  // the array so `runner` can surface them in `RunnerResult.statuses`.
+  return Object.assign(results, { statuses });
 };
 
 export { engine, ShowHelpError, KeepGoingError };

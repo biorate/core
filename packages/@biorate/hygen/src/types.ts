@@ -26,6 +26,47 @@ export interface Prompter<Q, T> {
 }
 
 /**
+ * @description The rendered frontmatter attributes of a template action. Most
+ * keys are user-defined and unconstrained (anything written in the frontmatter
+ * block is preserved); the well-known keys below are documented so templates and
+ * operations can rely on their semantics. Global attributes are declared on the
+ * template frontmatter and drive a single action; glob attributes declare a
+ * batch action that expands into one action per matched file.
+ */
+export interface ActionAttributes {
+  /** @description Write target path, relative to `cwd` (overwrite is the default). */
+  to?: string;
+  /** @description Opt-in mirroring: derive the target from the template file path. */
+  mirror?: boolean;
+  /** @description A shell command to run instead of writing a file. */
+  sh?: string;
+  /** @description Glob pattern, relative to the template's own directory. Declaring
+   *  it turns the template into a batch action: each matched file is rendered (in
+   *  both its destination path and its content) and written to `to`/`destination`. */
+  glob?: string;
+  /** @description Path prefix stripped from each matched file's relative path when
+   *  computing its destination (for glob batch actions). */
+  base?: string;
+  /** @description Extension suffixes removed from each matched file's file name when
+   *  computing its destination (for glob batch actions). One or more suffix strings,
+   *  e.g. `.t`, `.ejs.t`. */
+  stripExtensions?: string | string[];
+  /** @description Alias for `to`, the destination directory for glob batch actions
+   *  (treated as a folder joined with each matched file's rendered relative path). */
+  destination?: string;
+  /** @description When the destination file already exists, skip the action instead of
+   *  overwriting (or prompting to overwrite). */
+  skipIfExists?: boolean;
+  /** @description Template-rendered conditional skip. The rendered value is
+   *  coerced: an empty string or a `false` spelling (case-insensitive, trimmed)
+   *  runs the action; a `true` spelling skips it without a reason; any other
+   *  non-empty string skips it and is reported as the skip reason. */
+  skip?: unknown;
+  /** @description Remaining attributes are user-defined and unconstrained by shape. */
+  [key: string]: unknown;
+}
+
+/**
  * @description A single template action after frontmatter and body have been
  * rendered by EJS. This is the unit that operations (`add`, `inject`, `shell`,
  * …) consume and turn into concrete filesystem/shell effects. */
@@ -33,9 +74,13 @@ export interface RenderedAction {
   /** @description Absolute path of the source template file (when written from disk). */
   file?: string;
   /** @description Rendered frontmatter attributes; user-defined and unconstrained by shape. */
-  attributes: Record<string, unknown>;
+  attributes: ActionAttributes;
   /** @description Rendered template body (the file content / operation payload). */
   body: string;
+  /** @description Set when the `skip:` attribute rendered truthy: `true` skips
+   *  without a reason, while a non-`true` string is the skip reason reported in
+   *  the run log. When present, no operation executes for this action. */
+  skip?: true | string;
 }
 
 /**
@@ -45,6 +90,18 @@ export type Helper = (...args: unknown[]) => unknown;
 
 /** @description A map of helper name to helper function. */
 export type Helpers = Record<string, Helper>;
+
+/**
+ * @description A named content transform registered under `config.transforms`.
+ * Receives the rendered content and the run locals used for rendering, and
+ * returns the (possibly transformed) content. May be asynchronous. */
+export type Transform = (
+  content: string,
+  locals: Record<string, unknown>,
+) => string | Promise<string>;
+
+/** @description A map of transform name to transform function. */
+export type Transforms = Record<string, Transform>;
 
 /**
  * @description The configuration object that drives `runner()`. It wires the
@@ -71,6 +128,14 @@ export interface RunnerConfig {
   helpers?:
     | Helpers
     | ((locals: Record<string, unknown>, config: RunnerContextConfig) => Helpers);
+  /**
+   * @description Named content transforms applied to a template's rendered body
+   * after rendering and before any operation runs (add, mirror write, inject).
+   * Resolved from a template's `transform:` frontmatter attribute, which may
+   * chain names with `|`. Each transform receives the current content and the
+   * run locals, and may be async. A `transform:` on a shell-only action is
+   * ignored with a warning. Registered exactly like `helpers` (a plain map). */
+  transforms?: Transforms;
   /** @description Default local template values applied before CLI-supplied ones. */
   localsDefaults?: Record<string, unknown>;
   /** @description Factory that creates a `Prompter` for the given prompt/answer shapes. */
@@ -115,6 +180,30 @@ export type ActionResult = Record<string, unknown> & {
 };
 
 /**
+ * @description Three-state outcome of an executed action. `ok` means the action
+ * ran to completion, `skipped` means the `skip:` attribute was truthy so no
+ * operation executed, `failed` means the action errored and was surfaced via
+ * `RunnerResult.failures`. */
+export type ActionStatus = 'ok' | 'skipped' | 'failed';
+
+/**
+ * @description Per-action three-state outcome recorded in `RunnerResult.statuses`.
+ * One entry is produced per rendered action (including skipped ones, which produce
+ * no operation result). A skipped entry carries the `skip:` reason when the
+ * attribute rendered to a non-`true` message string. Skipped entries never appear
+ * in `RunnerResult.failures`. */
+export interface ActionStatusEntry {
+  /** @description The action (or comma-list element) that produced this outcome. */
+  action: string;
+  /** @description The name expansion, when the run used name lists. */
+  name?: string;
+  /** @description The three-state outcome of the action. */
+  status: ActionStatus;
+  /** @description The skip reason, present only when `status` is `skipped`. */
+  reason?: string;
+}
+
+/**
  * @description A single failed `(name, action)` pair recorded during a
  * `--keep-going` run. `name` is absent when the run expanded no name list. */
 export interface RunFailure {
@@ -136,6 +225,13 @@ export interface RunnerResult {
   time: number;
   /** @description One outcome entry per executed operation. */
   actions: ActionResult[];
+  /**
+   * @description Per-action three-state outcome alongside `actions`: one entry
+   * per rendered action in the `ok` / `skipped` three-state model, including
+   * skipped actions (which produce no operation result and therefore no
+   * `actions` entry). Failed actions surface through `failures`; skipped actions
+   * never do. */
+  statuses: ActionStatusEntry[];
   /** @description Set when the run failed: the error message and the actions available. */
   failure?: {
     message: string;

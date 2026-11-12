@@ -62,6 +62,7 @@
     "ejs": "3.1.6",
     "enquirer": "2.3.6",
     "execa": "5.0.0",
+    "fast-glob": "^3.3.3",
     "front-matter": "4.0.2",
     "fs-extra": "10.0.0",
     "ignore-walk": "4.0.1",

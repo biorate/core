@@ -223,6 +223,9 @@ action in the list the same way (`hygen mailer new:text,html:text x`).
 hygen mailer new a,b
 ```
 
+A name list multiplies with a batch action too: a template declaring
+[`glob:`](./templates#glob-batch-actions-glob) is expanded once per name.
+
 This renders `new` once per name. The loop is **name-outer**: each entity completes all
 its actions before the next entity starts. For `model,controller × a,b` the execution
 order is `(model,a)`, `(controller,a)`, `(model,b)`, `(controller,b)`. Inside templates,

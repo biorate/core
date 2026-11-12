@@ -2,7 +2,6 @@ import type { RunnerConfig, RunnerResult } from './types';
 import resolve from './config-resolver';
 import { engine, ShowHelpError, KeepGoingError } from './engine';
 import { printHelp } from './help';
-
 /**
  * @description Programmatic entry point of the generator. Resolves the config
  * (templates directory and `.hygen.js`), runs the engine pipeline and normalises
@@ -30,7 +29,7 @@ const runner = async (argv: string[], config: RunnerConfig): Promise<RunnerResul
   const { templates, logger } = resolvedConfig;
   try {
     const actions = await engine(argv, resolvedConfig);
-    return { success: true, actions, time: 0 };
+    return { success: true, actions, statuses: actions.statuses, time: 0 };
   } catch (err) {
     const e = err as Error;
     logger.log(e.toString());
@@ -42,12 +41,14 @@ const runner = async (argv: string[], config: RunnerConfig): Promise<RunnerResul
     if (err instanceof ShowHelpError) {
       printHelp(templates, logger);
     }
-    // keep-going collected failures: keep the partial actions and the failure list
-    // (fail-fast still returns an empty `actions` list as before).
+    // keep-going collected failures: keep the partial actions, the failure list
+    // and the per-action statuses (fail-fast still returns an empty `actions`
+    // list and no failures as before).
     const keepGoing = err instanceof KeepGoingError ? err : undefined;
     return {
       success: false,
       actions: keepGoing ? keepGoing.results : [],
+      statuses: keepGoing ? keepGoing.statuses : [],
       ...(keepGoing ? { failures: keepGoing.failures } : {}),
       time: 0,
     };
