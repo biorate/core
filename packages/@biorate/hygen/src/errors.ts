@@ -127,3 +127,24 @@ export class CliArgumentError extends BaseError {
     super('%s', [message]);
   }
 }
+
+/**
+ * @description Thrown when the removed `--name` flag is used without an active legacy
+ * escape. The message shows the offending flag, the positional equivalent (the
+ * single-path grammar `hygen <generator> <action[,action...]> <name[,name...]>`) and
+ * the two migration escapes (`HYGEN_LEGACY_NAME=1` and `legacyNameFlag: true`). A
+ * dedicated class lets embedders catch and map the removal, as opposed to a generic
+ * `CliArgumentError`. */
+export class NameFlagRemovedError extends BaseError {
+  public constructor(name: unknown) {
+    const shown = Array.isArray(name) ? name.join(', ') : String(name);
+    super(
+      `the '--name' flag is no longer supported (received '--name %s'). ` +
+        `Pass the name as a positional argument instead: ` +
+        `hygen <generator> <action[,action...]> <name[,name...]> (e.g. 'hygen mailer new fancy'). ` +
+        `To keep using '--name' during migration, enable the legacy escape: ` +
+        `set HYGEN_LEGACY_NAME=1, or pass legacyNameFlag: true in the RunnerConfig.`,
+      [shown],
+    );
+  }
+}

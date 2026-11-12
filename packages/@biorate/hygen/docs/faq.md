@@ -108,9 +108,9 @@ you usually `cd` into each sub-project to use hygen:
 
 ```bash
 [src/] $ cd server
-[server/] $ hygen route new --name authentication
+[server/] $ hygen route new authentication
 [server/] $ cd ../client
-[client/] $ hygen page new --name authentication
+[client/] $ hygen page new authentication
 ```
 
 `hygen` does not discover templates down the folder tree out of the box. But it is flexible
@@ -129,8 +129,8 @@ scripts:
 Then run from the top `src/` vantage point:
 
 ```bash
-[src/] $ yarn g:client page new --name authentication
-[src/] $ yarn g:server page new --name authentication
+[src/] $ yarn g:client page new authentication
+[src/] $ yarn g:server page new authentication
 ```
 
 ## Should I check in my templates?
@@ -163,7 +163,7 @@ logic-full templating engine, and attention to speed.
 To avoid prompts and force overwrites, use the `HYGEN_OVERWRITE` environment flag:
 
 ```bash
-HYGEN_OVERWRITE=1 hygen generator new --name foobar
+HYGEN_OVERWRITE=1 hygen generator new foobar
 ```
 
 With this set, `hygen` always writes content without asking, even if the file already

@@ -2,7 +2,7 @@ import path from 'path';
 import yargs from 'yargs-parser';
 import fs from 'fs-extra';
 import type { ParamsResult, RunnerConfig } from './types';
-import { CliArgumentError, TemplateNotFoundError } from './errors';
+import { CliArgumentError, NameFlagRemovedError, TemplateNotFoundError } from './errors';
 
 /** @description The default action folder name used when no action is specified. */
 export const DEFAULT_ACTION = '_default';
@@ -86,33 +86,57 @@ const resolvePositionals = async (templates: string, args: string[]) => {
  * generator/action/name positionals (flexibly resolving `[gen] [NAME]` and
  * `[gen] [action] [NAME]`, with comma-separated action/name lists), parses data
  * options and returns the CLI-level base args plus the expansion lists (`actions`
- * / `names`). The per-pair pipeline (prompt hook, render, ops) is driven by the
- * engine loop, which consumes these lists.
+ * / `names`). The removed `--name` flag is rejected by default (`NameFlagRemovedError`)
+ * and accepted only under the legacy escape (`HYGEN_LEGACY_NAME=1` or
+ * `legacyNameFlag`). The per-pair pipeline (prompt hook, render, ops) is driven by
+ * the engine loop, which consumes these lists.
  * @param config - The runner configuration (provides `templates`).
  * @param externalArgv - The CLI-style argument array.
  * @returns The resolved run parameters (base args + expansion lists).
  * */
 const params = async (
-  { templates }: RunnerConfig,
+  { templates, legacyNameFlag }: RunnerConfig,
   externalArgv: string[],
 ): Promise<ParamsResult> => {
   const argv = yargs(externalArgv);
   const { _, ...cleanArgv } = argv;
 
+  // The `--name` flag is removed by default; only the legacy escape (env var or
+  // embedder config) restores it for the migration window. Under the escape the flag
+  // is consumed as the name source, preserving the pre-removal behavior.
+  const legacyGate = process.env.HYGEN_LEGACY_NAME === '1' || legacyNameFlag === true;
+
   // expansion consumes only positional lists: a repeated `--name` flag (array value)
-  // is rejected, pointing the user at the comma-separated positional list.
-  if (Array.isArray(cleanArgv.name)) {
+  // is rejected, pointing the user at the comma-separated positional list. The gate
+  // bypasses this rejection so the legacy mode keeps the pre-removal array behavior.
+  if (Array.isArray(cleanArgv.name) && !legacyGate) {
     throw new CliArgumentError(
       "repeating the '--name' flag is not supported; use a comma-separated positional name list instead (e.g. 'hygen <gen> <action> a,b').",
     );
   }
 
+  // any other `--name` use without a legacy escape is the removed-flag error, which
+  // names the positional equivalent and both migration escapes.
+  if (cleanArgv.name !== undefined && !legacyGate) {
+    throw new NameFlagRemovedError(cleanArgv.name);
+  }
+
   // the actionable flow needs a templates dir; when absent the code exits
   // before any path join happens, so templates is non-null here in practice.
-  const { generator, actions, names } = await resolvePositionals(
-    templates!,
-    argv._.map(String),
-  );
+  const {
+    generator,
+    actions,
+    names: positionalNames,
+  } = await resolvePositionals(templates!, argv._.map(String));
+
+  // The engine consumes the gate-provided `--name` as a single-element name list.
+  // Pre-removal, the positional name overrode the flag, so the flag only supplies the
+  // name when no positional name was given. A repeated flag (array) stays a single
+  // element — the pre-removal array accident — so templates still see the array.
+  const names =
+    legacyGate && cleanArgv.name !== undefined && positionalNames === undefined
+      ? [cleanArgv.name as string]
+      : positionalNames;
 
   if (!generator || !actions) {
     return {

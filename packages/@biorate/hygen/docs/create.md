@@ -37,7 +37,7 @@ which files were originally included, so you do not have to select them again.
   { "name": "MyPackage", "index": "my-package/bin/my_package.js" }
   ```
 
-  becomes a generator that, with `--name NewUnit`, creates:
+  becomes a generator that, with the name `NewUnit` passed positionally, creates:
 
   ```json
   { "name": "NewUnit", "index": "new-unit/bin/new_unit.js" }
@@ -70,7 +70,7 @@ export default class <%= h.changeCase.pascal(name) %> {
 Run it:
 
 ```bash
-hygen unit new --name identity
+hygen unit new identity
 ```
 
 ## Attribution

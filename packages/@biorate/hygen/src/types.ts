@@ -75,6 +75,12 @@ export interface RunnerConfig {
   localsDefaults?: Record<string, unknown>;
   /** @description Factory that creates a `Prompter` for the given prompt/answer shapes. */
   createPrompter: <Q, T>() => Prompter<Q, T>;
+  /**
+   * @description Migration escape for embedders: when `true`, the removed `--name`
+   * flag is accepted again, behaving as the pre-removal name source (a single value
+   * works as one name; a repeated flag keeps its pre-removal array behavior). Use only
+   * during migration — new integrations should pass the name positionally. */
+  legacyNameFlag?: boolean;
 }
 
 /**

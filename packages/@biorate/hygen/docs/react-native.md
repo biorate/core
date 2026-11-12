@@ -55,7 +55,7 @@ export default components;
 Running:
 
 ```bash
-hygen component new --name intro
+hygen component new intro
 ```
 
 builds:

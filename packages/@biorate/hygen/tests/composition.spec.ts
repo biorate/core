@@ -45,10 +45,7 @@ describe('composition: multi-action E2E (4.1)', () => {
   it('runs a comma action list sequentially, writing both outputs and annotating actions', async () => {
     const dir = await copyFixture();
 
-    const result = await runner(
-      ['comp', 'alpha,beta', '--name', 'value'],
-      makeConfig(dir),
-    );
+    const result = await runner(['comp', 'alpha,beta', 'value'], makeConfig(dir));
     expect(result.success).toBe(true);
 
     const alphaFile = path.join(dir, 'out', 'value', 'alpha.txt');
@@ -70,10 +67,7 @@ describe('composition: multi-action E2E (4.1)', () => {
   it('names the missing element when a listed action does not exist', async () => {
     const dir = await copyFixture();
 
-    const result = await runner(
-      ['comp', 'alpha,gamma', '--name', 'value'],
-      makeConfig(dir),
-    );
+    const result = await runner(['comp', 'alpha,gamma', 'value'], makeConfig(dir));
     expect(result.success).toBe(false);
 
     // the logged error names the specific missing action from the list
@@ -126,7 +120,7 @@ describe('composition: mirror E2E (4.3)', () => {
   it('writes a mirrored template under cwd with the default `.t` suffix rule', async () => {
     const dir = await copyFixture();
 
-    const result = await runner(['comp', 'mir', '--name', 'value'], makeConfig(dir));
+    const result = await runner(['comp', 'mir', 'value'], makeConfig(dir));
     expect(result.success).toBe(true);
 
     // mirror target = template path relative to the action folder, resolved vs cwd,

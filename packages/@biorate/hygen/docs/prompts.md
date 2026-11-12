@@ -142,10 +142,10 @@ against the CLI arguments: a question is asked only when `args[name]` is `undefi
 
 ```bash
 # asks for "message" (nothing provided)
-hygen mailer new --name fancy-mailer
+hygen mailer new fancy-mailer
 
 # asks nothing: both variables came from the CLI — safe in CI
-hygen mailer new --name fancy-mailer --message "Hello"
+hygen mailer new fancy-mailer --message "Hello"
 ```
 
 In the `prompt`-function form filtering is **your** responsibility — the runner hands you
@@ -181,10 +181,12 @@ The `name` variable follows a fixed precedence chain when several sources provid
 | 2           | positional name list | `hygen mailer new a,b` |
 | 3 (lowest)  | `--name` flag        | `--name fancy`         |
 
-The hook's answer always wins; a positional element overrides the `--name` flag. When the
-run expands a name **list**, `name` is the scalar of the current expansion regardless of
-how it was arrived at. (A repeated `--name` flag is rejected — use a comma-separated
-positional name list instead.)
+The hook's answer always wins. The positional name list is the primary name source; the
+`--name` flag participates **only under the legacy escape** (`HYGEN_LEGACY_NAME=1` or
+`legacyNameFlag: true` in `RunnerConfig`), in which case a positional element overrides it.
+When the run expands a name **list**, `name` is the scalar of the current expansion
+regardless of how it was arrived at. (The `--name` flag is removed by default — use a
+comma-separated positional name list instead.)
 
 ## Answers become template variables
 

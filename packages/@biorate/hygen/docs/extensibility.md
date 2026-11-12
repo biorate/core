@@ -122,7 +122,7 @@ import { runner } from '@biorate/hygen';
 import * as path from 'path';
 
 async function main() {
-  const result = await runner(['mailer', 'new', '--name', 'autumn-newsletter'], {
+  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {
     cwd: process.cwd(),
     templates: path.join(process.cwd(), 'templates'),
     logger: {

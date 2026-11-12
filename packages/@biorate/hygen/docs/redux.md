@@ -99,7 +99,7 @@ const modules = [
 Generate a new module with:
 
 ```bash
-hygen module new --name settings
+hygen module new settings
 ```
 
 If the `before`/`after` anchor does not match `boot.js`, this fork raises

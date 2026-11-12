@@ -2,7 +2,11 @@ import path from 'path';
 import Logger from '../src/logger';
 import params from '../src/params';
 import { isVersionFlag } from '../src/help';
-import { CliArgumentError, TemplateNotFoundError } from '../src/errors';
+import {
+  CliArgumentError,
+  NameFlagRemovedError,
+  TemplateNotFoundError,
+} from '../src/errors';
 
 const fixture = (...segments: string[]) =>
   path.join(__dirname, 'fixtures', 'templates', ...segments);
@@ -115,5 +119,105 @@ describe('params: positional lists (1.1)', () => {
     const args = await params(testConfig(listsFixture), ['gen', 'new', 'myname']);
     expect(args.actions).toEqual(['new']);
     expect(args.names).toEqual(['myname']);
+  });
+});
+
+describe('params: removed --name flag (1.1-1.4)', () => {
+  process.env.HYGEN_TS = '1337';
+  const listsFixture = fixture('lists', '_templates');
+  afterEach(() => {
+    delete process.env.HYGEN_LEGACY_NAME;
+  });
+
+  it('rejects --name by default with the positional hint and both escape names', async () => {
+    await expect(
+      params(testConfig(listsFixture), ['gen', 'new', '--name', 'value']),
+    ).rejects.toThrow(NameFlagRemovedError);
+    await expect(
+      params(testConfig(listsFixture), ['gen', 'new', '--name', 'value']),
+    ).rejects.toThrow(/--name/);
+    // positional equivalent (the single-path grammar) and both migration escapes
+    await expect(
+      params(testConfig(listsFixture), ['gen', 'new', '--name', 'value']),
+    ).rejects.toThrow(/<name\[,name\.\.\.\]>/);
+    await expect(
+      params(testConfig(listsFixture), ['gen', 'new', '--name', 'value']),
+    ).rejects.toThrow(/HYGEN_LEGACY_NAME/);
+    await expect(
+      params(testConfig(listsFixture), ['gen', 'new', '--name', 'value']),
+    ).rejects.toThrow(/legacyNameFlag/);
+  });
+
+  it('restores the flag when HYGEN_LEGACY_NAME=1 is set', async () => {
+    process.env.HYGEN_LEGACY_NAME = '1';
+    const args = await params(testConfig(listsFixture), [
+      'gen',
+      'new',
+      '--name',
+      'value',
+    ]);
+    expect(args.names).toEqual(['value']);
+  });
+
+  it('restores the flag when legacyNameFlag: true is passed (embedder config)', async () => {
+    const args = await params({ ...testConfig(listsFixture), legacyNameFlag: true }, [
+      'gen',
+      'new',
+      '--name',
+      'value',
+    ]);
+    expect(args.names).toEqual(['value']);
+  });
+
+  it('keeps the pre-removal array behavior for a repeated flag under the gate', async () => {
+    process.env.HYGEN_LEGACY_NAME = '1';
+    // the repeated `--name` (an array) is preserved as a single-element name list,
+    // so the template still sees the array — the pre-removal accident.
+    const args = await params(testConfig(listsFixture), [
+      'gen',
+      'new',
+      '--name',
+      'a',
+      '--name',
+      'b',
+    ]);
+    expect(args.names).toEqual([['a', 'b']]);
+  });
+
+  it('keeps a repeated flag rejected when no gate is active', async () => {
+    await expect(
+      params(testConfig(listsFixture), ['gen', 'new', '--name', 'a', '--name', 'b']),
+    ).rejects.toThrow(CliArgumentError);
+  });
+
+  it('leaves the positional path untouched with gates off', async () => {
+    const args = await params(testConfig(listsFixture), [
+      'gen',
+      'model,controller',
+      'a,b',
+    ]);
+    expect(args.actions).toEqual(['model', 'controller']);
+    expect(args.names).toEqual(['a', 'b']);
+  });
+
+  it('leaves the positional path untouched under the env gate', async () => {
+    process.env.HYGEN_LEGACY_NAME = '1';
+    const args = await params(testConfig(listsFixture), [
+      'gen',
+      'model,controller',
+      'a,b',
+    ]);
+    expect(args.actions).toEqual(['model', 'controller']);
+    expect(args.names).toEqual(['a', 'b']);
+  });
+
+  it('leaves the positional path untouched under the config gate', async () => {
+    const args = await params({ ...testConfig(listsFixture), legacyNameFlag: true }, [
+      'gen',
+      'model,controller',
+      'a,b',
+    ]);
+    expect(args.actions).toEqual(['model', 'controller']);
+    expect(args.names).toEqual(['a', 'b']);
   });
 });

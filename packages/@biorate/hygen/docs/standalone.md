@@ -28,7 +28,7 @@ package manager's script runner:
 
 ```bash
 pnpm add -D @biorate/hygen
-pnpm hygen generator new --name mailer
+pnpm hygen generator new mailer
 ```
 
 ## Embedding in your own tooling

@@ -114,12 +114,14 @@ describe('engine: name precedence (2.4)', () => {
 
   it('resolves name as prompt hook answer > positional name > --name flag', async () => {
     // prompt hook answers with `promptAnswer`; positional and flag also supply a name.
+    // The `--name` flag only reaches the run under the legacy escape, so this config
+    // enables it.
     promptAnswer = { name: 'promptAnswer' };
     const cwd = await cleanCwd();
-    const results = (await engine(
-      ['gen', 'model', 'posName', '--name', 'flagName'],
-      makeConfig(cwd),
-    )) as Array<Record<string, unknown>>;
+    const results = (await engine(['gen', 'model', 'posName', '--name', 'flagName'], {
+      ...makeConfig(cwd),
+      legacyNameFlag: true,
+    })) as Array<Record<string, unknown>>;
     const subjects = results.map((r) => r.subject as string);
     expect(subjects).toContain('out/model-promptAnswer.txt');
     expect(subjects).not.toContain('out/model-posName.txt');

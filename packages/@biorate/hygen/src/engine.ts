@@ -66,7 +66,7 @@ const engine = async (argv: string[], config: RunnerConfig): Promise<ActionResul
 
       You can try:
       1. 'hygen init self' to initialize your project, and
-      2. 'hygen generator new --name ${generator}' to build the generator you wanted.
+      2. 'hygen generator new ${generator}' to build the generator you wanted.
 
       Check out the quickstart for more: http://www.hygen.io/docs/quick-start
       `);

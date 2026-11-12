@@ -78,7 +78,7 @@ const printHelp = (templates: string | undefined, logger: Logger) => {
       Here's how to start using Hygen:
 
       $ hygen init self
-      $ hygen with-prompt new --name my-generator
+      $ hygen with-prompt new my-generator
 
       (edit your generator in _templates/my-generator)
 

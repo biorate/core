@@ -33,7 +33,6 @@ describe('kitchen-sink runner', () => {
   const argv = [
     'sink',
     'new',
-    '--name',
     'HelloWorld',
     '--expr',
     'a > b && c < d',

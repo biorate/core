@@ -36,7 +36,7 @@ and the contents.
 generator for you:
 
 ```bash
-hygen generator new --name mailer
+hygen generator new mailer
 #       added: _templates/mailer/new/hello.ejs.t
 ```
 
@@ -48,7 +48,7 @@ you can change how `hygen` generates generators for your team.
 Any double-dash (`--`) argument becomes a template variable:
 
 ```bash
-hygen mailer new --name foobar --message hello --version 1
+hygen mailer new foobar --message hello --version 1
 ```
 
 ```yaml
@@ -101,7 +101,7 @@ to: app/emails/<%= name %>.txt
 The `name` variable still comes from the CLI:
 
 ```bash
-hygen mailer new --name fancy-mailer
+hygen mailer new fancy-mailer
 ```
 
 Templates within an action folder are applied in `localeCompare` order.
@@ -163,7 +163,7 @@ template and a `message:` renders as the help text:
 ```yaml
 ---
 message: |
-  - hygen {bold mailer} new --name [NAME]
+  - hygen {bold mailer} new [NAME]
 ---
 ```
 
@@ -182,10 +182,10 @@ The `|` annotation is a YAML literal block. `message:` supports chalk-style colo
 `SUBACTION` is a string or regular expression matched against the file name:
 
 ```bash
-hygen mailer new:text --name textual-mailer
+hygen mailer new:text textual-mailer
 # renders only text.ejs.t
 
-hygen mailer new:.*xt --name textual-mailer
+hygen mailer new:.*xt textual-mailer
 # same, via regular expression
 ```
 
@@ -208,14 +208,14 @@ hygen mailer model,controller a,b
 ### Action lists
 
 ```bash
-hygen mailer new,html --name fancy-mailer
+hygen mailer new,html fancy-mailer
 ```
 
 The listed actions run **sequentially in list order** — `new` completes fully before
 `html` starts. Each listed action runs its own prompt hook and its own render pipeline;
 shared values come from CLI flags (see [prompts](./prompts#hooks-under-lists)). A
 `ACTION:SUBACTION` selector applies within each listed action, so you can restrict every
-action in the list the same way (`hygen mailer new:text,html:text --name x`).
+action in the list the same way (`hygen mailer new:text,html:text x`).
 
 ### Name lists
 
@@ -264,7 +264,7 @@ using the first one it finds. The `HYGEN_TMPLS` environment variable overrides l
 root:
 
 ```bash
-HYGEN_TMPLS=/path/to/other/templates hygen mailer new --name x
+HYGEN_TMPLS=/path/to/other/templates hygen mailer new x
 ```
 
 In the embeddable API, the location is set via `RunnerConfig.templates` (and

@@ -4,12 +4,13 @@ import type { Logger } from './types';
 /** @description The `hygen` usage message printed for `-h`/`--help`. */
 const USAGE = `
 Usage:
-  hygen [option] GENERATOR ACTION[,ACTION...] [NAME[,NAME...]] [--name NAME] [data-options]
+  hygen [option] GENERATOR ACTION[,ACTION...] [NAME[,NAME...]] [data-options]
 
 Options:
   -h, --help       # Show this message and quit
   --dry            # Perform a dry run.  Files will be generated but not saved.
-  --keep-going     # Continue after a failed action, reporting every failure.`;
+  --keep-going     # Continue after a failed action, reporting every failure.
+  HYGEN_LEGACY_NAME=1  # Re-enable the removed --name flag (legacy escape).`;
 
 /** @description True when the first CLI arg is the `-h`/`--help` help switch. */
 export const isHelpFlag = (argv: string[]): boolean => ['-h', '--help'].includes(argv[0]);

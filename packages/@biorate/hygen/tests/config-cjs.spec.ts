@@ -34,7 +34,7 @@ describe('.hygen.cjs project config', () => {
       createPrompter: () => require('enquirer'),
     };
 
-    const result = await runner(['cjs', 'new', '--name', 'value'], config);
+    const result = await runner(['cjs', 'new', 'value'], config);
     expect(result.success).toBe(true);
   });
 

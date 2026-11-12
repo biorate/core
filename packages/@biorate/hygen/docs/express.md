@@ -36,7 +36,7 @@ judgement when constructing the routes (`app.get/post` part).
 Using `hygen`, build this with a generator:
 
 ```bash
-hygen route new --method post --name auth
+hygen route new --method post auth
 ```
 
 The interesting part is the injection. Let's say the generator is structured as:
