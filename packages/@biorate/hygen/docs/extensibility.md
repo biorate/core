@@ -4,20 +4,62 @@
 
 # Extensibility
 
-`hygen` is extensible via a `.hygen.js` file (helpers, logger, template location, shell
+`hygen` is extensible via a project config file (helpers, logger, template location, shell
 executor) and, programmatically, via the embeddable `runner()` API.
 
-## `.hygen.js`
+## Project config file
 
-`hygen` looks for a `.hygen.js` file by walking up the directory tree from where you run
-`hygen` and stops at the first one it finds. This means:
+`hygen` looks for a config file by walking up the directory tree from where you run
+`hygen`, stopping at the first directory that contains any candidate file.
+
+### File names and priority
+
+The runner checks the candidates in each directory in this order:
+
+| Priority | File name    | Notes                                   |
+| -------- | ------------ | --------------------------------------- |
+| 1        | `.hygen.js`  | Follows the host project's `type` field |
+| 2        | `.hygen.cjs` | Explicit CommonJS                       |
+| 3        | `.hygen.mjs` | Explicit ESM                            |
+| 4        | `.hygen.ts`  | TypeScript, transpiled on the fly       |
+
+### Nearest directory wins
+
+The walk goes from the current directory up to the filesystem root, and the first directory
+containing **any** candidate is used; within that directory, the priority order decides
+between candidates. This means:
 
 - You can set up a single file per project.
 - Sub-projects can override behavior with their own file.
 - You can drop one in your directory for a global default.
 
-When two or more `.hygen.js` files exist on the way up, the first one found is used and the
-rest are ignored.
+When candidates exist in several directories on the way up, only the nearest one is loaded
+and the rest are ignored — for example a `.hygen.cjs` in a subdirectory beats a `.hygen.js`
+higher up.
+
+### Module systems
+
+The resolved file is loaded with a dynamic `import()`, so module-system semantics follow
+the file extension for the explicit formats:
+
+- `.hygen.cjs` is CommonJS (`module.exports`).
+- `.hygen.mjs` is ESM (`export default` / named `export`).
+- A plain `.hygen.js` follows the **host project's** module system — the nearest
+  `package.json` `type` field. In a `"type": "module"` project a `.hygen.js` written with
+  `module.exports` will fail, so use `.hygen.cjs` there instead.
+
+These explicit formats work independently of the host project's `type` field.
+
+### TypeScript
+
+`.hygen.ts` files are transpiled on the fly: the runner lazily registers
+`ts-node/register/transpile-only` on first use, so `ts-node` must be available (install it
+with `npm i -D ts-node` if it is not already a dependency).
+
+### Backward compatibility
+
+Projects with an existing `.hygen.js` keep resolving exactly as before — it remains the
+highest priority candidate.
 
 ## Helpers
 

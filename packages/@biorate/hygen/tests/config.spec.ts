@@ -47,7 +47,7 @@ describe('resolver', () => {
     const load = vi.fn();
     load.mockReturnValue(Promise.resolve({ param: 1 }));
 
-    const resolver = new ConfigResolver('.hygen.js', {
+    const resolver = new ConfigResolver(['.hygen.js'], {
       none: (_) => ({}),
       exists,
       load,
@@ -67,7 +67,7 @@ describe('resolver', () => {
     const load = vi.fn();
     load.mockReturnValue(Promise.resolve({ param: 1 }));
 
-    const resolver = new ConfigResolver('.hygen.js', {
+    const resolver = new ConfigResolver(['.hygen.js'], {
       none: (_) => ({}),
       exists,
       load,
@@ -75,6 +75,83 @@ describe('resolver', () => {
     const config = await resolver.resolve(path.join('foo', 'bar'));
 
     expect(config).toEqual({ param: 1 });
+  });
+});
+
+describe('config-file family resolution', () => {
+  const files = ['.hygen.js', '.hygen.cjs', '.hygen.mjs', '.hygen.ts'];
+
+  it('prefers the first candidate by priority within a directory', async () => {
+    const exists = vi.fn((f: string) =>
+      Promise.resolve(files.some((file) => f.endsWith(file))),
+    );
+    const load = vi.fn();
+    load.mockReturnValue(Promise.resolve({ priority: 1 }));
+
+    const resolver = new ConfigResolver(files, { none: (_) => ({}), exists, load });
+    const config = await resolver.resolve(path.join('project', 'sub'));
+
+    expect(load).toHaveBeenCalledTimes(1);
+    expect(load).toHaveBeenCalledWith(
+      path.join(path.resolve('project', 'sub'), '.hygen.js'),
+    );
+    expect(config).toEqual({ priority: 1 });
+  });
+
+  it('nearest directory wins for a lower-priority candidate', async () => {
+    const near = path.resolve('project', 'sub', '.hygen.cjs'); // lower priority, nearer
+    const up = path.resolve('project', '.hygen.js'); // higher priority, farther
+    const exists = vi.fn((f: string) => Promise.resolve(f === near || f === up));
+    const load = vi.fn();
+    load.mockReturnValue(Promise.resolve({ from: 'near' }));
+
+    const resolver = new ConfigResolver(files, { none: (_) => ({}), exists, load });
+    const config = await resolver.resolve(path.join('project', 'sub'));
+
+    expect(load).toHaveBeenCalledTimes(1);
+    expect(load).toHaveBeenCalledWith(near);
+    expect(config).toEqual({ from: 'near' });
+  });
+
+  it('returns the fallback when no config exists anywhere', async () => {
+    const exists = vi.fn(() => Promise.resolve(false));
+    const none = vi.fn((f: string) => ({ fallback: f }));
+    const load = vi.fn();
+
+    const resolver = new ConfigResolver(files, { none, exists, load });
+    const from = path.join('project', 'sub');
+    const config = await resolver.resolve(from);
+
+    expect(none).toHaveBeenCalledTimes(1);
+    expect(config).toEqual({ fallback: from });
+  });
+
+  it('routes the .ts candidate to load', async () => {
+    const tsPath = path.resolve('project', '.hygen.ts');
+    const exists = vi.fn((f: string) => Promise.resolve(f === tsPath));
+    const load = vi.fn();
+    load.mockReturnValue(Promise.resolve({ from: 'ts' }));
+
+    const resolver = new ConfigResolver(files, { none: (_) => ({}), exists, load });
+    const config = await resolver.resolve(path.join('project', 'sub'));
+
+    expect(load).toHaveBeenCalledTimes(1);
+    expect(load).toHaveBeenCalledWith(tsPath);
+    expect(config).toEqual({ from: 'ts' });
+  });
+
+  it('keeps single .hygen.js resolution unchanged (backward compatible)', async () => {
+    const jsPath = path.resolve('project', '.hygen.js');
+    const exists = vi.fn((f: string) => Promise.resolve(f === jsPath));
+    const load = vi.fn();
+    load.mockReturnValue(Promise.resolve({ legacy: true }));
+
+    const resolver = new ConfigResolver(files, { none: (_) => ({}), exists, load });
+    const config = await resolver.resolve(path.join('project', 'sub'));
+
+    expect(load).toHaveBeenCalledTimes(1);
+    expect(load).toHaveBeenCalledWith(jsPath);
+    expect(config).toEqual({ legacy: true });
   });
 });
 

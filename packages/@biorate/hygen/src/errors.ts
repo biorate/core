@@ -67,6 +67,19 @@ export class ShellCommandError extends BaseError {
 }
 
 /**
+ * @description Thrown when a `.hygen.ts` config file is resolved but `ts-node`
+ * cannot be registered to transpile it on the fly (typically `ts-node` is not
+ * installed in the project). */
+export class ConfigTsNodeError extends BaseError {
+  public constructor(file: string, cause: unknown) {
+    super(
+      'TypeScript config [%s] requires ts-node: install it with `npm i -D ts-node` (error: [%s])',
+      [file, (cause as Error)?.message ?? cause],
+    );
+  }
+}
+
+/**
  * @description Thrown when a `setup` frontmatter value is not a valid repository. */
 export class SetupRepositoryError extends BaseError {
   public constructor(setup: string) {

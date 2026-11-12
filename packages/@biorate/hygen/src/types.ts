@@ -83,8 +83,9 @@ export interface RunnerConfig {
 export type RunnerContextConfig = Partial<RunnerConfig>;
 
 /**
- * @description I/O primitives used by the `.hygen.js` config resolver to find
- * and load the nearest config file relative to a directory. */
+ * @description I/O primitives used by the config resolver to find and load the
+ * nearest config file from the config-file family (`.hygen.js`, `.hygen.cjs`,
+ * `.hygen.mjs`, `.hygen.ts`) relative to a directory. */
 export interface ResolverIO {
   /** @description Whether a config file exists at the given path. */
   exists: (arg0: string) => Promise<boolean>;

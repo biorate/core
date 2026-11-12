@@ -1,6 +1,16 @@
+import { vi } from 'vitest';
 import path from 'path';
 import templateResolver from '../src/config-resolver';
 import Logger from '../src/logger';
+
+const tsNodeState = vi.hoisted(() => ({ registered: false }));
+
+// Mock the lazily-registered ts-node so a `.hygen.ts` config can be resolved
+// without real ts-node; the flag proves the registration code path is reached.
+vi.mock('ts-node/register/transpile-only', () => {
+  tsNodeState.registered = true;
+  return {};
+});
 
 const fixture = (dir: string) => path.join(__dirname, 'fixtures/templates', dir);
 const templateParams = ({
@@ -68,5 +78,16 @@ describe('resolve', () => {
       ).templates,
     ).toEqual(fixture('app-custom/other-templates'));
     process.env.HYGEN_TMPLS = undefined;
+  });
+
+  it('resolves a .hygen.ts config and registers ts-node on the fly', async () => {
+    const result = await templateResolver(
+      templateParams({
+        cwd: path.join(__dirname, 'fixtures/config-ts'),
+        templates: '2',
+      }),
+    );
+    expect(tsNodeState.registered).toBe(true);
+    expect(result.templates).toBe('from-ts');
   });
 });
