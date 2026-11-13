@@ -1,0 +1,1754 @@
+'use strict';
+(self.webpackChunkhygen_docs_site = self.webpackChunkhygen_docs_site || []).push([
+  [807],
+  {
+    1360(e, n, s) {
+      s.r(n),
+        s.d(n, {
+          assets: () => c,
+          contentTitle: () => l,
+          default: () => h,
+          frontMatter: () => d,
+          metadata: () => r,
+          toc: () => a,
+        });
+      const r = JSON.parse(
+        '{"id":"templates","title":"templates","description":"Part of @biorate/hygen \u2014 a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork\'s semantics; see Differences from upstream.","source":"@site/../docs/templates.md","sourceDirName":".","slug":"/templates","permalink":"/core/hygen/docs/templates","draft":false,"unlisted":false,"tags":[],"version":"current","frontMatter":{},"sidebar":"docs","previous":{"title":"generators","permalink":"/core/hygen/docs/generators"},"next":{"title":"glob-batch","permalink":"/core/hygen/docs/glob-batch"}}',
+      );
+      var i = s(159),
+        t = s(8758);
+      const d = {},
+        l = 'Templates',
+        c = {},
+        a = [
+          { value: 'Frontmatter', id: 'frontmatter', level: 2 },
+          { value: 'Escaping semantics', id: 'escaping-semantics', level: 2 },
+          { value: 'Template body', id: 'template-body', level: 2 },
+          { value: 'Helpers and inflections', id: 'helpers-and-inflections', level: 2 },
+          { value: 'Change-case helpers', id: 'change-case-helpers', level: 2 },
+          { value: 'Local variables', id: 'local-variables', level: 2 },
+          { value: 'Predefined variables', id: 'predefined-variables', level: 2 },
+          { value: 'Addition (<code>add</code>)', id: 'addition-add', level: 2 },
+          { value: 'Glob batch actions', id: 'glob-batch-actions', level: 2 },
+          {
+            value: 'Mirroring the template layout (<code>mirror</code>)',
+            id: 'mirroring-the-template-layout-mirror',
+            level: 2,
+          },
+          { value: 'Suffix rule', id: 'suffix-rule', level: 3 },
+          { value: 'Precedence and scope', id: 'precedence-and-scope', level: 3 },
+          {
+            value: 'Path macros (<code>$IDENTIFIER$</code>)',
+            id: 'path-macros-identifier',
+            level: 3,
+          },
+          {
+            value: 'From &amp; shared templates',
+            id: 'from--shared-templates',
+            level: 2,
+          },
+          { value: 'Injection', id: 'injection', level: 2 },
+          {
+            value: 'Anchors (mutually exclusive)',
+            id: 'anchors-mutually-exclusive',
+            level: 3,
+          },
+          {
+            value: 'Anchor not found fails the run',
+            id: 'anchor-not-found-fails-the-run',
+            level: 3,
+          },
+          {
+            value: 'Guarding against double injection',
+            id: 'guarding-against-double-injection',
+            level: 3,
+          },
+          {
+            value: 'Creating a missing target',
+            id: 'creating-a-missing-target',
+            level: 3,
+          },
+          { value: 'Replacement by anchor', id: 'replacement-by-anchor', level: 3 },
+          {
+            value: 'Line-ending control (<code>eof_last</code>)',
+            id: 'line-ending-control-eof_last',
+            level: 3,
+          },
+          { value: 'Shell', id: 'shell', level: 2 },
+          { value: 'Conditional rendering', id: 'conditional-rendering', level: 2 },
+          {
+            value: 'Conditional action skipping (<code>skip</code>)',
+            id: 'conditional-action-skipping-skip',
+            level: 2,
+          },
+          {
+            value: 'All frontmatter properties',
+            id: 'all-frontmatter-properties',
+            level: 2,
+          },
+          { value: 'Attribution', id: 'attribution', level: 2 },
+        ];
+      function o(e) {
+        const n = {
+          a: 'a',
+          blockquote: 'blockquote',
+          code: 'code',
+          em: 'em',
+          h1: 'h1',
+          h2: 'h2',
+          h3: 'h3',
+          header: 'header',
+          li: 'li',
+          p: 'p',
+          pre: 'pre',
+          strong: 'strong',
+          table: 'table',
+          tbody: 'tbody',
+          td: 'td',
+          th: 'th',
+          thead: 'thead',
+          tr: 'tr',
+          ul: 'ul',
+          ...(0, t.R)(),
+          ...e.components,
+        };
+        return (0, i.jsxs)(i.Fragment, {
+          children: [
+            (0, i.jsxs)(n.blockquote, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.p, {
+                  children: [
+                    'Part of ',
+                    (0, i.jsx)(n.strong, { children: '@biorate/hygen' }),
+                    ' \u2014 a fork of ',
+                    (0, i.jsx)(n.a, {
+                      href: 'https://github.com/jondot/hygen',
+                      children: 'jondot/hygen',
+                    }),
+                    ' (v6.2.11, MIT), adapted to the ',
+                    (0, i.jsx)(n.code, { children: '@biorate/*' }),
+                    " monorepo. Rewritten for this fork's semantics; see ",
+                    (0, i.jsx)(n.a, { href: '/', children: 'Differences from upstream' }),
+                    '.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.p, {
+                  children: [
+                    'Based on: ',
+                    (0, i.jsx)(n.a, {
+                      href: 'https://github.com/jondot/hygen/blob/master/docs/templates.md',
+                      children: 'Upstream templates reference',
+                    }),
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.header, {
+              children: (0, i.jsx)(n.h1, { id: 'templates', children: 'Templates' }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A ',
+                (0, i.jsx)(n.code, { children: 'hygen' }),
+                ' template is a YAML ',
+                (0, i.jsx)(n.a, { href: '#frontmatter', children: 'frontmatter' }),
+                ' header plus an ',
+                (0, i.jsx)(n.a, { href: 'https://github.com/mde/ejs', children: 'EJS' }),
+                '\nbody. The frontmatter describes ',
+                (0, i.jsx)(n.em, { children: 'what to do' }),
+                ' (write, inject, run a shell command); the body\nis the content that gets rendered and applied.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\nto: app/emails/<%= name %>.html\n---\nHello <%= name %>,\n<%= message %>\n(version <%= version %>)\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Because both the frontmatter and the body are rendered by the same EJS engine, the ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                '\npath, the values and the content can all be interpolated.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, { id: 'frontmatter', children: 'Frontmatter' }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The frontmatter is delimited by a matching ',
+                (0, i.jsx)(n.code, { children: '---' }),
+                ' top and bottom with YAML in it. It is\nrendered first, so it can reference the same variables the body uses:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children: '---\nto: app/<%= section %>/emails.js\nfoo: <%= bar %>\n---\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Given the following command, the frontmatter builds ',
+                (0, i.jsx)(n.em, { children: 'behind the scenes' }),
+                ' into:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children: '---\nto: app/weekend/emails.js\nfoo: ping\n---\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-bash',
+                children: 'hygen mailer campaign --section weekend --bar ping\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'escaping-semantics',
+              children: 'Escaping semantics',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.strong, {
+                  children: 'This is the single most important difference from upstream.',
+                }),
+                ' In this fork, the ',
+                (0, i.jsx)(n.code, { children: '<%= expr %>' }),
+                '\ninterpolation does ',
+                (0, i.jsx)(n.strong, { children: 'not' }),
+                ' HTML-escape: the EJS ',
+                (0, i.jsx)(n.code, { children: 'escape' }),
+                ' option is the identity\n(',
+                (0, i.jsx)(n.code, { children: '(s) => s' }),
+                '). The tool generates source code, not markup, so code passages survive verbatim:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children: '---\nto: app/compare.js\n---\nconst cmp = <%= expr %>;\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-bash',
+                children:
+                  "hygen sink new --expr 'a > b && c < d'\n# writes: const cmp = a > b && c < d;   (no &gt; / &amp;)\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The ',
+                (0, i.jsx)(n.code, { children: '<%- expr %>' }),
+                ' tag still works and is a raw (unescaped) interpolation; in this fork\n',
+                (0, i.jsx)(n.code, { children: '<%= %>' }),
+                ' and ',
+                (0, i.jsx)(n.code, { children: '<%- %>' }),
+                ' therefore produce the same output. Escaping is the identity for\nboth \u2014 there is no upstream advice to "use ',
+                (0, i.jsx)(n.code, { children: '<%- %>' }),
+                ' to avoid HTML escaping", because there\nis nothing to escape.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, { id: 'template-body', children: 'Template body' }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Template bodies are ',
+                (0, i.jsx)(n.a, { href: 'https://github.com/mde/ejs', children: 'EJS' }),
+                ':',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children:
+                  '---\nto: app/workers/<%= name %>.js\n---\nclass <%= Name %> {\n  work() {\n    // your code here!\n  }\n}\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The variable ',
+                (0, i.jsx)(n.code, { children: 'name' }),
+                ' is blessed: you get a capitalized version for free as ',
+                (0, i.jsx)(n.code, { children: 'Name' }),
+                '. You can\nalso compute derived variables inline with a ',
+                (0, i.jsx)(n.code, { children: '<% %>' }),
+                ' scriptlet:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children:
+                  '---\nto: app/workers/<%= name %>.js\n---\n<%\n  Message = message.toUpperCase()\n%>\nclass <%= Name %> {\n  work() {\n    return "<%= Message %>";\n  }\n}\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The same EJS engine renders both the body and the ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                ' path.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'helpers-and-inflections',
+              children: 'Helpers and inflections',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The special object ',
+                (0, i.jsx)(n.code, { children: 'h' }),
+                ' hosts built-in helpers. ',
+                (0, i.jsx)(n.code, { children: 'h.capitalize' }),
+                ' uppercases the first\ncharacter; ',
+                (0, i.jsx)(n.code, { children: 'h.inflection' }),
+                " pluralizes and singularizes, and includes the fork's\n",
+                (0, i.jsx)(n.code, { children: 'undasherize' }),
+                ' (kebab/snake case to ',
+                (0, i.jsx)(n.code, { children: 'KebabCase' }),
+                '):',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children:
+                  'class <%= Name %> {\n  work() {\n    return "<%= h.capitalize(message) %>";\n  }\n}\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children:
+                  "<%= h.inflection.pluralize(name) %>\n<%= h.inflection.undasherize('my-module') %>\x3c!-- MyModule --\x3e\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [(0, i.jsx)(n.code, { children: 'h.inflection' }), ' exposes:'],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                children:
+                  'pluralize(str, plural)\nsingularize(str, singular)\ninflect(str, count, singular, plural)\ncamelize(str, low_first_letter)\nunderscore(str, all_upper_case)\nhumanize(str, low_first_letter)\ncapitalize(str)\ndasherize(str)\ntitleize(str)\nundasherize(str)          <- fork-specific\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'change-case-helpers',
+              children: 'Change-case helpers',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'h.changeCase' }),
+                ' is the ',
+                (0, i.jsx)(n.a, {
+                  href: 'https://github.com/blakeembrey/change-case',
+                  children: 'change-case',
+                }),
+                ' library:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-js',
+                children:
+                  '// example: <%= h.changeCase.camel(name) %>\ncamel(str);\nconstant(str);\ndot(str);\nheader(str);\nisLower(str);\nisUpper(str);\nlower(str);\nlcFirst(str);\nno(str);\nparam(str);\npascal(str);\npath(str);\nsentence(str);\nsnake(str);\nswap(str);\ntitle(str);\nupper(str);\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.p, { children: 'A typical React component generator:' }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\nto: components/<%= name %>/index.jsx\n---\nimport React from \'react\'\n\nexport const <%= name %> = ({ children }) => (\n<div className="<%= h.changeCase.paramCase(name) %>">{children}</div>\n)\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'With ',
+                (0, i.jsx)(n.code, { children: 'name=HelloWorld' }),
+                ' this compiles to a ',
+                (0, i.jsx)(n.code, { children: '<div className="hello-world">' }),
+                ' element.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'h.path' }),
+                ' is the Node ',
+                (0, i.jsx)(n.a, {
+                  href: 'https://nodejs.org/api/path.html',
+                  children: (0, i.jsx)(n.code, { children: 'path' }),
+                }),
+                ' module, so you can join and\nresolve paths inside templates.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, { id: 'local-variables', children: 'Local variables' }),
+            '\n',
+            (0, i.jsx)(n.p, {
+              children:
+                'Any CLI argument, positional or prompt result automatically becomes a local variable. There\nare two ways to refer to them:',
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children: 'Hello <%= message %>\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The bare form refers to ',
+                (0, i.jsx)(n.code, { children: 'message' }),
+                '; a missing value throws a reference error.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children: 'Hello <%= locals.message %>\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The ',
+                (0, i.jsx)(n.code, { children: 'locals' }),
+                ' form lets you test for existence before use:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children:
+                  '<% if (locals.message) { -%>\n  message: <%= message %>\n<% } -%>\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The ',
+                (0, i.jsx)(n.code, { children: '-%>' }),
+                ' slurps the trailing newline so an ',
+                (0, i.jsx)(n.code, { children: 'if' }),
+                ' clause does not leave blank lines in the\noutput.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'predefined-variables',
+              children: 'Predefined variables',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A command like ',
+                (0, i.jsx)(n.code, { children: 'hygen component new:story' }),
+                ' places these values into special variables:',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.table, {
+              children: [
+                (0, i.jsx)(n.thead, {
+                  children: (0, i.jsxs)(n.tr, {
+                    children: [
+                      (0, i.jsx)(n.th, { children: 'Variable' }),
+                      (0, i.jsx)(n.th, { children: 'Content' }),
+                      (0, i.jsx)(n.th, { children: 'Example' }),
+                    ],
+                  }),
+                }),
+                (0, i.jsxs)(n.tbody, {
+                  children: [
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'templates' }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Templates path (absolute)' }),
+                        (0, i.jsx)(n.td, { children: '/project/_templates' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'actionfolder' }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Action path' }),
+                        (0, i.jsx)(n.td, { children: '/.../component/new' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'generator' }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Generator name' }),
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'component' }),
+                        }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'action' }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Action name' }),
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'new' }),
+                        }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'subaction' }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Sub-action name' }),
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'story' }),
+                        }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'cwd' }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Process working directory' }),
+                        (0, i.jsx)(n.td, { children: '/project' }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ejs',
+                children: '<%= actionfolder %>\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.h2, {
+              id: 'addition-add',
+              children: ['Addition (', (0, i.jsx)(n.code, { children: 'add' }), ')'],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'By default templates are ',
+                (0, i.jsx)(n.em, { children: 'added' }),
+                ' as a new target file. The ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                ' property tells ',
+                (0, i.jsx)(n.code, { children: 'hygen' }),
+                '\nwhere to put it; nested directories are created automatically. ',
+                (0, i.jsx)(n.code, { children: 'force: true' }),
+                ' overwrites an\nexisting file without prompting (the default is to prompt for confirmation).',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  "---\nto: app/index.js\nforce: true\n---\nconsole.log('this is index!')\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'To leave an existing file alone, use ',
+                (0, i.jsx)(n.code, { children: 'unless_exists: true' }),
+                ':',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\nto: app/index.js\nunless_exists: true\n---\nwill not render if target exists\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'skipIfExists: true' }),
+                ' is the quiet variant: an existing target is skipped without failing and\nwithout prompting (unlike ',
+                (0, i.jsx)(n.code, { children: 'force: true' }),
+                ', which overwrites). It works on every file-creating\naction \u2014 plain ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                ', mirrored, and ',
+                (0, i.jsx)(n.a, { href: './glob-batch', children: 'glob batch actions' }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'glob-batch-actions',
+              children: 'Glob batch actions',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A single template can scaffold a whole directory tree at once. Declare ',
+                (0, i.jsx)(n.code, { children: 'glob:' }),
+                ' with a\npattern (plus ',
+                (0, i.jsx)(n.code, { children: 'base:' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'stripExtensions:' }),
+                ' and a ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'destination:' }),
+                ' folder) and every\nmatch becomes its own rendered file; ',
+                (0, i.jsx)(n.code, { children: 'skipIfExists: true' }),
+                ' on a batch skips a matched file\nwhose target already exists.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'See ',
+                (0, i.jsx)(n.a, { href: './glob-batch', children: 'Glob batch actions' }),
+                ' for the full reference \u2014 properties, notes and\nexamples.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.h2, {
+              id: 'mirroring-the-template-layout-mirror',
+              children: [
+                'Mirroring the template layout (',
+                (0, i.jsx)(n.code, { children: 'mirror' }),
+                ')',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A template with no ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                ' is a ',
+                (0, i.jsx)(n.strong, { children: 'no-op' }),
+                ' by default \u2014 it renders nothing and creates\nnothing. When you want the output path to mirror where the template lives inside the\naction folder, opt in with ',
+                (0, i.jsx)(n.code, { children: 'mirror: true' }),
+                ':',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\nmirror: true\n---\n// _templates/mailer/new/parts/header.ejs.t -> parts/header.ejs (relative to cwd)\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Mirroring applies ',
+                (0, i.jsx)(n.strong, { children: 'only' }),
+                ' when all three hold: ',
+                (0, i.jsx)(n.code, { children: 'mirror: true' }),
+                ' is present, there is no\n',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                ', and there is no ',
+                (0, i.jsx)(n.code, { children: 'sh' }),
+                " attribute. The target path is the template's location inside\nthe action folder, resolved relative to the current working directory; missing\ndirectories are created automatically.",
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, { id: 'suffix-rule', children: 'Suffix rule' }),
+            '\n',
+            (0, i.jsx)(n.p, {
+              children:
+                'The file-name suffix is stripped per this convention before the path is used:',
+            }),
+            '\n',
+            (0, i.jsxs)(n.table, {
+              children: [
+                (0, i.jsx)(n.thead, {
+                  children: (0, i.jsxs)(n.tr, {
+                    children: [
+                      (0, i.jsx)(n.th, { children: 'Setting' }),
+                      (0, i.jsx)(n.th, { children: 'Source suffix' }),
+                      (0, i.jsx)(n.th, { children: 'Target example' }),
+                    ],
+                  }),
+                }),
+                (0, i.jsxs)(n.tbody, {
+                  children: [
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, { children: 'default' }),
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: '.t' }),
+                        }),
+                        (0, i.jsxs)(n.td, {
+                          children: [
+                            (0, i.jsx)(n.code, { children: 'html.ejs.t' }),
+                            ' \u2192 ',
+                            (0, i.jsx)(n.code, { children: 'html.ejs' }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, {
+                            children: 'HYGEN_MIRROR_EJS_SUFFIX=1',
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: '.ejs.t' }),
+                        }),
+                        (0, i.jsxs)(n.td, {
+                          children: [
+                            (0, i.jsx)(n.code, { children: 'html.ejs.t' }),
+                            ' \u2192 ',
+                            (0, i.jsx)(n.code, { children: 'html' }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The default strips a single trailing ',
+                (0, i.jsx)(n.code, { children: '.t' }),
+                ' (so the ',
+                (0, i.jsx)(n.code, { children: '.ejs' }),
+                ' is kept). Setting\n',
+                (0, i.jsx)(n.code, { children: 'HYGEN_MIRROR_EJS_SUFFIX=1' }),
+                ' strips the full ',
+                (0, i.jsx)(n.code, { children: '.ejs.t' }),
+                ' instead.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
+              id: 'precedence-and-scope',
+              children: 'Precedence and scope',
+            }),
+            '\n',
+            (0, i.jsxs)(n.ul, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsxs)(n.strong, {
+                      children: [
+                        'Explicit ',
+                        (0, i.jsx)(n.code, { children: 'to:' }),
+                        ' always wins',
+                      ],
+                    }),
+                    ' \u2014 a template declaring both ',
+                    (0, i.jsx)(n.code, { children: 'to:' }),
+                    ' and ',
+                    (0, i.jsx)(n.code, { children: 'mirror: true' }),
+                    '\nwrites to the explicit ',
+                    (0, i.jsx)(n.code, { children: 'to:' }),
+                    ' target and ignores ',
+                    (0, i.jsx)(n.code, { children: 'mirror' }),
+                    '.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsxs)(n.strong, {
+                      children: [
+                        (0, i.jsx)(n.code, { children: 'sh' }),
+                        '-only templates never mirror',
+                      ],
+                    }),
+                    ' \u2014 a template with a ',
+                    (0, i.jsx)(n.code, { children: 'sh:' }),
+                    ' attribute and no ',
+                    (0, i.jsx)(n.code, { children: 'to:' }),
+                    '\nstays a no-op (no file is created), regardless of ',
+                    (0, i.jsx)(n.code, { children: 'mirror' }),
+                    '.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, {
+                      children: 'Overwrite semantics are unchanged',
+                    }),
+                    ' \u2014 a mirrored target behaves like any ',
+                    (0, i.jsx)(n.code, { children: 'add' }),
+                    ':\n',
+                    (0, i.jsx)(n.code, { children: 'force: true' }),
+                    ' overwrites, ',
+                    (0, i.jsx)(n.code, { children: 'unless_exists: true' }),
+                    ' leaves an existing file alone, and the\ndefault is to prompt for confirmation (',
+                    (0, i.jsx)(n.code, { children: 'HYGEN_OVERWRITE' }),
+                    ' disables the prompt).',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.h3, {
+              id: 'path-macros-identifier',
+              children: [
+                'Path macros (',
+                (0, i.jsx)(n.code, { children: '$IDENTIFIER$' }),
+                ')',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Any path segment of the mirrored target may contain macros of the form\n',
+                (0, i.jsx)(n.code, { children: '$IDENTIFIER$' }),
+                '. Each macro is substituted with the value of that identifier from\nthe run locals \u2014 prompt-hook answers, the resolved ',
+                (0, i.jsx)(n.code, { children: 'name' }),
+                ' (prompt hook answer >\npositional name > ',
+                (0, i.jsx)(n.code, { children: '--name' }),
+                ' flag), CLI flags, and values exported by the config\nhelpers factory:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-text',
+                children:
+                  '_templates/mailer/new/apps/$CLIENT_NAME$/src/index.ts.t   (mirror: true)\n  -> apps/<resolved CLIENT_NAME>/src/index.ts             (relative to cwd)\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.p, { children: 'Semantics:' }),
+            '\n',
+            (0, i.jsxs)(n.ul, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Cross-platform by construction' }),
+                    ' \u2014 ',
+                    (0, i.jsx)(n.code, { children: '$' }),
+                    ' is a legal filename character on\nLinux, macOS and Windows, so a template tree with ',
+                    (0, i.jsx)(n.code, { children: '$MACRO$' }),
+                    ' folders checks out\nand runs everywhere (this is why segments use ',
+                    (0, i.jsx)(n.code, { children: '$IDENTIFIER$' }),
+                    ' and not EJS\ndelimiters, which contain Windows-reserved characters).',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'A macro is always a scalar' }),
+                    ' \u2014 under name expansion (',
+                    (0, i.jsx)(n.code, { children: 'hygen mailer new a,b' }),
+                    ')\nthe run renders one pass per name, and each pass resolves the segment with its\nown scalar ',
+                    (0, i.jsx)(n.code, { children: 'name' }),
+                    '; two names produce two passes, never an array in a path.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Embedded literals are allowed' }),
+                    ' \u2014 a segment like ',
+                    (0, i.jsx)(n.code, { children: 'v$VERSION$-build' }),
+                    ' resolves\nwith plain substitution around the macro.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Unknown identifiers fail fast' }),
+                    ' \u2014 if an identifier cannot be resolved, the\nrun stops with a ',
+                    (0, i.jsx)(n.code, { children: 'PathMacroResolutionError' }),
+                    ' naming the template file, the\noffending segment and the identifier; no file is written by that action.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsxs)(n.strong, {
+                      children: [
+                        'Explicit ',
+                        (0, i.jsx)(n.code, { children: 'to:' }),
+                        ' and glob actions are unaffected',
+                      ],
+                    }),
+                    ' \u2014 ',
+                    (0, i.jsx)(n.code, { children: 'to:' }),
+                    ' (and glob\n',
+                    (0, i.jsx)(n.code, { children: 'destination:' }),
+                    ') are fully EJS-rendered and do not use ',
+                    (0, i.jsx)(n.code, { children: '$IDENTIFIER$' }),
+                    ' macros;\nmacros apply only to mirrored targets.',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'from--shared-templates',
+              children: 'From & shared templates',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'from:' }),
+                ' loads the body from another template instead of the body of the current file. The\nbody of the current template is ignored:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\nto: app/readme.md\nfrom: shared/docs/readme.md\n---\nTHIS BODY IS IGNORED !!!\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'from: shared/docs/readme.md' }),
+                ' loads ',
+                (0, i.jsx)(n.code, { children: '_templates/shared/docs/readme.md' }),
+                ' as the body of\n',
+                (0, i.jsx)(n.code, { children: 'app/readme.md' }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, { id: 'injection', children: 'Injection' }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'To inject a template ',
+                (0, i.jsx)(n.em, { children: 'into' }),
+                ' an existing file, set ',
+                (0, i.jsx)(n.code, { children: 'inject: true' }),
+                ' plus exactly one anchor.\nThe body is inserted at the resolved position. The most common guard, ',
+                (0, i.jsx)(n.code, { children: 'skip_if' }),
+                ', prevents\ndouble injection:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\ninject: true\nto: package.json\nafter: dependencies\nskip_if: react-native-fs\n---\n"react-native-fs":"*",\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'This adds the ',
+                (0, i.jsx)(n.code, { children: 'react-native-fs' }),
+                ' dependency to ',
+                (0, i.jsx)(n.code, { children: 'package.json' }),
+                ', but only once (the ',
+                (0, i.jsx)(n.code, { children: 'skip_if' }),
+                ')\nguard sees the text already present and skips).',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'after: dependencies' }),
+                ' is a regular expression, so it matches the ',
+                (0, i.jsx)(n.code, { children: '"dependencies": {' }),
+                ' block\nin a ',
+                (0, i.jsx)(n.code, { children: 'package.json' }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
+              id: 'anchors-mutually-exclusive',
+              children: 'Anchors (mutually exclusive)',
+            }),
+            '\n',
+            (0, i.jsx)(n.p, {
+              children: 'Exactly one of these anchor options is used per template:',
+            }),
+            '\n',
+            (0, i.jsxs)(n.ul, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.code, { children: 'before' }),
+                    ' / ',
+                    (0, i.jsx)(n.code, { children: 'after' }),
+                    ' \u2014 a regular expression of text to locate. The inject line appears\n',
+                    (0, i.jsx)(n.em, { children: 'before' }),
+                    ' or ',
+                    (0, i.jsx)(n.em, { children: 'after' }),
+                    ' the located line. These support multi-line matches: a single-line\nmatch is tried across each line first; if none is found, a multi-line match across the\nwhole file is attempted.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.code, { children: 'prepend' }),
+                    ' / ',
+                    (0, i.jsx)(n.code, { children: 'append' }),
+                    ' \u2014 boolean; add the body to the start or end of the file, respectively.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.code, { children: 'at_line' }),
+                    ' \u2014 a numeric line index (0-based) at which the body is inserted. It is a line\nindex, so it always matches.',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  "---\ninject: true\nto: config.js\nbefore: '// config'\n---\ncustom-feature = true;\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
+              id: 'anchor-not-found-fails-the-run',
+              children: 'Anchor not found fails the run',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'If a ',
+                (0, i.jsx)(n.code, { children: 'before' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'after' }),
+                ' anchor does not match (neither a single line nor the whole text), the\ninjection throws ',
+                (0, i.jsx)(n.code, { children: 'InjectionAnchorNotFoundError' }),
+                ', the run reports ',
+                (0, i.jsx)(n.code, { children: 'success: false' }),
+                ', and the\ntarget file is left ',
+                (0, i.jsx)(n.strong, { children: 'untouched' }),
+                '. Unlike upstream (which silently no-ops and can even\nmisplace the content), this fork surfaces the failure. ',
+                (0, i.jsx)(n.code, { children: 'prepend' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'append' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'at_line' }),
+                ' always\nhave a position, so they cannot "not match".',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
+              id: 'guarding-against-double-injection',
+              children: 'Guarding against double injection',
+            }),
+            '\n',
+            (0, i.jsxs)(n.ul, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.code, { children: 'skip_if' }),
+                    ' \u2014 a regular expression / text. If it is present in the file, the injection is\nskipped.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.code, { children: 'skip_if_not: true' }),
+                    ' \u2014 the pure inversion of ',
+                    (0, i.jsx)(n.code, { children: 'skip_if' }),
+                    ': the injection runs ',
+                    (0, i.jsx)(n.strong, { children: 'only when' }),
+                    ' the\n',
+                    (0, i.jsx)(n.code, { children: 'skip_if' }),
+                    ' text/regex ',
+                    (0, i.jsx)(n.strong, { children: 'is' }),
+                    ' present (and is skipped when it is absent). Use it to inject a\nblock into a file that already contains a marker.',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
+              id: 'creating-a-missing-target',
+              children: 'Creating a missing target',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'By default, injecting into a file that does not exist is an error\n(',
+                (0, i.jsx)(n.code, { children: 'InjectionTargetNotFoundError' }),
+                '). Set ',
+                (0, i.jsx)(n.code, { children: 'create_if_missing: true' }),
+                ' to create the target (with\nparent folders) and then inject the body into it:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  "---\nto: config/new.json\ninject: true\ncreate_if_missing: true\nappend: true\n---\n{ 'key': 'value' }\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
+              id: 'replacement-by-anchor',
+              children: 'Replacement by anchor',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'replace: true' }),
+                ' switches an inject-family operation from insert to replace: the first\nfragment matched by the ',
+                (0, i.jsx)(n.code, { children: 'before' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'after' }),
+                ' anchor is replaced by the body and the rest of the\nfile is preserved. ',
+                (0, i.jsx)(n.code, { children: '$' }),
+                ' in the body is treated literally.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'replace' }),
+                ' is mutually exclusive with ',
+                (0, i.jsx)(n.code, { children: 'inject' }),
+                ' (using both throws ',
+                (0, i.jsx)(n.code, { children: 'TemplateConfigError' }),
+                '), and\nonly ',
+                (0, i.jsx)(n.code, { children: 'before' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'after' }),
+                ' anchors support it (',
+                (0, i.jsx)(n.code, { children: 'prepend' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'append' }),
+                '/',
+                (0, i.jsx)(n.code, { children: 'at_line' }),
+                ' with ',
+                (0, i.jsx)(n.code, { children: 'replace' }),
+                ' is\nalso a ',
+                (0, i.jsx)(n.code, { children: 'TemplateConfigError' }),
+                '). An unmatched anchor raises ',
+                (0, i.jsx)(n.code, { children: 'InjectionAnchorNotFoundError' }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\nto: package.json\nreplace: true\nafter: \'"version": ".*"\'\n---\n"version": "2.0.0",\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.h3, {
+              id: 'line-ending-control-eof_last',
+              children: [
+                'Line-ending control (',
+                (0, i.jsx)(n.code, { children: 'eof_last' }),
+                ')',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'eof_last' }),
+                ' tunes the trailing newline of an injected body. When ',
+                (0, i.jsx)(n.code, { children: 'true' }),
+                ', a body without a\ntrailing newline gets one; when ',
+                (0, i.jsx)(n.code, { children: 'false' }),
+                ', a body with a trailing newline has it removed.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, { id: 'shell', children: 'Shell' }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A template with ',
+                (0, i.jsx)(n.code, { children: 'sh:' }),
+                ' runs a shell command after the other actions of the run. The command\nis executed via the configured ',
+                (0, i.jsx)(n.code, { children: 'exec' }),
+                ' hook (',
+                (0, i.jsx)(n.code, { children: 'execa.shell' }),
+                " by default), with the template\nbody piped to the command's stdin when a body is present. The ",
+                (0, i.jsx)(n.code, { children: 'cwd' }),
+                ' variable is available:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  "---\nsh: 'mkdir -p <%= cwd %>/given/app/shell && cat > <%= cwd %>/given/app/shell/hello.piped'\n---\nhello, this was piped!\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A shell action can be combined with an ',
+                (0, i.jsx)(n.code, { children: 'add' }),
+                ' or ',
+                (0, i.jsx)(n.code, { children: 'inject' }),
+                ' in the same template \u2014 for example,\nadd a dependency and then run the install:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  '---\ninject: true\nto: package.json\nafter: dependencies\nskip_if: lodash\nsh: cd <%= cwd %> && npm install\n---\n"lodash":"*",\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The body is not piped when it is absent. ',
+                (0, i.jsx)(n.code, { children: 'sh_ignore_exit: true' }),
+                ' ignores a non-zero exit;\n',
+                (0, i.jsx)(n.code, { children: 'spinner: true' }),
+                ' shows a spinner during the command.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'conditional-rendering',
+              children: 'Conditional rendering',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Render a template conditionally by giving ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                ' a value that resolves to ',
+                (0, i.jsx)(n.code, { children: 'null' }),
+                ':',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  "---\nto: '<%= message ? `where/to/render/${name}.js` : null %>'\n---\nconditionally rendering template\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'When ',
+                (0, i.jsx)(n.code, { children: 'hygen' }),
+                ' sees a ',
+                (0, i.jsx)(n.code, { children: 'to:' }),
+                ' value of ',
+                (0, i.jsx)(n.code, { children: 'null' }),
+                ', it skips the output of that template entirely.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Next up: ',
+                (0, i.jsx)(n.a, { href: './generators', children: 'generators' }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.h2, {
+              id: 'conditional-action-skipping-skip',
+              children: [
+                'Conditional action skipping (',
+                (0, i.jsx)(n.code, { children: 'skip' }),
+                ')',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A template can decide at render time whether it should run at all. Declare ',
+                (0, i.jsx)(n.code, { children: 'skip:' }),
+                ' in the\nfrontmatter; it is rendered with the same locals as the template, and a truthy result skips\nthe action \u2014 no operation executes and the run records the action as ',
+                (0, i.jsx)(n.code, { children: 'skipped' }),
+                '. It is\ndistinct from ',
+                (0, i.jsx)(n.code, { children: 'skipIfExists:' }),
+                ', which reacts to an existing target on disk.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'See ',
+                (0, i.jsx)(n.a, {
+                  href: './conditional-skip',
+                  children: 'Conditional action skipping',
+                }),
+                ' for the full reference \u2014 the rendered\nvalue table and the notes.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, {
+              id: 'all-frontmatter-properties',
+              children: 'All frontmatter properties',
+            }),
+            '\n',
+            (0, i.jsxs)(n.table, {
+              children: [
+                (0, i.jsx)(n.thead, {
+                  children: (0, i.jsxs)(n.tr, {
+                    children: [
+                      (0, i.jsx)(n.th, { children: 'Property' }),
+                      (0, i.jsx)(n.th, { children: 'Type' }),
+                      (0, i.jsx)(n.th, { children: 'Default' }),
+                      (0, i.jsx)(n.th, { children: 'Example' }),
+                    ],
+                  }),
+                }),
+                (0, i.jsxs)(n.tbody, {
+                  children: [
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#addition-add',
+                            children: (0, i.jsx)(n.code, { children: 'to:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String (url)' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'my-project/readme.md' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: './glob-batch',
+                            children: (0, i.jsx)(n.code, { children: 'glob:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'module/**/*' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: './glob-batch',
+                            children: (0, i.jsx)(n.code, { children: 'base:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'module' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: './glob-batch',
+                            children: (0, i.jsx)(n.code, {
+                              children: 'stripExtensions:',
+                            }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String/Array' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: "['.t']" }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: './glob-batch',
+                            children: (0, i.jsx)(n.code, { children: 'destination:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String (url)' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.code, { children: 'src/<%= name %>/' }),
+                        }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: './glob-batch',
+                            children: (0, i.jsx)(n.code, { children: 'skipIfExists:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'false' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: './conditional-skip',
+                            children: (0, i.jsx)(n.code, { children: 'skip:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'no tests requested' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#mirroring-the-template-layout-mirror',
+                            children: (0, i.jsx)(n.code, { children: 'mirror:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#from--shared-templates',
+                            children: (0, i.jsx)(n.code, { children: 'from:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String (url)' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'shared/docs/readme.md' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#addition-add',
+                            children: (0, i.jsx)(n.code, { children: 'force:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'false' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#addition-add',
+                            children: (0, i.jsx)(n.code, { children: 'unless_exists:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'false' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#injection',
+                            children: (0, i.jsx)(n.code, { children: 'inject:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'false' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#anchors-mutually-exclusive',
+                            children: (0, i.jsx)(n.code, { children: 'before:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Regex' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'devDependencies' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#anchors-mutually-exclusive',
+                            children: (0, i.jsx)(n.code, { children: 'after:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Regex' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'devDependencies' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#anchors-mutually-exclusive',
+                            children: (0, i.jsx)(n.code, { children: 'prepend:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#anchors-mutually-exclusive',
+                            children: (0, i.jsx)(n.code, { children: 'append:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#anchors-mutually-exclusive',
+                            children: (0, i.jsx)(n.code, { children: 'at_line:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Number' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: '123' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#line-ending-control-eof_last',
+                            children: (0, i.jsx)(n.code, { children: 'eof_last:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#guarding-against-double-injection',
+                            children: (0, i.jsx)(n.code, { children: 'skip_if:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Regex' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'myPackage' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#guarding-against-double-injection',
+                            children: (0, i.jsx)(n.code, { children: 'skip_if_not:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#creating-a-missing-target',
+                            children: (0, i.jsx)(n.code, {
+                              children: 'create_if_missing:',
+                            }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'false' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#replacement-by-anchor',
+                            children: (0, i.jsx)(n.code, { children: 'replace:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'Boolean' }),
+                        (0, i.jsx)(n.td, { children: 'false' }),
+                        (0, i.jsx)(n.td, { children: 'true' }),
+                      ],
+                    }),
+                    (0, i.jsxs)(n.tr, {
+                      children: [
+                        (0, i.jsx)(n.td, {
+                          children: (0, i.jsx)(n.a, {
+                            href: '#shell',
+                            children: (0, i.jsx)(n.code, { children: 'sh:' }),
+                          }),
+                        }),
+                        (0, i.jsx)(n.td, { children: 'String' }),
+                        (0, i.jsx)(n.td, { children: 'undefined' }),
+                        (0, i.jsx)(n.td, {
+                          children: 'echo: "Hello this is a shell command!"',
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'See ',
+                (0, i.jsx)(n.a, {
+                  href: './faq#errors-and-troubleshooting',
+                  children: 'Errors and troubleshooting',
+                }),
+                ' for the error classes these options can raise.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h2, { id: 'attribution', children: 'Attribution' }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: '@biorate/hygen' }),
+                ' is a fork of ',
+                (0, i.jsx)(n.a, {
+                  href: 'https://github.com/jondot/hygen',
+                  children: 'jondot/hygen',
+                }),
+                ' (v6.2.11,\nMIT); original work \xa9 Dotan Nahum, fork adaptations \xa9 Leonid Levkin. See\n',
+                (0, i.jsx)(n.a, { href: '/', children: 'Differences from upstream' }),
+                ' and the ',
+                (0, i.jsx)(n.a, {
+                  href: 'https://github.com/biorate/core/blob/master/packages/%40biorate/hygen/LICENSE',
+                  children: 'LICENSE',
+                }),
+                '.',
+              ],
+            }),
+          ],
+        });
+      }
+      function h(e = {}) {
+        const { wrapper: n } = { ...(0, t.R)(), ...e.components };
+        return n ? (0, i.jsx)(n, { ...e, children: (0, i.jsx)(o, { ...e }) }) : o(e);
+      }
+    },
+    8758(e, n, s) {
+      s.d(n, { R: () => d, x: () => l });
+      var r = s(2503);
+      const i = {},
+        t = r.createContext(i);
+      function d(e) {
+        const n = r.useContext(t);
+        return r.useMemo(
+          function () {
+            return 'function' == typeof e ? e(n) : { ...n, ...e };
+          },
+          [n, e],
+        );
+      }
+      function l(e) {
+        let n;
+        return (
+          (n = e.disableParentContext
+            ? 'function' == typeof e.components
+              ? e.components(i)
+              : e.components || i
+            : d(e.components)),
+          r.createElement(t.Provider, { value: n }, e.children)
+        );
+      }
+    },
+  },
+]);

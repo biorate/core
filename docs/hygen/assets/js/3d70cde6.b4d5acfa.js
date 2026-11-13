@@ -1,0 +1,835 @@
+'use strict';
+(self.webpackChunkhygen_docs_site = self.webpackChunkhygen_docs_site || []).push([
+  [99],
+  {
+    492(e, n, r) {
+      r.r(n),
+        r.d(n, {
+          assets: () => l,
+          contentTitle: () => a,
+          default: () => h,
+          frontMatter: () => o,
+          metadata: () => t,
+          toc: () => c,
+        });
+      const t = JSON.parse(
+        '{"id":"faq","title":"faq","description":"Part of @biorate/hygen \u2014 a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork\'s semantics; see Differences from upstream.","source":"@site/../docs/faq.md","sourceDirName":".","slug":"/faq","permalink":"/core/hygen/docs/faq","draft":false,"unlisted":false,"tags":[],"version":"current","frontMatter":{},"sidebar":"docs","previous":{"title":"extensibility","permalink":"/core/hygen/docs/extensibility"},"next":{"title":"packages","permalink":"/core/hygen/docs/packages"}}',
+      );
+      var s = r(159),
+        i = r(8758);
+      const o = {},
+        a = 'FAQ',
+        l = {},
+        c = [
+          { value: 'Why should I use hygen?', id: 'why-should-i-use-hygen', level: 2 },
+          {
+            value: 'How do I lowercase, uppercase or transform variables?',
+            id: 'how-do-i-lowercase-uppercase-or-transform-variables',
+            level: 2,
+          },
+          {
+            value: 'Can I inject using regular expressions that span across newlines?',
+            id: 'can-i-inject-using-regular-expressions-that-span-across-newlines',
+            level: 2,
+          },
+          {
+            value: 'Can I inject multiple times into the same file?',
+            id: 'can-i-inject-multiple-times-into-the-same-file',
+            level: 2,
+          },
+          {
+            value: 'How do I generate for several names/actions in one command?',
+            id: 'how-do-i-generate-for-several-namesactions-in-one-command',
+            level: 2,
+          },
+          {
+            value: 'Why does my template without <code>to:</code> create nothing?',
+            id: 'why-does-my-template-without-to-create-nothing',
+            level: 2,
+          },
+          {
+            value: 'I want to use generators from a single place',
+            id: 'i-want-to-use-generators-from-a-single-place',
+            level: 2,
+          },
+          {
+            value: 'Should I check in my templates?',
+            id: 'should-i-check-in-my-templates',
+            level: 2,
+          },
+          {
+            value:
+              'Isn&#39;t generating code counteracting DRY (don&#39;t repeat yourself)?',
+            id: 'isnt-generating-code-counteracting-dry-dont-repeat-yourself',
+            level: 2,
+          },
+          {
+            value: 'What&#39;s the difference from generator X/Y/Z?',
+            id: 'whats-the-difference-from-generator-xyz',
+            level: 2,
+          },
+          {
+            value: 'Can I use lodash or other libraries in my templates?',
+            id: 'can-i-use-lodash-or-other-libraries-in-my-templates',
+            level: 2,
+          },
+          {
+            value: 'Can I force hygen to always overwrite (e.g. <code>--force</code>)?',
+            id: 'can-i-force-hygen-to-always-overwrite-eg---force',
+            level: 2,
+          },
+          { value: 'Escaping and HTML', id: 'escaping-and-html', level: 2 },
+          {
+            value: 'Errors and troubleshooting',
+            id: 'errors-and-troubleshooting',
+            level: 2,
+          },
+          { value: 'Attribution', id: 'attribution', level: 2 },
+        ];
+      function d(e) {
+        const n = {
+          a: 'a',
+          blockquote: 'blockquote',
+          code: 'code',
+          em: 'em',
+          h1: 'h1',
+          h2: 'h2',
+          header: 'header',
+          li: 'li',
+          p: 'p',
+          pre: 'pre',
+          strong: 'strong',
+          table: 'table',
+          tbody: 'tbody',
+          td: 'td',
+          th: 'th',
+          thead: 'thead',
+          tr: 'tr',
+          ul: 'ul',
+          ...(0, i.R)(),
+          ...e.components,
+        };
+        return (0, s.jsxs)(s.Fragment, {
+          children: [
+            (0, s.jsxs)(n.blockquote, {
+              children: [
+                '\n',
+                (0, s.jsxs)(n.p, {
+                  children: [
+                    'Part of ',
+                    (0, s.jsx)(n.strong, { children: '@biorate/hygen' }),
+                    ' \u2014 a fork of ',
+                    (0, s.jsx)(n.a, {
+                      href: 'https://github.com/jondot/hygen',
+                      children: 'jondot/hygen',
+                    }),
+                    ' (v6.2.11, MIT), adapted to the ',
+                    (0, s.jsx)(n.code, { children: '@biorate/*' }),
+                    " monorepo. Rewritten for this fork's semantics; see ",
+                    (0, s.jsx)(n.a, { href: '/', children: 'Differences from upstream' }),
+                    '.',
+                  ],
+                }),
+                '\n',
+                (0, s.jsxs)(n.p, {
+                  children: [
+                    'Based on: ',
+                    (0, s.jsx)(n.a, {
+                      href: 'https://github.com/jondot/hygen/blob/master/docs/faq.md',
+                      children: 'Upstream FAQ',
+                    }),
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.header, {
+              children: (0, s.jsx)(n.h1, { id: 'faq', children: 'FAQ' }),
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'why-should-i-use-hygen',
+              children: 'Why should I use hygen?',
+            }),
+            '\n',
+            (0, s.jsx)(n.p, {
+              children:
+                'There are a few generator toolkits; arguably Yeoman is the most popular. Hyggen was born to\nsolve developer effectiveness in a multi-team, multi-module monorepo containing frontend\n(React, Redux) and backend (Node.js) projects. Every team had its nuances, ceremonies and\nways of staying effective, and every project had those as well. With hygen, developers can\ncreate many different generators, suited to any kind of development workflow, and evolve,\nimprove and adapt them as the project and workflow change.',
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'This is also why ',
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' keeps generator code as close to your actual code as possible: you\ninclude generator changes in the same PR as your code, for it to be reviewed by the same\npeople.',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Whereas Yeoman is great for building self-sufficient, wholesale generators for a specific\nproblem by one person passionate about it, with hygen your ',
+                (0, s.jsx)(n.em, { children: 'team' }),
+                ' builds generators, all the\ntime, collaboratively.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'how-do-i-lowercase-uppercase-or-transform-variables',
+              children: 'How do I lowercase, uppercase or transform variables?',
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                (0, s.jsx)(n.code, { children: 'EJS' }),
+                ' lets you use JavaScript, so plenty of what you know is already available. Transform\ntext inline and make new variables in code blocks on the fly:',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                className: 'language-yaml',
+                children:
+                  "---\nto: app/reducers/<%= reducer.toLowerCase() %>.js\n---\n<%\ndefaulted = reducer || 'my-reducer'\n%>\nHello <%= defaulted %>.\n",
+              }),
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'can-i-inject-using-regular-expressions-that-span-across-newlines',
+              children:
+                'Can I inject using regular expressions that span across newlines?',
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' works on a line-by-line basis: injection inserts the ',
+                (0, s.jsx)(n.em, { children: 'lines' }),
+                ' of the template\n',
+                (0, s.jsx)(n.em, { children: 'between lines' }),
+                ' (by ',
+                (0, s.jsx)(n.code, { children: '\\n' }),
+                ') of the target file according to the expression supplied.',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'The ',
+                (0, s.jsx)(n.code, { children: 'before' }),
+                ', ',
+                (0, s.jsx)(n.code, { children: 'after' }),
+                ', and ',
+                (0, s.jsx)(n.code, { children: 'skip_if' }),
+                ' injection properties support multi-line regular\nexpressions:',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.ul, {
+              children: [
+                '\n',
+                (0, s.jsxs)(n.li, {
+                  children: [
+                    (0, s.jsx)(n.code, { children: 'skip_if' }),
+                    ' is always evaluated as a potentially multi-line expression across the entire\ntarget file.',
+                  ],
+                }),
+                '\n',
+                (0, s.jsxs)(n.li, {
+                  children: [
+                    (0, s.jsx)(n.code, { children: 'before' }),
+                    ' and ',
+                    (0, s.jsx)(n.code, { children: 'after' }),
+                    ' first try to match the expression within any single line of the\ntarget file; if no match is found, they then attempt a multi-line match.',
+                  ],
+                }),
+                '\n',
+                (0, s.jsxs)(n.li, {
+                  children: [
+                    (0, s.jsx)(n.code, { children: 'before' }),
+                    ' injects before the line on which the match began, and ',
+                    (0, s.jsx)(n.code, { children: 'after' }),
+                    ' injects after the\nline on which the match ended.',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'If a ',
+                (0, s.jsx)(n.code, { children: 'before' }),
+                '/',
+                (0, s.jsx)(n.code, { children: 'after' }),
+                ' anchor still does not match (neither a single line nor the whole\ntext), the injection ',
+                (0, s.jsx)(n.strong, { children: 'fails' }),
+                ' with ',
+                (0, s.jsx)(n.code, { children: 'InjectionAnchorNotFoundError' }),
+                ' and the file is left\nuntouched \u2014 see ',
+                (0, s.jsx)(n.a, {
+                  href: '#errors-and-troubleshooting',
+                  children: 'errors',
+                }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'can-i-inject-multiple-times-into-the-same-file',
+              children: 'Can I inject multiple times into the same file?',
+            }),
+            '\n',
+            (0, s.jsx)(n.p, {
+              children:
+                'Yes! Use multiple template files, each responsible for a different part of the injection:',
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                children:
+                  'my-generator/\n  new/\n    index.js.t\n    add-redux-to-package.json.t    <- injects to package.json\n    add-lodash-to-package.json.t   <- injects to package.json\n',
+              }),
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' parallelizes most of its book-keeping for speed, but file operations are executed\nserially to avoid operations stepping on each other.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'how-do-i-generate-for-several-namesactions-in-one-command',
+              children: 'How do I generate for several names/actions in one command?',
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Pass comma-separated ',
+                (0, s.jsx)(n.strong, { children: 'lists' }),
+                ' to the action and/or name positionals:',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                className: 'language-bash',
+                children: 'hygen mailer new,html a,b\n',
+              }),
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Actions run sequentially in list order; the name loop is name-outer (each name completes\nall its actions before the next starts). A multi-run is ',
+                (0, s.jsx)(n.strong, { children: 'fail-fast by default' }),
+                ' \u2014 pass\n',
+                (0, s.jsx)(n.code, { children: '--keep-going' }),
+                ' to continue past a failing pair and collect every failure. Because a\nmulti-run is sugar over sequential runs (no rollback), preview with ',
+                (0, s.jsx)(n.code, { children: '--dry' }),
+                ' first. See\n',
+                (0, s.jsx)(n.a, {
+                  href: './generators#multiple-actions-and-names-in-one-run',
+                  children: 'Multiple actions and names in one run',
+                }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.h2, {
+              id: 'why-does-my-template-without-to-create-nothing',
+              children: [
+                'Why does my template without ',
+                (0, s.jsx)(n.code, { children: 'to:' }),
+                ' create nothing?',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Because a template with no ',
+                (0, s.jsx)(n.code, { children: 'to:' }),
+                ' is a ',
+                (0, s.jsx)(n.strong, { children: 'no-op by default' }),
+                ' \u2014 hygen renders the body but\ndoes not write a file (this is the long-standing behavior for ',
+                (0, s.jsx)(n.code, { children: 'sh' }),
+                "-only and un-targeted\ntemplates, and it is preserved to avoid silently creating files). If you want the output\nto mirror the template's location inside the action folder, opt in with ",
+                (0, s.jsx)(n.code, { children: 'mirror: true' }),
+                ':',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                className: 'language-yaml',
+                children: '---\nmirror: true\n---\n',
+              }),
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                "The target path then mirrors the template's location (with the trailing ",
+                (0, s.jsx)(n.code, { children: '.t' }),
+                ' suffix\nstripped) relative to the current directory. Explicit ',
+                (0, s.jsx)(n.code, { children: 'to:' }),
+                ' always wins over ',
+                (0, s.jsx)(n.code, { children: 'mirror' }),
+                ', and\n',
+                (0, s.jsx)(n.code, { children: 'sh' }),
+                '-only templates never mirror. Path segments may also carry ',
+                (0, s.jsx)(n.code, { children: '$IDENTIFIER$' }),
+                ' macros\n(e.g. ',
+                (0, s.jsx)(n.code, { children: 'apps/$CLIENT_NAME$/src/' }),
+                '), resolved from the run locals with a fail-fast error on\nunresolvable identifiers \u2014 ',
+                (0, s.jsx)(n.code, { children: '$' }),
+                ' is a legal filename character on Linux, macOS and Windows.\nSee ',
+                (0, s.jsx)(n.a, {
+                  href: './templates#mirroring-the-template-layout-mirror',
+                  children: 'Mirroring the template layout',
+                }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'i-want-to-use-generators-from-a-single-place',
+              children: 'I want to use generators from a single place',
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'If you have several ',
+                (0, s.jsx)(n.code, { children: '_templates' }),
+                ' locations within a project (say for a server and a client),\nyou usually ',
+                (0, s.jsx)(n.code, { children: 'cd' }),
+                ' into each sub-project to use hygen:',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                className: 'language-bash',
+                children:
+                  '[src/] $ cd server\n[server/] $ hygen route new authentication\n[server/] $ cd ../client\n[client/] $ hygen page new authentication\n',
+              }),
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' does not discover templates down the folder tree out of the box. But it is flexible\nabout template location, so point ',
+                (0, s.jsx)(n.code, { children: 'HYGEN_TMPLS' }),
+                ' at the right root via your ',
+                (0, s.jsx)(n.code, { children: 'package.json' }),
+                '\nscripts:',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                className: 'language-json',
+                children:
+                  '{\n  "scripts": {\n    "g:client": "HYGEN_TMPLS=src/client/_templates hygen",\n    "g:server": "HYGEN_TMPLS=src/server/_templates hygen"\n  }\n}\n',
+              }),
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Then run from the top ',
+                (0, s.jsx)(n.code, { children: 'src/' }),
+                ' vantage point:',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                className: 'language-bash',
+                children:
+                  '[src/] $ yarn g:client page new authentication\n[src/] $ yarn g:server page new authentication\n',
+              }),
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'should-i-check-in-my-templates',
+              children: 'Should I check in my templates?',
+            }),
+            '\n',
+            (0, s.jsx)(n.p, {
+              children:
+                'Yes. A critical point of the hygen approach is that templates and generators are co-located\nwith a project, a team, a branch. A team can review templates in the same way they review\ntheir code.',
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'isnt-generating-code-counteracting-dry-dont-repeat-yourself',
+              children:
+                "Isn't generating code counteracting DRY (don't repeat yourself)?",
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Not in this case. ',
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' is built for modern app architectures that demand modularity,\nclean code and high maintainability and are already DRY. There are still multiple tools\nrequiring various ceremonies (most trivially, tests) that are set up by hand or by a\ncombination of shortcuts. ',
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' streamlines all these, giving you the tools to save time.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'whats-the-difference-from-generator-xyz',
+              children: "What's the difference from generator X/Y/Z?",
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Compared with ',
+                (0, s.jsx)(n.code, { children: 'plop' }),
+                ': hygen was built to support a large number of teams, developers, and/or\na big code base, so it scales and evolves with your project and team. Plop makes all these\npeople and activity share a single file, which is a pain in merges, conflicts and code\nreviews. ',
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' is contextual: it automatically understands where it is in your code base\nand what generators are relevant for each part (think monorepos) and uses only those.',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'A design goal for hygen is to be ',
+                (0, s.jsx)(n.em, { children: 'instinctive' }),
+                ': the effort to make a generator and meet your\ngoal should always go toward zero. Hence generator-generators, helpers, a familiar\nlogic-full templating engine, and attention to speed.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'can-i-use-lodash-or-other-libraries-in-my-templates',
+              children: 'Can I use lodash or other libraries in my templates?',
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'Yes. Expose any installed library to templates through ',
+                (0, s.jsx)(n.code, { children: 'helpers' }),
+                ' in the project config\nfile (',
+                (0, s.jsx)(n.code, { children: '.hygen.js' }),
+                ' family) \u2014 it is merged into the ',
+                (0, s.jsx)(n.code, { children: 'h' }),
+                ' helper namespace, so a template can\ncall it as ',
+                (0, s.jsx)(n.code, { children: 'h.<namespace>' }),
+                '. This works for utility libraries like lodash, sibling\n',
+                (0, s.jsx)(n.code, { children: '@biorate/*' }),
+                ' packages in a monorepo, and your own modules. See\n',
+                (0, s.jsx)(n.a, {
+                  href: './extensibility#external-libraries-as-helpers',
+                  children: 'extensibility',
+                }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.h2, {
+              id: 'can-i-force-hygen-to-always-overwrite-eg---force',
+              children: [
+                'Can I force hygen to always overwrite (e.g. ',
+                (0, s.jsx)(n.code, { children: '--force' }),
+                ')?',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'To avoid prompts and force overwrites, use the ',
+                (0, s.jsx)(n.code, { children: 'HYGEN_OVERWRITE' }),
+                ' environment flag:',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.pre, {
+              children: (0, s.jsx)(n.code, {
+                className: 'language-bash',
+                children: 'HYGEN_OVERWRITE=1 hygen generator new foobar\n',
+              }),
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'With this set, ',
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' always writes content without asking, even if the file already\nexists.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, { id: 'escaping-and-html', children: 'Escaping and HTML' }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'In this fork, ',
+                (0, s.jsx)(n.code, { children: '<%= %>' }),
+                ' does ',
+                (0, s.jsx)(n.strong, { children: 'not' }),
+                ' HTML-escape (the EJS ',
+                (0, s.jsx)(n.code, { children: 'escape' }),
+                ' option is the identity),\nbecause the tool generates code, not markup. Both ',
+                (0, s.jsx)(n.code, { children: '<%= %>' }),
+                ' and ',
+                (0, s.jsx)(n.code, { children: '<%- %>' }),
+                ' are raw\ninterpolations, so ',
+                (0, s.jsx)(n.code, { children: 'a > b && c < d' }),
+                ' is written to the target file verbatim (no ',
+                (0, s.jsx)(n.code, { children: '&gt;' }),
+                ' /\n',
+                (0, s.jsx)(n.code, { children: '&amp;' }),
+                '). See ',
+                (0, s.jsx)(n.a, {
+                  href: './templates#escaping-semantics',
+                  children: 'Escaping semantics',
+                }),
+                '.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, {
+              id: 'errors-and-troubleshooting',
+              children: 'Errors and troubleshooting',
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'All runtime errors in this fork are ',
+                (0, s.jsx)(n.code, { children: 'BaseError' }),
+                ' subclasses from the monorepo error standard\n(',
+                (0, s.jsx)(n.code, { children: '@biorate/errors' }),
+                '). They are exported from the package as ',
+                (0, s.jsx)(n.code, { children: 'errors' }),
+                ' and have parameterized\nmessages. When a run fails, ',
+                (0, s.jsx)(n.code, { children: 'success' }),
+                ' is ',
+                (0, s.jsx)(n.code, { children: 'false' }),
+                ', the file is untouched, and the process\nexits non-zero (in the embeddable API, ',
+                (0, s.jsx)(n.code, { children: 'run result.failure' }),
+                ' carries the error).',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.table, {
+              children: [
+                (0, s.jsx)(n.thead, {
+                  children: (0, s.jsxs)(n.tr, {
+                    children: [
+                      (0, s.jsx)(n.th, { children: 'Error class' }),
+                      (0, s.jsx)(n.th, { children: 'Thrown when' }),
+                    ],
+                  }),
+                }),
+                (0, s.jsxs)(n.tbody, {
+                  children: [
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, {
+                            children: 'TemplateRenderError',
+                          }),
+                        }),
+                        (0, s.jsx)(n.td, {
+                          children:
+                            'An EJS template or its frontmatter fails to render (e.g. a syntax error).',
+                        }),
+                      ],
+                    }),
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, {
+                            children: 'TemplateNotFoundError',
+                          }),
+                        }),
+                        (0, s.jsx)(n.td, {
+                          children: 'The action folder for a generator does not exist.',
+                        }),
+                      ],
+                    }),
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, {
+                            children: 'InjectionTargetNotFoundError',
+                          }),
+                        }),
+                        (0, s.jsxs)(n.td, {
+                          children: [
+                            'An inject target file does not exist and ',
+                            (0, s.jsx)(n.code, { children: 'create_if_missing' }),
+                            ' is not set.',
+                          ],
+                        }),
+                      ],
+                    }),
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, {
+                            children: 'InjectionAnchorNotFoundError',
+                          }),
+                        }),
+                        (0, s.jsxs)(n.td, {
+                          children: [
+                            'An inject ',
+                            (0, s.jsx)(n.code, { children: 'before' }),
+                            '/',
+                            (0, s.jsx)(n.code, { children: 'after' }),
+                            ' anchor is not found; the inject operation fails and the file is untouched.',
+                          ],
+                        }),
+                      ],
+                    }),
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, {
+                            children: 'TemplateConfigError',
+                          }),
+                        }),
+                        (0, s.jsxs)(n.td, {
+                          children: [
+                            'Inject-family options are used together incorrectly (',
+                            (0, s.jsx)(n.code, { children: 'inject' }),
+                            '+',
+                            (0, s.jsx)(n.code, { children: 'replace' }),
+                            ', or ',
+                            (0, s.jsx)(n.code, { children: 'replace' }),
+                            ' with ',
+                            (0, s.jsx)(n.code, { children: 'prepend' }),
+                            '/',
+                            (0, s.jsx)(n.code, { children: 'append' }),
+                            '/',
+                            (0, s.jsx)(n.code, { children: 'at_line' }),
+                            ').',
+                          ],
+                        }),
+                      ],
+                    }),
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, { children: 'ShellCommandError' }),
+                        }),
+                        (0, s.jsx)(n.td, {
+                          children:
+                            'A shell command fails and its exit code is not ignored.',
+                        }),
+                      ],
+                    }),
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, { children: 'ShowHelpError' }),
+                        }),
+                        (0, s.jsx)(n.td, {
+                          children:
+                            'The user did not specify a generator/action, or the action folder was not found; the CLI prints help.',
+                        }),
+                      ],
+                    }),
+                    (0, s.jsxs)(n.tr, {
+                      children: [
+                        (0, s.jsx)(n.td, {
+                          children: (0, s.jsx)(n.code, {
+                            children: 'SetupRepositoryError',
+                          }),
+                        }),
+                        (0, s.jsxs)(n.td, {
+                          children: [
+                            'A ',
+                            (0, s.jsx)(n.code, { children: 'setup' }),
+                            ' frontmatter value is not a valid repository.',
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                (0, s.jsx)(n.code, { children: 'ShowHelpError' }),
+                " is what triggers the CLI's help output when you run ",
+                (0, s.jsx)(n.code, { children: 'hygen' }),
+                ' with no\narguments or an unknown generator/action. (',
+                (0, s.jsx)(n.code, { children: 'ShellCommandError' }),
+                ' is raised by the default\n',
+                (0, s.jsx)(n.code, { children: 'exec' }),
+                ' hook; the exact set and messages are defined in ',
+                (0, s.jsx)(n.code, { children: 'src/errors.ts' }),
+                '.)',
+              ],
+            }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                'See ',
+                (0, s.jsx)(n.a, { href: './templates#injection', children: 'Injection' }),
+                ' for the inject-family error behavior, and\n',
+                (0, s.jsx)(n.a, { href: './extensibility', children: 'extensibility' }),
+                ' for the embeddable ',
+                (0, s.jsx)(n.code, { children: 'runner()' }),
+                " API's ",
+                (0, s.jsx)(n.code, { children: 'failure' }),
+                ' result.',
+              ],
+            }),
+            '\n',
+            (0, s.jsx)(n.h2, { id: 'attribution', children: 'Attribution' }),
+            '\n',
+            (0, s.jsxs)(n.p, {
+              children: [
+                (0, s.jsx)(n.code, { children: '@biorate/hygen' }),
+                ' is a fork of ',
+                (0, s.jsx)(n.a, {
+                  href: 'https://github.com/jondot/hygen',
+                  children: 'jondot/hygen',
+                }),
+                ' (v6.2.11,\nMIT); original work \xa9 Dotan Nahum, fork adaptations \xa9 Leonid Levkin. See\n',
+                (0, s.jsx)(n.a, { href: '/', children: 'Differences from upstream' }),
+                ' and the ',
+                (0, s.jsx)(n.a, {
+                  href: 'https://github.com/biorate/core/blob/master/packages/%40biorate/hygen/LICENSE',
+                  children: 'LICENSE',
+                }),
+                '.',
+              ],
+            }),
+          ],
+        });
+      }
+      function h(e = {}) {
+        const { wrapper: n } = { ...(0, i.R)(), ...e.components };
+        return n ? (0, s.jsx)(n, { ...e, children: (0, s.jsx)(d, { ...e }) }) : d(e);
+      }
+    },
+    8758(e, n, r) {
+      r.d(n, { R: () => o, x: () => a });
+      var t = r(2503);
+      const s = {},
+        i = t.createContext(s);
+      function o(e) {
+        const n = t.useContext(i);
+        return t.useMemo(
+          function () {
+            return 'function' == typeof e ? e(n) : { ...n, ...e };
+          },
+          [n, e],
+        );
+      }
+      function a(e) {
+        let n;
+        return (
+          (n = e.disableParentContext
+            ? 'function' == typeof e.components
+              ? e.components(s)
+              : e.components || s
+            : o(e.components)),
+          t.createElement(i.Provider, { value: n }, e.children)
+        );
+      }
+    },
+  },
+]);

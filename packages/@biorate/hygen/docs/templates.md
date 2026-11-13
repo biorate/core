@@ -300,6 +300,37 @@ The default strips a single trailing `.t` (so the `.ejs` is kept). Setting
   `force: true` overwrites, `unless_exists: true` leaves an existing file alone, and the
   default is to prompt for confirmation (`HYGEN_OVERWRITE` disables the prompt).
 
+### Path macros (`$IDENTIFIER$`)
+
+Any path segment of the mirrored target may contain macros of the form
+`$IDENTIFIER$`. Each macro is substituted with the value of that identifier from
+the run locals — prompt-hook answers, the resolved `name` (prompt hook answer >
+positional name > `--name` flag), CLI flags, and values exported by the config
+helpers factory:
+
+```text
+_templates/mailer/new/apps/$CLIENT_NAME$/src/index.ts.t   (mirror: true)
+  -> apps/<resolved CLIENT_NAME>/src/index.ts             (relative to cwd)
+```
+
+Semantics:
+
+- **Cross-platform by construction** — `$` is a legal filename character on
+  Linux, macOS and Windows, so a template tree with `$MACRO$` folders checks out
+  and runs everywhere (this is why segments use `$IDENTIFIER$` and not EJS
+  delimiters, which contain Windows-reserved characters).
+- **A macro is always a scalar** — under name expansion (`hygen mailer new a,b`)
+  the run renders one pass per name, and each pass resolves the segment with its
+  own scalar `name`; two names produce two passes, never an array in a path.
+- **Embedded literals are allowed** — a segment like `v$VERSION$-build` resolves
+  with plain substitution around the macro.
+- **Unknown identifiers fail fast** — if an identifier cannot be resolved, the
+  run stops with a `PathMacroResolutionError` naming the template file, the
+  offending segment and the identifier; no file is written by that action.
+- **Explicit `to:` and glob actions are unaffected** — `to:` (and glob
+  `destination:`) are fully EJS-rendered and do not use `$IDENTIFIER$` macros;
+  macros apply only to mirrored targets.
+
 ## From & shared templates
 
 `from:` loads the body from another template instead of the body of the current file. The

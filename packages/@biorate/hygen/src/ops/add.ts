@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 import { red } from 'chalk';
 import type { ActionResult, RenderedAction, RunnerConfig } from '../types';
 import createResult from './result';
+import { resolvePathMacros } from '../path-macros';
 
 /**
  * @description Resolves the write target for a rendered action. An explicit
@@ -13,21 +14,34 @@ import createResult from './result';
  * single trailing `.t` by default (`html.ejs.t` → `html.ejs`), or the full
  * `.ejs.t` when `HYGEN_MIRROR_EJS_SUFFIX=1` is set (`html.ejs.t` → `html`).
  * Mirroring never applies with a `sh` attribute, so shell-only templates stay
- * no-ops. Returns `undefined` when neither `to` nor mirroring applies.
+ * no-ops. Path segments may carry `$IDENTIFIER$` macros, resolved from the run
+ * locals (suffix is stripped first, then macros substitute — a macro can never
+ * inject a strippable suffix). Returns `undefined` when neither `to` nor
+ * mirroring applies.
  * @param action - The rendered action (its `file` and `attributes`).
- * @param actionfolder - The absolute path of the action folder.
+ * @param args - The run arguments (must include `actionfolder`; provides the
+ * macro-resolution locals for the current pass).
+ * @param config - The runner configuration (helpers feed the macro dictionary).
  * @returns The write target (relative to `cwd`), or `undefined`.
  * */
-const targetPath = (action: RenderedAction, actionfolder: string): string | undefined => {
+const targetPath = (
+  action: RenderedAction,
+  args: Record<string, any>,
+  config: RunnerConfig,
+): string | undefined => {
   const { attributes } = action;
   if (attributes.to) return attributes.to as string;
   if (attributes.mirror !== true || attributes.sh !== undefined || !action.file) {
     return undefined;
   }
-  const rel = path.relative(actionfolder, action.file);
-  return process.env.HYGEN_MIRROR_EJS_SUFFIX === '1'
-    ? rel.replace(/\.ejs\.t$/, '')
-    : rel.replace(/\.t$/, '');
+  const rel = path.relative(args.actionfolder, action.file);
+  const stripped =
+    process.env.HYGEN_MIRROR_EJS_SUFFIX === '1'
+      ? rel.replace(/\.ejs\.t$/, '')
+      : rel.replace(/\.t$/, '');
+  // suffix is stripped before substitution so a macro can never inject a
+  // `.t`/`.ejs.t` suffix that would then be stripped away
+  return resolvePathMacros(stripped, args, config, action.file);
 };
 
 /**
@@ -44,12 +58,13 @@ const targetPath = (action: RenderedAction, actionfolder: string): string | unde
 const add = async (
   action: RenderedAction,
   args: Record<string, any>,
-  { logger, cwd, createPrompter }: RunnerConfig,
+  config: RunnerConfig,
 ): Promise<ActionResult> => {
+  const { logger, cwd, createPrompter } = config;
   const {
     attributes: { inject, unless_exists, force, from, skip_if, skipIfExists },
   } = action;
-  const to = targetPath(action, args.actionfolder);
+  const to = targetPath(action, args, config);
   const result = createResult('add', to);
   const prompter = createPrompter<
     { prefix: string; type: string; name: string; message: string },

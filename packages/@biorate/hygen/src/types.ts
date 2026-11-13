@@ -88,8 +88,12 @@ export interface RenderedAction {
  * value. Accepts arbitrary arguments and returns an arbitrary value. */
 export type Helper = (...args: unknown[]) => unknown;
 
-/** @description A map of helper name to helper function. */
-export type Helpers = Record<string, Helper>;
+/**
+ * @description A map of helper name to helper value, merged into the `h`
+ * namespace. A value may be a callable (invocable in templates as
+ * `h.name(args)`) or a scalar (usable as data in templates and resolvable by
+ * `$IDENTIFIER$` path macros in mirrored targets). */
+export type Helpers = Record<string, unknown>;
 
 /**
  * @description A named content transform registered under `config.transforms`.

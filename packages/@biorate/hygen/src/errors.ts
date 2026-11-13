@@ -113,6 +113,22 @@ export class ShellCommandError extends BaseError {
  * name, which is meaningless for a glob that expands into many files, so the
  * combination is rejected as a configuration error rather than silently resolved.
  */
+/**
+ * @description Thrown when a mirrored template's path contains a `$IDENTIFIER$`
+ * macro whose identifier cannot be resolved from the run locals (prompt-hook
+ * answers, `name`, CLI args, or values exported by the config helpers factory).
+ * The run fails fast for that action; no file is written. */
+export class PathMacroResolutionError extends BaseError {
+  public constructor(file: string, segment: string, identifier: string) {
+    super(
+      'Template [%s] has a mirrored path segment [%s] with the macro $%s$, which ' +
+        'cannot be resolved from the run locals. Define it in the prompt hook, pass ' +
+        'it as a CLI flag, or export it from the config helpers factory.',
+      [file, segment, identifier],
+    );
+  }
+}
+
 export class GlobMirrorConflictError extends BaseError {
   public constructor(file: string) {
     super(

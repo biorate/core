@@ -99,7 +99,10 @@ mirror: true
 
 The target path then mirrors the template's location (with the trailing `.t` suffix
 stripped) relative to the current directory. Explicit `to:` always wins over `mirror`, and
-`sh`-only templates never mirror. See [Mirroring the template layout](./templates#mirroring-the-template-layout-mirror).
+`sh`-only templates never mirror. Path segments may also carry `$IDENTIFIER$` macros
+(e.g. `apps/$CLIENT_NAME$/src/`), resolved from the run locals with a fail-fast error on
+unresolvable identifiers — `$` is a legal filename character on Linux, macOS and Windows.
+See [Mirroring the template layout](./templates#mirroring-the-template-layout-mirror).
 
 ## I want to use generators from a single place
 

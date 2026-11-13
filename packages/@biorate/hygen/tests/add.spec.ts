@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import add from '../src/ops/add';
 import Logger from '../src/logger';
+import { PathMacroResolutionError } from '../src/errors';
 import type { RenderedAction, RunnerConfig } from '../src/types';
 
 // const gemfile = `
@@ -47,7 +48,7 @@ const cleanCwd = async (): Promise<string> =>
   fs.mkdtemp(path.join(os.tmpdir(), 'hygen-add-mirror-'));
 
 let overwriteAnswer = false;
-const makeConfig = (cwd: string): RunnerConfig => ({
+const makeConfig = (cwd: string, extra: Partial<RunnerConfig> = {}): RunnerConfig => ({
   cwd,
   templates: fixtureRoot(),
   logger: new Logger(() => {}), // eslint-disable-line @typescript-eslint/no-empty-function
@@ -57,6 +58,7 @@ const makeConfig = (cwd: string): RunnerConfig => ({
     prompt: async <Q, T>(_q: Q): Promise<T> =>
       ({ overwrite: overwriteAnswer } as unknown as T),
   }),
+  ...extra,
 });
 
 describe('add: mirror (3.1-3.2)', () => {
@@ -160,5 +162,87 @@ describe('add: mirror (3.1-3.2)', () => {
       (await add(action, { actionfolder: actionfolder() }, makeConfig(cwd))).status,
     ).toBe('skipped');
     expect(await fs.readFile(target, 'utf8')).toBe('old');
+  });
+});
+
+// --- path macros in mirrored targets (add-hygen-path-macros) ------------------
+
+describe('add: mirror path macros', () => {
+  it('resolves a $MACRO$ segment from config helpers', async () => {
+    const cwd = await cleanCwd();
+    const action: RenderedAction = {
+      file: template('apps/$CLIENT_NAME$/src/index.ts.t'),
+      attributes: { mirror: true },
+      body: 'app',
+    };
+    await add(
+      action,
+      { actionfolder: actionfolder() },
+      makeConfig(cwd, { helpers: { CLIENT_NAME: 'my-app-client' } }),
+    );
+    expect(
+      await fs.readFile(
+        path.join(cwd, 'apps', 'my-app-client', 'src', 'index.ts'),
+        'utf8',
+      ),
+    ).toBe('app');
+  });
+
+  it('resolves macros embedded in surrounding literal text (v$VERSION$-build)', async () => {
+    const cwd = await cleanCwd();
+    const action: RenderedAction = {
+      file: template('v$VERSION$-build/leaf.txt.t'),
+      attributes: { mirror: true },
+      body: 'leaf',
+    };
+    await add(action, { actionfolder: actionfolder(), VERSION: 2 }, makeConfig(cwd));
+    expect(await fs.readFile(path.join(cwd, 'v2-build', 'leaf.txt'), 'utf8')).toBe(
+      'leaf',
+    );
+  });
+
+  it('resolves a macro in the file-name segment ($name$.entity.ts.t)', async () => {
+    const cwd = await cleanCwd();
+    const action: RenderedAction = {
+      file: template('entities/$name$.entity.ts.t'),
+      attributes: { mirror: true },
+      body: 'entity',
+    };
+    await add(action, { actionfolder: actionfolder(), name: 'user' }, makeConfig(cwd));
+    expect(await fs.readFile(path.join(cwd, 'entities', 'user.entity.ts'), 'utf8')).toBe(
+      'entity',
+    );
+  });
+
+  it('fails the run with a standardized error on an unresolvable identifier', async () => {
+    const cwd = await cleanCwd();
+    const action: RenderedAction = {
+      file: template('bad/$NOPE$/x.txt.t'),
+      attributes: { mirror: true },
+      body: 'x',
+    };
+    const error = await add(
+      action,
+      { actionfolder: actionfolder() },
+      makeConfig(cwd),
+    ).catch((e: Error) => e);
+    expect(error).toBeInstanceOf(PathMacroResolutionError);
+    expect(error.message).toContain('bad/$NOPE$/x.txt.t');
+    expect(error.message).toContain('macro $NOPE$');
+    expect(error.message).toContain('cannot be resolved from the run locals');
+    expect(await fs.pathExists(path.join(cwd, 'bad'))).toBe(false);
+  });
+
+  it('macro-free mirrored paths resolve exactly as before', async () => {
+    const cwd = await cleanCwd();
+    const action: RenderedAction = {
+      file: template('parts/header.ejs.t'),
+      attributes: { mirror: true },
+      body: 'header',
+    };
+    await add(action, { actionfolder: actionfolder() }, makeConfig(cwd));
+    expect(await fs.readFile(path.join(cwd, 'parts', 'header.ejs'), 'utf8')).toBe(
+      'header',
+    );
   });
 });
