@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.5](https://github.com/biorate/core/compare/%40biorate%2Fvitest%402.4.4...%40biorate%2Fvitest%402.4.5) (2026-11-13)
+
+**Note:** Version bump only for package @biorate/vitest
+
 ## [2.4.4](https://github.com/biorate/core/compare/%40biorate%2Fvitest%402.4.3...%40biorate%2Fvitest%402.4.4) (2026-11-11)
 
 ### Bug Fixes

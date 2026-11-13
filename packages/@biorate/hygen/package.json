@@ -1,6 +1,6 @@
 {
   "name": "@biorate/hygen",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "The scalable code generator that saves you time. Fork of jondot/hygen",
   "keywords": [
     "template",
