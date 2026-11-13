@@ -1,4 +1,4 @@
-> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](/).
 >
 > Based on: [Upstream hygen-create guide](https://github.com/jondot/hygen/blob/master/docs/create.md)
 
@@ -79,4 +79,4 @@ This page is the fork's adaptation of the upstream [create](https://github.com/j
 guide; `hygen-create` is an upstream/community tool and is **not** shipped with this fork.
 `@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT);
 original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
-[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).
+[Differences from upstream](/) and the [LICENSE](https://github.com/biorate/core/blob/master/packages/%40biorate/hygen/LICENSE).

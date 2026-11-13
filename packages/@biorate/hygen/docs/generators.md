@@ -1,4 +1,4 @@
-> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](/).
 >
 > Based on: [Upstream generators guide](https://github.com/jondot/hygen/blob/master/docs/generators.md)
 
@@ -62,29 +62,15 @@ to: app/emails/<%= name %>.html
 
 ## Interactive picker (no arguments)
 
-Run `hygen` with no positional arguments in a terminal and it offers a two-level picker
-instead of an error:
+Run `hygen` with no positional arguments in a terminal and a two-level picker lets you
+choose a **generator**, then an **action**, instead of an error; the run then proceeds
+exactly as if you had typed `hygen <generator> <action>`, with all flags (`--keep-going`,
+data options, …) intact. In a non-interactive environment (CI, piped stdio) the picker
+never launches and the run fails fast with the usual missing-arguments error, so scripted
+exit codes are preserved.
 
-1. choose a **generator** — every top-level directory of `_templates` that contains at least
-   one action is listed;
-2. choose an **action** — every action directory of the chosen generator is listed.
-
-The run then proceeds exactly as if you had typed `hygen <generator> <action>`; all flags
-(`--keep-going`, data options, …) keep working:
-
-```bash
-$ hygen
-? Which generator? › mailer
-? Which action? › new
-Loaded templates: _templates/mailer/new
-...
-```
-
-In a non-interactive environment (CI, piped stdio) the picker never launches: the run fails
-fast with the usual missing-arguments error plus a hint that the picker requires a terminal —
-scripts depending on that exit code keep working. Embedders can control this explicitly with
-the `interactive` option in `RunnerConfig` (`true` forces the picker, `false` disables it,
-absent auto-detects the TTY).
+See [Interactive picker](./interactive-picker) for the full reference — the two-level flow,
+the TTY fallback and the `interactive` option.
 
 ## Interactive prompts
 
@@ -250,7 +236,7 @@ hygen mailer new a,b
 ```
 
 A name list multiplies with a batch action too: a template declaring
-[`glob:`](./templates#glob-batch-actions-glob) is expanded once per name.
+[`glob:`](./glob-batch) is expanded once per name.
 
 This renders `new` once per name. The loop is **name-outer**: each entity completes all
 its actions before the next entity starts. For `model,controller × a,b` the execution
@@ -305,4 +291,4 @@ That's it for generators. Next: the [FAQ](./faq) and [extensibility](./extensibi
 
 `@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
 MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
-[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).
+[Differences from upstream](/) and the [LICENSE](https://github.com/biorate/core/blob/master/packages/%40biorate/hygen/LICENSE).

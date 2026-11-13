@@ -1,4 +1,4 @@
-> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](/).
 >
 > Based on: [Upstream templates reference](https://github.com/jondot/hygen/blob/master/docs/templates.md)
 
@@ -248,44 +248,17 @@ will not render if target exists
 
 `skipIfExists: true` is the quiet variant: an existing target is skipped without failing and
 without prompting (unlike `force: true`, which overwrites). It works on every file-creating
-action — plain `to:`, mirrored, and glob batch actions (below).
+action — plain `to:`, mirrored, and [glob batch actions](./glob-batch).
 
-## Glob batch actions (`glob`)
+## Glob batch actions
 
-A single template can scaffold a whole directory tree. Declare `glob:` instead of writing one
-template per output file; the pattern is resolved **relative to the template's own directory**,
-and every match becomes its own rendered file:
+A single template can scaffold a whole directory tree at once. Declare `glob:` with a
+pattern (plus `base:`, `stripExtensions:` and a `to:`/`destination:` folder) and every
+match becomes its own rendered file; `skipIfExists: true` on a batch skips a matched file
+whose target already exists.
 
-```yaml
----
-# _templates/module/new/spec.ejs.t
-glob: module/**/*
-to: src/<%= name %>/
-base: module
-stripExtensions: ['.t']
----
-```
-
-With `_templates/module/new/module/service.ts.t` and `_templates/module/new/module/index.ts.t`,
-`hygen module new billing` writes `src/billing/service.ts` and `src/billing/index.ts`.
-
-| Property               | Type            | Default   | Meaning                                                                           |
-| ---------------------- | --------------- | --------- | --------------------------------------------------------------------------------- |
-| `glob:`                | String          | undefined | Pattern selecting template files, relative to the template's own directory        |
-| `to:` / `destination:` | String          | undefined | Destination **folder**, joined with each match's relative path (EJS-rendered)     |
-| `base:`                | String          | undefined | Prefix stripped from each match's relative path before it becomes the target path |
-| `stripExtensions:`     | String \| Array | undefined | Extension suffix(es) removed from each match's file name                          |
-| `skipIfExists:`        | Boolean         | false     | Skip a matched file whose target already exists (soft, non-failing)               |
-
-Notes:
-
-- **The glob template itself writes nothing** — it is a specification, not an output file.
-- **EJS renders in both places** — the file name (`README-<%= name %>.t`) and the file content.
-- **`glob` and `mirror: true` are mutually exclusive** — combining them fails the run with
-  `GlobMirrorConflictError`, because mirroring derives the path from the template's own name.
-- **Comma name lists multiply** — `hygen module new a,b` expands the glob once per name.
-- **Skipped files are not failures** — under `--keep-going`, `skipIfExists` skips never appear in
-  the failure list and later actions still run.
+See [Glob batch actions](./glob-batch) for the full reference — properties, notes and
+examples.
 
 ## Mirroring the template layout (`mirror`)
 
@@ -490,51 +463,24 @@ Next up: [generators](./generators).
 ## Conditional action skipping (`skip`)
 
 A template can decide at render time whether it should run at all. Declare `skip:` in the
-frontmatter; it is rendered with the same locals as the rest of the template, and a truthy
-result skips the action — **no operation executes** (nothing is written, injected or run in a
-shell), and the run records the action as `skipped`:
+frontmatter; it is rendered with the same locals as the template, and a truthy result skips
+the action — no operation executes and the run records the action as `skipped`. It is
+distinct from `skipIfExists:`, which reacts to an existing target on disk.
 
-```yaml
----
-to: test/<%= name %>.spec.js
-skip: <% if (wantTests) { %>false<% } else { %>no tests requested<% } %>
----
-```
-
-Run with `--wantTests` and the file is created; without it the action is skipped and the log
-reads `skipped: no tests requested`.
-
-Because templates render to strings, the boolean spellings are recognised case-insensitively
-and trimmed:
-
-| Rendered `skip:` value           | Result                                       |
-| -------------------------------- | -------------------------------------------- |
-| empty string, `false`, `'false'` | the action runs normally                     |
-| `true`, `'true'`                 | skipped, no reason logged                    |
-| any other non-empty string       | skipped, that string is logged as the reason |
-
-Notes:
-
-- **Works on every action kind** — file `add`, `glob` batches (the whole batch is skipped),
-  `inject`, `echo`, `sh` and `setup`. A skipped `sh:` action never spawns a shell.
-- **Transforms do not run** for a skipped action (the body is never produced), so a
-  `transform:` naming an unregistered transform cannot fail a skipped action.
-- **Skipped is not a failure** — skipped actions never appear in `failures`, never abort a
-  fail-fast run, and never block later actions under `--keep-going`.
-- **Distinct from `skipIfExists:`** — `skipIfExists` reacts to an existing target on disk;
-  `skip:` is decided purely by the rendered template, regardless of the filesystem.
+See [Conditional action skipping](./conditional-skip) for the full reference — the rendered
+value table and the notes.
 
 ## All frontmatter properties
 
 | Property                                             | Type         | Default   | Example                                |
 | ---------------------------------------------------- | ------------ | --------- | -------------------------------------- |
 | [`to:`](#addition-add)                               | String (url) | undefined | my-project/readme.md                   |
-| [`glob:`](#glob-batch-actions-glob)                  | String       | undefined | module/\*\*/\*                         |
-| [`base:`](#glob-batch-actions-glob)                  | String       | undefined | module                                 |
-| [`stripExtensions:`](#glob-batch-actions-glob)       | String/Array | undefined | ['.t']                                 |
-| [`destination:`](#glob-batch-actions-glob)           | String (url) | undefined | src/<%= name %>/                       |
-| [`skipIfExists:`](#glob-batch-actions-glob)          | Boolean      | false     | true                                   |
-| [`skip:`](#conditional-action-skipping-skip)         | String       | undefined | no tests requested                     |
+| [`glob:`](./glob-batch)                              | String       | undefined | module/\*\*/\*                         |
+| [`base:`](./glob-batch)                              | String       | undefined | module                                 |
+| [`stripExtensions:`](./glob-batch)                   | String/Array | undefined | ['.t']                                 |
+| [`destination:`](./glob-batch)                       | String (url) | undefined | `src/<%= name %>/`                     |
+| [`skipIfExists:`](./glob-batch)                      | Boolean      | false     | true                                   |
+| [`skip:`](./conditional-skip)                        | String       | undefined | no tests requested                     |
 | [`mirror:`](#mirroring-the-template-layout-mirror)   | Boolean      | undefined | true                                   |
 | [`from:`](#from--shared-templates)                   | String (url) | undefined | shared/docs/readme.md                  |
 | [`force:`](#addition-add)                            | Boolean      | false     | true                                   |
@@ -558,4 +504,4 @@ See [Errors and troubleshooting](./faq#errors-and-troubleshooting) for the error
 
 `@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
 MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
-[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).
+[Differences from upstream](/) and the [LICENSE](https://github.com/biorate/core/blob/master/packages/%40biorate/hygen/LICENSE).

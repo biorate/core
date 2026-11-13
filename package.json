@@ -9,6 +9,7 @@
     "bootstrap": "npx lerna bootstrap",
     "version": "npx lerna version",
     "demo": "npx lerna run demo",
+    "docs": "npx lerna run docs",
     "doc": "npx typedoc --skipErrorChecking packages/@biorate/*/index.ts",
     "postdoc": "npm run demo",
     "release": "npx lerna publish from-package",

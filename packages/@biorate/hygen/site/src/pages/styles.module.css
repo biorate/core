@@ -1,0 +1,151 @@
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    var(--ifm-color-primary-lightest) 0%,
+    var(--ifm-background-color) 100%
+  );
+}
+
+.heroInner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin: 0.5rem 0;
+}
+
+.heroSubtitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ifm-color-emphasis-700);
+  margin: 1.2rem auto 2rem;
+  max-width: 640px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  color: var(--ifm-color-emphasis-700);
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.05rem;
+}
+
+.codeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.featureCard {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-background-color);
+}
+
+.featureCard h3 {
+  margin-top: 0;
+}
+
+.panel {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-background-color);
+  margin-bottom: 1.5rem;
+}
+
+.panel h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.differencesList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.differencesList li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.differencesList li:last-child {
+  border-bottom: none;
+}
+
+.inlineCode {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85em;
+}
+
+.linkRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.supportCard {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  text-decoration: none;
+  background: var(--ifm-background-color);
+  color: var(--ifm-color-content);
+  font-weight: 600;
+}
+
+.supportCard:hover {
+  text-decoration: none;
+  border-color: var(--ifm-color-primary);
+}
+
+.note {
+  text-align: center;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+  margin-top: 1.25rem;
+}

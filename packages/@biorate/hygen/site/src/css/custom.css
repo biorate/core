@@ -1,0 +1,16 @@
+/* Minimal global theme overrides for the @biorate/hygen docs site. */
+:root {
+  --ifm-color-primary: #5c3de8;
+  --ifm-color-primary-dark: #4d33cc;
+  --ifm-color-primary-darker: #462fb8;
+  --ifm-color-primary-light: #6d54ec;
+  --ifm-color-primary-lightest: #8a78f1;
+  --ifm-code-font-size: 95%;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(0 0 0 / 10%);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}

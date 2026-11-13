@@ -1,4 +1,4 @@
-> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](../README.md#differences-from-upstream).
+> Part of **@biorate/hygen** — a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo. Rewritten for this fork's semantics; see [Differences from upstream](/).
 >
 > Based on: [Upstream standalone guide](https://github.com/jondot/hygen/blob/master/docs/standalone.md)
 
@@ -6,7 +6,7 @@
 
 The upstream `hygen` project ships standalone binaries (Homebrew taps, GitHub release
 binaries) for environments without Node.js. **This fork does not build standalone
-binaries** — see [Differences from upstream](../README.md#differences-from-upstream). It is
+binaries** — see [Differences from upstream](/). It is
 distributed as an npm package, so Node.js is the runtime.
 
 ## Running the CLI
@@ -54,4 +54,4 @@ guide for provenance and for users who migrate from upstream.
 
 `@biorate/hygen` is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11,
 MIT); original work © Dotan Nahum, fork adaptations © Leonid Levkin. See
-[Differences from upstream](../README.md#differences-from-upstream) and the [LICENSE](../LICENSE).
+[Differences from upstream](/) and the [LICENSE](https://github.com/biorate/core/blob/master/packages/%40biorate/hygen/LICENSE).
