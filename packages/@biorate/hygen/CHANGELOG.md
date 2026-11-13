@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.1.0...%40biorate%2Fhygen%400.2.0) (2026-11-13)
+
+### Features
+
+- **hygen:** path macros in mirrored targets, widen Helpers to scalars ([130cf44](https://github.com/biorate/core/commit/130cf44d92cd170a56eb65c7fcf9b1bb80187f9b))
+
 # 0.1.0 (2026-11-13)
 
 ### Bug Fixes
