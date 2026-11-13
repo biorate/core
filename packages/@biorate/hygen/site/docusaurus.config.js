@@ -2,7 +2,7 @@
 // `@ts-ignore` — Node cannot load the TS module directly; Docusaurus resolves it
 // through its own Babel pipeline when the site is built.
 // @ts-ignore
-const { donations } = require('./src/data/donations');
+const { donations, DONATION_DISCLAIMER } = require('./src/data/donations');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -84,7 +84,7 @@ const config = {
           })),
         },
       ],
-      copyright: `@biorate/hygen — a fork of <a href="https://github.com/jondot/hygen">jondot/hygen</a> (v6.2.11, MIT). Original work © Dotan Nahum, fork adaptations © Leonid Levkin. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`,
+      copyright: `@biorate/hygen — a fork of <a href="https://github.com/jondot/hygen">jondot/hygen</a> (v6.2.11, MIT). Original work © Dotan Nahum, fork adaptations © Leonid Levkin. Built with <a href="https://docusaurus.io/">Docusaurus</a>. ${DONATION_DISCLAIMER}`,
     },
   },
 };

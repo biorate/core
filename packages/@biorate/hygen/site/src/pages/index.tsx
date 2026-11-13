@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import CodeBlock from '@theme/CodeBlock';
-import { donations } from '@site/src/data/donations';
+import { donations, DONATION_DISCLAIMER } from '@site/src/data/donations';
 import styles from './styles.module.css';
 
 const npmPackageUrl = 'https://www.npmjs.com/package/@biorate/hygen';
@@ -245,7 +245,8 @@ function Support() {
         ))}
       </div>
       <p className={styles.note}>
-        Donation platform URLs are configured in <code>src/data/donations.ts</code>.
+        Donation platform URLs are configured in <code>src/data/donations.ts</code>.{' '}
+        {DONATION_DISCLAIMER}
       </p>
     </section>
   );

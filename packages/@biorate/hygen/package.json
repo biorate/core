@@ -17,7 +17,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://biorate.github.io/core",
+  "homepage": "https://biorate.github.io/core/hygen",
   "author": "llevkin",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

@@ -49,27 +49,21 @@ Configured for the project GitHub Pages site:
 Change both values in `docusaurus.config.js` only if the hosting model changes,
 and rebuild afterwards so asset paths are correct.
 
-## Donation platform candidates
+## Donations
 
 The site shows donation links in the footer (via `docusaurus.config.js`) and in
 the landing **Support** section (via `src/pages/index.tsx`). Both read from one
 module — `src/data/donations.ts` — so updating a URL there and rebuilding is the
 only step required; no page component has to change.
 
-**Chosen platforms** (placeholder URLs are in place):
+**Chosen platform:** Boosty — https://boosty.to/llevkin. ЮMoney is deferred; add
+it (or any other platform) as another entry in `src/data/donations.ts` when
+needed.
 
-- Boosty — https://boosty.to
-- ЮMoney — https://yoomoney.ru
+The same English disclaimer is shown next to every donation link, including the
+footer and the root README:
 
-**Candidates to consider** before the owner pins the final set (also reachable
-from `src/data/donations.ts` — add or replace entries there):
-
-- Open Collective — https://opencollective.com
-- GitHub Sponsors — https://github.com/sponsors
-- Tinkoff (T-Bank) payment links
-
-The owner should replace the `<placeholder>` URL fragments in `src/data/donations.ts`
-with the real ones at deploy time.
+> Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.
 
 ## Attribution
 
