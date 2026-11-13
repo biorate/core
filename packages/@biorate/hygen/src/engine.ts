@@ -2,9 +2,24 @@ import path from 'path';
 import fs from 'fs-extra';
 import type { ActionResult, ActionStatusEntry, RunnerConfig, RunFailure } from './types';
 import params from './params';
-import prompt from './prompt';
+import prompt, { pickGeneratorAction } from './prompt';
 import { ShowHelpError, KeepGoingError } from './errors';
 import { isHelpFlag, printUsage } from './cli-help';
+
+/**
+ * @description Resolves whether the run should use the interactive picker. The
+ * `interactive` config field forces (`true`) or disables (`false`) the picker;
+ * when absent the run is interactive only when both stdin and stdout are TTYs, so
+ * a non-interactive invocation (CI, piped stdio) never prompts or hangs.
+ * @param config - The runner configuration.
+ * @returns True when the interactive picker is enabled for this run.
+ * */
+const isInteractive = ({ interactive }: RunnerConfig): boolean =>
+  interactive === true
+    ? true
+    : interactive === false
+    ? false
+    : Boolean(process.stdin.isTTY && process.stdout.isTTY);
 
 /**
  * @description The validation + render&rarr;execute pipeline. Parses arguments,
@@ -25,17 +40,36 @@ const engine = async (
   config: RunnerConfig,
 ): Promise<ActionResult[] & { statuses: ActionStatusEntry[] }> => {
   const { cwd, templates, logger } = config;
-  const base = Object.assign(await params(config, argv), { cwd });
-  const { generator, actions, names } = base;
-  const cleanArgv = (base.cleanArgv ?? {}) as Record<string, unknown>;
+  let base = Object.assign(await params(config, argv), { cwd });
+  let { generator, actions, names } = base;
 
   if (isHelpFlag(argv)) {
     printUsage(logger);
   }
 
+  // zero-positional interactive run: offer the two-level generator/action picker
+  // before falling through to the missing-arguments error. A selection re-enters the
+  // parser as if it were passed positionally, so every flag (`--keep-going`,
+  // `--subaction`, data options) parses identically downstream.
+  if (!generator && isInteractive(config) && templates && fs.pathExistsSync(templates)) {
+    const picked = await pickGeneratorAction(config);
+    if (picked) {
+      base = Object.assign(
+        await params(config, [picked.generator, picked.action, ...argv]),
+        {
+          cwd,
+        },
+      );
+      ({ generator, actions, names } = base);
+    }
+  }
+
+  const cleanArgv = (base.cleanArgv ?? {}) as Record<string, unknown>;
   logger.log(base.dry ? '(dry mode)' : '');
   if (!generator) {
-    throw new ShowHelpError('please specify a generator.');
+    throw new ShowHelpError(
+      'please specify a generator.\n\nTip: running `hygen` with no arguments in a terminal opens an interactive generator/action picker (requires a TTY).',
+    );
   }
 
   if (!actions || actions.length === 0) {

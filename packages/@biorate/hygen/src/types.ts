@@ -146,6 +146,14 @@ export interface RunnerConfig {
    * works as one name; a repeated flag keeps its pre-removal array behavior). Use only
    * during migration — new integrations should pass the name positionally. */
   legacyNameFlag?: boolean;
+  /**
+   * @description Controls the interactive generator/action picker offered when the
+   * CLI is invoked with zero positional arguments. `true` always runs the picker,
+   * `false` disables it; when absent it auto-detects an interactive terminal
+   * (`process.stdin.isTTY && process.stdout.isTTY`). Embedders that want the picker
+   * under scripted control pass `interactive: true` and provide a prompter that can
+   * answer the two select prompts. */
+  interactive?: boolean;
 }
 
 /**

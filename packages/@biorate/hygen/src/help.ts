@@ -61,6 +61,37 @@ const availableActions = (templates: string) => {
 };
 
 /**
+ * @description Lists, for the interactive picker, the generators that are
+ * discoverable: the top-level directories of the templates root that themselves
+ * contain at least one subdirectory (an action directory). A directory holding
+ * only files is not a pickable generator.
+ * @param templates - The templates directory to inspect.
+ * @returns The eligible generator names in directory-read order.
+ * */
+const pickableGenerators = (templates: string): string[] =>
+  fs.readdirSync(templates).filter((entry) => {
+    const full = path.join(templates, entry);
+    if (!fs.lstatSync(full).isDirectory()) return false;
+    return fs
+      .readdirSync(full)
+      .some((sub) => fs.lstatSync(path.join(full, sub)).isDirectory());
+  });
+
+/**
+ * @description Lists the action subdirectories of a generator, used for the
+ * interactive picker's second level.
+ * @param templates - The templates directory to inspect.
+ * @param generator - The generator whose action directories are listed.
+ * @returns The generator's action directory names in directory-read order.
+ * */
+const generatorActions = (templates: string, generator: string): string[] =>
+  fs
+    .readdirSync(path.join(templates, generator))
+    .filter((entry) =>
+      fs.lstatSync(path.join(templates, generator, entry)).isDirectory(),
+    );
+
+/**
  * @description Prints the `Hygen v{VERSION}` banner and the available actions,
  * or a getting-started hint when the templates directory is absent.
  * @param templates - The templates directory (or `undefined` when unresolved).
@@ -101,4 +132,11 @@ const printHelp = (templates: string | undefined, logger: Logger) => {
   });
 };
 
-export { availableActions, printHelp, VERSION, isVersionFlag };
+export {
+  availableActions,
+  pickableGenerators,
+  generatorActions,
+  printHelp,
+  VERSION,
+  isVersionFlag,
+};
