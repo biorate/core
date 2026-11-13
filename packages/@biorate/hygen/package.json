@@ -44,7 +44,7 @@
     "build:esm": "npx tsc -p ./tsconfig.build.esm.json",
     "build:types": "npx tsc -p ./tsconfig.build.types.json",
     "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:types",
-    "docs": "cd site && pnpm install --ignore-workspace && pnpm build && node -e \"const fs=require('fs');fs.rmSync('../../../../docs/hygen',{recursive:true,force:true});fs.cpSync('build','../../../../docs/hygen',{recursive:true})\"",
+    "docs": "node .scripts/build-hygen-docs.js",
     "postbuild:cjs": "node ../../../.scripts/write-package-type.js dist/cjs commonjs && cp -r src/templates dist/cjs/templates",
     "postbuild:esm": "tsc-esm-fix --tsconfig=./tsconfig.build.esm.json --target=./dist/esm && node ../../../.scripts/write-package-type.js dist/esm module && cp -r src/templates dist/esm/templates",
     "format": "prettier --check src",
