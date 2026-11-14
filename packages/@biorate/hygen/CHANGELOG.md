@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.2.0...%40biorate%2Fhygen%400.3.0) (2026-11-14)
+
+### Features
+
+- **hygen:** lifecycle hooks (beforeAll/beforeEach/afterEach/afterAll) and class prompt section ([5c1a899](https://github.com/biorate/core/commit/5c1a89974f4c1482291dcd2b6edfcbb4635d729e))
+
 # [0.2.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.1.0...%40biorate%2Fhygen%400.2.0) (2026-11-13)
 
 ### Features
