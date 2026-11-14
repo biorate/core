@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.4.0...%40biorate%2Fhygen%400.5.0) (2026-11-14)
+
+### Bug Fixes
+
+- **hygen:** type prompter stubs in tests ([417ce6c](https://github.com/biorate/core/commit/417ce6ca01629ecff98ebfd70ee7c0d34dc7c1aa))
+
+### Features
+
+- **hygen:** declarative params schema and argCase flag normalization ([d2a4357](https://github.com/biorate/core/commit/d2a4357ef754d987a2f467c5b9513dbe3b79db91))
+
 # [0.4.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.3.0...%40biorate%2Fhygen%400.4.0) (2026-11-14)
 
 ### Bug Fixes
