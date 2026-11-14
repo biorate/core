@@ -15,7 +15,7 @@ const baseConfig = (cwd: string, logger: Logger): RunnerConfig => ({
   logger,
   debug: false,
   exec: () => undefined,
-  createPrompter: () => ({ prompt: async () => ({}) }),
+  createPrompter: <Q, T>() => ({ prompt: async (_arg0: Q) => ({} as T) }),
 });
 
 const cleanCwd = (): Promise<string> =>

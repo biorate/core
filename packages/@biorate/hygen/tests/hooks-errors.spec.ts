@@ -19,7 +19,7 @@ const makeConfig = (cwd: string, hooks?: ProjectHooks): RunnerConfig => ({
   logger: new Logger(() => undefined), // eslint-disable-line @typescript-eslint/no-empty-function
   debug: false,
   exec: () => undefined,
-  createPrompter: () => ({ prompt: async () => ({}) }),
+  createPrompter: <Q, T>() => ({ prompt: async (_arg0: Q) => ({} as T) }),
   ...(hooks ? { hooks } : {}),
 });
 

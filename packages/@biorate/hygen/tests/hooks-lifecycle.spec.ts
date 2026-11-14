@@ -20,8 +20,8 @@ const projectHooks = (): ProjectHooks => ({
   afterAll: (_ctx, results) => log(`project.afterAll:${results.length}`),
 });
 
-const makePrompter = () => ({
-  prompt: async () => ({}),
+const makePrompter = <Q, T>() => ({
+  prompt: async (_arg0: Q) => ({} as T),
 });
 
 const cleanCwd = (): Promise<string> =>

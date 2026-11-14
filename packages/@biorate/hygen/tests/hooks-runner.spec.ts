@@ -17,7 +17,7 @@ const makeConfig = (cwd: string, templates: string): RunnerConfig => ({
   logger: new Logger(() => undefined), // eslint-disable-line @typescript-eslint/no-empty-function
   debug: false,
   exec: () => undefined,
-  createPrompter: () => ({ prompt: async () => ({}) }),
+  createPrompter: <Q, T>() => ({ prompt: async (_arg0: Q) => ({} as T) }),
   hooks: {
     beforeAll: () => log('project.beforeAll'),
     beforeEach: (ctx: HookContext) => log(`project.beforeEach:${ctx.name ?? '-'}`),
