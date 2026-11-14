@@ -1,14 +1,7 @@
 import { InjectionAnchorNotFoundError } from '../errors';
+import type { AnchorLocator } from '../types';
 
 const EOLRegex = /\r?\n/;
-
-/**
- * @description Locates the insertion index (in a pre-split line array) for one
- * inject anchor kind. Each locator closes over its own anchor value and target
- * path so the caller needs only the lines to operate on. */
-export interface AnchorLocator {
-  locate: (lines: string[]) => number;
-}
 
 const pragmaticIndex = (
   pattern: string,

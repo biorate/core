@@ -1,14 +1,4 @@
-import type { ActionResult, RenderedAction, RunnerConfig } from '../types';
-
-/**
- * @description A single operation applied to one rendered action. Receives the
- * rendered action, the run's arguments and the runner configuration, and
- * resolves to the operation outcome. */
-export type Op = (
-  action: RenderedAction,
-  args: Record<string, unknown>,
-  config: RunnerConfig,
-) => Promise<ActionResult>;
+import type { Op } from '../types';
 
 /**
  * @description Resolves which operations to run for a rendered action based on

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
 import type { Logger } from './types';
-import { DEFAULT_ACTION } from './params';
+import { DEFAULT_ACTION } from './constants';
 
 // The compiled output lives in dist/cjs/src, where a literal `require('../package.json')`
 // would resolve to the generated `{ "type": ... }` manifest (no `version`). Walk up to the

@@ -1,57 +1,25 @@
 import path from 'path';
 import fs from 'fs';
-import type { ActionHooks, Helpers, Prompter, ProjectHooks, RunnerConfig } from './types';
+import type {
+  ActionHooks,
+  Helpers,
+  HookCache,
+  Prompter,
+  ProjectHooks,
+  ResolvedActionHooks,
+  RunnerConfig,
+} from './types';
 import helpers from './helpers';
-import { pickableGenerators, generatorActions } from './help';
 import { HookModuleError, HookTsNodeError } from './errors';
-
-/** @description New class-based action hook files, highest priority first. */
-export const ACTION_HOOK_FILES = ['hooks.ts', 'hooks.js', 'hooks.mjs', 'hooks.cjs'];
-
-/** @description Legacy action hook files, kept for backward compatibility. */
-export const LEGACY_HOOK_FILES = [
-  'index.js',
-  'index.ts',
-  'prompt.cjs',
-  'prompt.js',
-  'prompt.ts',
-];
-
-/** @description All action hook candidates in resolution order. */
-export const HOOK_FILES = [...ACTION_HOOK_FILES, ...LEGACY_HOOK_FILES];
-
-/** @description Which kind of hook module an action folder resolved to. */
-export type HookKind = 'class' | 'legacy' | 'none';
-
-/** @description The normalized result of action hook resolution. */
-export interface ResolvedActionHooks {
-  /** @description Lifecycle-capable object; lifecycle methods are absent for legacy/none. */
-  instance: ActionHooks;
-  /** @description Resolution kind. */
-  kind: HookKind;
-  /** @description Resolved hook file, when one was found. */
-  file?: string;
-  /** @description Raw legacy module (internal, used for the prompt dispatch). */
-  source?: unknown;
-}
-
-/** @description Per-run cache of resolution promises, keyed by resolved action folder. */
-export type HookCache = Map<string, Promise<ResolvedActionHooks>>;
-
-const LIFECYCLE_METHODS = ['beforeAll', 'beforeEach', 'afterEach', 'afterAll'] as const;
+import registerTsNode from './ts-node-register';
+import { ACTION_HOOK_FILES, HOOK_FILES, LIFECYCLE_METHODS } from './constants';
 
 /**
  * @description Imports a hook module, lazily registering `ts-node` for TypeScript
  * files exactly like the `.hygen.ts` config loader does.
  */
 const loadHookModule = async (file: string): Promise<Record<string, unknown>> => {
-  if (/\.ts$/.test(file)) {
-    try {
-      await import('ts-node/register/transpile-only');
-    } catch (cause) {
-      throw new HookTsNodeError(file, cause);
-    }
-  }
+  await registerTsNode(file, HookTsNodeError);
   return (await import(file)) as Record<string, unknown>;
 };
 
@@ -205,91 +173,6 @@ const prompt = async <Q, T>(
       return lazyHelpers ?? helpers;
     },
   }) as T;
-};
-
-/** @description An enquirer select-style question used by the interactive picker. */
-interface PickQuestion {
-  type: 'select';
-  name: string;
-  message: string;
-  choices: string[];
-}
-
-/** @description A picker answer map (`{ <question name>: <chosen value> }`). */
-type PickAnswer = Record<string, unknown>;
-
-/** @description The result of the interactive generator/action picker. */
-export interface PickResult {
-  /** @description The chosen generator name. */
-  generator: string;
-  /** @description The chosen action name within the generator. */
-  action: string;
-}
-
-/**
- * @description Reads the answer value under a question name when it is a non-empty
- * string; otherwise `undefined` (a prompter that did not answer as expected).
- */
-const answerValue = (answer: PickAnswer, name: string): string | undefined => {
-  const value = answer[name];
-  return typeof value === 'string' && value.length > 0 ? value : undefined;
-};
-
-/**
- * @description Runs the two-level interactive generator/action picker. Lists the
- * generators discoverable in the templates root (a top-level directory containing
- * at least one action subdirectory), then the action subdirectories of the chosen
- * generator; the selection is returned as if it had been passed positionally. When
- * the templates root is absent or holds no pickable generator, a "no generators
- * found" guidance message is logged and `null` is returned — no empty menu is shown.
- * @param config - The resolved runner configuration (templates, prompter, logger).
- * @returns The picked `{ generator, action }`, or `null` when no selection is possible.
- * */
-export const pickGeneratorAction = async (
-  config: RunnerConfig,
-): Promise<PickResult | null> => {
-  const { templates, logger } = config;
-  if (!templates || !fs.existsSync(templates)) {
-    logger.log(`No generators found.
-
-  The interactive picker needs a _templates folder here, or anywhere up the folder tree.
-  Create one with: $ hygen init self
-`);
-    return null;
-  }
-
-  const generators = pickableGenerators(templates);
-  if (generators.length === 0) {
-    logger.log(`No generators found.
-
-  Every top-level folder in _templates should hold at least one action subfolder.
-  Create one with: $ hygen with-prompt new my-generator
-`);
-    return null;
-  }
-
-  const prompter = config.createPrompter<PickQuestion, PickAnswer>();
-  const generatorAnswer = await prompter.prompt({
-    type: 'select',
-    name: 'generator',
-    message: 'Select a generator:',
-    choices: generators,
-  });
-  const generator = answerValue(generatorAnswer, 'generator');
-  if (!generator) return null;
-
-  const actions = generatorActions(templates, generator);
-  const actionPrompter = config.createPrompter<PickQuestion, PickAnswer>();
-  const actionAnswer = await actionPrompter.prompt({
-    type: 'select',
-    name: 'action',
-    message: `Select an action for ${generator}:`,
-    choices: actions,
-  });
-  const action = answerValue(actionAnswer, 'action');
-  if (!action) return null;
-
-  return { generator, action };
 };
 
 export default prompt;

@@ -4,6 +4,7 @@ import type {
   ActionHooks,
   ActionResult,
   ActionStatusEntry,
+  HookCache,
   HookContext,
   Helpers,
   RunnerConfig,
@@ -11,14 +12,11 @@ import type {
 } from './types';
 import context from './context';
 import params from './params';
-import prompt, {
-  normalizeProjectHooks,
-  pickGeneratorAction,
-  resolveActionHooks,
-  type HookCache,
-} from './prompt';
+import prompt, { normalizeProjectHooks, resolveActionHooks } from './prompt';
+import { pickGeneratorAction } from './picker';
 import { ShowHelpError, KeepGoingError } from './errors';
 import { isHelpFlag, printUsage } from './cli-help';
+import { RUN_SCOPE } from './constants';
 
 /**
  * @description Resolves whether the run should use the interactive picker. The
@@ -34,9 +32,6 @@ const isInteractive = ({ interactive }: RunnerConfig): boolean =>
     : interactive === false
     ? false
     : Boolean(process.stdin.isTTY && process.stdout.isTTY);
-
-/** @description Run-scoped hook context action marker (`project.beforeAll`/`afterAll`). */
-const RUN_SCOPE = '*';
 
 /** @description Lifecycle state of one action across the run's name expansions. */
 interface ActionHookState {
@@ -206,10 +201,6 @@ const engine = async (
           action,
           ...(name !== undefined ? { name } : {}),
         };
-        const pairStatus = {
-          action,
-          ...(name !== undefined ? { name } : {}),
-        };
 
         if (!(await fs.pathExists(actionfolder))) {
           const err =
@@ -225,7 +216,7 @@ const engine = async (
           if (singleRunAll) throw err;
           if (!keepGoing) throw err;
           failures.push({ ...pair, error: err.message });
-          statuses.push({ ...pairStatus, status: 'failed' });
+          statuses.push({ ...pair, status: 'failed' });
           continue;
         }
 

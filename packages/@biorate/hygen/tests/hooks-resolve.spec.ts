@@ -1,7 +1,8 @@
 import path from 'path';
 import { HookModuleError } from '../src/errors';
 import Logger from '../src/logger';
-import prompt, { resolveActionHooks, type HookCache } from '../src/prompt';
+import prompt, { resolveActionHooks } from '../src/prompt';
+import type { HookCache } from '../src/types';
 import { render } from '../src/render';
 
 const fixture = (...segments: string[]) =>

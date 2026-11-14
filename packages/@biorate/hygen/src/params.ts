@@ -3,9 +3,7 @@ import yargs from 'yargs-parser';
 import fs from 'fs-extra';
 import type { ParamsResult, RunnerConfig } from './types';
 import { CliArgumentError, NameFlagRemovedError, TemplateNotFoundError } from './errors';
-
-/** @description The default action folder name used when no action is specified. */
-export const DEFAULT_ACTION = '_default';
+import { DEFAULT_ACTION } from './constants';
 
 /** @description Split a comma-separated positional into its elements (undefined passthrough). */
 const splitList = (value: string | undefined): string[] | undefined =>

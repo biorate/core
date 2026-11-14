@@ -3,22 +3,15 @@ import fs from 'fs-extra';
 import type { RunnerConfig } from './types';
 import { ConfigResolver } from './config';
 import { ConfigTsNodeError } from './errors';
-
-/** @description Config-file names resolved in priority order (nearest directory wins). */
-export const CONFIG_FILES = ['.hygen.js', '.hygen.cjs', '.hygen.mjs', '.hygen.ts'];
+import registerTsNode from './ts-node-register';
+import { CONFIG_FILES } from './constants';
 
 const configResolver = new ConfigResolver(CONFIG_FILES, {
   exists: (f) => fs.pathExists(f),
   load: async (f) => {
     // Lazily register ts-node so `.hygen.ts` configs transpile on the fly — the same
     // pattern as prompt hook files, keeping zero startup cost for non-TS configs.
-    if (/\.ts$/.test(f)) {
-      try {
-        await import('ts-node/register/transpile-only');
-      } catch (cause) {
-        throw new ConfigTsNodeError(f, cause);
-      }
-    }
+    await registerTsNode(f, ConfigTsNodeError);
     return await import(f);
   },
   none: (_) => ({}),
