@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.3.0...%40biorate%2Fhygen%400.4.0) (2026-11-14)
+
+### Bug Fixes
+
+- **hygen:** resolve hook helpers lazily from CLI args ([e465ab3](https://github.com/biorate/core/commit/e465ab3783cd7931d3e13b9d66f78643ca913f47))
+
+### BREAKING CHANGES
+
+- **hygen:** hook ctx.h is resolved on first read from CLI arguments instead of at bootstrap from empty locals (behavior change relative to 0.3.0).
+
 # [0.3.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.2.0...%40biorate%2Fhygen%400.3.0) (2026-11-14)
 
 ### Features
