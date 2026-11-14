@@ -127,7 +127,12 @@ export interface HookContext {
   name?: string;
   /** @description CLI-supplied arguments plus `name`, before prompt answers. */
   args: Record<string, unknown>;
-  /** @description Resolved helper namespace: built-in helpers merged with project helpers. */
+  /**
+   * @description Helper namespace: built-in helpers merged with project helpers.
+   * Resolved lazily on first access, once per run, from the run's CLI arguments
+   * (`_` positionals plus flags, no per-pair `name`) so a hook-less run never
+   * invokes the config factory outside rendering. Reading, spreading or
+   * serializing the whole context triggers resolution. */
   h: Helpers;
   /** @description Logger used for all output. */
   logger: Logger;
@@ -169,7 +174,7 @@ export interface ActionHooks extends ProjectHooks {
     prompter: Prompter<any, any>;
     /** @description CLI-supplied arguments and `name`. */
     args: Record<string, unknown>;
-    /** @description Resolved helper namespace. */
+    /** @description Helper namespace, resolved lazily on first read for class hooks. */
     h: Helpers;
   }) => unknown;
 }
@@ -195,6 +200,12 @@ export interface RunnerConfig {
    * @description Extra helpers merged with the built-in ones. Either a plain
    * map, or a factory receiving the (pre-merge) locals and a subset of the
    * runner configuration so helpers can be computed from context.
+   *
+   * A factory is invoked for every template render (frontmatter attributes and
+   * body) with that action's locals, and lazily once per run (from the CLI
+   * arguments, positionals under `_`) when lifecycle hooks or a class `prompt`
+   * section read `h`. It must be re-entrant and must not depend on per-template
+   * or prompt-provided values.
    * */
   helpers?:
     | Helpers

@@ -126,7 +126,14 @@ const engine = async (
   const render = (await import('./render')).render;
 
   const projectHooks = normalizeProjectHooks(config.hooks, logger);
-  const hookHelpers = context({}, config).h as Helpers;
+  // Hook-scoped helpers are resolved lazily, once per run, so a run that never
+  // reads `ctx.h` (including every hook-less run) does not invoke the config
+  // factory outside rendering. Only a successful resolution is memoized: a
+  // throwing factory propagates from the hook phase that read `h` and is
+  // retried on the next access rather than cached for an unrelated phase.
+  let hookHelpers: Helpers | undefined;
+  const getHookHelpers = (): Helpers =>
+    (hookHelpers ??= context({ _: base._, ...cleanArgv }, config).h as Helpers);
   const hookCache: HookCache = new Map();
   const actionStates = new Map<string, ActionHookState>();
 
@@ -143,7 +150,9 @@ const engine = async (
     ...(subaction !== undefined ? { subaction } : {}),
     ...(name !== undefined ? { name } : {}),
     args,
-    h: hookHelpers,
+    get h() {
+      return getHookHelpers();
+    },
     logger,
     dry: Boolean(base.dry),
   });
@@ -278,7 +287,7 @@ const engine = async (
               actionfolder,
               hookArgs,
               {
-                h: hookHelpers,
+                h: getHookHelpers,
                 cache: hookCache,
               },
             );

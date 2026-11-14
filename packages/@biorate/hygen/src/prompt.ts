@@ -171,14 +171,14 @@ export const normalizeProjectHooks = (
  * @param createPrompter - Factory producing the prompter to use.
  * @param actionfolder - The action folder to inspect for a prompt hook.
  * @param args - The CLI-supplied arguments used to skip already-provided params.
- * @param options - Optional resolved helpers and the per-run hook cache.
+ * @param options - Optional lazy/explicit helpers and the per-run hook cache.
  * @returns The prompt answers (or the resolved hook params), an object when no hook/prompt applies.
  * */
 const prompt = async <Q, T>(
   createPrompter: () => Prompter<Q, T>,
   actionfolder: string,
   args: Record<string, any>,
-  options: { h?: Helpers; cache?: HookCache } = {},
+  options: { h?: Helpers | (() => Helpers); cache?: HookCache } = {},
 ): Promise<T | object> => {
   const resolved = await resolveActionHooks(actionfolder, options.cache);
   const legacy = resolved.source as
@@ -192,11 +192,18 @@ const prompt = async <Q, T>(
   if (!resolved.instance.prompt) return {};
 
   const prompter = createPrompter();
+  const lazyHelpers = options.h;
   return resolved.instance.prompt({
     prompter,
     args,
-    // legacy hooks keep receiving the built-in helpers exactly as before
-    h: resolved.kind === 'class' ? options.h ?? helpers : helpers,
+    // Legacy hooks keep receiving the built-in helpers exactly as before. A
+    // class section resolves the run's namespace on first read, so a section
+    // that ignores `h` does not invoke the config factory.
+    get h() {
+      if (resolved.kind !== 'class') return helpers;
+      if (typeof lazyHelpers === 'function') return lazyHelpers();
+      return lazyHelpers ?? helpers;
+    },
   }) as T;
 };
 

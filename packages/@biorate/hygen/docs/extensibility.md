@@ -150,18 +150,18 @@ All methods are optional and may be `async`:
 
 The `ctx` object passed to the lifecycle methods:
 
-| Field       | Description                                                          |
-| ----------- | -------------------------------------------------------------------- |
-| `cwd`       | Working directory of the run                                         |
-| `templates` | Resolved templates directory                                         |
-| `generator` | Generator name (e.g. `mailer`)                                       |
-| `action`    | Action name (`new`, or `new:subaction`) — `'*'` for run-scoped hooks |
-| `subaction` | Subaction, when present                                              |
-| `name`      | Current name expansion, when present                                 |
-| `args`      | CLI flags plus `name`, before prompt answers                         |
-| `h`         | Resolved helpers: built-in + project                                 |
-| `logger`    | The run's logger                                                     |
-| `dry`       | `true` in `--dry` runs                                               |
+| Field       | Description                                                                     |
+| ----------- | ------------------------------------------------------------------------------- |
+| `cwd`       | Working directory of the run                                                    |
+| `templates` | Resolved templates directory                                                    |
+| `generator` | Generator name (e.g. `mailer`)                                                  |
+| `action`    | Action name (`new`, or `new:subaction`) — `'*'` for run-scoped hooks            |
+| `subaction` | Subaction, when present                                                         |
+| `name`      | Current name expansion, when present                                            |
+| `args`      | CLI flags plus `name`, before prompt answers                                    |
+| `h`         | Helpers (built-in + project), resolved once per run from CLI args on first read |
+| `logger`    | The run's logger                                                                |
+| `dry`       | `true` in `--dry` runs                                                          |
 
 Run-scoped hooks (`project.beforeAll`, `project.afterAll`) receive `action: '*'` and no
 `name`.
@@ -169,8 +169,10 @@ Run-scoped hooks (`project.beforeAll`, `project.afterAll`) receive `action: '*'`
 ### The prompt section
 
 The `prompt({ prompter, args, h })` method is the prompt phase of the class — it replaces
-the legacy prompt hook, and its returned object becomes template variables. Everything
-documented on the [prompt hooks](./prompts) page (prompter usage, filtering, `args`) applies.
+the legacy prompt hook, and its returned object becomes template variables. The `h`
+namespace is resolved lazily on first read from the run's CLI arguments (positionals plus
+flags). Everything documented on the [prompt hooks](./prompts) page (prompter usage,
+filtering, `args`) applies.
 
 ### Ordering and composition
 
@@ -312,9 +314,20 @@ module.exports = {
 
 #### Function form (lazy resolution with a friendly error)
 
-`helpers` can also be a function `(locals, config) => Helpers`, evaluated per run. This
-is the place for lazy resolution: wrap the `require` in `try/catch` and throw a friendly
-error instead of the raw `Cannot find module`:
+`helpers` can also be a function `(locals, config) => Helpers`. It is invoked for every
+template render — once for the frontmatter attributes and once for the body — with that
+action's locals (`name`, flags and prompt answers included), and lazily at most once per
+run when lifecycle hooks or a class `prompt` section read `h`. A hook-scoped call
+receives the run's CLI arguments (`_` positionals plus flags, without the per-pair
+`name` and without prompt answers).
+
+Because the same factory can be called several times in one run, it must be re-entrant
+and must not depend on per-template or prompt-provided values: `locals` is the raw
+argument object of that particular call, not a stable per-run store. Outside rendering
+the runner never calls the factory with empty locals.
+
+This is the place for lazy resolution: wrap the `require` in `try/catch` and throw a
+friendly error instead of the raw `Cannot find module`:
 
 ```javascript
 // .hygen.js
