@@ -108,6 +108,73 @@ export type Transform = (
 export type Transforms = Record<string, Transform>;
 
 /**
+ * @description The context handed to a lifecycle hook. Run-scoped hooks
+ * (`project.beforeAll` / `project.afterAll`) receive `action: '*'` and no `name`
+ * because they fire outside any concrete `(name, action)` pair.
+ * */
+export interface HookContext {
+  /** @description Current working directory of the run. */
+  cwd: string;
+  /** @description Resolved templates root. */
+  templates: string;
+  /** @description Generator name of the run. */
+  generator: string;
+  /** @description Action as requested (`new` or `new:subaction`); `'*'` for run-scoped hooks. */
+  action: string;
+  /** @description Subaction when the action used the `action:subaction` form. */
+  subaction?: string;
+  /** @description Current name expansion, when the run used a name list. */
+  name?: string;
+  /** @description CLI-supplied arguments plus `name`, before prompt answers. */
+  args: Record<string, unknown>;
+  /** @description Resolved helper namespace: built-in helpers merged with project helpers. */
+  h: Helpers;
+  /** @description Logger used for all output. */
+  logger: Logger;
+  /** @description Whether the run is a `--dry` run. */
+  dry: boolean;
+}
+
+/** @description A lifecycle hook body. May be asynchronous. */
+export type HookMethod = (ctx: HookContext) => unknown | Promise<unknown>;
+
+/**
+ * @description Project-level lifecycle hooks, resolved from the optional `hooks`
+ * object of the nearest `.hygen.*` configuration file. The same four methods
+ * apply to every generator run; state, when needed, is held in the config module's
+ * closure because the object itself is plain.
+ * */
+export interface ProjectHooks {
+  /** @description Runs once before the run's pairs. */
+  beforeAll?: HookMethod;
+  /** @description Runs before the prompt phase of every `(name, action)` pair. */
+  beforeEach?: HookMethod;
+  /** @description Runs after the pair's execution with its operation outcomes. */
+  afterEach?: (ctx: HookContext, results: ActionResult[]) => unknown | Promise<unknown>;
+  /** @description Runs once after the run's pairs. */
+  afterAll?: (ctx: HookContext, results: ActionResult[]) => unknown | Promise<unknown>;
+}
+
+/**
+ * @description The action hook object: project-level lifecycle methods plus the
+ * prompt section. A `hooks.*` module exports a class whose instance provides
+ * these methods (so instance fields carry state across the run's pairs); a legacy
+ * `prompt.*` / `index.*` module is adapted to the `prompt` method only, leaving
+ * the lifecycle methods absent.
+ * */
+export interface ActionHooks extends ProjectHooks {
+  /** @description Prompt section, called in place of the legacy prompting flow. */
+  prompt?: (input: {
+    /** @description Prompter factory result used for interactive questions. */
+    prompter: Prompter<any, any>;
+    /** @description CLI-supplied arguments and `name`. */
+    args: Record<string, unknown>;
+    /** @description Resolved helper namespace. */
+    h: Helpers;
+  }) => unknown;
+}
+
+/**
  * @description The configuration object that drives `runner()`. It wires the
  * engine to concrete filesystem, logger and prompt implementations so the
  * library stays transport-agnostic. */
@@ -140,6 +207,12 @@ export interface RunnerConfig {
    * run locals, and may be async. A `transform:` on a shell-only action is
    * ignored with a warning. Registered exactly like `helpers` (a plain map). */
   transforms?: Transforms;
+  /**
+   * @description Project-level lifecycle hooks merged from the nearest `.hygen.*`
+   * configuration file. They wrap every run of every generator; action-level
+   * `hooks.*` methods compose inside them (`before*`: project → action,
+   * `after*`: action → project). */
+  hooks?: ProjectHooks;
   /** @description Default local template values applied before CLI-supplied ones. */
   localsDefaults?: Record<string, unknown>;
   /** @description Factory that creates a `Prompter` for the given prompt/answer shapes. */

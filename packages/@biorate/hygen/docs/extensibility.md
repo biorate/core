@@ -61,6 +61,176 @@ with `npm i -D ts-node` if it is not already a dependency).
 Projects with an existing `.hygen.js` keep resolving exactly as before — it remains the
 highest priority candidate.
 
+### Project lifecycle hooks
+
+The config file may declare an optional `hooks` field: a **plain object** with the four
+lifecycle methods `beforeAll`, `beforeEach`, `afterEach`, `afterAll`. Project hooks apply
+to **every** generator run, wrapping whatever the action-level hooks do (see
+[Ordering and composition](#ordering-and-composition)):
+
+```javascript
+// .hygen.js
+module.exports = {
+  helpers: {
+    /* ... */
+  },
+  hooks: {
+    async beforeAll(ctx) {
+      ctx.logger.log(`run starting in ${ctx.cwd}`);
+    },
+    async beforeEach(ctx) {
+      // runs before each (name, action) pair's prompt phase
+    },
+    async afterEach(ctx, results) {
+      // results is the pair's ActionResult[]
+    },
+    async afterAll(ctx, results) {
+      // results accumulates all pair results of the run
+    },
+  },
+};
+```
+
+Key points:
+
+- **Plain object, not a class.** Unlike action hooks (a class, see
+  [The hooks class](#the-hooks-class)), the project-level `hooks` is a plain object with
+  the same four methods — there is no `prompt` section at this level.
+- **State via closure.** Since the object is plain, any cross-run or cross-pair state must
+  live in the config module's closure (a variable captured by the hook methods).
+- **Lenient validation.** Only function-valued entries are used; unknown or non-function
+  entries are ignored with a warning instead of failing the run.
+- Run-scoped methods (`beforeAll`, `afterAll`) are called once per run and receive
+  `action: '*'` with no `name`.
+- All methods are optional and may be `async`.
+
+## Action hooks and lifecycle
+
+An action folder can carry a hook module that both prompts and observes the run through
+lifecycle methods.
+
+### Where action hooks live
+
+The runner checks the candidates in the action folder in this order; the first existing
+file wins and **nothing else is loaded**:
+
+| Priority | File name    | Notes                                     |
+| -------- | ------------ | ----------------------------------------- |
+| 1        | `hooks.ts`   | Modern form — TypeScript, on-the-fly      |
+| 2        | `hooks.js`   | Modern form — follows host project `type` |
+| 3        | `hooks.mjs`  | Modern form — explicit ESM                |
+| 4        | `hooks.cjs`  | Modern form — explicit CommonJS           |
+| 5        | `index.js`   | Legacy prompt hook                        |
+| 6        | `index.ts`   | Legacy prompt hook                        |
+| 7        | `prompt.cjs` | Legacy prompt hook                        |
+| 8        | `prompt.js`  | Legacy prompt hook                        |
+| 9        | `prompt.ts`  | Legacy prompt hook                        |
+
+- The four `hooks.*` files always take priority over the legacy files.
+- Legacy modules (`index.*`, `prompt.*`) keep working unchanged and have **no lifecycle
+  methods** — they only prompt (see [prompt hooks](./prompts)).
+- Hook files are not rendered as templates; they are loaded as modules.
+
+### The hooks class
+
+A `hooks.*` file **must export a class as its default export**; otherwise a
+`HookModuleError` naming the file is thrown. The runner constructs **one instance per
+action run** and reuses it for every `(name, action)` pair, so instance fields carry state
+across pairs.
+
+All methods are optional and may be `async`:
+
+| Method                          | Called                                                                      |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| `beforeAll(ctx)`                | Once per action run, before that action's pairs                             |
+| `beforeEach(ctx)`               | Before the pair's prompt phase                                              |
+| `afterEach(ctx, results)`       | After the pair's execution; `results` is that pair's `ActionResult[]`       |
+| `afterAll(ctx, results)`        | Once per action run; `results` accumulates all of the action's pair results |
+| `prompt({ prompter, args, h })` | The prompt section — replaces the legacy prompt hook                        |
+
+The `ctx` object passed to the lifecycle methods:
+
+| Field       | Description                                                          |
+| ----------- | -------------------------------------------------------------------- |
+| `cwd`       | Working directory of the run                                         |
+| `templates` | Resolved templates directory                                         |
+| `generator` | Generator name (e.g. `mailer`)                                       |
+| `action`    | Action name (`new`, or `new:subaction`) — `'*'` for run-scoped hooks |
+| `subaction` | Subaction, when present                                              |
+| `name`      | Current name expansion, when present                                 |
+| `args`      | CLI flags plus `name`, before prompt answers                         |
+| `h`         | Resolved helpers: built-in + project                                 |
+| `logger`    | The run's logger                                                     |
+| `dry`       | `true` in `--dry` runs                                               |
+
+Run-scoped hooks (`project.beforeAll`, `project.afterAll`) receive `action: '*'` and no
+`name`.
+
+### The prompt section
+
+The `prompt({ prompter, args, h })` method is the prompt phase of the class — it replaces
+the legacy prompt hook, and its returned object becomes template variables. Everything
+documented on the [prompt hooks](./prompts) page (prompter usage, filtering, `args`) applies.
+
+### Ordering and composition
+
+Project hooks wrap action hooks like nested test suites:
+
+```
+project.beforeAll
+  action.beforeAll
+    for each (name, action) pair:
+      project.beforeEach
+      action.beforeEach
+      prompt -> render -> execute
+      action.afterEach(results)
+      project.afterEach(results)
+  action.afterAll
+project.afterAll
+```
+
+`project.beforeAll`/`afterAll` run once per run; the action-level ones run once per action
+run. `beforeEach` runs **before** the prompt phase; `afterEach` runs **after** execution.
+
+Because the class instance persists across pairs, instance fields make per-run state
+trivial — for example a counter that increments per pair:
+
+```typescript
+// _templates/mailer/new/hooks.ts
+export default class Hooks {
+  private n = 0;
+
+  async beforeEach(ctx) {
+    this.n += 1;
+    ctx.logger.log(`pair #${this.n}`);
+  }
+}
+```
+
+With `hygen mailer new a,b` the two name expansions see `1` then `2`.
+
+### Failure semantics
+
+| Hook that throws | Effect                                                                                                                                                                                                                      |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `beforeAll`      | Every pair it guards is skipped and marked `failed` with the hook error; its matching `afterAll` still runs. A project `beforeAll` failure guards all pairs; an action `beforeAll` failure guards only that action's pairs. |
+| `beforeEach`     | That pair is skipped and marked `failed`; both `afterEach` levels still run for it.                                                                                                                                         |
+| `afterEach`      | The pair is recorded as failed; the run fails.                                                                                                                                                                              |
+| `afterAll`       | The run fails even when every pair succeeded.                                                                                                                                                                               |
+
+Pair-attributable failures (`beforeEach`, `afterEach`) are reported with the pair's
+`action` and `name` in `failures`/`statuses`. Run-scoped failures (`afterAll`, and
+`beforeAll` with no pair to guard) use the sentinel `action: '*'` with no `name`.
+
+A single-pair × single-action run rethrows the original hook error unchanged. Without
+`--keep-going` the run fails with the pair label; with `--keep-going` hook failures are
+collected per pair and the remaining pairs still run.
+
+### Dry mode
+
+In `--dry` runs hooks are called exactly as usual and receive `ctx.dry === true`; no files
+are written. A hook can use `ctx.dry` to skip its own side effects.
+
 ## Helpers
 
 Add functions to the `h` helper namespace from `.hygen.js`. A template that uses a function

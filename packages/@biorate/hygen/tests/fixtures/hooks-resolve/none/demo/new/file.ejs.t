@@ -1,0 +1,4 @@
+---
+to: out.txt
+---
+plain

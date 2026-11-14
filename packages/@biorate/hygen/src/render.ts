@@ -46,6 +46,10 @@ const filter =
     arr.filter(f);
 
 const ignores = [
+  'hooks.ts',
+  'hooks.js',
+  'hooks.mjs',
+  'hooks.cjs',
   'prompt.js',
   'index.js',
   'prompt.ts',

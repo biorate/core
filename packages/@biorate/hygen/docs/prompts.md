@@ -11,6 +11,12 @@ support. For a quick introduction see [generators](./generators#interactive-prom
 
 ## Where the hook lives
 
+> **Modern form:** the class-based `hooks.ts` / `hooks.js` / `hooks.mjs` / `hooks.cjs`
+> file is the preferred form — it also carries lifecycle methods (`beforeAll`,
+> `beforeEach`, `afterEach`, `afterAll`) around the run. See
+> [Action hooks and lifecycle](./extensibility#action-hooks-and-lifecycle). The legacy
+> prompt files documented below remain fully supported.
+
 The hook file sits in the action folder and is **shared by every template** in that
 folder — it runs once per action, before any template renders:
 
@@ -27,13 +33,23 @@ _templates/
 
 The runner looks for the **first existing** file in the action folder, in this order:
 
-| Priority | File name    | Notes                             |
-| -------- | ------------ | --------------------------------- |
-| 1        | `index.js`   | Preferred for advanced hooks      |
-| 2        | `index.ts`   | TypeScript, transpiled on the fly |
-| 3        | `prompt.cjs` | Explicit CommonJS                 |
-| 4        | `prompt.js`  | The conventional choice           |
-| 5        | `prompt.ts`  | TypeScript, transpiled on the fly |
+| Priority | File name    | Notes                                                 |
+| -------- | ------------ | ----------------------------------------------------- |
+| 1        | `hooks.ts`   | **Modern form** — TypeScript, transpiled on the fly   |
+| 2        | `hooks.js`   | Modern form — follows the host project's `type` field |
+| 3        | `hooks.mjs`  | Modern form — explicit ESM                            |
+| 4        | `hooks.cjs`  | Modern form — explicit CommonJS                       |
+| 5        | `index.js`   | Legacy — preferred for advanced hooks                 |
+| 6        | `index.ts`   | Legacy — TypeScript, transpiled on the fly            |
+| 7        | `prompt.cjs` | Legacy — explicit CommonJS                            |
+| 8        | `prompt.js`  | Legacy — the conventional choice                      |
+| 9        | `prompt.ts`  | Legacy — TypeScript, transpiled on the fly            |
+
+The first existing file wins and nothing else is loaded — a `hooks.*` file always takes
+priority over the legacy files. A `hooks.*` file must default-export a **class** (the
+legacy forms export a hook object or array instead). Legacy modules keep working
+unchanged. For the full class contract see
+[The hooks class](./extensibility#the-hooks-class).
 
 If none exists, no prompting happens and the action proceeds with the CLI variables only.
 TypeScript hooks work out of the box: the runner lazily registers

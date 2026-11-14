@@ -154,6 +154,32 @@ export class ConfigTsNodeError extends BaseError {
 }
 
 /**
+ * @description Thrown when a `.ts` hook file is resolved but `ts-node` cannot be
+ * registered to transpile it on the fly (typically `ts-node` is not installed in
+ * the project). Mirrors `ConfigTsNodeError` for the action-hook layer. */
+export class HookTsNodeError extends BaseError {
+  public constructor(file: string, cause: unknown) {
+    super(
+      'TypeScript hook [%s] requires ts-node: install it with `npm i -D ts-node` (error: [%s])',
+      [file, (cause as Error)?.message ?? cause],
+    );
+  }
+}
+
+/**
+ * @description Thrown when a `hooks.*` action file does not export a class as its
+ * default export. Names the offending file and the expected shape so the
+ * misconfiguration is explicit rather than surfacing as an opaque `new` error. */
+export class HookModuleError extends BaseError {
+  public constructor(file: string, detail: string) {
+    super('Hook file [%s] must export a class as its default export (received [%s])', [
+      file,
+      detail,
+    ]);
+  }
+}
+
+/**
  * @description Thrown when a template's `transform:` frontmatter attribute
  * references a name that is not registered in the config's `transforms` map.
  * Naming the missing transform and the config key makes the misconfiguration
