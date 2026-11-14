@@ -7,5 +7,6 @@ export * from './hooks';
 export * from './config';
 export * from './results';
 export * from './params';
+export * from './params-schema';
 export * from './ops';
 export * from './inflection';

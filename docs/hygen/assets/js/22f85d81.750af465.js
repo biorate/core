@@ -6,9 +6,9 @@
       r.r(n),
         r.d(n, {
           assets: () => l,
-          contentTitle: () => o,
-          default: () => a,
-          frontMatter: () => c,
+          contentTitle: () => c,
+          default: () => h,
+          frontMatter: () => o,
           metadata: () => s,
           toc: () => d,
         });
@@ -17,8 +17,8 @@
       );
       var i = r(159),
         t = r(8758);
-      const c = {},
-        o = 'Extensibility',
+      const o = {},
+        c = 'Extensibility',
         l = {},
         d = [
           { value: 'Project config file', id: 'project-config-file', level: 2 },
@@ -36,6 +36,16 @@
           { value: 'Where action hooks live', id: 'where-action-hooks-live', level: 3 },
           { value: 'The hooks class', id: 'the-hooks-class', level: 3 },
           { value: 'The prompt section', id: 'the-prompt-section', level: 3 },
+          {
+            value: 'Declarative parameters (<code>params</code>)',
+            id: 'declarative-parameters-params',
+            level: 3,
+          },
+          {
+            value: 'Flag-key normalization (<code>argCase</code>)',
+            id: 'flag-key-normalization-argcase',
+            level: 3,
+          },
           { value: 'Ordering and composition', id: 'ordering-and-composition', level: 3 },
           { value: 'Failure semantics', id: 'failure-semantics', level: 3 },
           { value: 'Dry mode', id: 'dry-mode', level: 3 },
@@ -73,17 +83,19 @@
           },
           { value: 'Attribution', id: 'attribution', level: 2 },
         ];
-      function h(e) {
+      function a(e) {
         const n = {
           a: 'a',
           blockquote: 'blockquote',
           code: 'code',
+          em: 'em',
           h1: 'h1',
           h2: 'h2',
           h3: 'h3',
           h4: 'h4',
           header: 'header',
           li: 'li',
+          ol: 'ol',
           p: 'p',
           pre: 'pre',
           strong: 'strong',
@@ -403,7 +415,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-javascript',
                 children:
-                  "// .hygen.js\nmodule.exports = {\n  helpers: {\n    /* ... */\n  },\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
+                  "// .hygen.js\nmodule.exports = {\n  helpers: {/* ... */},\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
               }),
             }),
             '\n',
@@ -846,7 +858,8 @@
                           children: (0, i.jsx)(n.code, { children: 'h' }),
                         }),
                         (0, i.jsx)(n.td, {
-                          children: 'Resolved helpers: built-in + project',
+                          children:
+                            'Helpers (built-in + project), resolved once per run from CLI args on first read',
                         }),
                       ],
                     }),
@@ -901,11 +914,157 @@
               children: [
                 'The ',
                 (0, i.jsx)(n.code, { children: 'prompt({ prompter, args, h })' }),
-                ' method is the prompt phase of the class \u2014 it replaces\nthe legacy prompt hook, and its returned object becomes template variables. Everything\ndocumented on the ',
+                ' method is the prompt phase of the class \u2014 it replaces\nthe legacy prompt hook, and its returned object becomes template variables. The ',
+                (0, i.jsx)(n.code, { children: 'h' }),
+                "\nnamespace is resolved lazily on first read from the run's CLI arguments (positionals plus\nflags). Everything documented on the ",
                 (0, i.jsx)(n.a, { href: './prompts', children: 'prompt hooks' }),
-                ' page (prompter usage, filtering, ',
+                ' page (prompter usage,\nfiltering, ',
                 (0, i.jsx)(n.code, { children: 'args' }),
                 ') applies.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.h3, {
+              id: 'declarative-parameters-params',
+              children: [
+                'Declarative parameters (',
+                (0, i.jsx)(n.code, { children: 'params' }),
+                ')',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A class-based hook module can also export a ',
+                (0, i.jsx)(n.strong, { children: 'parameter schema' }),
+                ' \u2014 a ',
+                (0, i.jsx)(n.code, { children: 'params' }),
+                ' array that\ndrives flag coercion, prompting and validation for the action, replacing hand-written\nprompt questions with one declaration:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ts',
+                children:
+                  "// hooks.ts\nclass Hooks {\n  beforeAll(ctx) {\n    /* ... */\n  }\n}\nexport const params = [\n  { name: 'label', type: 'string', required: true, message: 'Component name?' },\n  { name: 'count', type: 'number', default: 1 },\n  { name: 'dry', type: 'boolean' },\n  { name: 'stamp', type: (raw) => new Date(raw ?? Date.now()) }, // custom type\n];\nexport default Hooks;\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Per ',
+                (0, i.jsx)(n.code, { children: '(name, action)' }),
+                ' pair the engine:',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.ol, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Coerces' }),
+                    ' each declared parameter found among the CLI flags to its type\n(',
+                    (0, i.jsx)(n.code, { children: "'3'" }),
+                    ' \u2192 ',
+                    (0, i.jsx)(n.code, { children: '3' }),
+                    ' for ',
+                    (0, i.jsx)(n.code, { children: 'number' }),
+                    ', ',
+                    (0, i.jsx)(n.code, { children: "'true'" }),
+                    ' \u2192 ',
+                    (0, i.jsx)(n.code, { children: 'true' }),
+                    ' for ',
+                    (0, i.jsx)(n.code, { children: 'boolean' }),
+                    '). A value that cannot be\ncoerced fails the run naming the parameter and the expected type.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Prompts once' }),
+                    ' for every ',
+                    (0, i.jsx)(n.em, { children: 'required' }),
+                    ' parameter that was not supplied as a flag\n(',
+                    (0, i.jsx)(n.code, { children: 'message' }),
+                    ' is the question text, ',
+                    (0, i.jsx)(n.code, { children: 'default' }),
+                    ' the initial answer). Parameters already\nsupplied are never asked again.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Validates' }),
+                    ' the merged values against the declared types; a ',
+                    (0, i.jsx)(n.code, { children: 'required' }),
+                    ' parameter\nthat stayed absent fails the run naming the parameter.',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                (0, i.jsx)(n.code, { children: 'type' }),
+                ' accepts ',
+                (0, i.jsx)(n.code, { children: "'string'" }),
+                ' (default), ',
+                (0, i.jsx)(n.code, { children: "'number'" }),
+                ', ',
+                (0, i.jsx)(n.code, { children: "'boolean'" }),
+                ' \u2014 or a ',
+                (0, i.jsx)(n.strong, { children: 'function' }),
+                ' whose\nreturn value becomes the parameter value (a thrown error surfaces under the parameter\nname). An unknown string type fails when the hooks are loaded, so a schema mistake never\nreaches a run. Only the modern class form (',
+                (0, i.jsx)(n.code, { children: 'hooks.*' }),
+                ', kind ',
+                (0, i.jsx)(n.code, { children: 'class' }),
+                ') honors ',
+                (0, i.jsx)(n.code, { children: 'params' }),
+                ';\nlegacy modules keep their own ',
+                (0, i.jsx)(n.code, { children: 'params(...)' }),
+                ' function.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.h3, {
+              id: 'flag-key-normalization-argcase',
+              children: [
+                'Flag-key normalization (',
+                (0, i.jsx)(n.code, { children: 'argCase' }),
+                ')',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'By default flag keys keep their CLI spelling: ',
+                (0, i.jsx)(n.code, { children: '--my-flag' }),
+                ' reaches templates as the\n',
+                (0, i.jsx)(n.code, { children: 'my-flag' }),
+                ' local. When the runner configuration declares ',
+                (0, i.jsx)(n.code, { children: "argCase: 'upper-underscore'" }),
+                ',\nhyphenated and camel-cased flag keys are normalized to ',
+                (0, i.jsx)(n.code, { children: 'UPPER_UNDERSCORE' }),
+                '\n(',
+                (0, i.jsx)(n.code, { children: '--my-flag' }),
+                ' and ',
+                (0, i.jsx)(n.code, { children: '--myFlag' }),
+                ' both become ',
+                (0, i.jsx)(n.code, { children: 'MY_FLAG' }),
+                '). The reserved keys (',
+                (0, i.jsx)(n.code, { children: '_' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'ts' }),
+                ',\n',
+                (0, i.jsx)(n.code, { children: 'name' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'generator' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'action' }),
+                ') are never normalized.',
               ],
             }),
             '\n',
@@ -1247,11 +1406,35 @@
                 (0, i.jsx)(n.code, { children: 'helpers' }),
                 ' can also be a function ',
                 (0, i.jsx)(n.code, { children: '(locals, config) => Helpers' }),
-                ', evaluated per run. This\nis the place for lazy resolution: wrap the ',
+                ". It is invoked for every\ntemplate render \u2014 once for the frontmatter attributes and once for the body \u2014 with that\naction's locals (",
+                (0, i.jsx)(n.code, { children: 'name' }),
+                ', flags and prompt answers included), and lazily at most once per\nrun when lifecycle hooks or a class ',
+                (0, i.jsx)(n.code, { children: 'prompt' }),
+                ' section read ',
+                (0, i.jsx)(n.code, { children: 'h' }),
+                ". A hook-scoped call\nreceives the run's CLI arguments (",
+                (0, i.jsx)(n.code, { children: '_' }),
+                ' positionals plus flags, without the per-pair\n',
+                (0, i.jsx)(n.code, { children: 'name' }),
+                ' and without prompt answers).',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Because the same factory can be called several times in one run, it must be re-entrant\nand must not depend on per-template or prompt-provided values: ',
+                (0, i.jsx)(n.code, { children: 'locals' }),
+                ' is the raw\nargument object of that particular call, not a stable per-run store. Outside rendering\nthe runner never calls the factory with empty locals.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'This is the place for lazy resolution: wrap the ',
                 (0, i.jsx)(n.code, { children: 'require' }),
                 ' in ',
                 (0, i.jsx)(n.code, { children: 'try/catch' }),
-                ' and throw a friendly\nerror instead of the raw ',
+                ' and throw a\nfriendly error instead of the raw ',
                 (0, i.jsx)(n.code, { children: 'Cannot find module' }),
                 ':',
               ],
@@ -1341,7 +1524,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({} as T),\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
+                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({}) as T,\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
               }),
             }),
             '\n',
@@ -1416,17 +1599,17 @@
           ],
         });
       }
-      function a(e = {}) {
+      function h(e = {}) {
         const { wrapper: n } = { ...(0, t.R)(), ...e.components };
-        return n ? (0, i.jsx)(n, { ...e, children: (0, i.jsx)(h, { ...e }) }) : h(e);
+        return n ? (0, i.jsx)(n, { ...e, children: (0, i.jsx)(a, { ...e }) }) : a(e);
       }
     },
     8758(e, n, r) {
-      r.d(n, { R: () => c, x: () => o });
+      r.d(n, { R: () => o, x: () => c });
       var s = r(2503);
       const i = {},
         t = s.createContext(i);
-      function c(e) {
+      function o(e) {
         const n = s.useContext(t);
         return s.useMemo(
           function () {
@@ -1435,14 +1618,14 @@
           [n, e],
         );
       }
-      function o(e) {
+      function c(e) {
         let n;
         return (
           (n = e.disableParentContext
             ? 'function' == typeof e.components
               ? e.components(i)
               : e.components || i
-            : c(e.components)),
+            : o(e.components)),
           s.createElement(t.Provider, { value: n }, e.children)
         );
       }

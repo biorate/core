@@ -88,6 +88,8 @@ export interface ResolvedActionHooks {
   file?: string;
   /** @description Raw legacy module (internal, used for the prompt dispatch). */
   source?: unknown;
+  /** @description Validated `params` schema exported by a class hook module, when present. */
+  params?: import('./params-schema').ParamsSchema;
 }
 
 /** @description Per-run cache of resolution promises, keyed by resolved action folder. */

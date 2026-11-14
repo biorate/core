@@ -57,6 +57,11 @@ TypeScript hooks work out of the box: the runner lazily registers
 `module.exports` (CommonJS) and `export default` / named `export` (ESM); the runner
 performs a dynamic `import()` and unwraps `default` when present.
 
+> Note: in legacy modules `params` is a **function** that resolves the prompt answers.
+> A modern class `hooks.*` module may instead export a declarative `params` **array**
+> (typed coercion, prompts and validation from descriptors) — see
+> [Declarative parameters](./extensibility#declarative-parameters-params).
+
 ## The three hook forms
 
 The runner inspects the module's exports and picks the matching form. The check order is

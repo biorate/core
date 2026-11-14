@@ -231,3 +231,34 @@ export class NameFlagRemovedError extends BaseError {
     );
   }
 }
+
+/**
+ * @description Thrown when a CLI flag value cannot be coerced to the type
+ * declared by an action parameter descriptor. */
+export class ParamCoercionError extends BaseError {
+  public constructor(name: string, type: string, raw: unknown) {
+    super(
+      `cannot coerce the value [%s] of the '--%s' parameter to the expected type [%s]`,
+      [String(raw), name, type],
+    );
+  }
+}
+
+/**
+ * @description Thrown when a parameter declared `required: true` was neither
+ * supplied as a flag nor answered in the prompt phase. */
+export class ParamRequiredError extends BaseError {
+  public constructor(name: string) {
+    super(`the parameter '--%s' is required but was not supplied`, [name]);
+  }
+}
+
+/**
+ * @description Thrown when a parameter descriptor declares an unrecognized
+ * string type. Detected when the action's hooks are loaded, so a schema mistake
+ * fails before any pair runs. */
+export class ParamUnknownTypeError extends BaseError {
+  public constructor(name: string, type: string) {
+    super(`the parameter '--%s' declares an unknown type [%s]`, [name, type]);
+  }
+}

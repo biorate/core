@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">prompts | @biorate/hygen</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://biorate.github.io/core/hygen/docs/prompts"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="prompts | @biorate/hygen"><meta data-rh="true" name="description" content="Part of @biorate/hygen — a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork&#x27;s semantics; see Differences from upstream."><meta data-rh="true" property="og:description" content="Part of @biorate/hygen — a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork&#x27;s semantics; see Differences from upstream."><link data-rh="true" rel="canonical" href="https://biorate.github.io/core/hygen/docs/prompts"><link data-rh="true" rel="alternate" href="https://biorate.github.io/core/hygen/docs/prompts" hreflang="en"><link data-rh="true" rel="alternate" href="https://biorate.github.io/core/hygen/docs/prompts" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"prompts","item":"https://biorate.github.io/core/hygen/docs/prompts"}]}</script><link rel="stylesheet" href="/core/hygen/assets/css/styles.2c45f5f4.css">
-<script src="/core/hygen/assets/js/runtime~main.55d43827.js" defer="defer"></script>
+<script src="/core/hygen/assets/js/runtime~main.db9d7969.js" defer="defer"></script>
 <script src="/core/hygen/assets/js/main.0de8783c.js" defer="defer"></script>
 </head>
 <body>
@@ -44,6 +44,12 @@ TypeScript hooks work out of the box: the runner lazily registers
 <code>ts-node/register/transpile-only</code> on first use. Both module systems are supported —
 <code>module.exports</code> (CommonJS) and <code>export default</code> / named <code>export</code> (ESM); the runner
 performs a dynamic <code>import()</code> and unwraps <code>default</code> when present.</p>
+<blockquote>
+<p>Note: in legacy modules <code>params</code> is a <strong>function</strong> that resolves the prompt answers.
+A modern class <code>hooks.*</code> module may instead export a declarative <code>params</code> <strong>array</strong>
+(typed coercion, prompts and validation from descriptors) — see
+<a class="" href="/core/hygen/docs/extensibility#declarative-parameters-params">Declarative parameters</a>.</p>
+</blockquote>
 <h2 class="anchor anchorTargetStickyNavbar_Jy20" id="the-three-hook-forms">The three hook forms<a href="#the-three-hook-forms" class="hash-link" aria-label="Direct link to The three hook forms" title="Direct link to The three hook forms" translate="no">​</a></h2>
 <p>The runner inspects the module&#x27;s exports and picks the matching form. The check order is
 fixed: <strong><code>params</code> first, then <code>prompt</code>, then a plain question array</strong> — e.g. if a module

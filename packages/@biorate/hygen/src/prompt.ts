@@ -12,6 +12,34 @@ import type {
 import helpers from './helpers';
 import { HookModuleError, HookTsNodeError } from './errors';
 import registerTsNode from './ts-node-register';
+import { promptFromParams } from './params-schema';
+import type { ParamDescriptor, ParamsSchema } from './types';
+import { ParamUnknownTypeError } from './errors';
+
+/**
+ * @description Validates a hook module's `params` schema export at load time:
+ * each descriptor must declare a name and a resolvable type (built-in registry
+ * name or function). An unrecognized string type fails here, naming the
+ * parameter, before any pair runs. */
+export const validateParamsSchema = (
+  schema: ParamsSchema | undefined,
+): ParamsSchema | undefined => {
+  if (!schema) return undefined;
+  if (!Array.isArray(schema)) {
+    throw new Error('the params export must be an array of parameter descriptors');
+  }
+  for (const descriptor of schema as ParamDescriptor[]) {
+    if (typeof descriptor?.name !== 'string' || descriptor.name === '') {
+      throw new Error('every parameter descriptor must declare a non-empty string name');
+    }
+    const { type } = descriptor;
+    if (typeof type === 'function') continue;
+    if (type !== 'string' && type !== 'number' && type !== 'boolean') {
+      throw new ParamUnknownTypeError(descriptor.name, String(type));
+    }
+  }
+  return schema;
+};
 import { ACTION_HOOK_FILES, HOOK_FILES, LIFECYCLE_METHODS } from './constants';
 
 /**
@@ -71,6 +99,11 @@ const loadResolvedHooks = async (actionfolder: string): Promise<ResolvedActionHo
       instance: new (exported as new () => ActionHooks)(),
       kind: 'class',
       file,
+      // a `params` schema is validated (unknown string types fail) at load
+      // time, so a schema mistake fails before any pair runs.
+      params: validateParamsSchema(
+        (module as { params?: unknown }).params as ParamsSchema | undefined,
+      ),
     };
   } catch (cause) {
     throw new HookModuleError(
@@ -157,6 +190,13 @@ const prompt = async <Q, T>(
   if (resolved.kind === 'legacy' && legacy?.params) {
     return legacy.params({ args, h: helpers }) as T;
   }
+
+  // a declared `params` schema drives the parameter phase: coerce supplied
+  // flags, prompt once for missing required parameters, validate the result.
+  if (resolved.kind === 'class' && resolved.params?.length) {
+    return promptFromParams(resolved.params, createPrompter, args) as T;
+  }
+
   if (!resolved.instance.prompt) return {};
 
   const prompter = createPrompter();

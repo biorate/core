@@ -174,6 +174,53 @@ namespace is resolved lazily on first read from the run's CLI arguments (positio
 flags). Everything documented on the [prompt hooks](./prompts) page (prompter usage,
 filtering, `args`) applies.
 
+### Declarative parameters (`params`)
+
+A class-based hook module can also export a **parameter schema** — a `params` array that
+drives flag coercion, prompting and validation for the action, replacing hand-written
+prompt questions with one declaration:
+
+```ts
+// hooks.ts
+class Hooks {
+  beforeAll(ctx) {
+    /* ... */
+  }
+}
+export const params = [
+  { name: 'label', type: 'string', required: true, message: 'Component name?' },
+  { name: 'count', type: 'number', default: 1 },
+  { name: 'dry', type: 'boolean' },
+  { name: 'stamp', type: (raw) => new Date(raw ?? Date.now()) }, // custom type
+];
+export default Hooks;
+```
+
+Per `(name, action)` pair the engine:
+
+1. **Coerces** each declared parameter found among the CLI flags to its type
+   (`'3'` → `3` for `number`, `'true'` → `true` for `boolean`). A value that cannot be
+   coerced fails the run naming the parameter and the expected type.
+2. **Prompts once** for every _required_ parameter that was not supplied as a flag
+   (`message` is the question text, `default` the initial answer). Parameters already
+   supplied are never asked again.
+3. **Validates** the merged values against the declared types; a `required` parameter
+   that stayed absent fails the run naming the parameter.
+
+`type` accepts `'string'` (default), `'number'`, `'boolean'` — or a **function** whose
+return value becomes the parameter value (a thrown error surfaces under the parameter
+name). An unknown string type fails when the hooks are loaded, so a schema mistake never
+reaches a run. Only the modern class form (`hooks.*`, kind `class`) honors `params`;
+legacy modules keep their own `params(...)` function.
+
+### Flag-key normalization (`argCase`)
+
+By default flag keys keep their CLI spelling: `--my-flag` reaches templates as the
+`my-flag` local. When the runner configuration declares `argCase: 'upper-underscore'`,
+hyphenated and camel-cased flag keys are normalized to `UPPER_UNDERSCORE`
+(`--my-flag` and `--myFlag` both become `MY_FLAG`). The reserved keys (`_`, `ts`,
+`name`, `generator`, `action`) are never normalized.
+
 ### Ordering and composition
 
 Project hooks wrap action hooks like nested test suites:

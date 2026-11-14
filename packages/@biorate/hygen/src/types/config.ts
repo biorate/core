@@ -66,6 +66,13 @@ export interface RunnerConfig {
    * under scripted control pass `interactive: true` and provide a prompter that can
    * answer the two select prompts. */
   interactive?: boolean;
+  /**
+   * @description Controls how CLI flag keys are normalized before they become
+   * template locals and hook `args` keys. `'keep'` (the default) preserves flag
+   * keys exactly as parsed; `'upper-underscore'` normalizes hyphenated and
+   * camel-cased keys to `UPPER_UNDERSCORE` form. Reserved keys (`_`, `ts`,
+   * `name`, `generator`, `action`) are never normalized. */
+  argCase?: 'keep' | 'upper-underscore';
 }
 
 /**

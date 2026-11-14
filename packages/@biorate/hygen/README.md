@@ -106,20 +106,20 @@ For the full API reference see the [typedoc](https://biorate.github.io/core/modu
 
 The complete user guide lives in the package's local `docs/` pages. README is for the overview, quick start, and embedding; `docs/` is the full guide; typedoc is the generated API reference.
 
-| Page                                     | Contents                                                                                         |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [quick-start](./docs/quick-start.md)     | CLI installation, `init`, generator creation, `--version`.                                       |
-| [templates](./docs/templates.md)         | Template & frontmatter reference: `add`, `inject`, `sh`, anchors, `replace`, escaping.           |
-| [generators](./docs/generators.md)       | Building and organizing reusable generators.                                                     |
-| [prompts](./docs/prompts.md)             | Prompt hooks reference: file names, `params`/`prompt`/array forms, filtering, TS.                |
-| [extensibility](./docs/extensibility.md) | Extending hygen via the project config file: helpers, logger, template location, shell executor. |
-| [packages](./docs/packages.md)           | Sharing compiled generators as publishable packages (`hygen-add`).                               |
-| [create](./docs/create.md)               | Turning existing code into a generator (`hygen-create`).                                         |
-| [faq](./docs/faq.md)                     | Why hygen and its position among generator toolkits.                                             |
-| [express](./docs/express.md)             | Express.js app generation pattern.                                                               |
-| [redux](./docs/redux.md)                 | Redux (ducks) app generation pattern.                                                            |
-| [react-native](./docs/react-native.md)   | React Native app generation pattern.                                                             |
-| [standalone](./docs/standalone.md)       | Standalone binary distribution.                                                                  |
+| Page                                     | Contents                                                                                                                                                                                |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [quick-start](./docs/quick-start.md)     | CLI installation, `init`, generator creation, `--version`.                                                                                                                              |
+| [templates](./docs/templates.md)         | Template & frontmatter reference: `add`, `inject`, `sh`, anchors, `replace`, escaping.                                                                                                  |
+| [generators](./docs/generators.md)       | Building and organizing reusable generators.                                                                                                                                            |
+| [prompts](./docs/prompts.md)             | Prompt hooks reference: file names, `params`/`prompt`/array forms, filtering, TS.                                                                                                       |
+| [extensibility](./docs/extensibility.md) | Extending hygen via the project config file: helpers, logger, template location, shell executor; action hook classes, the declarative `params` schema and `argCase` flag normalization. |
+| [packages](./docs/packages.md)           | Sharing compiled generators as publishable packages (`hygen-add`).                                                                                                                      |
+| [create](./docs/create.md)               | Turning existing code into a generator (`hygen-create`).                                                                                                                                |
+| [faq](./docs/faq.md)                     | Why hygen and its position among generator toolkits.                                                                                                                                    |
+| [express](./docs/express.md)             | Express.js app generation pattern.                                                                                                                                                      |
+| [redux](./docs/redux.md)                 | Redux (ducks) app generation pattern.                                                                                                                                                   |
+| [react-native](./docs/react-native.md)   | React Native app generation pattern.                                                                                                                                                    |
+| [standalone](./docs/standalone.md)       | Standalone binary distribution.                                                                                                                                                         |
 
 ## Differences from upstream
 

@@ -93,11 +93,32 @@ const resolvePositionals = async (templates: string, args: string[]) => {
  * @returns The resolved run parameters (base args + expansion lists).
  * */
 const params = async (
-  { templates, legacyNameFlag }: RunnerConfig,
+  { templates, legacyNameFlag, argCase: argCaseOption }: RunnerConfig,
   externalArgv: string[],
 ): Promise<ParamsResult> => {
   const argv = yargs(externalArgv);
   const { _, ...cleanArgv } = argv;
+
+  // Flag-key normalization, applied once right after parsing so every consumer
+  // (prompt phase, engine, template locals) sees the same keys. Reserved keys and
+  // the removed-flag 'name' are never normalized.
+  const normalizeKey = (key: string) =>
+    key
+      .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+      .replace(/[-\s]+/g, '_')
+      .toUpperCase();
+  const RESERVED_KEYS = new Set(['name', 'generator', 'action', 'ts']);
+  const argCase = argCaseOption ?? 'keep';
+  if (argCase === 'upper-underscore') {
+    for (const key of Object.keys(cleanArgv)) {
+      if (RESERVED_KEYS.has(key)) continue;
+      const normalized = normalizeKey(key);
+      if (normalized !== key) {
+        cleanArgv[normalized] = cleanArgv[key];
+        delete cleanArgv[key];
+      }
+    }
+  }
 
   // The `--name` flag is removed by default; only the legacy escape (env var or
   // embedder config) restores it for the migration window. Under the escape the flag

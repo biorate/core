@@ -22,3 +22,7 @@ export { default as Logger } from './logger';
  * @description Error classes exports
  * */
 export * as errors from './errors';
+/**
+ * @description Declarative action parameter schema types
+ * */
+export type { ParamDescriptor, ParamType, ParamsSchema } from './types';

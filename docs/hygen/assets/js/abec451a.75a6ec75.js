@@ -356,6 +356,33 @@
               ],
             }),
             '\n',
+            (0, t.jsxs)(n.blockquote, {
+              children: [
+                '\n',
+                (0, t.jsxs)(n.p, {
+                  children: [
+                    'Note: in legacy modules ',
+                    (0, t.jsx)(n.code, { children: 'params' }),
+                    ' is a ',
+                    (0, t.jsx)(n.strong, { children: 'function' }),
+                    ' that resolves the prompt answers.\nA modern class ',
+                    (0, t.jsx)(n.code, { children: 'hooks.*' }),
+                    ' module may instead export a declarative ',
+                    (0, t.jsx)(n.code, { children: 'params' }),
+                    ' ',
+                    (0, t.jsx)(n.strong, { children: 'array' }),
+                    '\n(typed coercion, prompts and validation from descriptors) \u2014 see\n',
+                    (0, t.jsx)(n.a, {
+                      href: './extensibility#declarative-parameters-params',
+                      children: 'Declarative parameters',
+                    }),
+                    '.',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
             (0, t.jsx)(n.h2, {
               id: 'the-three-hook-forms',
               children: 'The three hook forms',
