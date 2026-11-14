@@ -935,11 +935,11 @@
             '\n',
             (0, i.jsxs)(n.p, {
               children: [
-                'A class-based hook module can also export a ',
+                'A class-based hook module can also declare a ',
                 (0, i.jsx)(n.strong, { children: 'parameter schema' }),
                 ' \u2014 a ',
-                (0, i.jsx)(n.code, { children: 'params' }),
-                ' array that\ndrives flag coercion, prompting and validation for the action, replacing hand-written\nprompt questions with one declaration:',
+                (0, i.jsx)(n.code, { children: 'static params' }),
+                '\narray on the hooks class \u2014 that drives flag coercion, prompting and validation for the\naction, replacing hand-written prompt questions with one declaration:',
               ],
             }),
             '\n',
@@ -947,7 +947,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  "// hooks.ts\nclass Hooks {\n  beforeAll(ctx) {\n    /* ... */\n  }\n}\nexport const params = [\n  { name: 'label', type: 'string', required: true, message: 'Component name?' },\n  { name: 'count', type: 'number', default: 1 },\n  { name: 'dry', type: 'boolean' },\n  { name: 'stamp', type: (raw) => new Date(raw ?? Date.now()) }, // custom type\n];\nexport default Hooks;\n",
+                  "// hooks.ts\nexport default class Hooks {\n  static params = [\n    { name: 'label', type: 'string', required: true, message: 'Component name?' },\n    { name: 'count', type: 'number', default: 1 },\n    { name: 'dry', type: 'boolean' },\n    { name: 'stamp', type: (raw) => new Date(raw ?? Date.now()) }, // custom type\n  ];\n\n  beforeAll(ctx) {\n    /* ... */\n  }\n}\n",
               }),
             }),
             '\n',
@@ -1021,9 +1021,9 @@
                 (0, i.jsx)(n.code, { children: 'hooks.*' }),
                 ', kind ',
                 (0, i.jsx)(n.code, { children: 'class' }),
-                ') honors ',
-                (0, i.jsx)(n.code, { children: 'params' }),
-                ';\nlegacy modules keep their own ',
+                ') honors\n',
+                (0, i.jsx)(n.code, { children: 'static params' }),
+                '; legacy modules keep their own ',
                 (0, i.jsx)(n.code, { children: 'params(...)' }),
                 ' function.',
               ],

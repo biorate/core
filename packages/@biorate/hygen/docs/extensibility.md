@@ -176,24 +176,24 @@ filtering, `args`) applies.
 
 ### Declarative parameters (`params`)
 
-A class-based hook module can also export a **parameter schema** — a `params` array that
-drives flag coercion, prompting and validation for the action, replacing hand-written
-prompt questions with one declaration:
+A class-based hook module can also declare a **parameter schema** — a `static params`
+array on the hooks class — that drives flag coercion, prompting and validation for the
+action, replacing hand-written prompt questions with one declaration:
 
 ```ts
 // hooks.ts
-class Hooks {
+export default class Hooks {
+  static params = [
+    { name: 'label', type: 'string', required: true, message: 'Component name?' },
+    { name: 'count', type: 'number', default: 1 },
+    { name: 'dry', type: 'boolean' },
+    { name: 'stamp', type: (raw) => new Date(raw ?? Date.now()) }, // custom type
+  ];
+
   beforeAll(ctx) {
     /* ... */
   }
 }
-export const params = [
-  { name: 'label', type: 'string', required: true, message: 'Component name?' },
-  { name: 'count', type: 'number', default: 1 },
-  { name: 'dry', type: 'boolean' },
-  { name: 'stamp', type: (raw) => new Date(raw ?? Date.now()) }, // custom type
-];
-export default Hooks;
 ```
 
 Per `(name, action)` pair the engine:
@@ -210,8 +210,8 @@ Per `(name, action)` pair the engine:
 `type` accepts `'string'` (default), `'number'`, `'boolean'` — or a **function** whose
 return value becomes the parameter value (a thrown error surfaces under the parameter
 name). An unknown string type fails when the hooks are loaded, so a schema mistake never
-reaches a run. Only the modern class form (`hooks.*`, kind `class`) honors `params`;
-legacy modules keep their own `params(...)` function.
+reaches a run. Only the modern class form (`hooks.*`, kind `class`) honors
+`static params`; legacy modules keep their own `params(...)` function.
 
 ### Flag-key normalization (`argCase`)
 

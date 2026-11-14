@@ -100,9 +100,10 @@ const loadResolvedHooks = async (actionfolder: string): Promise<ResolvedActionHo
       kind: 'class',
       file,
       // a `params` schema is validated (unknown string types fail) at load
-      // time, so a schema mistake fails before any pair runs.
+      // time, so a schema mistake fails before any pair runs. The schema is a
+      // static member of the default-exported hooks class.
       params: validateParamsSchema(
-        (module as { params?: unknown }).params as ParamsSchema | undefined,
+        (exported as { params?: unknown }).params as ParamsSchema | undefined,
       ),
     };
   } catch (cause) {

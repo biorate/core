@@ -58,8 +58,8 @@ TypeScript hooks work out of the box: the runner lazily registers
 performs a dynamic `import()` and unwraps `default` when present.
 
 > Note: in legacy modules `params` is a **function** that resolves the prompt answers.
-> A modern class `hooks.*` module may instead export a declarative `params` **array**
-> (typed coercion, prompts and validation from descriptors) — see
+> A modern class `hooks.*` module may instead declare a declarative `static params` > **array** on the hooks class (typed coercion, prompts and validation from
+> descriptors) — see
 > [Declarative parameters](./extensibility#declarative-parameters-params).
 
 ## The three hook forms
