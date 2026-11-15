@@ -6,6 +6,12 @@
 
 The scalable code generator that lives in your project. A fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT), adapted to the `@biorate/*` monorepo conventions.
 
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.
+
 ## Features
 
 - **CLI** — a project-local `hygen` binary driven by `GENERATOR ACTION` pairs, with `--version` / `-v`, `--dry` run, and `--help`.
@@ -149,9 +155,3 @@ The complete user guide lives in the package's local `docs/` pages. README is fo
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/hygen/LICENSE)
 
 This is a fork of [jondot/hygen](https://github.com/jondot/hygen) (v6.2.11, MIT). Original work © Dotan Nahum; the upstream copyright line is preserved in the `LICENSE` file. Fork adaptations © Leonid Levkin.
-
----
-
-[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
-
-Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

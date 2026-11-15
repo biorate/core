@@ -2,6 +2,12 @@
 
 MongoDB ORM connector — connection manager for Mongoose with `@typegoose/typegoose` model injection.
 
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.
+
 ## Features
 
 - **Auto-connect** — creates Mongoose `Connection` on `@init()` via config namespace `MongoDB`.
@@ -156,9 +162,3 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/mongodb/LICENSE)
-
----
-
-[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
-
-Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

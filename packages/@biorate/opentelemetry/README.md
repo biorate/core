@@ -2,6 +2,12 @@
 
 OpenTelemetry integration with auto-instrumentation, decorator-based tracing, data masking, and span attribute filtering.
 
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.
+
 ## How it works
 
 The package sets up a fully configured [OpenTelemetry NodeSDK](https://opentelemetry.io/docs/languages/js/) on import — auto-instrumentations, resource detectors (AWS, GCP, Alibaba, container, host), OTLP trace/metric exporters, and a configurable Prometheus or console metric reader.
@@ -366,9 +372,3 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/opentelemetry/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
-
----
-
-[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
-
-Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

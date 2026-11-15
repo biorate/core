@@ -2,6 +2,12 @@
 
 Kafka connectors — connection managers for `@confluentinc/kafka-javascript` with 6 specialized connector classes for producers, consumers, and admin operations.
 
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.
+
 ## Features
 
 - **6 connector classes** — `RDKafkaAdminConnector`, `RDKafkaProducerConnector`, `RDKafkaConsumerConnector`, `RDKafkaHighLevelProducerConnector`, `RDKafkaProducerStreamConnector`, `RDKafkaConsumerStreamConnector`.
@@ -194,9 +200,3 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/rdkafka/LICENSE)
-
----
-
-[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
-
-Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.
