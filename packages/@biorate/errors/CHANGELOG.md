@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/biorate/core/compare/%40biorate%2Ferrors%403.1.2...%40biorate%2Ferrors%403.1.3) (2026-11-15)
+
+**Note:** Version bump only for package @biorate/errors
+
 ## [3.1.2](https://github.com/biorate/core/compare/@biorate/errors@3.1.1...@biorate/errors@3.1.2) (2026-06-26)
 
 ### Bug Fixes

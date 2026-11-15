@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/biorate/core/compare/%40biorate%2Faxios%403.5.0...%40biorate%2Faxios%403.5.1) (2026-11-15)
+
+**Note:** Version bump only for package @biorate/axios
+
 # [3.5.0](https://github.com/biorate/core/compare/%40biorate%2Faxios%403.4.1...%40biorate%2Faxios%403.5.0) (2026-11-10)
 
 ### Features

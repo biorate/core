@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/biorate/core/compare/%40biorate%2Famqp%402.1.4...%40biorate%2Famqp%402.1.5) (2026-11-15)
+
+**Note:** Version bump only for package @biorate/amqp
+
 ## [2.1.4](https://github.com/biorate/core/compare/%40biorate%2Famqp%402.1.3...%40biorate%2Famqp%402.1.4) (2026-10-15)
 
 **Note:** Version bump only for package @biorate/amqp

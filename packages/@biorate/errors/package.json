@@ -1,6 +1,6 @@
 {
   "name": "@biorate/errors",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "description": "Errors factory",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

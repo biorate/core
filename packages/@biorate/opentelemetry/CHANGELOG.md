@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/biorate/core/compare/%40biorate%2Fopentelemetry%402.5.0...%40biorate%2Fopentelemetry%402.5.1) (2026-11-15)
+
+**Note:** Version bump only for package @biorate/opentelemetry
+
 # [2.5.0](https://github.com/biorate/core/compare/%40biorate%2Fopentelemetry%402.4.3...%40biorate%2Fopentelemetry%402.5.0) (2026-11-10)
 
 ### Features

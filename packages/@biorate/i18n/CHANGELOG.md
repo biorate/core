@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.7](https://github.com/biorate/core/compare/%40biorate%2Fi18n%402.1.6...%40biorate%2Fi18n%402.1.7) (2026-11-15)
+
+**Note:** Version bump only for package @biorate/i18n
+
 ## [2.1.6](https://github.com/biorate/core/compare/%40biorate%2Fi18n%402.1.5...%40biorate%2Fi18n%402.1.6) (2026-10-15)
 
 **Note:** Version bump only for package @biorate/i18n
