@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import CodeBlock from '@theme/CodeBlock';
 import { donations, DONATION_DISCLAIMER } from '@site/src/data/donations';
 import styles from './styles.module.css';
@@ -49,6 +50,12 @@ function Hero() {
     <header className={styles.hero}>
       <div className={styles.heroInner}>
         <h1 className={styles.heroTitle}>@biorate/hygen</h1>
+        <img
+          src={useBaseUrl('img/logo.png')}
+          alt="@biorate/hygen logo"
+          width="140"
+          height="140"
+        />
         <p className={styles.heroSubtitle}>
           The scalable code generator that lives in your project — a fork of{' '}
           <a href={upstreamUrl}>jondot/hygen</a> (v6.2.11, MIT) adapted to the @biorate/*
