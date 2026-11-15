@@ -44,8 +44,18 @@ const config = {
     ],
   ],
 
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: { rel: 'icon', href: 'img/favicon.png' },
+    },
+  ],
   themeConfig: {
     navbar: {
+      logo: {
+        src: 'img/logo.png',
+        href: '/',
+      },
       title: '@biorate/hygen',
       items: [
         { type: 'doc', docId: 'quick-start', position: 'left', label: 'Docs' },

@@ -369,7 +369,7 @@
                     (0, t.jsx)(n.code, { children: 'hooks.*' }),
                     ' module may instead declare a declarative ',
                     (0, t.jsx)(n.code, { children: 'static params' }),
-                    '\n',
+                    ' > ',
                     (0, t.jsx)(n.strong, { children: 'array' }),
                     ' on the hooks class (typed coercion, prompts and validation from\ndescriptors) \u2014 see\n',
                     (0, t.jsx)(n.a, {

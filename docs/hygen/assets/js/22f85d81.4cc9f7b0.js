@@ -415,7 +415,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-javascript',
                 children:
-                  "// .hygen.js\nmodule.exports = {\n  helpers: {/* ... */},\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
+                  "// .hygen.js\nmodule.exports = {\n  helpers: {\n    /* ... */\n  },\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
               }),
             }),
             '\n',
@@ -1524,7 +1524,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({}) as T,\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
+                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({} as T),\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
               }),
             }),
             '\n',

@@ -1,4 +1,4 @@
-/*! For license information please see main.0de8783c.js.LICENSE.txt */
+/*! For license information please see main.668f30ca.js.LICENSE.txt */
 (self.webpackChunkhygen_docs_site = self.webpackChunkhygen_docs_site || []).push([
   [792],
   {
@@ -22839,8 +22839,16 @@
               },
             ],
           ],
+          headTags: [
+            {
+              tagName: 'link',
+              attributes: { rel: 'icon', href: 'img/favicon.png' },
+              customElement: !1,
+            },
+          ],
           themeConfig: {
             navbar: {
+              logo: { src: 'img/logo.png', href: '/' },
               title: '@biorate/hygen',
               items: [
                 { type: 'doc', docId: 'quick-start', position: 'left', label: 'Docs' },
@@ -22974,7 +22982,6 @@
           plugins: [],
           themes: [],
           scripts: [],
-          headTags: [],
           stylesheets: [],
           clientModules: [],
           titleDelimiter: '|',
