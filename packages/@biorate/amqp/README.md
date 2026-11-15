@@ -66,12 +66,12 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `AmqpConnector`
 
-| Member           | Type                                          | Description                               |
-|------------------|-----------------------------------------------|-------------------------------------------|
-| `namespace`      | `'Amqp'`                                      | Config key for connection definitions.    |
-| `connect(config)` | `(config) => Promise<IAmqpConnection>`        | Connects via `amqp-connection-manager`.   |
-| `createChannel(name, opts)` | `(string, ICreateChannelOpts) => ChannelWrapper` | Creates a named channel on a connection.  |
-| `channel(name)`  | `(string) => ChannelWrapper`                  | Retrieves a previously created channel.   |
+| Member                      | Type                                             | Description                              |
+| --------------------------- | ------------------------------------------------ | ---------------------------------------- |
+| `namespace`                 | `'Amqp'`                                         | Config key for connection definitions.   |
+| `connect(config)`           | `(config) => Promise<IAmqpConnection>`           | Connects via `amqp-connection-manager`.  |
+| `createChannel(name, opts)` | `(string, ICreateChannelOpts) => ChannelWrapper` | Creates a named channel on a connection. |
+| `channel(name)`             | `(string) => ChannelWrapper`                     | Retrieves a previously created channel.  |
 
 ### Config
 
@@ -84,10 +84,10 @@ interface IAmqpConfig extends IConnectorConfig {
 
 ### Errors
 
-| Error                          | Condition                                   |
-|--------------------------------|---------------------------------------------|
-| `AmqpCantConnectError`         | Connection to AMQP server fails.            |
-| `ChannelNotExistsError`        | Requested channel name was not created.     |
+| Error                   | Condition                               |
+| ----------------------- | --------------------------------------- |
+| `AmqpCantConnectError`  | Connection to AMQP server fails.        |
+| `ChannelNotExistsError` | Requested channel name was not created. |
 
 ## Usage patterns
 
@@ -144,3 +144,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/amqp/LICENSE)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

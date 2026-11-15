@@ -149,8 +149,8 @@ class HybridModel extends Model {
 
 Available static method lists:
 
-| Export                | Methods                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Export              | Methods                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `SEQUELIZE_STATICS` | `sync`, `drop`, `create`, `findOne`, `findAll`, `findByPk`, `findOrCreate`, `findOrBuild`, `findCreateFind`, `findAndCountAll`, `destroy`, `update`, `upsert`, `bulkCreate`, `truncate`, `restore`, `count`, `sum`, `min`, `max`, `increment`, `decrement`, `describe`, `scope`, `unscoped`, `schema`, `getTableName`, `addScope`, `removeAttribute`, `getAttributes`, `hasAlias`, `hasMany`, `belongsToMany`, `hasOne`, `belongsTo`, `build`, `bulkBuild`, `warnOnInvalidOptions` |
 
 > 📚 Пример (включая offline-биндинг моделей в replay — обход `ModelNotInitializedError`) — [`examples/static-methods.md`](examples/static-methods.md).
@@ -161,14 +161,14 @@ In replay mode, the recorded result of a static that returns model instances is 
 
 **Constructor-internal pass-through (1.10.1).** While the original `build` is running, the vanilla constructor may re-enter the model's own wrapped prototype methods (e.g. Sequelize `_initValues`). Those inner calls are **not** looked up in the snapshot store — they pass through to the original implementations, and instance state is populated by the model's own constructor. This means the construction options seen in record mode (hydration: `raw: true, attributes: [...]`) and in replay (reconstruction: `{ isNewRecord: false }`) **do not need to match**, and seeding a `build()` call with identical args is no longer required. Post-construction calls (`toJSON()`, `get()`, …) are served from the recorded per-instance `call:{refId}:` entries.
 
-| Statics                                                           | Replayed result                                                               |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `create`, `findOne`, `findByPk`, `build`                  | a single model instance                                                       |
-| `findAll`, `bulkCreate`, `bulkBuild`                        | an array of model instances                                                   |
+| Statics                                                   | Replayed result                                                             |
+| --------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `create`, `findOne`, `findByPk`, `build`                  | a single model instance                                                     |
+| `findAll`, `bulkCreate`, `bulkBuild`                      | an array of model instances                                                 |
 | `findOrCreate`, `findOrBuild`, `findCreateFind`, `upsert` | an `[instance, created]` pair                                               |
-| `update`                                                        | a `[count, instances]` pair                                                 |
-| `findAndCountAll`                                               | `{ count, rows: instances }`                                                |
-| `scope`, `unscoped`, `schema`                               | the model class itself, so chaining like `Model.scope('x').findAll()` works |
+| `update`                                                  | a `[count, instances]` pair                                                 |
+| `findAndCountAll`                                         | `{ count, rows: instances }`                                                |
+| `scope`, `unscoped`, `schema`                             | the model class itself, so chaining like `Model.scope('x').findAll()` works |
 
 Unknown or custom statics keep the legacy behaviour: the recorded result is deserialized as plain data. Instance methods called on reconstructed instances are replayed with per-instance call keys (`call:{refId}:...`), so each row of a multi-row result returns its own data.
 
@@ -274,12 +274,12 @@ consumes the recorded entries for that key. Therefore **the same logical call mu
 same key in record and replay runs**. The normalizer in `makeCallKey` already removes common
 sources of nondeterminism:
 
-| Noise in args                                                                                    | Normalized to                        |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------ |
-| `Date` instances                                                                               | `'__DATE__'` (constant marker)     |
-| function arguments                                                                               | `'<callback>'` constant marker     |
-| ref-registered objects                                                                           | `'@{refId}'` (assigned by unimock) |
-| keys:`transaction`, `session_id`, `uuid`, `transaction_id`, `last_stamp`, `creation` | **dropped from the hash**      |
+| Noise in args                                                                        | Normalized to                      |
+| ------------------------------------------------------------------------------------ | ---------------------------------- |
+| `Date` instances                                                                     | `'__DATE__'` (constant marker)     |
+| function arguments                                                                   | `'<callback>'` constant marker     |
+| ref-registered objects                                                               | `'@{refId}'` (assigned by unimock) |
+| keys:`transaction`, `session_id`, `uuid`, `transaction_id`, `last_stamp`, `creation` | **dropped from the hash**          |
 
 Everything else in the arguments **is part of the hash**. Typical record/replay killers and how
 to fix them in tests:
@@ -371,11 +371,11 @@ for a full walkthrough.
 
 ### Mode selection
 
-| `UNIMOCK`                                | Behaviour                                                                                                                                                                                                       |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `UNIMOCK`                          | Behaviour                                                                                                                                                                                                |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _(unset)_ / `off` / `0` / `false`  | Mocking off —**zero-overhead pass-through**: wrapped calls go straight to the original implementation without any argument hashing or call-key computation; nothing is read from or written to snapshots |
-| `record` / `update` / `1` / `true` | Record mode — call real implementation, persist snapshots on flush                                                                                                                                             |
-| `replay`                                 | Replay mode — return recorded responses; miss →`UnimockReplayMissError`                                                                                                                                     |
+| `record` / `update` / `1` / `true` | Record mode — call real implementation, persist snapshots on flush                                                                                                                                       |
+| `replay`                           | Replay mode — return recorded responses; miss →`UnimockReplayMissError`                                                                                                                                  |
 
 ### Mode helpers
 
@@ -418,20 +418,20 @@ The `.unimock.json` file sets the same options as the environment variables abov
 
 Each option is resolved as **file → env → default**: a value present in the file shadows the corresponding environment variable, and a missing or invalid file leaves the environment variables in charge. A broken file — invalid JSON, a non-object root, or an explicitly configured path that is missing — logs a `console.warn` and is treated as absent; a missing default file is silently ignored. A runtime `SnapshotStore.setMode()` (and `Unimock.mode`) always takes precedence over the file's `mode`.
 
-| Ключ                | Тип                                 | Дефолт            | Соответствующая env-переменная    |
-| ----------------------- | -------------------------------------- | ----------------------- | ---------------------------------------------------------- |
-| `mode`                | string (`off`/`record`/`replay`) | `off`                 | `UNIMOCK`                                                |
-| `snapshotDir`         | string                                 | `tests/__snapshots__` | `UNIMOCK_SNAPSHOT_DIR`                                   |
-| `snapshotExt`         | string                                 | `.snap`               | `SNAPSHOT_EXT`                                           |
-| `gzip`                | boolean                                | `false`               | `UNIMOCK_GZIP=1`                                         |
-| `valuePool`           | boolean                                | `true`                | `UNIMOCK_VALUE_POOL=0`                                   |
-| `valuePoolThreshold`  | number                                 | `100000`              | `UNIMOCK_VALUE_POOL_THRESHOLD`                           |
-| `valuePoolCountLimit` | number                                 | `2000`                | `UNIMOCK_VALUE_POOL_COUNT_LIMIT`                         |
-| `stripRequest`        | boolean                                | `false`               | `UNIMOCK_STRIP_REQUEST=1`                                |
-| `skipProxyArgs`       | boolean                                | `false`               | `UNIMOCK_SKIP_CONN_ARGS` / `UNIMOCK_SKIP_PROXY_ARGS=1` |
-| `rowPool`             | boolean                                | `false`               | `UNIMOCK_ROW_POOL=1`                                     |
-| `compact`             | boolean                                | `false`               | `UNIMOCK_COMPACT=1`                                      |
-| `fallbackOnMiss`      | boolean                                | `false`               | `UNIMOCK_FALLBACK_ON_MISS=1`                             |
+| Ключ                  | Тип                              | Дефолт                | Соответствующая env-переменная                         |
+| --------------------- | -------------------------------- | --------------------- | ------------------------------------------------------ |
+| `mode`                | string (`off`/`record`/`replay`) | `off`                 | `UNIMOCK`                                              |
+| `snapshotDir`         | string                           | `tests/__snapshots__` | `UNIMOCK_SNAPSHOT_DIR`                                 |
+| `snapshotExt`         | string                           | `.snap`               | `SNAPSHOT_EXT`                                         |
+| `gzip`                | boolean                          | `false`               | `UNIMOCK_GZIP=1`                                       |
+| `valuePool`           | boolean                          | `true`                | `UNIMOCK_VALUE_POOL=0`                                 |
+| `valuePoolThreshold`  | number                           | `100000`              | `UNIMOCK_VALUE_POOL_THRESHOLD`                         |
+| `valuePoolCountLimit` | number                           | `2000`                | `UNIMOCK_VALUE_POOL_COUNT_LIMIT`                       |
+| `stripRequest`        | boolean                          | `false`               | `UNIMOCK_STRIP_REQUEST=1`                              |
+| `skipProxyArgs`       | boolean                          | `false`               | `UNIMOCK_SKIP_CONN_ARGS` / `UNIMOCK_SKIP_PROXY_ARGS=1` |
+| `rowPool`             | boolean                          | `false`               | `UNIMOCK_ROW_POOL=1`                                   |
+| `compact`             | boolean                          | `false`               | `UNIMOCK_COMPACT=1`                                    |
+| `fallbackOnMiss`      | boolean                          | `false`               | `UNIMOCK_FALLBACK_ON_MISS=1`                           |
 
 Example:
 
@@ -446,13 +446,13 @@ Example:
 
 ### Optimisation flags
 
-| Variable                                                        | Description                                                                                                  |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `UNIMOCK_GZIP=1`                                              | Gzip-compress snapshot files on write (~97 % reduction). Auto-detected on read.                              |
-| `UNIMOCK_STRIP_REQUEST=1`                                     | Strip the `request` field (Axios HTTP internals, ~40 KB per entry).                                        |
-| `UNIMOCK_SKIP_PROXY_ARGS=1` (or `UNIMOCK_SKIP_CONN_ARGS=1`) | Skip serialising `args` for `call:*` entries — they are not used in replay.                             |
-| `UNIMOCK_SNAPSHOT_DIR`                                        | Custom snapshot directory fallback (default:`tests/__snapshots__`). Ignored when `importMeta` is passed. |
-| `SNAPSHOT_EXT`                                                | Snapshot file extension (default:`.snap`). File name: `{ClassName}.unimock{ext}`.                        |
+| Variable                                                    | Description                                                                                              |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `UNIMOCK_GZIP=1`                                            | Gzip-compress snapshot files on write (~97 % reduction). Auto-detected on read.                          |
+| `UNIMOCK_STRIP_REQUEST=1`                                   | Strip the `request` field (Axios HTTP internals, ~40 KB per entry).                                      |
+| `UNIMOCK_SKIP_PROXY_ARGS=1` (or `UNIMOCK_SKIP_CONN_ARGS=1`) | Skip serialising `args` for `call:*` entries — they are not used in replay.                              |
+| `UNIMOCK_SNAPSHOT_DIR`                                      | Custom snapshot directory fallback (default:`tests/__snapshots__`). Ignored when `importMeta` is passed. |
+| `SNAPSHOT_EXT`                                              | Snapshot file extension (default:`.snap`). File name: `{ClassName}.unimock{ext}`.                        |
 
 ### Always-on optimisations
 
@@ -725,3 +725,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/unimock/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

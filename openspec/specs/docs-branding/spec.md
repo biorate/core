@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the visual branding of the repository's public documentation surfaces: the @biorate/hygen Docusaurus site (navbar logo and favicon) and the repository README header that also renders on the TypeDoc API reference landing page.
+Defines the visual branding of the repository's public documentation surfaces: the @biorate/hygen Docusaurus site (navbar logo and favicon) and the @biorate/hygen package README header that also renders on the npm package page.
 
 ## Requirements
 
@@ -20,11 +20,25 @@ The @biorate/hygen documentation site SHALL display the project logo in the navi
 - **WHEN** any page of the built site is loaded
 - **THEN** the browser tab shows the favicon referenced from the site's static image directory
 
-### Requirement: Repository documentation header shows the logo
+### Requirement: Package README header shows the logo
 
-The root `README.md` SHALL display the logo above the repository title. The image reference SHALL resolve both on GitHub and in the TypeDoc-generated API reference landing page (which renders the root README), without build errors or broken-image markers.
+The `@biorate/hygen` package README (`packages/@biorate/hygen/README.md`) SHALL display the logo beside the package title. The image reference SHALL resolve both on GitHub and on the npm package page, without build errors or broken-image markers.
 
-#### Scenario: Logo visible on GitHub and the API reference landing page
+#### Scenario: Logo visible on GitHub and the npm package page
 
-- **WHEN** the root `README.md` is viewed on GitHub and when the TypeDoc landing page (`docs/index.html`) is rebuilt and opened
-- **THEN** the logo renders in the header in both places, and the rebuild of `docs/` completes without image-resolution warnings
+- **WHEN** the `@biorate/hygen` README is viewed on GitHub and on npmjs.com
+- **THEN** the logo renders beside the title in both places, and the root README stays free of package branding
+
+### Requirement: Package READMEs carry the donations notice
+
+Every published package README under `packages/@biorate/*/README.md` SHALL end with the donations notice: the Boosty donate badge followed by the disclaimer that donations are voluntary and do not constitute consideration for any goods or services, grant no rights to the code or priority in decision-making, and that the project is provided AS IS under its license. New package READMEs SHALL include the same block from the start.
+
+#### Scenario: Every package README ends with the notice
+
+- **WHEN** all `packages/@biorate/*/README.md` files are inspected
+- **THEN** each one ends with the Boosty badge and the donations disclaimer
+
+#### Scenario: A newly created package includes the notice
+
+- **WHEN** a new package is added under `packages/@biorate/` with a README
+- **THEN** its README ends with the same donations notice as the existing packages

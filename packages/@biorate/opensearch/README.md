@@ -33,13 +33,15 @@ container.bind<OpenSearchConnector>(OpenSearchConnector).toSelf().inSingletonSco
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  OpenSearch: [{
-    name: 'dev',
-    options: {
-      node: 'https://admin:admin_pass@localhost:9200',
-      ssl: { rejectUnauthorized: false },
+  OpenSearch: [
+    {
+      name: 'dev',
+      options: {
+        node: 'https://admin:admin_pass@localhost:9200',
+        ssl: { rejectUnauthorized: false },
+      },
     },
-  }],
+  ],
 });
 
 (async () => {
@@ -58,24 +60,24 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `OpenSearchConnector`
 
-| Member           | Type                                        | Description                              |
-|------------------|---------------------------------------------|------------------------------------------|
-| `namespace`      | `'OpenSearch'`                              | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<IOpenSearchConnection>` | Creates `Client` and calls `ping()`.    |
+| Member            | Type                                         | Description                            |
+| ----------------- | -------------------------------------------- | -------------------------------------- |
+| `namespace`       | `'OpenSearch'`                               | Config key for connection definitions. |
+| `connect(config)` | `(config) => Promise<IOpenSearchConnection>` | Creates `Client` and calls `ping()`.   |
 
 ### Config
 
 ```ts
 interface IOpenSearchConfig extends IConnectorConfig {
-  options: ClientOptions;  // node, ssl, auth, etc.
+  options: ClientOptions; // node, ssl, auth, etc.
 }
 ```
 
 ### Errors
 
-| Error                          | Condition                                    |
-|--------------------------------|----------------------------------------------|
-| `OpenSearchCantConnectError`   | `new Client()` or `ping()` fails.           |
+| Error                        | Condition                         |
+| ---------------------------- | --------------------------------- |
+| `OpenSearchCantConnectError` | `new Client()` or `ping()` fails. |
 
 ## Architecture
 
@@ -99,3 +101,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/opensearch/LICENSE)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

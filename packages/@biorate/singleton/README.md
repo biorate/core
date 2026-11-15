@@ -27,11 +27,11 @@ import { Singleton } from '@biorate/singleton';
 
 Abstract class that provides singleton infrastructure.
 
-| Member              | Visibility    | Signature                        | Description                          |
-|---------------------|---------------|----------------------------------|--------------------------------------|
-| `cache`             | `protected static` | `WeakMap<typeof Singleton, Singleton>` | One instance per concrete subclass. |
-| `instance<T>`       | `protected static` | `<T>(): T`                      | Returns cached instance or creates via `new this()`. |
-| `constructor`       | `protected`   | `constructor()`                  | Empty constructor, prevents external instantiation. |
+| Member        | Visibility         | Signature                              | Description                                          |
+| ------------- | ------------------ | -------------------------------------- | ---------------------------------------------------- |
+| `cache`       | `protected static` | `WeakMap<typeof Singleton, Singleton>` | One instance per concrete subclass.                  |
+| `instance<T>` | `protected static` | `<T>(): T`                             | Returns cached instance or creates via `new this()`. |
+| `constructor` | `protected`        | `constructor()`                        | Empty constructor, prevents external instantiation.  |
 
 **Usage contract:** Subclasses expose a public static delegating method:
 
@@ -93,3 +93,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/singleton/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

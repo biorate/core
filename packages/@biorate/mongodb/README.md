@@ -24,8 +24,12 @@ Requires `@biorate/connector`, `@biorate/inversion`, `@biorate/config`, `@biorat
 import { inject, container, Types, Core } from '@biorate/inversion';
 import { IConfig, Config } from '@biorate/config';
 import {
-  Severity, modelOptions, Prop,
-  MongoDBConnector, model, ReturnModelType,
+  Severity,
+  modelOptions,
+  Prop,
+  MongoDBConnector,
+  model,
+  ReturnModelType,
 } from '@biorate/mongodb';
 
 @modelOptions({
@@ -48,11 +52,13 @@ container.bind<MongoDBConnector>(MongoDBConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  MongoDB: [{
-    name: 'connection',
-    host: 'mongodb://localhost:27017/',
-    options: { dbName: 'test' },
-  }],
+  MongoDB: [
+    {
+      name: 'connection',
+      host: 'mongodb://localhost:27017/',
+      options: { dbName: 'test' },
+    },
+  ],
 });
 
 (async () => {
@@ -68,10 +74,10 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `MongoDBConnector`
 
-| Member           | Type                                        | Description                              |
-|------------------|---------------------------------------------|------------------------------------------|
-| `namespace`      | `'MongoDB'`                                 | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<IMongoDBConnection>`   | Creates Mongoose connection via `createConnection`. |
+| Member            | Type                                      | Description                                         |
+| ----------------- | ----------------------------------------- | --------------------------------------------------- |
+| `namespace`       | `'MongoDB'`                               | Config key for connection definitions.              |
+| `connect(config)` | `(config) => Promise<IMongoDBConnection>` | Creates Mongoose connection via `createConnection`. |
 
 ### `@model()` decorator
 
@@ -85,17 +91,17 @@ Binds a TypeGoose model class to a specific named connection (or the first conne
 
 ```ts
 interface IMongoDBConfig extends IConnectorConfig {
-  host: string;                           // mongodb://host:port/
-  options: ConnectOptions;                // dbName, auth, ssl, etc.
+  host: string; // mongodb://host:port/
+  options: ConnectOptions; // dbName, auth, ssl, etc.
 }
 ```
 
 ### Errors
 
-| Error                              | Condition                                      |
-|------------------------------------|------------------------------------------------|
-| `MongoDBCantConnectError`          | `createConnection()` or `open` event fails.    |
-| `MongoDBConnectionNotExistsError`  | `@model()` references a non-existent connection. |
+| Error                             | Condition                                        |
+| --------------------------------- | ------------------------------------------------ |
+| `MongoDBCantConnectError`         | `createConnection()` or `open` event fails.      |
+| `MongoDBConnectionNotExistsError` | `@model()` references a non-existent connection. |
 
 ## Usage patterns
 
@@ -150,3 +156,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/mongodb/LICENSE)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

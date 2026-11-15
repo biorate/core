@@ -33,16 +33,18 @@ container.bind<PgConnector>(PgConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Pg: [{
-    name: 'connection',
-    options: {
-      user: 'postgres',
-      host: 'localhost',
-      database: 'postgres',
-      password: 'postgres',
-      port: 5432,
+  Pg: [
+    {
+      name: 'connection',
+      options: {
+        user: 'postgres',
+        host: 'localhost',
+        database: 'postgres',
+        password: 'postgres',
+        port: 5432,
+      },
     },
-  }],
+  ],
 });
 
 (async () => {
@@ -57,26 +59,26 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `PgConnector`
 
-| Member            | Type                                                  | Description                                    |
-|-------------------|-------------------------------------------------------|------------------------------------------------|
-| `namespace`       | `'Pg'`                                                | Config key for connection definitions.         |
-| `connect(config)` | `(config) => Promise<IPgConnection>`                  | Creates `pg.Client` and connects.              |
-| `cursor(name, query, values?, config?)` | `(string, string, any[], CursorQueryConfig?) => Cursor` | Returns a `pg-cursor` Cursor for efficient iteration. |
-| `stream(name, query, values?, config?)` | `(string, string, any[], CursorQueryConfig?) => QueryStream` | Returns a `pg-query-stream` for pipeable results. |
+| Member                                  | Type                                                         | Description                                           |
+| --------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| `namespace`                             | `'Pg'`                                                       | Config key for connection definitions.                |
+| `connect(config)`                       | `(config) => Promise<IPgConnection>`                         | Creates `pg.Client` and connects.                     |
+| `cursor(name, query, values?, config?)` | `(string, string, any[], CursorQueryConfig?) => Cursor`      | Returns a `pg-cursor` Cursor for efficient iteration. |
+| `stream(name, query, values?, config?)` | `(string, string, any[], CursorQueryConfig?) => QueryStream` | Returns a `pg-query-stream` for pipeable results.     |
 
 ### Config
 
 ```ts
 interface IPgConfig extends IConnectorConfig {
-  options: ClientConfig;  // pg ClientConfig (host, port, user, password, database, ssl, etc.)
+  options: ClientConfig; // pg ClientConfig (host, port, user, password, database, ssl, etc.)
 }
 ```
 
 ### Errors
 
-| Error                  | Condition                                   |
-|------------------------|---------------------------------------------|
-| `PgCantConnectError`   | `new Client()` or `client.connect()` fails. |
+| Error                | Condition                                   |
+| -------------------- | ------------------------------------------- |
+| `PgCantConnectError` | `new Client()` or `client.connect()` fails. |
 
 ## Usage patterns
 
@@ -121,3 +123,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/pg/LICENSE)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

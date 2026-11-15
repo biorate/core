@@ -24,9 +24,7 @@ Requires `@biorate/config`, `@biorate/config-loader`, `@biorate/errors`, `@biora
 // config.json
 {
   "app": { "port": 3000 },
-  "ConfigLoaderFs": [
-    { "file": "secrets.json", "namespace": "secrets" }
-  ]
+  "ConfigLoaderFs": [{ "file": "secrets.json", "namespace": "secrets" }]
 }
 ```
 
@@ -61,12 +59,12 @@ import { ConfigLoaderFs } from '@biorate/config-loader-fs';
 
 Extends `ConfigLoader` (from `@biorate/config-loader`).
 
-| Member       | Visibility    | Type / Signature                             | Description                           |
-|--------------|---------------|----------------------------------------------|---------------------------------------|
-| `directory`  | `private static` | `string = process.cwd()`                  | Root directory for file loading.      |
-| `root`       | `public static` | `(path: string) => typeof ConfigLoaderFs` | Set custom root directory (chainable).|
-| `load`       | `protected`   | `(file, directory?, namespace?) => Promise<void>` | Read JSON file and merge into config. |
-| `initialize` | `@init() protected` | `(): Promise<void>`                   | Load all configured files.            |
+| Member       | Visibility          | Type / Signature                                  | Description                            |
+| ------------ | ------------------- | ------------------------------------------------- | -------------------------------------- |
+| `directory`  | `private static`    | `string = process.cwd()`                          | Root directory for file loading.       |
+| `root`       | `public static`     | `(path: string) => typeof ConfigLoaderFs`         | Set custom root directory (chainable). |
+| `load`       | `protected`         | `(file, directory?, namespace?) => Promise<void>` | Read JSON file and merge into config.  |
+| `initialize` | `@init() protected` | `(): Promise<void>`                               | Load all configured files.             |
 
 ### `ConfigLoaderFsFileNotLoadedError` — Error
 
@@ -74,8 +72,8 @@ Extends `ConfigLoader` (from `@biorate/config-loader`).
 import { ConfigLoaderFsFileNotLoadedError } from '@biorate/config-loader-fs';
 ```
 
-| Error                              | Condition                                    |
-|------------------------------------|----------------------------------------------|
+| Error                              | Condition                                       |
+| ---------------------------------- | ----------------------------------------------- |
 | `ConfigLoaderFsFileNotLoadedError` | JSON parse or file read fails (logged as warn). |
 
 ### `IConfigLoaderFsOption` — Dynamic option type
@@ -134,3 +132,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/config-loader-fs/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

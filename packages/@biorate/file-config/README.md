@@ -5,7 +5,7 @@ extends [Config](https://biorate.github.io/core/classes/config.Config.html) base
 
 ### Examples:
 
-In ***cwd*** of you app, near package.json, create 2 files:
+In **_cwd_** of you app, near package.json, create 2 files:
 <br />
 <br />
 
@@ -15,6 +15,7 @@ In ***cwd*** of you app, near package.json, create 2 files:
   "app": "test"
 }
 ```
+
 <br />
 
 ```bash
@@ -34,9 +35,7 @@ class Root extends Core() {
   @inject(Types.Config) public config: IConfig;
 }
 
-container.bind<IConfig>(Types.Config)
- .to(FileConfig)
- .inSingletonScope();
+container.bind<IConfig>(Types.Config).to(FileConfig).inSingletonScope();
 
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
@@ -71,3 +70,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/file-config/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

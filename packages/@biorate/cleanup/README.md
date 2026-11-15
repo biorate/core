@@ -25,8 +25,8 @@ Requires `glob`, `minimist`.
 import { cleanup } from '@biorate/cleanup';
 ```
 
-| Export    | Signature                           | Description                                      |
-|-----------|-------------------------------------|--------------------------------------------------|
+| Export    | Signature                               | Description                                                 |
+| --------- | --------------------------------------- | ----------------------------------------------------------- |
 | `cleanup` | `(...paths: string[]) => Promise<void>` | Expand glob patterns and remove matching files/directories. |
 
 ```ts
@@ -35,15 +35,15 @@ await cleanup('./dist/**', './temp', './*.log');
 
 ### Errors
 
-| Export                   | Signature                                            | Description                    |
-|--------------------------|------------------------------------------------------|--------------------------------|
-| `ArgvEmptyListError`     | `class extends BaseError { constructor() }`          | Thrown when CLI argv is empty. |
+| Export               | Signature                                   | Description                    |
+| -------------------- | ------------------------------------------- | ------------------------------ |
+| `ArgvEmptyListError` | `class extends BaseError { constructor() }` | Thrown when CLI argv is empty. |
 
 ### Interfaces
 
-| Export          | Signature    | Description                     |
-|-----------------|--------------|---------------------------------|
-| `ICleanupArgs`  | `interface`  | Empty placeholder for future extension. |
+| Export         | Signature   | Description                             |
+| -------------- | ----------- | --------------------------------------- |
+| `ICleanupArgs` | `interface` | Empty placeholder for future extension. |
 
 ## CLI usage
 
@@ -95,3 +95,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/cleanup/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

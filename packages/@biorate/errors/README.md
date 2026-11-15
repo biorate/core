@@ -29,23 +29,23 @@ class MyError extends BaseError {
 
 const err = new MyError([new Date(), 42], { userId: 1 });
 
-console.log(err.code);    // "MyError"
+console.log(err.code); // "MyError"
 console.log(err.message); // "Something happened at Sun Jun ... 2025, code 42"
-console.log(err.meta);    // { userId: 1 }
-console.log(err.stack);   // Full stack trace
+console.log(err.meta); // { userId: 1 }
+console.log(err.stack); // Full stack trace
 ```
 
 ## API Reference
 
 ### `BaseError`
 
-| Member             | Type                         | Description                                              |
-|--------------------|------------------------------|----------------------------------------------------------|
-| `constructor`      | `(message, args?, meta?, ...options?)` | Template string with positional `util.format` args.      |
-| `.message`         | `string`                     | Formatted message (inherited from `Error`).              |
-| `.code`            | `string`                     | Returns `this.constructor.name`.                         |
-| `.meta`            | `unknown`                    | Arbitrary metadata payload (second constructor arg).     |
-| `.stack`           | `string \| undefined`        | Stack trace (V8 `captureStackTrace` when available).     |
+| Member        | Type                                   | Description                                          |
+| ------------- | -------------------------------------- | ---------------------------------------------------- |
+| `constructor` | `(message, args?, meta?, ...options?)` | Template string with positional `util.format` args.  |
+| `.message`    | `string`                               | Formatted message (inherited from `Error`).          |
+| `.code`       | `string`                               | Returns `this.constructor.name`.                     |
+| `.meta`       | `unknown`                              | Arbitrary metadata payload (second constructor arg). |
+| `.stack`      | `string \| undefined`                  | Stack trace (V8 `captureStackTrace` when available). |
 
 ### Constructor signature
 
@@ -159,3 +159,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/errors/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

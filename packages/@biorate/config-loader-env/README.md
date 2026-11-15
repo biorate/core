@@ -50,10 +50,10 @@ import { ConfigLoaderEnv } from '@biorate/config-loader-env';
 
 Extends `ConfigLoader` (from `@biorate/config-loader`).
 
-| Member              | Visibility    | Type / Signature                    | Description                         |
-|---------------------|---------------|-------------------------------------|-------------------------------------|
-| `dotenvxConfig`     | `protected`   | `DotenvConfigOptions`               | dotenvx options (paths, override).  |
-| `initialize`        | `@init() protected` | `(): void`                   | Read .env files, merge into config. |
+| Member          | Visibility          | Type / Signature      | Description                         |
+| --------------- | ------------------- | --------------------- | ----------------------------------- |
+| `dotenvxConfig` | `protected`         | `DotenvConfigOptions` | dotenvx options (paths, override).  |
+| `initialize`    | `@init() protected` | `(): void`            | Read .env files, merge into config. |
 
 ### Initialization flow
 
@@ -106,3 +106,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/config-loader-env/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

@@ -1,7 +1,5 @@
 # Biorate core
 
-<img src="https://raw.githubusercontent.com/biorate/core/master/packages/@biorate/hygen/site/static/img/logo.png" width="120" alt="Biorate logo" />
-
 A monorepo of 56 reusable TypeScript packages published under the `@biorate/*` scope for backend services: IoC and inversion, layered configuration (files, env, Vault), transport and messaging connectors (Kafka, AMQP, HTTP proxy, schema registry), storage adapters (PostgreSQL, MongoDB, Redis, ClickHouse, MSSQL, MinIO, OpenSearch), observability (Prometheus, OpenTelemetry), NestJS integration, and testing/code-generation tooling (Vitest, Mocha, Playwright, unimock, hygen). Every package ships CJS and ESM builds with type declarations and is covered by the generated API reference.
 
 [![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)

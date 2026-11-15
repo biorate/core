@@ -60,10 +60,10 @@ container.get<IConfig>(Types.Config).merge({
   await root.$run();
 
   console.log(root.connector.connection('db-1')); // Connection { name: 'db-1' }
-  console.log(root.connector.current);            // Connection { name: 'db-1' }
+  console.log(root.connector.current); // Connection { name: 'db-1' }
 
   root.connector.use('db-2');
-  console.log(root.connector.current);            // Connection { name: 'db-2' }
+  console.log(root.connector.current); // Connection { name: 'db-2' }
 })();
 ```
 
@@ -71,40 +71,43 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `Connector<C extends IConnectorConfig, T>` abstract class
 
-| Member                    | Type                          | Description                                    |
-|---------------------------|-------------------------------|------------------------------------------------|
-| `namespace` (abstract)    | `string`                      | Config key — array of `C` objects.             |
-| `connect(config)` (abstract) | `(config: C) => Promise<R>`  | Create a single connection.                    |
-| `current`                 | `R \| undefined`              | Currently selected connection.                 |
-| `connections`             | `Map<string, R>`              | All created connections (name → instance).     |
-| `create(config)`          | `(config: C) => Promise<R>`  | Create connection if not already cached.       |
-| `connection(name?)`       | `(name?: string) => R`        | Get connection by name (or current).           |
-| `get(name?)`              | `(name?: string) => R`        | Alias for `connection()`.                      |
-| `use(name)`               | `(name: string) => void`      | Switch current connection.                     |
-| `initialize()`            | `@init()`                     | Reads config array, creates all connections.   |
+| Member                       | Type                        | Description                                  |
+| ---------------------------- | --------------------------- | -------------------------------------------- |
+| `namespace` (abstract)       | `string`                    | Config key — array of `C` objects.           |
+| `connect(config)` (abstract) | `(config: C) => Promise<R>` | Create a single connection.                  |
+| `current`                    | `R \| undefined`            | Currently selected connection.               |
+| `connections`                | `Map<string, R>`            | All created connections (name → instance).   |
+| `create(config)`             | `(config: C) => Promise<R>` | Create connection if not already cached.     |
+| `connection(name?)`          | `(name?: string) => R`      | Get connection by name (or current).         |
+| `get(name?)`                 | `(name?: string) => R`      | Alias for `connection()`.                    |
+| `use(name)`                  | `(name: string) => void`    | Switch current connection.                   |
+| `initialize()`               | `@init()`                   | Reads config array, creates all connections. |
 
 ### Config interface
 
 ```ts
 interface IConnectorConfig {
-  name: string;  // connection identifier (unique per connector)
+  name: string; // connection identifier (unique per connector)
   // … plus any additional fields for your resource
 }
 ```
 
 ### Errors
 
-| Error                              | Condition                                        |
-|------------------------------------|--------------------------------------------------|
-| `ConnectorConnectionNotExistsError`| Calling `connection(name)` / `use(name)` with unknown name. |
-| `ConnectorEmptyConnectionsError`   | Calling `connection()` when no connections exist.             |
+| Error                               | Condition                                                   |
+| ----------------------------------- | ----------------------------------------------------------- |
+| `ConnectorConnectionNotExistsError` | Calling `connection(name)` / `use(name)` with unknown name. |
+| `ConnectorEmptyConnectionsError`    | Calling `connection()` when no connections exist.           |
 
 ## Usage patterns
 
 ### Single connection
 
 ```ts
-class MyConnector extends Connector<{ name: string; host: string; port: number }, Client> {
+class MyConnector extends Connector<
+  { name: string; host: string; port: number },
+  Client
+> {
   protected namespace = 'MyConnector';
 
   protected async connect(config: { name: string; host: string; port: number }) {
@@ -217,3 +220,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/connector/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

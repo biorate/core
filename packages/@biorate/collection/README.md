@@ -34,8 +34,12 @@ class User extends Item {
 }
 
 class UserList extends List<User> {
-  protected get _keys() { return [['id'], ['email']]; }
-  protected get _Item() { return User; }
+  protected get _keys() {
+    return [['id'], ['email']];
+  }
+  protected get _Item() {
+    return User;
+  }
 }
 
 const list = new UserList([
@@ -43,9 +47,9 @@ const list = new UserList([
   { id: 2, name: 'Bob', email: 'bob@test.com' },
 ]);
 
-console.log(list.find(1));          // User { id: 1, name: 'Alice', ... }
-console.log(list.find(2));          // User { id: 2, name: 'Bob', ... }
-console.log(list.find(3));          // undefined
+console.log(list.find(1)); // User { id: 1, name: 'Alice', ... }
+console.log(list.find(2)); // User { id: 2, name: 'Bob', ... }
+console.log(list.find(3)); // undefined
 ```
 
 ## Module reference
@@ -60,34 +64,34 @@ Abstract class for data objects with typed property embedding.
 
 #### Static symbol types (for `@embed`)
 
-| Symbol         | Type      |
-|----------------|-----------|
-| `Item.Int`     | `number`  |
-| `Item.String`  | `string`  |
-| `Item.Float`   | `number`  |
-| `Item.Bool`    | `boolean` |
-| `Item.Date`    | `Date`    |
-| `Item.Object`  | `object`  |
-| `Item.Array`   | `array`   |
-| `Item.Json`    | `any`     |
-| `Item.Map`     | `Map`     |
-| `Item.Set`     | `Set`     |
-| `Item.Luxon`   | `DateTime`|
+| Symbol        | Type       |
+| ------------- | ---------- |
+| `Item.Int`    | `number`   |
+| `Item.String` | `string`   |
+| `Item.Float`  | `number`   |
+| `Item.Bool`   | `boolean`  |
+| `Item.Date`   | `Date`     |
+| `Item.Object` | `object`   |
+| `Item.Array`  | `array`    |
+| `Item.Json`   | `any`      |
+| `Item.Map`    | `Map`      |
+| `Item.Set`    | `Set`      |
+| `Item.Luxon`  | `DateTime` |
 
 #### Static methods
 
-| Method      | Signature                                                          | Description                       |
-|-------------|--------------------------------------------------------------------|-----------------------------------|
-| `Item.bind` | `static bind(key, val): Map<key, val>`                             | Register a type resolver mapping. |
+| Method      | Signature                              | Description                       |
+| ----------- | -------------------------------------- | --------------------------------- |
+| `Item.bind` | `static bind(key, val): Map<key, val>` | Register a type resolver mapping. |
 
 #### Instance members
 
-| Member       | Signature                                   | Description                           |
-|--------------|---------------------------------------------|---------------------------------------|
-| `constructor`| `(data?, parent?)`                          | Create item with optional initial data and parent reference. |
-| `initialize` | `initialize(data?): this`                   | Populate item from a plain object.    |
-| `set`        | `set(data): this`                           | Merge data into the item.             |
-| `parent`     | `get parent(): P`                           | Parent reference (if any).            |
+| Member        | Signature                 | Description                                                  |
+| ------------- | ------------------------- | ------------------------------------------------------------ |
+| `constructor` | `(data?, parent?)`        | Create item with optional initial data and parent reference. |
+| `initialize`  | `initialize(data?): this` | Populate item from a plain object.                           |
+| `set`         | `set(data): this`         | Merge data into the item.                                    |
+| `parent`      | `get parent(): P`         | Parent reference (if any).                                   |
 
 ### `List<I, P>` — Multi-index collection
 
@@ -99,27 +103,27 @@ Abstract class for indexed collections with O(1) lookup.
 
 #### Abstract members (must be overridden)
 
-| Member   | Signature                       | Description                                  |
-|----------|---------------------------------|----------------------------------------------|
-| `_keys`  | `protected abstract get _keys()` | Index key paths, e.g. `[['id'], ['email']]`. |
-| `_Item`  | `protected get _Item()`          | Item constructor (or `null` if not used).    |
+| Member  | Signature                        | Description                                  |
+| ------- | -------------------------------- | -------------------------------------------- |
+| `_keys` | `protected abstract get _keys()` | Index key paths, e.g. `[['id'], ['email']]`. |
+| `_Item` | `protected get _Item()`          | Item constructor (or `null` if not used).    |
 
 #### Instance members
 
-| Member       | Signature                                             | Description                                      |
-|--------------|-------------------------------------------------------|--------------------------------------------------|
-| `constructor`| `(items?, parent?)`                                   | Create list with optional initial items.         |
-| `size`       | `get size(): number`                                  | Number of items in the list.                     |
-| `parent`     | `get parent(): P`                                     | Parent reference.                                |
-| `set`        | `set(...items): I[]`                                  | Add items (supports multiple args).              |
-| `find`       | `find(...keys): I \| undefined`                       | Lookup by indexed key(s).                        |
-| `get`        | `get(...keys): I[]`                                   | Lookup all matching items.                       |
-| `getBy`      | `getBy(criteria, one?): I[]`                          | Query by partial criteria.                       |
-| `has`        | `has(...keys): boolean`                               | Check if item(s) exist.                          |
-| `delete`     | `delete(...keys): boolean`                            | Remove by key(s).                                |
-| `clear`      | `clear(): void`                                       | Remove all items.                                |
-| `initialize` | `initialize(items?): void`                            | Initialise with items (replaces all).            |
-| `[Symbol.iterator]` | `*[Symbol.iterator](): Generator<I>`           | Iterable.                                        |
+| Member              | Signature                            | Description                              |
+| ------------------- | ------------------------------------ | ---------------------------------------- |
+| `constructor`       | `(items?, parent?)`                  | Create list with optional initial items. |
+| `size`              | `get size(): number`                 | Number of items in the list.             |
+| `parent`            | `get parent(): P`                    | Parent reference.                        |
+| `set`               | `set(...items): I[]`                 | Add items (supports multiple args).      |
+| `find`              | `find(...keys): I \| undefined`      | Lookup by indexed key(s).                |
+| `get`               | `get(...keys): I[]`                  | Lookup all matching items.               |
+| `getBy`             | `getBy(criteria, one?): I[]`         | Query by partial criteria.               |
+| `has`               | `has(...keys): boolean`              | Check if item(s) exist.                  |
+| `delete`            | `delete(...keys): boolean`           | Remove by key(s).                        |
+| `clear`             | `clear(): void`                      | Remove all items.                        |
+| `initialize`        | `initialize(items?): void`           | Initialise with items (replaces all).    |
+| `[Symbol.iterator]` | `*[Symbol.iterator](): Generator<I>` | Iterable.                                |
 
 ### `ObservableItem` — Observable item
 
@@ -129,10 +133,10 @@ import { ObservableItem } from '@biorate/collection';
 
 Extends `Item` with MobX observability.
 
-| Member       | Signature                                   | Description                            |
-|--------------|---------------------------------------------|----------------------------------------|
-| `subscribe`  | `subscribe(callback): this`                 | Subscribe to changes.                  |
-| `unsubscribe`| `unsubscribe(callback): this`               | Unsubscribe from changes.              |
+| Member        | Signature                     | Description               |
+| ------------- | ----------------------------- | ------------------------- |
+| `subscribe`   | `subscribe(callback): this`   | Subscribe to changes.     |
+| `unsubscribe` | `unsubscribe(callback): this` | Unsubscribe from changes. |
 
 ### `ObservableList` — Observable list
 
@@ -142,10 +146,10 @@ import { ObservableList } from '@biorate/collection';
 
 Extends `List` with MobX observability.
 
-| Member       | Signature                                   | Description                            |
-|--------------|---------------------------------------------|----------------------------------------|
-| `subscribe`  | `subscribe(callback): this`                 | Subscribe to changes.                  |
-| `unsubscribe`| `unsubscribe(callback): this`               | Unsubscribe from changes.              |
+| Member        | Signature                     | Description               |
+| ------------- | ----------------------------- | ------------------------- |
+| `subscribe`   | `subscribe(callback): this`   | Subscribe to changes.     |
+| `unsubscribe` | `unsubscribe(callback): this` | Unsubscribe from changes. |
 
 ### Decorators
 
@@ -153,14 +157,14 @@ Extends `List` with MobX observability.
 import { embed, observable, action, computed, singleton } from '@biorate/collection';
 ```
 
-| Decorator     | Target        | Description                                    |
-|---------------|---------------|------------------------------------------------|
-| `@embed(type)`| Property      | Declare a typed property (e.g. `@embed(Item.Int)`). |
-| `@observable()` | Property   | MobX `observable` wrapper.                    |
-| `@action()`   | Method        | MobX `action` wrapper.                        |
-| `@computed()` | Accessor      | MobX `computed` wrapper.                      |
-| `@singleton()`| Class         | Enforce single instance per class.            |
-| `@singletone()`| Class        | Deprecated alias for `@singleton`.            |
+| Decorator       | Target   | Description                                         |
+| --------------- | -------- | --------------------------------------------------- |
+| `@embed(type)`  | Property | Declare a typed property (e.g. `@embed(Item.Int)`). |
+| `@observable()` | Property | MobX `observable` wrapper.                          |
+| `@action()`     | Method   | MobX `action` wrapper.                              |
+| `@computed()`   | Accessor | MobX `computed` wrapper.                            |
+| `@singleton()`  | Class    | Enforce single instance per class.                  |
+| `@singletone()` | Class    | Deprecated alias for `@singleton`.                  |
 
 ### `ObservableTypes` — Enum
 
@@ -187,7 +191,7 @@ import { ICollection } from '@biorate/collection';
 ```ts
 namespace ICollection {
   namespace List {
-    type Keys = (string | symbol)[][];  // Array of key tuples for indexing
+    type Keys = (string | symbol)[][]; // Array of key tuples for indexing
   }
 }
 
@@ -283,3 +287,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/collection/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

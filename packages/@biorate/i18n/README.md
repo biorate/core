@@ -48,7 +48,7 @@ container.bind<Root>(Root).toSelf().inSingletonScope();
 (async () => {
   const root = container.get<Root>(Root);
   await root.$run();
-  console.log(t`Привет мир`);             // 'Привет мир!'
+  console.log(t`Привет мир`); // 'Привет мир!'
   console.log(t('Привет мир', { lng: 'en' })); // 'Hello world!'
 })();
 ```
@@ -63,13 +63,13 @@ import { I18n } from '@biorate/i18n';
 
 DI‑ready abstract class wrapping i18next.
 
-| Member        | Visibility    | Type / Signature                         | Description                          |
-|---------------|---------------|------------------------------------------|--------------------------------------|
-| `config`      | `protected`   | `IConfig`                                | Injected config service.             |
-| `options`     | `protected abstract` | `Record<string, unknown>`      | i18next init options (must override).|
-| `middlewares` | `protected get` | `(NewableModule \| Newable \| Module)[]` | i18next plugins (default: `[]`).      |
-| `initialize`  | `@init() protected` | `(): Promise<void>`           | Register middlewares, call `i18next.init()`. |
-| `languages`   | `public get`  | `string[]`                               | `options.supportedLngs` array.       |
+| Member        | Visibility           | Type / Signature                         | Description                                  |
+| ------------- | -------------------- | ---------------------------------------- | -------------------------------------------- |
+| `config`      | `protected`          | `IConfig`                                | Injected config service.                     |
+| `options`     | `protected abstract` | `Record<string, unknown>`                | i18next init options (must override).        |
+| `middlewares` | `protected get`      | `(NewableModule \| Newable \| Module)[]` | i18next plugins (default: `[]`).             |
+| `initialize`  | `@init() protected`  | `(): Promise<void>`                      | Register middlewares, call `i18next.init()`. |
+| `languages`   | `public get`         | `string[]`                               | `options.supportedLngs` array.               |
 
 ### `t` — Translation function
 
@@ -77,9 +77,9 @@ DI‑ready abstract class wrapping i18next.
 import { t } from '@biorate/i18n';
 ```
 
-| Export | Signature                                       | Description                              |
-|--------|-------------------------------------------------|------------------------------------------|
-| `t`    | `(key: any \| any[], options?: TOptionsBase)`   | Translate key (wraps `i18next.t`). Works as tagged template `t\`key\`` or function call. |
+| Export | Signature                                     | Description                                                                              |
+| ------ | --------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `t`    | `(key: any \| any[], options?: TOptionsBase)` | Translate key (wraps `i18next.t`). Works as tagged template `t\`key\`` or function call. |
 
 ### Re‑exports from `i18next`
 
@@ -102,7 +102,7 @@ class MyI18n extends I18n {
   protected options = { fallbackLng: 'en', lng: 'en' };
 
   protected get middlewares() {
-    return [MyCustomBackend];  // i18next BackendModule
+    return [MyCustomBackend]; // i18next BackendModule
   }
 }
 ```
@@ -141,3 +141,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/i18n/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

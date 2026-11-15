@@ -32,16 +32,18 @@ container.bind<MssqlConnector>(MssqlConnector).toSelf().inSingletonScope();
 container.bind<Root>(Root).toSelf().inSingletonScope();
 
 container.get<IConfig>(Types.Config).merge({
-  Mssql: [{
-    name: 'connection',
-    options: {
-      server: 'localhost',
-      user: 'sa',
-      password: 'admin_007',
-      database: 'master',
-      options: { trustServerCertificate: true },
+  Mssql: [
+    {
+      name: 'connection',
+      options: {
+        server: 'localhost',
+        user: 'sa',
+        password: 'admin_007',
+        database: 'master',
+        options: { trustServerCertificate: true },
+      },
     },
-  }],
+  ],
 });
 
 (async () => {
@@ -61,24 +63,24 @@ container.get<IConfig>(Types.Config).merge({
 
 ### `MssqlConnector`
 
-| Member           | Type                                      | Description                              |
-|------------------|-------------------------------------------|------------------------------------------|
-| `namespace`      | `'Mssql'`                                 | Config key for connection definitions.   |
-| `connect(config)` | `(config) => Promise<IMssqlConnection>`   | Creates `ConnectionPool` via `mssql.connect`. |
+| Member            | Type                                    | Description                                   |
+| ----------------- | --------------------------------------- | --------------------------------------------- |
+| `namespace`       | `'Mssql'`                               | Config key for connection definitions.        |
+| `connect(config)` | `(config) => Promise<IMssqlConnection>` | Creates `ConnectionPool` via `mssql.connect`. |
 
 ### Config
 
 ```ts
 interface IMssqlConfig extends IConnectorConfig {
-  options: config;  // mssql ConnectionPool config (server, user, password, database, etc.)
+  options: config; // mssql ConnectionPool config (server, user, password, database, etc.)
 }
 ```
 
 ### Errors
 
-| Error                        | Condition                                   |
-|------------------------------|---------------------------------------------|
-| `MssqlCantConnectError`      | `mssql.connect()` fails.                    |
+| Error                   | Condition                |
+| ----------------------- | ------------------------ |
+| `MssqlCantConnectError` | `mssql.connect()` fails. |
 
 ## Architecture
 
@@ -101,3 +103,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 ## License
 
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/mssql/LICENSE)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

@@ -43,21 +43,21 @@ setTimeout(() => loop.stop(), 5000);
 import { AsyncLoop } from '@biorate/async-loop';
 ```
 
-| Member      | Signature                                                      | Description                                        |
-|-------------|----------------------------------------------------------------|----------------------------------------------------|
-| `constructor` | `(process, error?, interval?)`                               | Start loop with callback, error handler, interval ms (default 1000). |
-| `pause`     | `pause(): void`                                               | Skip `process()` on next and subsequent iterations (loop continues). |
-| `resume`    | `resume(): void`                                              | Resume calling `process()` on next iteration.      |
-| `stop`      | `stop(): void`                                                | Break out of the infinite loop permanently.        |
-| `process`   | `protected async process(): Promise<void>`                    | Internal infinite loop — override in subclasses.   |
+| Member        | Signature                                  | Description                                                          |
+| ------------- | ------------------------------------------ | -------------------------------------------------------------------- |
+| `constructor` | `(process, error?, interval?)`             | Start loop with callback, error handler, interval ms (default 1000). |
+| `pause`       | `pause(): void`                            | Skip `process()` on next and subsequent iterations (loop continues). |
+| `resume`      | `resume(): void`                           | Resume calling `process()` on next iteration.                        |
+| `stop`        | `stop(): void`                             | Break out of the infinite loop permanently.                          |
+| `process`     | `protected async process(): Promise<void>` | Internal infinite loop — override in subclasses.                     |
 
 Constructor parameters:
 
-| Parameter  | Type                              | Default          | Description               |
-|------------|-----------------------------------|------------------|---------------------------|
-| `process`  | `() => Promise<void> \| void`     | required         | Main iteration callback.  |
+| Parameter  | Type                                     | Default         | Description                   |
+| ---------- | ---------------------------------------- | --------------- | ----------------------------- |
+| `process`  | `() => Promise<void> \| void`            | required        | Main iteration callback.      |
 | `error`    | `(...e: any[]) => Promise<void> \| void` | `console.error` | Called if `process()` throws. |
-| `interval` | `number`                          | `1000`           | Delay between iterations. |
+| `interval` | `number`                                 | `1000`          | Delay between iterations.     |
 
 ## Usage patterns
 
@@ -115,3 +115,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/async-loop/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.

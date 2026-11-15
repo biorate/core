@@ -8,7 +8,7 @@ IoC container and DI framework built on InversifyJS, extended with automatic lif
 - **`@inject()`** — lazy property injection (supports `.multi`, `.named`, `.tagged`).
 - **`Core()` mixin** — adds `$run()` lifecycle with logging.
 - **`container`** — global InversifyJS `Container` singleton.
-- **`Types.***` — shared symbolic type identifiers for cross‑package DI.
+- **`Types.\***` — shared symbolic type identifiers for cross‑package DI.
 - **`@init()` / `@kill()`** — lifecycle decorators re‑exported from `@biorate/lifecycled`.
 - **Async shutdown** — graceful process exit via `@biorate/shutdown-hook`.
 
@@ -31,7 +31,9 @@ class Logger {
     console.log('Logger ready');
   }
 
-  public log(msg: string) { console.log(msg); }
+  public log(msg: string) {
+    console.log(msg);
+  }
 }
 
 @injectable()
@@ -69,15 +71,19 @@ function Core<T extends new (...args: any[]) => any>(Class?: T): typeof Core;
 
 Creates an `@injectable()` class that extends `Class` (or an empty class) with:
 
-| Method         | Description                           |
-|----------------|---------------------------------------|
+| Method                  | Description                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------- |
 | `$run(root?, _parent?)` | Calls `lifecycled()` on the instance. `_parent` is used internally for recursion. |
-| _(none)_       | Kill phase runs automatically via `ShutdownHook` on process exit. |
+| _(none)_                | Kill phase runs automatically via `ShutdownHook` on process exit.                 |
 
 ```ts
-class MyApp extends Core() { /* … */ }
+class MyApp extends Core() {
+  /* … */
+}
 // or
-class MyApp extends Core(ExistingBase) { /* … */ }
+class MyApp extends Core(ExistingBase) {
+  /* … */
+}
 ```
 
 ### `@injectable()`
@@ -131,9 +137,9 @@ container.bind(Bar).to(BarImpl);
 
 ### Lifecycle decorators (re‑exported)
 
-| Decorator | Description            |
-|-----------|------------------------|
-| `@init()` | Marked method runs on `$run()`. |
+| Decorator | Description                                                |
+| --------- | ---------------------------------------------------------- |
+| `@init()` | Marked method runs on `$run()`.                            |
 | `@kill()` | Marked method runs on process shutdown via `ShutdownHook`. |
 
 ## Usage patterns
@@ -237,3 +243,9 @@ See the [CHANGELOG](https://github.com/biorate/core/blob/master/packages/%40bior
 [MIT](https://github.com/biorate/core/blob/master/packages/%40biorate/inversion/LICENSE)
 
 Copyright (c) 2021-present [Leonid Levkin (llevkin)](mailto:llevkin@yandex.ru)
+
+---
+
+[![Donate on Boosty](https://img.shields.io/badge/Boosty-donate-orange)](https://boosty.to/llevkin)
+
+Donations are voluntary and do not constitute consideration for any goods or services; they grant no rights to the code or priority in decision-making, and the project is provided AS IS under its license.
