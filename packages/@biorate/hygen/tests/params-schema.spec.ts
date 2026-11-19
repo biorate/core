@@ -101,7 +101,7 @@ describe('params-schema prompting', () => {
       { count: 2 },
     );
     expect((globalThis as { __asked?: string[] }).__asked).toEqual(['name']);
-    expect(values).toEqual({ name: 'widget', count: 2 });
+    expect(values).toEqual({ name: 'widget', NAME: 'widget', count: 2, COUNT: 2 });
   });
 
   it('uses the descriptor message and default as the question shape', async () => {
@@ -138,7 +138,7 @@ describe('params-schema prompting', () => {
       { name: 'title', type: 'string', required: true, default: 'untitled' },
     ];
     const values = await promptFromParams(schema, () => stubPrompter({}), {});
-    expect(values).toEqual({ title: 'untitled' });
+    expect(values).toEqual({ title: 'untitled', TITLE: 'untitled' });
   });
 
   it('required string/number questions carry an empty-value validator; confirm does not', async () => {
@@ -186,7 +186,7 @@ describe('params-schema prompting', () => {
     const values = await promptFromParams(schema, () => prompter, {});
     expect(calls).toBe(2);
     expect(askedNames).toEqual(['name', 'name']);
-    expect(values).toEqual({ name: 'widget' });
+    expect(values).toEqual({ name: 'widget', NAME: 'widget' });
   });
 
   it('a re-asked required question preserves message and default', async () => {
@@ -211,13 +211,31 @@ describe('params-schema prompting', () => {
     expect(shapes[0].message).toBe('Title?');
     expect(shapes[0].initial).toBe('untitled');
     expect(shapes[0].validate('  ')).toBe('Field "title" is required');
-    expect(values).toEqual({ title: 'untitled' });
+    expect(values).toEqual({ title: 'untitled', TITLE: 'untitled' });
   });
 
   it('an empty confirm answer on a required boolean resolves to false', async () => {
     const schema: ParamDescriptor[] = [{ name: 'dry', type: 'boolean', required: true }];
     const values = await promptFromParams(schema, () => stubPrompter({}), {});
-    expect(values).toEqual({ dry: false });
+    expect(values).toEqual({ dry: false, DRY: false });
+  });
+
+  it('a descriptor resolves its value under the upper-underscore alias of its name', async () => {
+    const schema: ParamDescriptor[] = [
+      { name: 'root', type: 'string', required: true },
+      { name: 'app-name', type: 'string' },
+    ];
+    // args as they arrive from the parse phase under `argCase: 'upper-underscore'`
+    const values = await promptFromParams(schema, () => stubPrompter({}), {
+      ROOT: '/srv',
+      APP_NAME: 'demo',
+    });
+    expect(values).toEqual({
+      root: '/srv',
+      ROOT: '/srv',
+      'app-name': 'demo',
+      APP_NAME: 'demo',
+    });
   });
 });
 

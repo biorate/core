@@ -356,6 +356,13 @@ the re-asked question keeps its `message` and `default`. A required `boolean` is
 re-asked — the answered or default value is accepted as-is (an empty confirm answer
 resolves to `false`). Non-required parameters accept empty values unchanged.
 
+**Interaction with `argCase`.** Under `argCase: 'upper-underscore'` flag keys arrive
+normalized (`--root /x` becomes `ROOT`), so the schema resolves each descriptor's
+value under the normalized alias of its name too — declare the parameter as `root`
+and the supplied flag is found. The resolved value is exposed to templates and hooks
+under both the declared name and the normalized alias (`root` and `ROOT`), whichever
+path (flag or prompt) supplied it.
+
 `type` accepts `'string'` (default), `'number'`, `'boolean'` — or a **function** whose
 return value becomes the parameter value (a thrown error surfaces under the parameter
 name). An unknown string type fails when the hooks are loaded, so a schema mistake never

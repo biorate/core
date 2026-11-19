@@ -1,5 +1,6 @@
 import type { ParamDescriptor, ParamsSchema, Prompter } from '../types';
 import { coerceParam, isEmptyValue, promptTypeOf, validateParams } from './registry';
+import { normalizeFlagKey } from '../params';
 
 /** @description A minimal schema question rendered by any prompter. */
 interface ParamQuestion {
@@ -30,9 +31,16 @@ export const promptFromParams = async <Q, T>(
   const questions: ParamQuestion[] = [];
 
   for (const descriptor of schema as ParamDescriptor[]) {
-    const raw = args[descriptor.name];
+    // Under `argCase: 'upper-underscore'` flag keys arrive normalized (e.g.
+    // `ROOT`), so a descriptor also resolves its value under the normalized
+    // alias of its name; the value is recorded under both keys so templates
+    // and hooks see it the same way whether it came from a flag or a prompt.
+    const alias = normalizeFlagKey(descriptor.name);
+    const raw =
+      args[descriptor.name] ?? (alias !== descriptor.name ? args[alias] : undefined);
     if (raw !== undefined) {
       values[descriptor.name] = coerceParam(descriptor, raw);
+      if (alias !== descriptor.name) values[alias] = values[descriptor.name];
       continue;
     }
     if (!descriptor.required) continue;
@@ -61,12 +69,17 @@ export const promptFromParams = async <Q, T>(
       const answered = answerMap[question.name];
       // An empty confirm answer resolves to `false` (enquirer's Enter default);
       // other types fall back to the question's initial (default) value.
-      values[question.name] =
+      const resolved =
         answered !== undefined
           ? answered
           : question.type === 'confirm'
           ? false
           : question.initial;
+      values[question.name] = resolved;
+      // Mirror the answered value under the normalized alias so template
+      // locals match the flag-supplied shape under `upper-underscore`.
+      const alias = normalizeFlagKey(question.name);
+      if (alias !== question.name) values[alias] = resolved;
     }
   }
 

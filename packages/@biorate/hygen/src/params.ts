@@ -92,6 +92,16 @@ const resolvePositionals = async (templates: string, args: string[]) => {
  * @param externalArgv - The CLI-style argument array.
  * @returns The resolved run parameters (base args + expansion lists).
  * */
+/**
+ * @description Normalizes a CLI flag key under the `upper-underscore` argCase:
+ * camelCase and kebab-case become `UPPER_UNDERSCORE`. Shared with the params
+ * schema so descriptors resolve their values under the normalized alias too. */
+export const normalizeFlagKey = (key: string): string =>
+  key
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replace(/[-\s]+/g, '_')
+    .toUpperCase();
+
 const params = async (
   { templates, legacyNameFlag, argCase: argCaseOption }: RunnerConfig,
   externalArgv: string[],
@@ -102,11 +112,7 @@ const params = async (
   // Flag-key normalization, applied once right after parsing so every consumer
   // (prompt phase, engine, template locals) sees the same keys. Reserved keys and
   // the removed-flag 'name' are never normalized.
-  const normalizeKey = (key: string) =>
-    key
-      .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
-      .replace(/[-\s]+/g, '_')
-      .toUpperCase();
+  const normalizeKey = normalizeFlagKey;
   const RESERVED_KEYS = new Set(['name', 'generator', 'action', 'ts']);
   const argCase = argCaseOption ?? 'keep';
   if (argCase === 'upper-underscore') {
