@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.9.0...%40biorate%2Fhygen%400.9.1) (2026-11-19)
+
+### Bug Fixes
+
+- **hygen:** resolve params-schema descriptors under argCase-normalized flag keys ([96aad7f](https://github.com/biorate/core/commit/96aad7f963c8da549e60941815d1ea88ac484e99))
+
 # [0.9.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.8.1...%40biorate%2Fhygen%400.9.0) (2026-11-19)
 
 ### Features
