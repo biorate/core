@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">extensibility | @biorate/hygen</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://biorate.github.io/core/hygen/docs/extensibility"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="extensibility | @biorate/hygen"><meta data-rh="true" name="description" content="Part of @biorate/hygen — a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork&#x27;s semantics; see Differences from upstream."><meta data-rh="true" property="og:description" content="Part of @biorate/hygen — a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork&#x27;s semantics; see Differences from upstream."><link data-rh="true" rel="canonical" href="https://biorate.github.io/core/hygen/docs/extensibility"><link data-rh="true" rel="alternate" href="https://biorate.github.io/core/hygen/docs/extensibility" hreflang="en"><link data-rh="true" rel="alternate" href="https://biorate.github.io/core/hygen/docs/extensibility" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"extensibility","item":"https://biorate.github.io/core/hygen/docs/extensibility"}]}</script><link rel="icon" href="img/favicon.png"><link rel="stylesheet" href="/core/hygen/assets/css/styles.2c45f5f4.css">
-<script src="/core/hygen/assets/js/runtime~main.c49aec07.js" defer="defer"></script>
+<script src="/core/hygen/assets/js/runtime~main.fe3b1079.js" defer="defer"></script>
 <script src="/core/hygen/assets/js/main.668f30ca.js" defer="defer"></script>
 </head>
 <body>
@@ -55,13 +55,18 @@ with <code>npm i -D ts-node</code> if it is not already a dependency).</p>
 <p>The resolved file&#x27;s export is normalized as follows:</p>
 <ol>
 <li class=""><strong>Named exports take priority.</strong> <code>export const templates = &#x27;_templates&#x27;</code> merges as
-today. If a file mixes named fields and a default export, the named fields win.</li>
+today. If a file mixes named fields and a default export, the named fields win.
+Module-interop keys emitted by transpilers (<code>__esModule</code>) are never treated as named
+exports — a default export is still resolved when only the interop key accompanies it.</li>
 <li class=""><strong><code>export default { ... }</code></strong> — a plain object is used as-is.</li>
 <li class=""><strong><code>export default class Config { ... }</code></strong> — the class is instantiated with <strong>no
 constructor arguments</strong>. A class extending the exported <a href="#the-hygenconfig-base-class" class=""><code>HygenConfig</code></a>
 base class is resolved through the base class conversion (fields plus bound
-prototype hook methods and the configured <code>helpers</code> member). Any other class is
-resolved to the instance&#x27;s <strong>own enumerable properties</strong> — prototype methods and
+prototype hook methods and the configured <code>helpers</code> member). The base class is
+detected structurally — by the presence of a <code>toRunnerConfig()</code> method — not with
+<code>instanceof</code>, so the config still resolves correctly when the project imports a
+different copy of <code>@biorate/hygen</code> than the one the running CLI uses. Any other class
+is resolved to the instance&#x27;s <strong>own enumerable properties</strong> — prototype methods and
 getters are not read, and class methods never become helpers. A constructor that
 requires arguments (or throws) fails the run with a standardized error naming the
 config file.</li>
@@ -90,6 +95,10 @@ from the package: state lives in constructor-initialized fields and lifecycle ho
 <li class=""><strong>Constructor defaults.</strong> <code>super()</code> initializes <code>templates</code>, <code>localsDefaults</code> and
 <code>helpers</code> as <code>undefined</code> and <code>argCase</code> as <code>&#x27;keep&#x27;</code> — override them in the subclass
 constructor or as fields.</li>
+<li class=""><strong>The <code>templates</code> field is cwd-relative.</strong> A relative <code>templates</code> value from the
+project config is resolved against the run&#x27;s <code>cwd</code> (the same way the default
+<code>_templates</code> folder is), so <code>this.templates = &#x27;_tpl&#x27;</code> points at <code>&lt;cwd&gt;/_tpl</code>.
+Absolute paths and non-existent values are kept as-is.</li>
 <li class=""><strong>Three <code>helpers</code> forms.</strong> Own property map, getter, or factory method — all resolve.
 An own property shadows a prototype method (standard TypeScript semantics); use one
 form per class.</li>
