@@ -42,6 +42,8 @@ jobs:
           pnpm run import-test:cjs
           pnpm run import-test:esm
       - name: Publish
-        run: >-
-          npx lerna publish from-package --yes --loglevel verbose
-          ${{ inputs.provenance && '' || '--no-provenance' }}
+        run: npx lerna publish from-package --yes --loglevel verbose
+        env:
+          # lerna >=10 hardcodes provenance for public repos (no CLI flag);
+          # patched via pnpm patch to respect this switch (npm tlog 409 workaround)
+          LERNA_NO_PROVENANCE: ${{ !inputs.provenance && 'true' || 'false' }}

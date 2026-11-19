@@ -37,6 +37,11 @@ overrides:
   '@opentelemetry/instrumentation-tedious@<0.40.0': '>=0.40.0'
   '@opentelemetry/instrumentation-cassandra-driver@<0.66.0': '>=0.66.0'
 
+patchedDependencies:
+  lerna@10.0.1:
+    hash: 8107c2eda9d8eda698e641e8ce8d31345d988ca916b695c2f05eea61683a712d
+    path: patches/lerna@10.0.1.patch
+
 importers:
 
   .:
@@ -157,7 +162,7 @@ importers:
         version: 27.4.6
       lerna:
         specifier: 10.0.1
-        version: 10.0.1(@types/node@24.10.12)(typescript@5.5.4)
+        version: 10.0.1(patch_hash=8107c2eda9d8eda698e641e8ce8d31345d988ca916b695c2f05eea61683a712d)(@types/node@24.10.12)(typescript@5.5.4)
       less:
         specifier: 4.1.1
         version: 4.1.1
@@ -18045,7 +18050,7 @@ snapshots:
 
   lazy-cache@1.0.4: {}
 
-  lerna@10.0.1(@types/node@24.10.12)(typescript@5.5.4):
+  lerna@10.0.1(patch_hash=8107c2eda9d8eda698e641e8ce8d31345d988ca916b695c2f05eea61683a712d)(@types/node@24.10.12)(typescript@5.5.4):
     dependencies:
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2

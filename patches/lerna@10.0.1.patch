@@ -1,0 +1,13 @@
+diff --git a/dist/chunk-WC2B4V4E.js b/dist/chunk-WC2B4V4E.js
+index be3166d89a2c6707626b70adaa5f68735311c585..54fe42cee34ef9f3c3afa43b4a742d045e72b837 100644
+--- a/dist/chunk-WC2B4V4E.js
++++ b/dist/chunk-WC2B4V4E.js
+@@ -6022,7 +6022,7 @@ async function oidc({ packageName, registry, opts, config }) {
+           const visibility = await libaccess.getVisibility(packageName, opts);
+           if (visibility?.public) {
+             npmlog_default.verbose("oidc", `Enabling provenance`);
+-            opts.provenance = true;
++            if (process.env["LERNA_NO_PROVENANCE"] !== "true") opts.provenance = true;
+             config["set"]("provenance", true, "user");
+           }
+         }
