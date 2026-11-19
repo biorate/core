@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.8.0...%40biorate%2Fhygen%400.8.1) (2026-11-19)
+
+### Bug Fixes
+
+- **hygen:** robust project config resolution and cwd-relative templates ([ea00ba9](https://github.com/biorate/core/commit/ea00ba968caeedbe57db384273971d52b1370632))
+
 # [0.8.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.6.0...%40biorate%2Fhygen%400.8.0) (2026-11-19)
 
 ### Features
