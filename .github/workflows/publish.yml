@@ -2,6 +2,11 @@ name: publish
 
 on:
   workflow_dispatch:
+    inputs:
+      provenance:
+        description: 'Publish with provenance (disable while npm tlog 409 bug persists)'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -37,4 +42,6 @@ jobs:
           pnpm run import-test:cjs
           pnpm run import-test:esm
       - name: Publish
-        run: npx lerna publish from-package --yes --loglevel verbose
+        run: >-
+          npx lerna publish from-package --yes --loglevel verbose
+          ${{ inputs.provenance && '' || '--no-provenance' }}
