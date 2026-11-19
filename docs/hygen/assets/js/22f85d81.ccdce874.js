@@ -486,7 +486,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  'export default class Config {\n  helpers = this.#build();\n  #build() {\n    return {/* expensive helper setup */};\n  }\n}\n',
+                  'export default class Config {\n  helpers = this.#build();\n  #build() {\n    return {\n      /* expensive helper setup */\n    };\n  }\n}\n',
               }),
             }),
             '\n',
@@ -709,7 +709,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-javascript',
                 children:
-                  "// .hygen.js\nmodule.exports = {\n  helpers: {/* ... */},\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
+                  "// .hygen.js\nmodule.exports = {\n  helpers: {\n    /* ... */\n  },\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
               }),
             }),
             '\n',
@@ -1341,6 +1341,31 @@
             '\n',
             (0, i.jsxs)(n.p, {
               children: [
+                (0, i.jsxs)(n.strong, {
+                  children: [
+                    'Interaction with ',
+                    (0, i.jsx)(n.code, { children: 'argCase' }),
+                    '.',
+                  ],
+                }),
+                ' Under ',
+                (0, i.jsx)(n.code, { children: "argCase: 'upper-underscore'" }),
+                ' flag keys arrive\nnormalized (',
+                (0, i.jsx)(n.code, { children: '--root /x' }),
+                ' becomes ',
+                (0, i.jsx)(n.code, { children: 'ROOT' }),
+                "), so the schema resolves each descriptor's\nvalue under the normalized alias of its name too \u2014 declare the parameter as ",
+                (0, i.jsx)(n.code, { children: 'root' }),
+                '\nand the supplied flag is found. The resolved value is exposed to templates and hooks\nunder both the declared name and the normalized alias (',
+                (0, i.jsx)(n.code, { children: 'root' }),
+                ' and ',
+                (0, i.jsx)(n.code, { children: 'ROOT' }),
+                '), whichever\npath (flag or prompt) supplied it.',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
                 (0, i.jsx)(n.code, { children: 'type' }),
                 ' accepts ',
                 (0, i.jsx)(n.code, { children: "'string'" }),
@@ -1857,7 +1882,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({}) as T,\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
+                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({} as T),\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
               }),
             }),
             '\n',
