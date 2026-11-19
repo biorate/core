@@ -83,12 +83,23 @@ describe('HygenConfig base class', () => {
 });
 
 describe('base-class project config end-to-end', () => {
-  const runInTemp = async (configBody: string, args: string[]) => {
+  const runInTemp = async (
+    configBody: string,
+    args: string[],
+    templatesDir = '_templates',
+    renderBody?: string,
+  ) => {
     const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'hygen-config-base-'));
     await fs.copy(
       path.join(__dirname, 'fixtures', 'config-class', '_templates'),
-      path.join(dir, '_templates'),
+      path.join(dir, templatesDir),
     );
+    if (renderBody) {
+      await fs.writeFile(
+        path.join(dir, templatesDir, 'klass', 'new', '01-render.ejs.t'),
+        renderBody,
+      );
+    }
     await fs.writeFile(path.join(dir, '.hygen.ts'), configBody);
     const logs: string[] = [];
     const config: RunnerConfig = {
@@ -149,6 +160,74 @@ export default Config;
     );
     expect(result.success).toBe(true);
     expect(logs.join('\n')).toContain("unknown project config property 'bogus'");
+  });
+
+  it('fires the full hook lifecycle in order and passes action results to afterEach/afterAll', async () => {
+    const { dir, logs, result } = await runInTemp(
+      `import { HygenConfig } from '${path
+        .join(__dirname, '..', 'src')
+        .replace(/\\\\/g, '/')}';
+export default class Config extends HygenConfig {
+  helpers() {
+    return { fromClass: (s: string) => \`ok:\${s}\` };
+  }
+  beforeAll(ctx: { logger: { log: (m: string) => void } }) {
+    ctx.logger.log('H:beforeAll');
+  }
+  beforeEach(ctx: { logger: { log: (m: string) => void } }) {
+    ctx.logger.log('H:beforeEach');
+  }
+  afterEach(ctx: { logger: { log: (m: string) => void } }, results: unknown[]) {
+    ctx.logger.log(\`H:afterEach:\${results.length}\`);
+  }
+  afterAll(ctx: { logger: { log: (m: string) => void } }, results: unknown[]) {
+    ctx.logger.log(\`H:afterAll:\${results.length}\`);
+  }
+}
+`,
+      ['klass', 'new', 'value'],
+    );
+    expect(result.success).toBe(true);
+    const joined = logs.join('\n');
+    const order = ['H:beforeAll', 'H:beforeEach', 'H:afterEach:', 'H:afterAll:'].map(
+      (m) => joined.indexOf(m),
+    );
+    order.forEach((i) => expect(i).toBeGreaterThanOrEqual(0));
+    expect([...order]).toEqual([...order].sort((a, b) => a - b));
+    // afterEach/afterAll receive the pair's action results.
+    expect(joined).toMatch(/H:afterEach:[1-9]/);
+    expect(joined).toMatch(/H:afterAll:[1-9]/);
+    // helpers from the factory method render in the template.
+    const content = (await fs.readFile(path.join(dir, 'klass', 'result.txt'))).toString();
+    expect(content).toContain('ok:value');
+  });
+
+  it('honors the templates field and merges localsDefaults into the render', async () => {
+    const { dir, result } = await runInTemp(
+      `import { HygenConfig } from '${path
+        .join(__dirname, '..', 'src')
+        .replace(/\\\\/g, '/')}';
+export default class Config extends HygenConfig {
+  constructor() {
+    super();
+    this.templates = '_tpl';
+    this.localsDefaults = { greeting: 'from-defaults' };
+  }
+}
+`,
+      ['klass', 'new', 'value'],
+      '_tpl',
+      // Replace the fixture template (it needs a helper) with one that renders
+      // the localsDefaults-provided local directly.
+      `---
+to: klass/result.txt
+---
+<%= greeting %>
+`,
+    );
+    expect(result.success).toBe(true);
+    const content = (await fs.readFile(path.join(dir, 'klass', 'result.txt'))).toString();
+    expect(content).toContain('from-defaults');
   });
 });
 

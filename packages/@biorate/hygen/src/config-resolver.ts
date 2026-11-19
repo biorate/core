@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
 import type { Logger, RunnerConfig } from './types';
-import { HygenConfig } from './hygen-config';
 import { ConfigResolver } from './config';
 import { ConfigClassError, ConfigTsNodeError } from './errors';
 import registerTsNode from './ts-node-register';
@@ -28,6 +27,11 @@ const configResolver = new ConfigResolver(CONFIG_FILES, {
 const PROJECT_CONFIG_KEYS = ['templates', 'argCase', 'helpers', 'hooks'];
 
 /**
+ * @description Module keys produced by TypeScript/CJS interop that carry no
+ * configuration meaning and must not be mistaken for named exports. */
+const INTEROP_KEYS = ['__esModule'];
+
+/**
  * @description Normalizes a loaded configuration module into a plain config
  * object. Named exports take priority; otherwise the default export applies —
  * a plain object as-is, or a class instantiated with no arguments. A class
@@ -41,7 +45,9 @@ const normalizeProjectConfig = (
   file: string,
   logger: Logger,
 ): Record<string, unknown> => {
-  const named = Object.keys(mod).filter((key) => key !== 'default');
+  const named = Object.keys(mod).filter(
+    (key) => key !== 'default' && !INTEROP_KEYS.includes(key),
+  );
   if (named.length > 0) {
     return Object.fromEntries(named.map((key) => [key, mod[key]]));
   }
@@ -63,8 +69,13 @@ const normalizeProjectConfig = (
   }
   // Base-class configs own their conversion: prototype hook methods and the
   // configured helpers member participate; extra fields stay class-internal.
-  if (instance instanceof HygenConfig) {
-    return instance.toRunnerConfig() as Record<string, unknown>;
+  // Duck-typed on `toRunnerConfig` (not `instanceof`): a project may resolve a
+  // different copy of `@biorate/hygen` than the running CLI, which would make
+  // an instanceof check falsely fall into the legacy own-props branch.
+  if (typeof (instance as { toRunnerConfig?: unknown }).toRunnerConfig === 'function') {
+    return (
+      instance as { toRunnerConfig: () => Record<string, unknown> }
+    ).toRunnerConfig() as Record<string, unknown>;
   }
   const own = Object.keys(instance);
   for (const key of own) {
@@ -110,13 +121,28 @@ export default async (config: RunnerConfig): Promise<RunnerConfig> => {
 
   const resolvedTemplates = resolve(cwd, defaultTemplates, templatesOverride);
 
+  const project = normalizeProjectConfig(
+    (await configResolver.resolve(cwd)) as Record<string, unknown>,
+    resolvedConfigFile ?? path.join(cwd, CONFIG_FILES[0]),
+    config.logger,
+  );
+  // A project-config `templates` field is cwd-relative (like the default
+  // `_templates` folder); non-existent values (e.g. named-export markers in
+  // tests) are kept as-is.
+  if (
+    typeof project.templates === 'string' &&
+    project.templates !== '' &&
+    !path.isAbsolute(project.templates)
+  ) {
+    const resolved = path.resolve(cwd, project.templates);
+    if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) {
+      project.templates = resolved;
+    }
+  }
+
   return {
     ...config,
     templates: resolvedTemplates,
-    ...normalizeProjectConfig(
-      (await configResolver.resolve(cwd)) as Record<string, unknown>,
-      resolvedConfigFile ?? path.join(cwd, CONFIG_FILES[0]),
-      config.logger,
-    ),
+    ...project,
   };
 };

@@ -62,12 +62,17 @@ The resolved file's export is normalized as follows:
 
 1. **Named exports take priority.** `export const templates = '_templates'` merges as
    today. If a file mixes named fields and a default export, the named fields win.
+   Module-interop keys emitted by transpilers (`__esModule`) are never treated as named
+   exports — a default export is still resolved when only the interop key accompanies it.
 2. **`export default { ... }`** — a plain object is used as-is.
 3. **`export default class Config { ... }`** — the class is instantiated with **no
    constructor arguments**. A class extending the exported [`HygenConfig`](#the-hygenconfig-base-class)
    base class is resolved through the base class conversion (fields plus bound
-   prototype hook methods and the configured `helpers` member). Any other class is
-   resolved to the instance's **own enumerable properties** — prototype methods and
+   prototype hook methods and the configured `helpers` member). The base class is
+   detected structurally — by the presence of a `toRunnerConfig()` method — not with
+   `instanceof`, so the config still resolves correctly when the project imports a
+   different copy of `@biorate/hygen` than the one the running CLI uses. Any other class
+   is resolved to the instance's **own enumerable properties** — prototype methods and
    getters are not read, and class methods never become helpers. A constructor that
    requires arguments (or throws) fails the run with a standardized error naming the
    config file.
@@ -172,6 +177,10 @@ Notes:
 - **Constructor defaults.** `super()` initializes `templates`, `localsDefaults` and
   `helpers` as `undefined` and `argCase` as `'keep'` — override them in the subclass
   constructor or as fields.
+- **The `templates` field is cwd-relative.** A relative `templates` value from the
+  project config is resolved against the run's `cwd` (the same way the default
+  `_templates` folder is), so `this.templates = '_tpl'` points at `<cwd>/_tpl`.
+  Absolute paths and non-existent values are kept as-is.
 - **Three `helpers` forms.** Own property map, getter, or factory method — all resolve.
   An own property shadows a prototype method (standard TypeScript semantics); use one
   form per class.

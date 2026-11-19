@@ -90,6 +90,18 @@ describe('resolve', () => {
     expect(tsNodeState.registered).toBe(true);
     expect(result.templates).toBe('from-ts');
   });
+
+  it('resolves a project-config templates field relative to cwd when it exists', async () => {
+    const result = await templateResolver(
+      templateParams({
+        cwd: path.join(__dirname, 'fixtures/config-templates-dir'),
+        templates: '2',
+      }),
+    );
+    expect(result.templates).toBe(
+      path.join(__dirname, 'fixtures/config-templates-dir', 'custom-tpl'),
+    );
+  });
 });
 
 describe('project config export normalization', () => {
@@ -104,6 +116,48 @@ describe('project config export normalization', () => {
     expect(
       normalize({ default: { templates: 'from-default' }, templates: 'named' }),
     ).toEqual({ templates: 'named' });
+    expect(logger.warn).not.toHaveBeenCalled();
+  });
+
+  // Regression: ts-node/TS-interop emits an enumerable `__esModule` key on the
+  // compiled module; it must not be mistaken for a named export, or the
+  // default-exported class config is silently dropped (hygen 0.8.0 bug).
+  it('ignores the interop __esModule key and still resolves the default export', () => {
+    class Config {
+      templates = 'from-class';
+      helpers = { up: (s: string) => s.toUpperCase() };
+    }
+    expect(normalize({ __esModule: true, default: Config })).toEqual({
+      templates: 'from-class',
+      helpers: { up: expect.any(Function) },
+    });
+    expect(logger.warn).not.toHaveBeenCalled();
+  });
+
+  it('named exports still win when present alongside the interop key', () => {
+    expect(
+      normalize({
+        __esModule: true,
+        default: { templates: 'from-default' },
+        templates: 'named',
+      }),
+    ).toEqual({ templates: 'named' });
+    expect(logger.warn).not.toHaveBeenCalled();
+  });
+
+  it('resolves a base-class-like instance via toRunnerConfig without instanceof', () => {
+    // A project may import `HygenConfig` from a different copy of the package
+    // than the running CLI; the check must be duck-typed, not instanceof.
+    class ForeignBase {
+      toRunnerConfig() {
+        return { templates: 'duck', argCase: 'keep' as const };
+      }
+    }
+    class Config extends ForeignBase {}
+    expect(normalize({ __esModule: true, default: Config })).toEqual({
+      templates: 'duck',
+      argCase: 'keep',
+    });
     expect(logger.warn).not.toHaveBeenCalled();
   });
 
