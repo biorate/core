@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import path from 'path';
-import templateResolver from '../src/config-resolver';
+import templateResolver, { normalizeProjectConfig } from '../src/config-resolver';
 import Logger from '../src/logger';
 
 const tsNodeState = vi.hoisted(() => ({ registered: false }));
@@ -89,5 +89,74 @@ describe('resolve', () => {
     );
     expect(tsNodeState.registered).toBe(true);
     expect(result.templates).toBe('from-ts');
+  });
+});
+
+describe('project config export normalization', () => {
+  const logger = { warn: vi.fn() } as unknown as Logger;
+  const file = path.join('project', '.hygen.ts');
+  const normalize = (mod: Record<string, unknown>) =>
+    normalizeProjectConfig(mod, file, logger);
+
+  beforeEach(() => vi.clearAllMocks());
+
+  it('prefers named exports over a default export', () => {
+    expect(
+      normalize({ default: { templates: 'from-default' }, templates: 'named' }),
+    ).toEqual({ templates: 'named' });
+    expect(logger.warn).not.toHaveBeenCalled();
+  });
+
+  it('resolves a default-exported plain object as-is', () => {
+    const cfg = { templates: 'from-default', hooks: {} };
+    expect(normalize({ default: cfg })).toEqual(cfg);
+    expect(logger.warn).not.toHaveBeenCalled();
+  });
+
+  it('resolves a default-exported class to the instance own enumerable properties', () => {
+    class Config {
+      templates = 'from-class';
+      helpers = { up: (s: string) => s.toUpperCase() };
+      method() {
+        return 'not-a-helper';
+      }
+      get protoGetter() {
+        return 'not-read';
+      }
+    }
+    const cfg = normalize({ default: Config });
+    expect(cfg).toEqual({
+      templates: 'from-class',
+      helpers: { up: expect.any(Function) },
+    });
+    expect(cfg.helpers).not.toHaveProperty('protoGetter');
+    expect(logger.warn).not.toHaveBeenCalled();
+  });
+
+  it('warns and ignores unknown own properties on a class-resolved config', () => {
+    class Config {
+      templates = 'from-class';
+      bogus = 1;
+    }
+    expect(normalize({ default: Config })).toEqual({ templates: 'from-class' });
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.stringContaining("unknown project config property 'bogus'"),
+    );
+  });
+
+  it('throws the standardized error when the class cannot be instantiated', () => {
+    class Config {
+      constructor(required: string) {
+        if (!required) throw new Error('required');
+      }
+    }
+    expect(() => normalize({ default: Config })).toThrow(/could not be instantiated/);
+  });
+
+  it('warns and ignores unsupported default export types', () => {
+    expect(normalize({ default: 'nope' })).toEqual({});
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.stringContaining('unsupported default export'),
+    );
   });
 });

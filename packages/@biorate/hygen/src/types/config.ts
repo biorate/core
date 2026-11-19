@@ -4,6 +4,16 @@ import type { Prompter } from './prompter';
 import type { ProjectHooks } from './hooks';
 
 /**
+ * @description The shape a project configuration file (`.hygen.*`) may declare.
+ * Compile-time contract only: used to type object or class configs
+ * (`export default class Config implements ProjectConfig`); the runtime merge
+ * does not depend on it. Intentionally narrower than `RunnerConfig` —
+ * transport concerns (`logger`, `exec`, `createPrompter`) stay programmatic.
+ * */
+export interface ProjectConfig
+  extends Pick<RunnerConfig, 'templates' | 'argCase' | 'helpers' | 'hooks'> {}
+
+/**
  * @description The configuration object that drives `runner()`. It wires the
  * engine to concrete filesystem, logger and prompt implementations so the
  * library stays transport-agnostic. */

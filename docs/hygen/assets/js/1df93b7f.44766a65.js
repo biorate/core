@@ -3,7 +3,7 @@
   [583],
   {
     1010(e, n, t) {
-      t.r(n), t.d(n, { default: () => D });
+      t.r(n), t.d(n, { default: () => G });
       t(2503);
       var s = t(1953),
         i = t(4740),
@@ -33,8 +33,8 @@
         k = 'supportCard_XY4F',
         N = 'note_q9Cc';
       var w = t(159),
-        _ = 'https://github.com/jondot/hygen',
-        A = [
+        A = 'https://github.com/jondot/hygen',
+        _ = [
           {
             title: 'Glob batch actions',
             href: '/docs/glob-batch',
@@ -56,7 +56,7 @@
             body: 'Run `hygen` with no arguments and pick a generator then an action from a two-level terminal picker; forced off in non-TTY environments.',
           },
         ],
-        S = [
+        C = [
           'Identity escaping \u2014 `<%= %>` does not HTML-escape (the EJS `escape` option is the identity), because the tool generates code, not HTML.',
           '`--version` flag \u2014 `hygen --version` / `hygen -v` prints `Hygen v<version>` and exits.',
           'Anchor-not-found error \u2014 a missing `inject` anchor fails with `InjectionAnchorNotFoundError` instead of silently no-oping.',
@@ -67,7 +67,7 @@
           'Error classes \u2014 `BaseError`-derived classes (`src/errors.ts`) instead of raw `Error`.',
           'Strict TypeScript / Vitest \u2014 authored in strict TypeScript, tests migrated to Vitest.',
         ];
-      function E() {
+      function S() {
         return (0, w.jsx)('header', {
           className: c,
           children: (0, w.jsxs)('div', {
@@ -85,7 +85,7 @@
                 children: [
                   'The scalable code generator that lives in your project \u2014 a fork of',
                   ' ',
-                  (0, w.jsx)('a', { href: _, children: 'jondot/hygen' }),
+                  (0, w.jsx)('a', { href: A, children: 'jondot/hygen' }),
                   ' (v6.2.11, MIT) adapted to the @biorate/* monorepo conventions.',
                 ],
               }),
@@ -108,7 +108,7 @@
           }),
         });
       }
-      function I() {
+      function E() {
         return (0, w.jsxs)('section', {
           className: m,
           children: [
@@ -183,17 +183,31 @@
                 }),
               ],
             }),
+            (0, w.jsxs)('div', {
+              className: x,
+              children: [
+                (0, w.jsx)('h3', {
+                  children:
+                    'Class-based project config \u2014 one typed class per project',
+                }),
+                (0, w.jsx)(a.A, {
+                  language: 'typescript',
+                  children:
+                    "// .hygen.ts\nimport type { ProjectConfig } from '@biorate/hygen';\n\nexport default class Config implements ProjectConfig {\n  templates = '_templates';\n  helpers = {\n    slug: (s) => s.toLowerCase().replace(/\\s+/g, '-'),\n  };\n  hooks = {\n    async beforeAll(ctx) { ctx.logger.log('run starting'); },\n  };\n}",
+                }),
+              ],
+            }),
           ],
         });
       }
-      function C() {
+      function I() {
         return (0, w.jsxs)('section', {
           className: m,
           children: [
             (0, w.jsx)('h2', { className: g, children: 'Fork features' }),
             (0, w.jsx)('div', {
               className: j,
-              children: A.map(function (e) {
+              children: _.map(function (e) {
                 return (0,
                 w.jsxs)('div', { className: f, children: [(0, w.jsx)('h3', { children: (0, w.jsx)(i.A, { to: e.href, children: e.title }) }), (0, w.jsx)('p', { children: e.body })] }, e.title);
               }),
@@ -215,7 +229,7 @@
               children: [
                 (0, w.jsx)('code', { children: '@biorate/hygen' }),
                 ' is a fork of ',
-                (0, w.jsx)('a', { href: _, children: 'jondot/hygen' }),
+                (0, w.jsx)('a', { href: A, children: 'jondot/hygen' }),
                 ' ',
                 '(v6.2.11, MIT). Here is how it differs from upstream.',
               ],
@@ -225,7 +239,7 @@
               children: [
                 (0, w.jsx)('ul', {
                   className: y,
-                  children: S.map(function (e) {
+                  children: C.map(function (e) {
                     return (0, w.jsx)('li', { children: e }, e);
                   }),
                 }),
@@ -249,7 +263,7 @@
           ],
         });
       }
-      function q() {
+      function P() {
         return (0, w.jsxs)('section', {
           className: m,
           children: [
@@ -330,7 +344,7 @@
           ],
         });
       }
-      function G() {
+      function q() {
         return (0, w.jsxs)('section', {
           className: m,
           children: [
@@ -360,20 +374,20 @@
           ],
         });
       }
-      function D() {
+      function G() {
         return (0, w.jsxs)(s.A, {
           title: '@biorate/hygen',
           description:
             'The scalable code generator that lives in your project \u2014 a fork of jondot/hygen with glob batch actions, content transforms, conditional skip and an interactive picker.',
           children: [
-            (0, w.jsx)(E, {}),
+            (0, w.jsx)(S, {}),
             (0, w.jsxs)('main', {
               children: [
+                (0, w.jsx)(E, {}),
                 (0, w.jsx)(I, {}),
-                (0, w.jsx)(C, {}),
                 (0, w.jsx)(T, {}),
+                (0, w.jsx)(P, {}),
                 (0, w.jsx)(q, {}),
-                (0, w.jsx)(G, {}),
               ],
             }),
           ],

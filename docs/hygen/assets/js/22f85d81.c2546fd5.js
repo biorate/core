@@ -26,6 +26,16 @@
           { value: 'Nearest directory wins', id: 'nearest-directory-wins', level: 3 },
           { value: 'Module systems', id: 'module-systems', level: 3 },
           { value: 'TypeScript', id: 'typescript', level: 3 },
+          {
+            value: 'Export shapes: named exports, default object, default class',
+            id: 'export-shapes-named-exports-default-object-default-class',
+            level: 3,
+          },
+          {
+            value: 'Accessing run arguments from class helpers',
+            id: 'accessing-run-arguments-from-class-helpers',
+            level: 4,
+          },
           { value: 'Backward compatibility', id: 'backward-compatibility', level: 3 },
           { value: 'Project lifecycle hooks', id: 'project-lifecycle-hooks', level: 3 },
           {
@@ -369,6 +379,143 @@
             }),
             '\n',
             (0, i.jsx)(n.h3, {
+              id: 'export-shapes-named-exports-default-object-default-class',
+              children: 'Export shapes: named exports, default object, default class',
+            }),
+            '\n',
+            (0, i.jsx)(n.p, {
+              children: "The resolved file's export is normalized as follows:",
+            }),
+            '\n',
+            (0, i.jsxs)(n.ol, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Named exports take priority.' }),
+                    ' ',
+                    (0, i.jsx)(n.code, {
+                      children: "export const templates = '_templates'",
+                    }),
+                    ' merges as\ntoday. If a file mixes named fields and a default export, the named fields win.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, {
+                      children: (0, i.jsx)(n.code, {
+                        children: 'export default { ... }',
+                      }),
+                    }),
+                    ' \u2014 a plain object is used as-is.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, {
+                      children: (0, i.jsx)(n.code, {
+                        children: 'export default class Config { ... }',
+                      }),
+                    }),
+                    ' \u2014 the class is instantiated with ',
+                    (0, i.jsx)(n.strong, { children: 'no\nconstructor arguments' }),
+                    ", and the instance's ",
+                    (0, i.jsx)(n.strong, { children: 'own enumerable properties' }),
+                    ' become the\nconfig. Prototype methods and getters are not read, and class methods never become\nhelpers. A constructor that requires arguments (or throws) fails the run with a\nstandardized error naming the config file.',
+                  ],
+                }),
+                '\n',
+              ],
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'The class form is typed with the ',
+                (0, i.jsx)(n.code, { children: 'ProjectConfig' }),
+                ' interface exported from the package\n(',
+                (0, i.jsx)(n.code, { children: 'templates' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'argCase' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'helpers' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'hooks' }),
+                ' \u2014 a compile-time contract only):',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ts',
+                children:
+                  "// .hygen.ts\nimport type { ProjectConfig } from '@biorate/hygen';\n\nexport default class Config implements ProjectConfig {\n  templates = '_templates';\n  helpers = {\n    slug: (s: string) => s.toLowerCase().replace(/\\s+/g, '-'),\n  };\n  hooks = {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n  };\n}\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Because only own enumerable properties are read, cache expensive helpers in an ',
+                (0, i.jsx)(n.strong, { children: 'own\nfield' }),
+                ' (not a prototype getter):',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ts',
+                children:
+                  'export default class Config {\n  helpers = this.#build();\n  #build() {\n    return {/* expensive helper setup */};\n  }\n}\n',
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.h4, {
+              id: 'accessing-run-arguments-from-class-helpers',
+              children: 'Accessing run arguments from class helpers',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'A static ',
+                (0, i.jsx)(n.code, { children: 'helpers' }),
+                ' object cannot see run arguments. To derive helpers from them, make\nthe ',
+                (0, i.jsx)(n.code, { children: 'helpers' }),
+                ' field a ',
+                (0, i.jsx)(n.strong, { children: 'factory' }),
+                " \u2014 the same function form as in the object config. It\nis invoked per render with the run's locals (positionals under ",
+                (0, i.jsx)(n.code, { children: '_' }),
+                ', CLI flags, ',
+                (0, i.jsx)(n.code, { children: 'name' }),
+                ',\nprompt answers):',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ts',
+                children:
+                  "import type { Helpers, ProjectConfig, RunnerContextConfig } from '@biorate/hygen';\n\nexport default class Config implements ProjectConfig {\n  // note the explicit annotations: TypeScript does not contextually type\n  // class property initializers from `implements`\n  helpers = (locals: Record<string, unknown>, config: RunnerContextConfig): Helpers => ({\n    slug: () =>\n      String(locals.name ?? '')\n        .toLowerCase()\n        .replace(/\\s+/g, '-'),\n  });\n}\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'Own properties outside the ',
+                (0, i.jsx)(n.code, { children: 'ProjectConfig' }),
+                ' key set (',
+                (0, i.jsx)(n.code, { children: 'templates' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'argCase' }),
+                ', ',
+                (0, i.jsx)(n.code, { children: 'helpers' }),
+                ',\n',
+                (0, i.jsx)(n.code, { children: 'hooks' }),
+                ') are ignored with a warning naming the property.',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
               id: 'backward-compatibility',
               children: 'Backward compatibility',
             }),
@@ -415,7 +562,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-javascript',
                 children:
-                  "// .hygen.js\nmodule.exports = {\n  helpers: {\n    /* ... */\n  },\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
+                  "// .hygen.js\nmodule.exports = {\n  helpers: {/* ... */},\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
               }),
             }),
             '\n',
@@ -426,15 +573,19 @@
                 '\n',
                 (0, i.jsxs)(n.li, {
                   children: [
-                    (0, i.jsx)(n.strong, { children: 'Plain object, not a class.' }),
-                    ' Unlike action hooks (a class, see\n',
+                    (0, i.jsx)(n.strong, {
+                      children: 'Project hooks are a plain object or a plain field.',
+                    }),
+                    ' Unlike action hooks (a class,\nsee ',
                     (0, i.jsx)(n.a, {
                       href: '#the-hooks-class',
                       children: 'The hooks class',
                     }),
                     '), the project-level ',
                     (0, i.jsx)(n.code, { children: 'hooks' }),
-                    ' is a plain object with\nthe same four methods \u2014 there is no ',
+                    ' is a plain object\nwith the same four methods (or a ',
+                    (0, i.jsx)(n.code, { children: 'hooks' }),
+                    ' field on a class-based config) \u2014 there is no\n',
                     (0, i.jsx)(n.code, { children: 'prompt' }),
                     ' section at this level.',
                   ],
@@ -1524,7 +1675,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({} as T),\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
+                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({}) as T,\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
               }),
             }),
             '\n',

@@ -25,4 +25,10 @@ export * as errors from './errors';
 /**
  * @description Declarative action parameter schema types
  * */
-export type { ParamDescriptor, ParamType, ParamsSchema } from './types';
+export type {
+  ParamDescriptor,
+  ParamType,
+  ParamsSchema,
+  ProjectConfig,
+  RunnerContextConfig,
+} from './types';

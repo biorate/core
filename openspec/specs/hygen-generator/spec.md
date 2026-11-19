@@ -237,7 +237,13 @@ The runner SHALL resolve project-level configuration from a prioritized family o
 configuration file names, walking directories up from the current directory,
 and merges the nearest match into the effective runner configuration. The merged
 configuration MAY carry an optional `hooks` object with lifecycle methods that apply
-to every generator run.
+to every generator run. The resolved file's export SHALL be normalized: named
+exports take priority when present; otherwise a default export is used — a plain
+object as-is, or a class instantiated with no constructor arguments and resolved to
+the instance's own enumerable properties (prototype members are not read). Own
+enumerable properties outside the known project-config key set SHALL be ignored with
+a warning naming the property. Instantiating a class whose constructor requires
+arguments SHALL fail the run with a standardized error naming the config file.
 
 #### Scenario: Single config file resolution
 
@@ -286,6 +292,39 @@ to every generator run.
   `beforeAll` and `afterAll`
 - **THEN** both run once around any generator run, regardless of the generator and
   action names
+
+#### Scenario: Named exports take priority over a default export
+
+- **WHEN** the resolved configuration file declares both named export fields and a
+  default export
+- **THEN** the named export fields are merged and the default export is ignored
+
+#### Scenario: Default-exported plain object
+
+- **WHEN** the resolved configuration file has no named exports and default-exports
+  a plain object
+- **THEN** the object's fields are merged into the runner configuration
+
+#### Scenario: Default-exported class
+
+- **WHEN** the resolved configuration file has no named exports and default-exports
+  a class
+- **THEN** the runner instantiates it with no constructor arguments and merges the
+  instance's own enumerable properties into the runner configuration; prototype
+  methods and getters are not read, and class methods never become helpers
+
+#### Scenario: Class with unknown own properties
+
+- **WHEN** a default-exported config class instance exposes own enumerable
+  properties outside the known project-config key set
+- **THEN** the unknown properties are ignored and a warning naming each unknown
+  property is logged
+
+#### Scenario: Class with required constructor arguments
+
+- **WHEN** a default-exported config class cannot be instantiated without
+  constructor arguments
+- **THEN** the run fails with a standardized error naming the configuration file
 
 ### Requirement: Template mirroring
 

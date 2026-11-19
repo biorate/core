@@ -154,6 +154,21 @@ export class ConfigTsNodeError extends BaseError {
 }
 
 /**
+ * @description Thrown when a project configuration file default-exports a
+ * class that cannot be instantiated without constructor arguments (or whose
+ * constructor throws), so its config values cannot be resolved. */
+export class ConfigClassError extends BaseError {
+  public constructor(file: string, cause: unknown) {
+    super(
+      'Project config [%s] default-exports a class that could not be instantiated ' +
+        'without constructor arguments (error: [%s]). The config class must have a ' +
+        'parameterless constructor.',
+      [file, (cause as Error)?.message ?? cause],
+    );
+  }
+}
+
+/**
  * @description Thrown when a `.ts` hook file is resolved but `ts-node` cannot be
  * registered to transpile it on the fly (typically `ts-node` is not installed in
  * the project). Mirrors `ConfigTsNodeError` for the action-hook layer. */

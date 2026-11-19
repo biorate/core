@@ -135,6 +135,22 @@ describe('<%= name %>', () => { /* ... */ });`}</CodeBlock>
 #   1) new
 # runs exactly as if you had typed: hygen <generator> <action>`}</CodeBlock>
       </div>
+
+      <div className={styles.panel}>
+        <h3>Class-based project config — one typed class per project</h3>
+        <CodeBlock language="typescript">{`// .hygen.ts
+import type { ProjectConfig } from '@biorate/hygen';
+
+export default class Config implements ProjectConfig {
+  templates = '_templates';
+  helpers = {
+    slug: (s) => s.toLowerCase().replace(/\\s+/g, '-'),
+  };
+  hooks = {
+    async beforeAll(ctx) { ctx.logger.log('run starting'); },
+  };
+}`}</CodeBlock>
+      </div>
     </section>
   );
 }

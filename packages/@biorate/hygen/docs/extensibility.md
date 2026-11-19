@@ -56,6 +56,78 @@ These explicit formats work independently of the host project's `type` field.
 `ts-node/register/transpile-only` on first use, so `ts-node` must be available (install it
 with `npm i -D ts-node` if it is not already a dependency).
 
+### Export shapes: named exports, default object, default class
+
+The resolved file's export is normalized as follows:
+
+1. **Named exports take priority.** `export const templates = '_templates'` merges as
+   today. If a file mixes named fields and a default export, the named fields win.
+2. **`export default { ... }`** — a plain object is used as-is.
+3. **`export default class Config { ... }`** — the class is instantiated with **no
+   constructor arguments**, and the instance's **own enumerable properties** become the
+   config. Prototype methods and getters are not read, and class methods never become
+   helpers. A constructor that requires arguments (or throws) fails the run with a
+   standardized error naming the config file.
+
+The class form is typed with the `ProjectConfig` interface exported from the package
+(`templates`, `argCase`, `helpers`, `hooks` — a compile-time contract only):
+
+```ts
+// .hygen.ts
+import type { ProjectConfig } from '@biorate/hygen';
+
+export default class Config implements ProjectConfig {
+  templates = '_templates';
+  helpers = {
+    slug: (s: string) => s.toLowerCase().replace(/\s+/g, '-'),
+  };
+  hooks = {
+    async beforeAll(ctx) {
+      ctx.logger.log(`run starting in ${ctx.cwd}`);
+    },
+  };
+}
+```
+
+Because only own enumerable properties are read, cache expensive helpers in an **own
+field** (not a prototype getter):
+
+```ts
+export default class Config {
+  helpers = this.#build();
+  #build() {
+    return {
+      /* expensive helper setup */
+    };
+  }
+}
+```
+
+#### Accessing run arguments from class helpers
+
+A static `helpers` object cannot see run arguments. To derive helpers from them, make
+the `helpers` field a **factory** — the same function form as in the object config. It
+is invoked per render with the run's locals (positionals under `_`, CLI flags, `name`,
+prompt answers):
+
+```ts
+import type { Helpers, ProjectConfig, RunnerContextConfig } from '@biorate/hygen';
+
+export default class Config implements ProjectConfig {
+  // note the explicit annotations: TypeScript does not contextually type
+  // class property initializers from `implements`
+  helpers = (locals: Record<string, unknown>, config: RunnerContextConfig): Helpers => ({
+    slug: () =>
+      String(locals.name ?? '')
+        .toLowerCase()
+        .replace(/\s+/g, '-'),
+  });
+}
+```
+
+Own properties outside the `ProjectConfig` key set (`templates`, `argCase`, `helpers`,
+`hooks`) are ignored with a warning naming the property.
+
 ### Backward compatibility
 
 Projects with an existing `.hygen.js` keep resolving exactly as before — it remains the
@@ -93,9 +165,10 @@ module.exports = {
 
 Key points:
 
-- **Plain object, not a class.** Unlike action hooks (a class, see
-  [The hooks class](#the-hooks-class)), the project-level `hooks` is a plain object with
-  the same four methods — there is no `prompt` section at this level.
+- **Project hooks are a plain object or a plain field.** Unlike action hooks (a class,
+  see [The hooks class](#the-hooks-class)), the project-level `hooks` is a plain object
+  with the same four methods (or a `hooks` field on a class-based config) — there is no
+  `prompt` section at this level.
 - **State via closure.** Since the object is plain, any cross-run or cross-pair state must
   live in the config module's closure (a variable captured by the hook methods).
 - **Lenient validation.** Only function-valued entries are used; unknown or non-function

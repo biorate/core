@@ -1,10 +1,12 @@
 import path from 'path';
 import fs from 'fs-extra';
-import type { RunnerConfig } from './types';
+import type { Logger, RunnerConfig } from './types';
 import { ConfigResolver } from './config';
-import { ConfigTsNodeError } from './errors';
+import { ConfigClassError, ConfigTsNodeError } from './errors';
 import registerTsNode from './ts-node-register';
 import { CONFIG_FILES } from './constants';
+
+let resolvedConfigFile: string | undefined;
 
 const configResolver = new ConfigResolver(CONFIG_FILES, {
   exists: (f) => fs.pathExists(f),
@@ -12,10 +14,66 @@ const configResolver = new ConfigResolver(CONFIG_FILES, {
     // Lazily register ts-node so `.hygen.ts` configs transpile on the fly — the same
     // pattern as prompt hook files, keeping zero startup cost for non-TS configs.
     await registerTsNode(f, ConfigTsNodeError);
+    resolvedConfigFile = f;
     return await import(f);
   },
   none: (_) => ({}),
 });
+
+/**
+ * @description Keys a project configuration file may declare (the `ProjectConfig`
+ * shape). Own enumerable properties outside this set on a class-resolved config
+ * are ignored with a warning. */
+const PROJECT_CONFIG_KEYS = ['templates', 'argCase', 'helpers', 'hooks'];
+
+/**
+ * @description Normalizes a loaded configuration module into a plain config
+ * object. Named exports take priority; otherwise the default export applies —
+ * a plain object as-is, or a class instantiated with no arguments and resolved
+ * to the instance's own enumerable properties (prototype members are not
+ * read; class methods never become helpers). Unknown own properties on a
+ * class-resolved config are ignored with a warning. */
+const normalizeProjectConfig = (
+  mod: Record<string, unknown>,
+  file: string,
+  logger: Logger,
+): Record<string, unknown> => {
+  const named = Object.keys(mod).filter((key) => key !== 'default');
+  if (named.length > 0) {
+    return Object.fromEntries(named.map((key) => [key, mod[key]]));
+  }
+  const raw = mod.default;
+  if (raw === undefined || raw === null) return {};
+  if (typeof raw === 'object' && !Array.isArray(raw))
+    return raw as Record<string, unknown>;
+  if (typeof raw !== 'function') {
+    logger.warn(
+      `Ignoring unsupported default export of project config '${file}': expected an object or a class.`,
+    );
+    return {};
+  }
+  let instance: Record<string, unknown>;
+  try {
+    instance = new (raw as new () => Record<string, unknown>)();
+  } catch (cause) {
+    throw new ConfigClassError(file, cause);
+  }
+  const own = Object.keys(instance);
+  for (const key of own) {
+    if (!PROJECT_CONFIG_KEYS.includes(key)) {
+      logger.warn(
+        `Ignoring unknown project config property '${key}' in '${file}' (known: ${PROJECT_CONFIG_KEYS.join(
+          ', ',
+        )}).`,
+      );
+    }
+  }
+  return Object.fromEntries(
+    own
+      .filter((key) => PROJECT_CONFIG_KEYS.includes(key))
+      .map((key) => [key, instance[key]]),
+  );
+};
 
 const resolve = (
   cwd: string,
@@ -37,6 +95,8 @@ const resolve = (
  * @param config - The user-supplied runner configuration.
  * @returns A fully resolved runner configuration ready for the engine.
  * */
+export { normalizeProjectConfig };
+
 export default async (config: RunnerConfig): Promise<RunnerConfig> => {
   const { cwd, templates: defaultTemplates, templatesOverride } = config;
 
@@ -45,6 +105,10 @@ export default async (config: RunnerConfig): Promise<RunnerConfig> => {
   return {
     ...config,
     templates: resolvedTemplates,
-    ...(await configResolver.resolve(cwd)),
+    ...normalizeProjectConfig(
+      (await configResolver.resolve(cwd)) as Record<string, unknown>,
+      resolvedConfigFile ?? path.join(cwd, CONFIG_FILES[0]),
+      config.logger,
+    ),
   };
 };
