@@ -64,10 +64,13 @@ The resolved file's export is normalized as follows:
    today. If a file mixes named fields and a default export, the named fields win.
 2. **`export default { ... }`** — a plain object is used as-is.
 3. **`export default class Config { ... }`** — the class is instantiated with **no
-   constructor arguments**, and the instance's **own enumerable properties** become the
-   config. Prototype methods and getters are not read, and class methods never become
-   helpers. A constructor that requires arguments (or throws) fails the run with a
-   standardized error naming the config file.
+   constructor arguments**. A class extending the exported [`HygenConfig`](#the-hygenconfig-base-class)
+   base class is resolved through the base class conversion (fields plus bound
+   prototype hook methods and the configured `helpers` member). Any other class is
+   resolved to the instance's **own enumerable properties** — prototype methods and
+   getters are not read, and class methods never become helpers. A constructor that
+   requires arguments (or throws) fails the run with a standardized error naming the
+   config file.
 
 The class form is typed with the `ProjectConfig` interface exported from the package
 (`templates`, `argCase`, `helpers`, `hooks` — a compile-time contract only):
@@ -126,7 +129,60 @@ export default class Config implements ProjectConfig {
 ```
 
 Own properties outside the `ProjectConfig` key set (`templates`, `argCase`, `helpers`,
-`hooks`) are ignored with a warning naming the property.
+`hooks`) are ignored with a warning naming the property (non-base class configs only).
+
+### The HygenConfig base class
+
+For a full-featured class experience, extend the abstract `HygenConfig` class exported
+from the package: state lives in constructor-initialized fields and lifecycle hooks are
+**prototype methods** with a live `this` — no nested `hooks: { ... }` object required:
+
+```ts
+// .hygen.ts
+import { HygenConfig } from '@biorate/hygen';
+
+export default class Config extends HygenConfig {
+  private count = 0;
+
+  constructor() {
+    super(); // initializes neutral defaults: templates/localsDefaults/helpers unset, argCase = 'keep'
+    this.templates = '_templates';
+  }
+
+  // helpers in any of three forms: property, getter, or factory method
+  // (the method IS the factory form: invoked per render with (locals, config),
+  //  bound so `this` is the config instance)
+  helpers() {
+    return { slug: (s: string) => s.toLowerCase().replace(/\s+/g, '-') };
+  }
+
+  // hooks as prototype methods; `this` carries state across pairs
+  beforeEach(ctx) {
+    this.count += 1;
+    ctx.logger.log(`pair #${this.count}`);
+  }
+  afterEach(ctx, results) {
+    /* results is the pair's ActionResult[] */
+  }
+}
+```
+
+Notes:
+
+- **Constructor defaults.** `super()` initializes `templates`, `localsDefaults` and
+  `helpers` as `undefined` and `argCase` as `'keep'` — override them in the subclass
+  constructor or as fields.
+- **Three `helpers` forms.** Own property map, getter, or factory method — all resolve.
+  An own property shadows a prototype method (standard TypeScript semantics); use one
+  form per class.
+- **Only overridden hooks are registered.** The base's no-op hook methods are omitted
+  from the effective config, so a subclass that overrides, say, only `beforeEach`
+  behaves exactly like an object config declaring a single hook.
+- **Internal state stays internal.** Extra fields on a `HygenConfig` subclass (caches,
+  counters) never leak into the runner configuration and emit no unknown-property
+  warning — unlike non-base class configs, where unknown own properties warn.
+- **No transport fields.** `logger`, `exec`, `cwd` and `createPrompter` remain
+  programmatic runner-construction concerns and are not part of the base class.
 
 ### Backward compatibility
 
@@ -165,12 +221,15 @@ module.exports = {
 
 Key points:
 
-- **Project hooks are a plain object or a plain field.** Unlike action hooks (a class,
-  see [The hooks class](#the-hooks-class)), the project-level `hooks` is a plain object
-  with the same four methods (or a `hooks` field on a class-based config) — there is no
-  `prompt` section at this level.
-- **State via closure.** Since the object is plain, any cross-run or cross-pair state must
-  live in the config module's closure (a variable captured by the hook methods).
+- **Project hooks are a plain object, a plain field, or base-class methods.** Unlike
+  action hooks (a class, see [The hooks class](#the-hooks-class)), the project-level
+  `hooks` is a plain object with the same four methods (or a `hooks` field on a
+  legacy class-based config), or — for configs extending
+  [`HygenConfig`](#the-hygenconfig-base-class) — simply overridden prototype methods
+  (`beforeEach(ctx) { ... }`). There is no `prompt` section at this level.
+- **State via closure or instance fields.** A plain object holds state in the config
+  module's closure; a `HygenConfig` subclass keeps it in instance fields readable
+  through `this` in every hook.
 - **Lenient validation.** Only function-valued entries are used; unknown or non-function
   entries are ignored with a warning instead of failing the run.
 - Run-scoped methods (`beforeAll`, `afterAll`) are called once per run and receive

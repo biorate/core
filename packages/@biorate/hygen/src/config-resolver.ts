@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 import type { Logger, RunnerConfig } from './types';
+import { HygenConfig } from './hygen-config';
 import { ConfigResolver } from './config';
 import { ConfigClassError, ConfigTsNodeError } from './errors';
 import registerTsNode from './ts-node-register';
@@ -29,10 +30,12 @@ const PROJECT_CONFIG_KEYS = ['templates', 'argCase', 'helpers', 'hooks'];
 /**
  * @description Normalizes a loaded configuration module into a plain config
  * object. Named exports take priority; otherwise the default export applies —
- * a plain object as-is, or a class instantiated with no arguments and resolved
- * to the instance's own enumerable properties (prototype members are not
- * read; class methods never become helpers). Unknown own properties on a
- * class-resolved config are ignored with a warning. */
+ * a plain object as-is, or a class instantiated with no arguments. A class
+ * extending {@link HygenConfig} is resolved through the base class conversion
+ * (`toRunnerConfig()`: fields plus bound prototype hook methods); any other
+ * class is resolved to the instance's own enumerable properties (prototype
+ * members are not read; class methods never become helpers). Unknown own
+ * properties on a non-base class config are ignored with a warning. */
 const normalizeProjectConfig = (
   mod: Record<string, unknown>,
   file: string,
@@ -57,6 +60,11 @@ const normalizeProjectConfig = (
     instance = new (raw as new () => Record<string, unknown>)();
   } catch (cause) {
     throw new ConfigClassError(file, cause);
+  }
+  // Base-class configs own their conversion: prototype hook methods and the
+  // configured helpers member participate; extra fields stay class-internal.
+  if (instance instanceof HygenConfig) {
+    return instance.toRunnerConfig() as Record<string, unknown>;
   }
   const own = Object.keys(instance);
   for (const key of own) {

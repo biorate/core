@@ -32,3 +32,9 @@ export type {
   ProjectConfig,
   RunnerContextConfig,
 } from './types';
+/**
+ * @description Abstract base class for class-based project configurations
+ * (`.hygen.*` default export) — hooks as prototype methods, helpers as
+ * property/getter/factory, constructor-initialized fields.
+ * */
+export { HygenConfig } from './hygen-config';
