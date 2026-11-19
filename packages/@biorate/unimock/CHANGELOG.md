@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.15.10...%40biorate%2Funimock%401.17.0) (2026-11-19)
+
+### Features
+
+- **hygen:** add HygenConfig base class for project configs ([7c69e71](https://github.com/biorate/core/commit/7c69e711a9e282bc1bf70943c547018893a56763))
+- **unimock:** universal class registry, error own-fields and typed-array round-trip ([2261188](https://github.com/biorate/core/commit/2261188d41a12f6856f2289f38f6bbaf8a9442df))
+
 ## [1.15.10](https://github.com/biorate/core/compare/%40biorate%2Funimock%401.15.9...%40biorate%2Funimock%401.15.10) (2026-11-15)
 
 **Note:** Version bump only for package @biorate/unimock

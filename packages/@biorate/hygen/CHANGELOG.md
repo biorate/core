@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.6.0...%40biorate%2Fhygen%400.8.0) (2026-11-19)
+
+### Features
+
+- **hygen:** add HygenConfig base class for project configs ([7c69e71](https://github.com/biorate/core/commit/7c69e711a9e282bc1bf70943c547018893a56763))
+
 # [0.6.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.5.2...%40biorate%2Fhygen%400.6.0) (2026-11-19)
 
 ### Features
