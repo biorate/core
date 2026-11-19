@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.8.1...%40biorate%2Fhygen%400.9.0) (2026-11-19)
+
+### Features
+
+- **hygen:** required params reject empty values with prompt re-ask ([4e46de9](https://github.com/biorate/core/commit/4e46de9cafde5009edc7ccae38aaea97ae49714e))
+
 ## [0.8.1](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.8.0...%40biorate%2Fhygen%400.8.1) (2026-11-19)
 
 ### Bug Fixes
