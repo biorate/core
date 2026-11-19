@@ -60,10 +60,26 @@ export interface SerializedBuffer {
   v: string;
 }
 
-/** @description Serialized Error (name + message + optional stack). */
+/** @description Serialized Error (name + message + optional stack + optional own fields). */
 export interface SerializedError {
   t: 'error';
-  v: { n: string; m: string; s?: string };
+  v: { n: string; m: string; s?: string; p?: { k: string; v: SerializedValue }[] };
+}
+
+/** @description Serialized typed array (base64 bytes; restored as Uint8Array). */
+export interface SerializedTypedArray {
+  t: 'typed_array';
+  v: string;
+}
+
+/**
+ * @description Serialized instance of a registered class (see registerClass):
+ * carries the class name and own enumerable fields; restored onto the class
+ * prototype so `instanceof` holds in replay. Constructor is not invoked.
+ */
+export interface SerializedInstance {
+  t: 'instance';
+  v: { c: string; p: { k: string; v: SerializedValue }[] };
 }
 
 /** @description Reference to a {@link MockHandler} by its refId. */
@@ -135,6 +151,8 @@ export type SerializedValue =
   | SerializedDate
   | SerializedRegExp
   | SerializedBuffer
+  | SerializedTypedArray
+  | SerializedInstance
   | SerializedError
   | SerializedRef
   | SerializedCallback

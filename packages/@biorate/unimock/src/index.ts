@@ -25,6 +25,15 @@ export {
   makeCallKey,
 } from './serializer';
 
+/**
+ * @description Class registry for replay-side class restoration:
+ * `registerClass('AxiosError', AxiosError)` in test
+ * setup makes replayed thrown errors `instanceof` their real class and lets
+ * instances of registered classes round-trip as `instance` entries;
+ * unregistered names keep legacy behavior (generic `Error` / plain object).
+ */
+export { registerClass, unregisterClass, getClass } from './class-registry';
+
 /** @description Snapshot store — per-class persistence of recorded calls. */
 export {
   SnapshotStore,

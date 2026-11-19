@@ -7,7 +7,8 @@ Thrown errors recorded in unimock snapshots lose their class and own fields: the
 ## What Changes
 
 - Serialize an `Error`'s own enumerable fields (except `name`/`message`/`stack`) into a new optional `p` payload of the `T_ERROR` value, honoring `UNIMOCK_STRIP_REQUEST` for `request`-shaped fields.
-- Restore own fields and the original error class on replay via a new error-class registry (`registerErrorClass(name, ctor)`), exported from the package public API, in a dedicated module `src/error-registry.ts`; unknown names fall back to `Error` (legacy behavior).
+- Restore own fields and the original error class on replay via a new class registry (`registerClass(name, ctor)`), exported from the package public API, in a dedicated module `src/class-registry.ts`; unknown names fall back to `Error` (legacy behavior).
+- Add a universal `t: 'instance'` serialized form for instances of **registered classes** (opt-in at record time): any non-Buffer view aside, an instance whose constructor is registered round-trips with its class identity (`instanceof` works in replay) and own fields; unregistered classes keep the legacy plain-object behavior.
 - Add a `T_TYPED_ARRAY` serialized form for non-Buffer `ArrayBuffer` views (`ArrayBuffer.isView`), round-tripping bytes via base64 → `Uint8Array` (full round-trip; no checksum mode — snapshot pools deduplicate identical content automatically).
 - Extend the `SerializedError` interface (`v.p?`) and update README/AGENTS documentation, including the currently inaccurate claim that `cause` is serialized (it becomes true via own-field capture since `cause` is an own enumerable property).
 
@@ -26,8 +27,8 @@ No breaking changes: old snapshots (`v` without `p`) deserialize exactly as befo
 ## Impact
 
 - `packages/@biorate/unimock/src/serializer.ts` — error branch (own fields), typed-array branch, `deserialize` cases.
-- New `packages/@biorate/unimock/src/error-registry.ts` + export in `src/index.ts`.
+- New `packages/@biorate/unimock/src/class-registry.ts` + export in `src/index.ts`.
 - `packages/@biorate/unimock/src/interfaces.ts` — `SerializedError.v.p`.
 - Tests: new unit specs in `tests/unit/` (error round-trip with registered class, legacy snapshot, generic error, typed array, cyclic `request` with strip flag).
 - Docs: `README.md`, `AGENTS.md` (package), root `AGENTS.md` guard note update is downstream (CashOffice repo, out of scope here).
-- Consumers: downstream repos register their error classes once (e.g. `registerErrorClass('AxiosError', AxiosError)` in an e2e setup); a full `test:e2e:record` run rewrites error snapshots with `response` payloads.
+- Consumers: downstream repos register their classes once (e.g. `registerClass('AxiosError', AxiosError)` in an e2e setup); a full `test:e2e:record` run rewrites error snapshots with `response` payloads.

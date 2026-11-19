@@ -2,21 +2,21 @@
 (self.webpackChunkhygen_docs_site = self.webpackChunkhygen_docs_site || []).push([
   [879],
   {
-    5779(e, n, r) {
-      r.r(n),
-        r.d(n, {
+    5779(e, n, s) {
+      s.r(n),
+        s.d(n, {
           assets: () => l,
           contentTitle: () => c,
           default: () => h,
           frontMatter: () => o,
-          metadata: () => s,
+          metadata: () => r,
           toc: () => d,
         });
-      const s = JSON.parse(
+      const r = JSON.parse(
         '{"id":"extensibility","title":"extensibility","description":"Part of @biorate/hygen \u2014 a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork\'s semantics; see Differences from upstream.","source":"@site/../docs/extensibility.md","sourceDirName":".","slug":"/extensibility","permalink":"/core/hygen/docs/extensibility","draft":false,"unlisted":false,"tags":[],"version":"current","frontMatter":{},"sidebar":"docs","previous":{"title":"interactive-picker","permalink":"/core/hygen/docs/interactive-picker"},"next":{"title":"faq","permalink":"/core/hygen/docs/faq"}}',
       );
-      var i = r(159),
-        t = r(8758);
+      var i = s(159),
+        t = s(8758);
       const o = {},
         c = 'Extensibility',
         l = {},
@@ -35,6 +35,11 @@
             value: 'Accessing run arguments from class helpers',
             id: 'accessing-run-arguments-from-class-helpers',
             level: 4,
+          },
+          {
+            value: 'The HygenConfig base class',
+            id: 'the-hygenconfig-base-class',
+            level: 3,
           },
           { value: 'Backward compatibility', id: 'backward-compatibility', level: 3 },
           { value: 'Project lifecycle hooks', id: 'project-lifecycle-hooks', level: 3 },
@@ -421,9 +426,16 @@
                     }),
                     ' \u2014 the class is instantiated with ',
                     (0, i.jsx)(n.strong, { children: 'no\nconstructor arguments' }),
-                    ", and the instance's ",
+                    '. A class extending the exported ',
+                    (0, i.jsx)(n.a, {
+                      href: '#the-hygenconfig-base-class',
+                      children: (0, i.jsx)(n.code, { children: 'HygenConfig' }),
+                    }),
+                    '\nbase class is resolved through the base class conversion (fields plus bound\nprototype hook methods and the configured ',
+                    (0, i.jsx)(n.code, { children: 'helpers' }),
+                    " member). Any other class is\nresolved to the instance's ",
                     (0, i.jsx)(n.strong, { children: 'own enumerable properties' }),
-                    ' become the\nconfig. Prototype methods and getters are not read, and class methods never become\nhelpers. A constructor that requires arguments (or throws) fails the run with a\nstandardized error naming the config file.',
+                    ' \u2014 prototype methods and\ngetters are not read, and class methods never become helpers. A constructor that\nrequires arguments (or throws) fails the run with a standardized error naming the\nconfig file.',
                   ],
                 }),
                 '\n',
@@ -466,7 +478,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  'export default class Config {\n  helpers = this.#build();\n  #build() {\n    return {/* expensive helper setup */};\n  }\n}\n',
+                  'export default class Config {\n  helpers = this.#build();\n  #build() {\n    return {\n      /* expensive helper setup */\n    };\n  }\n}\n',
               }),
             }),
             '\n',
@@ -511,7 +523,111 @@
                 (0, i.jsx)(n.code, { children: 'helpers' }),
                 ',\n',
                 (0, i.jsx)(n.code, { children: 'hooks' }),
-                ') are ignored with a warning naming the property.',
+                ') are ignored with a warning naming the property (non-base class configs only).',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.h3, {
+              id: 'the-hygenconfig-base-class',
+              children: 'The HygenConfig base class',
+            }),
+            '\n',
+            (0, i.jsxs)(n.p, {
+              children: [
+                'For a full-featured class experience, extend the abstract ',
+                (0, i.jsx)(n.code, { children: 'HygenConfig' }),
+                ' class exported\nfrom the package: state lives in constructor-initialized fields and lifecycle hooks are\n',
+                (0, i.jsx)(n.strong, { children: 'prototype methods' }),
+                ' with a live ',
+                (0, i.jsx)(n.code, { children: 'this' }),
+                ' \u2014 no nested ',
+                (0, i.jsx)(n.code, { children: 'hooks: { ... }' }),
+                ' object required:',
+              ],
+            }),
+            '\n',
+            (0, i.jsx)(n.pre, {
+              children: (0, i.jsx)(n.code, {
+                className: 'language-ts',
+                children:
+                  "// .hygen.ts\nimport { HygenConfig } from '@biorate/hygen';\n\nexport default class Config extends HygenConfig {\n  private count = 0;\n\n  constructor() {\n    super(); // initializes neutral defaults: templates/localsDefaults/helpers unset, argCase = 'keep'\n    this.templates = '_templates';\n  }\n\n  // helpers in any of three forms: property, getter, or factory method\n  // (the method IS the factory form: invoked per render with (locals, config),\n  //  bound so `this` is the config instance)\n  helpers() {\n    return { slug: (s: string) => s.toLowerCase().replace(/\\s+/g, '-') };\n  }\n\n  // hooks as prototype methods; `this` carries state across pairs\n  beforeEach(ctx) {\n    this.count += 1;\n    ctx.logger.log(`pair #${this.count}`);\n  }\n  afterEach(ctx, results) {\n    /* results is the pair's ActionResult[] */\n  }\n}\n",
+              }),
+            }),
+            '\n',
+            (0, i.jsx)(n.p, { children: 'Notes:' }),
+            '\n',
+            (0, i.jsxs)(n.ul, {
+              children: [
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Constructor defaults.' }),
+                    ' ',
+                    (0, i.jsx)(n.code, { children: 'super()' }),
+                    ' initializes ',
+                    (0, i.jsx)(n.code, { children: 'templates' }),
+                    ', ',
+                    (0, i.jsx)(n.code, { children: 'localsDefaults' }),
+                    ' and\n',
+                    (0, i.jsx)(n.code, { children: 'helpers' }),
+                    ' as ',
+                    (0, i.jsx)(n.code, { children: 'undefined' }),
+                    ' and ',
+                    (0, i.jsx)(n.code, { children: 'argCase' }),
+                    ' as ',
+                    (0, i.jsx)(n.code, { children: "'keep'" }),
+                    ' \u2014 override them in the subclass\nconstructor or as fields.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsxs)(n.strong, {
+                      children: [
+                        'Three ',
+                        (0, i.jsx)(n.code, { children: 'helpers' }),
+                        ' forms.',
+                      ],
+                    }),
+                    ' Own property map, getter, or factory method \u2014 all resolve.\nAn own property shadows a prototype method (standard TypeScript semantics); use one\nform per class.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, {
+                      children: 'Only overridden hooks are registered.',
+                    }),
+                    " The base's no-op hook methods are omitted\nfrom the effective config, so a subclass that overrides, say, only ",
+                    (0, i.jsx)(n.code, { children: 'beforeEach' }),
+                    '\nbehaves exactly like an object config declaring a single hook.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'Internal state stays internal.' }),
+                    ' Extra fields on a ',
+                    (0, i.jsx)(n.code, { children: 'HygenConfig' }),
+                    ' subclass (caches,\ncounters) never leak into the runner configuration and emit no unknown-property\nwarning \u2014 unlike non-base class configs, where unknown own properties warn.',
+                  ],
+                }),
+                '\n',
+                (0, i.jsxs)(n.li, {
+                  children: [
+                    (0, i.jsx)(n.strong, { children: 'No transport fields.' }),
+                    ' ',
+                    (0, i.jsx)(n.code, { children: 'logger' }),
+                    ', ',
+                    (0, i.jsx)(n.code, { children: 'exec' }),
+                    ', ',
+                    (0, i.jsx)(n.code, { children: 'cwd' }),
+                    ' and ',
+                    (0, i.jsx)(n.code, { children: 'createPrompter' }),
+                    ' remain\nprogrammatic runner-construction concerns and are not part of the base class.',
+                  ],
+                }),
+                '\n',
               ],
             }),
             '\n',
@@ -562,7 +678,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-javascript',
                 children:
-                  "// .hygen.js\nmodule.exports = {\n  helpers: {/* ... */},\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
+                  "// .hygen.js\nmodule.exports = {\n  helpers: {\n    /* ... */\n  },\n  hooks: {\n    async beforeAll(ctx) {\n      ctx.logger.log(`run starting in ${ctx.cwd}`);\n    },\n    async beforeEach(ctx) {\n      // runs before each (name, action) pair's prompt phase\n    },\n    async afterEach(ctx, results) {\n      // results is the pair's ActionResult[]\n    },\n    async afterAll(ctx, results) {\n      // results accumulates all pair results of the run\n    },\n  },\n};\n",
               }),
             }),
             '\n',
@@ -574,18 +690,26 @@
                 (0, i.jsxs)(n.li, {
                   children: [
                     (0, i.jsx)(n.strong, {
-                      children: 'Project hooks are a plain object or a plain field.',
+                      children:
+                        'Project hooks are a plain object, a plain field, or base-class methods.',
                     }),
-                    ' Unlike action hooks (a class,\nsee ',
+                    ' Unlike\naction hooks (a class, see ',
                     (0, i.jsx)(n.a, {
                       href: '#the-hooks-class',
                       children: 'The hooks class',
                     }),
-                    '), the project-level ',
+                    '), the project-level\n',
                     (0, i.jsx)(n.code, { children: 'hooks' }),
-                    ' is a plain object\nwith the same four methods (or a ',
+                    ' is a plain object with the same four methods (or a ',
                     (0, i.jsx)(n.code, { children: 'hooks' }),
-                    ' field on a class-based config) \u2014 there is no\n',
+                    ' field on a\nlegacy class-based config), or \u2014 for configs extending\n',
+                    (0, i.jsx)(n.a, {
+                      href: '#the-hygenconfig-base-class',
+                      children: (0, i.jsx)(n.code, { children: 'HygenConfig' }),
+                    }),
+                    ' \u2014 simply overridden prototype methods\n(',
+                    (0, i.jsx)(n.code, { children: 'beforeEach(ctx) { ... }' }),
+                    '). There is no ',
                     (0, i.jsx)(n.code, { children: 'prompt' }),
                     ' section at this level.',
                   ],
@@ -593,8 +717,14 @@
                 '\n',
                 (0, i.jsxs)(n.li, {
                   children: [
-                    (0, i.jsx)(n.strong, { children: 'State via closure.' }),
-                    " Since the object is plain, any cross-run or cross-pair state must\nlive in the config module's closure (a variable captured by the hook methods).",
+                    (0, i.jsx)(n.strong, {
+                      children: 'State via closure or instance fields.',
+                    }),
+                    " A plain object holds state in the config\nmodule's closure; a ",
+                    (0, i.jsx)(n.code, { children: 'HygenConfig' }),
+                    ' subclass keeps it in instance fields readable\nthrough ',
+                    (0, i.jsx)(n.code, { children: 'this' }),
+                    ' in every hook.',
                   ],
                 }),
                 '\n',
@@ -1675,7 +1805,7 @@
               children: (0, i.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({}) as T,\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
+                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({} as T),\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
               }),
             }),
             '\n',
@@ -1755,14 +1885,14 @@
         return n ? (0, i.jsx)(n, { ...e, children: (0, i.jsx)(a, { ...e }) }) : a(e);
       }
     },
-    8758(e, n, r) {
-      r.d(n, { R: () => o, x: () => c });
-      var s = r(2503);
+    8758(e, n, s) {
+      s.d(n, { R: () => o, x: () => c });
+      var r = s(2503);
       const i = {},
-        t = s.createContext(i);
+        t = r.createContext(i);
       function o(e) {
-        const n = s.useContext(t);
-        return s.useMemo(
+        const n = r.useContext(t);
+        return r.useMemo(
           function () {
             return 'function' == typeof e ? e(n) : { ...n, ...e };
           },
@@ -1777,7 +1907,7 @@
               ? e.components(i)
               : e.components || i
             : o(e.components)),
-          s.createElement(t.Provider, { value: n }, e.children)
+          r.createElement(t.Provider, { value: n }, e.children)
         );
       }
     },

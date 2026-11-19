@@ -10,6 +10,8 @@ import {
   T_DATE,
   T_REGEXP,
   T_BUFFER,
+  T_TYPED_ARRAY,
+  T_INSTANCE,
   T_ERROR,
   T_REF,
   T_ARRAY,
@@ -26,6 +28,7 @@ import {
 } from './constants';
 import { stripRequestEnabled } from './env';
 import { getRefId, getUnimockRef } from './utils';
+import { getClass } from './class-registry';
 
 /**
  * @description Deterministic JSON-like stringification of arbitrary values.
@@ -176,8 +179,34 @@ export function serialize(
   if (value instanceof RegExp)
     return { t: T_REGEXP, v: { s: value.source, f: value.flags } };
   if (Buffer.isBuffer(value)) return { t: T_BUFFER, v: value.toString(ENCODING_BASE64) };
-  if (value instanceof Error)
-    return { t: T_ERROR, v: { n: value.name, m: value.message, s: value.stack } };
+  if (ArrayBuffer.isView(value)) {
+    // Non-Buffer ArrayBuffer views (e.g. pdf-lib's Uint8Array) round-trip their
+    // bytes exactly; the type normalizes to Uint8Array on deserialization.
+    return {
+      t: T_TYPED_ARRAY,
+      v: Buffer.from(value.buffer, value.byteOffset, value.byteLength).toString(
+        ENCODING_BASE64,
+      ),
+    };
+  }
+  if (value instanceof Error) {
+    // Own enumerable fields (e.g. AxiosError's response/config/code) travel in
+    // `p` so replay restores the error shape, not just name/message/stack.
+    const props = Object.entries(value as unknown as Record<string, unknown>)
+      .filter(([k]) => k !== 'name' && k !== 'message' && k !== 'stack')
+      .filter(([k]) => !(stripRequestEnabled() && k === 'request'));
+    return {
+      t: T_ERROR,
+      v: {
+        n: value.name,
+        m: value.message,
+        s: value.stack,
+        ...(props.length > 0
+          ? { p: props.map(([k, v]) => ({ k, v: serialize(v, seen, symbols) })) }
+          : {}),
+      },
+    };
+  }
   if (
     typeof value === 'object' &&
     value !== null &&
@@ -190,6 +219,32 @@ export function serialize(
       seen,
       symbols,
     );
+  }
+  if (
+    typeof value === 'object' &&
+    value !== null &&
+    getClass(value.constructor.name) &&
+    value.constructor.name !== 'Object'
+  ) {
+    // Opt-in class identity: instances of registered classes round-trip with
+    // their prototype (instanceof works in replay). Unregistered classes keep
+    // the legacy plain-object branch below — snapshots never change unless the
+    // consumer registers something.
+    const map = seen ?? new Map<object, string>();
+    if (map.has(value)) return { t: T_UNDEFINED };
+    map.set(value, '');
+    try {
+      const entries = Object.entries(value as Record<string, unknown>);
+      const mapped: { k: string; v: SerializedValue }[] = [];
+      for (const [k, v] of entries) {
+        if (k.startsWith(PROP_PRIVATE_PREFIX)) continue;
+        if (stripRequestEnabled() && k === 'request') continue;
+        mapped.push({ k, v: serialize(v, map, symbols) });
+      }
+      return { t: T_INSTANCE, v: { c: value.constructor.name, p: mapped } };
+    } finally {
+      map.delete(value);
+    }
   }
   if (Array.isArray(value)) {
     const map = seen ?? new Map<object, string>();
@@ -251,8 +306,36 @@ export function deserialize(value: SerializedValue): unknown {
       return new RegExp(value.v.s, value.v.f);
     case T_BUFFER:
       return Buffer.from(value.v, ENCODING_BASE64);
-    case T_ERROR:
-      return Object.assign(new Error(value.v.m), { name: value.v.n, stack: value.v.s });
+    case T_TYPED_ARRAY:
+      return new Uint8Array(Buffer.from(value.v as string, ENCODING_BASE64));
+    case T_ERROR: {
+      // Restore the real class when registered (see registerClass);
+      // unknown names fall back to the generic Error (legacy behavior).
+      const v = value.v as {
+        n: string;
+        m: string;
+        s?: string;
+        p?: { k: string; v: SerializedValue }[];
+      };
+      const Ctor =
+        (getClass(v.n) as (new (message?: string) => Error) | undefined) ?? Error;
+      const error = Object.assign(new Ctor(v.m), { name: v.n, stack: v.s }) as Error &
+        Record<string, unknown>;
+      for (const { k, v: prop } of v.p ?? []) error[k] = deserialize(prop);
+      return error;
+    }
+    case T_INSTANCE: {
+      // Restore a registered class instance without invoking its constructor
+      // (deterministic state restoration; constructors may require arguments).
+      const v = value.v as { c: string; p: { k: string; v: SerializedValue }[] };
+      const Ctor = getClass(v.c);
+      if (!Ctor) return deserialize({ t: T_OBJECT, v: v.p });
+      const instance = Object.assign(
+        Object.create(Ctor.prototype),
+        Object.fromEntries(v.p.map(({ k, v: prop }) => [k, deserialize(prop)])),
+      );
+      return instance;
+    }
     case T_SYMBOL:
       return Symbol(value.v);
     case T_REF:

@@ -626,6 +626,25 @@ The following lines belong to one of three forms:
 
 Values are serialized in the `{ t, v }` tagged format (`'string'`, `'number'`, `'object'`, `'array'`, `'ref'`, …).
 
+Thrown `Error` values carry their own enumerable fields (`p`, e.g. `response`/`config`/`code` of an `AxiosError`), and their class is restored on replay via the universal class registry:
+
+```ts
+import { registerClass } from '@biorate/unimock';
+import { AxiosError } from 'axios';
+
+// once in test setup — replayed thrown errors pass `instanceof AxiosError`
+registerClass('AxiosError', AxiosError);
+
+// the same registry covers any domain class: instances of registered classes
+// round-trip as `instance` entries, so `instanceof` holds in replay too
+class Money {
+  /* ... */
+}
+registerClass('Money', Money);
+```
+
+Unregistered names/classes keep the legacy behavior (generic `Error` / plain object) — the registry is opt-in at both record and replay time. Instances of registered classes are restored without invoking the constructor (`Object.create(prototype)` + fields). Non-Buffer `ArrayBuffer` views (e.g. `pdf.save()` bytes) round-trip as a `'typed_array'` entry and are restored as a `Uint8Array` with identical bytes; `Buffer` values keep round-tripping as `Buffer`.
+
 When compression is enabled (`UNIMOCK_GZIP=1`), each batch of ~500 lines is written as a separate gzip member (`gzipSync`, level 9); on read, gzip is auto-detected via the `0x1f 0x8b` magic bytes.
 
 The legacy v1 format — a single JSON object `{ version, className, calls }` (including the older `.fmt` files) — is still read, but is no longer written.

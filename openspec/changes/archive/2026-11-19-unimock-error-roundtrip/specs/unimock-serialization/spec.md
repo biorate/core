@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the snapshot value serialization contract of `@biorate/unimock` for errors and typed arrays: thrown errors round-trip with their class and own fields intact, `ArrayBuffer` views round-trip their bytes, and snapshots written by older package versions remain readable.
+Defines the snapshot value serialization contract of `@biorate/unimock` for errors, registered class instances, and typed arrays: thrown errors round-trip with their class and own fields intact, instances of registered classes round-trip with `instanceof` support, `ArrayBuffer` views round-trip their bytes, and snapshots written by older package versions remain readable.
 
 ## ADDED Requirements
 
@@ -20,9 +20,9 @@ When a value that is an `Error` is serialized, the snapshot entry SHALL include 
 - **WHEN** `UNIMOCK_STRIP_REQUEST=1` is set and an error with an own `request` field is serialized
 - **THEN** the recorded snapshot entry contains no `request` field, and serialization does not fail on a cyclic `request` value
 
-### Requirement: Error class restoration via registry
+### Requirement: Class restoration via registry
 
-The package SHALL expose a public `registerErrorClass(name, ctor)` function backed by a registry pre-populated with the built-in error classes. On deserialization the recorded error name SHALL select the registered constructor; an unregistered or missing name SHALL fall back to the generic `Error` constructor while still restoring `name`, `message`, and `stack` as before.
+The package SHALL expose public `registerClass(name, ctor)` and `unregisterClass(name)` functions backed by a shared registry pre-populated with the built-in error classes. On deserialization a recorded class name (`error` or `instance` entries) SHALL select the registered constructor; an unregistered or missing name SHALL fall back to the legacy behavior (generic `Error` for errors, plain object for instances).
 
 #### Scenario: Registered class restores instanceof
 
@@ -33,6 +33,25 @@ The package SHALL expose a public `registerErrorClass(name, ctor)` function back
 
 - **WHEN** an error whose `name` has no registered constructor is replayed from a snapshot
 - **THEN** the replayed value is an `Error` instance with the recorded `name`, `message`, and `stack`
+
+### Requirement: Registered class instance round-trip
+
+An instance of a class registered at serialization time (and not handled by a dedicated branch such as errors, `Date`, `RegExp`, or typed arrays) SHALL serialize as an `instance` entry with the class name and its own enumerable fields. Deserialization SHALL restore the registered class on the prototype chain and assign the recorded fields without invoking the constructor. Unregistered classes SHALL keep the legacy plain-object behavior.
+
+#### Scenario: Domain class instance in a result survives record→replay
+
+- **WHEN** a class is registered via `registerClass('Money', Money)`, a recorded call returns `new Money(100, 'RUB')`, and the entry is replayed
+- **THEN** the replayed value is an `instanceof Money` with the recorded field values
+
+#### Scenario: Unregistered class keeps plain-object behavior
+
+- **WHEN** a recorded call returns an instance of a class that is not registered
+- **THEN** the replayed value is a plain object with the instance's own enumerable fields (legacy behavior), and no `instance` entry is written
+
+#### Scenario: Constructor is not invoked on restore
+
+- **WHEN** a registered class has a constructor that throws without arguments
+- **THEN** deserialization still restores the instance state without calling the constructor
 
 ### Requirement: Typed array round-trip
 

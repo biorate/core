@@ -36,6 +36,7 @@
 | `src/sequelize.ts`                 | `bindReplaySequelizeModels` — offline-binding Sequelize-моделей в replay (no-op вне replay, off-guard вокруг биндинга, вариадик-модели + опции)                                                                            |
 | `src/snapshot-store.ts`            | `SnapshotStore` — JSONL загрузка/сохранение (v2 header `_jsonl:2`, refs всегда явный), кэш stores, режимные гейты `record()`/`flush()`, `flushAllSnapshots()`, `isReplay()`, `isRecord()`, `isOff()` (internal, fast path) |
 | `src/serializer.ts`                | `serialize`/`deserialize` (t/v формат), `stableHash`, `makeCallKey`                                                                                                                                                        |
+| `src/class-registry.ts`            | `registerClass`, `unregisterClass`, `getClass` — универсальный реестр классов для восстановления `instanceof` в replay (built-in ошибки предзарегистрированы; гейтит запись `instance`-тега)                               |
 | `src/utils.ts`                     | `getOrAssignRefId`, `getRefId`, `setRefId`, `getUnimockRef`, `isPromiseLike`, `getReplayStaticEntry`, `recordError`                                                                                                        |
 | `src/env.ts`                       | `parseUnimockMode()`, `resolveSnapshotDir()`                                                                                                                                                                               |
 | `src/errors.ts`                    | `UnimockReplayMissError`, `UnimockSerializeError`, `UnimockProxyTargetRequiredError`                                                                                                                                       |
@@ -200,7 +201,14 @@ new MockHandler(target, refId, store) → Proxy
 - `'date'` → ISO string
 - `'regexp'` → `{ source, flags }`
 - `'buffer'` → base64
-- `'error'` → `{ name, message, stack, cause, ... }`
+- `'typed_array'` → base64 байты `ArrayBuffer`-view (не Buffer); восстанавливается как `Uint8Array`
+- `'error'` → `{ n: name, m: message, s: stack, p?: [{k, v}] }` — `p` несёт собственные
+  enumerable-поля ошибки (например `response`/`config`/`code` у `AxiosError`); поле
+  `request` respects `UNIMOCK_STRIP_REQUEST`. Класс восстанавливается через общий реестр
+  `registerClass`; незарегистрированное имя → generic `Error`.
+- `'instance'` → `{ c: className, p: [{k, v}] }` — инстанс **зарегистрированного** класса
+  (opt-in при записи: незарегистрированные классы идут в legacy `'object'`); восстанавливается
+  через `Object.create(Ctor.prototype)` + поля, без вызова конструктора — `instanceof` в replay работает.
 - `'array'` → `[{t, v}, ...]`
 - `'object'` → `[{k: string, v: {t, v}}, ...]`
 - `'ref'` → `{t:'ref', v: refId}` — ссылка на MockHandler
