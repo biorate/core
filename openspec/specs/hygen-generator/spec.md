@@ -842,7 +842,9 @@ to them, leaving side effects to the hook's own decision.
 
 ### Requirement: Declarative action parameter schema
 
-A class-based action hook module (`hooks.ts`, kind `class`) declares its parameter schema as a `static params` member of the default-exported hooks class — an array of parameter descriptors. The engine MUST coerce CLI flag values to the declared type before the prompt phase. Prompt questions MUST be generated only for descriptors whose parameter was not supplied via flags. Every parameter value MUST be validated after the prompt phase. Actions whose hooks class declares no `static params` MUST keep the existing prompting and argument behavior unchanged.
+The class-based action hook module declares its parameter schema as a `static params` member of the default-exported hooks class — an array of parameter descriptors. Each descriptor declares a `type` of `'string'`, `'number'`, `'boolean'`, or a function, plus optional `required` (default `false`), `default`, and `message`. The engine MUST coerce CLI flag values to the declared type before the prompt phase. Prompt questions MUST be generated only for descriptors whose parameter was not supplied via flags. Every parameter value MUST be validated after the prompt phase. Actions whose hooks class declares no `static params` MUST keep the existing prompting and argument behavior unchanged.
+
+The runner SHALL treat a required parameter as missing when its merged (flag-supplied or prompted) value is `undefined`, an empty string, or a whitespace-only string; such a value SHALL fail with `ParamRequiredError` naming the parameter. A `required` string or number parameter prompted in an interactive terminal SHALL be re-asked in place with a "field is required" warning until a non-empty answer is supplied; the re-asked question preserves the parameter's message and initial (default) value. A `required` boolean parameter SHALL NOT be re-asked: the answered or default boolean is accepted as-is, so the empty confirm answer resolves to `false`. A non-required parameter SHALL keep its current behavior: an empty value is neither re-asked nor rejected. Values supplied via CLI flags SHALL be validated by the same empty-value rule as prompted answers.
 
 #### Scenario: Coercion of CLI flag values
 
@@ -863,6 +865,36 @@ A class-based action hook module (`hooks.ts`, kind `class`) declares its paramet
 
 - **WHEN** a generator action declares `static params` with `name` and `count` on its hooks class and is run with `--name user --count 2`
 - **THEN** no prompt questions are generated for `name` or `count`
+
+#### Scenario: Empty Enter on a required string parameter re-asks with a warning
+
+- **WHEN** a required string parameter is prompted in an interactive terminal and the user answers with an empty input
+- **THEN** the same question is asked again with a warning naming the field as required, and the run does not proceed until a non-empty answer is given
+
+#### Scenario: Whitespace-only answer counts as empty
+
+- **WHEN** a required string parameter receives an answer consisting only of whitespace (prompted or via flag)
+- **THEN** the value is treated as empty and the parameter is re-asked (TTY) or fails with `ParamRequiredError`
+
+#### Scenario: Empty CLI flag for a required parameter fails
+
+- **WHEN** the CLI supplies `--param=""` for a required parameter
+- **THEN** validation fails with `ParamRequiredError` naming the parameter instead of accepting the empty string
+
+#### Scenario: Required boolean accepts the answered value without re-asking
+
+- **WHEN** a required boolean parameter is prompted and the user presses Enter (empty answer)
+- **THEN** the answered/default boolean (`false` when unset) is accepted and no re-asking occurs
+
+#### Scenario: Non-required parameter accepts an empty value
+
+- **WHEN** a non-required string parameter receives an empty answer
+- **THEN** the empty value is accepted without a warning and without re-asking
+
+#### Scenario: Re-asked question preserves message and default
+
+- **WHEN** a required parameter with a `message` and a `default` is re-asked after an empty answer
+- **THEN** the re-asked question shows the same message and pre-fills the same default as the initial value
 
 ### Requirement: Descriptor types and resolution
 

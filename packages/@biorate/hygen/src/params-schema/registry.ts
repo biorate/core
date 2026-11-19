@@ -93,6 +93,12 @@ export const checkParam = (descriptor: ParamDescriptor, value: unknown): boolean
 };
 
 /**
+ * @description True when a value counts as missing for a `required` parameter:
+ * absent, an empty string, or a whitespace-only string. */
+export const isEmptyValue = (value: unknown): boolean =>
+  value === undefined || (typeof value === 'string' && value.trim() === '');
+
+/**
  * @description Validates the full schema against the merged flag/answer values:
  * builtin-typed values are checked, and required-but-absent parameters fail.
  * Returns the validated values map. */
@@ -102,8 +108,13 @@ export const validateParams = (
 ): Record<string, unknown> => {
   for (const descriptor of schema) {
     const value = values[descriptor.name];
-    if (value === undefined) {
-      if (descriptor.required) throw new ParamRequiredError(descriptor.name);
+    const missing = isEmptyValue(value);
+    if (missing) {
+      // A required boolean (`confirm`) accepts its answered/default value and is
+      // never re-asked, so the empty rule applies only to other types.
+      if (descriptor.required && descriptor.type !== 'boolean') {
+        throw new ParamRequiredError(descriptor.name);
+      }
       continue;
     }
     if (!checkParam(descriptor, value)) {

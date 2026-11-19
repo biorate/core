@@ -346,7 +346,15 @@ Per `(name, action)` pair the engine:
    (`message` is the question text, `default` the initial answer). Parameters already
    supplied are never asked again.
 3. **Validates** the merged values against the declared types; a `required` parameter
-   that stayed absent fails the run naming the parameter.
+   that stayed absent — or whose value is empty or whitespace-only, from a flag
+   (`--param=""`) or a prompt — fails the run naming the parameter.
+
+**Empty answers on required parameters.** In an interactive terminal an empty Enter on
+a required string/number question does not end the run: the question is re-asked in
+place with a `Field "<name>" is required` warning until a non-empty answer is given;
+the re-asked question keeps its `message` and `default`. A required `boolean` is never
+re-asked — the answered or default value is accepted as-is (an empty confirm answer
+resolves to `false`). Non-required parameters accept empty values unchanged.
 
 `type` accepts `'string'` (default), `'number'`, `'boolean'` — or a **function** whose
 return value becomes the parameter value (a thrown error surfaces under the parameter

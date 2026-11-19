@@ -1,5 +1,5 @@
 import type { ParamDescriptor, ParamsSchema, Prompter } from '../types';
-import { coerceParam, promptTypeOf, validateParams } from './registry';
+import { coerceParam, isEmptyValue, promptTypeOf, validateParams } from './registry';
 
 /** @description A minimal schema question rendered by any prompter. */
 interface ParamQuestion {
@@ -7,6 +7,8 @@ interface ParamQuestion {
   name: string;
   message: string;
   initial?: unknown;
+  /** @description Enquirer contract: return `true` to accept, a string to re-ask with that warning. */
+  validate?: (value: unknown) => boolean | string;
 }
 
 /**
@@ -34,12 +36,21 @@ export const promptFromParams = async <Q, T>(
       continue;
     }
     if (!descriptor.required) continue;
-    questions.push({
+    const question: ParamQuestion = {
       type: promptTypeOf(descriptor),
       name: descriptor.name,
       message: descriptor.message ?? `Enter a value for ${descriptor.name}:`,
       ...(descriptor.default !== undefined ? { initial: descriptor.default } : {}),
-    });
+    };
+    // Enquirer re-renders the question when `validate` returns a string, so an
+    // empty Enter on a required input/numeral warns and re-asks in place.
+    // Boolean (`confirm`) questions are excluded: an empty confirm resolves to
+    // its default and re-asking would be pointless.
+    if (question.type !== 'confirm') {
+      question.validate = (value: unknown) =>
+        !isEmptyValue(value) || `Field "${descriptor.name}" is required`;
+    }
+    questions.push(question);
   }
 
   if (questions.length > 0) {
@@ -48,7 +59,14 @@ export const promptFromParams = async <Q, T>(
     const answerMap = (answers ?? {}) as Record<string, unknown>;
     for (const question of questions) {
       const answered = answerMap[question.name];
-      values[question.name] = answered !== undefined ? answered : question.initial;
+      // An empty confirm answer resolves to `false` (enquirer's Enter default);
+      // other types fall back to the question's initial (default) value.
+      values[question.name] =
+        answered !== undefined
+          ? answered
+          : question.type === 'confirm'
+          ? false
+          : question.initial;
     }
   }
 
