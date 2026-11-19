@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.5.2...%40biorate%2Fhygen%400.6.0) (2026-11-19)
+
+### Features
+
+- **hygen:** class-based project config and default-export normalization ([ae9107b](https://github.com/biorate/core/commit/ae9107b9d944bee9fa6d23c7016ce8ebf3786393))
+
 ## [0.5.2](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.5.1...%40biorate%2Fhygen%400.5.2) (2026-11-15)
 
 **Note:** Version bump only for package @biorate/hygen
