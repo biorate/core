@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.10.0...%40biorate%2Fhygen%400.10.1) (2026-11-20)
+
+### Bug Fixes
+
+- **hygen:** drop broken chalk.template call in logger.colorful ([object Function] prefix in help output) ([0c7ef61](https://github.com/biorate/core/commit/0c7ef61452267e61dc0a1eb16e766e0505b3d98d))
+
 # [0.10.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.9.1...%40biorate%2Fhygen%400.10.0) (2026-11-20)
 
 ### Features
