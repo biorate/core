@@ -12,6 +12,7 @@ import type {
 } from './types';
 import context from './context';
 import params from './params';
+import { promptFromParams } from './params-schema';
 import prompt, { normalizeProjectHooks, resolveActionHooks } from './prompt';
 import { pickGeneratorAction } from './picker';
 import { ShowHelpError, KeepGoingError } from './errors';
@@ -105,6 +106,19 @@ const engine = async (
   }
 
   logger.log(`Loaded templates: ${templates!.replace(`${cwd}/`, '')}`);
+
+  // Global parameter phase: the project config's `params` schema is coerced
+  // and prompted exactly once per run, before any pair (and any hook) runs.
+  // Resolved values join the base arguments so every pair, template and hook
+  // sees them; action-level prompts never re-ask a resolved global parameter.
+  if (config.params?.length) {
+    const globalValues = await promptFromParams(
+      config.params,
+      config.createPrompter,
+      cleanArgv as Record<string, unknown>,
+    );
+    Object.assign(cleanArgv, globalValues);
+  }
 
   // name-outer &times; action-inner expansion; a single run is one action &times; one name.
   const nameList = names ?? [undefined];
@@ -280,6 +294,8 @@ const engine = async (
               {
                 h: getHookHelpers,
                 cache: hookCache,
+                globalParams: config.params,
+                logger,
               },
             );
             const args = Object.assign(

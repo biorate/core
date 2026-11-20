@@ -90,6 +90,11 @@ export interface ResolvedActionHooks {
   source?: unknown;
   /** @description Validated `params` schema exported by a class hook module, when present. */
   params?: import('./params-schema').ParamsSchema;
+  /**
+   * @description True when both declaration forms exist (an instance `params`
+   * field and a legacy `static params` member); the instance field wins and
+   * the caller warns about the shadowing. */
+  staticParamsShadowed?: boolean;
 }
 
 /** @description Per-run cache of resolution promises, keyed by resolved action folder. */

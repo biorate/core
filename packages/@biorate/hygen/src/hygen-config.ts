@@ -37,6 +37,12 @@ export abstract class HygenConfig {
   /** @description Default local template values applied before CLI-supplied ones. */
   localsDefaults: Record<string, unknown> | undefined;
   /**
+   * @description Global parameter schema (the same shape as an action's
+   * `static params`): prompted once per run before the pair loop, available to
+   * every pair. An action descriptor with the same name overrides the global
+   * one with a warning. */
+  params: import('./types/params-schema').ParamsSchema | undefined;
+  /**
    * @description Extra helpers merged with the built-in ones. A subclass may
    * provide this member in any of three forms: an own property map, a getter
    * returning a map, or a factory method `(locals, config) => Helpers`
@@ -51,6 +57,7 @@ export abstract class HygenConfig {
     this.templates = undefined;
     this.argCase = 'keep';
     this.localsDefaults = undefined;
+    this.params = undefined;
     // Assign a neutral default only when `helpers` is not provided on the
     // subclass prototype (a getter property form or a factory method) —
     // either must not be clobbered by the constructor default.
@@ -109,6 +116,9 @@ export abstract class HygenConfig {
       argCase: this.argCase,
       ...(this.localsDefaults !== undefined
         ? { localsDefaults: this.localsDefaults }
+        : {}),
+      ...(this.params !== undefined && this.params.length > 0
+        ? { params: this.params }
         : {}),
       ...(helpers !== undefined ? { helpers } : {}),
       ...(Object.keys(hooks).length > 0 ? { hooks } : {}),

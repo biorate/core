@@ -11,7 +11,7 @@ import type { ProjectHooks } from './hooks';
  * transport concerns (`logger`, `exec`, `createPrompter`) stay programmatic.
  * */
 export interface ProjectConfig
-  extends Pick<RunnerConfig, 'templates' | 'argCase' | 'helpers' | 'hooks'> {}
+  extends Pick<RunnerConfig, 'templates' | 'argCase' | 'helpers' | 'hooks' | 'params'> {}
 
 /**
  * @description The configuration object that drives `runner()`. It wires the
@@ -58,6 +58,13 @@ export interface RunnerConfig {
    * `hooks.*` methods compose inside them (`before*`: project → action,
    * `after*`: action → project). */
   hooks?: ProjectHooks;
+  /**
+   * @description Global declarative parameter schema, merged from the project
+   * configuration (`.hygen.*`). The same descriptor shape as an action's
+   * `static params`; prompted once per run, before the pair loop, and merged
+   * into the base arguments so every pair sees the values. An action-level
+   * descriptor with the same name overrides the global one with a warning. */
+  params?: import('./params-schema').ParamsSchema;
   /** @description Default local template values applied before CLI-supplied ones. */
   localsDefaults?: Record<string, unknown>;
   /** @description Factory that creates a `Prompter` for the given prompt/answer shapes. */

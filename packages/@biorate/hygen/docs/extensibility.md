@@ -317,14 +317,17 @@ filtering, `args`) applies.
 
 ### Declarative parameters (`params`)
 
-A class-based hook module can also declare a **parameter schema** — a `static params`
-array on the hooks class — that drives flag coercion, prompting and validation for the
-action, replacing hand-written prompt questions with one declaration:
+A class-based hook module can also declare a **parameter schema** — a `params` array
+on the hooks class — that drives flag coercion, prompting and validation for the
+action, replacing hand-written prompt questions with one declaration. The uniform
+form is an **instance field** — the same declaration style as the project config
+class (see [Global parameters](#global-parameters-project-config) below), and the
+descriptors may be computed in the constructor or reference instance state:
 
 ```ts
 // hooks.ts
 export default class Hooks {
-  static params = [
+  params = [
     { name: 'label', type: 'string', required: true, message: 'Component name?' },
     { name: 'count', type: 'number', default: 1 },
     { name: 'dry', type: 'boolean' },
@@ -336,6 +339,10 @@ export default class Hooks {
   }
 }
 ```
+
+The legacy `static params` member is still honored for backwards compatibility; when
+both forms exist, the instance field wins and the run logs a warning naming both
+declaration forms.
 
 Per `(name, action)` pair the engine:
 
@@ -366,8 +373,32 @@ path (flag or prompt) supplied it.
 `type` accepts `'string'` (default), `'number'`, `'boolean'` — or a **function** whose
 return value becomes the parameter value (a thrown error surfaces under the parameter
 name). An unknown string type fails when the hooks are loaded, so a schema mistake never
-reaches a run. Only the modern class form (`hooks.*`, kind `class`) honors
-`static params`; legacy modules keep their own `params(...)` function.
+reaches a run. Only the modern class form (`hooks.*`, kind `class`) honors the `params`
+schema — declared as an instance field (uniform with the project config) or, for
+backwards compatibility, as a legacy `static params` member; legacy modules keep their
+own `params(...)` function.
+
+### Global parameters (project config)
+
+A parameter needed by every generator can be declared once in the project
+configuration (`.hygen.*`, including a `HygenConfig` subclass) as a `params`
+array — the same descriptor shape as the action's `params` field:
+
+```ts
+// .hygen.ts
+export default {
+  params: [{ name: 'root', type: 'string', required: true }],
+};
+```
+
+Global parameters are coerced from CLI flags and prompted **once per run**,
+before any pair (and any lifecycle hook) runs; the resolved values join the
+base arguments, so every pair's templates and hooks see them and action-level
+prompts never re-ask them. All parameter rules apply unchanged (coercion,
+required empty-value rejection with the interactive re-ask, `argCase` alias
+resolution). When an action's `params` field declares the same name, the
+action-level descriptor wins for that action and the run logs a warning naming
+the parameter and both declaration levels.
 
 ### Flag-key normalization (`argCase`)
 

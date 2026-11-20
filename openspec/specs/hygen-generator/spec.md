@@ -842,7 +842,7 @@ to them, leaving side effects to the hook's own decision.
 
 ### Requirement: Declarative action parameter schema
 
-The class-based action hook module declares its parameter schema as a `static params` member of the default-exported hooks class — an array of parameter descriptors. Each descriptor declares a `type` of `'string'`, `'number'`, `'boolean'`, or a function, plus optional `required` (default `false`), `default`, and `message`. The engine MUST coerce CLI flag values to the declared type before the prompt phase. Prompt questions MUST be generated only for descriptors whose parameter was not supplied via flags. Every parameter value MUST be validated after the prompt phase. Actions whose hooks class declares no `static params` MUST keep the existing prompting and argument behavior unchanged.
+The class-based action hook module declares its parameter schema as a `params` instance field of the default-exported hooks class — an array of parameter descriptors, uniform with the project configuration's global `params` field. The legacy `static params` member remains supported for backwards compatibility; when both forms exist, the instance field SHALL win and the run SHALL emit a warning naming both declaration forms. Each descriptor declares a `type` of `'string'`, `'number'`, `'boolean'`, or a function, plus optional `required` (default `false`), `default`, and `message`. The engine MUST coerce CLI flag values to the declared type before the prompt phase. Prompt questions MUST be generated only for descriptors whose parameter was not supplied via flags. Every parameter value MUST be validated after the prompt phase. Actions whose hooks class declares no `params` schema MUST keep the existing prompting and argument behavior unchanged.
 
 The runner SHALL treat a required parameter as missing when its merged (flag-supplied or prompted) value is `undefined`, an empty string, or a whitespace-only string; such a value SHALL fail with `ParamRequiredError` naming the parameter. A `required` string or number parameter prompted in an interactive terminal SHALL be re-asked in place with a "field is required" warning until a non-empty answer is supplied; the re-asked question preserves the parameter's message and initial (default) value. A `required` boolean parameter SHALL NOT be re-asked: the answered or default boolean is accepted as-is, so the empty confirm answer resolves to `false`. A non-required parameter SHALL keep its current behavior: an empty value is neither re-asked nor rejected. Values supplied via CLI flags SHALL be validated by the same empty-value rule as prompted answers.
 
@@ -895,6 +895,16 @@ The runner SHALL treat a required parameter as missing when its merged (flag-sup
 
 - **WHEN** a required parameter with a `message` and a `default` is re-asked after an empty answer
 - **THEN** the re-asked question shows the same message and pre-fills the same default as the initial value
+
+#### Scenario: Instance params field shadows a legacy static member with a warning
+
+- **WHEN** a hooks class declares both an instance `params` field and a legacy `static params` member
+- **THEN** the instance field's descriptors drive the parameter phase and the run logs a warning naming both declaration forms
+
+#### Scenario: Legacy static params keeps working
+
+- **WHEN** a hooks class declares only the legacy `static params` member
+- **THEN** the schema behaves exactly as declared by the static member, with no warning
 
 ### Requirement: Descriptor types and resolution
 

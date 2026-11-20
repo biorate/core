@@ -95,16 +95,22 @@ const loadResolvedHooks = async (actionfolder: string): Promise<ResolvedActionHo
   }
 
   try {
+    const instance = new (exported as new () => ActionHooks)();
+    // A `params` schema is validated (unknown string types fail) at load time,
+    // so a schema mistake fails before any pair runs. The uniform declaration
+    // is an instance field (like the project config); the legacy `static
+    // params` member still works — an instance field wins when both exist
+    // (reported through `staticParamsShadowed` so the caller can warn).
+    const instanceParams = (instance as { params?: unknown }).params;
+    const staticParams = (exported as { params?: unknown }).params;
     return {
-      instance: new (exported as new () => ActionHooks)(),
+      instance,
       kind: 'class',
       file,
-      // a `params` schema is validated (unknown string types fail) at load
-      // time, so a schema mistake fails before any pair runs. The schema is a
-      // static member of the default-exported hooks class.
       params: validateParamsSchema(
-        (exported as { params?: unknown }).params as ParamsSchema | undefined,
+        (instanceParams ?? staticParams) as ParamsSchema | undefined,
       ),
+      ...(instanceParams && staticParams ? { staticParamsShadowed: true } : {}),
     };
   } catch (cause) {
     throw new HookModuleError(
@@ -180,7 +186,14 @@ const prompt = async <Q, T>(
   createPrompter: () => Prompter<Q, T>,
   actionfolder: string,
   args: Record<string, any>,
-  options: { h?: Helpers | (() => Helpers); cache?: HookCache } = {},
+  options: {
+    h?: Helpers | (() => Helpers);
+    cache?: HookCache;
+    /** @description Global schema from the project config; shadowed names warn. */
+    globalParams?: ParamsSchema;
+    /** @description Logger for the shadowing warning. */
+    logger?: { warn: (msg: string) => void };
+  } = {},
 ): Promise<T | object> => {
   const resolved = await resolveActionHooks(actionfolder, options.cache);
   const legacy = resolved.source as
@@ -194,8 +207,30 @@ const prompt = async <Q, T>(
 
   // a declared `params` schema drives the parameter phase: coerce supplied
   // flags, prompt once for missing required parameters, validate the result.
-  if (resolved.kind === 'class' && resolved.params?.length) {
-    return promptFromParams(resolved.params, createPrompter, args) as T;
+  // The global project schema participates: names shadowed by the action
+  // descriptor are dropped from the global list with a warning (the more
+  // specific action declaration wins). Global values already resolved in the
+  // engine's run-level phase sit in `args`, so they are never asked again.
+  if (resolved.kind === 'class') {
+    if (resolved.staticParamsShadowed) {
+      options.logger?.warn(
+        `The hooks class declares both an instance 'params' field and a legacy 'static params' member; the instance field wins.`,
+      );
+    }
+    const globalParams = options.globalParams ?? [];
+    const actionParams = resolved.params ?? [];
+    const actionNames = new Set(actionParams.map((d) => d.name));
+    const keptGlobal = globalParams.filter((d) => {
+      if (!actionNames.has(d.name)) return true;
+      options.logger?.warn(
+        `Parameter '${d.name}' is declared both globally (project config) and in this action's params; the action-level declaration wins.`,
+      );
+      return false;
+    });
+    const merged = [...keptGlobal, ...actionParams];
+    if (merged.length) {
+      return promptFromParams(merged, createPrompter, args) as T;
+    }
   }
 
   if (!resolved.instance.prompt) return {};

@@ -4,6 +4,7 @@ import type { Logger, RunnerConfig } from './types';
 import { ConfigResolver } from './config';
 import { ConfigClassError, ConfigTsNodeError } from './errors';
 import registerTsNode from './ts-node-register';
+import { validateParamsSchema } from './prompt';
 import { CONFIG_FILES } from './constants';
 
 let resolvedConfigFile: string | undefined;
@@ -24,7 +25,7 @@ const configResolver = new ConfigResolver(CONFIG_FILES, {
  * @description Keys a project configuration file may declare (the `ProjectConfig`
  * shape). Own enumerable properties outside this set on a class-resolved config
  * are ignored with a warning. */
-const PROJECT_CONFIG_KEYS = ['templates', 'argCase', 'helpers', 'hooks'];
+const PROJECT_CONFIG_KEYS = ['templates', 'argCase', 'helpers', 'hooks', 'params'];
 
 /**
  * @description Module keys produced by TypeScript/CJS interop that carry no
@@ -138,6 +139,15 @@ export default async (config: RunnerConfig): Promise<RunnerConfig> => {
     if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) {
       project.templates = resolved;
     }
+  }
+
+  // A global parameter schema is validated at resolution time (the same
+  // contract as an action's `static params`): a schema mistake fails before
+  // any pair runs.
+  if (project.params !== undefined) {
+    project.params = validateParamsSchema(
+      project.params as import('./types/params-schema').ParamsSchema,
+    );
   }
 
   return {
