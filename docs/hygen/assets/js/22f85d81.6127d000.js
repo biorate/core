@@ -8,7 +8,7 @@
           assets: () => l,
           contentTitle: () => c,
           default: () => h,
-          frontMatter: () => o,
+          frontMatter: () => i,
           metadata: () => r,
           toc: () => d,
         });
@@ -16,8 +16,8 @@
         '{"id":"extensibility","title":"extensibility","description":"Part of @biorate/hygen \u2014 a fork of jondot/hygen (v6.2.11, MIT), adapted to the @biorate/* monorepo. Rewritten for this fork\'s semantics; see Differences from upstream.","source":"@site/../docs/extensibility.md","sourceDirName":".","slug":"/extensibility","permalink":"/core/hygen/docs/extensibility","draft":false,"unlisted":false,"tags":[],"version":"current","frontMatter":{},"sidebar":"docs","previous":{"title":"interactive-picker","permalink":"/core/hygen/docs/interactive-picker"},"next":{"title":"faq","permalink":"/core/hygen/docs/faq"}}',
       );
       var t = s(159),
-        i = s(8758);
-      const o = {},
+        o = s(8758);
+      const i = {},
         c = 'Extensibility',
         l = {},
         d = [
@@ -126,7 +126,7 @@
           thead: 'thead',
           tr: 'tr',
           ul: 'ul',
-          ...(0, i.R)(),
+          ...(0, o.R)(),
           ...e.components,
         };
         return (0, t.jsxs)(t.Fragment, {
@@ -1943,7 +1943,7 @@
               children: (0, t.jsx)(n.code, {
                 className: 'language-ts',
                 children:
-                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({} as T),\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
+                  "import { runner } from '@biorate/hygen';\nimport * as path from 'path';\n\nasync function main() {\n  const result = await runner(['mailer', 'new', 'autumn-newsletter'], {\n    cwd: process.cwd(),\n    templates: path.join(process.cwd(), 'templates'),\n    logger: {\n      ok: (msg: string) => console.log(msg),\n      notice: (msg: string) => console.log(msg),\n      warn: (msg: string) => console.warn(msg),\n      err: (msg: string) => console.error(msg),\n      log: (msg: string) => console.log(msg),\n      colorful: (msg: string) => console.log(msg),\n      // optional; message output falls back to `colorful` when absent\n      colorfulHeader: (header: string, body: string) =>\n        console.log(`\\x1b[1m${header}\\x1b[0m:\\n${body}`),\n    },\n    createPrompter: <Q, T>() => ({\n      prompt: async (_arg0: Q) => ({} as T),\n    }),\n    exec: (sh: string, body: string) => {\n      void sh;\n      void body;\n    },\n  });\n\n  if (!result.success) {\n    console.error(result.failure?.message);\n    process.exit(1);\n  }\n}\n\nvoid main();\n",
               }),
             }),
             '\n',
@@ -2019,17 +2019,17 @@
         });
       }
       function h(e = {}) {
-        const { wrapper: n } = { ...(0, i.R)(), ...e.components };
+        const { wrapper: n } = { ...(0, o.R)(), ...e.components };
         return n ? (0, t.jsx)(n, { ...e, children: (0, t.jsx)(a, { ...e }) }) : a(e);
       }
     },
     8758(e, n, s) {
-      s.d(n, { R: () => o, x: () => c });
+      s.d(n, { R: () => i, x: () => c });
       var r = s(2503);
       const t = {},
-        i = r.createContext(t);
-      function o(e) {
-        const n = r.useContext(i);
+        o = r.createContext(t);
+      function i(e) {
+        const n = r.useContext(o);
         return r.useMemo(
           function () {
             return 'function' == typeof e ? e(n) : { ...n, ...e };
@@ -2044,8 +2044,8 @@
             ? 'function' == typeof e.components
               ? e.components(t)
               : e.components || t
-            : o(e.components)),
-          r.createElement(i.Provider, { value: n }, e.children)
+            : i(e.components)),
+          r.createElement(o.Provider, { value: n }, e.children)
         );
       }
     },

@@ -60,7 +60,13 @@ export const execute = async (
     debug('executing ops: done');
   }
   if (messages.length > 0) {
-    logger.colorful(`${args.action}:\n${messages.join('\n')}`);
+    // Custom (duck-typed) loggers predate `colorfulHeader`; fall back to the
+    // plain `colorful` channel with an unbolded header for them.
+    if (typeof logger.colorfulHeader === 'function') {
+      logger.colorfulHeader(String(args.action), messages.join('\n'));
+    } else {
+      logger.colorful(`${args.action}:\n${messages.join('\n')}`);
+    }
   }
 
   return { results, statuses };

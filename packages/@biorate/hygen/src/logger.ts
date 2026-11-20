@@ -1,12 +1,11 @@
 import chalk from 'chalk';
 
-// chalk 4.1.2 doesn't type template property
-const { yellow, red, green, magenta, template } = chalk as unknown as {
+const { yellow, red, green, magenta, bold } = chalk as unknown as {
   yellow: (x: string) => string;
   red: (x: string) => string;
   green: (x: string) => string;
   magenta: (x: string) => string;
-  template: (chalk: unknown, ...args: unknown[]) => string;
+  bold: (x: string) => string;
 };
 
 /**
@@ -22,9 +21,22 @@ class Logger {
     this.log = log;
   }
 
-  /** @description Print a message with `chalk` tags interpolated. */
+  /**
+   * @description Print a multi-line notice. Historically this method ran the
+   * text through `chalk.template` for `{style}` markup, but that helper is a
+   * template-tag function: calling it positionally produced the infamous
+   * `[object Function]` prefix in help output, and a correct tag invocation
+   * would crash on any literal brace in template messages. Messages are
+   * therefore printed as-is; bold headers go through `colorfulHeader`. */
   colorful(msg: string) {
-    this.log(template(chalk, msg));
+    this.log(msg);
+  }
+
+  /**
+   * @description Print a message whose first line is a bold header and whose
+   * body is plain text (the header stays readable when styling is disabled). */
+  colorfulHeader(header: string, body: string) {
+    this.log(`${bold(header)}:\n${body}`);
   }
 
   /** @description Print a magenta notice. */

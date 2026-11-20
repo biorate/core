@@ -639,6 +639,9 @@ async function main() {
       err: (msg: string) => console.error(msg),
       log: (msg: string) => console.log(msg),
       colorful: (msg: string) => console.log(msg),
+      // optional; message output falls back to `colorful` when absent
+      colorfulHeader: (header: string, body: string) =>
+        console.log(`\x1b[1m${header}\x1b[0m:\n${body}`),
     },
     createPrompter: <Q, T>() => ({
       prompt: async (_arg0: Q) => ({} as T),

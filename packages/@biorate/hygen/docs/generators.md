@@ -179,14 +179,9 @@ message: |
 ---
 ```
 
-The `|` annotation is a YAML literal block. `message:` supports chalk-style coloring:
-
-```javascript
-{bold mailer}
-{red mailer}
-{underline mailer}
-{green mailer}
-```
+The `|` annotation is a YAML literal block. The message is printed as-is — the action
+name is rendered as a bold header, and the body keeps its literal text (chalk-style
+`{bold …}` markup inside the message is **not** interpreted; braces are safe).
 
 ## Selecting parts of a generator
 

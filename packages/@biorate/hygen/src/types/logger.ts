@@ -13,6 +13,14 @@ export interface Logger {
   err: (msg: string) => void;
   /** @description Print a plain message (no color coding). */
   log: (msg: string) => void;
-  /** @description Interpolate `chalk` tags embedded in a message and print it. */
+  /**
+   * @description Print a multi-line notice. Kept for custom-logger
+   * compatibility: message output uses `colorfulHeader` when present and this
+   * channel as the fallback. */
   colorful: (msg: string) => void;
+  /**
+   * @description Print a notice whose first line is a bold header followed by a
+   * plain body. Optional: embedders with a custom logger that predates this
+   * member keep working — message output falls back to `colorful`. */
+  colorfulHeader?: (header: string, body: string) => void;
 }
