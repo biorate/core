@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.9.1...%40biorate%2Fhygen%400.10.0) (2026-11-20)
+
+### Features
+
+- **hygen:** global declarative params in project config + uniform instance-field params on hooks classes ([5251891](https://github.com/biorate/core/commit/5251891aa231f16eac8236748ceabb4fef92eb9a))
+
 ## [0.9.1](https://github.com/biorate/core/compare/%40biorate%2Fhygen%400.9.0...%40biorate%2Fhygen%400.9.1) (2026-11-19)
 
 ### Bug Fixes
